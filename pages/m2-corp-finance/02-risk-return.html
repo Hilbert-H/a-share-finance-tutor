@@ -72,6 +72,111 @@
       </section>
 
       <section class="layer">
+        <h2><span class="layer-num">Layer 0</span> · <span lang="zh">起点 — 收益率与风险是什么</span><span lang="en">Starting point — what return and risk are</span></h2>
+
+        <p lang="zh">在协方差矩阵、CAPM 之前, 先把"收益率"和"风险"这两个原子讲清楚。这一节面向<em>看金融模型的第一天</em>的读者。</p>
+        <p lang="en">Before covariance matrices and CAPM, anchor the two atoms: "return" and "risk." This section is for readers on day 1 of finance.</p>
+
+        <h3 lang="zh">① 收益率 — 把"价格"翻译成"百分比"</h3>
+        <h3 lang="en">① Return — translating "price" into "percent"</h3>
+        <p lang="zh">一只股票今天 100 元, 一年后 120 元。这一年的"收益率" $r = (120 - 100) / 100 = 20\%$。这就是<em>单期算术收益率</em>(simple return)。</p>
+        <p lang="en">A stock is ¥100 today, ¥120 a year later. Its annual <em>simple return</em> is $r = (120 - 100) / 100 = 20\%$.</p>
+        <p lang="zh"><strong>为什么金融学讨论"收益率"而不是"价格"</strong>?</p>
+        <p lang="en"><strong>Why finance talks about returns, not prices</strong>:</p>
+        <ul lang="zh">
+          <li><strong>可比性</strong>: ¥100 → ¥120 (+¥20) 和 ¥1000 → ¥1200 (+¥200) <em>价格变化</em>不同, 但<em>收益率</em>都是 20%。投资 1 元的体验与投资 100 万的体验在比例上等价 — 这就是金融决策的"相似性"原则。</li>
+          <li><strong>跨资产可比</strong>: 比较一只股票 (20 元) 和一只 ETF (500 元) 的好坏不能比价格变化, 要比收益率。</li>
+          <li><strong>跨时间可加</strong>: 年化收益率使不同时间长度的投资可比较。</li>
+        </ul>
+        <ul lang="en">
+          <li><strong>Comparability across price levels</strong>: ¥100 → ¥120 and ¥1000 → ¥1200 differ in absolute terms but are the same 20% return.</li>
+          <li><strong>Cross‑asset</strong>: a ¥20 stock and a ¥500 ETF can only be compared via returns.</li>
+          <li><strong>Annualizable</strong>: returns can be normalized across holding periods.</li>
+        </ul>
+        <p lang="zh"><strong>对数收益率 (log return)</strong>: $r_{log} = \ln(P_t / P_{t-1})$。在统计学和连续时间金融中更常用, 因为对数收益率<em>可加</em>: 2 年的对数收益率 = 第 1 年的 + 第 2 年的。<em>算术</em>收益率不可加 (需要复合)。本章主要用简单收益率, 在公式中遇到 $\ln$ 时记得是对数收益率。</p>
+        <p lang="en"><strong>Log return</strong>: $r_{log} = \ln(P_t / P_{t-1})$. More common in statistics and continuous‑time finance because log returns are <em>additive</em> across periods. Simple returns aren't (require compounding). This chapter uses simple returns mostly; remember to switch when you see $\ln$.</p>
+
+        <h3 lang="zh">② 为什么用"方差 / 标准差"度量风险</h3>
+        <h3 lang="en">② Why variance/std dev measures risk</h3>
+        <p lang="zh">假设你看两只股票过去 5 年的年收益率:</p>
+        <p lang="en">Two stocks' 5y annual returns:</p>
+        <table>
+          <thead><tr><th></th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th><span lang="zh">5 年平均</span><span lang="en">5y avg</span></th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>10%</td><td>11%</td><td>9%</td><td>10%</td><td>10%</td><td>10%</td></tr>
+            <tr><td>B</td><td>50%</td><td>−30%</td><td>40%</td><td>−20%</td><td>10%</td><td>10%</td></tr>
+          </tbody>
+        </table>
+        <p lang="zh">两只<em>平均收益率相同</em>(10%), 但显然不一样 — A 像把钱存银行 (波动小), B 像坐过山车 (大起大落)。同样的平均收益率, 但<em>风险</em>不同。</p>
+        <p lang="en">Same average return (10%), but A is steady (bank‑like) and B is a roller coaster. Same return, different <em>risk</em>.</p>
+        <p lang="zh">怎么用一个数字描述这种差异? — <strong>标准差 $\sigma$</strong>: 衡量"实际收益率<em>偏离</em>平均值的程度"。算法:</p>
+        <p lang="en">How to capture this in one number? <strong>Standard deviation $\sigma$</strong> — average distance of actual returns from their mean. Formula:</p>
+        <div class="eq"><span>$$ \sigma = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(r_i - \bar{r})^2} $$</span><span class="num">(0.1)</span></div>
+        <p lang="zh">对上表: A 的 σ ≈ 0.7%, B 的 σ ≈ 30%。<em>同样赚 10%, B 的"代价"是 σ 高 40 倍</em>。</p>
+        <p lang="en">For the table: σ(A) ≈ 0.7%, σ(B) ≈ 30%. Same return, 40× the volatility.</p>
+        <p lang="zh"><strong>为什么不用别的指标? (例如最大跌幅)</strong></p>
+        <ul lang="zh">
+          <li><strong>数学可处理性</strong>: σ 的<em>平方</em>(方差) 在组合层面有简洁公式 (后面 Layer 1 - 2 会用): $\sigma_p^2 = w^\top \Sigma w$。"最大跌幅"在组合层面没法做矩阵代数。</li>
+          <li><strong>正态分布的合理近似</strong>: 短期股票收益率近似正态 (虽然有<em>厚尾</em>), 正态分布完全由均值 + 方差描述, 两个参数足以建模。</li>
+          <li><strong>对称缺陷</strong>: σ 把"涨 10%"和"跌 10%"看作同等"风险"。但投资者通常只对<em>下行</em>风险担心。所以有"下行半方差"(semi‑variance) 等改进, 但主流仍用 σ 因为可加。</li>
+        </ul>
+        <ul lang="en">
+          <li><strong>Mathematical tractability</strong>: $\sigma^2$ aggregates to $\sigma_p^2 = w^\top \Sigma w$ for portfolios; "max drawdown" doesn't have such clean algebra.</li>
+          <li><strong>Normal approximation</strong>: short‑horizon stock returns are roughly normal (with fat tails); a normal distribution is fully characterized by mean + variance.</li>
+          <li><strong>Symmetric defect</strong>: σ treats +10% and −10% as equal "risk." Investors typically care about downside only — hence semi‑variance and other refinements. Mainstream stays with σ for additivity.</li>
+        </ul>
+
+        <h3 lang="zh">③ 协方差与相关系数 — 两只股票"一起动"的程度</h3>
+        <h3 lang="en">③ Covariance &amp; correlation — how two stocks move together</h3>
+        <p lang="zh">单只股票看 σ, 两只股票看<em>它们如何一起波动</em> — 这是 MPT (M3 Ch.01) 与 CAPM 的基础。两个概念:</p>
+        <p lang="en">For one stock, σ. For two stocks, how they move <em>together</em> — the foundation of MPT and CAPM:</p>
+        <ul lang="zh">
+          <li><strong>协方差 $\text{Cov}(R_i, R_j)$</strong>: $E[(R_i - \mu_i)(R_j - \mu_j)]$。同号 (一起涨或一起跌) 时为正, 反向时为负。单位是收益率平方, 难解读。</li>
+          <li><strong>相关系数 $\rho_{ij} = \text{Cov}(R_i, R_j) / (\sigma_i \sigma_j)$</strong>: 标准化后的协方差, 取值 [−1, +1]。$\rho = 1$ 完美同向, $\rho = -1$ 完美反向, $\rho = 0$ 不相关。</li>
+        </ul>
+        <ul lang="en">
+          <li><strong>Covariance</strong> $\text{Cov}(R_i, R_j) = E[(R_i - \mu_i)(R_j - \mu_j)]$. Positive when they move together, negative when opposite. Units of return², hard to read.</li>
+          <li><strong>Correlation</strong> $\rho_{ij} = \text{Cov}/(\sigma_i \sigma_j)$. Standardized to $[-1, +1]$.</li>
+        </ul>
+        <p lang="zh"><strong>典型 A 股相关系数</strong>:</p>
+        <ul lang="zh">
+          <li>沪深 300 与沪深 300 自身: $\rho = 1$</li>
+          <li>沪深 300 与中证 500: $\rho \approx 0.85$ (同一国市场, 但风格不同)</li>
+          <li>沪深 300 与 10Y 国债: $\rho \approx 0$ 至 −0.2 (股债通常微弱反向)</li>
+          <li>沪深 300 与黄金: $\rho \approx -0.1$ 至 0.1</li>
+          <li>新能源 ETF 与白酒 ETF: $\rho \approx 0.4$ (中度相关, 都受市场情绪影响)</li>
+        </ul>
+        <ul lang="en">
+          <li>CSI 300 with itself: 1. With CSI 500: ~0.85. With 10Y govt bond: 0 to −0.2. With gold: ~−0.1 to 0.1.</li>
+        </ul>
+        <p lang="zh"><strong>为什么相关系数对组合至关重要</strong>: 两只 σ=30% 的股票, 等权组合 σ 取决于 $\rho$:</p>
+        <p lang="en">Why correlation matters for portfolios — two σ=30% assets, equal weight:</p>
+        <ul lang="zh">
+          <li>$\rho = 1$: 组合 σ = 30% (无分散化)</li>
+          <li>$\rho = 0.5$: 组合 σ ≈ 26%</li>
+          <li>$\rho = 0$: 组合 σ ≈ 21% (CLT)</li>
+          <li>$\rho = -1$: 组合 σ = 0% (理论完美对冲)</li>
+        </ul>
+        <ul lang="en">
+          <li>ρ=1: σ=30% (no diversification); ρ=0.5: ~26%; ρ=0: ~21%; ρ=−1: 0%.</li>
+        </ul>
+        <p lang="zh">"<em>不把鸡蛋放一个篮子</em>"的数学化 — 持有<em>低相关</em>资产, 同样的期望收益下, σ 大幅下降。这是 MPT 的核心 "free lunch", 也是为什么所有金融机构都强调资产配置。</p>
+        <p lang="en">"Don't put all eggs in one basket," algebraically: low‑correlation assets reduce σ at same expected return — MPT's "free lunch."</p>
+
+        <h3 lang="zh">④ 无风险利率 — 折现率的零点</h3>
+        <h3 lang="en">④ Risk‑free rate — the zero of the discount rate</h3>
+        <p lang="zh">"无风险利率" $r_f$ — 你拿到现金后, 在<em>没有信用风险</em>的资产 (中国 10 年期国债) 上能获得的回报。中国 $r_f \approx 2.5\%$, 美国 $\approx 4.5\%$ (2024)。所有风险资产的预期回报应该<em>大于</em> $r_f$ — 否则没人买。"风险溢价" = 预期回报 − $r_f$。</p>
+        <p lang="en">"Risk‑free rate" $r_f$ — return on a credit‑risk‑free asset (China 10y govt bond ~2.5%, US 10y ~4.5% in 2024). All risky assets must expect more than $r_f$, else nobody buys. "Risk premium" = expected return − $r_f$.</p>
+        <p lang="zh">本章 CAPM 的形式: $E[R_i] = r_f + \beta_i (E[R_m] - r_f)$ — 即<em>风险溢价 = β × 市场风险溢价</em>。这一节先建立 $r_f$ 的概念, 余下章节会反复出现。</p>
+        <p lang="en">CAPM (this chapter): $E[R_i] = r_f + \beta_i (E[R_m] - r_f)$. The risk premium is $\beta$ × market premium. $r_f$ is the anchor.</p>
+
+        <div class="callout">
+          <p lang="zh"><strong>本节小结</strong> — 4 个原子: <em>收益率 r</em> · <em>波动率 σ (风险)</em> · <em>相关系数 ρ (共动)</em> · <em>无风险利率 $r_f$ (基准)</em>。下面 Layer 1 - 3 把这 4 个原子组合成 CAPM。</p>
+          <p lang="en"><strong>Recap</strong>: four atoms — return $r$, volatility $\sigma$, correlation $\rho$, risk‑free rate $r_f$. The rest of this chapter assembles them into CAPM.</p>
+        </div>
+      </section>
+
+      <section class="layer">
         <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
 
         <h3 lang="zh">收益率: 算术 vs 几何</h3>
