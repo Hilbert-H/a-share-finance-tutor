@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>09 · 财务比率体系 — Financial Ratios</title>
+  <meta name="keywords" content="financial ratios, liquidity, solvency, profitability, efficiency, valuation, 财务比率">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 09</span><span class="sep">·</span><span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.08</span><span lang="en">Prereq: Ch.08</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.10 造假识别</span><span lang="en">Next: Ch.10 Fraud</span></span></div>
+
+<h1><span lang="zh">财务比率体系</span><span lang="en">Financial Ratios</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">财务比率把绝对数字标准化, 让<em>跨公司</em>、<em>跨时间</em>对比成为可能。五大类: 流动性 / 偿债 / 营运 / 盈利 / 估值。每类有<em>核心几个</em>必须掌握。本章是 Ch.08 DuPont 的扩展, 给出完整诊断工具箱。</span>
+<span lang="en">Ratios standardize absolute numbers for cross‑firm, cross‑time comparison. Five families: liquidity / solvency / efficiency / profitability / valuation. Each has a must‑know core. This extends Ch.08's DuPont into a complete diagnostic toolkit.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能用五大类比率构建任意公司的完整财务画像。</li>
+<li lang="zh">能区分不同行业用比率的<em>不可比性</em>(银行 vs 制造 vs 房地产)。</li>
+<li lang="zh">能识别比率组合的"红旗模式"(高 ROE + 低 ROIC, 高存货增 + 高营收)。</li>
+<li lang="en">Build a full financial profile via five ratio families.</li>
+<li lang="en">Recognize cross‑industry incomparability.</li>
+<li lang="en">Identify red‑flag patterns in ratio combinations.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">比率的本质是<em>标准化</em>。10 亿净利的公司是好是坏? 单看不知道; 比上"100 亿营收"= 10% 净利率, 比上"行业平均 6%"= 优秀。比率本身没有意义, <em>对比</em>才有。</p>
+<p lang="en">Ratios standardize. ¥1bn NI good or bad? Need a denominator (¥10bn revenue → 10% margin) and a benchmark (industry 6% → excellent). Ratios are useful only in comparison.</p>
+<p lang="zh">五大类问题对应五类比率:</p>
+<p lang="en">Five questions, five families:</p>
+<ol lang="zh">
+<li><strong>能不能短期偿付?</strong> → 流动性比率</li>
+<li><strong>能不能长期偿付?</strong> → 偿债比率</li>
+<li><strong>资产用得有多高效?</strong> → 营运比率</li>
+<li><strong>每一元产出多少利润?</strong> → 盈利比率</li>
+<li><strong>市场给多少钱买它?</strong> → 估值比率</li>
+</ol>
+<p lang="en">Liquidity / solvency / efficiency / profitability / valuation.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① 流动性 (短期偿债能力)</h3>
+<h3 lang="en">① Liquidity</h3>
+<ul>
+<li><strong><span lang="zh">流动比率</span><span lang="en">Current Ratio</span></strong>: 流动资产 / 流动负债. <span lang="zh">健康 &gt; 1.5</span><span lang="en">healthy &gt; 1.5</span></li>
+<li><strong><span lang="zh">速动比率</span><span lang="en">Quick Ratio</span></strong>: (流动资产 − 存货) / 流动负债. <span lang="zh">更严, 排除可能积压的存货</span><span lang="en">stricter, excludes possibly stuck inventory</span></li>
+<li><strong><span lang="zh">现金比率</span><span lang="en">Cash Ratio</span></strong>: 现金及等价物 / 流动负债. <span lang="zh">最严, 真金白银</span><span lang="en">strictest, real cash</span></li>
+</ul>
+
+<h3 lang="zh">② 偿债 (长期偿债能力)</h3>
+<h3 lang="en">② Solvency</h3>
+<ul>
+<li><strong>D/A</strong>: <span lang="zh">总负债 / 总资产, 反映杠杆水平</span><span lang="en">total leverage</span></li>
+<li><strong>D/E</strong>: <span lang="zh">总负债 / 权益, 反映对股东的相对杠杆</span><span lang="en">debt vs equity</span></li>
+<li><strong><span lang="zh">利息保障倍数</span><span lang="en">Interest Coverage</span></strong>: EBIT / 利息费用. <span lang="zh">&gt; 3 健康, &lt; 1 危险</span><span lang="en">&gt; 3 healthy, &lt; 1 distress</span></li>
+<li><strong>EBITDA/Debt</strong>: <span lang="zh">还本能力</span><span lang="en">debt service capacity</span></li>
+</ul>
+
+<h3 lang="zh">③ 营运 (资产使用效率)</h3>
+<h3 lang="en">③ Efficiency</h3>
+<ul>
+<li><strong><span lang="zh">总资产周转率</span><span lang="en">Total Asset Turnover</span></strong>: 营收 / 平均总资产</li>
+<li><strong><span lang="zh">存货周转率</span><span lang="en">Inventory Turnover</span></strong>: COGS / 平均存货. <span lang="zh">越高越好 (库存流转快)</span><span lang="en">higher better</span></li>
+<li><strong>DIO/DSO/DPO/CCC</strong>: <span lang="zh">见 Ch.07</span><span lang="en">see Ch.07</span></li>
+</ul>
+
+<h3 lang="zh">④ 盈利</h3>
+<h3 lang="en">④ Profitability</h3>
+<ul>
+<li><strong><span lang="zh">毛利率</span><span lang="en">Gross Margin</span></strong>: 毛利 / 营收. <span lang="zh">反映产品定价权</span><span lang="en">pricing power</span></li>
+<li><strong><span lang="zh">营业利润率</span><span lang="en">Operating Margin</span></strong>: EBIT / 营收. <span lang="zh">反映运营效率</span><span lang="en">operating efficiency</span></li>
+<li><strong><span lang="zh">净利率</span><span lang="en">Net Margin</span></strong>: NI / 营收</li>
+<li><strong>ROA</strong>: NI / Assets. <span lang="zh">资产层面</span><span lang="en">asset‑level</span></li>
+<li><strong>ROE</strong>: NI / Equity. <span lang="zh">股东层面 (Ch.08)</span><span lang="en">shareholder‑level (Ch.08)</span></li>
+<li><strong>ROIC</strong>: NOPAT / Invested Capital. <span lang="zh">资本回报, 杠杆中性</span><span lang="en">leverage‑neutral capital return</span></li>
+</ul>
+
+<h3 lang="zh">⑤ 估值</h3>
+<h3 lang="en">⑤ Valuation</h3>
+<ul>
+<li><strong>P/E</strong>: <span lang="zh">市值 / 净利. 反映"每元利润值多少"</span><span lang="en">price per ¥ of earnings</span></li>
+<li><strong>P/B</strong>: <span lang="zh">市值 / 净资产. 适合资产密集型</span><span lang="en">price per book value; for asset‑heavy</span></li>
+<li><strong>P/S</strong>: <span lang="zh">市值 / 营收. 适合早期成长 (无利润)</span><span lang="en">for early growth (no earnings)</span></li>
+<li><strong>EV/EBITDA</strong>: <span lang="zh">企业价值 / EBITDA. 资本结构中性, 跨杠杆可比</span><span lang="en">enterprise value / EBITDA; leverage‑neutral</span></li>
+<li><strong><span lang="zh">股息率</span><span lang="en">Dividend Yield</span></strong>: DPS / Price</li>
+<li><strong>PEG</strong>: P/E ÷ <span lang="zh">盈利增长率 (%)</span><span lang="en">earnings growth%</span>. <span lang="zh">价值-增长平衡 (Peter Lynch)</span><span lang="en">Lynch's value‑growth balance</span></li>
+</ul>
+
+<h3 lang="zh">⑥ 跨行业用比率的陷阱</h3>
+<h3 lang="en">⑥ Cross‑industry traps</h3>
+<table>
+<thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th><span lang="zh">行业差异原因</span><span lang="en">Why differs</span></th></tr></thead>
+<tbody>
+<tr><td>D/E</td><td><span lang="zh">银行 12+ 与制造 0.5 不可比</span><span lang="en">Bank 12+ vs Manuf 0.5 incompatible</span></td></tr>
+<tr><td>P/B</td><td><span lang="zh">银行 0.8 vs 茅台 10. 银行受净资产 (与监管资本紧密相关) 锚定; 消费品品牌价值不进账面</span><span lang="en">Bank 0.8 vs Moutai 10. Banks anchored to book; brand value off‑book</span></td></tr>
+<tr><td>EV/EBITDA</td><td><span lang="zh">轻资产服务业低 (EBITDA 接近 EBIT); 重资产高 (大量折旧)</span><span lang="en">Asset‑light low; asset‑heavy high</span></td></tr>
+<tr><td><span lang="zh">毛利率</span><span lang="en">Gross Margin</span></td><td><span lang="zh">奢侈品 80%+; 零售 25%-30%; 大宗商品 5%-10%</span><span lang="en">Luxury 80%+; retail 25–30%; commodities 5–10%</span></td></tr>
+</tbody>
+</table>
+<p lang="zh"><strong>实务规则</strong>: 永远比较<em>同行业</em>同期数据 (peers within the same industry, same period)。跨行业比较时, 用 ROIC + EV/EBITDA + PEG 等"中性化"指标。</p>
+<p lang="en">Compare within industry, same period. Cross‑industry, use leverage‑neutral metrics like ROIC, EV/EBITDA, PEG.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker"><span lang="zh">行业对照</span><span lang="en">Sector comparison</span></span><span class="company"><span lang="zh">白酒 vs 银行 — 同 ROE 但不同价值</span><span lang="en">Baijiu vs Banks — same ROE, different value</span></span></div>
+<div class="case-table"><table><thead><tr><th></th><th><span lang="zh">中证白酒</span><span lang="en">CSI Baijiu</span></th><th><span lang="zh">中证银行</span><span lang="en">CSI Banks</span></th></tr></thead><tbody>
+<tr><td>ROE</td><td class="num">~25%</td><td class="num">~12%</td></tr>
+<tr><td>P/E</td><td class="num">~25</td><td class="num">~5</td></tr>
+<tr><td>P/B</td><td class="num">~6</td><td class="num">~0.6</td></tr>
+<tr><td>EV/EBITDA</td><td class="num">~18</td><td><span lang="zh">N/A</span><span lang="en">N/A</span></td></tr>
+<tr><td><span lang="zh">股息率</span><span lang="en">Yield</span></td><td class="num">~2%</td><td class="num up">~5%</td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>解读</strong>: 白酒 P/E 25 vs 银行 P/E 5 — 不是"白酒贵 5 倍, 银行便宜". 而是:</p>
+<ul lang="zh">
+<li>白酒未来增长预期高 (品牌护城河 + 通胀传导), 市场愿意付高 P/E</li>
+<li>银行受周期、监管、风险拨备等限制, 增长慢, 市场只给低 P/E</li>
+<li>但银行的 5% 股息率 vs 白酒 2%, 现金回报上银行更优</li>
+<li>P/B 0.6 显示银行被市场视为"账面价值都不值"— 反映对其潜在不良资产的担忧</li>
+</ul>
+<p lang="en">P/E 25 vs 5 reflects: high growth expectations vs cyclical/regulated/loss‑reserve constraints. Banks offer 5% yield. Banks at P/B 0.6 signal "even book value unreliable" — fear of bad loans. Don't compare across sectors mechanically.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">★</span><div><h4><span lang="zh">标准化 (normalization)</span><span lang="en">Normalization</span></h4><p lang="zh">把绝对数字标准化, 让对比成为可能 — 这是所有比率的本质。</p><p lang="en">Standardize absolute numbers — the essence of all ratios.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 银行 P/B = 0.6 (低于账面值)。这是"便宜值得买"还是"市场有先见之明"? 给出三种可能解读。</span><span lang="en"><strong>Q1.</strong> Bank P/B = 0.6 (below book). Cheap buy or wise market?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<ol lang="zh">
+<li><strong>市场担心账面净资产虚高</strong>: 银行账面有大量贷款, 监管要求按"预期损失模型" (CAS 22) 计提拨备, 但实际不良可能远超已计提。市场用 P/B &lt; 1 表达"账面 1 元实际可能只值 0.6 元"</li>
+<li><strong>低 ROE 限制估值</strong>: 用 Gordon Growth Model 反推, P/B 与 ROE 强相关: $P/B \approx (ROE - g) / (r - g)$. 若 ROE 12%, $r$ 12%, $g$ 4% → $P/B \approx 1.0$. 若市场认为 ROE 持续走低 → P/B 低于 1 合理</li>
+<li><strong>真正的便宜机会</strong>: 若银行业利率周期反转 + 拨备充足 + 不良真实可控 → 市场过度悲观, P/B 0.6 是机会. Buffett 2008 后买美国银行 BAC 就是这种 bet</li>
+</ol>
+<p lang="zh"><strong>诊断方法</strong>: 查不良贷款率历年趋势 + 拨备覆盖率 + 资本充足率 + 净息差。同时看同行业其他银行 P/B 是否相近 (行业整体折价 vs 个股特定)。</p>
+<p lang="en">Three readings: (1) market doubts book value (hidden NPLs); (2) low ROE justifies low P/B via Gordon (P/B ≈ (ROE−g)/(r−g)); (3) value opportunity (Buffett's BAC bet 2008+). Diagnose via NPL trend, reserve coverage, capital adequacy, NIM, peer P/B.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 用 PEG (Peter Lynch) 评估两只股票: A: P/E = 30, 增长 30%, B: P/E = 15, 增长 8%。哪个更便宜? PEG 的局限?</span><span lang="en"><strong>Q2.</strong> PEG comparison: A: P/E 30, growth 30%; B: P/E 15, growth 8%. Cheaper? PEG's limits?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">PEG(A) = 30/30 = 1.0, PEG(B) = 15/8 = 1.875. <strong>A 更便宜</strong> (PEG &lt; 1 通常被认为低估)。</p>
+<p lang="zh"><strong>PEG 的优点</strong>: 同时考虑估值与增长. 高 P/E 不必然贵 (若有匹配的增长); 低 P/E 不必然便宜 (若增长慢)。</p>
+<p lang="zh"><strong>PEG 的局限</strong>:</p>
+<ol lang="zh">
+<li><strong>"增长"用哪个口径</strong>? 历史 EPS 增长? 未来 5 年分析师预测? Consensus 还是公司 guidance? 不同口径得出不同 PEG. 现实中 30% 增长预期是否能持续? 大多数高速增长是短期</li>
+<li><strong>不考虑风险</strong>: A 的 30% 增长可能伴随 30% σ 波动, B 的 8% 增长稳定. 同 PEG 下应当对风险溢价做调整, PEG 不反映</li>
+<li><strong>不考虑资本成本</strong>: 持续 30% 增长需要大量再投资, 自由现金流可能远低于 NI. PEG 假设 NI 直接等于现金回报, 不严谨</li>
+<li><strong>无视行业差异</strong>: 周期股低增长期 P/E 低不一定便宜; 反转期 P/E 高也不一定贵</li>
+</ol>
+<p lang="zh"><strong>结论</strong>: PEG 是<em>启发式</em>工具, 不是严谨估值模型. Lynch 自己说"PEG &lt; 1 看一眼, &gt; 2 直接 pass"— 用作筛选, 不作精确估值。完整估值仍要用 DCF (M3 Ch.05).</p>
+<p lang="en">PEG(A)=1.0 cheaper; PEG(B)=1.875. Limits: which growth (historical/forecast/guidance); ignores risk; ignores capital needs of growth (FCF vs NI); ignores cycle stage. PEG is a screener (Lynch: "&lt;1 look, &gt;2 skip"), not rigorous valuation. Use DCF (M3 Ch.05) for precision.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一家公司流动比率 = 2.5 (优秀), 速动比率 = 0.5 (危险). 这种背离意味着什么?</span><span lang="en"><strong>Q3.</strong> Current ratio 2.5, Quick ratio 0.5. Divergence meaning?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>背离分析</strong>:</p>
+<p lang="zh">速动比率 = (流动资产 − 存货) / 流动负债。两个比率差距大 = <em>大量流动资产是存货</em>。流动比率 2.5, 速动 0.5 → 存货占流动资产比 80% 以上。</p>
+<p lang="zh"><strong>含义</strong>:</p>
+<ul lang="zh">
+<li><strong>表面流动性好, 实际现金压力大</strong>: 流动比率 2.5 仅在<em>存货能快速变现</em>时才有意义. 若存货积压 (例如电子产品过季 / 服装下架), 短期变现极难, 公司实际面临偿付压力</li>
+<li><strong>"流动资产"的口径误导</strong>: 流动比率把存货当"可变现资产", 但存货的<em>变现速度 + 变现折扣</em>都是不确定的</li>
+<li><strong>行业判断关键</strong>: 大宗商品贸易类公司流动比率高 (库存大) 是正常; 服装、电子、生鲜等高滞销风险的行业, 速动比率比流动比率更可靠</li>
+</ul>
+<p lang="zh"><strong>典型危险信号</strong>: 流动比率上升 + 速动比率下降 = 存货积压 + 流动负债增加。这是销售放缓或库存管理失控的明确预警。苏宁、ST 远东、贾跃亭乐视生态等暴雷前都有这种结构。</p>
+<p lang="zh"><strong>诊断动作</strong>:</p>
+<ol lang="zh">
+<li>看存货结构 — 原材料 / 在产品 / 产成品的比例</li>
+<li>看存货周转率趋势 — 持续下降是关键警报</li>
+<li>看存货跌价准备 — 计提增加显示公司自己也承认存货价值不足</li>
+<li>对比同行业速动比率 — 若公司速动远低于同行, 行业排除外因</li>
+</ol>
+<p lang="en">Divergence = inventory dominates current assets (~80%+). Current ratio 2.5 misleads — assumes inventory liquidates quickly, which often fails (seasonal, perishable, obsolete). Quick ratio is the truer liquidity gauge. Pattern: current up + quick down = inventory buildup + payable rise = sales slowing or inventory mgmt failure. Diagnose via inventory mix, turnover trend, impairment provisions, peer comparison.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="08-dupont.html"><span class="dir">← Prev</span><span class="title">08 · DuPont</span></a><a class="next" href="10-fraud-detection.html"><span class="dir">Next →</span><span class="title">10 · <span lang="zh">造假识别</span><span lang="en">Fraud Detection</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title">AI Tutor <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">填入 API Key</span><span lang="en">API Key</span></h4><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save>Save</button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset><span lang="zh">清除</span><span lang="en">clear</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

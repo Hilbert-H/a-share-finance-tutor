@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>08 · DuPont 分解 — DuPont Decomposition</title>
+  <meta name="keywords" content="DuPont, ROE decomposition, ROA, asset turnover, leverage, 杜邦, ROE分解, 茅台, 京东方, 招商银行">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 08</span><span class="sep">·</span><span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span><span class="sep">·</span><span><span lang="zh">前置: M1 Ch.02</span><span lang="en">Prereq: M1 Ch.02</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.09 比率</span><span lang="en">Next: Ch.09 Ratios</span></span></div>
+
+<h1><span lang="zh">DuPont 分解</span><span lang="en">DuPont Decomposition</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">"ROE = 30% 是怎么来的?" — DuPont 把 ROE 拆成三个 (或五个) 可识别的来源, 让你看到一家公司的盈利能力<em>到底</em>来自销售利润率、资产周转率、还是杠杆。两家 ROE 相同的公司可能有<em>截然相反</em>的经营本质 — DuPont 让你看出来。</span>
+<span lang="en">"ROE = 30% — how?" DuPont decomposes ROE into 3 (or 5) identifiable sources: margin, turnover, leverage. Two firms with the same ROE can have <em>opposite</em> economic engines — DuPont reveals which.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能用三因子 DuPont (Net Margin × Asset Turnover × Equity Multiplier) 分解任意公司 ROE。</li>
+<li lang="zh">能用五因子 DuPont 进一步分解, 把利息费用与税务效应单独剥离。</li>
+<li lang="zh">能识别"高 ROE 但低质量"模式 (高杠杆驱动, ROIC 低)。</li>
+<li lang="en">Decompose ROE via 3‑factor DuPont (margin × turnover × multiplier).</li>
+<li lang="en">Apply 5‑factor DuPont to isolate interest and tax effects.</li>
+<li lang="en">Identify "high ROE but low quality" patterns (leverage‑driven, low ROIC).</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">ROE = 净利 / 净资产, 是<em>股东视角</em>的盈利效率。但同样 30% 的 ROE 可能来自:</p>
+<p lang="en">ROE = NI / Equity, shareholder‑view profitability. But 30% ROE may come from:</p>
+<ul lang="zh">
+<li><strong>茅台模式</strong>: 净利率 50% + 资产周转 0.5 + 杠杆 1.2 = 30% (高利润率主导)</li>
+<li><strong>沃尔玛模式</strong>: 净利率 3% + 资产周转 2.5 + 杠杆 4 = 30% (高周转主导)</li>
+<li><strong>金融模式</strong>: 净利率 30% + 资产周转 0.05 + 杠杆 20 = 30% (高杠杆主导)</li>
+</ul>
+<p lang="en">Moutai (high margin), Walmart (high turnover), bank (high leverage) can all yield 30% ROE — radically different business models.</p>
+<p lang="zh">单看 ROE 30% 你无法区分这三家公司的<em>风险</em>、<em>护城河</em>、<em>价值创造能力</em>。DuPont 强制你拆解到三个独立维度, 揭示真实经济引擎。</p>
+<p lang="en">Just looking at ROE 30% doesn't reveal risk, moat, or value creation. DuPont decomposes into three independent axes.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① 三因子 DuPont</h3>
+<h3 lang="en">① 3‑factor DuPont</h3>
+<div class="callout callout--formula">
+<div class="eq"><span>$$ \mathrm{ROE} = \underbrace{\frac{\mathrm{NI}}{\mathrm{Revenue}}}_{\text{Net Margin}} \times \underbrace{\frac{\mathrm{Revenue}}{\mathrm{Assets}}}_{\text{Asset Turnover}} \times \underbrace{\frac{\mathrm{Assets}}{\mathrm{Equity}}}_{\text{Equity Multiplier (Leverage)}} $$</span><span class="num">(8.1)</span></div>
+<p lang="zh">代数恒等式: 直接乘开 → ROE = NI / Equity。每个因子有独立经济含义:</p>
+<p lang="en">Algebraic identity. Each factor has independent meaning:</p>
+<ul lang="zh">
+<li><strong>Net Margin</strong>: 每元营收产生多少净利 → 反映<em>定价权 + 成本控制</em></li>
+<li><strong>Asset Turnover</strong>: 每元资产产生多少营收 → 反映<em>资产使用效率</em></li>
+<li><strong>Equity Multiplier</strong>: 每元权益支撑多少资产 = 1 + D/E → 反映<em>杠杆</em></li>
+</ul>
+<p lang="en">Margin = pricing/cost power; turnover = asset efficiency; multiplier = leverage.</p>
+</div>
+
+<h3 lang="zh">② 五因子 DuPont (扩展)</h3>
+<h3 lang="en">② 5‑factor DuPont</h3>
+<div class="eq"><span>$$ \mathrm{ROE} = \underbrace{\frac{\mathrm{EBIT}}{\mathrm{Revenue}}}_{\text{Op. Margin}} \times \underbrace{\frac{\mathrm{Revenue}}{\mathrm{Assets}}}_{\text{Turnover}} \times \underbrace{\frac{\mathrm{Assets}}{\mathrm{Equity}}}_{\text{Multiplier}} \times \underbrace{\frac{\mathrm{EBT}}{\mathrm{EBIT}}}_{\text{Interest Burden}} \times \underbrace{\frac{\mathrm{NI}}{\mathrm{EBT}}}_{\text{Tax Burden}} $$</span><span class="num">(8.2)</span></div>
+<p lang="zh">把"净利率"再拆为"经营利润率 × 利息负担 × 税收负担"。其中:</p>
+<p lang="en">Splits margin into operating + interest + tax:</p>
+<ul lang="zh">
+<li><strong>Interest Burden</strong> = EBT/EBIT: 利息消耗了多少经营利润. 1.0 = 无利息支出 (零杠杆); 越小 = 利息越重</li>
+<li><strong>Tax Burden</strong> = NI/EBT: 税务影响. 1.0 = 不交税; 中国 25% 税率下 ~0.75</li>
+</ul>
+<p lang="en">Interest Burden 1.0 = no interest; lower = more interest. Tax Burden 1.0 = no tax; 0.75 = typical China 25% rate.</p>
+
+<h3 lang="zh">③ DuPont 与 ROIC 的关系</h3>
+<h3 lang="en">③ DuPont vs ROIC</h3>
+<p lang="zh">ROE 受杠杆影响, 比较跨杠杆公司不公平. <strong>ROIC</strong> (return on invested capital) = NOPAT / Invested Capital = 经营利润 (税后) / (债务 + 权益 − 现金) — 与资本结构<em>无关</em>。</p>
+<p lang="en">ROE leverages‑sensitive; <strong>ROIC</strong> = NOPAT / Invested Capital is leverage‑neutral, fairer cross‑firm.</p>
+<p lang="zh"><strong>用法</strong>: ROE - ROIC 的差距, 反映了杠杆对 ROE 的<em>放大</em>程度。若 ROE = 30%, ROIC = 15% → 一半的"高 ROE"来自杠杆放大, 而非真实经营效率。投资者应警惕这种"杠杆驱动型高 ROE"。</p>
+<p lang="en">ROE − ROIC measures leverage amplification. ROE 30% with ROIC 15% means half the ROE is leverage, not operations. Beware.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker"><span lang="zh">三家对照</span><span lang="en">Three‑way</span></span><span class="company"><span lang="zh">茅台 vs 京东方 vs 招商银行 — ROE 同 ~15-20%, 来源完全不同</span><span lang="en">Moutai vs BOE vs CMB</span></span></div>
+<div class="case-table"><table><thead><tr><th></th><th>600519 <span lang="zh">茅台</span></th><th>000725 <span lang="zh">京东方</span></th><th>600036 <span lang="zh">招行</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">ROE (2023)</span><span lang="en">ROE</span></td><td class="num">~32%</td><td class="num">~3%</td><td class="num">~16%</td></tr>
+<tr><td><span lang="zh">净利率</span><span lang="en">Net Margin</span></td><td class="num up">~52%</td><td class="num">~2%</td><td class="num">~37%</td></tr>
+<tr><td><span lang="zh">资产周转</span><span lang="en">Asset Turn.</span></td><td class="num">~0.45</td><td class="num">~0.65</td><td class="num down">~0.024</td></tr>
+<tr><td><span lang="zh">权益乘数</span><span lang="en">Multiplier</span></td><td class="num">~1.21</td><td class="num">~2.05</td><td class="num up">~17.5</td></tr>
+<tr><td>ROIC</td><td class="num up">~30%</td><td class="num">~3%</td><td class="num">~1.5%</td></tr>
+<tr><td><span lang="zh">主导引擎</span><span lang="en">Engine</span></td><td><span lang="zh"><strong>净利率</strong> (品牌)</span><span lang="en"><strong>Margin</strong> (brand)</span></td><td><span lang="zh">周转 + 弱杠杆</span><span lang="en">Turnover + leverage</span></td><td><span lang="zh"><strong>杠杆</strong> (银行业务)</span><span lang="en"><strong>Leverage</strong></span></td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>解读</strong>:</p>
+<ul lang="zh">
+<li><strong>茅台</strong>: 32% ROE 几乎全部来自净利率 (52%!) — 品牌护城河转化为定价权。ROIC ≈ ROE — 说明杠杆贡献<em>极小</em>, ROE 是真实经营效率。这是<em>最优质</em>的 ROE 类型</li>
+<li><strong>京东方</strong>: 3% ROE 来自微薄净利率 + 中等周转 + 中等杠杆 — 周期股的典型 (面板价格波动主导)</li>
+<li><strong>招行</strong>: 16% ROE 来自高净利率 + <em>极高杠杆</em>(17.5×)。ROIC 仅 1.5% — 说明 ROE 主要来自杠杆放大, 不是真实资本回报。这<em>不是</em>缺点 — 银行业本质就是高杠杆模式 — 但<em>不能</em>与制造业 ROE 直接比较</li>
+</ul>
+<p lang="en">Moutai's 32% ROE is almost entirely from 52% margin (brand → pricing power); ROIC ≈ ROE (negligible leverage contribution) — highest‑quality ROE. BOE's 3% ROE: cyclical commodity. CMB's 16% from extreme leverage (17.5×), ROIC just 1.5% — not a flaw, but banking's fundamental shape; not comparable to manufacturing ROE.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">★</span><div><h4><span lang="zh">分解 (decomposition)</span><span lang="en">Decomposition</span></h4><p lang="zh">把复合指标拆成独立维度, 揭示真实经济引擎。DuPont 是会计指标的代数分解版本。</p><p lang="en">Decompose composite metrics into independent axes — algebraic dissection of accounting numbers.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 两家公司 A 与 B 的 ROE 都是 20%。A: 净利率 10%, 周转 1, 杠杆 2。B: 净利率 4%, 周转 2.5, 杠杆 2。商业模式差异何在?</span><span lang="en"><strong>Q1.</strong> Two firms with ROE 20%. A: margin 10%, turnover 1, leverage 2. B: margin 4%, turnover 2.5, leverage 2. Business model difference?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>A — 高利润率模式</strong> (10% 净利率): 品牌或专利驱动, 单笔交易利润大但周转慢。典型: 高端消费品、专科药、高端机床、奢侈品。<em>护城河</em>: 品牌/专利。<em>风险</em>: 品牌价值波动 / 新竞争者破坏定价权。</p>
+<p lang="zh"><strong>B — 高周转模式</strong> (2.5 周转): 规模 + 效率驱动, 单笔利润薄但快进快出。典型: 超市零售、快销品、低端制造、贸易公司。<em>护城河</em>: 规模 + 运营效率。<em>风险</em>: 价格战 / 新进入者扰乱周转。</p>
+<p lang="zh"><strong>两者投资逻辑不同</strong>:</p>
+<ul lang="zh">
+<li>A 估值: 通常给高 P/E (品牌价值持续) — Moutai 30x, LVMH 25x</li>
+<li>B 估值: 通常给低 P/E (周期 + 竞争压力) — Walmart 25x, 京东 15x</li>
+<li>同 ROE 不同<em>质量</em></li>
+</ul>
+<p lang="zh"><strong>诊断方法</strong>: 看十年 DuPont 三因子的稳定性 — A 模式的净利率稳定性强 (品牌持久); B 模式的周转率稳定性强 (规模效应)。任何一个因子异常波动 = 商业模式受到冲击。</p>
+<p lang="en">A = high‑margin model (brand/IP); B = high‑turnover model (scale/efficiency). Different moats, different risks, different P/Es. Same ROE, different quality.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家公司 ROE 25% 但 ROIC 8%。意味着什么? 该公司在杠杆下行周期 (利率上升或信贷收紧) 中会如何?</span><span lang="en"><strong>Q2.</strong> ROE 25%, ROIC 8%. Meaning? How will it fare in tightening cycle?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>差距分析</strong>: ROE 25% − ROIC 8% = 17 个百分点的<em>杠杆放大</em>。意味着真实资本回报只有 8%, 但通过举债"借了 17% 的便宜"。</p>
+<p lang="zh"><strong>合理性测试</strong>: ROIC 8% 是否高于资本成本 WACC? 若 WACC = 7%, ROIC 仅 1% 超过 → 公司其实<em>勉强</em>在创造价值; 加杠杆后 ROE 25% 看似漂亮, 但 ROIC 与 WACC 的<em>窄差</em>说明经营本身不强。</p>
+<p lang="zh"><strong>利率上升时</strong>:</p>
+<ul lang="zh">
+<li>$r_d$ 上升 → 利息成本上升 → 净利下降</li>
+<li>WACC 上升 → 若 ROIC 仍 8%, 但 WACC 升到 10% → 公司<em>毁灭价值</em></li>
+<li>杠杆约束 → 借不到那么多债 → ROE 直接下降</li>
+<li>困境成本 → 信用利差扩大, 加速恶化</li>
+</ul>
+<p lang="zh"><strong>诊断框架</strong>:</p>
+<ol lang="zh">
+<li>ROIC vs WACC: 是否真的创造价值?</li>
+<li>ROE − ROIC: 杠杆放大幅度</li>
+<li>利率敏感性: 利率 + 100bp → 净利变化</li>
+<li>信用评级: 评级一旦下调, $r_d$ 跳跃</li>
+</ol>
+<p lang="zh"><strong>典型行业</strong>: 房地产 (ROE 高来自杠杆 + 周转, ROIC 弱) 2021+ 暴雷; 部分基建公司 ROE 高来自国资担保 + 杠杆。这种"低 ROIC + 高杠杆"的公司在<em>顺周期</em>看似优秀, <em>逆周期</em>暴露脆弱。</p>
+<p lang="en">ROE − ROIC = 17pp leverage amplification. Real ROIC 8% may barely beat WACC; tightening cycle squeezes from multiple directions (interest cost up, leverage capacity down, credit spread widens). Real estate / certain infrastructure firms exemplify "low ROIC + high leverage → looks good in expansion, exposed in contraction."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 五因子 DuPont 把"Interest Burden"单列出来。给出该指标在 0.5 vs 0.9 vs 1.0 三种情形下的解读。</span><span lang="en"><strong>Q3.</strong> Interpret Interest Burden at 0.5, 0.9, 1.0.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">Interest Burden = EBT/EBIT:</p>
+<ul lang="zh">
+<li><strong>1.0</strong>: EBT = EBIT, 即<em>无利息费用</em>。零杠杆 (茅台、长江电力等). 完全没有债务压力</li>
+<li><strong>0.9</strong>: 利息消耗了 10% 的经营利润. 健康的中等杠杆 (海康、美的等). 利息保障倍数高</li>
+<li><strong>0.5</strong>: 利息消耗了 50% 的经营利润. <em>危险</em>。即使 EBIT 还可观, 大部分被利息吞掉, 剩下给股东的极少. 高杠杆 + 高利率 + 信用恶化的复合特征。该指标接近 0 → 公司即将"利息保障倍数 &lt; 1"→ 偿债压力濒临</li>
+</ul>
+<p lang="zh"><strong>分析价值</strong>: Interest Burden 是<em>顺周期信号</em> — 周期下行时 EBIT 下降 + 利息固定 → 指标快速恶化。监控其 8 个季度的趋势, 比看绝对值更敏感。</p>
+<p lang="en">1.0 = no interest (zero leverage); 0.9 = healthy (interest takes 10% of EBIT); 0.5 = danger (interest eats half). Approaching 0 → coverage &lt; 1, distress. Monitor 8‑quarter trend.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav"><a href="07-working-capital.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">07 · <span lang="zh">营运资本</span><span lang="en">Working Capital</span></span></a><a class="next" href="09-ratios.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">09 · <span lang="zh">财务比率</span><span lang="en">Ratios</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">填入 API Key</span><span lang="en">API Key</span></h4><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save><span lang="zh">保存</span><span lang="en">Save</span></button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset><span lang="zh">清除 key</span><span lang="en">clear</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

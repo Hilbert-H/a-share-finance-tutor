@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>Module II 公司财务 — 模块导览</title>
+  <meta name="keywords" content="corporate finance overview, mental models, expert disagreements, MM theorem, DCF, WACC, time value of money, agency cost">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module II</span><span class="sep">·</span>
+        <span><span lang="zh">公司财务</span><span lang="en">Corporate Finance</span></span><span class="sep">·</span>
+        <span><span lang="zh">模块导览</span><span lang="en">Overview</span></span>
+      </div>
+
+      <h1><span lang="zh">公司财务 — 模块导览</span><span lang="en">Corporate Finance — Module Overview</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">如果说会计学是<em>描述</em>已发生的经济实质, 公司财务就是<em>决定</em>未来要做什么 — 投资什么项目, 用什么资本结构, 派多少股利。所有决策的"客观函数"是<em>股东价值最大化</em>, 所有约束是<em>风险、信息不对称、代理冲突</em>。本模块用代数化的方式把这些权衡讲清楚。</span>
+        <span lang="en">If accounting <em>describes</em> what has happened, corporate finance <em>decides</em> what to do — which projects to take, how to finance them, how much to pay out. The objective is shareholder value; the constraints are risk, information asymmetry, and agency conflicts. This module makes the tradeoffs algebraic.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">用时间价值、风险-收益 tradeoff、无套利三条原理把所有公司财务结论<em>推导</em>出来 (而不是死记)。</li>
+          <li lang="zh">能用 WACC 评估任意 A 股公司的资本成本; 能用 NPV/IRR 判断投资项目可行性。</li>
+          <li lang="zh">能用 DuPont 三层/五层分解任意公司的 ROE, 识别其经营效率的真实来源。</li>
+          <li lang="zh">能用 Beneish M-Score / Altman Z-Score / 应计质量等量化指标识别财务造假与暴雷风险。</li>
+          <li lang="en">Derive all corporate‑finance results from three principles: time value, risk‑return tradeoff, no arbitrage.</li>
+          <li lang="en">Compute WACC for any A‑share firm; evaluate projects with NPV/IRR.</li>
+          <li lang="en">Decompose ROE via 3‑step and 5‑step DuPont to locate the real source of operating efficiency.</li>
+          <li lang="en">Use Beneish M‑Score / Altman Z‑Score / accruals quality to detect fraud and distress risk.</li>
+        </ul>
+      </section>
+
+      <h2><span lang="zh">章节依赖图</span><span lang="en">Chapter Dependency Map</span></h2>
+      <figure class="figure">
+        <svg viewBox="0 0 720 380" role="img" aria-label="Module II dependency graph">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#4A4540"/>
+            </marker>
+          </defs>
+          <style>
+            .node { fill: #F2E9D2; stroke: #4A4540; stroke-width: 1.2; }
+            .node-major { fill: #8B2C2C; }
+            .lbl { font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 13px; fill: #1A1814; }
+            .lbl-w { fill: #F7F2E8; }
+            .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A8378; }
+            .num-w { fill: #EFE8D8; }
+            .edge { stroke: #4A4540; stroke-width: 1.2; fill: none; }
+            .lbl-cap { font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: #8A8378; }
+          </style>
+
+          <text class="lbl-cap" x="120" y="20" text-anchor="middle">FOUNDATIONS</text>
+          <text class="lbl-cap" x="380" y="20" text-anchor="middle">DECISIONS</text>
+          <text class="lbl-cap" x="620" y="20" text-anchor="middle">DIAGNOSTICS</text>
+
+          <!-- Foundations row -->
+          <g transform="translate(40, 40)">
+            <rect class="node node-major" width="160" height="46" rx="4"/>
+            <text class="num num-w" x="8" y="16">01</text>
+            <text class="lbl lbl-w" x="8" y="34">时间价值</text>
+          </g>
+          <g transform="translate(40, 110)">
+            <rect class="node" width="160" height="46" rx="4"/>
+            <text class="num" x="8" y="16">02</text>
+            <text class="lbl" x="8" y="34">风险与收益 · CAPM</text>
+          </g>
+          <g transform="translate(40, 180)">
+            <rect class="node" width="160" height="46" rx="4"/>
+            <text class="num" x="8" y="16">03</text>
+            <text class="lbl" x="8" y="34">WACC · MM</text>
+          </g>
+
+          <!-- Decisions row -->
+          <g transform="translate(280, 40)">
+            <rect class="node" width="200" height="46" rx="4"/>
+            <text class="num" x="8" y="16">04</text>
+            <text class="lbl" x="8" y="34">资本预算 NPV/IRR</text>
+          </g>
+          <g transform="translate(280, 110)">
+            <rect class="node" width="200" height="46" rx="4"/>
+            <text class="num" x="8" y="16">05</text>
+            <text class="lbl" x="8" y="34">资本结构</text>
+          </g>
+          <g transform="translate(280, 180)">
+            <rect class="node" width="200" height="46" rx="4"/>
+            <text class="num" x="8" y="16">06</text>
+            <text class="lbl" x="8" y="34">股利政策与回购</text>
+          </g>
+          <g transform="translate(280, 250)">
+            <rect class="node" width="200" height="46" rx="4"/>
+            <text class="num" x="8" y="16">07</text>
+            <text class="lbl" x="8" y="34">营运资本管理</text>
+          </g>
+
+          <!-- Diagnostics row -->
+          <g transform="translate(540, 80)">
+            <rect class="node" width="160" height="46" rx="4"/>
+            <text class="num" x="8" y="16">08</text>
+            <text class="lbl" x="8" y="34">DuPont 分解</text>
+          </g>
+          <g transform="translate(540, 150)">
+            <rect class="node" width="160" height="46" rx="4"/>
+            <text class="num" x="8" y="16">09</text>
+            <text class="lbl" x="8" y="34">财务比率体系</text>
+          </g>
+          <g transform="translate(540, 220)">
+            <rect class="node node-major" width="160" height="46" rx="4"/>
+            <text class="num num-w" x="8" y="16">10</text>
+            <text class="lbl lbl-w" x="8" y="34">造假识别 (Beneish/Z)</text>
+          </g>
+
+          <!-- Edges Foundations → Decisions -->
+          <path class="edge" d="M200 63 Q240 60 280 63" marker-end="url(#arr)"/>
+          <path class="edge" d="M200 133 Q240 130 280 133" marker-end="url(#arr)"/>
+          <path class="edge" d="M200 203 Q240 200 280 203" marker-end="url(#arr)"/>
+          <path class="edge" d="M200 133 Q220 170 280 273" marker-end="url(#arr)"/>
+          <path class="edge" d="M200 203 Q220 230 280 273" marker-end="url(#arr)"/>
+
+          <!-- Edges Decisions → Diagnostics -->
+          <path class="edge" d="M480 63 Q510 80 540 103" marker-end="url(#arr)"/>
+          <path class="edge" d="M480 133 Q510 130 540 173" marker-end="url(#arr)"/>
+          <path class="edge" d="M480 203 Q510 220 540 243" marker-end="url(#arr)"/>
+          <path class="edge" d="M480 273 Q510 250 540 243" marker-end="url(#arr)"/>
+
+          <!-- Caption -->
+          <text class="lbl-cap" x="360" y="350" text-anchor="middle">FOUNDATIONS → DECISIONS → DIAGNOSTICS</text>
+        </svg>
+        <figcaption><span lang="zh">必学序: 01 → 02 → 03 (foundations) → 04 → (05, 06, 07 并行) → 08 → 09 → 10</span><span lang="en">Order: 01 → 02 → 03 → 04 → (05, 06, 07) → 08 → 09 → 10</span></figcaption>
+      </figure>
+
+      <h2><span lang="zh">First-Principles 思维模型</span><span lang="en">First‑Principles Mental Models</span></h2>
+
+      <div class="model-card"><span class="roman">i</span><div>
+        <h4><span lang="zh">时间价值</span><span lang="en">Time value of money</span></h4>
+        <p lang="zh">$1$ 元今天 $\neq$ $1$ 元明天。所有现金流必须折回同一时点才能比较。物理类比: 不同惯性系下的时间, 需要 Lorentz 变换才能比较 — 这里的"Lorentz 变换"就是折现率。</p>
+        <p lang="en">¥1 today $\neq$ ¥1 tomorrow. All cash flows must be discounted to a common date to compare. Physics analogy: time in different inertial frames; the Lorentz transform is the discount rate.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">ii</span><div>
+        <h4><span lang="zh">机会成本</span><span lang="en">Opportunity cost</span></h4>
+        <p lang="zh">任何决策的真正成本不是花了多少钱, 而是<em>放弃了的最佳替代</em>。这是 WACC、hurdle rate、所有资本预算的基础。</p>
+        <p lang="en">The true cost of any decision is the <em>foregone next‑best alternative</em>, not the cash outlay. Foundation of WACC, hurdle rate, all capital budgeting.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">iii</span><div>
+        <h4><span lang="zh">风险-收益 tradeoff</span><span lang="en">Risk‑return tradeoff</span></h4>
+        <p lang="zh">在均衡市场, 任何超额收益都伴随超额风险。"没有 free lunch"是 CAPM、APT、Black-Scholes 的核心约束。</p>
+        <p lang="en">In equilibrium, excess return implies excess risk. "No free lunch" anchors CAPM, APT, Black‑Scholes.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">iv</span><div>
+        <h4><span lang="zh">价值守恒 / Value additivity</span><span lang="en">Value additivity</span></h4>
+        <p lang="zh">两个独立项目的总价值 = 各自价值之和。这是 MM 定理的根 — 切割同一块蛋糕的方式不改变蛋糕大小。</p>
+        <p lang="en">The total value of two independent projects equals the sum of their values. The root of MM — slicing the pie differently doesn't change its size.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">v</span><div>
+        <h4><span lang="zh">无套利</span><span lang="en">No arbitrage</span></h4>
+        <p lang="zh">如果两种现金流相同的资产价格不同, 套利会瞬间消除差异。这是所有资产定价 (CAPM, APT, B-S) 的强约束。</p>
+        <p lang="en">If two cash‑flow‑equivalent assets have different prices, arbitrage closes the gap instantly. The strong constraint behind all asset pricing.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">vi</span><div>
+        <h4><span lang="zh">代理成本 (Agency cost)</span><span lang="en">Agency cost</span></h4>
+        <p lang="zh">管理层与股东的利益不完全一致, 这种偏离的代价就是 agency cost。它解释了股利政策、资本结构、薪酬设计的许多现实选择。</p>
+        <p lang="en">Manager‑shareholder interest misalignment imposes a cost. Explains many real‑world choices in dividends, capital structure, compensation.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">vii</span><div>
+        <h4><span lang="zh">实物期权 (Real option)</span><span lang="en">Real option</span></h4>
+        <p lang="zh">不确定性下, "等待"、"扩张"、"放弃"本身有价值。静态 NPV 通常低估有期权特性项目的价值。</p>
+        <p lang="en">Under uncertainty, the ability to wait / expand / abandon has option value. Static NPV typically underestimates projects with optionality.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">viii</span><div>
+        <h4><span lang="zh">资本成本 = 边际折现率</span><span lang="en">Cost of capital = marginal discount rate</span></h4>
+        <p lang="zh">公司接受新项目的最低门槛 = 资本提供方在同等风险下能拿到的收益率。WACC 就是这条门槛的具体计算方式。</p>
+        <p lang="en">The minimum hurdle rate = the return capital providers can earn elsewhere at the same risk. WACC operationalizes this hurdle.</p>
+      </div></div>
+
+      <div class="model-card"><span class="roman">ix</span><div>
+        <h4><span lang="zh">信号 / 信息不对称</span><span lang="en">Signaling / information asymmetry</span></h4>
+        <p lang="zh">管理层与外部投资者拥有的信息不同。可观察的<em>行动</em>(分红、回购、增发) 传递管理层<em>不可观察</em>的<em>信念</em>。Akerlof 柠檬市场 / Spence 信号理论是这套框架的根。</p>
+        <p lang="en">Insiders and outsiders have different information. Observable <em>actions</em> (dividends, buybacks, issuance) signal unobservable <em>beliefs</em>. Rooted in Akerlof's lemons market and Spence's signaling.</p>
+      </div></div>
+
+      <h2><span lang="zh">专家最激烈的分歧</span><span lang="en">Where Experts Disagree</span></h2>
+
+      <div class="dispute">
+        <div class="dispute-head"><span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span><span lang="zh">MM 定理在现实中的适用性</span><span lang="en">MM theorem's real‑world relevance</span></div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">Modigliani &amp; Miller (1958, 1963)</div>
+            <h5><span lang="zh">资本结构无关性 (假设下)</span><span lang="en">Capital structure irrelevance (under assumptions)</span></h5>
+            <p lang="zh">无税 + 无破产成本 + 无信息不对称 + 完美市场, 公司价值<em>不依赖</em>资本结构。无论债务还是权益融资, 公司总价值相同。引入税收后, 有税盾价值, 全杠杆最优。</p>
+            <p lang="en">With no taxes, no bankruptcy costs, no information asymmetry, perfect markets — firm value is <em>independent</em> of capital structure. With taxes, the tax shield favors high leverage.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">trade-off / pecking order 派</span><span lang="en">Trade-off / pecking-order school</span></div>
+            <h5><span lang="zh">实际杠杆有最优区间</span><span lang="en">Optimal leverage exists</span></h5>
+            <p lang="zh">税盾收益 vs 财务困境成本 (破产成本 + 信号 + 代理) → 存在内部最优。Pecking order (Myers 1984): 公司偏好内部融资 → 债务 → 股权, 因为信息不对称下股权发行被市场解读为<em>悲观信号</em>。</p>
+            <p lang="en">Tax shield benefit vs distress costs (bankruptcy + signaling + agency) → interior optimum. Pecking order (Myers 1984): internal cash → debt → equity, because equity issuance signals pessimism.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">MM 是教学起点 (告诉你"假设下"的中性参照), 实务采用 trade-off + pecking order 解释行业差异。中国 A 股大量公司处于<em>非最优杠杆</em>状态: 国企倾向高杠杆 (政府隐性担保), 民企倾向低杠杆 (融资约束)。</span>
+          <span lang="en">MM is the pedagogical baseline; trade‑off + pecking order explain reality. A‑share state firms run higher leverage (implicit guarantee); private firms lower (financing constraints).</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head"><span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span><span lang="zh">DCF vs 相对估值的可靠性</span><span lang="en">DCF vs relative valuation</span></div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">DCF <span lang="zh">派 (Buffett, Damodaran)</span><span lang="en">school (Buffett, Damodaran)</span></div>
+            <h5><span lang="zh">内在价值优先</span><span lang="en">Intrinsic value first</span></h5>
+            <p lang="zh">DCF 反映"<em>这家公司本身能产生多少现金</em>", 是估值的<em>第一性原理</em>。相对估值依赖"市场对可比公司的定价是对的"假设 — 在市场系统性高估或低估时全错。</p>
+            <p lang="en">DCF reflects "<em>how much cash this firm itself can generate</em>" — first‑principles valuation. Relative valuation assumes "the market prices comparables right" — fails when the whole sector is mis‑priced.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">相对估值派 (实务券商)</span><span lang="en">Relative valuation (practitioners)</span></div>
+            <h5><span lang="zh">可比是检验真理的市场标准</span><span lang="en">Comparables anchor reality</span></h5>
+            <p lang="zh">DCF 的参数 (永续增长率、折现率、终值倍数) 全部主观, 极易"算出任意价格"。相对估值 (PE/PB/EV-EBITDA) 用市场可观察价格作锚, 更接近"市场愿意付的"。</p>
+            <p lang="en">DCF inputs (terminal growth, discount rate, exit multiple) are all subjective — you can "arrive at any price." Multiples anchor to market‑observable prices and reflect "what the market is willing to pay."</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">Damodaran 自己说"用两套各算一遍", 然后对比差异理解市场预期。M3 Ch.05-06 详述。</span>
+          <span lang="en">Damodaran himself recommends "do both, then compare to read the market's implicit assumptions." M3 Ch.05‑06 develops both.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head"><span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span><span lang="zh">回购 vs 派息</span><span lang="en">Buyback vs dividend</span></div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">MM 1961 <span lang="zh">无关性</span><span lang="en">irrelevance</span></div>
+            <h5><span lang="zh">理论上等价</span><span lang="en">Theoretically equivalent</span></h5>
+            <p lang="zh">完美市场下, 派息 vs 回购对股东价值<em>无差别</em>。投资者可以自己"造分红"(卖股票) 或"造回购"(再投资分红)。</p>
+            <p lang="en">In a perfect market, dividends and buybacks are equivalent. Investors can replicate either via personal trading.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">税收 / 信号派</span><span lang="en">Tax / signaling school</span></div>
+            <h5><span lang="zh">现实中两者不同</span><span lang="en">Not equivalent in practice</span></h5>
+            <p lang="zh">税收: 美国回购税负低于分红 → 美国公司偏好回购。中国: 分红税 (20%) vs 资本利得税 (个人持股&gt;1年 0%) → 长期股东偏好回购。<br>信号: 持续分红 = 稳定盈利能力; 突然加大回购 = 管理层认为股价被低估。两者传递的信号不同。</p>
+            <p lang="en">Taxes: US buybacks taxed lighter than dividends → US firms prefer buybacks. China: dividend tax 20% vs LT capital gains 0% (&gt;1y) → long‑term holders prefer buybacks too. Signaling: steady dividends signal stable earnings power; sudden buybacks signal undervaluation.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">美国 2010+ 回购规模超过分红; 中国 2018 后回购规模迅速上升 (回购新规修订后), 但长期股东偏好分红的"传统"仍在。</span>
+          <span lang="en">US buybacks have exceeded dividends since 2010+. China's buybacks have grown rapidly post‑2018 reform, but dividend culture persists.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head"><span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span><span lang="zh">β 估计方法</span><span lang="en">Beta estimation</span></div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">历史回归 β</span><span lang="en">Historical regression β</span></div>
+            <h5><span lang="zh">用过去预测未来</span><span lang="en">Past as prediction</span></h5>
+            <p lang="zh">用 5 年月度数据回归个股收益率对市场收益率, 得到 β。简单, 但依赖"过去 β = 未来 β"假设。</p>
+            <p lang="en">Regress 5y monthly stock returns on market. Simple, assumes past β = future β.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">Bottom-up β (Damodaran)</span><span lang="en">Bottom-up β</span></div>
+            <h5><span lang="zh">从同业资产 β 重塑</span><span lang="en">Rebuild from peer asset βs</span></h5>
+            <p lang="zh">取同业可比公司的 β → 用 Hamada 公式去杠杆得到资产 β → 用目标公司的 D/E 重新杠杆化。优势: 对短上市公司、并购后公司、资本结构变化的公司更稳健。</p>
+            <p lang="en">Take peer βs → unlever via Hamada → relever at target firm's D/E. Better for short‑listed, post‑M&amp;A, or capital‑structure‑changing firms.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">学术与实务<em>两者都用</em>; Damodaran 在新版教材中越来越偏向 bottom-up, 因 A 股大量科创板/创业板公司缺乏长历史数据。</span>
+          <span lang="en">Both used in practice; Damodaran increasingly favors bottom‑up, especially for STAR/ChiNext firms with short trading histories.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head"><span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span><span lang="zh">市场风险溢价 (ERP) 取值</span><span lang="en">Equity risk premium (ERP)</span></div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">历史 ERP</span><span lang="en">Historical ERP</span></div>
+            <h5><span lang="zh">用历史平均</span><span lang="en">Use historical mean</span></h5>
+            <p lang="zh">中国: 沪深 300 vs 10Y 国债, 历史平均 ~5-6%。美国: S&amp;P 500 vs 长期国债, 1928-2023 ~6-7%。</p>
+            <p lang="en">China: CSI 300 vs 10y bond ~5–6%. US: S&amp;P 500 vs Treasury ~6–7% (1928–2023).</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who"><span lang="zh">隐含 ERP (Damodaran)</span><span lang="en">Implied ERP</span></div>
+            <h5><span lang="zh">从当前估值反推</span><span lang="en">Back‑solve from valuation</span></h5>
+            <p lang="zh">用当前指数水平 + 分析师未来 5 年盈利预测 + 假设永续增长 → 反推使 PV = 当前价的隐含 r → 隐含 ERP。优势: 实时, 反映市场当前情绪与基本面。</p>
+            <p lang="en">Solve for the discount rate that equates DCF on current consensus earnings to current index level → implied ERP. Live, reflects sentiment + fundamentals.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">Damodaran 每月发布美国隐含 ERP (1.5%-6% 波动), 实务越来越多采用。中国学术界与实务正在向类似方法过渡。</span>
+          <span lang="en">Damodaran updates US implied ERP monthly (1.5–6% range). Chinese practice is moving in that direction.</span>
+        </div>
+      </div>
+
+      <h2><span lang="zh">学习路径建议</span><span lang="en">Suggested Paths</span></h2>
+      <dl>
+        <dt><span lang="zh">快速通道 ~6 小时</span><span lang="en">Fast path ~6 hours</span></dt>
+        <dd><span lang="zh">01 时间价值 → 02 风险与收益 → 03 WACC → 08 DuPont → 10 造假识别。掌握"算资本成本 + 看 ROE 实质 + 防雷"三件事。</span><span lang="en">01 → 02 → 03 → 08 → 10. Get capital cost, real ROE source, fraud detection.</span></dd>
+        <dt><span lang="zh">系统通道 ~30 小时</span><span lang="en">Systematic path ~30 hours</span></dt>
+        <dd><span lang="zh">全部 11 章 + 全部检验题。配合用 Python (NumPy/Pandas) 实际计算 WACC、DCF、DuPont、Beneish M-Score 等。</span><span lang="en">All 11 chapters with quizzes; implement WACC/DCF/DuPont/Beneish in Python.</span></dd>
+      </dl>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="../../index.html"><span class="dir">← <span lang="zh">回首页</span><span lang="en">Home</span></span><span class="title"><span lang="zh">站点首页</span><span lang="en">Site Home</span></span></a>
+          <a class="next" href="01-time-value.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">01 · <span lang="zh">时间价值</span><span lang="en">Time Value</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

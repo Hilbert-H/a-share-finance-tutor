@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>09 · CAS / IFRS / US GAAP 差异 — Standards Differences</title>
+  <meta name="keywords" content="CAS, IFRS, US GAAP, LIFO, goodwill amortization, R&D capitalization, leases, ASC 842, IFRS 16, 中国国航, 601111, 中芯国际, 688981">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 09</span><span class="sep">·</span>
+        <span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.04, Ch.05, Ch.07</span><span lang="en">Prereq: Ch.04, Ch.05, Ch.07</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.10 附注</span><span lang="en">Next: Ch.10 Notes</span></span>
+      </div>
+
+      <h1><span lang="zh">CAS / IFRS / US GAAP 差异</span><span lang="en">CAS / IFRS / US GAAP Differences</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">同一家公司, 在 A 股 (CAS)、香港 (IFRS)、纽约 (US GAAP) 报告的净利、净资产、ROE 都可能不同。差异主要在: LIFO 存货、商誉、研发资本化、租赁、同一控制下企业合并。学完本章你能在跨地比较时不被准则差异误导。</span>
+        <span lang="en">The same firm reports different NI, equity, and ROE under CAS (A‑share), IFRS (HK), and US GAAP (NY). Differences cluster in: LIFO inventory, goodwill, R&amp;D capitalization, leases, common‑control combinations. After this you won't be misled by standard differences in cross‑border comparison.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用一张表概括 CAS / IFRS / US GAAP 在 6 个关键议题上的差异。</li>
+          <li lang="zh">能用 LIFO vs FIFO 推导在通胀环境下 NI 与税负的差异。</li>
+          <li lang="zh">能识别 A+H 双重披露公司的净利调节表中常见的差异项。</li>
+          <li lang="zh">能解释同一控制下企业合并 (CAS 中国特色) 为什么会"减少账面商誉但不创造价值"。</li>
+          <li lang="en">Tabulate CAS vs IFRS vs US GAAP on 6 key topics.</li>
+          <li lang="en">Derive LIFO vs FIFO impact on NI and taxes in inflation.</li>
+          <li lang="en">Read the reconciliation table of A+H dual‑listed firms.</li>
+          <li lang="en">Explain why common‑control combinations (CAS unique) reduce reported goodwill without creating value.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+        <p lang="zh">会计准则的差异往往来自三种<em>哲学张力</em>:</p>
+        <p lang="en">Standard differences usually trace back to three <em>philosophical tensions</em>:</p>
+        <ol>
+          <li><strong>Rule-based vs Principle-based</strong>: <span lang="zh">US GAAP 偏 rule-based — 每条规则有明确数字门槛 (例如租赁的 90% 现值测试) → 减少主观判断, 但易被结构化交易绕开。IFRS / CAS 偏 principle-based — 给原则 + 判断空间 → 灵活但容易出现"会计套利"。</span><span lang="en">US GAAP is more rule‑based (e.g., the 90% PV test in old lease standards) — less subjectivity but vulnerable to structured circumvention. IFRS / CAS are principle‑based — more judgment, more accounting arbitrage.</span></li>
+          <li><strong>历史成本 vs 公允价值</strong>: <span lang="zh">US GAAP 在历史上更保守 (尤其 R&amp;D 全费用), IFRS 引入更多公允价值; CAS 在 2007 大改革后基本与 IFRS 趋同 + 少数中国特色。</span><span lang="en">US GAAP historically more conservative (e.g., R&amp;D all expense). IFRS introduced more fair value. CAS aligned with IFRS in 2007 with small Chinese differences.</span></li>
+          <li><strong>谨慎性 vs 中立性</strong>: <span lang="zh">2018 IFRS 重新引入<em>非对称谨慎性</em>, 部分回应了 2008 金融危机争论。CAS 一直保留谨慎性原则。US GAAP 仍偏中立。</span><span lang="en">IFRS 2018 reintroduced asymmetric prudence; CAS always kept it; US GAAP leans neutral.</span></li>
+        </ol>
+        <p lang="zh">所以三套准则不是"对错"问题, 是<em>权衡偏好</em>不同。读跨地报表必须知道<em>同一交易在不同准则下会被记成多少</em>。</p>
+        <p lang="en">It's about <em>preferences</em>, not right or wrong. Cross‑border readers must know how the same transaction is recorded under each.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <h3 lang="zh">关键差异速查表</h3>
+        <h3 lang="en">Quick reference — key differences</h3>
+
+        <table>
+          <thead>
+            <tr><th><span lang="zh">议题</span><span lang="en">Topic</span></th><th>CAS</th><th>IFRS</th><th>US GAAP</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span lang="zh">存货计价 — LIFO</span><span lang="en">Inventory — LIFO</span></td>
+              <td><span lang="zh">禁止</span><span lang="en">Prohibited</span></td>
+              <td><span lang="zh">禁止 (2003 起)</span><span lang="en">Prohibited (since 2003)</span></td>
+              <td><span lang="zh"><strong>允许</strong> (税收驱动)</span><span lang="en"><strong>Allowed</strong> (tax‑driven)</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">商誉处理</span><span lang="en">Goodwill</span></td>
+              <td><span lang="zh">不摊销, 每年减值</span><span lang="en">No amort., annual impair.</span></td>
+              <td><span lang="zh">不摊销, 每年减值</span><span lang="en">No amort., annual impair.</span></td>
+              <td><span lang="zh">不摊销 (2001 后); 2023 起讨论恢复摊销 (私营优先)</span><span lang="en">No amort. since 2001; 2023+ debating restoring (private first)</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">商誉减值<em>转回</em></span><span lang="en">Goodwill impair. <em>reversal</em></span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">研发支出</span><span lang="en">R&amp;D</span></td>
+              <td><span lang="zh">研究全费用, 开发可资本化</span><span lang="en">Research expense, dev capitalize</span></td>
+              <td><span lang="zh">研究全费用, 开发可资本化</span><span lang="en">Research expense, dev capitalize</span></td>
+              <td><span lang="zh">全部费用 (软件少数例外)</span><span lang="en">All expense (narrow software ex.)</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">租赁会计</span><span lang="en">Leases</span></td>
+              <td><span lang="zh">CAS 21: 承租人单一模型 (与 IFRS 16 一致)</span><span lang="en">CAS 21: single‑model lessee (aligned w/ IFRS 16)</span></td>
+              <td>IFRS 16: <span lang="zh">单一模型 (全部入表)</span><span lang="en">Single model (all on B/S)</span></td>
+              <td>ASC 842: <span lang="zh">双模型 (经营/融资分类不同)</span><span lang="en">Dual model (op/finance distinction)</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">同一控制下企业合并</span><span lang="en">Common‑control combinations</span></td>
+              <td><span lang="zh"><strong>按账面价值</strong>, 不产生商誉 (中国特色)</span><span lang="en"><strong>Pooling at book value</strong>, no goodwill (China-specific)</span></td>
+              <td><span lang="zh">通常按公允价值 (类似第三方收购)</span><span lang="en">Generally fair value (like third‑party)</span></td>
+              <td><span lang="zh">按账面价值 (pooling, 2001 前广泛使用; 2001 后限于特定情形)</span><span lang="en">Book value pooling (broad pre‑2001; narrow after)</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">利息支付 CFS 分类</span><span lang="en">Interest paid (CFS)</span></td>
+              <td>FCF</td>
+              <td><span lang="zh">OCF 或 FCF</span><span lang="en">OCF or FCF</span></td>
+              <td>OCF</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">投资性房地产</span><span lang="en">Investment property</span></td>
+              <td><span lang="zh">成本模式默认, 公允价值可选 (条件严)</span><span lang="en">Cost default, FV optional (strict conditions)</span></td>
+              <td><span lang="zh">公允价值可选</span><span lang="en">FV optional</span></td>
+              <td><span lang="zh">无单独类别, 归 PPE</span><span lang="en">No separate category</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">PPE 重估</span><span lang="en">PPE revaluation</span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+              <td><span lang="zh">允许 (重估模式)</span><span lang="en">Allowed (revaluation model)</span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">资产减值<em>转回</em> (非商誉)</span><span lang="en">Non-goodwill impair. <em>reversal</em></span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+              <td><span lang="zh">允许 (条件)</span><span lang="en">Allowed (conditions)</span></td>
+              <td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 lang="zh">① LIFO 之争</h3>
+        <h3 lang="en">① The LIFO debate</h3>
+        <p lang="zh">LIFO (last in, first out, 后进先出) 假设最新采购的存货最先卖出。在<em>通胀环境</em>下:</p>
+        <p lang="en">LIFO assumes the most recent inventory is sold first. Under inflation:</p>
+        <ul>
+          <li><span lang="zh">COGS 按最近高价计算 → COGS 高 → NI 低 → 所得税低 (US 真金白银的税务好处)</span><span lang="en">COGS at recent high prices → high COGS → low NI → lower tax (real cash benefit in US)</span></li>
+          <li><span lang="zh">B/S 上存货余额按<em>旧的低价</em>积压 → 严重低估存货真实价值</span><span lang="en">B/S inventory at old low prices → understates true inventory value</span></li>
+          <li><span lang="zh">若公司清算存货 ("LIFO liquidation"), 突然要把旧低价存货的高利得在当期一次性确认 → 当年 NI 暴增</span><span lang="en">If inventory is liquidated ("LIFO liquidation"), the suppressed gains hit one period at once</span></li>
+        </ul>
+        <p lang="zh"><strong>IFRS / CAS 禁止 LIFO 的理由</strong>:</p>
+        <ol lang="zh">
+          <li>违背实物流动 (物理上谁会"后进先出"地用钢材? 顺序就是 FIFO)</li>
+          <li>B/S 存货严重失真</li>
+          <li>"LIFO liquidation"造成的盈利突变是数字游戏, 不反映经营</li>
+        </ol>
+        <p lang="zh"><strong>US GAAP 保留 LIFO 的理由</strong>: <em>税收驱动</em>。美国国税局允许 LIFO (称 "LIFO conformity rule" — 报表用 LIFO 才能税务用 LIFO), 通胀环境下节税巨大。这是<em>会计 vs 税法</em>互相绑定的产物。中国税法允许加权平均、FIFO, 不允许 LIFO, 自然 CAS 也禁止。</p>
+        <p lang="en">IFRS/CAS prohibit because: (a) violates physical flow logic; (b) B/S badly distorted; (c) LIFO‑liquidation gains are accounting artifacts. US GAAP keeps it due to LIFO conformity rule — a tax‑driven feature.</p>
+
+        <h3 lang="zh">② R&D 资本化</h3>
+        <h3 lang="en">② R&D capitalization</h3>
+        <p lang="zh">IFRS/CAS 把 R&D 分两阶段:</p>
+        <p lang="en">IFRS/CAS split R&amp;D into two phases:</p>
+        <ul>
+          <li><span lang="zh"><strong>研究阶段</strong> — 全部费用化 (因为未来收益太不确定)</span><span lang="en"><strong>Research</strong> — all expense</span></li>
+          <li><span lang="zh"><strong>开发阶段</strong> — 满足六项条件时<em>必须</em>资本化:
+            <ol>
+              <li>完成无形资产以使用或出售在<em>技术上可行</em></li>
+              <li>有<em>意图</em>完成并使用或出售</li>
+              <li>有<em>能力</em>使用或出售</li>
+              <li>能证明产生<em>未来经济利益</em></li>
+              <li>有足够的技术、财务和其他资源完成开发</li>
+              <li>开发阶段支出能<em>可靠计量</em></li>
+            </ol>
+          </span><span lang="en"><strong>Development</strong> — must capitalize when 6 conditions met (technical feasibility, intention, ability, future benefits, resources, reliable measurement).</span></li>
+        </ul>
+        <p lang="zh">US GAAP 一刀切: R&D 全部费用化 (除狭窄的软件开发例外 — ASC 985‑20)。理由: 资本化给管理层操纵空间太大, 未来收益预测不可靠。</p>
+        <p lang="en">US GAAP: blanket expense (narrow software exception under ASC 985‑20). Reason: capitalization gives management too much discretion.</p>
+        <p lang="zh"><strong>对比效果</strong>: 同一家研发密集型公司, IFRS/CAS 下 NI 可能<em>显著高于</em> US GAAP, 因为大量开发支出被资本化进无形资产, 不在当期扣减。但<em>未来期</em>这些资本化的资产要摊销 → 长期来看两者等价 (假设资本化的资产实际上产生了预期收益)。</p>
+        <p lang="en">Same R&amp;D-heavy firm: NI under IFRS/CAS can be significantly higher than under US GAAP because development costs are deferred to intangibles. Long‑term equivalent if assumptions hold.</p>
+
+        <h3 lang="zh">③ 商誉的命运</h3>
+        <h3 lang="en">③ Goodwill's fate</h3>
+        <p lang="zh">三套准则历史演变 (Ch.05 + Ch.00 提到过):</p>
+        <p lang="en">Historical evolution across standards:</p>
+        <ul>
+          <li><span lang="zh">2001 之前: US GAAP 要求商誉<em>摊销</em> (40 年)。IFRS 也类似。</span><span lang="en">Pre-2001: US GAAP &amp; IFRS both amortize (~40 yrs).</span></li>
+          <li><span lang="zh">2001 (SFAS 142): US GAAP 改为<em>不摊销, 只减值测试</em>。IFRS 2004 / IAS 36 跟进。</span><span lang="en">2001 (SFAS 142): US GAAP switches to <em>impairment‑only</em>. IFRS 2004 / IAS 36 follows.</span></li>
+          <li><span lang="zh">2014 CAS 8 修订: 商誉每年强制减值测试。</span><span lang="en">CAS 8 (2014 rev.): annual mandatory impairment.</span></li>
+          <li><span lang="zh">2023+ FASB 再次讨论: <em>是否对私营公司恢复摊销</em>? 因为 Tianshen 类大额减值集中爆发的全球现象。</span><span lang="en">2023+: FASB reconsiders restoring amortization (private cos first) given the "goodwill cliff" pattern globally.</span></li>
+        </ul>
+        <p lang="zh">A 股 2018-2019 商誉减值集中爆发 (Ch.05 案例), 总额超 1.6 万亿, 是这场全球辩论的"中国证据"。</p>
+        <p lang="en">A‑share's 2018-19 ~¥1.6tn goodwill cliff is the Chinese evidence in this global debate.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601111</span>
+            <span class="company"><span lang="zh">中国国航</span><span lang="en">Air China</span></span>
+            <span class="period"><span lang="zh">A+H 双重披露</span><span lang="en">A+H dual listing</span></span>
+          </div>
+          <p lang="zh">中国国航在沪市 (A 股 CAS) 与港股 (H 股 IFRS) 同时上市。同一财务年度, 两份报表的核心数据可能小幅差异。中国国航每年披露一份"按 CAS 与按 IFRS 编制的净利润调节表"。</p>
+          <p lang="en">Air China dual-listed Shanghai (CAS) + Hong Kong (IFRS). Each year publishes a reconciliation of CAS vs IFRS net profit.</p>
+          <p lang="zh">典型差异项 (历史上 A 股航空公司涉及过的):</p>
+          <p lang="en">Typical difference items historically:</p>
+          <ul lang="zh">
+            <li>飞机大修与发动机维修的资本化期间 (CAS vs IFRS 估计有时不同)</li>
+            <li>少数股东权益分类细节</li>
+            <li>利息支付在 CFS 上的分类 (CAS 归 FCF, IFRS 可选)</li>
+            <li>历史上 CAS 对资产减值的某些处理偏严</li>
+          </ul>
+          <ul lang="en">
+            <li>Capitalization period of aircraft / engine overhaul</li>
+            <li>NCI classification details</li>
+            <li>Interest CFS classification (CAS → FCF; IFRS optional)</li>
+            <li>Some legacy CAS impairment stricter than IFRS</li>
+          </ul>
+          <p lang="zh"><strong>实务结论</strong>: 在 IFRS 与 CAS 自 2007 大改革后高度趋同的今天, A+H 双重披露公司的两套报表差异通常 &lt; 5%。但读跨地研究报告时仍需注意"用的是哪份报表"。差异更大的情况出现在: 美股中概 (CAS vs US GAAP) — 因为 LIFO、R&D、租赁等差异更显著。</p>
+          <p lang="en">Since 2007 CAS reform, A+H differences are usually &lt;5%. Larger gaps appear in A‑share vs US GAAP (LIFO, R&amp;D, leases). Always check which report a research note uses.</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=601111" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 601111 →</span><span lang="en">Cninfo 601111 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·688981</span>
+            <span class="company"><span lang="zh">中芯国际</span><span lang="en">SMIC</span></span>
+            <span class="period"><span lang="zh">科创板 + 港股 + ADR — 三套报表</span><span lang="en">STAR + HK + ADR — three reports</span></span>
+          </div>
+          <p lang="zh">中芯国际曾同时在 NYSE (ADR) + 港交所 + 上交所科创板上市 (2021 ADR 退市后保留两地), 历史上同时披露<em>三套准则</em>下的报表。这是研究跨准则差异的最佳样本之一。</p>
+          <p lang="en">SMIC was once tri-listed (NYSE ADR + HK + STAR). Historically reported under three standards — an excellent cross‑standard case study.</p>
+          <p lang="zh"><strong>典型差异点</strong>:</p>
+          <ul lang="zh">
+            <li><strong>R&D 资本化</strong>: 中芯每年 R&D 支出约 50-80 亿 (占营收 10-15%)。IFRS/CAS 下大量开发阶段支出资本化进无形资产, US GAAP 全部费用化 → US GAAP 下 NI 显著低</li>
+            <li><strong>政府补助</strong>: A 股 / 港股下作为<em>其他收益</em>或<em>递延收益</em>处理; US GAAP 下可能按"成本抵减"处理 → 营收口径不同</li>
+            <li><strong>股份支付</strong>: CAS / IFRS / US GAAP 的处理 dramatically different — 中芯历史上发过大量员工 ESOP</li>
+          </ul>
+          <p lang="zh">这就是为什么 SMIC 的"利润"在不同报表下差异显著, 投资者必须看明白用的是哪套准则。</p>
+          <p lang="en">Diff. drivers: R&amp;D capitalization (CAS/IFRS defer; US GAAP expense), government grants accounting, share‑based comp. SMIC's NI varies materially across standards.</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">中国特色</span><span lang="en">China-specific</span></span>
+            <span class="company"><span lang="zh">同一控制下企业合并 (CAS 20)</span><span lang="en">Common-control combinations (CAS 20)</span></span>
+            <span class="period"><span lang="zh">国资资产注入的会计后果</span><span lang="en">SOE asset injection effects</span></span>
+          </div>
+          <p lang="zh">A 股大量上市公司是国有股东 (P) 旗下的子公司, P 经常把另一家旗下子公司 (S) 注入到上市公司 (L)。这是<em>同一控制下企业合并</em>。CAS 20 规定:</p>
+          <p lang="en">A‑share has many cases where parent P injects another subsidiary S into the listed co L — common‑control combinations. CAS 20:</p>
+          <ul lang="zh">
+            <li>L 取得 S 控制权的对价 → 不按 S 的公允价值入账</li>
+            <li>按 S 的<em>原账面价值</em>入账</li>
+            <li>对价与账面价值的差额 → 进入 L 的<em>资本公积</em> (不进 NI)</li>
+            <li><em>不产生商誉</em></li>
+            <li>合并日<em>追溯</em>到 P 取得 S 的最早日 (而非 L 取得 S 的日期), 利润数据要按追溯口径重述</li>
+          </ul>
+          <p lang="en">L records S at S's book value (not FV); the consideration vs book diff goes to capital surplus (not P&amp;L); <em>no goodwill</em>; retrospective restatement back to P's original acquisition.</p>
+          <p lang="zh"><strong>对比 IFRS 处理</strong>: IFRS 3 排除 "common control transactions" 不适用, 实务中通常允许<em>选择</em>用类似 CAS 的 pooling 或公允价值 (具体取决于公司政策)。所以 A 股资产注入<em>能</em>"不创造商誉"在 CAS 下是确定结果, 在 IFRS 下要看选择。</p>
+          <p lang="en">IFRS 3 excludes common‑control transactions; in practice firms may choose pooling‑like or FV. So under CAS, "no goodwill from intra-group injection" is automatic; under IFRS it's a policy choice.</p>
+          <p lang="zh"><strong>这套规则的优劣</strong>:</p>
+          <ul lang="zh">
+            <li><strong>优点</strong>: 防止"集团内反复倒手资产虚增商誉"的会计套利。SOE 改革背景下国有资产注入频繁, 若每次都按公允价值估值, 会创造大量虚假商誉。</li>
+            <li><strong>缺点</strong>: 上市公司接收资产的<em>账面价值</em>可能远低于<em>市场公允价值</em> → 后续摊销与减值假设全部基于偏低基础 → 报表"看似便宜的资产"但其实是会计选择产生的伪信号。</li>
+          </ul>
+          <p lang="en">Pros: prevents intra‑group goodwill arbitrage. Cons: assets enter L at understated book values, distorting future amortization and impairment baselines. Read the "common control" disclosure carefully when valuing SOE listcos.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">历史成本 vs 公允价值</span><span lang="en">HC vs FV</span></h4><p lang="zh">三套准则在 PPE 重估、商誉、R&amp;D 上的差异都是这个张力的具体落地。</p><p lang="en">The HC vs FV tension drives standard‑level disagreements on PPE revaluation, goodwill, R&amp;D.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">US GAAP 偏 conservative, IFRS 平衡, CAS 一直保留谨慎性条款。</p><p lang="en">US GAAP leans conservative; IFRS balances; CAS retains prudence.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一家美国钢铁公司用 LIFO 计价存货。通胀环境下, 与 FIFO 相比, 它的 NI、税负、B/S 存货余额、OCF 各有何差异?</span><span lang="en"><strong>Q1.</strong> A US steelmaker uses LIFO. Under inflation, vs FIFO: NI, taxes, B/S inventory, OCF?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>LIFO vs FIFO 在通胀下的对比</strong>:</p>
+            <ul lang="zh">
+              <li><strong>COGS</strong>: LIFO 用最新高价 → COGS 高; FIFO 用旧低价 → COGS 低</li>
+              <li><strong>NI</strong>: LIFO 低, FIFO 高 (差异 = COGS 差额 × (1 − 税率))</li>
+              <li><strong>税负</strong>: LIFO 低, FIFO 高 (NI 低 → 应纳税所得额低 → 真金白银的现金税收节省)</li>
+              <li><strong>B/S 存货余额</strong>: LIFO 用旧低价 → 严重低估真实价值; FIFO 用近期价 → 较接近市价</li>
+              <li><strong>OCF</strong>: LIFO 实际现金税收节省 → 比 FIFO <em>多</em>现金 (税收差额)</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>: 这就是美国国税局"LIFO conformity rule"的精髓 — 报表用 LIFO 才允许税务用 LIFO, 制度强制把<em>报表盈利</em>和<em>税务现金节省</em>绑定。结果: 美国制造业 (钢铁、汽车、原油等) 大量用 LIFO 报告偏低 NI 来换取节税现金, 但其 B/S 存货价值严重失真 ("LIFO reserve" 隐藏储量可能数十亿美元)。</p>
+            <p lang="zh"><strong>分析师调整</strong>: 比较美国公司与全球同业时, 必须把 LIFO 报表"转换为 FIFO 等效"。LIFO Reserve = (FIFO 存货 − LIFO 存货), 报告在附注中。FIFO 等效的 NI 和净资产 = 报表 NI + ΔLIFO Reserve × (1 − T), 净资产 + LIFO Reserve × (1 − T)。</p>
+            <p lang="zh"><strong>IFRS/CAS 的处理</strong>: 一律 FIFO 或加权平均, 无 LIFO 选择 → 不存在此类调整需求, 但通胀环境下报告 NI 与税负较高。</p>
+            <p lang="en">LIFO under inflation: higher COGS → lower NI → <em>lower tax</em> (real cash benefit). B/S inventory understated. OCF actually higher than FIFO equivalent due to tax savings. Adjust by adding LIFO Reserve × (1−T) to net assets and ΔReserve × (1−T) to NI for FIFO‑equivalent. IFRS/CAS prohibit, no adjustment needed but higher tax under inflation.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家中国半导体公司年研发支出 30 亿。CAS 下 18 亿资本化, 12 亿费用化。若改用 US GAAP, 当年 NI 增减如何? 5 年后呢?</span><span lang="en"><strong>Q2.</strong> Chinese semicon firm spends ¥3bn R&amp;D/yr. CAS: ¥1.8bn capitalized, ¥1.2bn expensed. Under US GAAP, NI change this year? After 5 years?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>当年</strong>: US GAAP 把全部 30 亿费用化 (vs CAS 仅 12 亿) → 当期费用多 18 亿 → 税前利润少 18 亿 → 假设税率 25%, NI 少 13.5 亿。</p>
+            <p lang="zh"><strong>5 年后</strong>: 假设资本化的开发资产平均按 5 年摊销, 每年摊销 18/5 = 3.6 亿:</p>
+            <ul lang="zh">
+              <li>CAS 下: 第 1 年费用 12; 第 2 年费用 = 12 + 摊销 3.6 = 15.6; ...; 第 5 年 = 12 + 18 = 30; 第 6 年开始累计摊销 = 18 (达到稳态), 此后每年费用 = 12 + 18 = 30</li>
+              <li>US GAAP 下: 每年费用 30 (恒定)</li>
+            </ul>
+            <p lang="zh"><strong>稳态比较</strong>: 第 5 年起, CAS 与 US GAAP 的年度 R&D 费用<em>相等</em> (都是 30 亿) → 当年 NI <em>相同</em>。差异在<em>资产负债表</em> — CAS 下永远有一笔约 18 × 5 / 2 = 45 亿的"开发支出"资产, US GAAP 下没有。</p>
+            <p lang="zh"><strong>关键洞察</strong>:</p>
+            <ol lang="zh">
+              <li>资本化在<em>稳态</em>下不改变利润, 只是把利润"前置" — 早期 NI 高 (推迟费用), 晚期 NI 与 US GAAP 相同 (但永远有更高的资产基础)</li>
+              <li>对<em>快速成长期</em>公司影响最大 — CAS/IFRS 下 NI 显著好看; 进入稳态后两者趋同</li>
+              <li>ROE 对比: CAS 下 NI 同 + 净资产高 → ROE 略低; US GAAP 下 NI 同 + 净资产低 → ROE 略高 (稳态)。早期 CAS 下 NI 高 + 净资产稍高 → ROE 也偏高</li>
+            </ol>
+            <p lang="zh"><strong>对中国半导体投资者的启示</strong>: 中芯、长存、长鑫、思源等大量 R&D 资本化, 短期 NI 漂亮可能有<em>会计加成</em>; 看真实经营效率应回到 EBITDA 或 R&D 支出 (不论资本化) / 营收等指标。</p>
+            <p lang="en">Year 1: US GAAP NI lower by 18 × (1−0.25) = ¥1.35bn. Steady state (after 5y): both standards expense ¥30bn/yr; NI equal; CAS still carries a ~¥4.5bn intangible asset on B/S. ROE under steady state: CAS slightly lower (more equity); early years CAS NI inflated. For Chinese semicon investors: short‑term NI optics may have accounting tailwind; reality is better seen via R&amp;D/revenue and EBITDA.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 中国国航 H 股报表显示 IFRS 净利 100 亿, A 股报表显示 CAS 净利 95 亿。差异 5 亿可能来自哪些项目? 列至少三种。</span><span lang="en"><strong>Q3.</strong> Air China H‑share (IFRS) NI = ¥10bn; A‑share (CAS) NI = ¥9.5bn. List three possible sources of the ¥0.5bn gap.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>常见差异来源</strong>:</p>
+            <ol lang="zh">
+              <li><strong>飞机大修资本化期间</strong>: CAS 与 IFRS 都允许大修资本化, 但摊销年限估计可能不同。CAS 倾向更保守 (例如 5 年), IFRS 可能较长 (8 年) → IFRS 下每年摊销少 → NI 高</li>
+              <li><strong>融资租赁的承租人会计</strong>: CAS 21 (2019 起) 与 IFRS 16 高度趋同, 但某些<em>过渡期处理</em>或<em>特定租赁条款</em>判断可能有差异</li>
+              <li><strong>资产减值转回</strong>: CAS 不允许非商誉减值<em>转回</em>; IFRS 允许 (条件)。若公司之前减值过的固定资产价值恢复, IFRS 下可<em>转回</em>计入收益, CAS 下不能 → IFRS 下 NI 更高</li>
+              <li><strong>政府补助</strong>: 与资产相关的政府补助, CAS 与 IFRS 都允许冲减资产或递延收益处理, 但<em>初始确认时点</em>判断可能不同</li>
+              <li><strong>所得税递延项目</strong>: 因上述差异引起的所得税递延调整</li>
+              <li><strong>少数股东权益分类</strong>: 少数股东赎回权类型工具在两套准则下分类可能不同</li>
+            </ol>
+            <p lang="zh"><strong>实务建议</strong>: 双重披露公司每年附"准则差异调节表", 详细列出每一项差异及其金额。读年报时翻到这一节, 一目了然。差异 &lt; 5% 一般无碍, 差异 &gt; 10% 应该深入研究背后的会计政策选择。</p>
+            <p lang="zh">A+H 公司列表参考: 中国国航、中国人寿、中国平安、中国铁建、中信银行、招商银行等。这些公司在年报中都有详细调节表。</p>
+            <p lang="en">Possible sources: (1) aircraft overhaul capitalization period; (2) lease judgment differences; (3) impairment reversal (allowed under IFRS, not CAS); (4) government grant timing; (5) deferred tax knock‑ons; (6) NCI classification edge cases. Read the standards‑reconciliation note in dual‑listed annual reports — usually clear. &lt;5% differences are normal; &gt;10% deserves study.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 国资 P 把旗下子公司 S (账面净资产 30 亿, 公允价值 80 亿) 注入上市公司 L, 对价 80 亿 (用 L 增发股份支付)。CAS 下 L 如何记账? 会产生商誉吗?</span><span lang="en"><strong>Q4.</strong> SOE parent P injects subsidiary S (book net assets ¥3bn, FV ¥8bn) into listed L for ¥8bn (via L's new shares). CAS treatment? Goodwill?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>判断</strong>: P 在交易前后都控制 L 和 S → <em>同一控制下企业合并</em> (CAS 20)。</p>
+            <p lang="zh"><strong>会计处理</strong>:</p>
+            <ol lang="zh">
+              <li>L 取得 S 的资产 + 负债, 按 S 在 P 的合并报表中的<em>账面价值</em>入账 (而非公允价值 80 亿) → 资产并入 ~30 亿净额</li>
+              <li>L 增发的股份按面值入"股本", 公允溢价部分进"资本公积 — 股本溢价"</li>
+              <li>对价 80 亿 (按公允价值) 与所取得的账面净资产 30 亿之差额 50 亿 → 冲减"资本公积"(不进 NI, 也不形成商誉)</li>
+              <li><em>无商誉</em></li>
+              <li>需<em>追溯调整</em>合并报表数据 — 从 P 取得 S 的最早日开始, 把 S 视同 L 的子公司列报</li>
+            </ol>
+            <p lang="zh"><strong>对比 IFRS / 非同一控制</strong>: 若 L 从无关第三方按 80 亿收购 S (账面 30 亿, 公允 80 亿):</p>
+            <ul lang="zh">
+              <li>资产按公允价值 80 亿入账</li>
+              <li>商誉 = 80 − 80 = 0 (假设公允评估精准)</li>
+              <li>未来 S 的折旧/摊销基础为 80 亿, 折旧费用更高 → L 的未来 NI 较低</li>
+            </ul>
+            <p lang="zh"><strong>CAS 同一控制 vs 非同一控制的"会计利益"差异</strong>:</p>
+            <table>
+              <thead><tr><th></th><th><span lang="zh">同一控制 (CAS 20)</span><span lang="en">Common control</span></th><th><span lang="zh">非同一控制</span><span lang="en">Non-common control</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">L 的资产入账</span><span lang="en">Asset basis</span></td><td>30 亿 (账面)</td><td>80 亿 (公允)</td></tr>
+                <tr><td><span lang="zh">商誉</span><span lang="en">Goodwill</span></td><td>0</td><td>0 (此处) / 一般 &gt; 0</td></tr>
+                <tr><td><span lang="zh">未来折旧基础</span><span lang="en">Future depreciation</span></td><td><span lang="zh">低 → 未来 NI 高</span><span lang="en">Low → higher future NI</span></td><td><span lang="zh">高 → 未来 NI 低</span><span lang="en">High → lower future NI</span></td></tr>
+                <tr><td><span lang="zh">资本公积影响</span><span lang="en">Capital surplus</span></td><td><span lang="zh">大幅冲减 (−50 亿)</span><span lang="en">Reduced ¥5bn</span></td><td>—</td></tr>
+              </tbody>
+            </table>
+            <p lang="zh"><strong>关键洞察</strong>: 同一控制下的资产注入<em>账面看起来"便宜"</em>但<em>权益被冲减</em>。这是 SOE 改革背景下的特殊会计设计 — 防止"集团内反复倒手虚增商誉", 但代价是 L 的报表无法直接反映 S 的市场价值。分析师在评估 SOE 上市公司时, 应该穿透"账面值"看真实经济价值, 这通常需要查附注中关于注入资产的<em>评估报告</em>。</p>
+            <p lang="en">Common control → S enters L at book value (¥3bn), not FV (¥8bn). No goodwill. The ¥5bn gap is debited to capital surplus. No P&amp;L. Retrospective restatement applies. The trade‑off: lower asset basis &amp; lower future depreciation (so higher future NI) but reduced capital surplus. SOE‑specific design to prevent intra‑group goodwill arbitrage. Read the appraisal report in the merger disclosure for true value.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 跨地 ROE 比较时, 哪些准则差异最需要调整? 给出三种你必查的项目。</span><span lang="en"><strong>Q5.</strong> Which standard differences must be normalized for cross‑border ROE comparison? Three must‑checks.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ol lang="zh">
+              <li><strong>R&D 资本化</strong>: 中美科技公司比较, CAS/IFRS 下中国公司 NI 与权益同时被研发资本化抬高; US GAAP 下美国公司全费用化 NI 偏低、权益也偏低。<em>调整法</em>: 把所有公司 R&D 一律费用化 (US GAAP 视角), 重算 NI 与净资产, 得到可比 ROE。中国半导体、互联网公司 ROE 在调整后通常下降。</li>
+              <li><strong>商誉减值历史</strong>: 三套准则都"impairment-only", 但具体减值时点与金额差异巨大 (中国 2018-19 集中爆发, 美国相对平滑)。<em>调整法</em>: 用<em>除商誉外的有形净资产 ROE</em> (return on tangible equity) 替代普通 ROE, 把商誉差异中和。这对消费品、医药等大量并购的公司至关重要。</li>
+              <li><strong>同一控制下企业合并</strong>: 中国 SOE 上市公司 (银行、能源、基建) 大量通过同一控制注入资产, 账面值偏低 → 资产 / 权益偏低 → ROE 偏高。<em>调整法</em>: 还原资产到公允价值 (查并购评估报告), 重算资产基础与 ROE。</li>
+              <li><strong>LIFO (仅 US GAAP)</strong>: 与美国制造业比较时调整 — 把 LIFO 报表加回 LIFO Reserve × (1−T), 转换为 FIFO 等效。</li>
+              <li><strong>租赁会计 (历史)</strong>: 2019 前的旧准则 (ASC 840, IAS 17), 经营租赁不入表 → 资产负债同时被低估 → ROE 偏高。现在 ASC 842 + IFRS 16 + CAS 21 已基本趋同, 历史数据需要调整。</li>
+              <li><strong>OCI 项目</strong>: 公允价值变动 (FVOCI 资产) 进 OCI 还是 NI, 三套准则细节有差异。看 ROE 还是 Total Return on Equity (ROE + OCI / Equity) 也会影响结论。</li>
+            </ol>
+            <p lang="zh"><strong>实务方法</strong>: 跨地比较时尽量找<em>同一来源</em> (例如全部用 IFRS 或全部 US GAAP 等效) 的数据。Bloomberg/FactSet 提供 "<em>standardized</em>" 财务数据 (按统一规则重算)。Wind / 同花顺 / 雪球 等数据库的中国公司数据是 CAS 口径, 比较时需要心里有数。</p>
+            <p lang="zh"><strong>最 robust 的比较口径</strong>: 不看 ROE, 看 <em>ROIC = NOPAT / Invested Capital</em>。ROIC 对资本结构与会计选择都更稳健, 跨地比较时差异更小。这是 M2 Ch.08 DuPont 分解后引入的高级度量。</p>
+            <p lang="en">Top three: (1) R&amp;D capitalization — recompute under expense‑all for cross‑country tech; (2) goodwill impairment volatility — use return on tangible equity; (3) common‑control combinations — restate to FV using appraisal reports. Additional: LIFO Reserve for US manufacturers; legacy lease accounting (pre‑2019); OCI items. Bloomberg/FactSet provide standardized data. Most robust: use ROIC instead of ROE — leverage‑neutral and accounting‑robust (M2 Ch.08).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="08-cashflow.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">08 · <span lang="zh">现金流量表深度</span><span lang="en">CFS Deep-Dive</span></span></a>
+          <a class="next" href="10-notes-events.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">10 · <span lang="zh">附注与重大事项</span><span lang="en">Notes &amp; Events</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

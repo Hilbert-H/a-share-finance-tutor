@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>03 · accrual / matching / 谨慎 / 实质 — Accounting Principles</title>
+  <meta name="keywords" content="accrual, matching, conservatism, substance over form, 权责发生制, 配比, 谨慎性, 实质重于形式, CAS 16, IFRS Framework, 天神娱乐, 002354, 比亚迪, 002594">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 03</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">16 分钟</span><span lang="en">16 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01, Ch.02</span><span lang="en">Prereq: Ch.01, Ch.02</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.04 收入确认</span><span lang="en">Next: Ch.04 Revenue</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">accrual · matching · 谨慎性 · 实质重于形式</span>
+        <span lang="en">Accrual · Matching · Conservatism · Substance over Form</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">CAS 与 IFRS 共四条核心原则。它们不是约定俗成的"规矩", 而是从"用代数核算经济实质"这一目标推导出的不变量。把它们装进脑子, 比记 200 条具体科目准则更有用。</span>
+        <span lang="en">The four core principles shared by CAS and IFRS. Not arbitrary "rules" but invariants forced by the goal of accounting for economic substance. Internalizing them is more useful than memorizing 200 line‑item standards.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用 first principles 推出 accrual basis 比 cash basis 更优的两个理由。</li>
+          <li lang="zh">能用 matching 原则判断 R&amp;D 资本化 vs 费用化各自的论据。</li>
+          <li lang="zh">能用 Bayesian 视角理解 conservatism: 为什么会计学采用<em>有偏</em>但低方差的估计。</li>
+          <li lang="zh">能识别"实质重于形式"在售后回租、永续债、合并范围三类交易中的应用。</li>
+          <li lang="en">Derive from first principles why accrual beats cash basis on two specific dimensions.</li>
+          <li lang="en">Argue both sides of R&amp;D capitalization vs expensing via matching.</li>
+          <li lang="en">Understand conservatism as a deliberately biased estimator with lower variance.</li>
+          <li lang="en">Spot substance‑over‑form in sale‑and‑leaseback, perpetuals, and consolidation scope.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 四条原则的工程图像</span>
+          <span class="en" lang="en"> · Engineering picture of the four principles</span>
+        </h2>
+
+        <p lang="zh">这四条原则解决的是同一个根本问题: <em>如何用有限的、可验证的数据, 描述一个经济实体在某段时间内的真实状态变化</em>。每条原则都是一个工程权衡:</p>
+        <p lang="en">All four address the same problem: <em>how to describe a firm's true state evolution using finite, verifiable data</em>. Each principle is an engineering tradeoff.</p>
+
+        <h3 lang="zh">① accrual basis (权责发生制) — 事件驱动 vs 时钟驱动</h3>
+        <h3 lang="en">① Accrual basis — event‑driven vs clock‑driven</h3>
+        <p lang="zh">Cash basis 是<em>时钟驱动</em>的描述: 钱进我账户就记, 钱出我账户就扣。简单, 但分辨率差 — "已经卖了但没收钱"看不出。Accrual 是<em>事件驱动</em>的: 经济事件发生那一刻就记账, 与现金动没动无关。代价: 需要主观判断"事件何时发生"(收入确认五步法、折旧寿命估计等)。</p>
+        <p lang="en">Cash basis is clock‑driven: record cash in/out as it moves. Simple but low‑resolution — "sold but not collected" is invisible. Accrual is event‑driven: record at the moment the economic event occurs, regardless of cash. Cost: requires judgment about <em>when</em> events occur (the 5‑step revenue model, depreciation life estimates, etc).</p>
+        <p lang="zh"><strong>为何会计学选择 accrual?</strong> 因为投资决策关心的是"经济实质", 不是"现金现在在哪"。一家公司可能现金充裕但实质已破产 (大量未实现亏损); 也可能现金紧张但经营优秀 (高速成长 + WC 占用)。Accrual 能在<em>单期</em>里就把这个差异展示出来。</p>
+        <p lang="en"><strong>Why accounting chose accrual:</strong> investment decisions depend on economic substance, not "where is the cash right now." A firm can be cash‑rich but substantively insolvent; or cash‑tight but operationally excellent. Accrual surfaces this gap within a single period.</p>
+
+        <h3 lang="zh">② matching (配比) — 因果链对齐</h3>
+        <h3 lang="en">② Matching — cause‑effect alignment</h3>
+        <p lang="zh">物理学的因果律: 力 → 加速度 → 位移, 全部在<em>同一组方程</em>里描述。会计的配比原则: 收入与产生它的费用必须<em>在同一期</em>确认。</p>
+        <p lang="en">Physics: force → acceleration → displacement, all in the <em>same equation set</em>. Matching: revenue and the expenses that produced it are recognized <em>in the same period</em>.</p>
+        <p lang="zh">否则会出现报表 zigzag — 一期看上去暴利 (只确认收入), 下一期看上去暴亏 (才确认相应成本)。例:</p>
+        <p lang="en">Otherwise the P&amp;L zigzags — one period looks like a windfall (revenue only), the next a disaster (cost catches up). Example:</p>
+        <ul>
+          <li lang="zh"><strong>销货成本</strong>: 商品销售那一刻, 同步把存货从 B/S 转到 IS 的费用 (借 主营业务成本 贷 库存商品)。</li>
+          <li lang="zh"><strong>折旧</strong>: 固定资产服务多个期间, 成本必须分摊到这些期间。</li>
+          <li lang="zh"><strong>保修费用</strong>: 销售当期就预提, 不等真正发生维修。</li>
+          <li lang="en"><strong>COGS</strong>: at the moment of sale, move inventory from B/S to expense on IS.</li>
+          <li lang="en"><strong>Depreciation</strong>: allocate cost across the periods the asset serves.</li>
+          <li lang="en"><strong>Warranty</strong>: accrue at the time of sale, not when repair actually happens.</li>
+        </ul>
+
+        <h3 lang="zh">③ conservatism (谨慎性) — 有偏估计</h3>
+        <h3 lang="en">③ Conservatism — a biased estimator</h3>
+        <p lang="zh">概率论视角: 真实净资产 $\theta$ 有一个分布。会计学不报告 $\mathbb{E}[\theta]$ (无偏估计), 而报告 $\mathbb{E}[\theta] - k\sigma$ — 一个<em>系统性偏低</em>的估计。原则: 损失立即认 (即使概率未到 100%), 收益等实现 (即使大概率已锁定)。</p>
+        <p lang="en">Probabilistic view: true net assets $\theta$ have a distribution. Accounting does not report $\mathbb{E}[\theta]$ (unbiased) — it reports $\mathbb{E}[\theta] - k\sigma$, a systematically downward‑biased estimate. Rule: recognize losses early (even &lt; 100% probable), recognize gains only on realization.</p>
+        <p lang="zh"><strong>为何接受偏差?</strong> 信息不对称 + 代理成本: 管理层对公司了解多于投资者, 且天然倾向"乐观叙事"。投资者无法验证乐观估计, 但可以验证保守估计 (因为保守已经留有缓冲)。<em>有偏但低方差的估计</em>对决策更有用 — 类似工程中"取最坏情况设计"的思路。</p>
+        <p lang="en"><strong>Why accept bias?</strong> Information asymmetry + agency cost. Management knows more and tilts toward optimistic stories. Investors can't verify optimism but can verify conservatism (the buffer is already there). A <em>biased but low‑variance estimator</em> is more useful for decisions — same logic as "design for worst case" in engineering.</p>
+
+        <h3 lang="zh">④ substance over form (实质重于形式) — 现象学优先</h3>
+        <h3 lang="en">④ Substance over form — phenomenology first</h3>
+        <p lang="zh">看一个交易, 不看合同写了什么, 看<em>谁实际承担风险、谁享有回报、谁拥有控制</em>。合同可以包装, 经济实质包装不了。这是反"账面套利"的最后一道防线。</p>
+        <p lang="en">For any transaction, ignore the contract text — look at <em>who actually bears the risk, who gets the reward, who has control</em>. Contracts can be packaged; economic substance cannot. The last line of defense against "accounting arbitrage."</p>
+        <p lang="zh">物理类比: 区分<em>规范对称</em>(标签可改但物理不变, 比如电势的零点) 和<em>物理对称</em>(决定守恒律的真对称, 比如能量守恒)。会计上同理 — 法律形式是"标签", 经济实质是"物理"。</p>
+        <p lang="en">Physics analogy: distinguish <em>gauge symmetry</em> (label changes, physics unchanged) from <em>physical symmetry</em> (drives conservation laws). Here: legal form is the label, economic substance is the physics.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span>
+        </h2>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">定义 — 权责发生制 (CAS 基本准则 §9)</span>
+          <span class="callout-label" lang="en">Def — Accrual basis</span>
+          <p lang="zh">企业应当以权责发生制为基础进行会计确认、计量和报告。即<em>收入</em>在履约义务被满足时确认 (不论现金是否已收到); <em>费用</em>在导致企业经济利益流出的事项已经发生时确认 (不论现金是否已支付)。</p>
+          <p lang="en">Recognize revenue when the performance obligation is satisfied (regardless of cash); recognize expense when the obligation outflow occurs (regardless of cash payment).</p>
+          <span class="cite">CAS 基本准则 §9 · IFRS Conceptual Framework §1.17–1.20</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">定义 — 配比原则</span>
+          <span class="callout-label" lang="en">Def — Matching</span>
+          <p lang="zh">企业应将<em>收入</em>与产生该收入的<em>费用</em>在<em>同一会计期间</em>确认, 实现配比 (matching of costs against revenues)。</p>
+          <p lang="en">Revenues and the expenses incurred to generate them are recognized in the same period.</p>
+          <span class="cite">CAS 基本准则 §17 · IFRS CF §5.5(b)</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">定义 — 谨慎性原则</span>
+          <span class="callout-label" lang="en">Def — Conservatism (Prudence)</span>
+          <p lang="zh">企业对交易或事项进行会计处理时应当保持应有的谨慎, 不应高估资产或收益, 不应低估负债或费用 (CAS); 在不确定性条件下, 资产/收益<em>不应被高估</em> (IFRS asymmetric prudence)。</p>
+          <p lang="en">Under uncertainty, do not overstate assets or income; do not understate liabilities or expenses (CAS). IFRS 2018 framework re‑introduced asymmetric prudence.</p>
+          <span class="cite">CAS 基本准则 §18 · IFRS Conceptual Framework §2.16 (2018 rev.)</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">定义 — 实质重于形式</span>
+          <span class="callout-label" lang="en">Def — Substance over Form</span>
+          <p lang="zh">企业应当按照交易或事项的<em>经济实质</em>进行会计确认、计量和报告, 不应仅以法律形式为依据。</p>
+          <p lang="en">Recognize, measure, and report based on the <em>economic substance</em> of transactions, not merely their legal form.</p>
+          <span class="cite">CAS 基本准则 §16 · IFRS CF §2.12</span>
+        </div>
+
+        <h3 lang="zh">公式化: accrual 的状态转移方程</h3>
+        <h3 lang="en">Formal: accrual state transition</h3>
+
+        <p lang="zh">对任一期间 $[t-1, t]$, accrual basis 下的权益变动可分解为<em>已实现现金</em>与<em>应计调节</em>两部分:</p>
+        <p lang="en">Over $[t-1, t]$, accrual‑basis equity change decomposes into <em>realized cash</em> and <em>accrual adjustments</em>:</p>
+
+        <div class="eq">
+          <span>$$ \Delta E_t \;=\; \mathrm{Cash}_{\text{from ops}} \;+\; \mathrm{Accruals}_t $$</span>
+          <span class="num">(3.1)</span>
+        </div>
+
+        <p lang="zh">其中 $\mathrm{Accruals}_t$ 表示当期"已确认但现金未动" 与 "现金已动但未确认" 的净额。在长期视角下, $\sum_t \mathrm{Accruals}_t \to 0$ (一切赊销终被收回, 一切折旧终伴随设备退役)。<em>短期里的应计</em>就是 accrual basis 提供的"额外信息"。这也是 Sloan (1996) 那篇著名论文的起点 — 应计盈余可预测股票回报。</p>
+        <p lang="en">Where $\mathrm{Accruals}_t$ is the net of "booked but cash unmoved" and "cash moved but unbooked." Over long horizons $\sum_t \mathrm{Accruals}_t \to 0$. The short‑run accrual is the <em>extra information</em> accrual basis provides — and the starting point of Sloan (1996), the seminal paper on accruals anomaly.</p>
+
+        <h3 lang="zh">公式化: 谨慎性作为有偏估计</h3>
+        <h3 lang="en">Formal: conservatism as biased estimation</h3>
+
+        <p lang="zh">设资产真实价值为随机变量 $V$, 分布密度 $f(v)$。无偏估计 $\hat V_{\text{unbiased}} = \mathbb{E}[V]$。会计谨慎性使用:</p>
+        <p lang="en">Let true asset value $V$ have density $f(v)$. Unbiased estimate $\hat V_{\text{unbiased}} = \mathbb{E}[V]$. Conservatism uses:</p>
+
+        <div class="eq">
+          <span>$$ \hat V_{\text{book}} \;=\; \min\!\left(\text{Cost},\; \mathbb{E}[V \mid \mathcal{F}_t]\right) $$</span>
+          <span class="num">(3.2)</span>
+        </div>
+
+        <p lang="zh">即"成本与可收回金额的较低者" (lower of cost or NRV)。这是个<em>非对称</em>估计 — 上行不更新 (除非真的处置实现), 下行立即更新。从决策论角度: 这是个<em>Bayesian 后验偏低估计</em>, 用于规避 type II 错误 (高估资产带来的灾难损失)。</p>
+        <p lang="en">"Lower of cost or NRV." This is an <em>asymmetric</em> estimator — upside not updated (unless realized), downside updated immediately. Decision‑theoretically: a Bayesian posterior‑biased‑low estimate, hedging against type II error (catastrophic loss from overstating assets).</p>
+
+        <h3 lang="zh">实质重于形式 — 三个判断维度</h3>
+        <h3 lang="en">Substance over form — three diagnostic axes</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th><span lang="zh">维度</span><span lang="en">Axis</span></th>
+              <th><span lang="zh">问什么</span><span lang="en">Ask</span></th>
+              <th><span lang="zh">A 股典型应用</span><span lang="en">A-share use</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span lang="zh">控制 (Control)</span><span lang="en">Control</span></td>
+              <td><span lang="zh">谁有权决定资产/活动的方向?</span><span lang="en">Who decides?</span></td>
+              <td><span lang="zh">合并范围 (CAS 33), VIE 架构判断</span><span lang="en">Consolidation scope (CAS 33), VIE</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">风险 (Risk)</span><span lang="en">Risk</span></td>
+              <td><span lang="zh">谁承担价值下行损失?</span><span lang="en">Who bears downside?</span></td>
+              <td><span lang="zh">售后回租, 应收账款保理判断</span><span lang="en">Sale‑and‑leaseback, factoring</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">回报 (Reward)</span><span lang="en">Reward</span></td>
+              <td><span lang="zh">谁享有价值上行收益?</span><span lang="en">Who keeps upside?</span></td>
+              <td><span lang="zh">长投权益法判断 (重大影响)</span><span lang="en">Equity method (significant influence)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span>
+        </h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·002594</span>
+            <span class="company"><span lang="zh">比亚迪</span><span lang="en">BYD</span></span>
+            <span class="period">FY2021 · <span lang="zh">accrual vs cash 的张力</span><span lang="en">Accrual vs cash tension</span></span>
+          </div>
+          <p lang="zh">2021 年, 比亚迪净利 ~30 亿, 但 OCF ~654 亿 — OCF/NI ≈ 22。差异巨大, 不是问题, 是 accrual 与 cash 视角的极端分化:</p>
+          <p lang="en">In 2021, BYD's NI was ~¥3bn but OCF was ~¥65.4bn — OCF/NI ≈ 22. Not a red flag — a textbook accrual‑vs‑cash divergence:</p>
+          <ul lang="zh">
+            <li>巨额 D&amp;A (新能源车产线快速扩张) 拉高 OCF 而不影响 NI</li>
+            <li>合同负债 (新能源车订金) 大增, 现金已收但 accrual 还没确认收入</li>
+            <li>应付账款 (供应链议价) 大增 → 经营性现金不付出</li>
+          </ul>
+          <p lang="en">Massive D&amp;A from EV capacity ramp lifts OCF without affecting NI; surging contract liabilities (EV deposits) bring in cash without booking revenue; rising AP defers cash outflow.</p>
+          <p lang="zh"><strong>对照 2023</strong>: NI ~300 亿, OCF ~1700 亿, OCF/NI ≈ 5.7。规模化后趋于"正常的高质量公司"水平。accrual 与 cash 视角的偏离随业务成熟而收敛 — 印证公式 (3.1) 的长期归零性质。</p>
+          <p lang="en">By 2023: NI ~¥30bn, OCF ~¥170bn, OCF/NI ≈ 5.7. As the business matures, the accrual‑cash gap narrows — confirming the long‑run zero‑sum property of (3.1).</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002594" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 002594 →</span><span lang="en">Cninfo 002594 →</span></a>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SZ·002354</span>
+            <span class="company"><span lang="zh">天神娱乐</span><span lang="en">Tianshen Entertainment</span></span>
+            <span class="period">FY2018 · <span lang="zh">谨慎性失效的反面</span><span lang="en">Conservatism failure</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+          <p lang="zh">天神娱乐在 2014–2017 年密集并购游戏公司, 累计形成商誉 ~65 亿。每年的减值测试都"未发现减值迹象"。2018 年单年一次性确认商誉减值 ~40 亿, 当年净利从约 +10 亿翻转为 −71 亿。</p>
+          <p lang="en">Tianshen aggressively acquired game studios from 2014–17, accumulating ~¥6.5bn of goodwill. Annual impairment tests showed "no indication." In 2018, ¥4bn of goodwill was impaired in a single year — net income flipped from ~+¥1bn to −¥7.1bn.</p>
+          <ul lang="zh">
+            <li><strong>谨慎性如何被违反</strong>: 减值的<em>触发条件</em>是"出现减值迹象" — 但什么算"迹象"由管理层主观判断。被收购公司业绩持续不达对赌时, 应早期确认减值 (Bayesian: 后验下移)。天神选择"延迟确认", 把多年的减值集中到 2018 一年, 制造"业绩洗大澡"(big bath) — 通过一次性巨亏清理资产负债表, 后续年度更好看。</li>
+            <li><strong>系统性问题</strong>: 2018–2019 A 股商誉减值集中爆发, 涉及上千家公司, 总额超 1.6 万亿。"减值测试 vs 摊销"之争 (M1 Ch.00) 的真实代价。</li>
+          </ul>
+          <ul lang="en">
+            <li><strong>How conservatism was undermined:</strong> impairment is triggered by "indications," which management interprets. When acquired studios missed earn‑out targets, prudence demanded early write‑downs. Tianshen deferred and concentrated them in 2018 for a "big bath."</li>
+            <li><strong>Systemic:</strong> the 2018–19 A‑share goodwill cliff hit &gt; 1,000 firms for total &gt; ¥1.6tn. The real cost of "impairment‑only" goodwill accounting.</li>
+          </ul>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">综合</span><span lang="en">Multi</span></span>
+            <span class="company"><span lang="zh">实质重于形式 — 三种典型应用</span><span lang="en">Substance over Form — three classic cases</span></span>
+          </div>
+          <ol>
+            <li>
+              <strong><span lang="zh">售后回租 (Sale-and-leaseback)</span><span lang="en">Sale-and-leaseback</span></strong>
+              <p lang="zh">公司"卖出"一栋自有大楼给金融公司, 立即"租回"使用 20 年。法律形式: 资产已出表; 经济实质: 公司仍控制并使用该资产, 同时背负 20 年租金义务 → 实质是<em>担保融资</em>。CAS 21 / IFRS 16: 这种安排不出表, 资产仍记 B/S, 同时确认融资负债。</p>
+              <p lang="en">Sell a building to a finco and lease it back for 20 years. Legal form: asset off‑balance‑sheet. Substance: still control + 20‑year rent obligation → secured financing. CAS 21 / IFRS 16: stays on B/S; recognize a financing liability.</p>
+            </li>
+            <li>
+              <strong><span lang="zh">永续债 (Perpetual debt)</span><span lang="en">Perpetual debt</span></strong>
+              <p lang="zh">无固定到期日 + 可递延付息 → 法律上"权益工具", 不计负债。但若条款含<em>利率重置 step-up</em> (五年后利率跳升 300bp) + <em>赎回权在发行人手中</em>, 实质就是"五年期固定利率债 + 续作选择权" — 发行人不会真递延付息 (那等于自残)。CAS / IFRS 都要求穿透条款判断: 实质上是<em>负债</em>还是<em>权益</em>?</p>
+              <p lang="en">No fixed maturity + deferrable coupons → legally equity. But with a coupon step‑up (e.g., +300bp after year 5) and issuer call → substantively a 5‑year fixed‑rate bond. CAS/IFRS require looking through to economic substance.</p>
+            </li>
+            <li>
+              <strong><span lang="zh">关联方资金占用</span><span lang="en">Related-party fund extraction</span></strong>
+              <p lang="zh">大股东借"经营性应收/预付"名义从上市公司抽走资金。法律形式: 正常 AR/Prepayment, 账龄 90 天。经济实质: 长期无息借款给控股股东。乐视网 300104 (已退市) 与康美药业 (Ch.02 案例) 都是这种模式。CAS 36 / 关联交易披露要求: 识别此类"非经营性占用"并单独披露。</p>
+              <p lang="en">Controlling shareholder extracts cash under the guise of "operating AR/prepayments." Legal form: normal 90‑day AR. Substance: a long‑term interest‑free loan to the parent. Both LeTV and Kangmei used this pattern. CAS 36 requires identification and separate disclosure.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">ii</span><div><h4>accrual vs cash</h4><p lang="zh">accrual basis 的存在理由 — 用"经济事件"而非"现金流动"作为时序参考。</p><p lang="en">The reason accrual exists — use the economic event, not cash movement, as the time reference.</p></div></div>
+      <div class="model-card"><span class="roman">iv</span><div><h4><span lang="zh">配比原则</span><span lang="en">Matching</span></h4><p lang="zh">收入与费用的因果链对齐, 防止 IS zigzag。</p><p lang="en">Cause‑effect alignment of revenues and the expenses producing them.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">非对称估计器, 低估资产、高估负债 — 用偏差换稳定。</p><p lang="en">Asymmetric estimator — bias against overstating assets and understating liabilities.</p></div></div>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">实质重于形式</span><span lang="en">Substance over Form</span></h4><p lang="zh">控制 / 风险 / 回报三轴判断, 反"账面套利"。</p><p lang="en">Control / risk / reward triage to defeat "accounting arbitrage."</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 如果只能保留 accrual 与 cash 之一, 你会保留哪个? 从信息含量角度给出两条理由。</span><span lang="en"><strong>Q1.</strong> If you had to keep only one — accrual or cash basis — which? Give two information‑content reasons.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">保留 accrual。两条理由:</p>
+            <ol lang="zh">
+              <li><strong>跨期可比性</strong>: cash 视角对"现金到账时点"敏感, 同一笔订单 12-31 vs 01-02 收款会划归不同年度。accrual 把"经济事件"作为时间锚, 跨期可比。投资决策关心"业绩是哪一期赚的", 不是"钱哪天到账"。</li>
+              <li><strong>信息含量 — 应计盈余的预测力</strong>: 单期内的 accrual 量 (NI − OCF) 反映了管理层对未来的<em>主动估计</em> (如坏账准备、折旧寿命、保修预提)。这些估计本身就是信息。Sloan (1996) 实证: 高应计公司未来回报系统性低于低应计公司 — accrual 的信息含量直接转化为预测力。</li>
+            </ol>
+            <p lang="zh">cash 视角是 accrual 的<em>子集</em> — 从 accrual 报表可以反推 cash (见 Ch.02 间接法), 但反向不可。所以 accrual 是<em>信息完备</em>的, cash 是它的影子。</p>
+            <p lang="en">Keep accrual. Two reasons: (1) cross‑period comparability — accrual anchors on the economic event, not the day cash hit the account; (2) information content — within‑period accruals embed management's forward‑looking estimates (allowances, useful lives, warranty provisions), which are themselves signal. Sloan (1996) empirically: high‑accrual firms earn lower future returns. Accrual is the information‑complete view; cash is its shadow.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家药企每年研发支出 10 亿。IFRS/CAS 允许部分资本化, US GAAP 要求全费用化。从<em>配比原则</em>角度论证两种做法各自的依据。</span><span lang="en"><strong>Q2.</strong> A pharma firm spends ¥1bn/yr on R&amp;D. IFRS/CAS allow partial capitalization; US GAAP expenses all. Argue both sides via matching.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>资本化的依据</strong>: 如果一笔研发支出会在未来 5–10 年产生收入 (新药上市), 配比原则要求把成本分摊到那些受益期。当期全费用化等于<em>不配比</em> — 当期净利被压低, 未来期净利被高估, IS zigzag。</p>
+            <p lang="zh"><strong>费用化的依据</strong>: 配比的前提是"未来收益可可靠估计"。药品研发的成功率极低 (临床三期成功率 ~60%, 但整体 IND 到上市的成功率 ~10%), 大部分研发投入<em>不会产生未来收益</em>。把它们资本化等于把<em>不存在</em>的资产记上账。谨慎性优先于配比。</p>
+            <p lang="zh"><strong>哪种更合理?</strong> 取决于资产可估计性。IFRS/CAS 的折中: <em>研究阶段全费用</em> (未来不可估计), <em>开发阶段在满足技术可行性 + 经济利益可获得 + 可可靠计量</em>时才资本化。US GAAP 选择"宁错杀不放过"的全费用化 — 牺牲配比换取谨慎性更强。</p>
+            <p lang="zh"><strong>A 股层面</strong>: 由于资本化能拉高当期净利, 管理层有动机激进资本化。审计上是高风险领域 — 留意"开发支出"科目余额变化与营收/净利率不同步异常。</p>
+            <p lang="en">Capitalize side: matching demands costs be allocated to the periods they benefit; expensing immediately understates current earnings and overstates future. Expense side: matching presupposes verifiable future benefits — most R&amp;D fails. Capitalizing creates phantom assets. IFRS/CAS compromise: expense research, capitalize development when feasibility + benefit + reliable measurement are met. US GAAP picks blanket expensing — sacrifices matching for stronger conservatism. A‑share watch‑out: aggressive capitalization is a common earnings‑management lever.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 谨慎性是"故意低估"还是"应有的稳重"? 用 Bayesian 决策论框架: 若管理层报告无偏估计 $\mathbb{E}[\theta]$, 投资者会作何反应?</span><span lang="en"><strong>Q3.</strong> Is conservatism "deliberate understatement" or "appropriate prudence"? Frame this as Bayesian decision theory: if management reported unbiased $\mathbb{E}[\theta]$, how would investors react?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>关键洞察</strong>: 投资者并非"被动接受"管理层报告的数字, 而是 Bayesian 地更新自己对 $\theta$ 的后验。</p>
+            <p lang="zh">若管理层<em>承诺</em>报告无偏 $\mathbb{E}[\theta]$, 投资者无法验证 → 必须考虑"管理层是否过度乐观" → 投资者后验 $\mathbb{E}[\theta \mid \text{report}] &lt; \text{report}$。结果: 报告数字被市场<em>系统性折价</em>, 报告本身的信号价值降低。</p>
+            <p lang="zh">若管理层<em>承诺</em>谨慎性 (报告偏低), 投资者知道"已经留有缓冲", 更愿意"按报告值接受"。报告获得更高<em>可信度</em>。这是 Watts (2003) 的核心论点: 谨慎性是<em>契约理论的合理机制</em>, 不是单纯的"保守过头"。</p>
+            <p lang="zh"><strong>类比工程</strong>: 实验报告里给出"X ± 3σ"而不是"X" — 同样的有偏估计, 更可信。</p>
+            <p lang="zh"><strong>但代价</strong>: 谨慎性也会被滥用 — 集中减值制造"大澡"是反向操纵 (天神娱乐案例)。这就是"谨慎性 vs 中立性"在 IFRS 2010–2018 之间反复摇摆的根源。</p>
+            <p lang="en"><strong>Insight:</strong> investors are Bayesian, not passive. If management commits to unbiased reporting, investors cannot verify and must discount for possible overstatement; the reported number loses signal. If management commits to conservatism, the buffer is implicit and the report gains credibility. This is Watts (2003) — conservatism as a rational contracting mechanism. Engineering analogy: reporting "X ± 3σ" is more credible than just "X." But it can be abused — concentrated impairments create "big baths." Hence IFRS oscillation 2010–2018 on prudence.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 公司 A 把自有大楼"卖"给金融租赁公司 GF, 立即"租回" 20 年, 租金按市场水平 + 担保金。这笔交易<em>实质</em>是什么? 应如何记账? A 的资产负债率会变吗?</span><span lang="en"><strong>Q4.</strong> Firm A "sells" an owned building to leasing co GF and immediately "leases" it back for 20 years at market rate + collateral. What is the <em>substance</em>? How to book it? Does A's D/A change?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>三轴判断</strong>:</p>
+            <ul lang="zh">
+              <li><strong>控制</strong>: 大楼 20 年内仍由 A 使用 → 控制仍在 A。</li>
+              <li><strong>风险</strong>: 大楼价值波动谁承担? 20 年后还给 GF 时, 若楼价跌, A 的租金已锁定, GF 是否能再租出去? 一般合同设计让 A 实质承担余值风险。</li>
+              <li><strong>回报</strong>: 楼的使用价值 (办公) 20 年内归 A; 出售收益 GF 拿。</li>
+            </ul>
+            <p lang="zh"><strong>实质判断</strong>: 控制和大部分风险/回报仍在 A → <em>不构成资产出表</em>。这就是<em>带回租的销售</em>不出表的实质重于形式。</p>
+            <p lang="zh"><strong>会计处理</strong> (CAS 21 / IFRS 16):</p>
+            <ul lang="zh">
+              <li>大楼仍记在 A 的 B/S (不出固定资产)</li>
+              <li>收到现金 → 借: 银行存款; 贷: 长期应付款 (融资负债)</li>
+              <li>每期租金: 借: 财务费用 + 长期应付款; 贷: 银行存款</li>
+            </ul>
+            <p lang="zh"><strong>对 D/A 的影响</strong>: 资产不出表 + 新增融资负债 → 负债 ↑, 资产微变 (或不变) → <em>D/A 上升</em>。这是 substance over form 在监管 D/A 指标上的<em>反账面套利</em>作用。</p>
+            <p lang="zh">如果会计上让大楼出表 + 仅记一笔租金费用, D/A 反而下降 → 公司"通过套利改善了杠杆指标"。这就是为什么准则坚持实质重于形式: 防止公司用合同包装绕开监管。</p>
+            <p lang="en">Three‑axis: control stays with A (uses building 20y); A bears most residual risk; A enjoys use value. → Substantively secured financing, not sale. Book: building stays on B/S; cash inflow becomes a financing liability; periodic rent splits into interest + principal. D/A rises (liabilities up, assets ~flat). Without substance‑over‑form, the firm could "improve" leverage on paper while economically borrowing — exactly what the principle prevents.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一家公司近 5 年每年都出现"非经常性损益冲洗"(年底大量计提 + 转回), 用四个原则诊断为什么这是危险信号。</span><span lang="en"><strong>Q5.</strong> A firm shows persistent year‑end "non‑recurring item flushing" for 5 years. Use the four principles to diagnose why this is a danger sign.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>accrual 视角</strong>: 频繁大额计提与转回, 说明管理层对资产价值的"主观估计"波动巨大。要么是真实经营极不稳定 (基本面问题), 要么是估计被主动调节 (操纵问题)。两者都坏。</p>
+            <p lang="zh"><strong>matching 视角</strong>: 真实匹配应当让收入和费用在<em>因果链对应的期间</em>确认。如果某项费用每年年底大量计提、次年又转回, 说明它<em>本不该</em>计入当期 — 在玩"利润蓄水池"游戏 (好年份多计提藏利润, 差年份转回填亏损)。这违反 matching 的本意。</p>
+            <p lang="zh"><strong>conservatism 视角</strong>: 谨慎性要求<em>损失敏感、收益迟钝</em>。但反过来, 当损失变成"灵活蓄水池"被主动调度时, 已经不是谨慎性, 而是<em>盈余管理</em> (earnings management)。Big bath 是 conservatism 被反向利用的典型。</p>
+            <p lang="zh"><strong>substance over form 视角</strong>: 这些计提/转回科目通常包装为正常的资产减值 / 预计负债 — 法律形式合规。但<em>反复同向异常波动</em>暴露了实质 — 不是真正的减值, 而是数字管理工具。</p>
+            <p lang="zh"><strong>综合诊断</strong>: 四个原则<em>都</em>对该行为亮红灯。配合 Beneish M-Score (M2 Ch.10) 的 DEPI、TATA 指标, 或 Jones (1991) accruals model, 这是教科书级别的盈余管理样本。后续 M2 Ch.10 详细展开。</p>
+            <p lang="en">Accrual: large‑estimate volatility either reflects real instability or active manipulation — both bad. Matching: items that get accrued each year‑end and reversed next year don't belong to either period — it's a "reservoir" game. Conservatism: large losses used as a flexible reservoir is the inverse of prudence — it's earnings management (the "big bath" pattern). Substance over form: legally compliant impairments, but the recurring same‑direction anomaly betrays the substance. All four flag this — a textbook earnings‑management case. Pair with Beneish M‑Score (M2 Ch.10) to quantify.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="02-three-statements.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">02 · <span lang="zh">三大报表与勾稽</span><span lang="en">Three Statements</span></span></a>
+          <a class="next" href="04-revenue.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">04 · <span lang="zh">收入确认五步法</span><span lang="en">Revenue Recognition</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

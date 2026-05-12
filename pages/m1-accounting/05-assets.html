@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>05 · 资产计量 — Asset Measurement</title>
+  <meta name="keywords" content="asset measurement, fair value, historical cost, amortized cost, FVTPL, FVOCI, impairment, 公允价值, 历史成本, 摊余成本, 资产计量, 商誉减值, 紫光国微, 工商银行, 天神娱乐">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 05</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">17 分钟</span><span lang="en">17 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.03</span><span lang="en">Prereq: Ch.03</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.06 负债与权益</span><span lang="en">Next: Ch.06 Liab &amp; Equity</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">资产计量</span>
+        <span lang="en">Asset Measurement</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">"一栋大楼值多少钱?" — 看似简单, 准则给了三种不同答案: 历史成本、公允价值、摊余成本。每种都对应不同的资产用途与会计目的。学完本章你能看懂任意 A 股资产端的科目, 包括最容易出问题的"商誉"与"以公允价值计量的金融资产"。</span>
+        <span lang="en">"How much is the building worth?" Three standards give three answers: historical cost, fair value, amortized cost. Each corresponds to a different use and accounting purpose. After this you can read any A‑share asset line — including the troublesome goodwill and fair‑value financial assets.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能根据资产用途判断该用历史成本、公允价值、还是摊余成本计量。</li>
+          <li lang="zh">能解释公允价值三层级 (Level 1/2/3), 并识别 Level 3 估值的天然风险。</li>
+          <li lang="zh">能用 SPPI 测试与业务模型测试 (CAS 22 / IFRS 9) 把金融资产分类到 FVTPL / FVOCI / 摊余成本三档。</li>
+          <li lang="zh">能用减值测试逻辑 (账面 vs 可收回金额) 评估商誉减值披露的合理性。</li>
+          <li lang="en">Pick measurement basis (HC / FV / amortized) by asset use.</li>
+          <li lang="en">Explain FV Level 1/2/3 and Level 3 risks.</li>
+          <li lang="en">Use SPPI + business model tests to classify financial assets into FVTPL / FVOCI / amortized.</li>
+          <li lang="en">Apply impairment logic (carrying vs recoverable amount) to assess goodwill write‑down disclosures.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 一项资产, 三种价值</span>
+          <span class="en" lang="en"> · One asset, three values</span>
+        </h2>
+
+        <p lang="zh">站在公司的角度问: "我这栋大楼值多少钱?" 答案取决于<em>你打算拿它做什么</em>:</p>
+        <p lang="en">From the firm's view, "what is this building worth?" depends on <em>what you plan to do with it</em>:</p>
+
+        <ul>
+          <li lang="zh"><strong>自用办公</strong> → 历史成本计量。理由: 不会卖, 市场价的波动与决策无关。</li>
+          <li lang="zh"><strong>出租收租金</strong> → 投资性房地产, 可以选公允价值模式 (反映租金背后的市价波动)。</li>
+          <li lang="zh"><strong>买来转卖</strong> → 存货 (开发产品), 按成本与可变现净值孰低。</li>
+          <li lang="zh"><strong>金融机构持有的不动产抵押贷款</strong> → 摊余成本 (按实际利率法摊销, 反映利息收益)。</li>
+          <li lang="en"><strong>Owner‑occupied</strong> → historical cost. Market price irrelevant to decisions.</li>
+          <li lang="en"><strong>Rented out</strong> → investment property; can elect fair value.</li>
+          <li lang="en"><strong>For resale</strong> → inventory at lower of cost or NRV.</li>
+          <li lang="en"><strong>Loan secured by property (lender's view)</strong> → amortized cost (effective interest).</li>
+        </ul>
+
+        <p lang="zh">这就是会计学的"<em>混合计量模式</em>"(mixed‑measurement model) — 同一类资产, 不同用途, 不同计量基础。这套设计的核心思想是: <em>计量方式应服从决策相关性</em>。</p>
+        <p lang="en">This is accounting's <em>mixed‑measurement model</em> — same physical asset, different uses, different bases. Guided by: <em>measurement serves decision relevance</em>.</p>
+
+        <p lang="zh">三种计量基础的本质区别:</p>
+        <p lang="en">The three bases differ at the core:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th><span lang="zh">计量基础</span><span lang="en">Basis</span></th>
+              <th><span lang="zh">看哪个时点</span><span lang="en">Time anchor</span></th>
+              <th><span lang="zh">主观性</span><span lang="en">Subjectivity</span></th>
+              <th><span lang="zh">适用</span><span lang="en">Use case</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span lang="zh">历史成本 Historical Cost</span><span lang="en">Historical Cost</span></td>
+              <td><span lang="zh">取得日</span><span lang="en">Acquisition date</span></td>
+              <td><span lang="zh">低 (有发票)</span><span lang="en">Low (invoiced)</span></td>
+              <td><span lang="zh">长期持有自用</span><span lang="en">Long‑term owner‑use</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">公允价值 Fair Value</span><span lang="en">Fair Value</span></td>
+              <td><span lang="zh">资产负债表日</span><span lang="en">Balance sheet date</span></td>
+              <td><span lang="zh">中至高 (取决于市场可观察性)</span><span lang="en">Mid–high (market obs.)</span></td>
+              <td><span lang="zh">交易/可观察市场</span><span lang="en">Trading / observable markets</span></td>
+            </tr>
+            <tr>
+              <td><span lang="zh">摊余成本 Amortized Cost</span><span lang="en">Amortized Cost</span></td>
+              <td><span lang="zh">资产负债表日 (用 EIR 推)</span><span lang="en">B/S date via EIR</span></td>
+              <td><span lang="zh">中 (需估计未来现金流)</span><span lang="en">Mid (cash flow estimates)</span></td>
+              <td><span lang="zh">持有以收取本息</span><span lang="en">Hold to collect contractual cash</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>工程直觉</strong>: 类比信号处理 — 历史成本是"录音", 录下来就不变; 公允价值是"实时频谱", 每个时刻重新计算; 摊余成本是"卡尔曼滤波", 用模型 (EIR) 平滑掉短期市价波动只看长期路径。</p>
+        <p lang="en"><strong>Engineering intuition:</strong> historical cost is a recorded signal, fair value is a live spectrum analyzer, amortized cost is a Kalman filter — smoothing market noise to expose the long‑run trajectory.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span>
+        </h2>
+
+        <h3 lang="zh">① 历史成本</h3>
+        <h3 lang="en">① Historical Cost</h3>
+        <div class="callout callout--def">
+          <p lang="zh">资产以取得时的实际支付金额计量, 后续不因市场价格变化而调整 (但可能因<em>减值</em>而下调)。最直接的体现: 固定资产、无形资产、土地使用权等自用资产。</p>
+          <p lang="en">Measured at the consideration paid at acquisition, not adjusted for subsequent market price changes (but may be written down for impairment). Direct examples: owner‑occupied PPE, intangibles, land use rights.</p>
+          <span class="cite">CAS 4 (固定资产) · CAS 6 (无形资产) · IAS 16, 38</span>
+        </div>
+
+        <h3 lang="zh">② 公允价值 — 三层级</h3>
+        <h3 lang="en">② Fair Value — Three Levels</h3>
+        <p lang="zh">公允价值定义为"市场参与者之间, 在计量日发生的有序交易中, 出售一项资产所能收到或转移一项负债所需支付的价格" (CAS 39 / IFRS 13)。其估计被分为三层:</p>
+        <p lang="en">Fair value: "the price at which an orderly transaction to sell an asset would take place between market participants at the measurement date" (CAS 39 / IFRS 13). Estimation hierarchy:</p>
+
+        <table>
+          <thead>
+            <tr><th><span lang="zh">层级</span><span lang="en">Level</span></th><th><span lang="zh">输入</span><span lang="en">Input</span></th><th><span lang="zh">客观性</span><span lang="en">Objectivity</span></th><th><span lang="zh">A 股例</span><span lang="en">A-share Example</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Level 1</td><td><span lang="zh">活跃市场报价</span><span lang="en">Quoted price in active market</span></td><td>★★★</td><td><span lang="zh">上市股票 / 国债</span><span lang="en">Listed stocks, gov bonds</span></td></tr>
+            <tr><td>Level 2</td><td><span lang="zh">可观察输入 (可比交易 / yield curve)</span><span lang="en">Observable inputs (comparable txns, yield curves)</span></td><td>★★</td><td><span lang="zh">银行间债券, OTC 衍生品</span><span lang="en">Interbank bonds, OTC derivatives</span></td></tr>
+            <tr><td>Level 3</td><td><span lang="zh">不可观察输入 (模型 + 主观参数)</span><span lang="en">Unobservable (model + judgment)</span></td><td>★</td><td><span lang="zh">私募股权, 非上市公司股权</span><span lang="en">PE stakes, unlisted equity</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>关键洞察</strong>: Level 3 公允价值给了管理层巨大空间。A 股一些公司持有大量 Level 3 资产 (例如对未上市子公司或被投资公司的股权), 估值参数稍微一动, 报表数字就大变。这是审计与监管的重灾区。</p>
+        <p lang="en"><strong>Critical:</strong> Level 3 grants management vast discretion. Heavy Level 3 holdings (e.g. stakes in unlisted subs/portfolio companies) — small parameter changes, large statement swings. A perennial audit / enforcement hotspot.</p>
+
+        <h3 lang="zh">③ 摊余成本 — 实际利率法</h3>
+        <h3 lang="en">③ Amortized Cost — Effective Interest Method</h3>
+
+        <p lang="zh">摊余成本 = 初始确认金额 + 应计利息 (按 EIR) − 已收本息 − 累计减值损失。其中 EIR (effective interest rate, 实际利率) 是使未来现金流现值等于初始公允价值的折现率:</p>
+        <p lang="en">Amortized cost = initial amount + EIR‑based accrued interest − collected cash − cumulative impairment. EIR is the discount rate that equates expected cash flows to initial fair value:</p>
+
+        <div class="eq">
+          <span>$$ \mathrm{FV}_0 \;=\; \sum_{t=1}^{T} \frac{\mathrm{CF}_t}{(1+r)^t} $$</span>
+          <span class="num">(5.1)</span>
+        </div>
+
+        <p lang="zh">每期摊销:</p>
+        <p lang="en">Each period:</p>
+        <div class="eq">
+          <span>$$ \mathrm{AC}_t \;=\; \mathrm{AC}_{t-1}(1+r) \;-\; \mathrm{CF}_t \;-\; \Delta\mathrm{Impair}_t $$</span>
+          <span class="num">(5.2)</span>
+        </div>
+
+        <p lang="zh">这与<em>债券到期收益率 YTM</em>是同一回事 (M2 Ch.01 会再讲)。摊余成本的特点: <em>对市场价格变动免疫</em>, 只反映合同现金流和减值。这就是为什么银行 "持有至到期" 的债券采用摊余成本计量 — 银行的意图是"持有以收取本息", 不在乎中间的市价波动。</p>
+        <p lang="en">Same idea as bond YTM (M2 Ch.01). Amortized cost is <em>immune to market price moves</em>, reflecting only contractual cash flows and impairment. That's why "hold to collect" bonds at banks use this basis — intent is interest, not trading.</p>
+
+        <h3 lang="zh">CAS 22 / IFRS 9 金融资产分类 — 双重测试</h3>
+        <h3 lang="en">CAS 22 / IFRS 9 Classification — Dual Test</h3>
+
+        <p lang="zh">2018 起 A 股切换到 CAS 22 (与 IFRS 9 一致), 用<em>业务模型测试</em>(Business Model Test) + <em>SPPI 测试</em>(Solely Payments of Principal and Interest) 把金融资产分到三档:</p>
+        <p lang="en">A‑share switched to CAS 22 (≈ IFRS 9) from 2018. Two tests:</p>
+
+        <table>
+          <thead>
+            <tr><th><span lang="zh">业务模型</span><span lang="en">Business model</span></th><th>SPPI <span lang="zh">(合同现金流是否仅本息)</span><span lang="en">(Cash flows solely P&amp;I)</span></th><th><span lang="zh">分类</span><span lang="en">Category</span></th><th><span lang="zh">B/S 计量</span><span lang="en">Measurement</span></th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span lang="zh">持有以收取</span><span lang="en">Hold to collect</span></td><td>✓</td><td><span lang="zh">摊余成本</span><span lang="en">Amortized Cost</span></td><td>EIR</td></tr>
+            <tr><td><span lang="zh">既收取又出售</span><span lang="en">Hold &amp; sell</span></td><td>✓</td><td>FVOCI <span lang="zh">(债)</span><span lang="en">(debt)</span></td><td><span lang="zh">公允, 利得入 OCI</span><span lang="en">FV; gains to OCI</span></td></tr>
+            <tr><td><span lang="zh">其他 (含交易性)</span><span lang="en">Other (incl. trading)</span></td><td>—</td><td>FVTPL</td><td><span lang="zh">公允, 利得入当期损益</span><span lang="en">FV; gains to P&amp;L</span></td></tr>
+            <tr><td><span lang="zh">权益工具 (非交易性, 不可撤销选择)</span><span lang="en">Equity instruments (non‑trading, irrevocable election)</span></td><td>—</td><td>FVOCI <span lang="zh">(股)</span><span lang="en">(equity)</span></td><td><span lang="zh">公允, 利得永远在 OCI 不转损益</span><span lang="en">FV; OCI permanent</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>"权益 FVOCI"特别陷阱</strong>: 选择此分类后, 公允价值变动永远在 OCI, 即使最终出售也不能转入当期损益 (only realized dividends go to P&L)。这等于把公司持有的所有股权投资变成"不会显著影响利润"的科目 — 设计目的是反"利润操纵 by 时机择出售"。</p>
+        <p lang="en"><strong>FVOCI for equity is sticky:</strong> once elected (irrevocable), all FV changes flow to OCI forever, even on disposal (only realized dividends hit P&amp;L). Designed to defeat "manage earnings by timing sales."</p>
+
+        <h3 lang="zh">④ 减值 — 账面 vs 可收回金额</h3>
+        <h3 lang="en">④ Impairment — Carrying vs Recoverable</h3>
+
+        <p lang="zh">资产减值的核心公式 (CAS 8 / IAS 36):</p>
+        <p lang="en">Impairment core (CAS 8 / IAS 36):</p>
+        <div class="eq">
+          <span>$$ \mathrm{Impair} \;=\; \max\!\big(0,\; \mathrm{CA} - \mathrm{RA}\big) $$</span>
+          <span class="num">(5.3)</span>
+        </div>
+        <div class="eq">
+          <span>$$ \mathrm{RA} \;=\; \max\!\big(\mathrm{FV} - \mathrm{Costs\,to\,sell},\; \mathrm{VIU}\big) $$</span>
+          <span class="num">(5.4)</span>
+        </div>
+
+        <p lang="zh">其中: CA = 账面价值 (carrying amount); RA = 可收回金额 (recoverable amount) = max(公允价值减处置费用, 使用价值 VIU)。VIU = 该资产未来现金流的现值。</p>
+        <p lang="en">CA = carrying amount; RA = max(fair value less cost to sell, value in use). VIU = PV of future cash flows from the asset.</p>
+
+        <p lang="zh"><strong>商誉的特殊性</strong>: 不能单独产生现金流, 必须分摊到"资产组"(cash generating unit, CGU), 然后对 CGU 整体做减值测试。CAS 8 / IAS 36 要求每年至少做一次, 无论是否有减值迹象。这点与其他长期资产 (仅在迹象出现时测试) 不同。商誉一旦减值, <em>不能转回</em> — 即使后期市场恢复, 减值损失也是永久的。</p>
+        <p lang="en"><strong>Goodwill is special:</strong> can't generate cash on its own, allocated to CGUs, tested annually <em>regardless of indicators</em>. Once impaired, <em>never reversed</em>.</p>
+
+        <p lang="zh"><strong>VIU 的天然脆弱性</strong>: 它依赖未来现金流预测 + 折现率假设。两者都由管理层选择。商誉减值测试的本质是"管理层告诉你一个数, 审计师能挑战但难以推翻"。这就是 Ch.03 conservatism 案例中天神娱乐"连续 4 年不减值, 第 5 年集中爆雷"的会计土壤。</p>
+        <p lang="en"><strong>VIU is structurally fragile:</strong> depends on management's cash‑flow forecasts and discount rates. Goodwill impairment is largely "management tells you a number; auditor can challenge but rarely overturn." This is the soil from which Tianshen‑style "no impairment for years then a cliff" grows.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span>
+        </h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·002049</span>
+            <span class="company"><span lang="zh">紫光国微</span><span lang="en">Unigroup Guoxin</span></span>
+            <span class="period">FY2023 · <span lang="zh">FVTPL vs FVOCI 选择题</span><span lang="en">FVTPL vs FVOCI</span></span>
+          </div>
+          <p lang="zh">紫光国微 2023 年报披露交易性金融资产 (FVTPL) ~12 亿, 其他权益工具投资 (FVOCI 权益) ~3 亿。这两者都按公允价值计量, 但公允价值变动的去向不同:</p>
+          <p lang="en">Unigroup 2023 reports ~¥1.2bn FVTPL financial assets and ~¥0.3bn FVOCI equity. Both at fair value; the FV change paths differ:</p>
+          <ul>
+            <li><span lang="zh"><strong>FVTPL</strong> (理财产品、股票交易): 公允价值变动直接进当期损益 → 影响 NI → 影响 EPS</span><span lang="en"><strong>FVTPL</strong> (wealth products, traded stocks): FV change hits NI &amp; EPS directly</span></li>
+            <li><span lang="zh"><strong>FVOCI 权益</strong> (长期战略性股权): 公允价值变动进 OCI → 不影响 NI → 影响所有者权益但不影响 EPS</span><span lang="en"><strong>FVOCI equity</strong> (strategic long‑term stakes): FV change to OCI, not NI; affects equity but not EPS</span></li>
+          </ul>
+          <p lang="zh"><strong>管理含义</strong>: 同一笔股权投资, 选 FVTPL 还是 FVOCI 完全不同。选 FVTPL: 股价涨跌进利润, 短期内 EPS 波动; 选 FVOCI: EPS 稳定, 但所有者权益跟随股价波动。许多上市公司倾向把<em>战略性长期持股</em>选 FVOCI, 把<em>短期交易</em>放 FVTPL。这种分类是<em>首次确认时</em>做的, 一旦选 FVOCI 权益就<em>不可撤销</em>(连出售时的实现损益也不能转回 P&amp;L)。</p>
+          <p lang="en"><strong>Management implication:</strong> the choice at initial recognition is sticky. FVOCI equity is irrevocable; even realized gains never hit P&amp;L. Firms tend to FVOCI strategic stakes (stable EPS) and FVTPL trading positions.</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002049" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 002049 →</span><span lang="en">Cninfo 002049 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601398</span>
+            <span class="company"><span lang="zh">工商银行</span><span lang="en">ICBC</span></span>
+            <span class="period">FY2023 · <span lang="zh">摊余成本主导</span><span lang="en">Amortized cost dominates</span></span>
+          </div>
+          <p lang="zh">工行 2023 年末总资产 ~44 万亿。资产端构成大致:</p>
+          <p lang="en">ICBC 2023 total assets ~¥44tn. Asset composition (approx):</p>
+          <ul>
+            <li><span lang="zh">客户贷款及垫款 (摊余成本): ~26 万亿 (~59%)</span><span lang="en">Loans (amortized cost): ~¥26tn (~59%)</span></li>
+            <li><span lang="zh">金融投资 (摊余成本 + FVOCI 债 + FVTPL): ~11 万亿 (~25%)</span><span lang="en">Financial investments: ~¥11tn (~25%)</span></li>
+            <li><span lang="zh">现金及存放中央银行款项: ~3 万亿 (~7%)</span><span lang="en">Cash &amp; PBoC deposits: ~¥3tn (~7%)</span></li>
+          </ul>
+          <p lang="zh"><strong>关键洞察</strong>: 工行约 75% 资产用<em>摊余成本</em>计量。这意味着<em>账面利率风险被掩盖</em> — 利率上升时, 持有至到期的债券和贷款<em>账面价格不变</em>, 但<em>经济价值</em>已下降。这就是 2023 年硅谷银行 (SVB) 暴雷的核心机制: SVB 持有大量长久期"持有至到期"债券, 摊余成本计量下账面价格未动, 但实际市值已大跌; 储户挤兑迫使其变卖, 巨额未实现亏损一次性显化。</p>
+          <p lang="en"><strong>Critical:</strong> ~75% of ICBC assets are amortized cost. This <em>hides interest‑rate risk</em> in book values — rate rises don't move book values of HTM bonds &amp; loans, but economic value drops. Exactly the SVB 2023 mechanism: massive long‑duration HTM holdings hid losses until deposit runs forced realization.</p>
+          <p lang="zh">中国大行的摊余成本资产规模与久期决定了其对利率周期的真实暴露。分析师在做银行价值评估时, 通常会做"如果按公允价值重估, 净资产会变成多少"的敏感性分析 (M2 Ch.09 详述)。</p>
+          <p lang="en">A bank's amortized‑cost scale &amp; duration determine true rate exposure. Analysts typically do "FV reval" sensitivity for bank NAV (M2 Ch.09).</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SZ·002354</span>
+            <span class="company"><span lang="zh">天神娱乐</span><span lang="en">Tianshen Entertainment</span></span>
+            <span class="period">2018 · <span lang="zh">商誉减值机制的失败</span><span lang="en">Goodwill impairment failure</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+          <p lang="zh">天神娱乐 2018 年报披露:</p>
+          <p lang="en">Tianshen 2018 annual report:</p>
+          <ul>
+            <li><span lang="zh">期初商誉余额 ~65 亿 (来自 2014–2017 收购的多家游戏公司)</span><span lang="en">Opening goodwill ~¥6.5bn (from 2014–17 game studio acquisitions)</span></li>
+            <li><span lang="zh">期末商誉减值损失 ~40 亿 (一次性)</span><span lang="en">Year‑end impairment ~¥4.0bn (lump sum)</span></li>
+            <li><span lang="zh">当年净利润 −71 亿 (上年 +10 亿)</span><span lang="en">NI: −¥7.1bn (vs +¥1bn prior)</span></li>
+          </ul>
+          <p lang="zh"><strong>减值测试技术分析</strong>:</p>
+          <ul lang="zh">
+            <li>2017 年末测试: 假设未来 5 年现金流复合增长 20%+, 折现率 ~10% → 可收回金额 &gt; 账面 → 无减值</li>
+            <li>2018 年末测试: 同一资产组实际经营恶化, 未来现金流预测大幅下调, 折现率上调 → 可收回金额 &lt;&lt; 账面 → 大额减值</li>
+          </ul>
+          <p lang="zh"><strong>问题</strong>: 2017 年的乐观假设其实<em>当年就已不成立</em> — 被收购游戏公司多家未达对赌业绩, 行业政策变化已可见 (版号收紧)。但减值测试中"未来现金流预测"由管理层提供, 审计师只能在"明显不合理"时挑战。结果: 减值被延迟到 2018 集中确认 → "big bath" (业绩洗大澡) — 一次性把账面清零, 后续年度业绩看起来更好。</p>
+          <p lang="zh"><strong>系统性问题</strong>: 2018–2019 A 股商誉减值集中爆发, 涉及上千家公司, 总额超 1.6 万亿。这是 "减值测试 vs 摊销" 之争 (Ch.00 模块导览) 的真实代价 — 当减值测试给了管理层延迟确认的灵活性, 谨慎性 (Ch.03) 就会被系统性破坏。</p>
+          <ul lang="en">
+            <li>2017 test: assumed 20%+ CF growth, 10% discount rate → no impairment.</li>
+            <li>2018 test: dramatically lower CF forecasts, higher rate → ¥4bn impairment.</li>
+          </ul>
+          <p lang="en"><strong>The issue:</strong> the 2017 assumptions were already implausible (failed earn‑outs, regulatory tightening). Auditors can challenge only "manifestly unreasonable" forecasts. Deferred recognition collapsed into 2018 as a "big bath." A‑share 2018–19 saw &gt;¥1.6tn of cumulative impairment across 1,000+ firms — the real cost of "impairment‑only" goodwill.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">历史成本 vs 公允价值</span><span lang="en">HC vs FV tension</span></h4><p lang="zh">客观可验 vs 决策相关 — 准则用 mixed model 妥协, 不同用途用不同基础。</p><p lang="en">Verifiable vs decision‑relevant — standards compromise via mixed model, different bases for different uses.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">减值测试是 conservatism 的具体落地, 但 Level 3 公允价值与商誉测试的主观空间又系统性放松谨慎性。</p><p lang="en">Impairment operationalizes conservatism, but Level 3 FV &amp; goodwill testing systematically relax it via management judgment.</p></div></div>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">实质重于形式</span><span lang="en">Substance over Form</span></h4><p lang="zh">业务模型测试 + SPPI 是金融资产实质判断的代数化版本。</p><p lang="en">Business model + SPPI tests are the algebraic version of substance‑over‑form for financial assets.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 公司 A 自建一栋办公楼成本 1 亿。下列三种情况下, B/S 上该楼分别计量在什么科目? 各用什么计量基础?</span><span lang="en"><strong>Q1.</strong> Firm built office building for ¥100m. Under three scenarios, which B/S line and which measurement basis?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ol lang="zh">
+              <li><strong>自用</strong>: 固定资产 — 历史成本 + 累计折旧。每年按使用寿命 (例如 30 年) 计提折旧。市场涨跌不影响账面。</li>
+              <li><strong>整栋出租</strong>: 投资性房地产 — 准则给两种选择:
+                <ul>
+                  <li>成本模式: 类似固定资产, 历史成本 + 折旧 (中国大部分企业的默认)</li>
+                  <li>公允价值模式: 每个 B/S 日按市场公允重新计量, 变动入当期损益 (中国允许但需满足"持续可靠取得公允价值"条件, 实际只少数公司用)</li>
+                </ul>
+              </li>
+              <li><strong>买来等转卖</strong>: 存货 (开发产品) — 成本与可变现净值孰低。CAS 1。</li>
+            </ol>
+            <p lang="zh"><strong>关键洞察</strong>: 同一栋大楼, 用途不同, B/S 数字完全不同。如果中国房地产公司大量持有"存货"性质的开发产品, 当市场下跌时要按 NRV 减值 — 这就是 2021–2024 房地产暴雷的会计映射 (恒大等)。如果是投资性房地产成本模式, 跌也不必立即体现; 若选公允价值模式, 跌得越快 NI 越难看。这就是为什么大部分房企选成本模式。</p>
+            <p lang="en">Owner‑occupied → PPE at HC + accumulated depreciation. Rental → investment property under either cost or fair value model (CAS allows FV only if reliably available). For resale → inventory at lower of cost or NRV. Same building, different lines and dramatically different numbers depending on use.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家上市公司 80% 的资产是 Level 3 公允价值计量。给出至少三种你会要求审计师额外审查的领域。</span><span lang="en"><strong>Q2.</strong> 80% of a listed firm's assets are Level 3 fair value. Give three audit deep‑dive areas.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ol lang="zh">
+              <li><strong>估值模型与参数</strong>: Level 3 用什么模型 (DCF / 可比交易 / NAV)? 关键参数 (折现率、增长率、退出倍数) 如何选取? 与同行业可比公司是否一致? 关键参数的<em>敏感性分析</em>要披露 — 例如折现率上调 100bp 估值降多少。</li>
+              <li><strong>独立估值师参与</strong>: 是否由第三方专业估值机构出具报告? 估值师的资质与独立性? 多年同一估值师可能产生"客户俘获"问题。</li>
+              <li><strong>历史校准</strong>: Level 3 资产<em>退出价格</em> (出售时实现) 与历史评估价格的比对。如果历史上"评估 100, 卖出 60"反复出现, 当前评估值的可靠性大打折扣。</li>
+              <li><strong>关联方交易</strong>: Level 3 资产是否与关联方有交易历史? 关联方收购、关联方提供估值参数都是危险信号。</li>
+              <li><strong>同期 OCF 印证</strong>: 公司账面 Level 3 资产产生大量"公允价值变动收益", 但 OCF 无对应现金流入 — 这是典型的 "纸面利润" 信号。</li>
+            </ol>
+            <p lang="en">(1) Model &amp; parameters — discount rate, growth, exit multiple; cross‑check vs comparable peers; require sensitivity disclosure. (2) Independent valuer — credentials, independence, multi‑year same‑valuer risk. (3) Historical calibration — back‑test exit prices vs prior valuations. (4) Related‑party history — acquisition or parameter provision via related parties. (5) Cash‑flow corroboration — large FV gains with no OCF inflow is a paper‑profit flag.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 银行持有一笔 10 年期国债, 面值 100, 票面利率 3%, 当前市价 95 (因近期加息)。在"持有至到期"业务模型下用摊余成本计量, 当前账面值是多少? 若市价继续跌到 85, 账面值会变吗?</span><span lang="en"><strong>Q3.</strong> Bank holds a 10y Treasury, face 100, coupon 3%, market price 95 (post hike). HTM business model, amortized cost. Carrying amount now? What if market falls to 85?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>账面值不等于市价</strong>。摊余成本下, 账面值取决于<em>初始投入金额</em>与<em>EIR 摊销</em>, 不受市价变动影响。假设当初购入时面值 100 平价取得 (即支付 100), EIR ≈ 3%, 持有 N 年后账面值仍约等于 100 (扣除有无减值)。</p>
+            <p lang="zh"><strong>市价变化对账面无影响</strong> — 这是摊余成本的"特性"也是"陷阱"。市价跌到 85 仍不动账面。除非:</p>
+            <ul lang="zh">
+              <li>满足减值条件 (信用风险显著上升, CAS 22 三阶段模型: 12 个月 ECL / 整个存续期 ECL / 信用减值)</li>
+              <li>业务模型发生变化 (例如不再持有至到期, 需重分类到 FVTPL 并按市价重计量)</li>
+            </ul>
+            <p lang="zh"><strong>这就是 SVB 暴雷的会计土壤</strong>: 2022 年美国快速加息, SVB 持有的大量长久期 HTM 债券实际市值跌幅 20%+, 但账面仍按摊余成本显示"无损失"。储户挤兑迫使其变卖部分债券 → 一次性确认巨额已实现损失 → 资本充足率瞬间崩塌 → 监管接管。</p>
+            <p lang="zh"><strong>启示</strong>: 看银行报表时, 不能只看账面净资产, 必须看附注"持有至到期金融资产的公允价值"披露 (CAS 22 强制), 进行"敏感性重估"。中国大行的真实利率风险藏在这里。</p>
+            <p lang="en">Carrying ≈ initial cost amortized by EIR; market price doesn't move it. SVB 2022: ~20% MTM loss on long‑duration HTM bonds hidden under amortized cost; deposit run forced sales, realized loss collapsed capital. Read banks via the HTM FV disclosure (CAS 22 mandatory), not just the carrying amount.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 公司 A 商誉 50 亿 (净资产 100 亿)。每年减值测试均未减值。第 5 年突然计提 40 亿减值。给出至少四个你会重点查的附注项目。</span><span lang="en"><strong>Q4.</strong> Firm A: ¥5bn goodwill (net assets ¥10bn). No impairment year 1–4, then ¥4bn impairment year 5. Four notes to deep‑read.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ol lang="zh">
+              <li><strong>商誉分摊到资产组的明细</strong>: 这 50 亿商誉<em>分摊到了哪几个资产组</em>? 涉及的子公司具体业绩对赌完成情况?</li>
+              <li><strong>历年减值测试关键假设</strong>: 每年的<em>未来现金流增长率</em>和<em>折现率</em>分别是多少? 与同行业 / 历史实际情况比较是否合理? 如果连续 4 年都假设 25% 增长, 但实际只实现 10%, 那减值早该有了。</li>
+              <li><strong>被收购公司经营数据</strong>: 被收购子公司在收购年份至减值年份的<em>收入、净利、客户结构</em>变化。是否有"业绩对赌期内冲高 + 对赌结束后塌方"的标准模式?</li>
+              <li><strong>审计师沟通事项 (Key Audit Matters)</strong>: 审计报告中商誉减值是否作为关键审计事项被列示? 审计师如何描述其判断? 是否提出特殊处理?</li>
+              <li><strong>是否被交易所问询</strong>: 商誉减值后是否收到问询函? 公司的回复是否合理?</li>
+              <li><strong>资产组现金流 vs 实际现金流</strong>: 把测试用的未来现金流预测与该资产组实际产生的 OCF 对比 — 若每年实际只创造 1 亿 OCF, 但减值测试假设未来现金流复合 20% 增长, 显然<em>反真实</em>。</li>
+            </ol>
+            <p lang="zh"><strong>诊断的根本目标</strong>: 这 40 亿是<em>突然</em>该计的 (近期资产组实质恶化), 还是<em>本就该陆续计提的累计</em> (历年减值测试假设激进)? 后者是 big bath, 前者是真实经营变化。两种性质完全不同。</p>
+            <p lang="en">(1) Goodwill allocation by CGU; (2) historical impairment‑test assumptions (growth, discount rate) vs realized performance; (3) acquired entity's revenue/NI/customer trajectory; (4) auditor KAM language; (5) any exchange inquiry letters; (6) compare CGU realized OCF vs forecast cash flows. Root question: is the ¥4bn truly a recent‑deterioration write‑down, or a "big bath" of cumulative deferrals from aggressive prior assumptions?</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 2008 年金融危机时, 部分会计学者主张 "暂停公允价值计量" 以避免顺周期性。说出至少两条<em>支持</em>和两条<em>反对</em>该主张的论据。</span><span lang="en"><strong>Q5.</strong> In 2008, some scholars proposed suspending fair value measurement to avoid procyclicality. Give two arguments for and two against.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>支持暂停 (顺周期性论)</strong>:</p>
+            <ol lang="zh">
+              <li><strong>市价恐慌反馈</strong>: 危机中市价由恐慌情绪驱动, 远低于"经济实质". Mark-to-market 把恐慌价直接打入资产负债表 → 银行账面资产骤降 → 触发资本充足率监管 → 强制变卖 → 进一步压低市价 → 更多银行触发 → 螺旋。这是真实的<em>反馈环</em>。</li>
+              <li><strong>市场失灵</strong>: Level 1 (活跃市场) 在危机中"不活跃" — 没有买家。此时所谓"市价"是 1-2 个绝望卖家的报价, 不再代表市场参与者均衡价。强行用作公允价值是统计学错误。</li>
+            </ol>
+            <p lang="zh"><strong>反对暂停 (透明度论)</strong>:</p>
+            <ol lang="zh">
+              <li><strong>问题不在测量, 在杠杆</strong>: 危机的根本是过度杠杆。公允价值只是<em>显示</em>了已存在的损失, 没有<em>制造</em>损失。暂停公允价值 = 掩盖问题, 而非解决问题. 监管者反而失去及时干预的信号。</li>
+              <li><strong>历史成本更糟糕</strong>: 1980s 美国储贷危机中, 持有的不良资产用历史成本掩盖, 最终拖延 10 年才解决, 总损失放大数倍。"看不见的损失比看见的损失更危险"。</li>
+              <li><strong>选择性公允价值 = 套利</strong>: 如果允许"危机时暂停公允价值", 公司可以在<em>市价上涨时</em>用公允价值认收益, <em>下跌时</em>切换到历史成本避损失 — 单向套利。</li>
+            </ol>
+            <p lang="zh"><strong>实际结论</strong>: FASB / IASB 没有暂停公允价值, 但<em>调整</em>了"在非活跃市场如何估值"的指导 (FAS 157-3 / IFRS Staff Q&amp;A 2008-10) — 允许在 Level 1 失效时使用 Level 2/3 方法, 但要求充分披露。这是"维持公允价值原则, 改进估计方法"的折中。</p>
+            <p lang="zh">2018 年 IFRS Conceptual Framework 重新引入<em>非对称谨慎性</em>条款, 一定程度上回应了 2008 教训 — 在不确定性下, <em>不应高估资产或收益</em>。这是公允价值与谨慎性的当前平衡。</p>
+            <p lang="en">For: (1) procyclical feedback — panic prices into B/S → capital trigger → forced sales → further depression; (2) market failure — "price" in dislocated markets is 1‑2 desperate sellers, not equilibrium. Against: (1) the problem is leverage, not measurement — FV reveals losses, doesn't create them; suspending = hiding; (2) historical cost is worse — 1980s S&amp;L crisis dragged on a decade; (3) selective FV = arbitrage. Actual response: FASB/IASB didn't suspend; they clarified non‑active‑market estimation (FAS 157‑3 / IFRS Q&amp;A). 2018 framework reintroduced asymmetric prudence — partial concession to the 2008 lesson.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="04-revenue.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">04 · <span lang="zh">收入确认</span><span lang="en">Revenue</span></span></a>
+          <a class="next" href="06-liab-equity.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">06 · <span lang="zh">负债与权益</span><span lang="en">Liab &amp; Equity</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

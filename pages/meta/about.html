@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>本站说明 — About</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<h1><span lang="zh">本站说明</span><span lang="en">About</span></h1>
+
+<p lang="zh">本站是一套<em>面向工科背景读者</em>的 A 股财报与公告教学系统. 把会计学 / 公司财务 / 证券投资学三个领域用<em>first principles + 工程类比 + A 股真实案例</em>三层组织起来. 目标: 让一个数理基础好但金融会计零基础的读者, 在 ~40 小时学习后能独立分析任意 A 股年报与公告。</p>
+
+<h2><span lang="zh">设计原则</span></h2>
+<ul lang="zh">
+<li><strong>每个知识点三层呈现</strong>: 直觉 (类比) → 定义与公式 (含 LaTeX + 准则引用) → A 股真实案例 (公司 + 代码 + 数字)</li>
+<li><strong>反直觉题驱动</strong>: 每章 3-5 道陷阱题, 答案折叠, 鼓励先想后看</li>
+<li><strong>专家分歧透明</strong>: 每模块导览列出业界最激烈的分歧 (Fama vs Shiller, DCF vs 相对估值, MM 现实适用性等)</li>
+<li><strong>三模块互引</strong>: 复习引用具体章节路径, 知识形成网状</li>
+<li><strong>纯静态 + AI 问答</strong>: 无后端, 浏览器直连 Anthropic API, 投资者 API key 自管</li>
+</ul>
+
+<h2><span lang="zh">技术架构</span></h2>
+<ul lang="zh">
+<li>纯 HTML + CSS + ES module JavaScript (无 React / Vue / 任何前端框架)</li>
+<li>KaTeX 公式渲染 (auto-render)</li>
+<li>AI 助手: Anthropic Claude Opus 4.7, 浏览器直连 api.anthropic.com</li>
+<li>本地启动: <code>python3 -m http.server 8000</code></li>
+<li>样式: 学术 paper 风格 (Cormorant Garamond + Source Serif 4 + Noto Serif SC + JetBrains Mono)</li>
+</ul>
+
+<h2><span lang="zh">建议学习路径</span></h2>
+<dl>
+<dt><span lang="zh">最短路径 (~ 12 小时)</span></dt><dd>M1: 01 → 02 → 08 → 10 (读财报)<br>M2: 03 → 08 → 10 (公司财务核心)<br>M3: 05 → 07 → 09 (估值与公告)<br>A 股: 04 (避雷)</dd>
+<dt><span lang="zh">完整系统 (~ 40 小时)</span></dt><dd>从 M1 Ch.00 顺序读到 A 股 Ch.05 + 全部检验题. 配合 Python 实操 (Pandas 处理 A 股财报数据)</dd>
+<dt><span lang="zh">查询用</span></dt><dd>把本站当作"参考手册" — 遇到具体问题翻对应章节. 配合 Glossary 跳转</dd>
+</dl>
+
+<h2><span lang="zh">使用 AI 助手</span></h2>
+<p lang="zh">右下浮动按钮 → 输入 Anthropic API Key (sk-ant-...) → 开始对话. Key 仅存浏览器 localStorage, 不发送任何第三方. 推荐用法:</p>
+<ul lang="zh">
+<li>遇到不理解的概念: "解释一下 [概念名], 用工程类比"</li>
+<li>遇到具体 A 股公司: "[公司代码] 的 [指标] 怎么看?"</li>
+<li>遇到检验题不会: "Module II Ch.10 Q1, 我的思路是 X, 对吗?"</li>
+<li>遇到具体年报: 描述财报数字, 请助手分析风险</li>
+</ul>
+
+<h2><span lang="zh">免责声明</span></h2>
+<p lang="zh">本站为<em>教学</em>用途. 所有 A 股案例的数字均为<em>近似值</em>, 实际投资决策<em>必须</em>查阅原始年报 (巨潮 cninfo). 案例中对公司经营状况、造假指控等表述基于公开信息, 不构成任何投资建议或诽谤. 投资有风险, 决策需谨慎。</p>
+
+<h2><span lang="zh">致谢</span></h2>
+<p lang="zh">本站内容综合参考了 Brealey, Bodie, Damodaran, Penman, Graham, Buffett, Munger 等经典著作, 以及 Fama, Markowitz, Modigliani, Miller, Sharpe, Sloan, Beneish, Altman, Piotroski, Myers, Jensen, Kahneman, Shiller 等学术先驱的开创性研究. 中国会计学者葛家澍、夏冬林等的中国 CAS 体系工作亦是本站理解中国特色的基础.</p>
+
+<div class="lesson-foot"><nav class="chap-nav"><a href="references.html">← References</a><a class="next" href="progress.html">Progress →</a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

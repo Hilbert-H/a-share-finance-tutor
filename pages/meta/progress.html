@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>学习进度 — Progress</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>
+.module-progress { background: var(--paper-deep); border: 1px solid var(--paper-edge); border-radius: var(--r-md); padding: var(--space-4); margin: var(--space-4) 0; }
+.module-progress h3 { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 var(--space-3); }
+.module-progress .pct { font-family: var(--font-mono); color: var(--accent); }
+.chapter-list { list-style: none; padding: 0; margin: 0; }
+.chapter-list li { padding: 0.4em 0; border-bottom: 1px dashed var(--rule-soft); display: flex; justify-content: space-between; align-items: baseline; font-size: 0.95rem; }
+.chapter-list li:last-child { border-bottom: none; }
+.chapter-list .ch-name { color: var(--ink-soft); }
+.chapter-list .ch-done { color: var(--data-green); font-family: var(--font-sans); font-size: var(--fs-tiny); letter-spacing: 0.06em; text-transform: uppercase; }
+.chapter-list .ch-todo { color: var(--ink-faint); font-family: var(--font-sans); font-size: var(--fs-tiny); letter-spacing: 0.06em; text-transform: uppercase; }
+.reset-progress { margin-top: var(--space-4); padding: 0.4rem 0.8rem; background: var(--warn); color: var(--paper); border-radius: var(--r-sm); font-family: var(--font-sans); font-size: var(--fs-tiny); }
+</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<h1><span lang="zh">学习进度</span><span lang="en">Progress</span></h1>
+<p class="lesson-subtitle"><span lang="zh">基于本地 localStorage 记录. 每完成一章点击章末"标记完成"按钮即更新. 数据仅存在本浏览器, 清缓存或换设备会重置.</span><span lang="en">Tracked in localStorage. Click "Mark complete" at the end of each chapter. Local only — clearing cache or switching device resets it.</span></p>
+
+<div id="progress-container"></div>
+
+<button class="reset-progress" onclick="if(confirm('清除所有学习进度?')){localStorage.removeItem('site.progress');location.reload();}">
+<span lang="zh">重置全部进度</span><span lang="en">Reset all progress</span>
+</button>
+
+<script>
+(async function() {
+  const root = '../../';
+  const r = await fetch(root + 'assets/data/nav-tree.json?v=' + Date.now(), { cache: 'no-store' });
+  const tree = await r.json();
+  let prog = {};
+  try { prog = JSON.parse(localStorage.getItem('site.progress') || '{}'); } catch {}
+  const container = document.getElementById('progress-container');
+  const lang = document.documentElement.getAttribute('data-lang') || 'zh';
+
+  let html = '';
+  let totalDone = 0, totalChapters = 0;
+  for (const mod of tree.modules) {
+    if (mod.id === 'meta') continue;
+    const chapters = mod.chapters.filter(c => c.slug !== 'overview' && c.n !== '');
+    const done = chapters.filter(c => {
+      const fn = c.n ? `${c.n}-${c.slug}.html` : `${c.slug}.html`;
+      const key = mod.path.replace(/^pages\//, '') + '/' + fn;
+      return prog[key] && prog[key].done;
+    }).length;
+    const pct = chapters.length > 0 ? Math.round(100 * done / chapters.length) : 0;
+    totalDone += done; totalChapters += chapters.length;
+    const title = lang === 'zh' ? mod.title_zh : mod.title_en;
+    html += `<div class="module-progress">
+      <h3><span>${mod.roman} · ${title}</span><span class="pct">${done}/${chapters.length} · ${pct}%</span></h3>
+      <ul class="chapter-list">`;
+    for (const ch of mod.chapters) {
+      if (ch.slug === 'overview' || ch.n === '') continue;
+      const fn = ch.n ? `${ch.n}-${ch.slug}.html` : `${ch.slug}.html`;
+      const key = mod.path.replace(/^pages\//, '') + '/' + fn;
+      const isDone = !!(prog[key] && prog[key].done);
+      const ctitle = lang === 'zh' ? ch.title_zh : ch.title_en;
+      html += `<li><span class="ch-name">${ch.n} · ${ctitle}</span>
+        <span class="${isDone ? 'ch-done' : 'ch-todo'}">${isDone ? '✓ done' : '— todo'}</span></li>`;
+    }
+    html += `</ul></div>`;
+  }
+  const overallPct = totalChapters > 0 ? Math.round(100 * totalDone / totalChapters) : 0;
+  container.innerHTML = `<div class="module-progress" style="border-color: var(--accent); border-width: 2px;">
+    <h3><span><strong>${lang === 'zh' ? '总进度' : 'Overall'}</strong></span><span class="pct"><strong>${totalDone}/${totalChapters} · ${overallPct}%</strong></span></h3>
+  </div>` + html;
+})();
+</script>
+
+<div class="lesson-foot"><nav class="chap-nav"><a href="about.html">← About</a><a class="next" href="../../index.html">Home →</a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

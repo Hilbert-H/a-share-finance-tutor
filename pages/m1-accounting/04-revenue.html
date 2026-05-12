@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>04 · 收入确认五步法 — Revenue Recognition (CAS 14 / IFRS 15)</title>
+  <meta name="keywords" content="revenue recognition, CAS 14, IFRS 15, 收入确认, 五步法, 履约义务, performance obligation, 中兴通讯, 000063, 万达电影, 002739">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 04</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.03</span><span lang="en">Prereq: Ch.03</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.05 资产计量</span><span lang="en">Next: Ch.05 Asset Measurement</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">收入确认五步法</span>
+        <span lang="en">Revenue Recognition — the 5‑Step Model</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">收入是公司报表的"灵魂", 也是造假最常下手的地方。CAS 14 (2017 修订, 2018 起实施) 与 IFRS 15 高度一致, 把"何时确认多少收入"统一为一条标准化的状态机。学完本章你能拆解任意复杂合同的收入归属。</span>
+        <span lang="en">Revenue is the soul of the financial statements — and the most common target of fraud. CAS 14 (2017 rev., effective 2018) is harmonized with IFRS 15 into a standardized 5‑step state machine. After this you can decompose revenue attribution in arbitrarily complex contracts.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用五步法把"软件 + 硬件 + 服务"的捆绑销售拆解到各履约义务。</li>
+          <li lang="zh">能判断合同收入是"时点"还是"期间"确认 — 三个条件中任一满足即为期间。</li>
+          <li lang="zh">能识别 A 股常见的收入虚增手法 (虚假销售、关联方循环、销售返利包装为学术推广)。</li>
+          <li lang="zh">能用"合同负债 vs 应收账款"判断客户付款节奏对收入归属的影响。</li>
+          <li lang="en">Decompose a software + hardware + service bundle into performance obligations.</li>
+          <li lang="en">Decide whether revenue is point‑in‑time or over‑time — any of three criteria triggers the latter.</li>
+          <li lang="en">Recognize common A‑share revenue‑inflation tactics.</li>
+          <li lang="en">Use contract liability vs AR to read the payment‑recognition timing gap.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 把收入确认当作状态机</span>
+          <span class="en" lang="en"> · Revenue recognition as a state machine</span>
+        </h2>
+
+        <p lang="zh">早期的会计 (1980 年前) 对收入的处理几乎是定性: "重要风险报酬转移时确认"。问题是: 什么算重要? 什么算转移? 主观空间极大。结果: 不同行业、不同公司、不同审计师对"什么时候确认收入"有相去甚远的结论。</p>
+        <p lang="en">Pre‑1980s accounting recognized revenue qualitatively — "when the risks and rewards of ownership transfer." But: what counts as "transfer"? Massive subjective space. Different industries, firms, and auditors reached very different conclusions.</p>
+
+        <p lang="zh">IASB/FASB 2014 共同发布 IFRS 15 / ASC 606, 用<em>状态机</em>思路统一: 把每一份合同抽象为一个<em>有限状态自动机</em>, 把"确认收入"定义为<em>状态转移到 satisfied 这一刻</em>。CAS 14 (2017) 与之趋同, 2018 起 A 股全面实施。</p>
+        <p lang="en">IASB/FASB jointly released IFRS 15 / ASC 606 in 2014, recasting revenue as a state machine: each contract becomes a finite‑state automaton, and "recognize revenue" is defined as <em>the transition to the satisfied state</em>. CAS 14 (2017) aligned. Effective for A‑share filers from 2018.</p>
+
+        <p lang="zh">这套模型的核心是<em>把合同拆解为可独立计量的最小单元 (履约义务, performance obligation, PO)</em>, 然后给每个 PO 单独执行"何时满足、确认多少"的判断。这就是五步法:</p>
+        <p lang="en">The core is to <em>decompose contracts into the smallest independently‑measurable units (performance obligations)</em>, then evaluate "when satisfied, how much" for each. That's the 5‑step model:</p>
+
+        <ol>
+          <li><strong><span lang="zh">识别合同</span><span lang="en">Identify the contract</span></strong></li>
+          <li><strong><span lang="zh">识别合同中的履约义务</span><span lang="en">Identify the performance obligations</span></strong></li>
+          <li><strong><span lang="zh">确定交易价格</span><span lang="en">Determine the transaction price</span></strong></li>
+          <li><strong><span lang="zh">将交易价格分配到各履约义务</span><span lang="en">Allocate the price to each PO</span></strong></li>
+          <li><strong><span lang="zh">履行履约义务时确认收入</span><span lang="en">Recognize revenue when (or as) each PO is satisfied</span></strong></li>
+        </ol>
+
+        <p lang="zh"><strong>工程类比</strong>: 这就像编译器对源代码的处理 — 不是直接"运行整个程序", 而是先词法分析 (识别合同)、语法分析 (识别 PO)、代价计算 (定价)、内存分配 (价格分配)、最终执行 (确认收入)。每一步都是<em>形式化判定</em>, 而不是定性"感觉差不多了就记"。这就是 IFRS 15 相对前一代准则最大的进步。</p>
+        <p lang="en"><strong>Engineering analogy:</strong> like a compiler — not "just run the program," but lexing (contract) → parsing (POs) → cost calc (price) → allocation → execution (recognize). Each step is a formal predicate, not a qualitative gut call. That's IFRS 15's biggest leap.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span>
+        </h2>
+
+        <h3 lang="zh">五步法逐条</h3>
+        <h3 lang="en">The five steps in detail</h3>
+
+        <div class="callout callout--def">
+          <span class="callout-label">Step 1 — <span lang="zh">识别合同</span><span lang="en">Identify Contract</span></span>
+          <p lang="zh">合同同时满足五个条件才被识别 (CAS 14 §5):</p>
+          <ol lang="zh">
+            <li>合同各方已批准合同并承诺履行各自义务</li>
+            <li>该合同明确了各方与所转让商品/服务相关的权利和义务</li>
+            <li>该合同有明确的与所转让商品/服务相关的支付条款</li>
+            <li>该合同具有<em>商业实质</em> (即履行合同将改变企业未来现金流的风险、时间或金额)</li>
+            <li>企业因向客户转让商品/服务而<em>有权取得的对价很可能收回</em></li>
+          </ol>
+          <p lang="en">A contract is identified only when five tests are met: (1) both parties have approved; (2) rights are identifiable; (3) payment terms are identifiable; (4) it has <em>commercial substance</em>; (5) collection is <em>probable</em>.</p>
+          <span class="cite">CAS 14 §5 · IFRS 15 §9</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label">Step 2 — <span lang="zh">识别履约义务</span><span lang="en">Identify POs</span></span>
+          <p lang="zh">将合同中的承诺拆解为可识别的履约义务。一个承诺构成单独的 PO 当且仅当它<em>同时</em>满足:</p>
+          <ul lang="zh">
+            <li>该商品或服务能够明确区分 (distinct) — 客户能单独从其受益</li>
+            <li>该承诺在<em>合同</em>层面与其他承诺<em>可分别识别</em></li>
+          </ul>
+          <p lang="en">Decompose contract promises into POs. A promise is a separate PO iff <em>both</em>: (a) the good/service is capable of being distinct — customer can benefit from it on its own; (b) it is distinct in the context of the contract — separately identifiable from other promises.</p>
+          <span class="cite">CAS 14 §9-10 · IFRS 15 §22-30</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label">Step 3 — <span lang="zh">确定交易价格</span><span lang="en">Transaction Price</span></span>
+          <p lang="zh">交易价格 = 固定对价 + 可变对价 (期望值或最可能金额, 但受约束) − 重大融资成分 + 非现金对价的公允价值 − 应付给客户的对价。</p>
+          <p lang="en">Transaction price = fixed + variable (constrained expected/most likely) − significant financing component + FV of non‑cash consideration − consideration payable to customer.</p>
+          <div class="eq">
+            <span>$$ P_{tx} \;=\; P_{fixed} + \min(\hat P_{var}, P_{ceiling}) - P_{fin} + P_{nc} - P_{to\,cust} $$</span>
+            <span class="num">(4.1)</span>
+          </div>
+          <p lang="zh"><strong>可变对价约束</strong>: 即使预期可变对价 $\hat P_{var}$ 为 100, 若<em>很有可能在未来期间发生重大转回</em>, 则要把可变对价削减到不发生转回的最大金额。这是 IFRS 15 收紧"乐观估计"的关键限制。</p>
+          <p lang="en"><strong>Variable‑consideration constraint:</strong> include only the amount that is highly probable not to be reversed in future periods. This is IFRS 15's key check on optimistic estimates.</p>
+          <span class="cite">CAS 14 §13-19 · IFRS 15 §47-72</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label">Step 4 — <span lang="zh">分配交易价格</span><span lang="en">Allocate Price</span></span>
+          <p lang="zh">按各 PO 的<em>单独售价</em> (stand-alone selling price, SSP) 比例分配:</p>
+          <div class="eq">
+            <span>$$ P_i \;=\; P_{tx} \cdot \frac{\mathrm{SSP}_i}{\sum_j \mathrm{SSP}_j} $$</span>
+            <span class="num">(4.2)</span>
+          </div>
+          <p lang="zh">SSP 的估计方法 (按优先级):</p>
+          <ol lang="zh">
+            <li>调整后市场评估法 (基于市场可观察价格)</li>
+            <li>预期成本加成法 (cost-plus)</li>
+            <li>剩余法 (residual approach, 仅在特定条件下允许)</li>
+          </ol>
+          <p lang="en">Allocate transaction price across POs by stand‑alone selling price (SSP). Estimation hierarchy: adjusted market assessment → expected cost plus margin → residual (only when permitted).</p>
+          <span class="cite">CAS 14 §20 · IFRS 15 §73-86</span>
+        </div>
+
+        <div class="callout callout--def">
+          <span class="callout-label">Step 5 — <span lang="zh">满足时确认收入</span><span lang="en">Recognize Revenue</span></span>
+          <p lang="zh">对每个 PO 判断: <em>在一段时间内满足</em>(over time) 还是<em>在某一时点满足</em>(point in time)?</p>
+          <p lang="zh"><strong>期间确认 — 满足以下任一条件</strong> (CAS 14 §11):</p>
+          <ol lang="zh">
+            <li>客户在企业履约同时<em>取得并消耗</em>经济利益 (例: 长期租赁的服务、维护合同)</li>
+            <li>企业履约<em>创造或改良</em>客户控制的资产 (例: 在客户场地建设的工程)</li>
+            <li>企业履约创造的资产对企业本身<em>无替代用途</em> + 在整个合同期间内有权就累计已完成部分<em>收取款项</em> (例: 定制软件开发)</li>
+          </ol>
+          <p lang="zh"><strong>否则 = 时点确认</strong>。控制权转移的 5 个判断指标 (任一发生即可):</p>
+          <ul lang="zh">
+            <li>客户已取得收款权</li>
+            <li>客户已取得法定所有权</li>
+            <li>客户已实物占有商品</li>
+            <li>客户已承担商品所有权上的<em>重大风险报酬</em></li>
+            <li>客户已接受 (验收) 该商品</li>
+          </ul>
+          <p lang="en"><strong>Over time</strong> if any of three conditions: (i) customer simultaneously receives &amp; consumes; (ii) work creates/enhances a customer‑controlled asset; (iii) no alternative use + enforceable right to payment for work completed. Otherwise <strong>point in time</strong>, with five indicators of control transfer.</p>
+          <span class="cite">CAS 14 §11-12 · IFRS 15 §31-38</span>
+        </div>
+
+        <h3 lang="zh">配套科目: 合同资产 vs 合同负债 vs 应收账款</h3>
+        <h3 lang="en">Companion items: contract asset vs contract liability vs AR</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">情形</span><span lang="en">Case</span></th><th><span lang="zh">已履约</span><span lang="en">Performed</span></th><th><span lang="zh">已收款</span><span lang="en">Paid</span></th><th><span lang="zh">B/S 记什么</span><span lang="en">B/S item</span></th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>✓</td><td>✓ <span lang="zh">(无条件)</span><span lang="en">(unconditional)</span></td><td><span lang="zh">应收账款</span><span lang="en">Accounts Receivable</span></td></tr>
+            <tr><td>2</td><td>✓</td><td>✗</td><td><span lang="zh">合同资产 (有条件收款权)</span><span lang="en">Contract Asset</span></td></tr>
+            <tr><td>3</td><td>✗</td><td>✓</td><td><span lang="zh">合同负债</span><span lang="en">Contract Liability</span></td></tr>
+            <tr><td>4</td><td>✗</td><td>✗</td><td><span lang="zh">不记 (合同未触发)</span><span lang="en">No entry</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>实战 tip</strong>: 看一家公司的<em>合同负债余额</em>变化能反映"未来收入储备" — 房地产、教培、SaaS 等预付费业务的关键指标。茅台 2023 合同负债 ~140 亿 ≈ 4 个月收入, 表明经销商抢货积极性极高 — 这是品牌护城河的财务表现。</p>
+        <p lang="en"><strong>Practical:</strong> contract liability balance proxies the "revenue pipeline." For real estate / education / SaaS it's a leading indicator. Moutai's 2023 contract liability ~¥14bn ≈ 4 months of revenue → distributors stockpiling aggressively, a financial signature of brand moat.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span>
+        </h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·000063</span>
+            <span class="company"><span lang="zh">中兴通讯</span><span lang="en">ZTE Corp.</span></span>
+            <span class="period">FY2023 · <span lang="zh">通信合同的多 PO 拆分</span><span lang="en">Multi-PO telecom contract</span></span>
+          </div>
+          <p lang="zh">中兴向运营商客户销售一份 5G 基站合同, 总价 1.2 亿。典型条款:</p>
+          <p lang="en">ZTE sells a 5G base station contract to a carrier customer for ¥120m. Typical terms:</p>
+          <ul>
+            <li><span lang="zh">5G 基站硬件 (含天线、AAU、BBU): 单独售价 8,000 万 — 客户验收时一次性交付</span><span lang="en">5G hardware (antennas, AAU, BBU): SSP ¥80m — delivered at acceptance</span></li>
+            <li><span lang="zh">安装与调测服务: 单独售价 1,500 万 — 3 个月完成</span><span lang="en">Installation &amp; commissioning: SSP ¥15m — over 3 months</span></li>
+            <li><span lang="zh">软件许可 (5 年使用权): 单独售价 1,000 万 — 一次性授权</span><span lang="en">Software license (5y): SSP ¥10m — granted up‑front</span></li>
+            <li><span lang="zh">维护服务 (5 年): 单独售价 2,000 万 — 按月提供</span><span lang="en">Maintenance (5y): SSP ¥20m — monthly</span></li>
+          </ul>
+          <p lang="zh"><strong>五步法逐步应用</strong>:</p>
+          <ol lang="zh">
+            <li>Step 1 — 合同已签, 商业实质明显, 运营商信用良好 (收款概率高) → 识别。</li>
+            <li>Step 2 — 4 个 PO: 硬件、安装、软件许可、维护。各自可独立从客户角度获益, 合同中可分别识别。</li>
+            <li>Step 3 — 交易价格 = 1.2 亿 (固定对价, 假设无可变对价、无重大融资成分)。</li>
+            <li>Step 4 — 按 SSP 比例分配: SSP 合计 = 8,000 + 1,500 + 1,000 + 2,000 = 1.25 亿。但合同价仅 1.2 亿, 说明有 ~4% 的整体折扣。该折扣分配给所有 PO 还是仅硬件? 若该折扣<em>可观察地与硬件相关</em>(如硬件促销季), 仅分配给硬件; 否则按比例分配给全部 PO。假设按比例:
+              <br>硬件: $1.2 \times 8000/12500 = 7680$ 万
+              <br>安装: $1.2 \times 1500/12500 = 1440$ 万
+              <br>软件: $1.2 \times 1000/12500 = 960$ 万
+              <br>维护: $1.2 \times 2000/12500 = 1920$ 万
+            </li>
+            <li>Step 5 — 各 PO 何时确认?
+              <ul>
+                <li><strong>硬件 7,680 万</strong>: 时点 — 客户验收当月一次性确认</li>
+                <li><strong>安装 1,440 万</strong>: 期间 — 满足条件 (i) (客户在企业履约同时取得并消耗服务利益)。按工时进度法在 3 个月内分摊确认 (例如月均 480 万)</li>
+                <li><strong>软件许可 960 万</strong>: 时点 (一次性授权, 客户已获得使用权)</li>
+                <li><strong>维护 1,920 万</strong>: 期间 — 5 年 (60 个月) 内按月线性分摊, 月均 32 万</li>
+              </ul>
+            </li>
+          </ol>
+          <p lang="zh"><strong>结果</strong>: 合同签约当月确认 7,680 + 960 + 480 + 32 = 9,152 万。剩余 2,848 万作为<em>合同负债</em>等待履约。这就是同一份合同, 在不同月份贡献不同金额收入的来源。</p>
+          <p lang="en">First‑month recognition: ¥91.52m. Remaining ¥28.48m sits as contract liability awaiting performance. This is how one contract generates non‑uniform monthly revenue under IFRS 15.</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=000063" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 000063 →</span><span lang="en">Cninfo 000063 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·002739</span>
+            <span class="company"><span lang="zh">万达电影</span><span lang="en">Wanda Film</span></span>
+            <span class="period"><span lang="zh">影院放映分成 — 时点确认</span><span lang="en">Box-office split — point in time</span></span>
+          </div>
+          <p lang="zh">影院观众购票 100 元。影片分账比例 (中国市场典型): 制片方 ~43%, 影院 ~50%, 国家电影发展专项 + 营业税 ~7%。</p>
+          <p lang="en">A patron buys a ¥100 ticket. Typical split in China: producer ~43%, exhibitor ~50%, special fund + tax ~7%.</p>
+          <ul lang="zh">
+            <li><strong>履约义务</strong>: "提供电影放映服务" — 单一 PO。</li>
+            <li><strong>时点 vs 期间</strong>: 放映持续约 2 小时, 但客户的"消费"集中在<em>放映瞬间</em>。CAS 14 §11(i) 不适用 — 客户并非"同时取得并消耗" (取得即是放映)。视为<em>时点</em>: 放映瞬间确认全部收入。</li>
+            <li><strong>万达确认的收入</strong>: ¥100 的 50% = ¥50 (影院分成部分), 其余 ¥43 是代制片方收取的代理款 — 在<em>主要责任人 vs 代理人</em>判断中, 万达对放映服务是主要责任人 (它控制了放映行为), 但对制片分账是代理人 — 因此只确认 ¥50 为收入, ¥43 作为<em>应付分账款</em>转付。</li>
+          </ul>
+          <p lang="en">Single PO ("provide screening"). Point‑in‑time at screening (consumer benefits at the screening instant, not over time). Of ¥100, Wanda recognizes ¥50 as own revenue (principal for the screening) and remits ¥43 to the producer (agent for the producer's share).</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">已退市</span><span lang="en">Delisted</span></span>
+            <span class="company"><span lang="zh">长生生物</span><span lang="en">Changsheng Biotech</span></span>
+            <span class="period">2018 · <span lang="zh">收入与商业实质的崩塌</span><span lang="en">Revenue without commercial substance</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+          <p lang="zh">长生生物 2017 年报披露毛利率 91%, 销售费用率高达 36% (其中"学术推广费"占大头)。这一异常组合实际是:</p>
+          <p lang="en">Changsheng 2017 reported 91% gross margin and 36% selling expense ratio (mostly "academic promotion fees"). The unusual combo encoded:</p>
+          <ul lang="zh">
+            <li><strong>销售模式失真</strong>: 实际是<em>低价出厂 → 经销商加价 → 学术推广费回流</em>的两票制套利。账面看, 出厂价是几倍于"真实成本", 实际是经销商收钱后又把利润以推广费形式打回。</li>
+            <li><strong>违反 CAS 14 Step 1 商业实质</strong>: 这种交易设计的<em>唯一目的</em>是抬高账面收入与毛利, 不是真实经济实质。在 IFRS 15 / CAS 14 框架下, 这种安排应"看穿合同形式", 按经济实质重新确定交易价格。</li>
+            <li><strong>2018 年疫苗造假事件曝光后, 长生最终被强制退市</strong>。这是 A 股第一例因重大违法被退市的上市公司。</li>
+          </ul>
+          <ul lang="en">
+            <li><strong>Distorted sales model:</strong> low ex‑factory price + distributor markup + promo‑fee kickback ("two‑invoice" arbitrage).</li>
+            <li><strong>Violates Step 1 (commercial substance):</strong> the design exists only to inflate reported revenue/margin. IFRS 15 / CAS 14 require looking through to economic substance.</li>
+            <li><strong>Forcibly delisted 2018</strong> after the vaccine scandal — A‑share's first delisting for major statutory violations.</li>
+          </ul>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">ii</span><div><h4>accrual basis</h4><p lang="zh">收入确认是 accrual 的具体落地: 经济事件 (PO 满足) 而非现金到账触发记账。</p><p lang="en">Revenue recognition operationalizes accrual: the economic event (PO satisfied) — not cash — triggers the booking.</p></div></div>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">实质重于形式</span><span lang="en">Substance over Form</span></h4><p lang="zh">Step 1 商业实质 是反"循环交易"造假的最后一道门。长生案例。</p><p lang="en">Step 1 commercial‑substance test is the final defense against round‑trip schemes (Changsheng).</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">Step 3 可变对价约束 (highly probable not to reverse) 体现谨慎性 — 不要把乐观的预期写入当期收入。</p><p lang="en">Step 3 variable‑consideration constraint embeds prudence — don't book optimistic estimates as current revenue.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一份合同总价 1,000 包含 A 商品 + B 商品。A 单独售价 600, B 单独售价 600 (合计 1,200, 隐含 ~17% 折扣)。如何分配交易价格? 给出两种处理及其触发条件。</span><span lang="en"><strong>Q1.</strong> Contract price 1,000 covers items A and B with SSP 600 + 600 (17% discount). Allocate.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>默认: 按比例分配</strong> — 折扣摊到 A 和 B: 各分得 500。</p>
+            <p lang="zh"><strong>例外: 折扣可观察地与某些 PO 相关</strong> — 比如客户独立购买 A 时一直能享受 600 折扣, 但购买 B 从无折扣 → 折扣专门属于 A。此时: A = 400, B = 600。</p>
+            <p lang="zh"><strong>触发例外的三个条件</strong> (须<em>同时</em>满足):</p>
+            <ol lang="zh">
+              <li>企业经常以独立基础<em>单独销售</em>合同中的每个/每组商品</li>
+              <li>企业也经常以打折后的价格销售这些商品中的某些 (即折扣是可观察的)</li>
+              <li>折扣<em>实质上</em>归属于合同中的<em>一个或多个 (但非全部)</em> 履约义务</li>
+            </ol>
+            <p lang="zh">默认按比例分配的设计是为了防止公司"自行决定折扣去哪个 PO" — 否则可以把折扣全部分配到<em>时点确认</em>的低价 PO (后续无法操纵), 把高价分配到<em>期间确认</em>的 PO (在合同后期再确认)。</p>
+            <p lang="en">Default: pro‑rata (500 each). Exception (all three required): firm regularly sells each item separately; some items are also discounted observably; the discount substantively belongs to one (or some) — not all — POs. The default exists to prevent firms from allocating discounts strategically to defer / accelerate revenue.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 中国房地产开发商出售一套<em>期房</em> (合同签约时商品房尚未建成, 三年后交付)。收入应当在<em>时点</em>还是<em>期间</em>确认? 用三个 over-time 判定条件逐条检验。</span><span lang="en"><strong>Q2.</strong> A Chinese developer pre‑sells a unit (delivery in 3 years). Point in time or over time? Test all three criteria.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>逐条检验</strong>:</p>
+            <ol lang="zh">
+              <li>"客户在企业履约同时取得并消耗经济利益"? — <em>否</em>。建造期间客户什么也得不到, 只有交房后才能入住。</li>
+              <li>"企业履约创造或改良客户控制的资产"? — <em>否</em>。建造期间土地与在建工程都属于<em>开发商</em>控制 (开发商可单方面改设计/转售)。中国法律: 不动产物权以登记为准, 交房+网签才转移。</li>
+              <li>"创造的资产对企业无替代用途 + 有权就累计已完成部分收款"? — <em>否</em>。商品房有替代用途 (可转售给其他买家); 即使开发商破产, 买家是否能按累计建造进度收回款项也<em>不确定</em> (依赖预售款监管账户)。</li>
+            </ol>
+            <p lang="zh"><strong>结论</strong>: 三个条件都不满足 → <em>时点确认</em>, 即交房验收时点一次性确认收入。这与"竣工百分比法"的旧做法截然不同。</p>
+            <p lang="zh">这正是 IFRS 15 / CAS 14 对中国房地产业带来的重大变化 — 2018 年准则切换后, 房企无法再以"完工百分比"提前确认收入, 收入归属与现金流量节奏出现重大错配。一定程度上加剧了房企现金流压力的可见性。</p>
+            <p lang="en">All three fail: customer gets nothing mid‑construction; developer controls the unit (can resell, redesign); units have alternative uses; payment recovery upon developer bankruptcy is uncertain. → Point‑in‑time at handover. This 2018 transition removed "percentage‑of‑completion" from Chinese real‑estate revenue, exposing cash‑flow timing risk.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> SaaS 公司年初签了一份 36 个月合同, 客户在签约日支付全款 36 万。当年应确认多少收入? 12 月 31 日 B/S 上有什么科目?</span><span lang="en"><strong>Q3.</strong> SaaS firm signs a 36‑month contract; customer pays ¥360k upfront on day 1. How much revenue in year 1? What B/S items at Dec 31?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>履约义务 (Step 2)</strong>: 持续 36 个月的 SaaS 访问服务 — 单一 PO, 期间履约。</p>
+            <p lang="zh"><strong>满足判定 (Step 5)</strong>: 客户在服务期间<em>同时取得并消耗</em>服务利益 (登录即获价值, 不需要等服务结束) → 期间确认。按时间线性分摊 (除非有理由认为消耗模式非线性)。</p>
+            <p lang="zh"><strong>当年确认收入</strong>: 假设合同从 1 月 1 日起, 12 个月已履约 → $36 \times 12/36 = 12$ 万。</p>
+            <p lang="zh"><strong>12 月 31 日 B/S</strong>:</p>
+            <ul lang="zh">
+              <li>银行存款 +36 万 (签约日全额收款)</li>
+              <li>合同负债 24 万 (剩余 24 个月未履约)</li>
+              <li>当年 IS: 收入 +12 万</li>
+            </ul>
+            <p lang="zh"><strong>融资成分判断</strong>: 36 个月的预付款其实嵌入了"客户提前给我钱"的隐含融资。如果合同期超过 1 年且金额重大, IFRS 15 / CAS 14 要求拆分出<em>融资成分</em>。即应确认的服务收入 = 36 万 / (1+r)^n 的现值, 差额按融资成本逐期摊销。但实务上大量企业以"非重大"为由跳过此步 — 这是审计师常常质疑的点。</p>
+            <p lang="en">Single over‑time PO. Year‑1 revenue: ¥120k (12/36 of ¥360k). At Dec 31 B/S: cash +¥360k, contract liability ¥240k. IS year 1: revenue ¥120k. <em>Financing component:</em> 36‑month prepayment embeds implicit financing — strictly speaking, revenue should be the PV of ¥360k. Many firms skip this as "immaterial" — an auditor's frequent challenge point.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 一家电商促销期间承诺"30 天内无理由退货, 历史退货率 8%"。卖了 1,000 单, 单价 100。当期应确认多少收入? 如何处理 8% 的可变对价?</span><span lang="en"><strong>Q4.</strong> E‑commerce promo: 30‑day free returns, historical return rate 8%. 1,000 units sold at ¥100. Recognize how much?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>Step 3 — 可变对价处理</strong>: 名义对价 $1,000 \times 100 = 100,000$。但预期 8% 会退货 → 期望对价 $100,000 \times 0.92 = 92,000$。</p>
+            <p lang="zh"><strong>约束</strong>: 仅当"很有可能不发生重大转回"时才能按 92,000 确认。需考虑历史退货率波动: 若历史 8% 是稳定均值且方差小, 可按 92,000 确认; 若高方差 (有几年退过 20%) 则要把估计削减更多 (例如按 85,000 确认)。</p>
+            <p lang="zh"><strong>会计处理</strong>:</p>
+            <ul lang="zh">
+              <li>借: 应收账款 / 银行存款 100,000</li>
+              <li>贷: 主营业务收入 92,000</li>
+              <li>贷: 预计负债 — 销售退回 8,000</li>
+              <li>借: 主营业务成本 (已售 92,000 部分的成本)</li>
+              <li>贷: 库存商品 (减相应部分)</li>
+              <li>借: 应收退货成本 (8,000 部分预期回流的库存价值)</li>
+              <li>贷: 主营业务成本</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>: 销售退回不是"先全额确认, 退货时再冲回", 而是<em>从一开始就按净额确认</em>。这避免了 IS 的过山车效应 — 也是 IFRS 15 / CAS 14 显著区别于旧准则的地方。</p>
+            <p lang="en">Variable consideration: expected = 100,000 × 0.92 = 92,000. Recognize 92,000 only if highly probable not to reverse (depends on return‑rate variance). Net recognition from day 1; do not "book full then reverse." This avoids IS roller‑coaster — a key IFRS 15 improvement.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 某药企"销售费用率"长期 40%+ (远高于行业 15%), 其中"学术推广费"占 80%。结合 CAS 14 五步法, 列出至少三个需要审视的造假信号。</span><span lang="en"><strong>Q5.</strong> A pharma has 40%+ S&amp;M ratio (vs industry 15%), 80% of which is "academic promotion." Using CAS 14, list at least three red flags.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ul lang="zh">
+              <li><strong>红旗 1 — 商业实质 (Step 1)</strong>: 学术推广费的资金流向是否真的对应"医生教育/会议"? 如果资金回流到经销商或客户体系, 这就是"销售返利伪装" — 等价于把<em>给客户的折扣</em>(本应冲减收入) 重新分类为<em>销售费用</em>。结果: 账面收入虚高, 毛利虚高, 费用率虚高。两边对冲后净利可能没造假, 但收入端被人为放大。CAS 14 §14 明确: 应付给客户的对价应当冲减收入, 除非该对价是为了换取客户的可明确区分的商品或服务。</li>
+              <li><strong>红旗 2 — 收入与现金流的张力</strong>: 高毛利 + 高费用 → OCF/NI 应当较低 (大量推广费需要现金支出)。若该公司同时报告 OCF/NI &gt; 1, 极不寻常 — 可能是<em>循环交易</em>: 公司把现金以推广费形式付出, 经销商再以"销售回款"形式付回。把这笔现金按 OCF 处理 → 现金流"看似很好"。</li>
+              <li><strong>红旗 3 — 关联方占款 / 票据流转</strong>: 大量学术推广费的票据流向、是否经过关联方"过桥", 是审计与监管的关键。康美药业 2017 年报中"销售费用 — 学术推广"占比近 30%, 后期监管确认其中包含大量"票据循环"。</li>
+              <li><strong>红旗 4 — 行业可比</strong>: 与同行业可比公司比较销售费用率与营收增长。若该公司销售费用率显著高于同行 + 营收增速也显著高, 说明"以费用换收入"的弹性可疑。</li>
+              <li><strong>红旗 5 — 监管历史</strong>: 是否被交易所问询过 "学术推广费的真实性与必要性"? 是否被审计师发表过非标意见? 是否有<em>两票制 / 一票制</em>等政策推动下的销售模式异常变化?</li>
+            </ul>
+            <p lang="zh"><strong>诊断框架</strong>: CAS 14 + Beneish M-Score (Ch.10) + 关联方披露 + 同行业对标。这是 A 股长期"老白干 + 新瑞幸"造假模式的共同特征。学完 Ch.10 后这套诊断能完整闭合。</p>
+            <p lang="en">Red flags: (1) Promo cash flow path — round‑trip via distributors substitutes "expense" for "revenue rebate"; CAS 14 §14 requires payments to customers to reduce revenue unless for a distinct good/service. (2) OCF/NI &gt; 1 alongside high promo expense is unusual unless cash is round‑tripping. (3) Promo via related parties — Kangmei pattern. (4) Industry comparability — outlier S&amp;M with outlier revenue growth is suspicious. (5) Regulator/auditor history. Combine with Beneish M‑Score (Ch.10) for full closure.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="03-principles.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">03 · <span lang="zh">会计原则</span><span lang="en">Principles</span></span></a>
+          <a class="next" href="05-assets.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">05 · <span lang="zh">资产计量</span><span lang="en">Asset Measurement</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

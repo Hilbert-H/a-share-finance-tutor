@@ -1,0 +1,90 @@
+{
+  "modules": [
+    {
+      "id": "m1",
+      "roman": "I",
+      "title_zh": "会计学",
+      "title_en": "Accounting",
+      "path": "pages/m1-accounting",
+      "chapters": [
+        { "n": "00", "slug": "overview",         "title_zh": "模块导览",                    "title_en": "Overview", "built": true },
+        { "n": "01", "slug": "equation",         "title_zh": "会计恒等式与复式记账",         "title_en": "The Accounting Identity & Double-Entry", "built": true },
+        { "n": "02", "slug": "three-statements", "title_zh": "三大报表与勾稽关系",           "title_en": "Three Statements & Their Articulation", "built": true },
+        { "n": "03", "slug": "principles",       "title_zh": "权责发生制·配比·谨慎·实质重于形式", "title_en": "Accrual · Matching · Conservatism · Substance", "built": true },
+        { "n": "04", "slug": "revenue",          "title_zh": "收入确认 CAS 14 / IFRS 15",   "title_en": "Revenue Recognition (5-Step)", "built": true },
+        { "n": "05", "slug": "assets",           "title_zh": "资产计量",                    "title_en": "Asset Measurement", "built": true },
+        { "n": "06", "slug": "liab-equity",      "title_zh": "负债与权益",                  "title_en": "Liabilities & Equity", "built": true },
+        { "n": "07", "slug": "consolidation",    "title_zh": "合并报表",                    "title_en": "Consolidation", "built": true },
+        { "n": "08", "slug": "cashflow",         "title_zh": "现金流量表深度",              "title_en": "Cash Flow Statement Deep-Dive", "built": true },
+        { "n": "09", "slug": "cas-vs-ifrs",      "title_zh": "CAS / IFRS / US GAAP 差异",   "title_en": "CAS / IFRS / US GAAP Differences", "built": true },
+        { "n": "10", "slug": "notes-events",     "title_zh": "附注·关联交易·或有事项",      "title_en": "Notes · Related-Party · Contingencies", "built": true }
+      ]
+    },
+    {
+      "id": "m2",
+      "roman": "II",
+      "title_zh": "公司财务",
+      "title_en": "Corporate Finance",
+      "path": "pages/m2-corp-finance",
+      "chapters": [
+        { "n": "00", "slug": "overview",          "title_zh": "模块导览",            "title_en": "Overview", "built": true },
+        { "n": "01", "slug": "time-value",        "title_zh": "时间价值",            "title_en": "Time Value of Money", "built": true },
+        { "n": "02", "slug": "risk-return",       "title_zh": "风险与收益",          "title_en": "Risk & Return", "built": true },
+        { "n": "03", "slug": "wacc-mm",           "title_zh": "WACC 与 MM 定理",     "title_en": "WACC & Modigliani-Miller", "built": true },
+        { "n": "04", "slug": "capital-budgeting", "title_zh": "资本预算",            "title_en": "Capital Budgeting", "built": true },
+        { "n": "05", "slug": "capital-structure", "title_zh": "资本结构",            "title_en": "Capital Structure", "built": true },
+        { "n": "06", "slug": "dividend",          "title_zh": "股利政策与回购",      "title_en": "Dividend Policy & Buybacks", "built": true },
+        { "n": "07", "slug": "working-capital",   "title_zh": "营运资本",            "title_en": "Working Capital", "built": true },
+        { "n": "08", "slug": "dupont",            "title_zh": "DuPont 分解",         "title_en": "DuPont Decomposition", "built": true },
+        { "n": "09", "slug": "ratios",            "title_zh": "财务比率体系",        "title_en": "Financial Ratios", "built": true },
+        { "n": "10", "slug": "fraud-detection",   "title_zh": "财务造假识别",        "title_en": "Detecting Financial Fraud", "built": true }
+      ]
+    },
+    {
+      "id": "m3",
+      "roman": "III",
+      "title_zh": "证券投资学",
+      "title_en": "Investments",
+      "path": "pages/m3-investments",
+      "chapters": [
+        { "n": "00", "slug": "overview",            "title_zh": "模块导览",            "title_en": "Overview", "built": true },
+        { "n": "01", "slug": "mpt",                 "title_zh": "现代组合理论",        "title_en": "Modern Portfolio Theory", "built": true },
+        { "n": "02", "slug": "capm-apt-ff",         "title_zh": "CAPM / APT / Fama-French", "title_en": "CAPM / APT / Fama-French", "built": true },
+        { "n": "03", "slug": "emh",                 "title_zh": "有效市场假说",        "title_en": "Efficient Market Hypothesis", "built": true },
+        { "n": "04", "slug": "behavioral",          "title_zh": "行为金融",            "title_en": "Behavioral Finance", "built": true },
+        { "n": "05", "slug": "dcf",                 "title_zh": "DCF 估值",            "title_en": "DCF Valuation", "built": true },
+        { "n": "06", "slug": "relative-valuation",  "title_zh": "相对估值",            "title_en": "Relative Valuation", "built": true },
+        { "n": "07", "slug": "value-investing",     "title_zh": "价值投资框架",        "title_en": "Value Investing Framework", "built": true },
+        { "n": "08", "slug": "financial-quality",   "title_zh": "财报在投资中的应用",  "title_en": "Financials in Investing", "built": true },
+        { "n": "09", "slug": "announcements",       "title_zh": "A 股公告解读",        "title_en": "Reading A-Share Filings", "built": true }
+      ]
+    },
+    {
+      "id": "ax",
+      "roman": "✦",
+      "title_zh": "A 股特化",
+      "title_en": "A-Share Specialization",
+      "path": "pages/a-share",
+      "chapters": [
+        { "n": "01", "slug": "regulation",       "title_zh": "监管架构",            "title_en": "Regulation", "built": true },
+        { "n": "02", "slug": "disclosure",       "title_zh": "信息披露体系",        "title_en": "Disclosure", "built": true },
+        { "n": "03", "slug": "china-specifics",  "title_zh": "中国特色问题",        "title_en": "China-Specific Issues", "built": true },
+        { "n": "04", "slug": "fraud-cases",      "title_zh": "经典造假案例",        "title_en": "Landmark Fraud Cases", "built": true },
+        { "n": "05", "slug": "gatekeepers",      "title_zh": "中介机构与问询函",    "title_en": "Gatekeepers & Inquiry Letters", "built": true }
+      ]
+    },
+    {
+      "id": "meta",
+      "roman": "✧",
+      "title_zh": "参考",
+      "title_en": "Reference",
+      "path": "pages/meta",
+      "chapters": [
+        { "n": "",  "slug": "glossary",   "title_zh": "术语词典",  "title_en": "Glossary", "built": true },
+        { "n": "",  "slug": "references", "title_zh": "参考文献",  "title_en": "References", "built": true },
+        { "n": "",  "slug": "about",      "title_zh": "本站说明",  "title_en": "About", "built": true },
+        { "n": "",  "slug": "progress",   "title_zh": "学习进度",  "title_en": "Progress", "built": true }
+      ]
+    }
+  ]
+}

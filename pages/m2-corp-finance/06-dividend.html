@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>06 · 股利政策与回购 — Dividends &amp; Buybacks</title>
+  <meta name="keywords" content="dividend policy, buyback, MM 1961, signaling, clientele, 股利, 回购, 茅台, 长江电力, 美的">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 06</span><span class="sep">·</span><span><span lang="zh">12 分钟</span><span lang="en">12 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.03</span><span lang="en">Prereq: Ch.03</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.07 营运资本</span><span lang="en">Next: Ch.07 WC</span></span></div>
+
+<h1><span lang="zh">股利政策与回购</span><span lang="en">Dividends &amp; Buybacks</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">"该不该派息? 应该派多少?" — MM 1961 说"理论上无关 (perfect markets)"。现实中, 股利政策被税收、信号、客户群 (clientele)、代理冲突等共同决定。本章解读 A 股从"低分红文化"到"分红常态化"的演变。</span>
+<span lang="en">"Pay dividends? How much?" MM 1961: irrelevant in perfect markets. Reality: taxes, signaling, clienteles, agency drive payout. This chapter traces A‑share's evolution from low‑payout culture to mandated regular dividends.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能推导 MM 股利无关性 (1961) 及其前提假设。</li>
+<li lang="zh">能用<em>税收 / 信号 / clientele / 代理</em>四个偏离 MM 的因素解释实际股利政策。</li>
+<li lang="zh">区分股利、回购、特别分红、送股的会计与税务后果。</li>
+<li lang="zh">解读 A 股"宣布大幅提高分红"的市场反应。</li>
+<li lang="en">Derive MM dividend irrelevance and its assumptions.</li>
+<li lang="en">Explain real‑world payouts via tax / signal / clientele / agency.</li>
+<li lang="en">Distinguish dividends, buybacks, special dividends, stock splits.</li>
+<li lang="en">Interpret A‑share payout‑policy announcements.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh"><strong>MM (1961) 股利无关性</strong>: 完美市场下, 公司分多少股利不影响公司价值。因为:</p>
+<p lang="en"><strong>MM (1961):</strong> in perfect markets, payout policy doesn't affect firm value. Why:</p>
+<ul lang="zh">
+<li>公司分红 = 把同样数量的钱从公司账户给股东 — 股东净财富不变 (股价立即下跌分红额, "ex-dividend drop")</li>
+<li>股东需要现金 → 卖股票 = "造分红"; 股东不需要现金 → 用分红买股 = "造回购"</li>
+<li>故公司层面分红无关 — 投资者可以自己造</li>
+</ul>
+<p lang="en">Dividend = same money moves from firm to shareholder (price drops by dividend amount). Shareholders can "create" dividends by selling, or "create" buybacks by reinvesting received dividends. → Irrelevant.</p>
+<p lang="zh"><strong>MM 假设</strong> (与 Ch.03 一致): 无税、无交易成本、无信息不对称、完美市场。打破任一假设 → 股利变得相关。四种典型偏离:</p>
+<p lang="en">Assumptions: no tax, no transaction cost, no asymmetry, perfect markets. Breaking any → policy matters:</p>
+<ol>
+<li><strong><span lang="zh">税收</span><span lang="en">Tax</span></strong>: <span lang="zh">美国分红税率 &gt; 资本利得税率 → 偏好回购。中国: 个人持股 &gt; 1 年免税, 1 月-1 年 10%, &lt; 1 月 20% → 长期股东偏好回购</span><span lang="en">US dividend tax &gt; capital gains → prefer buybacks. China: 0% for &gt; 1y holdings, 10% (1m–1y), 20% (&lt; 1m) → long holders prefer buybacks</span></li>
+<li><strong><span lang="zh">信号</span><span lang="en">Signaling</span></strong>: <span lang="zh">持续稳定分红 = 稳定盈利能力的承诺; 突然加分红 = 管理层乐观信号; 减分红 = 强烈负面信号 (股价通常 -5% 到 -15%)</span><span lang="en">Stable payout signals stable earnings; raises = optimism; cuts = strong negative (often −5% to −15%)</span></li>
+<li><strong><span lang="zh">Clientele 效应</span><span lang="en">Clientele</span></strong>: <span lang="zh">不同投资者偏好不同股利政策 (退休基金喜欢高分红, 成长投资者偏好回购或留存)。公司通过<em>稳定政策</em>吸引匹配的股东群</span><span lang="en">Different investors prefer different policies (pension funds want dividends; growth investors prefer buybacks/retention). Stable policy attracts matched holders</span></li>
+<li><strong><span lang="zh">代理成本</span><span lang="en">Agency</span></strong>: <span lang="zh">Jensen 自由现金流问题 — 强制分红是约束管理层"过度投资"的工具</span><span lang="en">Jensen's FCF problem — payout disciplines management</span></li>
+</ol>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① 分红的核心指标</h3>
+<h3 lang="en">① Payout metrics</h3>
+<ul>
+<li><strong><span lang="zh">每股股利 DPS</span><span lang="en">DPS</span></strong> = Total Dividends / Shares Outstanding</li>
+<li><strong><span lang="zh">股息率 Dividend Yield</span><span lang="en">Dividend Yield</span></strong> = DPS / Price</li>
+<li><strong><span lang="zh">分红率 / 派息比率 Payout Ratio</span><span lang="en">Payout Ratio</span></strong> = Dividends / NI <span lang="zh">(衡量"利润中分掉的比例")</span><span lang="en">(fraction of NI paid out)</span></li>
+<li><strong><span lang="zh">留存比率 Retention Ratio</span><span lang="en">Retention</span></strong> = 1 − Payout Ratio</li>
+</ul>
+<p lang="zh"><strong>可持续增长率</strong> (Gordon framework, 与 M3 Ch.05 DCF 对接):</p>
+<p lang="en"><strong>Sustainable growth</strong> (Gordon, links to M3 Ch.05):</p>
+<div class="eq"><span>$$ g = \mathrm{ROE} \times (1 - \mathrm{Payout}) = \mathrm{ROE} \times \mathrm{Retention} $$</span><span class="num">(6.1)</span></div>
+<p lang="zh">"如果公司把所有留存利润再投资到当前 ROE 项目, 长期可维持的增长率"。高 ROE 公司可以高留存 = 高增长; 低 ROE 公司应分掉, 因为留存只创造低回报。</p>
+<p lang="en">"Sustainable $g$ if retained earnings reinvested at current ROE." High‑ROE firms benefit from retention; low‑ROE firms should pay out.</p>
+
+<h3 lang="zh">② 分红的会计与现金流</h3>
+<h3 lang="en">② Dividend accounting</h3>
+<ul lang="zh">
+<li>宣告日 (declaration): 借 利润分配 贷 应付股利 — 减少留存收益, 形成负债</li>
+<li>除权登记日 (record): 确认股东名册</li>
+<li>除权日 (ex-dividend): 股价机械下跌分红额</li>
+<li>派发日 (payment): 借 应付股利 贷 银行存款 — 现金流出 (在 CFS 上记入筹资活动 FCF)</li>
+</ul>
+<p lang="en">Declaration → Record → Ex‑dividend (price drop) → Payment. Cash flow appears in financing activities (FCF).</p>
+
+<h3 lang="zh">③ 回购 vs 分红 — 对账面指标的不同影响</h3>
+<h3 lang="en">③ Buyback vs dividend — accounting effects</h3>
+<table>
+<thead><tr><th></th><th><span lang="zh">分红 (100 现金)</span><span lang="en">Dividend (100 cash)</span></th><th><span lang="zh">回购 (100 现金)</span><span lang="en">Buyback (100 cash)</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">现金</span><span lang="en">Cash</span></td><td class="num down">−100</td><td class="num down">−100</td></tr>
+<tr><td><span lang="zh">股东权益</span><span lang="en">Equity</span></td><td class="num down">−100 (<span lang="zh">留存</span><span lang="en">RE</span>)</td><td class="num down">−100 (<span lang="zh">库存股或股本</span><span lang="en">treasury or share capital</span>)</td></tr>
+<tr><td><span lang="zh">股本</span><span lang="en">Share count</span></td><td><span lang="zh">不变</span><span lang="en">unchanged</span></td><td><span lang="zh">减少 (注销时)</span><span lang="en">decreased (if cancelled)</span></td></tr>
+<tr><td>EPS</td><td><span lang="zh">不变</span><span lang="en">unchanged</span></td><td><span lang="zh">↑ (机械效应)</span><span lang="en">↑ (mechanical)</span></td></tr>
+<tr><td>ROE</td><td><span lang="zh">分母 ↓ → ROE ↑</span><span lang="en">denominator ↓ → ROE ↑</span></td><td><span lang="zh">分母 ↓ → ROE ↑</span><span lang="en">denominator ↓ → ROE ↑</span></td></tr>
+<tr><td>BVPS</td><td><span lang="zh">分子 ↓, 分母不变 → ↓</span><span lang="en">↓</span></td><td><span lang="zh">取决于回购价</span><span lang="en">depends on price vs BVPS</span></td></tr>
+</tbody>
+</table>
+<p lang="zh"><strong>关键差异</strong>: 回购<em>提升 EPS</em> (机械效应), 分红不提。这就是为什么管理层薪酬绑定 EPS 时倾向回购。BVPS 受回购价影响: <em>低于</em>账面价的回购<em>提升</em>剩余股东 BVPS; <em>高于</em>账面价的回购<em>降低</em> BVPS (但仍可能正面, 若回购价低于内在价值)。</p>
+<p lang="en">Buybacks raise EPS mechanically; dividends don't. Hence buyback preference when management comp is EPS‑linked. BVPS effect depends on buyback price vs book.</p>
+
+<h3 lang="zh">④ 股票股利 (送股 stock dividend) 与 拆股 (split)</h3>
+<h3 lang="en">④ Stock dividends &amp; splits</h3>
+<p lang="zh">送股 / 拆股不涉及任何现金 — 仅<em>纯账面</em>调整: 股本增加, 留存收益对应减少 (送股); 拆股仅改面值与股数。理论上对公司价值与股东财富<em>完全无影响</em> (类似把 100 元钞票换成 10 张 10 元)。</p>
+<p lang="en">No cash involved — pure accounting (share capital up, RE down for stock dividend; just par change for split). Zero impact on value/wealth (like swapping one ¥100 bill for ten ¥10s).</p>
+<p lang="zh"><strong>但市场常常反应</strong>: 拆股 / 送股后股价短期上涨 (流动性溢价 + 心理"廉价感"+ 信号"管理层看好未来"). 这是 EMH 半强形式的<em>反常</em>(Ch.M3 Ch.03), 长期回归正常。</p>
+<p lang="en">Markets often react positively (liquidity + psychological "cheaper" + signal). An EMH semi‑strong anomaly (M3 Ch.03) that mean‑reverts long‑run.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker"><span lang="zh">三家高分红典范</span><span lang="en">High‑payout exemplars</span></span><span class="company"><span lang="zh">茅台 / 长江电力 / 中国神华</span><span lang="en">Moutai / Yangtze Power / Shenhua</span></span></div>
+<div class="case-table"><table><thead><tr><th></th><th>600519</th><th>600900</th><th>601088</th></tr></thead><tbody>
+<tr><td><span lang="zh">分红率 (2023)</span><span lang="en">Payout (2023)</span></td><td class="num">~75%</td><td class="num">~75%</td><td class="num">~75%</td></tr>
+<tr><td><span lang="zh">股息率</span><span lang="en">Yield</span></td><td class="num">~2.5%</td><td class="num">~3.5%</td><td class="num">~7%</td></tr>
+<tr><td>ROE</td><td class="num up">~30%</td><td class="num">~16%</td><td class="num">~16%</td></tr>
+<tr><td>g (<span lang="zh">可持续</span><span lang="en">sustainable</span>)</td><td class="num">~7.5%</td><td class="num">~4%</td><td class="num">~4%</td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>解读</strong>:</p>
+<ul lang="zh">
+<li><strong>茅台</strong>: 高 ROE (30%) + 高分红 (75%) — 看似矛盾, 因为高 ROE 应高留存。原因: 茅台业务<em>不需要</em>大量再投资 (产能扩张受地理限制 — 茅台镇), 留存的钱无 NPV+ 用途。分掉是<em>正确选择</em></li>
+<li><strong>长江电力 / 中国神华</strong>: 中等 ROE + 高分红 — 业务模式无大规模增长机会 (水电产能固定, 煤价波动但长期增量有限)。分红是 Jensen 自由现金流问题的解决方案</li>
+<li>三者股息率 2.5-7%, 在低利率环境下成为"债券替代品"</li>
+</ul>
+<p lang="en">All three: high payouts because limited reinvestment opportunities (geographic constraint for Moutai; fixed assets for Yangtze Power; cyclical for Shenhua). High dividends solve Jensen's FCF problem. In low‑rate era they become "bond substitutes" with 2.5–7% yields.</p>
+</div>
+
+<div class="case">
+<div class="case-head"><span class="ticker">SZ·000333</span><span class="company"><span lang="zh">美的集团 — 大额回购</span><span lang="en">Midea — large buyback</span></span></div>
+<p lang="zh">美的 2018-2023 累计回购超 200 亿, 大部分注销。2024 年宣布百亿回购 + 高分红"双管齐下"。</p>
+<p lang="en">Midea 2018–23 cumulative buybacks &gt;¥20bn (mostly cancelled). 2024 announced ¥10bn+ buyback alongside dividends.</p>
+<ul lang="zh">
+<li><strong>信号</strong>: 大额回购 = "管理层认为股价低估"</li>
+<li><strong>EPS 影响</strong>: 注销 ~5% 股份, EPS 机械提升 ~5%</li>
+<li><strong>税务</strong>: 长期股东 (持股 &gt; 1 年) 偏好回购 (税率 0%) vs 分红 (按规则减免, 实际更复杂)</li>
+<li><strong>对比同行业</strong>: 海尔智家、格力等家电龙头近年都加大回购规模, 反映行业"成熟期 + 现金充裕 + 无重大扩张"特征</li>
+</ul>
+<p lang="en">Buyback signals undervaluation; EPS lifts ~5% mechanically; tax efficient for long‑term holders. Industry mature stage: cash‑rich, low‑growth → buybacks dominate.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head"><span class="ticker">SZ·000651</span><span class="company"><span lang="zh">格力电器 2017 不分红风波</span><span lang="en">Gree 2017 no‑dividend incident</span></span></div>
+<p lang="zh">格力 2017 年报宣布"不分红", 股价当日下跌 8%, 引发监管关注。原因:</p>
+<p lang="en">Gree's 2017 "no dividend" announcement drove an 8% intraday drop and regulatory attention. Reasons:</p>
+<ul lang="zh">
+<li>格力多年高分红 (~50% payout), 投资者预期延续</li>
+<li>2017 是高盈利年, 净利同比 +45% — 突然不分红与基本面反差极大</li>
+<li>解释: "为多元化业务 (手机、新能源汽车) 储备资金"— 但市场质疑这些业务的 NPV+ 价值</li>
+<li>本质上是 Jensen 自由现金流问题的<em>显性</em>体现 — 现金被管理层留住, 投资者怀疑被低 NPV 用途消耗</li>
+<li>监管约谈后, 公司紧急调整, 改为高比例分红 + 加强信息披露</li>
+</ul>
+<p lang="en">Multi‑year high payout had set expectations; sudden cut in a profit‑surge year clashed with fundamentals. "Reserve for diversification (mobile, EV)" claim drew skepticism — markets feared Jensen's FCF problem. After regulator pressure, Gree reversed to high payout.</p>
+<p lang="zh"><strong>启示</strong>: 在 A 股, 大幅减分红 = 强烈负面信号。"突然不分红"几乎必引发市场负面反应 + 监管问询。这就是为什么 A 股大量公司选择"稳步小幅增长"分红 — 避免任何变化引发的误解。</p>
+<p lang="en">Lesson: large payout cuts are strong negative signals. Most A‑share firms now favor steady incremental growth to avoid misinterpretation.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">ix</span><div><h4><span lang="zh">信号</span><span lang="en">Signaling</span></h4><p lang="zh">分红 / 回购公告传递管理层信念。减分红是强负面信号。</p><p lang="en">Payout announcements signal managerial beliefs; cuts are strong negative.</p></div></div>
+<div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">代理成本</span><span lang="en">Agency cost</span></h4><p lang="zh">Jensen 自由现金流问题 — 分红约束管理层过度投资。</p><p lang="en">Jensen's FCF problem — payouts discipline management.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> ROE 30% 的公司应高分红还是高留存? 用 Gordon 可持续增长公式分析。</span><span lang="en"><strong>Q1.</strong> ROE 30% firm — high payout or high retention? Analyze via Gordon's $g$.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>理论上</strong>: 若公司能<em>持续</em>把留存利润再投资到 30% ROE 的项目, 则应<em>最大化留存</em> — $g = 30\% \times $ retention 越高越好。这就是早期成长公司 (亚马逊 1997-2010, 腾讯早期等) 的逻辑 — 零分红, 全部再投。</p>
+<p lang="zh"><strong>现实</strong>: 大部分公司无法在"持续大规模"基础上保持 30% ROE。茅台 30% ROE 来自<em>品牌护城河 + 产能地理限制</em> — 留存再投资<em>找不到</em>同等回报项目 (新厂房不能用茅台镇水源, 投资其他业务 ROE 远低于 30%)。所以茅台<em>高分红</em>是<em>正确</em>选择 — 把无用途的钱还给股东, 让股东去找 30% 项目 (即使没那么高 ROE 项目)。</p>
+<p lang="zh"><strong>判断标准</strong>: 看公司是否有<em>边际 ROE = 当前 ROE</em>的<em>规模化</em>扩张机会:</p>
+<ul lang="zh">
+<li>有 (亚马逊早期、腾讯早期) → 零分红, 全留存</li>
+<li>无 (茅台、长江电力) → 高分红, 把钱给股东</li>
+<li>边际 ROE &lt; 当前但仍 &gt; 资本成本 (典型大多数成熟公司) → 中等分红</li>
+</ul>
+<p lang="zh"><strong>A 股错误模式</strong>: 一些高 ROE 公司 (类似茅台模式) 不分红, 把钱投入低 ROE 多元化业务 (例如某些消费品集团涉足房地产、影业) → 系统性<em>毁灭价值</em>。这就是 Jensen 自由现金流问题, Q5 详述。</p>
+<p lang="en">Theoretically high ROE → high retention. Practically depends on whether the firm can scale at current ROE. Moutai's 30% ROE comes from brand+geography — reinvestment finds no equally high‑return project, so high payout is correct. Distinguish: scalable‑opportunity firms (early Amazon, early Tencent) zero payout; non‑scalable high‑ROE firms (Moutai, Yangtze Power) high payout. A‑share trap: high‑ROE consumer firms diversifying into low‑ROE businesses → value destruction.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 同一家公司, 用 100 亿分红 vs 用 100 亿回购 (注销股本) vs 用 100 亿做新项目 — 对股东价值的<em>理论</em>影响 (假设新项目 NPV = 0)?</span><span lang="en"><strong>Q2.</strong> ¥10bn: dividend vs buyback (cancellation) vs new project (NPV=0) — theoretical shareholder value impact?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>在 MM 完美市场假设下, 三者股东价值相同</strong>:</p>
+<ul lang="zh">
+<li><strong>分红</strong>: 公司价值 ↓ 100, 股东获得 100 现金。净价值不变</li>
+<li><strong>回购</strong>: 公司价值 ↓ 100, 股本减少, 每股价值上升; 卖股东获得 100 现金, 留下来的股东持有更高每股价值。净价值不变 (单个股东可选择卖或不卖)</li>
+<li><strong>NPV=0 项目</strong>: 公司支出 100 但获得 PV=100 的资产 — 净价值不变</li>
+</ul>
+<p lang="zh"><strong>偏离 MM 后的差异</strong>:</p>
+<ol lang="zh">
+<li><strong>税</strong>: 分红股东要交税 (中国 0-20% 看持股期); 回购的卖出股东也交资本利得税 (但持有不卖的股东无税务事件) — 长期持股者偏好回购</li>
+<li><strong>信号</strong>: 三者发送不同信号 — 分红 / 回购都是正面 (返还现金), NPV=0 项目可能负面 (帝国建设嫌疑)</li>
+<li><strong>代理</strong>: NPV=0 项目把钱留在管理层手中, 增加帝国建设风险; 分红 / 回购把钱"踢"给股东</li>
+<li><strong>未来灵活性</strong>: 留在公司账上 = 未来选项; 分掉了再融资需要发行成本</li>
+</ol>
+<p lang="zh"><strong>实务建议排序</strong> (在 NPV=0 项目情况下):</p>
+<ul lang="zh">
+<li>分红或回购 &gt; 立项目: 减少 Jensen 风险</li>
+<li>回购 &gt; 分红 (税): 长期股东偏好</li>
+<li>回购 + 注销 &gt; 回购 + 库存股: 永久减少股本承诺更强</li>
+</ul>
+<p lang="en">Under MM: all three identical (firm value drops by 100; shareholders neutral). Real world: dividend triggers tax for shareholder; buyback also triggers gains tax for sellers but not for holders; NPV=0 project keeps cash with management (Jensen risk). Practical ranking: payout &gt; NPV=0 project; buyback &gt; dividend (tax); cancellation &gt; treasury (commitment).</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> "高股息策略"在 A 股长期表现的解释 (例如中证红利指数跑赢沪深 300)? 这是否违反 MM 无关性?</span><span lang="en"><strong>Q3.</strong> Why has "high dividend strategy" outperformed in A‑share long‑run (e.g., CSI Dividend index vs CSI 300)? Does it violate MM?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不违反 MM</strong>: MM 是"<em>给定公司价值</em>, 分红政策无关"。它<em>不</em>是"高分红股票回报必然等于低分红". 高股息组合的超额回报有多种来源:</p>
+<ol lang="zh">
+<li><strong>价值因子</strong>: 高股息股票通常是<em>低估值</em>股票 (低 P/E, 低 P/B)。这与 Fama-French 的 HML 价值因子重叠 — 长期价值股回报高于成长股 (M3 Ch.02)</li>
+<li><strong>盈利质量</strong>: 能持续高分红 = 持续<em>真实现金流</em>。这<em>排除</em>了财务造假 / 应计利润过高的公司 — 隐含了 Beneish/Z-Score 类质量筛选 (Ch.10)</li>
+<li><strong>低杠杆 + 内部资金充裕</strong>: 高分红能维持的公司通常杠杆低、现金流稳。这种"质量"特征 (Quality factor) 在长期跑赢市场</li>
+<li><strong>纪律效应 (Jensen)</strong>: 强制把现金返回股东, 减少代理浪费</li>
+<li><strong>抗周期</strong>: 高分红股票在熊市跌幅<em>更小</em> (defensive), 长期累计回报高 (复利效应)</li>
+</ol>
+<p lang="zh"><strong>A 股具体实证</strong>: 中证红利指数 2010-2023 累计回报 &gt; 沪深 300, 尤其在 2018, 2022, 2023 三个市场下行年明显跑赢。这与<em>红利再投资</em>的复利效应密不可分 — 长期持有高股息股票, 再投资分红, 复合年化回报显著优于"再投资低分红股票"。</p>
+<p lang="zh"><strong>分歧</strong>: 这是<em>因子异常</em>(价值 + 质量) 还是<em>真实风险溢价</em>? 学术界尚未一致。但实务上"高股息策略"是 A 股个人投资者最容易复制的<em>系统性策略</em>之一。</p>
+<p lang="en">No MM violation. MM says payout policy doesn't affect <em>firm value</em>; it doesn't say high‑payout stocks have equal returns. Outperformance comes from: (1) value factor overlap; (2) earnings quality screen (true cash flow); (3) low‑leverage quality; (4) Jensen discipline; (5) downside protection. CSI Dividend has beaten CSI 300 in 2018/2022/2023 down years. Debate: factor anomaly or true premium? Either way it's a robust strategy.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 公司宣布 10 送 10 (送股 100%, 总股本翻倍, 股价机械减半)。理论上股东财富不变, 但 A 股实务中常有股价上涨。解释为什么。</span><span lang="en"><strong>Q4.</strong> 10‑for‑10 stock dividend (share count doubles, price halves mechanically). Wealth unchanged theoretically, but A‑share prices often rise. Why?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>理论</strong>: 送股 = 拆股, 完全不涉及现金, 仅是"会计 + 股数"调整。股东持有股数翻倍 + 股价减半 = 总价值不变。MM 1961 严格预测无影响。</p>
+<p lang="zh"><strong>但实务常见"高送转"行情</strong> (即送股后股价短期上涨):</p>
+<ol lang="zh">
+<li><strong>流动性溢价</strong>: 低价股容易交易, 散户偏好 → 流动性提升 → 估值修复。中国散户主导市场, 这个效应特别强 — 100 元一股 vs 10 元一股, 散户感觉"100 元贵"</li>
+<li><strong>信号</strong>: 管理层愿意高送转 = 对未来盈利有信心 (因为送股后留存收益减少, 若业绩不佳可能引发资本充足问题)。这是<em>正面</em>信号</li>
+<li><strong>心理 / 行为偏差</strong>: 散户"廉价感"偏好 — 同样的市值, 低单价股票被感觉"便宜可买入"。这是 EMH 半强形式异常 (M3 Ch.03)</li>
+<li><strong>注意力效应</strong>: 送股公告本身是公司事件, 吸引新投资者关注</li>
+</ol>
+<p lang="zh"><strong>实证</strong>: A 股 2010-2014 "高送转"行情极强 (送股公告后短期股价涨 10-30%), 2017 后监管收紧 (打击"伪高送转")。现在效应明显弱化。</p>
+<p lang="zh"><strong>对投资者</strong>: 不要因为"高送转"买股票 — 长期看股价回归基本面。但理解这个行为偏差能解释一些短期价格波动。</p>
+<p lang="en">Theoretically zero (just accounting + share count). Real‑world rise: (1) liquidity premium for low‑price stocks (retail‑heavy market); (2) signaling confidence in future earnings; (3) behavioral "cheaper looking"; (4) attention effect. 2010–14 A‑share "high stock dividend" frenzy delivered 10–30% post‑announcement spikes; post‑2017 crackdown weakened this. EMH semi‑strong anomaly. Don't buy on stock dividends — fundamentals dominate long‑run.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 大盈利、低分红、低杠杆、高现金的公司 — 用 Jensen 自由现金流理论分析潜在风险。</span><span lang="en"><strong>Q5.</strong> Highly profitable, low payout, low leverage, high cash. Analyze via Jensen FCF theory.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>Jensen 警告</strong>: 大量自由现金流 + 没有约束 (低杠杆 = 无债权人压力) → 管理层倾向<em>过度投资</em>低 NPV 项目:</p>
+<ul lang="zh">
+<li>不必要的多元化 (跨界进入低 ROE 业务)</li>
+<li>大额并购 (历史 50% 失败率)</li>
+<li>过度 R&amp;D / CapEx (即使 NPV-)</li>
+<li>豪华办公楼 / 总部 (private benefits)</li>
+<li>高薪 / 期权激励对管理层 (剥削股东)</li>
+</ul>
+<p lang="zh"><strong>实际诊断</strong>:</p>
+<ol lang="zh">
+<li><strong>资产周转率</strong>: 大量现金积累会拉低资产周转率 — 资产规模膨胀但销售没同步增长. 看 A 股一些"现金堆"公司, 资产周转率往往 &lt; 0.5</li>
+<li><strong>资本回报率 ROIC</strong>: 闲置现金回报极低 (银行理财 ~3-4%), 大幅拖累 ROIC. 比较 ROIC 与 WACC: 若 ROIC 接近 WACC, 公司在"创造价值"边缘</li>
+<li><strong>并购历史</strong>: 该公司过去 5 年并购了哪些资产? 各自整合表现如何? 大量"商誉膨胀 + 后续减值"模式 = Jensen 问题显化</li>
+<li><strong>管理层薪酬结构</strong>: 是否与 ROE / ROIC 挂钩? 还是只与营收增长挂钩? 后者鼓励帝国建设</li>
+<li><strong>股东结构</strong>: 是否有大股东监督? 散户分散持股 = 管理层权力大</li>
+</ol>
+<p lang="zh"><strong>解决方案</strong>:</p>
+<ul lang="zh">
+<li><strong>主动股东 (activist investors)</strong>: 要求加大分红 / 回购 / 拆分。美国典型, A 股因股权集中 + 散户分散较少出现</li>
+<li><strong>管理层激励改革</strong>: 把 KPI 从营收增长改为 ROIC, EPS, TSR (total shareholder return)</li>
+<li><strong>分红常态化</strong>: 中国证监会 2023+ 推动 "分红常态化", 强制低分红公司提高 payout</li>
+</ul>
+<p lang="zh"><strong>历史 A 股案例</strong>:</p>
+<ul lang="zh">
+<li><strong>苏宁易购</strong>: 历史上高现金 + 大力多元化 (易购、地产、体育、互联网) → 系统性损毁价值 → 暴雷</li>
+<li><strong>海航集团</strong>: 大并购扩张, 内部低效, 最终破产</li>
+<li><strong>反例 — 茅台</strong>: 高现金 + 高分红 + 不乱投资 = 价值守纪律</li>
+</ul>
+<p lang="en">Jensen warning: excess FCF + no debt discipline → over‑investment, bad M&amp;A, empire building, private benefits. Diagnostic: low asset turnover, ROIC near WACC (no value creation), goodwill bloat from poor M&amp;A, compensation tied to revenue (not ROIC), dispersed ownership (low oversight). Solutions: activist pressure, KPI reform (ROIC/TSR), regulator‑mandated payout. A‑share examples: Suning (high cash → bad diversification → collapse), HNA Group. Counter‑example: Moutai (high cash + high payout + no diversification).</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav"><a href="05-capital-structure.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">05 · <span lang="zh">资本结构</span><span lang="en">Cap Structure</span></span></a><a class="next" href="07-working-capital.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">07 · <span lang="zh">营运资本</span><span lang="en">Working Capital</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4><p><span lang="zh">填入 Anthropic API Key (sk-ant-...)。</span><span lang="en">Paste Anthropic API key.</span></p><label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save &amp; start</span></button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

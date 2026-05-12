@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>07 · 营运资本管理 — Working Capital</title>
+  <meta name="keywords" content="working capital, CCC, DIO, DSO, DPO, cash conversion cycle, 营运资本, 现金转换周期, 苏宁, 海尔">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 07</span><span class="sep">·</span><span><span lang="zh">12 分钟</span><span lang="en">12 min</span></span><span class="sep">·</span><span><span lang="zh">前置: M1 Ch.02</span><span lang="en">Prereq: M1 Ch.02</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.08 DuPont</span><span lang="en">Next: Ch.08 DuPont</span></span></div>
+
+<h1><span lang="zh">营运资本管理</span><span lang="en">Working Capital Management</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">营运资本 = 流动资产 − 流动负债, 反映公司"日常运营"被多少钱锁住。<em>现金转换周期 (CCC)</em>把它变成可计量的"天数" — 公司从付出现金到收回现金需要多少天。CCC 上升通常是经营恶化的<em>早期信号</em>, 远早于 NI 转负。</span>
+<span lang="en">Working capital = current assets − current liabilities, capital locked in daily operations. The <em>cash conversion cycle (CCC)</em> measures it in days. Rising CCC is an early warning of deterioration, well before NI turns negative.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能用 DIO + DSO − DPO 公式计算任意公司的 CCC。</li>
+<li lang="zh">能识别"CCC 持续恶化"作为暴雷先兆 (在 NI 还正常时已显现)。</li>
+<li lang="zh">能区分 CCC 改善的两种性质 — 真实经营优化 vs 单纯延迟付款 (供应链压榨)。</li>
+<li lang="en">Compute CCC = DIO + DSO − DPO.</li>
+<li lang="en">Detect CCC deterioration as a leading distress signal.</li>
+<li lang="en">Distinguish genuine operational improvement from supply‑chain squeeze.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">公司日常运营的现金流时间线:</p>
+<p lang="en">Daily operating cash timeline:</p>
+<ol lang="zh">
+<li>买原材料 (或商品) → 付供应商钱 (或欠下应付账款 AP)</li>
+<li>原材料放仓库 → <em>存货 (Inventory)</em></li>
+<li>生产 → 卖出 → 应收账款 (AR)</li>
+<li>客户付款 → 收回现金</li>
+</ol>
+<p lang="en">Buy materials → pay supplier (or AP) → inventory → produce → sell on credit (AR) → collect.</p>
+<p lang="zh"><strong>CCC</strong> = (存货占用天数 DIO) + (应收账款占用天数 DSO) − (应付账款欠付天数 DPO) = 从你<em>付钱给供应商</em>到<em>收到客户钱</em>需要多少天。</p>
+<p lang="en">CCC = DIO + DSO − DPO = days between paying suppliers and collecting from customers.</p>
+<p lang="zh">CCC 高 → 公司被迫"垫资"运营 → 需要更多<em>营运资金</em>支持每元营收 → 资金被锁死, 效率低。CCC 低甚至负 (例如京东、亚马逊、茅台) → 公司用<em>供应商或客户的钱</em>运营自身, 极度高效。</p>
+<p lang="en">High CCC → firm prepays operations → more working capital per ¥ of sales → capital locked, inefficient. Low or negative CCC (JD, Amazon, Moutai) → firm runs on suppliers'/customers' money → extreme efficiency.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<div class="callout callout--formula">
+<div class="eq"><span>$$ \mathrm{DIO} = \frac{\text{平均存货}}{\text{COGS}} \times 365 $$</span><span class="num">(7.1)</span></div>
+<div class="eq"><span>$$ \mathrm{DSO} = \frac{\text{平均应收账款}}{\text{营收}} \times 365 $$</span><span class="num">(7.2)</span></div>
+<div class="eq"><span>$$ \mathrm{DPO} = \frac{\text{平均应付账款}}{\text{COGS}} \times 365 $$</span><span class="num">(7.3)</span></div>
+<div class="eq"><span>$$ \mathrm{CCC} = \mathrm{DIO} + \mathrm{DSO} - \mathrm{DPO} $$</span><span class="num">(7.4)</span></div>
+<p lang="zh">用 365 天年化得到"天数"口径。也可用季度 (×90) 或月 (×30) 频率, 用同期口径数据。</p>
+<p lang="en">Annualize at 365. Quarterly/monthly use 90/30.</p>
+</div>
+
+<h3 lang="zh">CCC 的解读维度</h3>
+<h3 lang="en">CCC interpretation axes</h3>
+<table>
+<thead><tr><th>CCC</th><th><span lang="zh">含义</span><span lang="en">Meaning</span></th><th><span lang="zh">例子</span><span lang="en">Example</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">负</span><span lang="en">Negative</span></td><td><span lang="zh">用别人的钱运营 (Amazon 模式 / 茅台经销商预付)</span><span lang="en">Operating on others' cash</span></td><td>Amazon, JD, <span lang="zh">茅台</span><span lang="en">Moutai</span></td></tr>
+<tr><td>0-30 <span lang="zh">天</span><span lang="en">days</span></td><td><span lang="zh">优秀效率, 资金占用极少</span><span lang="en">Excellent</span></td><td><span lang="zh">海尔智家</span><span lang="en">Haier Smart Home</span></td></tr>
+<tr><td>30-90</td><td><span lang="zh">行业平均</span><span lang="en">Industry average</span></td><td><span lang="zh">多数制造业</span><span lang="en">Most manufacturers</span></td></tr>
+<tr><td>90-180</td><td><span lang="zh">资金占用大, 警惕</span><span lang="en">High lock‑up, watch</span></td><td><span lang="zh">重资产 + 长周期项目</span><span lang="en">Heavy/long‑cycle</span></td></tr>
+<tr><td>&gt; 180</td><td><span lang="zh">异常高, 检查是否经营恶化或行业特殊 (例如基建)</span><span lang="en">Anomalous; check distress or sector</span></td><td><span lang="zh">建筑、船舶制造</span><span lang="en">Construction, shipbuilding</span></td></tr>
+</tbody>
+</table>
+
+<h3 lang="zh">营运资本资金需求</h3>
+<h3 lang="en">Working capital funding need</h3>
+<div class="eq"><span>$$ \mathrm{NWC} = \mathrm{AR} + \mathrm{Inv} - \mathrm{AP} \approx \frac{\mathrm{CCC}}{365} \times \mathrm{Revenue} $$</span><span class="num">(7.5)</span></div>
+<p lang="zh">CCC = 90 天, 营收 1,000 亿 → 需 ~250 亿营运资本支持。CCC 减 10 天 → 释放 ~27 亿现金。这就是"提升运营效率"的财务价值。</p>
+<p lang="en">CCC 90, revenue ¥100bn → ~¥25bn working capital. Cutting 10 days frees ~¥2.7bn cash.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker">SH·600690</span><span class="company"><span lang="zh">海尔智家 — CCC 优等生</span><span lang="en">Haier Smart Home — top student</span></span></div>
+<p lang="zh">海尔 2023 近似: DIO ~50, DSO ~30, DPO ~75 → CCC ≈ 5 天。意味着公司几乎只需"5 天的销售额"作为营运资本 — 极度高效。</p>
+<p lang="en">Haier 2023: DIO ~50, DSO ~30, DPO ~75 → CCC ≈ 5 days. Near zero working capital lock‑up.</p>
+<p lang="zh"><strong>CCC 低的来源</strong>:</p>
+<ul lang="zh">
+<li>家电行业供应链议价权强 (大品牌 vs 分散小供应商) → DPO 高</li>
+<li>线上渠道 + 经销商体系成熟 → AR 收款快</li>
+<li>SKU 管理优秀, 存货周转高 → DIO 低</li>
+</ul>
+<p lang="en">Strong supplier bargaining, fast AR via online + dealer network, efficient SKU turnover.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head"><span class="ticker">SZ·002024</span><span class="company"><span lang="zh">苏宁易购 — CCC 暴雷先兆</span><span lang="en">Suning — CCC as distress signal</span></span></div>
+<p lang="zh">苏宁 2015-2020 CCC 趋势:</p>
+<p lang="en">Suning 2015–20 CCC trajectory:</p>
+<div class="case-table"><table><thead><tr><th><span lang="zh">年份</span><span lang="en">Year</span></th><th class="num">DIO</th><th class="num">DSO</th><th class="num">DPO</th><th class="num">CCC</th></tr></thead><tbody>
+<tr><td>2015</td><td class="num">~55</td><td class="num">~10</td><td class="num">~85</td><td class="num up">~−20</td></tr>
+<tr><td>2017</td><td class="num">~60</td><td class="num">~20</td><td class="num">~70</td><td class="num">~10</td></tr>
+<tr><td>2019</td><td class="num">~70</td><td class="num">~35</td><td class="num">~60</td><td class="num down">~45</td></tr>
+<tr><td>2020</td><td class="num">~90</td><td class="num">~50</td><td class="num">~50</td><td class="num down">~90</td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>读图</strong>:</p>
+<ul lang="zh">
+<li>2015 CCC −20 — 极度高效, 看似行业领先</li>
+<li>2017 起 DIO + DSO 同时上升, DPO 下降 (供应商不再给宽松账期) → CCC 转正且加速恶化</li>
+<li>2020 CCC 已达 90 天, 资金压力指数级上升</li>
+<li>这<em>早于</em> NI 转负 (2020 才首次大幅亏损), 早于股价崩塌 (2021)</li>
+</ul>
+<p lang="en">CCC reversed from −20 (2015) to +90 (2020). DIO/DSO rising + DPO falling — all signals point to deterioration. NI didn't turn negative until 2020; stock collapse 2021. CCC was 4+ years ahead.</p>
+<p lang="zh"><strong>启示</strong>: 监控 CCC 趋势, 远比看单一年净利更敏感. 任何持续 3 年 CCC 上升超 20 天的零售 / 制造业公司, 都应深入调查。</p>
+<p lang="en">CCC trend monitoring is far more sensitive than annual NI. Any 3+ years of CCC rising &gt; 20 days in retail/manufacturing deserves deep dive.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">时间价值</span><span lang="en">Time value</span></h4><p lang="zh">CCC = 资金被锁在 operation 中的天数 → 通过时间价值转换为"机会成本"</p><p lang="en">CCC = days locked → opportunity cost via time value.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> A 公司 CCC 从 80 天降到 50 天, 看似改善。但同期应付账款占供应商收入比例从 20% 升到 35%。这是真正改善还是"供应链压榨"? 区分两种情况的诊断方法。</span><span lang="en"><strong>Q1.</strong> CCC drops 80 → 50, but firm's AP/supplier revenue rises 20% → 35%. Genuine improvement or supplier squeeze?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>可能是供应链压榨</strong>: CCC 改善 30 天主要来自 DPO 上升 (延迟付供应商)。短期看公司现金流改善, 但<em>不可持续</em>:</p>
+<ul lang="zh">
+<li>供应商现金压力上升 → 提高产品价格 / 减少账期 / 选择别的客户</li>
+<li>若供应商集中度高, 一两家供应商断供会击垮公司</li>
+<li>反复"压榨"会损害长期供应链稳定性 — 价格上升 + 质量下降 + 创新协作减少</li>
+</ul>
+<p lang="zh"><strong>诊断方法</strong>:</p>
+<ol lang="zh">
+<li><strong>CCC 分解</strong>: 若改善主要来自 DPO ↑ (而非 DIO ↓ 或 DSO ↓) → 警惕</li>
+<li><strong>供应商集中度</strong>: 看附注前 5 大供应商占比, 高集中 + 高 AP 占比 = 危险</li>
+<li><strong>毛利率趋势</strong>: 若 CCC 改善但毛利率持续下降 → 供应商在提价, 公司 only 通过"晚付"获得短期缓冲</li>
+<li><strong>跟踪供应商财务状况</strong>: 若主要供应商 ROE / 现金状况恶化, 它们终将反击</li>
+</ol>
+<p lang="zh"><strong>真正改善 vs 压榨的区别</strong>: 真正改善通过 DIO/DSO 优化 (产销协同更好); 压榨通过 DPO 延伸 (拿别人的钱)。从财务角度可能短期看不出差别, 但长期稳定性截然不同。</p>
+<p lang="en">Likely squeeze: CCC drop driven by DPO rise. Short‑term cash gain, long‑term unsustainable (suppliers raise prices, cut terms, defect). Diagnostics: decompose CCC source; check supplier concentration; track margin (rising AP + falling margin = supplier squeeze); monitor key supplier financials. Genuine improvement comes from DIO/DSO optimization (sales‑production sync), not DPO extension.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 茅台 CCC 显著为负 (经销商预付货款 + 应付账款拖延)。这种"用别人钱运营"的优势如何转化为估值? 与 ROE 30% 有什么关系?</span><span lang="en"><strong>Q2.</strong> Moutai's CCC is sharply negative. How does this translate to valuation? Relation to 30% ROE?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>负 CCC 的来源</strong>: 茅台经销商<em>必须提前打款</em>才能拿到货 (品牌护城河 + 供不应求)。"合同负债"(经销商预付) 长期保持在数百亿规模, 远超应收 + 存货。等于<em>经销商免费给公司提供运营资金</em>。</p>
+<p lang="zh"><strong>对 ROE 30% 的贡献</strong>:</p>
+<ol lang="zh">
+<li><strong>资产周转率</strong>: 负 CCC 让茅台几乎不需要营运资本, 资产周转高 → ROE 分解中 (DuPont) 这一项贡献大</li>
+<li><strong>资本占用低</strong>: 公司只需投入"固定资产 + 少量营运"运营, 大量利润可分红 → 高 ROE 不依赖于持续融资</li>
+<li><strong>风险低</strong>: 无营运资本压力 = 无信用风险 = 杠杆需求低 = 财务弹性极强</li>
+</ol>
+<p lang="zh"><strong>估值含义</strong>: 负 CCC 是<em>护城河</em>的财务体现 — 议价权强到经销商愿意提前付钱。这种公司的内在价值远高于"账面 ROE 30%"所暗示, 因为它的 ROE 还<em>不可持续放大</em> (不必为扩张筹资, 自然增长)。M3 Ch.07 价值投资框架详述。</p>
+<p lang="zh"><strong>反向</strong>: 经营恶化的早期信号之一就是合同负债下降 (经销商不愿提前付款) + CCC 转正。这是判断"护城河完好"的一个微观指标。</p>
+<p lang="en">Negative CCC = distributors prepay (brand moat + scarcity). They effectively fund Moutai's operations for free. Contributes to 30% ROE via high asset turnover, low capital intensity, no leverage need. Valuation implication: negative CCC is a moat's financial signature — distributors prefer to prepay. Reverse: contract liability decline + CCC turning positive is an early moat‑erosion signal. M3 Ch.07 develops the value framework.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 房地产开发商 CCC 通常如何? 为什么这个行业的"营运资本"概念与制造业不同?</span><span lang="en"><strong>Q3.</strong> Real estate developer CCC? Why does "working capital" concept differ from manufacturing?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>房地产 CCC 表面特征</strong>: 极低甚至负 (预售模式让客户先付款) + DIO 极高 (存货=开发产品, 项目 2-3 年才完工)。</p>
+<p lang="zh"><strong>实际本质</strong>: 这不是真的"高效", 而是行业特殊性 — 房子<em>本身就是营运资本 + 资本性资产的混合</em>。会计上"存货"(开发产品), 实际上是<em>需要 2-3 年才能交付的高值固定资产</em>。</p>
+<p lang="zh"><strong>问题</strong>:</p>
+<ul lang="zh">
+<li>"合同负债"(预收购房款) 看似负债, 实际上对应"未来交房义务", 是<em>非现金的</em> "obligation in kind"</li>
+<li>客户预付的钱<em>不</em>能任意使用 (政策要求专户监管), 但实务中多家公司挪用</li>
+<li>CCC 短期看是负的, 但<em>长期</em>有交房义务 — 一旦销售放缓, 现金流入崩塌, 但交房义务仍存在 (恒大模式)</li>
+</ul>
+<p lang="zh"><strong>正确指标</strong>: 房地产用 CCC 几乎无意义。改用:</p>
+<ul lang="zh">
+<li>"已售未结算"金额 / 营业收入 (未来收入储备)</li>
+<li>"合同负债" 与"短期借款"对比 (流动性压力)</li>
+<li>"开发产品" 周转率 (项目周期效率)</li>
+<li>"已结算毛利率"vs"未结算毛利率"(销售质量趋势)</li>
+</ul>
+<p lang="zh"><strong>结论</strong>: 不同行业的"营运资本"概念有<em>本质</em>差异。CCC 公式机械套用到房地产 / 银行 / 长周期合同行业会得出错误结论。读财报必须知道行业特性。</p>
+<p lang="en">Real estate CCC superficially looks great (negative due to presales + huge DIO). But "inventory" = development products, really a 2–3y deferred capital asset. Contract liabilities = future delivery obligations, not free cash. CCC misleads. Use: presold‑unsettled revenue, contract liab vs ST debt (liquidity stress), development product turnover, settled vs unsettled gross margin. Industry character must be understood — mechanically applying CCC to real estate / banks / long‑cycle contracting gives wrong conclusions.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav"><a href="06-dividend.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">06 · <span lang="zh">股利</span><span lang="en">Dividends</span></span></a><a class="next" href="08-dupont.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">08 · DuPont <span lang="zh">分解</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4><p><span lang="zh">填入 Anthropic API Key。</span><span lang="en">Paste API key.</span></p><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save><span lang="zh">保存</span><span lang="en">Save</span></button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset><span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

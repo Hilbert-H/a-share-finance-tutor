@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>03 · WACC 与 MM 定理 — WACC &amp; Modigliani-Miller</title>
+  <meta name="keywords" content="WACC, Modigliani-Miller, MM theorem, tax shield, Hamada, weighted average cost of capital, 资本成本, 海康威视, 002415, 招商银行, 600036, 万科, 000002, 贵州茅台, 600519">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module II · 03</span><span class="sep">·</span>
+        <span><span lang="zh">18 分钟</span><span lang="en">18 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01, Ch.02</span><span lang="en">Prereq: Ch.01, Ch.02</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.04 资本预算</span><span lang="en">Next: Ch.04 Capital Budgeting</span></span>
+      </div>
+
+      <h1><span lang="zh">WACC 与 MM 定理</span><span lang="en">WACC &amp; Modigliani‑Miller</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">WACC 是公司财务里<em>使用频率最高</em>的数字 — 也是<em>最容易算错</em>的。它的代数定义很简单, 但每个输入 (E、D、$r_e$、$r_d$、税率) 都有微妙的陷阱。本章先用 MM 定理推导<em>资本结构的中性参照</em>, 再说明现实世界为何偏离 — 这是理解 WACC 与杠杆决策的完整框架。</span>
+        <span lang="en">WACC is the most commonly used number in corporate finance — and the most commonly miscomputed. The formula is simple, but each input hides subtleties. This chapter derives the MM neutral baseline first, then explains real‑world deviations — the complete framework for WACC and leverage decisions.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能写出 WACC 公式并解释每个输入应该如何取值 (市值 vs 账面, 税前 vs 税后 $r_d$ 等)。</li>
+          <li lang="zh">能推导 MM Proposition I &amp; II (无税 + 含税), 知道每条假设的现实意义。</li>
+          <li lang="zh">能用 Hamada 公式做 β 去杠杆 / 重杠杆化, 用于跨公司估值。</li>
+          <li lang="zh">能解释为什么银行的 WACC 几乎等于股权成本 $r_e$ (而非如制造业那样显著低于 $r_e$)。</li>
+          <li lang="en">Compute WACC and avoid input traps (market vs book value, pre/after‑tax $r_d$).</li>
+          <li lang="en">Derive MM I &amp; II (with and without tax); know each assumption's real‑world meaning.</li>
+          <li lang="en">Apply Hamada for unlevering / relevering β.</li>
+          <li lang="en">Explain why bank WACC ≈ $r_e$ (vs. clearly lower for manufacturing).</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+
+        <p lang="zh">一家公司从两类资金来源获得钱: <em>股东</em>提供的权益 $E$, 和<em>债权人</em>提供的负债 $D$。每一种资金都有<em>对应的</em>回报要求 — 股东要 $r_e$, 债权人要 $r_d$。公司的<em>加权平均成本</em>(WACC) 就是这两个成本按规模加权:</p>
+        <p lang="en">A firm gets capital from two sources: equity $E$ from shareholders ($r_e$), debt $D$ from creditors ($r_d$). The <em>weighted average cost</em> blends them:</p>
+        <div class="eq"><span>$$ \mathrm{WACC} = \frac{E}{V} r_e + \frac{D}{V} r_d (1-t) $$</span><span class="num">—</span></div>
+        <p lang="zh">其中 $V = E + D$ 是公司总价值, $t$ 是企业所得税率。注意债务成本要乘 $(1-t)$ — 这是<em>税盾</em>(tax shield) 的体现, 因为利息可在税前扣除, 实际给债权人 $r_d$ 但只"花掉" $r_d(1-t)$。</p>
+        <p lang="en">$V = E + D$, $t$ is the corporate tax rate. Debt cost gets multiplied by $(1-t)$ — the <em>tax shield</em>, because interest is tax‑deductible: the firm pays creditors $r_d$ but the after‑tax cost is $r_d(1-t)$.</p>
+
+        <h3 lang="zh">为什么 WACC 是<em>折现率</em>?</h3>
+        <h3 lang="en">Why WACC is the discount rate</h3>
+        <p lang="zh">公司投资一个新项目, 用的就是这两类资金。如果项目给股东和债权人的收益<em>低于</em>他们要求的 $r_e$ 和 $r_d$, 资金提供方就会去别处。WACC 就是项目必须超过的<em>最低门槛</em>(hurdle rate) — 这是机会成本 (Ch.01) 在公司层面的具体实现。</p>
+        <p lang="en">A new project uses both kinds of capital. If it returns less than $r_e$ and $r_d$, capital providers will go elsewhere. WACC is the firm‑level <em>hurdle rate</em> — the operationalization of opportunity cost.</p>
+
+        <h3 lang="zh">为什么资本结构问题<em>看起来</em>没意义?</h3>
+        <h3 lang="en">Why capital structure <em>seems</em> not to matter</h3>
+        <p lang="zh">Modigliani-Miller (MM 1958) 的洞察: 一家公司创造的总现金流不依赖于它如何切分给股东和债权人。<em>切割同一块蛋糕的方式不改变蛋糕大小</em>。如果你能任意调整 E/D, 公司价值 $V$ 应当<em>不变</em>。</p>
+        <p lang="en">MM (1958) insight: total cash flow doesn't depend on how the pie is sliced. The way you cut the pie doesn't change its size. If you can freely adjust $E/D$, firm value $V$ should be <em>unchanged</em>.</p>
+        <p lang="zh">这就是 MM Proposition I (无税): $V_{\text{levered}} = V_{\text{unlevered}}$。背后是<em>无套利</em>论证 — 如果两家相同公司一家用债一家用权益融资, 而价值不等, 投资者可以买便宜的、卖贵的, 自己造一个等价头寸 (用 personal leverage), 套利消除差异。</p>
+        <p lang="en">MM I (no tax): $V_L = V_U$. Underlying logic is no‑arbitrage — if two identical firms with different capital structures had different values, an investor could buy the cheap one and sell the expensive one, replicating the leverage via personal borrowing.</p>
+
+        <h3 lang="zh">现实为什么<em>偏离</em> MM?</h3>
+        <h3 lang="en">Why reality deviates</h3>
+        <ol lang="zh">
+          <li><strong>税收</strong>: 利息税前扣除产生税盾 — 偏好债务。MM 含税版本 (1963): $V_L = V_U + tD$, 全杠杆最优。</li>
+          <li><strong>财务困境成本</strong>: 高杠杆 → 破产概率上升 → 直接成本 (诉讼、清算) + 间接成本 (供应商收紧、客户流失、人才离开)。这抵消税盾, 产生<em>内部最优杠杆</em>。</li>
+          <li><strong>信息不对称</strong>: 管理层比外部投资者更了解公司。发行<em>权益</em>被市场解读为"管理层认为股价偏高"信号 → 股价下跌。结果: 公司偏好<em>内部留存 → 债务 → 权益</em>这一融资顺序 (Myers 1984 pecking order)。</li>
+          <li><strong>代理成本</strong>: 股东 vs 债权人冲突 (资产替代、债务积压); 管理层 vs 股东冲突 (过度投资、private benefits)。</li>
+        </ol>
+        <ol lang="en">
+          <li><strong>Taxes:</strong> interest tax shield favors debt. MM with tax: $V_L = V_U + tD$ → max leverage optimal.</li>
+          <li><strong>Distress costs:</strong> bankruptcy probability rises with leverage; direct (legal, liquidation) + indirect (supplier tightening, customer loss, talent flight). Offsets tax shield → interior optimum.</li>
+          <li><strong>Information asymmetry:</strong> equity issuance signals "management thinks shares overpriced" → price drops. Pecking order: internal → debt → equity (Myers 1984).</li>
+          <li><strong>Agency costs:</strong> shareholder–creditor conflicts (asset substitution, debt overhang); manager–shareholder (overinvestment, private benefits).</li>
+        </ol>
+        <p lang="zh">把这些放到一起就是<em>权衡理论</em>(trade-off theory): 最优杠杆在<em>税盾边际收益</em> $=$ <em>困境成本边际损失</em>处。每个行业、每家公司的最优点不同。</p>
+        <p lang="en">Combined: <em>trade‑off theory</em> — optimum where marginal tax shield = marginal distress cost. Industry‑ and firm‑specific.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <h3 lang="zh">① WACC 完整定义</h3>
+        <h3 lang="en">① WACC formal</h3>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{WACC} = \frac{E}{V} r_e + \frac{D}{V} r_d (1-t) $$</span><span class="num">(3.1)</span></div>
+          <p lang="zh">输入取值的<em>实战规则</em>:</p>
+          <ul lang="zh">
+            <li><strong>$E$, $D$</strong>: 用<em>市值</em>, 不是账面值。账面 E 反映历史成本; 市值 E = 股本 × 当前股价。账面 D 一般接近市值 (普通贷款), 但债券需按市价。</li>
+            <li><strong>$r_e$</strong>: CAPM 估算 (Ch.02) 或 Gordon 反推。一般 6-15%。</li>
+            <li><strong>$r_d$</strong>: 公司当前可借<em>新债</em>的利率, 不是历史平均利率。看最近发行的债券 YTM 或同评级新债利率。</li>
+            <li><strong>$t$</strong>: <em>边际</em>税率, 不是有效税率。中国法定 25%, 高新技术 15%, 实际有效率因优惠存在差异。</li>
+            <li><strong>权重</strong>: 用<em>目标</em>资本结构 (公司长期想达到的 D/E), 不是当前的。短期 D/E 波动不应频繁更改 WACC。</li>
+          </ul>
+          <p lang="en">Use market values for $E$ and $D$, not book. $r_e$ from CAPM/Gordon. $r_d$ at current marginal borrowing rate, not historical. $t$ marginal corporate rate. Weights at target structure, not spot.</p>
+        </div>
+
+        <h3 lang="zh">② MM Proposition I (无税)</h3>
+        <h3 lang="en">② MM I (no tax)</h3>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ V_L = V_U $$</span><span class="num">(3.2)</span></div>
+          <p lang="zh">假设 (无税, 无破产成本, 无信息不对称, 完美市场):</p>
+          <ul lang="zh">
+            <li>公司总价值 $V$ <em>不依赖</em>资本结构</li>
+            <li>WACC 是常数, 与 $D/E$ 无关</li>
+          </ul>
+          <p lang="en">Under no‑tax, no‑distress, no‑asymmetry: firm value $V$ doesn't depend on capital structure; WACC is constant.</p>
+        </div>
+
+        <h3 lang="zh">③ MM Proposition II (无税)</h3>
+        <h3 lang="en">③ MM II (no tax)</h3>
+
+        <p lang="zh">从 WACC 公式 (3.1) 代入 $V_L = V_U$ 重排:</p>
+        <p lang="en">Rearranging WACC under $V_L = V_U$:</p>
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ r_e = r_a + (r_a - r_d) \frac{D}{E} $$</span><span class="num">(3.3)</span></div>
+          <p lang="zh">$r_a$ 是<em>资产成本</em>(asset cost / unlevered cost), 等于 WACC (无税情况下)。公式说: 加杠杆 → 股权风险增加 → $r_e$ 线性上升, 斜率 $(r_a - r_d)$。</p>
+          <p lang="en">$r_a$ = asset (unlevered) cost = WACC under no tax. Adding leverage → equity riskier → $r_e$ rises linearly with $D/E$.</p>
+        </div>
+
+        <h3 lang="zh">④ MM 含税版本 (1963)</h3>
+        <h3 lang="en">④ MM with tax (1963)</h3>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ V_L = V_U + tD $$</span><span class="num">(3.4)</span></div>
+          <p lang="zh">税盾的 PV = $tD$ (利息税盾 = $tr_d D$ 每年, 折现为永续年金 $\frac{t r_d D}{r_d} = tD$)。结论: <em>杠杆越高, 公司价值越大</em>, 全杠杆理论最优。</p>
+          <p lang="en">Tax shield PV = $tD$ (annual shield $t r_d D$ discounted as a perpetuity at $r_d$). Implication: maximum leverage is optimal.</p>
+        </div>
+
+        <p lang="zh">对应的股权成本:</p>
+        <p lang="en">Corresponding cost of equity:</p>
+        <div class="eq"><span>$$ r_e = r_a + (r_a - r_d)(1-t)\frac{D}{E} $$</span><span class="num">(3.5)</span></div>
+
+        <p lang="zh"><strong>现实的反驳</strong>: 如果 MM 含税成立, 所有公司都应当 90%+ 杠杆。事实上没有 — 因为还有<em>非 MM 假设</em>的因素 (困境成本、信息不对称、代理成本)。Trade-off 理论补足:</p>
+        <p lang="en"><strong>Real‑world rebuttal:</strong> if MM with tax held, all firms would be 90%+ leveraged — they're not, because of distress costs, asymmetry, agency. Trade‑off theory:</p>
+        <div class="eq"><span>$$ V_L = V_U + tD - \mathrm{PV(distress)} - \mathrm{PV(agency)} - \mathrm{PV(asymmetry)} $$</span><span class="num">(3.6)</span></div>
+
+        <h3 lang="zh">⑤ Hamada — β 的去/重杠杆</h3>
+        <h3 lang="en">⑤ Hamada — un/relevering β</h3>
+
+        <p lang="zh">从带杠杆的 $\beta_L$ 反推资产 $\beta_U$ (用于跨公司比较):</p>
+        <p lang="en">From levered $\beta_L$ to unlevered $\beta_U$ (for cross‑firm comparison):</p>
+        <div class="eq"><span>$$ \beta_U = \frac{\beta_L}{1 + (1-t)\frac{D}{E}} $$</span><span class="num">(3.7)</span></div>
+        <p lang="zh">从 $\beta_U$ 重新杠杆化到目标公司 D/E:</p>
+        <p lang="en">Relever to target $D/E$:</p>
+        <div class="eq"><span>$$ \beta_L = \beta_U \left[1 + (1-t)\frac{D}{E}\right] $$</span><span class="num">(3.8)</span></div>
+        <p lang="zh">用法: 想估算新上市公司的 β, 没有足够历史数据 → 取同行业可比公司的 $\beta_L$, 用 (3.7) 去杠杆 → 取均值得行业 $\beta_U$ → 用 (3.8) 按目标公司 D/E 重新杠杆 → 得 target $\beta_L$。</p>
+        <p lang="en">Use case: estimate β for a newly listed firm without history. Take peer $\beta_L$, unlever each via (3.7), average to industry $\beta_U$, then relever via (3.8) at target firm's $D/E$.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·002415</span>
+            <span class="company"><span lang="zh">海康威视</span><span lang="en">Hikvision</span></span>
+            <span class="period">FY2023 · <span lang="zh">中等杠杆 WACC 估算</span><span lang="en">WACC estimation</span></span>
+          </div>
+          <p lang="zh">近似输入:</p>
+          <p lang="en">Approximate inputs:</p>
+          <ul lang="zh">
+            <li>市值 $E \approx 3{,}000$ 亿 (2023 末)</li>
+            <li>有息债务 $D \approx 300$ 亿</li>
+            <li>权重: $E/V = 0.91$, $D/V = 0.09$</li>
+            <li>$r_e$: β ≈ 1.0, $r_f$ = 2.5%, ERP = 6% → $r_e = 2.5 + 1.0 \times 6 = 8.5\%$</li>
+            <li>$r_d$: 公司新发债 / 银行借款利率 ~3.5%</li>
+            <li>$t$: 高新技术企业 15%</li>
+          </ul>
+          <div class="eq"><span>$$ \mathrm{WACC} = 0.91 \times 8.5\% + 0.09 \times 3.5\% \times (1-0.15) \approx 7.74\% + 0.27\% \approx 8.0\% $$</span><span class="num">—</span></div>
+          <p lang="zh"><strong>读图</strong>: 海康 WACC ~8%。这反映:</p>
+          <ul lang="zh">
+            <li>低杠杆 (9%), 税盾贡献小 (~0.3%)</li>
+            <li>WACC 几乎等于 $r_e$ (8.5%) — 因为权益主导</li>
+            <li>用此 WACC 评估新项目: 项目预期 IRR &lt; 8% 时拒绝</li>
+            <li>但<em>不同业务线</em>风险不同 — 物联网新业务可能用 12% 折现, 传统视频监控用 8%</li>
+          </ul>
+          <p lang="en">Hikvision WACC ~8%. Low leverage (9%) means tax shield contribution is tiny (~0.3%); WACC ≈ $r_e$ because equity dominates. New IoT business should use a higher discount rate than core surveillance.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600036</span>
+            <span class="company"><span lang="zh">招商银行</span><span lang="en">China Merchants Bank</span></span>
+            <span class="period">FY2023 · <span lang="zh">银行业的 WACC 特殊性</span><span lang="en">Bank WACC quirk</span></span>
+          </div>
+          <p lang="zh">银行业的杠杆<em>结构</em>与制造业完全不同:</p>
+          <p lang="en">Bank capital structure is fundamentally different from manufacturing:</p>
+          <ul lang="zh">
+            <li><strong>负债端的"债"是<em>存款 + 央行借款 + 同业拆借</em></strong>, 这些不是"为融资项目而借的债", 而是<em>业务运营本身</em>(银行的产品就是存款 + 贷款的利差)</li>
+            <li><strong>真正的资本</strong>是<em>核心一级资本 (CET1)</em> + 其他一级资本 (AT1) + 二级资本 — 总资本仅占总资产 10-15%</li>
+            <li>巴塞尔 III 监管要求 CET1 ≥ 10.5% (含资本缓冲)</li>
+          </ul>
+          <p lang="en">Bank "debt" (deposits, interbank, central bank) <em>is</em> the business (lending earns the spread). "True" capital = CET1 + AT1 + T2, only 10–15% of assets. Basel III requires CET1 ≥ 10.5%.</p>
+          <p lang="zh"><strong>对 WACC 的影响</strong>:</p>
+          <ul lang="zh">
+            <li>若用<em>整体 D/E</em> 算 WACC, D/E ≈ 12 → WACC 极低, 几乎等于存款利率 → <em>无意义</em></li>
+            <li>正确做法: 只看<em>资本</em>(CET1 + AT1 + T2) 的成本, 不算入存款。资本的"权重"由监管资本结构决定</li>
+            <li>近似: 招行 WACC ≈ CET1 加权的 $r_e$ + AT1/T2 的成本 ≈ 9-11% — 几乎等于 $r_e$</li>
+          </ul>
+          <p lang="en">If you compute WACC on total D/E ≈ 12, you'd get a meaningless near‑deposit‑rate. Correct: only count capital (CET1 + AT1 + T2). CMB's WACC ≈ 9–11%, ≈ $r_e$.</p>
+          <p lang="zh"><strong>启示</strong>: 估值银行用 FCFE (股权自由现金流) 直接折现, 而不是 FCFF / WACC。因为 FCFE 直接对应股东视角的现金, 跳过"债务也是业务"的概念混乱。M3 Ch.05 详述。</p>
+          <p lang="en">Implication: value banks with FCFE (equity FCF) discounted at $r_e$, not FCFF/WACC. Skips the conceptual confusion of "deposits are also the business." M3 Ch.05 develops.</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600036" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600036 →</span><span lang="en">Cninfo 600036 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">对照</span><span lang="en">Contrast</span></span>
+            <span class="company"><span lang="zh">万科 vs 茅台 — 极端杠杆对比</span><span lang="en">Vanke vs Moutai — leverage extremes</span></span>
+            <span class="period"><span lang="zh">税盾价值 + 困境成本权衡</span><span lang="en">Tax shield vs distress tradeoff</span></span>
+          </div>
+          <div class="case-table">
+            <table>
+              <thead><tr><th></th><th><span lang="zh">万科 A 000002 (2023)</span><span lang="en">Vanke 000002 (2023)</span></th><th><span lang="zh">贵州茅台 600519 (2023)</span><span lang="en">Moutai 600519 (2023)</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">总资产 (亿)</span><span lang="en">Total assets</span></td><td class="num">~17,500</td><td class="num">~2,820</td></tr>
+                <tr><td><span lang="zh">总负债</span><span lang="en">Total liab.</span></td><td class="num">~13,600</td><td class="num">~484</td></tr>
+                <tr><td>D/A</td><td class="num down">~78%</td><td class="num up">~17%</td></tr>
+                <tr><td><span lang="zh">有息债</span><span lang="en">Interest‑bearing</span></td><td class="num">~3,600</td><td class="num">~5</td></tr>
+                <tr><td>D/E (<span lang="zh">市值</span><span lang="en">market</span>)</td><td class="num">~3.0</td><td class="num">~0.002</td></tr>
+                <tr><td><span lang="zh">税盾年值 ($t r_d D$)</span><span lang="en">Annual shield</span></td><td class="num">~30 <span lang="zh">亿</span><span lang="en">bn</span></td><td class="num">~0.05</td></tr>
+                <tr><td><span lang="zh">税盾 PV / 公司价值</span><span lang="en">Shield PV / firm value</span></td><td class="num">~8%</td><td class="num">~0.005%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p lang="zh"><strong>分析</strong>:</p>
+          <ul lang="zh">
+            <li><strong>万科</strong>: 高杠杆带来年税盾 ~30 亿, PV 占公司价值约 8%。但与此同时, 房地产行业 2021+ 的下行让万科<em>实际遭遇困境成本</em> (信用利差扩大 + 销售下滑 + 资本市场态度恶化 + 信任度损失)。困境成本的 PV 可能<em>远超</em>税盾价值, 即使没有破产, 也"事实上"在亏损。</li>
+            <li><strong>茅台</strong>: 几乎零杠杆。从 MM 含税角度看, "放弃了 50-100 亿的潜在税盾 PV"; 但茅台<em>选择放弃</em> — 因为业务无需杠杆 (高利润率自动产生现金), 不让自己暴露于任何困境风险, 也不放管理层"杠杆 ego"的口子。</li>
+          </ul>
+          <p lang="zh"><strong>结论</strong>: 同一国家、同一时期, 两家公司的最优 D/E 完全不同, 取决于:</p>
+          <ol lang="zh">
+            <li>行业特性 (周期性 vs 防御性 → 困境成本不同)</li>
+            <li>盈利能力 (高 ROIC → 自身能产生足够资本, 无需举债)</li>
+            <li>资产可抵押性 (房地产高 vs 品牌资产低 → 借贷能力不同)</li>
+            <li>管理层风格 (扩张型 vs 保守型)</li>
+          </ol>
+          <p lang="en"><strong>Vanke vs Moutai:</strong> Vanke's high leverage produces ~¥3bn/year tax shield (8% of firm value PV), but the 2021+ real estate downturn imposed real distress costs (credit‑spread widening, sales slump, capital‑market sentiment, trust loss) — likely far exceeding the tax shield. Moutai's near‑zero leverage "wastes" ~¥5–10bn potential tax shield PV but eliminates distress risk entirely. Industry character, profitability, asset pledgeability, and management style all drive the optimum.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">iv</span><div><h4><span lang="zh">价值守恒</span><span lang="en">Value additivity</span></h4><p lang="zh">MM I 的根 — 切割同一块蛋糕的方式不改变蛋糕大小。</p><p lang="en">The root of MM I — slicing doesn't change the pie.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">无套利</span><span lang="en">No arbitrage</span></h4><p lang="zh">MM 的证明依赖 personal leverage 的可复制性 — 若 $V_L \neq V_U$, 套利消除差异。</p><p lang="en">MM proof relies on personal‑leverage replication; arbitrage closes any $V_L \neq V_U$ gap.</p></div></div>
+      <div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">代理成本</span><span lang="en">Agency cost</span></h4><p lang="zh">高杠杆引入股东-债权人冲突 (asset substitution, debt overhang); 是 trade-off 理论的关键偏离项。</p><p lang="en">High leverage triggers shareholder–creditor conflicts — key deviation in trade‑off theory.</p></div></div>
+      <div class="model-card"><span class="roman">ix</span><div><h4><span lang="zh">信号 / 信息不对称</span><span lang="en">Signaling / asymmetry</span></h4><p lang="zh">Pecking order: 内部 → 债务 → 权益, 因发行权益被解读为悲观信号。</p><p lang="en">Pecking order: internal → debt → equity, equity issuance signals pessimism.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 公司 A: $E=80$, $D=20$ (均市值), $r_e=10\%$, $r_d=4\%$, $t=25\%$. 算 WACC. 若公司想把 D 从 20 提到 50, 简单地"杠杆增加 → WACC 下降"的推理为何<em>错误</em>?</span><span lang="en"><strong>Q1.</strong> $E=80$, $D=20$ (market), $r_e=10\%$, $r_d=4\%$, $t=25\%$. Compute WACC. Why is "more leverage → lower WACC" wrong if the firm raises D from 20 to 50?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>初始 WACC</strong>: $V = 100$。WACC $= 0.8 \times 10\% + 0.2 \times 4\% \times 0.75 = 8\% + 0.6\% = 8.6\%$</p>
+            <p lang="zh"><strong>"简单推理"</strong>: D 升到 50 → 权重变 $E/V = 0.5, D/V = 0.5$ → 假设 $r_e$ 和 $r_d$ 不变 → WACC $= 0.5 \times 10\% + 0.5 \times 4\% \times 0.75 = 5\% + 1.5\% = 6.5\%$。错误结论: "增杠杆把 WACC 从 8.6% 降到 6.5%"。</p>
+            <p lang="zh"><strong>错误的根本</strong>: $r_e$ 不是常数, 它<em>随杠杆增加</em>。由 MM II 含税 (3.5): 杠杆从 D/E=0.25 升到 D/E=1, $r_e$ 必然上升。假设 $r_a$ (资产成本) 不变, 反推:</p>
+            <ul lang="zh">
+              <li>初始: $r_a = $ WACC $/(1 - t D/V) = 8.6\% / (1 - 0.25 \times 0.2) = 8.6\% / 0.95 = 9.05\%$ (简化)</li>
+              <li>实际: 用 (3.5) 反求, 初始 $r_e = r_a + (r_a - r_d)(1-t)(D/E) = r_a + (r_a - 4)(0.75)(0.25)$. 若 $r_e = 10$, 解 $r_a \approx 9.0\%$。</li>
+              <li>新 D/E = 1: 新 $r_e = 9 + (9-4) \times 0.75 \times 1 = 9 + 3.75 = 12.75\%$</li>
+              <li>新 WACC $= 0.5 \times 12.75\% + 0.5 \times 4\% \times 0.75 = 6.375\% + 1.5\% = 7.875\%$</li>
+            </ul>
+            <p lang="zh"><strong>真实变化</strong>: WACC 从 8.6% 降到 ~7.9% (而不是 6.5%)。下降主要来自税盾, 不是"加杠杆魔法"。</p>
+            <p lang="zh"><strong>更进一步</strong>: 这还没考虑财务困境成本。若 D/E = 1 让公司接近困境, $r_d$ 本身会上升 (高利率债), 同时 $r_e$ 风险溢价进一步上升。最终 WACC 可能<em>升而非降</em>。这就是 MM 含税的"全杠杆最优"在现实中不成立的原因。</p>
+            <p lang="zh"><strong>实务结论</strong>: 计算 WACC 时, <em>权重和成本必须同步调整</em>。任何只改权重不改 $r_e$ / $r_d$ 的"重组 WACC"都是错的。这是初学者最常见的错误之一。</p>
+            <p lang="en">Initial WACC = 8.6%. Naive "more leverage" calc gives 6.5%, but ignores that $r_e$ rises with leverage (MM II). Properly: solve for $r_a \approx 9\%$, then at $D/E=1$ new $r_e = 12.75\%$, WACC ≈ 7.9% (not 6.5%). Real drop comes from tax shield, not "leverage magic." With distress costs at high leverage, $r_d$ also rises and WACC may rise. The most common WACC mistake: changing weights without updating $r_e$ / $r_d$.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> MM Proposition I (无税) 说 $V_L = V_U$。直觉上, 加杠杆<em>应该</em>提升 ROE (放大效应), 为什么<em>不</em>提升公司价值? 用无套利论证回答。</span><span lang="en"><strong>Q2.</strong> MM I (no tax): $V_L = V_U$. Intuitively leverage <em>should</em> boost ROE — why doesn't it raise firm value? Use no‑arbitrage.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>无套利论证</strong> (MM 原始证明的精髓):</p>
+            <p lang="zh">假设两家完全相同的公司 A (无杠杆) 与 B (有杠杆), 产生<em>相同的</em>未来现金流 $X$。若 $V_B > V_A$ (杠杆<em>真</em>能提升价值), 则套利策略:</p>
+            <ol lang="zh">
+              <li>卖出 B 的股票, 拿到 $V_B - D_B$ (= $E_B$)</li>
+              <li>同时<em>个人</em>借款 $D_B$ (以同样利率 $r_d$ 借)</li>
+              <li>用现金 $E_B + D_B = V_B$ 买入 A 的股票</li>
+              <li>你现在持有 A 的全部股权 (价值 $V_A$), 同时欠 $D_B$ 个人债务</li>
+              <li>A 的未来现金流 = $X$。你需要支付 $r_d \times D_B$ 利息。净现金流 = $X - r_d D_B$。</li>
+              <li>对比: 持有 B 的话, 净现金流也是 $X - r_d D_B$ (公司付的利息)</li>
+              <li>两个策略<em>现金流完全相同</em>, 但你买 A 只花了 $V_A < V_B$ → 套利者会立即买 A 卖 B → 价格调整使 $V_A = V_B$</li>
+            </ol>
+            <p lang="zh"><strong>核心</strong>: 投资者可以用<em>个人杠杆</em>复制公司的杠杆 (假设可借贷无限 + 同利率)。所以公司层面的杠杆是<em>价值无关</em>的 — 你不需要为公司层面的杠杆"溢价", 你自己就能做到。</p>
+            <p lang="zh"><strong>ROE 的真相</strong>: 杠杆<em>确实</em>放大 ROE。但同时<em>放大</em>股权风险 → β 上升 → CAPM 下 $r_e$ 上升 → 折现率上升 → PV 不变。"ROE 上升"和"$r_e$ 上升"完全抵消, 公司价值不变。</p>
+            <p lang="zh"><strong>这是反直觉的核心</strong>: ROE 是<em>会计</em>指标, 反映杠杆放大效应; 股东要求回报率 $r_e$ 是<em>市场</em>指标, 反映风险溢价。两者在均衡下完美对冲, 杠杆不创造价值。</p>
+            <p lang="zh"><strong>哪些 MM 假设让这个论证成立?</strong></p>
+            <ul lang="zh">
+              <li>个人可以与公司<em>同利率</em>借贷 — 现实中个人利率高于公司</li>
+              <li>无破产成本 — 现实中存在</li>
+              <li>无税 — 现实中有税</li>
+              <li>无信息不对称 — 现实中有</li>
+            </ul>
+            <p lang="zh">每条假设被打破都给杠杆贡献价值 (或减损价值)。但<em>MM 的核心洞察</em> — 杠杆是<em>结构</em>问题, 不是<em>价值</em>问题 — 永远是对的。Trade-off 理论补足现实偏离, 不否定 MM 的基础逻辑。</p>
+            <p lang="en">No‑arbitrage proof: investors can replicate corporate leverage via personal leverage. If $V_L > V_U$, sell levered stock, borrow personally, buy unlevered — identical cash flows but cheaper. Arbitrage closes the gap. ROE rises with leverage but so does $r_e$ (β rises) → discounting cancels the boost. The deep point: leverage is a <em>structural</em> question, not a <em>value</em> one. Real‑world deviations come from breaking MM assumptions (personal vs corporate borrowing rates, taxes, distress, asymmetry).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> A 股某科创板公司刚 IPO 半年, 历史数据不足回归 β。同行业 5 家可比公司 $\beta_L$ 分别 1.2, 1.4, 1.1, 1.3, 1.5, 各自 D/E = 0.3, 0.5, 0.2, 0.4, 0.6, $t=25\%$。目标公司 D/E = 0.1。估算其 β。</span><span lang="en"><strong>Q3.</strong> A STAR‑board IPO has no β history. Five peers: $\beta_L$ = 1.2, 1.4, 1.1, 1.3, 1.5, with D/E = 0.3, 0.5, 0.2, 0.4, 0.6, $t=25\%$. Target D/E = 0.1. Estimate β.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>步骤 1 — 逐个去杠杆</strong> (Hamada 3.7):</p>
+            <ul lang="zh">
+              <li>Peer 1: $\beta_U = 1.2 / [1 + 0.75 \times 0.3] = 1.2 / 1.225 \approx 0.98$</li>
+              <li>Peer 2: $1.4 / [1 + 0.75 \times 0.5] = 1.4 / 1.375 \approx 1.018$</li>
+              <li>Peer 3: $1.1 / [1 + 0.75 \times 0.2] = 1.1 / 1.15 \approx 0.957$</li>
+              <li>Peer 4: $1.3 / [1 + 0.75 \times 0.4] = 1.3 / 1.30 = 1.00$</li>
+              <li>Peer 5: $1.5 / [1 + 0.75 \times 0.6] = 1.5 / 1.45 \approx 1.034$</li>
+            </ul>
+            <p lang="zh"><strong>步骤 2 — 行业平均</strong>: $\bar\beta_U \approx (0.98 + 1.02 + 0.96 + 1.00 + 1.03) / 5 \approx 0.998 \approx 1.00$</p>
+            <p lang="zh"><strong>步骤 3 — 重新杠杆化到目标公司</strong> (Hamada 3.8, D/E = 0.1):</p>
+            <p lang="zh">$\beta_L^{\text{target}} = 1.00 \times [1 + 0.75 \times 0.1] = 1.00 \times 1.075 = 1.075$</p>
+            <p lang="zh"><strong>结论</strong>: 目标公司 β ≈ 1.08 (略低于行业平均 $\beta_L \approx 1.3$, 因为目标杠杆更低)。</p>
+            <p lang="zh"><strong>用于 CAPM</strong>: $r_f = 2.5\%$, ERP = 6% → $r_e = 2.5 + 1.08 \times 6 = 8.98\%$</p>
+            <p lang="zh"><strong>实务要点</strong>:</p>
+            <ul lang="zh">
+              <li>同行业可比公司选择: 业务相似、规模相近、地区相同。中国半导体公司一般用 SMIC、华虹、思源等</li>
+              <li>剔除异常值: 若某 peer β 非常突兀 (例如 2.5), 可能反映个股特定噪声, 不进入均值</li>
+              <li>用<em>市值</em> D/E, 不是账面 D/E</li>
+              <li>更精细的 Hamada 公式 (考虑债务 β): $\beta_U = \beta_E / [1 + (1-t) D/E] + (D/V) \beta_D / [1 + (1-t) D/E]$. 实务常假设 $\beta_D = 0$ (短期债务) 简化为 (3.7)。</li>
+            </ul>
+            <p lang="zh"><strong>Damodaran 工业 β 表</strong>: 每年更新, 提供全球各行业的<em>资产 β</em> $\beta_U$ 中位数 — 直接可用作起点。中国行业 β 与全球同业接近 (但有差异), 跨境估值时谨慎使用。</p>
+            <p lang="en">Unlever each peer via Hamada: $\beta_U$ ≈ 0.96–1.03, mean ≈ 1.00. Relever to target D/E=0.1: $\beta_L^{\text{target}} = 1.00 \times 1.075 \approx 1.08$. With $r_f=2.5\%$, ERP=6%, $r_e \approx 8.98\%$. Damodaran's industry β tables (updated annually) are a good starting point — globally cross‑comparable, with cautions for cross‑border valuation.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 银行的 WACC 几乎等于股权成本 $r_e$。为什么? 同样是高杠杆, 制造业用同样的高杠杆为何 WACC 远低于 $r_e$?</span><span lang="en"><strong>Q4.</strong> Bank WACC ≈ cost of equity $r_e$. Why? A manufacturer with the same high leverage would have WACC far below $r_e$ — why the difference?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>关键区别</strong>: <em>什么算 D? 什么算 E?</em></p>
+            <p lang="zh"><strong>制造业 (高杠杆)</strong>:</p>
+            <ul lang="zh">
+              <li>D = 银行借款 + 公司债 — 都是<em>融资性负债</em> (用来购买生产资料、扩张)</li>
+              <li>这些 D 的利率 $r_d$ 远低于 $r_e$ (信用债利率 4-5%, 股权 10-15%)</li>
+              <li>权重高 → WACC 显著降低</li>
+            </ul>
+            <p lang="zh"><strong>银行</strong>:</p>
+            <ul lang="zh">
+              <li>"D" 看起来是<em>客户存款 + 同业拆借</em>, 数量巨大 (银行负债 90% 是客户存款)</li>
+              <li>但这些<em>不是融资</em>, 是<em>业务本身</em> — 银行存在的意义就是吸收存款、发放贷款赚利差</li>
+              <li>真正的"融资性资本"只是<em>权益 + 次级债 + 优先股 + 永续债</em> (CET1 + AT1 + T2), 仅占总资产 10-15%</li>
+              <li>巴塞尔 III 要求 CET1 ≥ 10.5% (含缓冲), 实际银行普遍维持 12-15%</li>
+            </ul>
+            <p lang="zh"><strong>WACC 的正确算法</strong>:</p>
+            <ul lang="zh">
+              <li>错误: 用全部债务 (含存款) 做 WACC → 得到几乎零的 WACC, 无意义</li>
+              <li>正确: 只看资本 — CET1 加权的 $r_e$ + AT1/T2 的成本</li>
+              <li>因为 CET1 占大部分 (~75% 资本), AT1/T2 比例小 + 成本相对 $r_e$ 不低 → WACC ≈ $r_e$</li>
+            </ul>
+            <p lang="zh"><strong>另一种思考</strong>: 制造业借 100 万 → 用来生产, 实际"业务规模"= 自有资金 + 借款。银行吸收 100 万存款 → 业务规模就是 100 万, 但<em>这 100 万既是资金来源也是产品</em>。这种"业务即融资"的特征让 WACC 概念在银行业部分失效。</p>
+            <p lang="zh"><strong>实务建议</strong>:</p>
+            <ul lang="zh">
+              <li>估值银行用 FCFE / RNOA (return on net operating assets) / RI (residual income) 等方法, 而<em>不</em>用 FCFF / WACC</li>
+              <li>对银行的"杠杆指标"看 CET1 比例, 不看 D/E</li>
+              <li>评估银行项目盈利能力看 ROE 或 ROTCE (return on tangible common equity), 不看 ROIC</li>
+            </ul>
+            <p lang="zh"><strong>结论</strong>: WACC 是为<em>非金融企业</em>设计的工具。金融机构 (银行、保险) 需要专门的方法。M3 Ch.05 详述。</p>
+            <p lang="en">For manufacturing: D = bank loans + bonds (financing). For banks: deposits aren't financing, they <em>are</em> the business. Real bank capital = CET1 + AT1 + T2 (10–15% of assets). Naive WACC with all "debt" gives meaningless near‑zero. Correct: only count capital → WACC ≈ $r_e$. Value banks with FCFE / ROE / residual income, not FCFF / WACC. WACC is designed for non‑financial firms.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> "MM 含税"说全杠杆最优 (税盾价值最大化)。但现实中没有公司 100% 杠杆。Trade-off 理论说"困境成本"抵消税盾, 给出内部最优。请定量论证: $D$ 在什么水平下边际税盾 $=$ 边际困境成本? 给出三种<em>非线性</em>的困境成本类型, 各自对最优 $D/E$ 的影响。</span><span lang="en"><strong>Q5.</strong> "MM with tax" implies maximum leverage. Reality says no. Trade‑off: when does marginal tax shield equal marginal distress cost? Give three nonlinear distress cost types and their effect on optimal $D/E$.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>最优条件</strong>:</p>
+            <div class="eq"><span>$$ \frac{\partial \mathrm{PV(\text{shield})}}{\partial D} = \frac{\partial \mathrm{PV(\text{distress})}}{\partial D} $$</span><span class="num">—</span></div>
+            <p lang="zh">税盾边际值 (永续债): $\partial(tD)/\partial D = t$ (常数, 假设 25%)。困境成本随 $D$ 非线性上升。</p>
+            <p lang="zh"><strong>三种非线性困境成本</strong>:</p>
+            <ol lang="zh">
+              <li><strong>直接破产成本 (法律 + 清算)</strong>: 在低 $D$ 时几乎为 0, 接近临界破产概率时陡升。函数形态: $\mathrm{PV} = c \cdot \mathrm{Prob}(\text{bankruptcy})$, 其中 $\mathrm{Prob}$ 是 $D/E$ 的 sigmoid 形态 (低 D 几乎 0, 高 D 趋向 1)。对最优 $D/E$ 的影响: 设置<em>硬上限</em> — 一旦逼近"必然破产"区域, $D$ 不能再加, 即使税盾仍然贡献价值。</li>
+              <li><strong>间接困境成本 (信任损失)</strong>: 即使没破产, 高杠杆让供应商收紧账期、客户流失 (担心售后)、关键员工跳槽、客户银行收紧授信。这些成本在 $D$ 上升到"投资级"以下时<em>显著加速</em>(信用评级从 BBB 跌到 BB 是<em>断崖式</em>的)。对最优 $D/E$ 的影响: 限制 $D$ 不让评级跌出投资级。</li>
+              <li><strong>债务积压 (debt overhang)</strong> (Myers 1977): 当公司临近破产, 任何新增 NPV+ 项目的收益<em>大部分流向债权人</em> (债权人优先), 股东获益少 → 股东拒绝注资 → 公司错过好项目 → 价值损失。这是一种"<em>动态</em>困境成本"。对最优 $D/E$ 的影响: 公司想在<em>可能需要新增投资</em>时保留<em>财务弹性</em> (financial flexibility), 主动降低 $D/E$ 即使税盾未被充分利用。</li>
+              <li><strong>资产替代 (asset substitution)</strong> (Jensen-Meckling 1976): 高杠杆下股东偏好<em>高风险高回报</em>项目 (赌博式投资) — 因为成功归股东, 失败归债权人。债权人预期到这点 → 提高利率或加 covenant 限制 → 公司被锁定在低效率。</li>
+            </ol>
+            <p lang="zh"><strong>实务最优 $D/E$ 区间</strong> (经验观察):</p>
+            <ul lang="zh">
+              <li>稳定现金流公司 (公用事业, 消费品): D/E 0.5-1.5, 利用税盾</li>
+              <li>波动现金流公司 (周期股, 科技): D/E 0.2-0.5, 保留弹性</li>
+              <li>极高增长 + 高风险 (生物医药, 早期创新): D/E ~0, 不靠债务</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>: 最优 $D/E$ 不是固定的, 而是<em>行业 + 公司特性 + 经营环境</em>的函数。中国 A 股不同行业的 D/E 分布差异极大 — 公用事业 ~1.2, 白酒 ~0.05, 房地产 ~3.0, 半导体 ~0.3 — 反映上述权衡的现实选择。</p>
+            <p lang="en">Optimal: marginal tax shield (= $t$, constant) = marginal distress cost (rising nonlinearly). Three distress types: (1) direct bankruptcy costs (lawyer fees, liquidation) — sigmoid in $D/E$, sets hard ceiling near bankruptcy threshold; (2) indirect costs (supplier tightening, customer loss, talent flight) — accelerate when credit rating drops below investment grade; (3) debt overhang (Myers 1977) — near distress, new NPV+ projects' benefits flow to creditors → shareholders refuse to fund → firm misses opportunities. Plus asset substitution (Jensen‑Meckling 1976). Optimal D/E varies: stable cash flow → 0.5–1.5; cyclical → 0.2–0.5; high‑growth/high‑risk → ~0. A‑share evidence: utilities 1.2, baijiu 0.05, real estate 3.0, semicon 0.3 — reflects these tradeoffs.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="02-risk-return.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">02 · <span lang="zh">风险与收益</span><span lang="en">Risk &amp; Return</span></span></a>
+          <a class="next" href="04-capital-budgeting.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">04 · <span lang="zh">资本预算</span><span lang="en">Capital Budgeting</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

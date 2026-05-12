@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>Module I 会计学 — 模块导览 · From Accounting to Investments</title>
+  <meta name="keywords" content="accounting overview, 会计学导览, 复式记账, accrual, mental models, expert disagreement, IFRS, CAS, US GAAP">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex,
+    body .katex *,
+    body .katex-display,
+    body .katex-display * {
+      font-size: 1em !important;
+      line-height: 1.25 !important;
+    }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display {
+      display: block !important;
+      margin: 0.5em 0 !important;
+      padding: 0 !important;
+      text-align: center !important;
+    }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    h1 .katex *, h2 .katex *, h3 .katex * { font-size: 1em !important; }
+    .lesson-subtitle .katex { font-size: 0.78em !important; }
+    .lesson-subtitle .katex * { font-size: 1em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+    .__debug_v6 {
+      position: fixed; top: 0; right: 0; z-index: 9999;
+      background: #8B2C2C; color: #F7F2E8;
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      padding: 6px 10px; letter-spacing: 0.08em;
+      border-bottom-left-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html">
+      <span class="mark">A</span>
+      <span>
+        <span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span>
+        <small class="sub">first-principles</small>
+      </span>
+    </a>
+    <div class="search">
+      <input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search">
+      <div class="search-results"></div>
+    </div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle">
+        <span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span>
+      </button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">会计学</span><span lang="en">Accounting</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">模块导览</span><span lang="en">Overview</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">会计学 — 模块导览</span>
+        <span lang="en">Accounting — Module Overview</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">财报是一套描述企业状态与转移的语言。学完本模块, 你能把任意 A 股年报看成系统的状态向量。</span>
+        <span lang="en">Financial statements are a language for describing a firm's state and its transitions. After this module, an A‑share annual report reads as a system's state vector.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">用 $A = L + E$ 一致性检查任何一份 A 股资产负债表。</li>
+          <li lang="zh">读懂三大报表的勾稽: 净利→OCF→期末现金, 经营/投资/筹资三大活动如何拼接出现金净变动。</li>
+          <li lang="zh">把权责发生制 (accrual)、配比 (matching)、实质重于形式 (substance over form) 三原则套到具体科目上。</li>
+          <li lang="zh">分辨 CAS / IFRS / US GAAP 在商誉、R&amp;D、租赁、收入确认上的关键差异。</li>
+          <li lang="zh">在附注里定位关联交易、或有事项、期后事项三类高风险披露。</li>
+          <li lang="en">Use $A = L + E$ to consistency‑check any A‑share balance sheet.</li>
+          <li lang="en">Articulate how net income flows into operating cash flow, and how the three activities reconstruct net change in cash.</li>
+          <li lang="en">Apply accrual, matching, and substance‑over‑form to concrete line items.</li>
+          <li lang="en">Distinguish CAS / IFRS / US GAAP on goodwill, R&amp;D, leases, and revenue.</li>
+          <li lang="en">Locate related‑party transactions, contingencies, and subsequent events in the notes.</li>
+        </ul>
+      </section>
+
+      <h2>
+        <span lang="zh">章节依赖图</span>
+        <span lang="en">Chapter Dependency Map</span>
+      </h2>
+      <figure class="figure">
+        <svg viewBox="0 0 720 360" role="img" aria-label="Chapter dependency graph">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#4A4540"/>
+            </marker>
+          </defs>
+          <style>
+            .node { fill: #F2E9D2; stroke: #4A4540; stroke-width: 1.2; }
+            .node-major { fill: #8B2C2C; }
+            .lbl { font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 13px; fill: #1A1814; }
+            .lbl-w { fill: #F7F2E8; }
+            .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A8378; }
+            .num-w { fill: #EFE8D8; }
+            .edge { stroke: #4A4540; stroke-width: 1.2; fill: none; }
+          </style>
+          <!-- Nodes -->
+          <g transform="translate(20, 20)">
+            <rect class="node node-major" width="120" height="48" rx="4"/>
+            <text class="num num-w" x="8" y="16">01</text>
+            <text class="lbl lbl-w" x="8" y="34">恒等式·复式</text>
+          </g>
+          <g transform="translate(200, 20)">
+            <rect class="node" width="120" height="48" rx="4"/>
+            <text class="num" x="8" y="16">02</text>
+            <text class="lbl" x="8" y="34">三表勾稽</text>
+          </g>
+          <g transform="translate(380, 20)">
+            <rect class="node" width="120" height="48" rx="4"/>
+            <text class="num" x="8" y="16">03</text>
+            <text class="lbl" x="8" y="34">accrual / matching</text>
+          </g>
+          <g transform="translate(560, 20)">
+            <rect class="node" width="140" height="48" rx="4"/>
+            <text class="num" x="8" y="16">08</text>
+            <text class="lbl" x="8" y="34">现金流量表深度</text>
+          </g>
+
+          <g transform="translate(60, 120)">
+            <rect class="node" width="120" height="48" rx="4"/>
+            <text class="num" x="8" y="16">04</text>
+            <text class="lbl" x="8" y="34">收入确认 5步</text>
+          </g>
+          <g transform="translate(220, 120)">
+            <rect class="node" width="120" height="48" rx="4"/>
+            <text class="num" x="8" y="16">05</text>
+            <text class="lbl" x="8" y="34">资产计量</text>
+          </g>
+          <g transform="translate(380, 120)">
+            <rect class="node" width="120" height="48" rx="4"/>
+            <text class="num" x="8" y="16">06</text>
+            <text class="lbl" x="8" y="34">负债 vs 权益</text>
+          </g>
+          <g transform="translate(540, 120)">
+            <rect class="node" width="160" height="48" rx="4"/>
+            <text class="num" x="8" y="16">07</text>
+            <text class="lbl" x="8" y="34">合并报表 / 权益法</text>
+          </g>
+
+          <g transform="translate(140, 230)">
+            <rect class="node" width="180" height="48" rx="4"/>
+            <text class="num" x="8" y="16">09</text>
+            <text class="lbl" x="8" y="34">CAS / IFRS / US GAAP</text>
+          </g>
+          <g transform="translate(380, 230)">
+            <rect class="node node-major" width="220" height="48" rx="4"/>
+            <text class="num num-w" x="8" y="16">10</text>
+            <text class="lbl lbl-w" x="8" y="34">附注 · 关联交易 · 或有事项</text>
+          </g>
+
+          <!-- Edges -->
+          <path class="edge" d="M140 44 H200" marker-end="url(#arr)"/>
+          <path class="edge" d="M320 44 H380" marker-end="url(#arr)"/>
+          <path class="edge" d="M500 44 H560" marker-end="url(#arr)"/>
+          <path class="edge" d="M260 68 Q260 90 240 120" marker-end="url(#arr)"/>
+          <path class="edge" d="M260 68 Q260 90 280 120" marker-end="url(#arr)"/>
+          <path class="edge" d="M440 68 Q440 90 440 120" marker-end="url(#arr)"/>
+          <path class="edge" d="M440 68 Q440 90 600 120" marker-end="url(#arr)"/>
+          <path class="edge" d="M120 168 Q140 200 200 230" marker-end="url(#arr)"/>
+          <path class="edge" d="M280 168 Q280 200 230 230" marker-end="url(#arr)"/>
+          <path class="edge" d="M440 168 Q440 200 470 230" marker-end="url(#arr)"/>
+          <path class="edge" d="M620 168 Q620 200 540 230" marker-end="url(#arr)"/>
+          <path class="edge" d="M320 254 H380" marker-end="url(#arr)"/>
+        </svg>
+        <figcaption>
+          <span lang="zh">必学序: 01 → 02 → 03 → 08 → (04, 05, 06, 07 并行) → 09 → 10</span>
+          <span lang="en">Recommended order: 01 → 02 → 03 → 08 → (04, 05, 06, 07 in parallel) → 09 → 10</span>
+        </figcaption>
+      </figure>
+
+      <h2>
+        <span lang="zh">First-Principles 思维模型</span>
+        <span lang="en">First‑Principles Mental Models</span>
+      </h2>
+      <p>
+        <span lang="zh">本模块所有结论都可由这九条 mental models 推出。把它们装进脑子, 比记 200 条会计科目更省力。</span>
+        <span lang="en">All conclusions in this module follow from these nine mental models. Loading them into your head is cheaper than memorizing 200 GL accounts.</span>
+      </p>
+
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">复式记账对称性 (Double‑Entry Symmetry)</span><span lang="en">Double‑Entry Symmetry</span></h4>
+          <p lang="zh">任何经济事件都有借贷两侧, 总和为零。类比物理守恒律: 能量、动量、电荷皆守恒, 会计中价值也守恒。</p>
+          <p lang="en">Every event has a debit and a credit, summing to zero. Analogy: conservation of energy / momentum / charge — value, too, is conserved.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">权责发生制 vs 收付实现制 (Accrual vs Cash)</span><span lang="en">Accrual vs Cash Basis</span></h4>
+          <p lang="zh">两种描述时间维度的方式。Accrual 把"经济意义已发生但现金未动"也记下来; Cash 只看现金。类比物理: 一个是基于事件的描述, 一个是基于物质流动的描述。</p>
+          <p lang="en">Two timelines. Accrual records economic events whose cash hasn't yet moved; cash basis records only cash. Like event‑based vs flow‑based descriptions in physics.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">iii</span>
+        <div>
+          <h4><span lang="zh">实质重于形式 (Substance over Form)</span><span lang="en">Substance over Form</span></h4>
+          <p lang="zh">看 control 与 risk‑reward 的真实分布, 不看合同文字。售后回租, 名义上"出售再租回", 实质仍是融资 — 计入负债, 不出表。</p>
+          <p lang="en">Look at the real distribution of control and risk‑reward, not the contract text. Sale‑and‑leaseback may legally transfer ownership but economically is still financing — keep it on the balance sheet.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">iv</span>
+        <div>
+          <h4><span lang="zh">配比原则 (Matching)</span><span lang="en">Matching</span></h4>
+          <p lang="zh">收入与产生它的费用必须同期确认。否则就出现"卖得很猛, 但 inventory 永远跟不上销量"的反常曲线。</p>
+          <p lang="en">Revenues match the expenses that generated them. Without matching you get anomalies like soaring revenue with permanently lagging inventory write‑offs.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">v</span>
+        <div>
+          <h4><span lang="zh">谨慎性 (Conservatism)</span><span lang="en">Conservatism</span></h4>
+          <p lang="zh">坏消息要立即承认 (减值、坏账), 好消息要等到实现才确认 (不预期未实现利得)。一个有偏的估计器, 但稳定。</p>
+          <p lang="en">Recognize losses early (impairments, bad debt), recognize gains only on realization. A biased but stable estimator.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">vi</span>
+        <div>
+          <h4><span lang="zh">历史成本 vs 公允价值 (Historical Cost vs Fair Value)</span><span lang="en">Historical Cost vs Fair Value</span></h4>
+          <p lang="zh">客观可验证 vs 与决策相关 — 永恒的张力。2008 金融危机后这场争论从未结束。</p>
+          <p lang="en">Verifiable vs decision‑relevant — a permanent tension. The debate hasn't settled since 2008.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">vii</span>
+        <div>
+          <h4><span lang="zh">控制 (Control)</span><span lang="en">Control</span></h4>
+          <p lang="zh">合并范围的核心标尺。不看股权比例, 看可变回报 + 重大影响 + 协议安排的综合实质。</p>
+          <p lang="en">The criterion for consolidation. Not equity %, but the combined reality of variable returns, significant influence, and contractual arrangements.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">viii</span>
+        <div>
+          <h4><span lang="zh">信号 (Signaling)</span><span lang="en">Signaling</span></h4>
+          <p lang="zh">自愿披露的博弈视角。公司选择披露什么、藏什么本身就是信号。</p>
+          <p lang="en">A game‑theoretic view of voluntary disclosure. What a firm chooses to disclose — and to hide — is itself the signal.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">ix</span>
+        <div>
+          <h4><span lang="zh">信息含量 (Information Content)</span><span lang="en">Information Content</span></h4>
+          <p lang="zh">报表为何被披露? 给资本市场提供风险定价所需的边际信息。</p>
+          <p lang="en">Why disclose at all? To supply the capital market with the marginal information needed for risk pricing.</p>
+        </div>
+      </div>
+
+      <h2>
+        <span lang="zh">专家最激烈的分歧</span>
+        <span lang="en">Where Experts Disagree</span>
+      </h2>
+
+      <div class="dispute">
+        <div class="dispute-head">
+          <span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span>
+          <span lang="zh">商誉: 减值测试 vs 摊销</span>
+          <span lang="en">Goodwill: Impairment Testing vs Amortization</span>
+        </div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">IFRS / CAS — Impairment only</div>
+            <h5><span lang="zh">不定期摊销, 仅做减值测试</span><span lang="en">No amortization; impairment only</span></h5>
+            <p lang="zh">商誉无法分摊期间, 强行摊销是任意。每年做减值测试更能反映真实价值。</p>
+            <p lang="en">There's no natural period to amortize over; forced amortization is arbitrary. Annual impairment better reflects current value.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who">FASB (pre‑2001) / 当下重启讨论</div>
+            <h5><span lang="zh">定期摊销 (10‑40 年)</span><span lang="en">Periodic amortization (10–40 years)</span></h5>
+            <p lang="zh">减值测试主观性极强, 管理层有动机推迟确认。摊销规则更难操纵。A 股 2018‑19 商誉雷潮就是这种主观性的代价。</p>
+            <p lang="en">Impairment is highly subjective and management can defer. Amortization is harder to manipulate. The 2018–19 A‑share goodwill cliff was the cost of subjectivity.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">IFRS/CAS 仍走减值测试; FASB 2014 简化后讨论是否对私营公司恢复摊销; A 股目前的实践被多次批评制造"业绩洗大澡"机会。</span>
+          <span lang="en">IFRS/CAS still impairment‑only; FASB since 2014 has discussed restoring amortization for private companies; A‑share practice has been repeatedly criticized for enabling "big bath" maneuvers.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head">
+          <span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span>
+          <span lang="zh">公允价值 vs 历史成本</span>
+          <span lang="en">Fair Value vs Historical Cost</span>
+        </div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">Fair value (FAS 157, IFRS 13)</div>
+            <h5><span lang="zh">与决策相关 (decision relevance)</span><span lang="en">Decision relevance</span></h5>
+            <p lang="zh">市场价格才是投资者关心的。把按市价反应的衍生品损益写出来, 让风险无处藏。</p>
+            <p lang="en">Market price is what investors care about. Marking derivatives to market exposes risk.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who">Historical cost — pro‑cyclicality critique</div>
+            <h5><span lang="zh">客观可验证, 不放大顺周期</span><span lang="en">Verifiable; doesn't amplify procyclicality</span></h5>
+            <p lang="zh">2008 危机时, mark‑to‑market 把恐慌的市场价直接搬到资产负债表上, 触发更多卖盘 — 放大下跌。</p>
+            <p lang="en">In 2008, mark‑to‑market dragged panicked prices straight into balance sheets, triggering forced sales — amplifying the crash.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">混合模型 (mixed‑attribute) 成为主流: 交易性资产用公允, 持有至到期/应收用摊余成本, 自用资产用历史成本。</span>
+          <span lang="en">Mixed‑attribute models dominate: trading assets at fair value, HTM/loans at amortized cost, owner‑occupied at historical cost.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head">
+          <span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span>
+          <span lang="zh">研发支出: 资本化 vs 费用化</span>
+          <span lang="en">R&amp;D: Capitalize vs Expense</span>
+        </div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">IFRS / CAS 6 — 分阶段</div>
+            <h5><span lang="zh">研究全费用, 开发可资本化</span><span lang="en">Research expensed; development capitalized</span></h5>
+            <p lang="zh">能可靠计量、有技术可行性、有未来经济利益时资本化。理论上更贴合资产定义。</p>
+            <p lang="en">Capitalize once technical feasibility and future economic benefit are established. Closer to the asset definition.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who">US GAAP — 一律费用化</div>
+            <h5><span lang="zh">研发全部费用化 (软件少数例外)</span><span lang="en">All R&amp;D expensed (with narrow software exceptions)</span></h5>
+            <p lang="zh">未来经济利益太难验证, 资本化等于给管理层调利润的工具。一刀切更稳健。</p>
+            <p lang="en">Future benefits are too speculative; capitalization gives management a lever. Blanket expensing is more conservative.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">A 股大量公司有研发资本化的诱因 (拉高短期净利、做高净资产)。看附注中"开发支出"科目余额变化与利润率是否同步异常, 是基本检验。</span>
+          <span lang="en">A‑share filers face strong incentives to capitalize (boost near‑term net income & book equity). Check whether the "development expenditure" balance moves together with margin anomalies.</span>
+        </div>
+      </div>
+
+      <div class="dispute">
+        <div class="dispute-head">
+          <span class="label" lang="zh">分歧</span><span class="label" lang="en">Dispute</span>
+          <span lang="zh">永续债: 负债还是权益?</span>
+          <span lang="en">Perpetual Debt: Liability or Equity?</span>
+        </div>
+        <div class="dispute-body">
+          <div class="dispute-side">
+            <div class="who">分类为权益 (中国大量实务)</div>
+            <h5><span lang="zh">无强制赎回, 计入权益</span><span lang="en">No mandatory redemption → equity</span></h5>
+            <p lang="zh">条款允许发行人无限期递延付息, 没有合同义务; 形式上与永久股本相似。</p>
+            <p lang="en">Issuer can perpetually defer coupons; no contractual obligation; formally resembles permanent equity.</p>
+          </div>
+          <div class="dispute-side">
+            <div class="who">分类为负债 (经济实质派)</div>
+            <h5><span lang="zh">实质仍是融资工具</span><span lang="en">Substantively still debt</span></h5>
+            <p lang="zh">利率重置条款 (step‑up) 让递延付息变成自残行为, 实际上有"软"赎回义务。把这种工具记入权益拉低账面 D/E, 是会计套利。</p>
+            <p lang="en">Coupon step‑ups make deferral self‑destructive — there's a "soft" obligation. Classifying these as equity to depress book D/E is accounting arbitrage.</p>
+          </div>
+        </div>
+        <div class="dispute-foot">
+          <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
+          <span lang="zh">中国电建 601669、中国铁建 601186 等大量基建公司用永续债拉低账面资产负债率。第 06 章会展开。</span>
+          <span lang="en">Sinohydro 601669, China Railway Construction 601186 and many infrastructure issuers use perpetuals to depress reported leverage. Chapter 06 expands on this.</span>
+        </div>
+      </div>
+
+      <h2>
+        <span lang="zh">学习路径建议</span>
+        <span lang="en">Suggested Paths</span>
+      </h2>
+      <dl>
+        <dt><span lang="zh">快速通道</span><span lang="en">Fast path</span></dt>
+        <dd>
+          <span lang="zh">~8 小时。01 → 02 → 08 → 10。先把"恒等式 + 三表勾稽 + OCF 间接法 + 附注阅读"四件事做扎实, 其它章节按需回头读。</span>
+          <span lang="en">~8 hours. 01 → 02 → 08 → 10. Lock in the identity, statement articulation, indirect‑method OCF, and notes reading. Return to others as needed.</span>
+        </dd>
+        <dt><span lang="zh">系统通道</span><span lang="en">Systematic path</span></dt>
+        <dd>
+          <span lang="zh">~40 小时, 全部 11 章 + 全部检验题。建议每章读完立刻翻一份对应 A 股公司的真实年报实操核对。</span>
+          <span lang="en">~40 hours; all 11 chapters with every quiz. Recommend cross‑referencing each chapter against a real A‑share annual report.</span>
+        </dd>
+      </dl>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="../../index.html">
+            <span class="dir">← <span lang="zh">回首页</span><span lang="en">Home</span></span>
+            <span class="title"><span lang="zh">从会计学到证券投资学</span><span lang="en">A‑Share Finance Tutor</span></span>
+          </a>
+          <a class="next" href="01-equation.html">
+            <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
+            <span class="title"><span lang="zh">01 · 会计恒等式与复式记账</span><span lang="en">01 · The Accounting Identity</span></span>
+          </a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key (sk-ant-...). Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+
+</body>
+</html>

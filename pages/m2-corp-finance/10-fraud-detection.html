@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>10 · 财务造假识别 — Beneish / Altman / F‑Score</title>
+  <meta name="keywords" content="Beneish M-Score, Altman Z-Score, Piotroski F-Score, accruals quality, fraud detection, 财务造假, 康美, 康得新, 獐子岛">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 10</span><span class="sep">·</span><span><span lang="zh">20 分钟</span><span lang="en">20 min</span></span><span class="sep">·</span><span><span lang="zh">前置: M1 全, M2 Ch.08-09</span><span lang="en">Prereq: M1, M2 Ch.08-09</span></span><span class="sep">·</span><span><span lang="zh">后续: Module III 投资学</span><span lang="en">Next: Module III</span></span></div>
+
+<h1><span lang="zh">财务造假识别</span><span lang="en">Detecting Financial Fraud</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">M1 教会你<em>读财报</em>, M2 前 9 章教会你<em>用财报</em>。本章是终极工具 — 用<em>量化</em>方法判断财报本身的<em>可信度</em>。Beneish M-Score 检测盈余操纵, Altman Z-Score 预测破产, Piotroski F-Score 筛选质量。康美、康得新、獐子岛在暴雷前 1-2 年这些指标都已亮红灯。</span>
+<span lang="en">M1 taught how to read; M2 Ch.01–09 taught how to use. This chapter is the capstone — <em>quantitative</em> tests of the financial statements' own credibility. Beneish M for earnings manipulation, Altman Z for bankruptcy, Piotroski F for quality. Kangmei, Kangde Xin, Zhangzidao all flashed red 1–2 years before collapse.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能逐项计算 Beneish 八因子 M-Score, 知道 &gt; −2.22 触发盈余操纵嫌疑。</li>
+<li lang="zh">能计算 Altman Z-Score, 知道 &lt; 1.81 触发破产警报区。</li>
+<li lang="zh">能用 Piotroski F-Score 9 维度筛选高质量股票。</li>
+<li lang="zh">能用<em>应计盈余比</em> (Sloan 1996) 作为最简单的造假初筛。</li>
+<li lang="en">Compute Beneish 8‑factor M‑Score; threshold &gt; −2.22.</li>
+<li lang="en">Compute Altman Z‑Score; distress zone &lt; 1.81.</li>
+<li lang="en">Apply Piotroski F‑Score (9 dimensions).</li>
+<li lang="en">Use Sloan accruals ratio as a one‑number screen.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">财务造假本质是<em>在多张报表的多个科目同时违背一致性</em>。任何单一科目都可能编造, 但<em>所有勾稽关系同步保持一致</em>极难做到 (Ch.M1.02 的核心洞察). M-Score / Z-Score / F-Score 都是<em>多维信号融合</em>的产物 — 把多个易识别的"假货特征"加权汇总, 转化为单一可比的分数。</p>
+<p lang="en">Fraud requires inconsistency across multiple statement items. Single items can be faked; keeping all articulations consistent is extremely hard (M1 Ch.02). M/Z/F‑scores are <em>multi‑signal aggregations</em> — weighted sums of recognizable "fake signatures" into a comparable score.</p>
+<p lang="zh">三个模型的关注点不同:</p>
+<p lang="en">Three models, different lenses:</p>
+<ul lang="zh">
+<li><strong>Beneish M-Score (1999)</strong>: 操纵盈余 (虚增利润 / 应收 / 存货) 的概率</li>
+<li><strong>Altman Z-Score (1968)</strong>: 财务困境/破产的概率</li>
+<li><strong>Piotroski F-Score (2000)</strong>: 基本面质量 (用于低 P/B 股票中筛选真正"便宜的好公司")</li>
+</ul>
+<p lang="en">Beneish: earnings manipulation. Altman: bankruptcy. Piotroski: quality (within low‑P/B value stocks).</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① Beneish M-Score (8 因子)</h3>
+<h3 lang="en">① Beneish M‑Score (8 factors)</h3>
+
+<div class="callout callout--formula">
+<div class="eq"><span>$$ M = -4.84 + 0.92\,\mathrm{DSRI} + 0.528\,\mathrm{GMI} + 0.404\,\mathrm{AQI} + 0.892\,\mathrm{SGI} + 0.115\,\mathrm{DEPI} - 0.172\,\mathrm{SGAI} + 4.679\,\mathrm{TATA} - 0.327\,\mathrm{LVGI} $$</span><span class="num">(10.1)</span></div>
+<p lang="zh"><strong>阈值</strong>: $M > -2.22$ → 存在盈余操纵嫌疑 (Beneish 实证: 操纵公司平均 M = −1.78, 干净公司 M = −2.84)</p>
+<p lang="en">Threshold: $M > -2.22$ flags manipulation risk. Manipulators average −1.78; clean firms −2.84.</p>
+<span class="cite">Beneish, M.D. (1999) "The Detection of Earnings Manipulation," Financial Analysts Journal</span>
+</div>
+
+<p lang="zh">八个因子的经济含义:</p>
+<p lang="en">Eight‑factor meanings:</p>
+<table>
+<thead><tr><th><span lang="zh">因子</span><span lang="en">Factor</span></th><th><span lang="zh">公式</span><span lang="en">Formula</span></th><th><span lang="zh">捕捉什么</span><span lang="en">What it detects</span></th></tr></thead>
+<tbody>
+<tr><td>DSRI</td><td>(AR<sub>t</sub>/Sales<sub>t</sub>) / (AR<sub>t-1</sub>/Sales<sub>t-1</sub>)</td><td><span lang="zh">应收账款相对营收的扩张 — 虚增收入信号</span><span lang="en">AR/Sales rising — revenue inflation</span></td></tr>
+<tr><td>GMI</td><td>GrossMargin<sub>t-1</sub> / GrossMargin<sub>t</sub></td><td><span lang="zh">毛利率下降 — 经营恶化, 操纵动机</span><span lang="en">Margin deterioration → manipulation incentive</span></td></tr>
+<tr><td>AQI</td><td>(1−CA<sub>t</sub>−PPE<sub>t</sub>)/A<sub>t</sub> / (1−CA<sub>t-1</sub>−PPE<sub>t-1</sub>)/A<sub>t-1</sub></td><td><span lang="zh">其他资产 (商誉、长期摊销) 比例上升 — 资本化激进</span><span lang="en">Other assets rising — aggressive capitalization</span></td></tr>
+<tr><td>SGI</td><td>Sales<sub>t</sub> / Sales<sub>t-1</sub></td><td><span lang="zh">营收高速增长 — 维持增长压力</span><span lang="en">Rapid revenue growth — pressure to sustain</span></td></tr>
+<tr><td>DEPI</td><td>DepRate<sub>t-1</sub> / DepRate<sub>t</sub></td><td><span lang="zh">折旧率下降 — 拉长寿命操纵利润</span><span lang="en">Depreciation rate falling — extending useful lives</span></td></tr>
+<tr><td>SGAI</td><td>(SGA/Sales)<sub>t</sub> / (SGA/Sales)<sub>t-1</sub></td><td><span lang="zh">销管费用率上升 — 控制成本能力下降</span><span lang="en">SGA ratio rising — losing cost control</span></td></tr>
+<tr><td>TATA</td><td>(NI − OCF) / Total Assets</td><td><span lang="zh"><strong>应计盈余比例</strong> — Sloan accruals, 最关键</span><span lang="en"><strong>Total accruals ratio</strong> — Sloan, most predictive</span></td></tr>
+<tr><td>LVGI</td><td>(LT Debt + CL)<sub>t</sub>/Assets<sub>t</sub> / 上一期</td><td><span lang="zh">杠杆增加 — 财务压力</span><span lang="en">Rising leverage</span></td></tr>
+</tbody>
+</table>
+
+<h3 lang="zh">② Altman Z-Score</h3>
+<h3 lang="en">② Altman Z‑Score</h3>
+
+<div class="callout callout--formula">
+<div class="eq"><span>$$ Z = 1.2 X_1 + 1.4 X_2 + 3.3 X_3 + 0.6 X_4 + 1.0 X_5 $$</span><span class="num">(10.2)</span></div>
+<p lang="zh"><strong>变量</strong>:</p>
+<ul lang="zh">
+<li>$X_1$ = 营运资本 / 总资产 (流动性)</li>
+<li>$X_2$ = 留存收益 / 总资产 (积累的盈利能力)</li>
+<li>$X_3$ = EBIT / 总资产 (资产经营回报)</li>
+<li>$X_4$ = 股权市值 / 总负债 (市场估值杠杆)</li>
+<li>$X_5$ = 营收 / 总资产 (资产周转)</li>
+</ul>
+<p lang="zh"><strong>阈值</strong>:</p>
+<ul lang="zh">
+<li>$Z &gt; 2.99$: 安全区</li>
+<li>$1.81 &lt; Z &lt; 2.99$: 灰色区</li>
+<li>$Z &lt; 1.81$: 困境区 (2 年内破产概率 &gt; 50%)</li>
+</ul>
+<p lang="en">$Z &gt; 2.99$ safe; 1.81–2.99 grey; $&lt; 1.81$ distress (50%+ bankruptcy in 2y).</p>
+<span class="cite">Altman, E.I. (1968) "Financial Ratios, Discriminant Analysis and the Prediction of Corporate Bankruptcy"</span>
+</div>
+
+<p lang="zh"><strong>Altman Z' (私有公司, 用账面权益替代市值)</strong>:</p>
+<p lang="en"><strong>Altman Z' for private firms</strong> (book equity replaces market):</p>
+<div class="eq"><span>$$ Z' = 0.717 X_1 + 0.847 X_2 + 3.107 X_3 + 0.42 X_4' + 0.998 X_5 $$</span><span class="num">(10.3)</span></div>
+<p lang="zh">阈值: &gt; 2.9 安全, 1.23-2.9 灰色, &lt; 1.23 困境.</p>
+
+<h3 lang="zh">③ Piotroski F-Score (9 因子, 0-9 分)</h3>
+<h3 lang="en">③ Piotroski F‑Score (9 binary factors)</h3>
+<p lang="zh">每个因子<em>满足</em>得 1 分, 否则 0 分。总分 0-9:</p>
+<p lang="en">Each factor: 1 if satisfied, 0 otherwise. Total 0–9:</p>
+<ol lang="zh">
+<li>当年 ROA &gt; 0</li>
+<li>当年 OCF &gt; 0</li>
+<li>当年 ROA &gt; 上一年</li>
+<li>OCF &gt; NI (应计质量好)</li>
+<li>当年长期债务 / 总资产 &lt; 上一年 (去杠杆)</li>
+<li>当年流动比率 &gt; 上一年</li>
+<li>没有发行新股 (无股东稀释)</li>
+<li>当年毛利率 &gt; 上一年</li>
+<li>当年总资产周转率 &gt; 上一年</li>
+</ol>
+<p lang="en">9 binary criteria: ROA &gt; 0; OCF &gt; 0; ROA rising; OCF &gt; NI; LT‑debt/Assets falling; Current ratio rising; no equity issuance; gross margin rising; asset turnover rising.</p>
+<p lang="zh"><strong>用法</strong>: 在<em>低 P/B 价值股</em>中筛选 F &gt; 7 的"高质量价值"组合, Piotroski (2000) 证明该组合 5 年累计回报远超随机选低 P/B 股。</p>
+<p lang="en">Use: within low‑P/B value stocks, pick F &gt; 7. Piotroski (2000) showed 5y returns far exceed random low‑P/B picks.</p>
+<span class="cite">Piotroski, J.D. (2000) "Value Investing: The Use of Historical Financial Statement Information"</span>
+
+<h3 lang="zh">④ Sloan 应计盈余比 (最简版本)</h3>
+<h3 lang="en">④ Sloan accruals ratio (simplest)</h3>
+<div class="eq"><span>$$ \mathrm{Accruals\,Ratio} = \frac{\mathrm{NI} - \mathrm{OCF}}{\mathrm{Avg\,Total\,Assets}} $$</span><span class="num">(10.4)</span></div>
+<p lang="zh"><strong>解读</strong>: 高应计 = NI 远高于 OCF = "纸面利润". Sloan (1996) 实证: 高应计公司未来 1 年 -10% α (相对低应计公司). 这就是著名的"应计盈余异象"。</p>
+<p lang="en">High accruals = NI &gt;&gt; OCF = paper profit. Sloan (1996): high‑accrual firms underperform by ~−10% next year — the accruals anomaly.</p>
+<span class="cite">Sloan, R.G. (1996) "Do Stock Prices Fully Reflect Information in Accruals and Cash Flows About Future Earnings?"</span>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case case--warn">
+<div class="case-head"><span class="ticker">SH·600518</span><span class="company"><span lang="zh">康美药业</span><span lang="en">Kangmei Pharma</span></span><span class="period">2016-2017 · <span lang="zh">Beneish M-Score 暴雷预警</span><span lang="en">Beneish M signal</span></span><span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span></div>
+<p lang="zh">康美 2017 年报 (暴雷前) 估算各因子 (使用公开年报数据近似):</p>
+<p lang="en">Kangmei 2017 (pre‑collapse) approximate factors:</p>
+<div class="case-table"><table><thead><tr><th><span lang="zh">因子</span><span lang="en">Factor</span></th><th class="num">2017 <span lang="zh">值</span><span lang="en">Value</span></th><th><span lang="zh">解读</span><span lang="en">Interpretation</span></th></tr></thead><tbody>
+<tr><td>DSRI</td><td class="num down">~1.45</td><td><span lang="zh">应收账款相对营收暴涨 45% — 强信号</span><span lang="en">AR/Sales up 45% — strong signal</span></td></tr>
+<tr><td>SGI</td><td class="num down">~1.22</td><td><span lang="zh">营收增长 22% — 维持增长压力</span><span lang="en">Revenue up 22% — sustain pressure</span></td></tr>
+<tr><td>TATA</td><td class="num down">~0.08</td><td><span lang="zh">应计盈余比偏高 — 显著</span><span lang="en">High accruals ratio</span></td></tr>
+<tr><td>AQI</td><td class="num down">~1.30</td><td><span lang="zh">"其他资产"比例上升, 资本化激进</span><span lang="en">Other assets rising — aggressive cap.</span></td></tr>
+<tr><td><strong>M-Score</strong></td><td class="num down"><strong>~-1.5</strong></td><td><span lang="zh">远高于 −2.22 阈值 → <em>强烈操纵嫌疑</em></span><span lang="en">Above −2.22 threshold → strong manipulation flag</span></td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>事后验证</strong>: 2018 年自查披露 2016 年虚增营收 ~89 亿, 虚增货币资金 ~225 亿; 2017 年虚增营收 ~100 亿, 虚增货币资金 ~299 亿. Beneish M-Score 在暴雷前一年已经发出明确预警 — 任何使用该模型筛选的投资者都应在 2018 年初就排除康美。</p>
+<p lang="en">2018 self‑disclosure: 2016 revenue overstated ~¥8.9bn, cash ~¥22.5bn; 2017 revenue ~¥10bn, cash ~¥29.9bn overstated. Beneish flagged a year before — any investor using this screen would have excluded Kangmei in early 2018.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head"><span class="ticker">SZ·002450</span><span class="company"><span lang="zh">康得新</span><span lang="en">Kangde Xin</span></span><span class="period">2018 · <span lang="zh">Altman Z 已亮红灯</span><span lang="en">Altman Z red</span></span><span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span></div>
+<p lang="zh">康得新 2018 半年报近似计算:</p>
+<p lang="en">Kangde Xin 2018 H1 approximate Z:</p>
+<ul lang="zh">
+<li>$X_1$ (流动性) ~ 0.12</li>
+<li>$X_2$ (留存/资产) ~ 0.05 (留存增长慢)</li>
+<li>$X_3$ (EBIT/资产) ~ 0.04 (经营盈利薄)</li>
+<li>$X_4$ (市值/负债) ~ 0.6 (市场对债务的怀疑)</li>
+<li>$X_5$ (周转) ~ 0.3</li>
+<li>$Z = 1.2 \times 0.12 + 1.4 \times 0.05 + 3.3 \times 0.04 + 0.6 \times 0.6 + 1.0 \times 0.3 = 0.14 + 0.07 + 0.13 + 0.36 + 0.30 = 1.00$</li>
+</ul>
+<p lang="zh"><strong>$Z \approx 1.00$, 远低于 1.81 阈值, 处于深度困境区</strong>。事后: 2019 年初公司公告 122 亿存款"无法使用", 即虚假存款; 同年股价崩盘; 2021 年退市。</p>
+<p lang="en">$Z \approx 1.00$ — deep distress. Subsequently in 2019: disclosed ¥12.2bn deposits "unusable" (fake); stock collapsed; delisted 2021.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head"><span class="ticker">SZ·002069</span><span class="company"><span lang="zh">獐子岛 — "扇贝跑了"</span><span lang="en">Zhangzidao — "scallops swam away"</span></span><span class="period"><span lang="zh">应计盈余的极端案例</span><span lang="en">Extreme accruals</span></span></div>
+<p lang="zh">獐子岛 2014, 2017, 2019 三次公告"扇贝大量死亡 / 跑了 / 莫名消失", 每次计提巨额存货跌价损失。这是典型的<em>应计盈余</em>操纵: 把"存货"作为利润蓄水池, 好年份不计提虚增利润, 差年份集中计提"清零", 形成 big bath。</p>
+<p lang="en">Zhangzidao announced "scallops died/escaped/vanished" in 2014, 2017, 2019 — each time massive inventory write‑downs. Classic accruals manipulation: use inventory as a profit reservoir, defer impairments in good years, lump them as big baths in bad years.</p>
+<p lang="zh"><strong>Sloan 应计盈余比</strong> 2013-2014 年间从 +5% (正常偏高) 飙升到 +15% (极端高) → 强烈预警。投资者使用 (10.4) 简单公式即可在 2014 暴雷前发现异常。</p>
+<p lang="en">Sloan accruals ratio jumped from +5% (somewhat high) to +15% (extreme) in 2013–14 — strong pre‑collapse warning available via the simple (10.4) formula.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">accrual vs cash</span></h4><p lang="zh">应计盈余 (NI − OCF) 是造假最敏感的口子, M-Score / Sloan ratio 都聚焦此。</p><p lang="en">Accruals (NI − OCF) is the most sensitive fraud signal; both M‑Score and Sloan center on this.</p></div></div>
+<div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">高 F-Score 公司满足谨慎性条件 (OCF &gt; NI, 流动性改善, 不稀释); 低 F = 反谨慎性. Piotroski 把谨慎性转为可量化筛选。</p><p lang="en">High‑F firms satisfy conservatism; low‑F firms violate it. Piotroski operationalizes prudence.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一家公司 M-Score = −1.8 (高于 −2.22 阈值)。这<em>必然</em>是造假公司吗? 该如何使用 M-Score 作为投资工具?</span><span lang="en"><strong>Q1.</strong> M‑Score = −1.8 (above −2.22). Must this firm be a fraud? How should one use M‑Score?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不必然</strong>。Beneish (1999) 模型在样本内分类准确率 ~76%, 即:</p>
+<ul lang="zh">
+<li>真正操纵的公司中, ~76% 被正确识别为操纵 (M &gt; −2.22)</li>
+<li>但<em>未操纵</em>的公司中也有 ~17% 被误判为操纵 (假阳性)</li>
+<li>反之, 真正操纵公司中有 ~24% 被漏判 (假阴性)</li>
+</ul>
+<p lang="zh"><strong>误判来源</strong>: 真实高速成长公司 (营收暴涨 + 应收账款扩张 + 资产增长) 会被模型"误伤" — 看起来像操纵。例如早期快速增长的零售商、SaaS 公司。</p>
+<p lang="zh"><strong>正确用法</strong>:</p>
+<ol lang="zh">
+<li><strong>筛选不是结论</strong>: M-Score 高仅是"开始调查"的信号, 不是"必然有问题"的判决</li>
+<li><strong>结合定性</strong>: 看附注关联方交易、审计意见、问询函历史、行业地位 等定性证据</li>
+<li><strong>多年趋势</strong>: 连续 3 年 M-Score 上升 比单年高更可靠</li>
+<li><strong>组合多指标</strong>: M-Score + Z-Score + F-Score + 现金流性格 (Ch.M1.08) 综合判断 — 任一指标异常单独不足, 多指标同向异常才高度可信</li>
+<li><strong>反向使用</strong>: 用 M-Score &lt; −2.84 作为<em>排除可疑</em>的高质量筛, 而非"M &gt; −2.22 必造假"的肯定式判断</li>
+</ol>
+<p lang="zh"><strong>实务</strong>: 量化对冲基金会用 M-Score 作为<em>做空</em>候选库的初筛, 再做深度尽调; 长期价值投资者会用 M-Score 作为<em>避雷</em>工具, 排除高 M 公司。</p>
+<p lang="en">No. Beneish 1999 in‑sample accuracy ~76% — 17% false‑positives (fast‑growing firms with rising AR/assets), 24% false‑negatives. Use as a screen, not a verdict. Combine with notes, audit opinions, inquiry history, industry context. Trend (3y) more reliable than single year. Combined with Z and F scores plus cash flow personality, multi‑indicator alignment gives high confidence. Practical: quant short‑bias use it as candidate screen; long‑term value investors use it to avoid.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> Altman Z-Score 在<em>银行业</em>和<em>互联网行业</em>都几乎无意义。给出原因。</span><span lang="en"><strong>Q2.</strong> Altman Z is nearly useless for banks and internet firms. Why?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>Altman 1968 原始模型基于制造业上市公司样本</strong>(美国, 33 家破产 + 33 家健康对照). 模型权重反映制造业的破产驱动机制 — 营运资本 + 资产周转 + 经营杠杆.</p>
+<p lang="zh"><strong>银行业失效</strong>:</p>
+<ul lang="zh">
+<li>$X_1$ (营运资本/资产) — 银行无传统"营运资本"概念 (Ch.M2.07 讨论 CCC 在房地产同理). 公式直接套用得到接近 0 或极小值</li>
+<li>$X_4$ (市值/负债) — 银行业天然高杠杆 (D/E 10+), $X_4$ 极小, 但这是行业结构而非困境信号</li>
+<li>$X_5$ (周转) — 银行营收/资产比 ~3-5%, 远低于制造业 50-100%</li>
+<li>结果: 健康银行 Z 也会落入"困境区"</li>
+</ul>
+<p lang="zh"><strong>互联网/科技失效</strong>:</p>
+<ul lang="zh">
+<li>$X_2$ (留存收益/资产) — 早期科技公司大量烧钱, 累计亏损 → $X_2$ 为负或极小</li>
+<li>$X_3$ (EBIT/资产) — 未盈利期 $X_3$ 为负</li>
+<li>$X_5$ (周转) — 重资产 (服务器、研发) + 营收尚未爆发 → 低周转</li>
+<li>但这些公司可能融资充足 + 商业模式有效, 实际破产风险低</li>
+</ul>
+<p lang="zh"><strong>正确替代</strong>:</p>
+<ul lang="zh">
+<li><strong>银行</strong>: 看监管资本充足率 (CET1, AT1, Total Capital), 不良贷款率, 拨备覆盖率. Z-Score 不适用</li>
+<li><strong>科技初创</strong>: 看"现金跑道" (cash runway = cash / monthly burn), 融资节奏, 单位经济效益 (LTV/CAC). Z-Score 也不适用</li>
+<li><strong>Altman 2002 Z'' 修订版</strong>: 针对非制造业, 但仍不适合银行 / 重监管行业</li>
+</ul>
+<p lang="zh"><strong>启示</strong>: 任何<em>统计模型</em>都有其训练数据的特征局限. 跨行业 / 跨时代直接套用会产生系统性偏差. 应该用<em>同行业 同结构</em>的对照基准。</p>
+<p lang="en">Altman 1968 trained on US manufacturers. $X_1$ irrelevant for banks (no "working capital" concept); $X_4$ low by industry structure; $X_5$ low. Healthy banks fall into distress zone. Tech: $X_2$ negative (accumulated losses), $X_3$ negative pre‑profit, $X_5$ low. Use instead: bank capital adequacy / NPL / coverage; tech cash runway / burn / LTV‑CAC. Any statistical model bears training‑sample limits; cross‑industry transfer needs caution.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 公司 NI = 100, OCF = 30, 总资产平均 = 1000. 算 Sloan 应计盈余比. 用 Sloan (1996) 实证结论判断该股票<em>下一年</em>预期回报相对市场如何?</span><span lang="en"><strong>Q3.</strong> NI=100, OCF=30, Assets=1000. Sloan ratio? Expected next‑year return vs market per Sloan (1996)?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">$\mathrm{Accruals\,Ratio} = (NI - OCF)/A = (100-30)/1000 = 7\%$</p>
+<p lang="zh"><strong>解读</strong>: 应计盈余比 7% 处于<em>极高</em>区间 (典型公司在 0-3%, 高质量公司 OCF &gt; NI 时为负)。NI 远高于 OCF 说明大量利润是"账面"的, 没有变成现金。</p>
+<p lang="zh"><strong>Sloan (1996) 实证</strong>: 把美股按应计盈余比五分位排序, 最高 quintile (类似本题) 下一年股票回报<em>低于</em>最低 quintile 平均 ~10 个百分点 (年化超额回报 −10% α). 这就是"应计盈余异象" (accruals anomaly):</p>
+<p lang="en">Accruals ratio = 7%, in the top quintile. Sloan (1996): top quintile underperforms bottom by ~10% next year — the accruals anomaly.</p>
+<p lang="zh"><strong>原因解读</strong>:</p>
+<ol lang="zh">
+<li><strong>盈利质量低</strong>: 应计盈余的可持续性远低于现金盈余. 投资者初期高估了该利润, 未来实际现金不足以维持估值</li>
+<li><strong>反转</strong>: 高应计公司常常未来 1-2 年内出现"业绩低于预期" → 股价下跌</li>
+<li><strong>异常持续性</strong>: Sloan 之后 30 年大量研究确认此异象在美国、欧洲、日本、中国都存在 — 是<em>少数能跨时间跨地区稳健存在</em>的因子</li>
+</ol>
+<p lang="zh"><strong>A 股应用</strong>: 中国市场对应计盈余的反应"滞后"更明显 (散户主导 + 信息不对称). 量化基金把"应计盈余比"作为多因子模型的<em>负向因子</em>(高应计 → 减分)。</p>
+<p lang="zh"><strong>实务陷阱</strong>: 应计盈余比受<em>会计政策</em>影响 (折旧加速 / 减缓 / 应收账款准备等). 单年数据可能噪音大, 用 3 年平均更可靠。</p>
+<p lang="en">Ratio = 7% — top quintile. Sloan: top quintile underperforms by ~10% in following year. Mechanism: low earnings quality; future earnings disappointments; mean reversion. Anomaly persists across geographies and decades — one of finance's most robust factor results. A‑share: even stronger lag due to retail dominance + asymmetry. Use 3‑year average to reduce noise.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="09-ratios.html"><span class="dir">← Prev</span><span class="title">09 · <span lang="zh">财务比率</span><span lang="en">Ratios</span></span></a><a class="next" href="../m3-investments/00-overview.html"><span class="dir"><span lang="zh">Module III →</span><span lang="en">Module III →</span></span><span class="title"><span lang="zh">证券投资学</span><span lang="en">Investments</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title">AI Tutor <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">填入 API Key</span><span lang="en">API Key</span></h4><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save>Save</button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset><span lang="zh">清除</span><span lang="en">clear</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

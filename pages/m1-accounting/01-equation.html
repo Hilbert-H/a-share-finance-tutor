@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>01 · 会计恒等式与复式记账 — The Accounting Identity</title>
+  <meta name="keywords" content="accounting identity, A=L+E, double-entry, 复式记账, 会计恒等式, debit, credit, 借贷, 贵州茅台, 600519, balance sheet, Brealey, CAS 基本准则">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    /* ===== KaTeX size lock v6 — NUCLEAR =====
+       问题诊断: 之前 .katex { font-size: 1em } 不够, 因为 KaTeX 在 display 模式下
+       套了内层 .sizing.size9 (1.728em) 等放大类, 通过 inline style 或子选择器放大。
+       这一版用 `body .katex *` 通配选择 KaTeX 容器内所有子元素, 一律强制 1em。
+       副作用: 上下标失去 0.7em 自动缩放 (位置仍偏移, 只是大小相同), 可接受。 */
+    body .katex,
+    body .katex *,
+    body .katex-display,
+    body .katex-display * {
+      font-size: 1em !important;
+      line-height: 1.25 !important;
+    }
+    /* 重新允许上下标稍微缩放 (用 sup/sub 而非 sizing 类, 这是兜底) */
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+
+    body .katex-display {
+      display: block !important;
+      margin: 0.5em 0 !important;
+      padding: 0 !important;
+      text-align: center !important;
+    }
+
+    /* Heading 内 inline math 进一步压小 */
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    h1 .katex *, h2 .katex *, h3 .katex * { font-size: 1em !important; }
+    .lesson-subtitle .katex { font-size: 0.78em !important; }
+    .lesson-subtitle .katex * { font-size: 1em !important; }
+
+    /* .eq layout fix in case components.css is also stale */
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+
+    /* 临时可视化标记: 看到这个红色"v6"角标就说明你看到的是最新代码 */
+    .__debug_v6 {
+      position: fixed; top: 0; right: 0; z-index: 9999;
+      background: #8B2C2C; color: #F7F2E8;
+      font: 600 11px/1 'JetBrains Mono', monospace;
+      padding: 6px 10px; letter-spacing: 0.08em;
+      border-bottom-left-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html">
+      <span class="mark">A</span>
+      <span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span>
+    </a>
+    <div class="search">
+      <input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search">
+      <div class="search-results"></div>
+    </div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle">
+        <span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span>
+      </button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 01</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: 无</span><span lang="en">Prereq: none</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.02 三表勾稽</span><span lang="en">Next: Ch.02 Articulation</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">会计恒等式与复式记账</span>
+        <span lang="en">The Accounting Identity &amp; Double-Entry</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">所有会计学结论都从 A = L + E 这一条恒等式机械推出。借贷规则不是约定俗成的, 而是这条恒等式的代数对偶。</span>
+        <span lang="en">All accounting follows mechanically from one identity, A = L + E. Debit and credit aren't conventions — they are the algebraic dual of that identity.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用 $A = L + E$ 验证任意一份 A 股资产负债表的内在一致性 (实战通常通过 "资产总计 = 负债合计 + 所有者权益合计" 这一行)。</li>
+          <li lang="zh">能把任意一笔经济事件 (买设备、借款、赊销、计提折旧、回购股票) 表达为符合恒等式的借贷分录。</li>
+          <li lang="zh">理解为何借贷符号不能在不影响恒等式的前提下任意改变, 它们是 $dA = dL + dE$ 的两侧标记。</li>
+          <li lang="zh">理解为什么"扣应付账款 → 增短期借款"是结构变化, 不是改善。</li>
+          <li lang="en">Use $A = L + E$ to consistency‑check any A‑share balance sheet (in practice via the three "totals" rows).</li>
+          <li lang="en">Encode any transaction (purchase, borrow, credit sale, depreciation, buyback) as a balanced double‑entry.</li>
+          <li lang="en">See why debit/credit signs are determined by the identity, not chosen by convention.</li>
+          <li lang="en">Recognize that swapping payables for short‑term debt is a structural change, not an improvement.</li>
+        </ul>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 1 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="en"> · Building the identity from zero</span>
+          <span class="en" lang="zh"> · 从零搭建这条恒等式</span>
+        </h2>
+
+        <p lang="zh">把一家公司当作一个封闭系统。任何价值进入这个系统, 必有<em>来源</em>; 任何价值留在系统里, 必有<em>形态</em>。来源和形态的总和恒相等 — 这就是会计恒等式。和能量守恒、动量守恒同一种性质: 把"价值"作为守恒量。</p>
+        <p lang="en">Treat a company as a closed system. Every dollar inside must have both a <em>source</em> (who has a claim on it) and a <em>form</em> (what it currently is). Sources sum to forms — that is the accounting identity. It's a conservation law, just with "value" as the conserved quantity instead of energy or momentum.</p>
+
+        <p lang="zh">想象时间从 $t_0$ 开始:</p>
+        <p lang="en">Imagine time starting at $t_0$:</p>
+        <ol>
+          <li lang="zh">公司还不存在: $A = L = E = 0$。</li>
+          <li lang="zh">创始人投入 100 万元自有资金: 银行账户上多出 100, 由创始人 (= 股东) 享有 → $A = 100$, $E = 100$, $L = 0$。等式仍成立。</li>
+          <li lang="zh">银行给公司借款 200 万元: 银行账户再 +200, 但这部分钱由<em>银行</em>享有索取权 → $A = 300$, $L = 200$, $E = 100$。</li>
+          <li lang="zh">花 50 万买设备: 现金变设备, 形态变了但总价值没变 → $A$ 内部重排, 总和仍为 300。</li>
+          <li lang="zh">不管后续做什么, 这条恒等式必须始终成立。如果不成立, 一定有错。</li>
+
+          <li lang="en">There's no company yet: $A = L = E = 0$.</li>
+          <li lang="en">Founder injects ¥1m of personal cash: bank balance +¥1m, claim held by the founder (= shareholder) → $A = 1$m, $E = 1$m, $L = 0$.</li>
+          <li lang="en">Bank lends ¥2m: bank balance +¥2m more, but this part is claimed by the lender → $A = 3$m, $L = 2$m, $E = 1$m.</li>
+          <li lang="en">Spend ¥500k on equipment: cash converts to equipment — the <em>form</em> of value changes but the total doesn't → $A$ rearranges internally; total stays ¥3m.</li>
+          <li lang="en">No matter what happens later, the identity must hold. If it doesn't, something is wrong.</li>
+        </ol>
+
+        <p lang="zh"><strong>这个恒等式从未被"证明"。</strong>它是<em>定义</em> — 会计学定义"所有者权益 = 资产 − 负债"。剩下所有规则都是为了让这条等式在每一笔交易后都保持成立。借贷规则本身就是为此而设计的代数语言。</p>
+        <p lang="en"><strong>The identity is not derived.</strong> It is <em>definitional</em> — equity is <em>defined</em> as assets minus liabilities. Every other rule exists so that the identity stays true after every transaction. Debit/credit is just the algebraic language built around it.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 720 260" role="img" aria-label="Balance sheet identity A = L + E">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#EFE8D8"/>
+                <stop offset="1" stop-color="#E6DCC4"/>
+              </linearGradient>
+            </defs>
+            <style>
+              .lbl-big   { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; font-size: 22px; font-weight: 600; fill: #1A1814; }
+              .lbl-mid   { font-family: 'Noto Serif SC', 'Cormorant Garamond', serif; font-size: 14px; font-weight: 500; fill: #1A1814; }
+              .lbl-cap   { font-family: 'Inter Tight', 'Noto Sans SC', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: #8A8378; }
+              .item      { font-family: 'JetBrains Mono', 'Noto Serif SC', monospace; font-size: 11px; fill: #4A4540; }
+              .gloss     { font-family: 'Noto Serif SC', 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; fill: #8A8378; }
+              .eq-sign   { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-style: italic; fill: #8B2C2C; }
+              .plus-sign { font-family: 'Cormorant Garamond', serif; font-size: 30px; fill: #8B2C2C; }
+              .rule      { stroke: #C9BFA8; stroke-width: 1; }
+            </style>
+
+            <!-- 顶部小标签 -->
+            <text class="lbl-cap" x="160" y="22" text-anchor="middle">FORM · 形态</text>
+            <text class="lbl-cap" x="510" y="22" text-anchor="middle">SOURCES · 索取权</text>
+
+            <!-- A 框 (左, 占满) -->
+            <rect x="40" y="38" width="240" height="200" rx="4" fill="url(#g1)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="160" y="77" text-anchor="middle">A · Assets</text>
+            <text class="lbl-mid" x="160" y="100" text-anchor="middle">资产</text>
+            <line class="rule" x1="65" y1="118" x2="255" y2="118"/>
+            <text class="item" x="160" y="142" text-anchor="middle">银行存款 · 应收账款</text>
+            <text class="item" x="160" y="162" text-anchor="middle">存货 · 固定资产</text>
+            <text class="item" x="160" y="182" text-anchor="middle">无形资产 · 其他</text>
+            <text class="gloss" x="160" y="216" text-anchor="middle">公司持有的所有形态</text>
+
+            <!-- 等号 -->
+            <text class="eq-sign" x="320" y="148" text-anchor="middle">=</text>
+
+            <!-- L 框 (右上) -->
+            <rect x="370" y="38" width="280" height="87" rx="4" fill="url(#g1)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="510" y="73" text-anchor="middle">L · Liabilities</text>
+            <text class="lbl-mid" x="510" y="96" text-anchor="middle">负债</text>
+            <text class="gloss" x="510" y="116" text-anchor="middle">外部债权人的索取权</text>
+
+            <!-- 加号 -->
+            <text class="plus-sign" x="510" y="152" text-anchor="middle">+</text>
+
+            <!-- E 框 (右下) -->
+            <rect x="370" y="165" width="280" height="73" rx="4" fill="url(#g1)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="510" y="197" text-anchor="middle">E · Equity</text>
+            <text class="gloss" x="510" y="220" text-anchor="middle">所有者权益 · 股东剩余索取</text>
+          </svg>
+          <figcaption>
+            <span lang="zh">资产负债表的"两端": 左边是<em>形态</em>, 右边是<em>索取权</em>。两端恒等。</span>
+            <span lang="en">The two sides of the balance sheet: <em>form</em> on the left, <em>claims</em> on the right. They are identically equal.</span>
+          </figcaption>
+        </figure>
+
+        <p class="muted measure" lang="zh">
+          <strong>电路类比</strong>: 资产端是节点上的电荷分布, 负债 + 权益端是流入节点的电流方向标签 (谁送来的)。基尔霍夫电流定律 (KCL) 说: 流入 = 流出。恒等式说: 形态 = 索取权。
+        </p>
+        <p class="muted measure" lang="en">
+          <strong>Circuit analogy:</strong> the asset side is the charge distribution at a node; the L + E side labels who supplied it. KCL says inflow = outflow; the identity says form = claim.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 2 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span>
+        </h2>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">恒等式</span>
+          <span class="callout-label" lang="en">Identity</span>
+          <div class="eq">
+            <span>$$ A \;=\; L \;+\; E $$</span>
+            <span class="num">(1.1)</span>
+          </div>
+          <p lang="zh">资产 (Assets) = 负债 (Liabilities) + 所有者权益 (Equity)。等价写法 $E = A - L$ 即"净资产"。</p>
+          <p lang="en">Assets = Liabilities + Equity. Equivalently $E = A - L$ defines "net assets" / book equity.</p>
+          <span class="cite">CAS 基本准则 §16 · IFRS Conceptual Framework §4.3–4.7 · Brealey, Myers &amp; Allen, Principles of Corporate Finance, Ch. 4</span>
+        </div>
+
+        <p lang="zh">把权益展开到下一期 — 这就是利润表如何嵌入恒等式:</p>
+        <p lang="en">Expand equity into period $t$ — this is how the income statement plugs into the identity:</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">权益的时间演化</span>
+          <span class="callout-label" lang="en">Equity dynamics</span>
+          <div class="eq">
+            <span>$$ E_t \;=\; E_{t-1} \;+\; \mathrm{NI}_t \;-\; D_t $$</span>
+            <span class="num">(1.2)</span>
+          </div>
+          <p lang="zh">期末权益 = 期初权益 + 当期净利润 (Net Income) − 当期股利 (Dividends)。</p>
+          <p lang="en">Ending equity = beginning equity + net income − dividends paid.</p>
+        </div>
+
+        <p lang="zh">代入 (1.1) 得到完整状态方程:</p>
+        <p lang="en">Substituting into (1.1):</p>
+
+        <div class="eq">
+          <span>$$ A_t \;=\; L_t \;+\; E_{t-1} \;+\; (\mathrm{Rev}_t - \mathrm{Exp}_t) \;-\; D_t $$</span>
+          <span class="num">(1.3)</span>
+        </div>
+
+        <p lang="zh">这就是把资产负债表 (state vector) 和利润表 (state transition) 串起来的桥梁。Ch.02 会再加上现金流量表, 把整个系统闭环。</p>
+        <p lang="en">This is the bridge between balance sheet (state vector) and income statement (state transition). Ch.02 adds the cash flow statement and closes the loop.</p>
+
+        <h3 lang="zh">借贷规则不是约定, 是 $dA = dL + dE$ 的代数对偶</h3>
+        <h3 lang="en">Debit/credit isn't a convention — it's the algebraic dual of $dA = dL + dE$</h3>
+
+        <p lang="zh">对 (1.1) 取微分 / 取增量:</p>
+        <p lang="en">Take the differential of (1.1):</p>
+        <div class="eq">
+          <span>$$ dA \;=\; dL \;+\; dE $$</span>
+          <span class="num">(1.4)</span>
+        </div>
+
+        <p lang="zh">现在选择记号约定: "借 (debit, Dr)" 标记<em>资产增加</em>方向 (左侧增加), "贷 (credit, Cr)" 标记<em>右侧增加</em>方向 (负债或权益增加)。把所有项分配后, 任何分录必有:</p>
+        <p lang="en">Now choose a convention: "debit (Dr)" marks the <em>asset‑increase</em> direction (the left‑hand side), "credit (Cr)" marks the <em>right‑hand‑side</em> direction (liability or equity increases). Every entry then satisfies:</p>
+
+        <div class="eq">
+          <span>$$ \sum \mathrm{Dr} \;=\; \sum \mathrm{Cr} $$</span>
+          <span class="num">(1.5)</span>
+        </div>
+
+        <p lang="zh">对每一类账户:</p>
+        <p lang="en">For each account type:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th><span lang="zh">账户类型</span><span lang="en">Account type</span></th>
+              <th><span lang="zh">增加方向</span><span lang="en">Increase</span></th>
+              <th><span lang="zh">减少方向</span><span lang="en">Decrease</span></th>
+              <th><span lang="zh">恒等式中位置</span><span lang="en">Position</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span lang="zh">资产 Asset</span><span lang="en">Asset</span></td>
+              <td>Dr <span lang="zh">借</span></td>
+              <td>Cr <span lang="zh">贷</span></td>
+              <td>$A$</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">负债 Liability</span><span lang="en">Liability</span></td>
+              <td>Cr <span lang="zh">贷</span></td>
+              <td>Dr <span lang="zh">借</span></td>
+              <td>$L$</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">所有者权益 Equity</span><span lang="en">Equity</span></td>
+              <td>Cr <span lang="zh">贷</span></td>
+              <td>Dr <span lang="zh">借</span></td>
+              <td>$E$</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">收入 Revenue</span><span lang="en">Revenue</span></td>
+              <td>Cr <span lang="zh">贷</span></td>
+              <td>Dr <span lang="zh">借</span></td>
+              <td>→ $E$ ↑</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">费用 Expense</span><span lang="en">Expense</span></td>
+              <td>Dr <span lang="zh">借</span></td>
+              <td>Cr <span lang="zh">贷</span></td>
+              <td>→ $E$ ↓</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 lang="zh">六笔示例分录</h3>
+        <h3 lang="en">Six worked entries</h3>
+
+        <p lang="zh">每一笔的"Δ" 列展示恒等式如何在三量之间重新分配:</p>
+        <p lang="en">The "Δ" columns show how the identity redistributes among the three quantities:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th><span lang="zh">交易</span><span lang="en">Transaction</span></th>
+              <th>Dr (<span lang="zh">借</span>)</th>
+              <th>Cr (<span lang="zh">贷</span>)</th>
+              <th class="num">ΔA</th>
+              <th class="num">ΔL</th>
+              <th class="num">ΔE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span lang="zh">1. 现金 100 买设备</span><span lang="en">1. Buy ¥100 equipment, cash</span></td>
+              <td><span lang="zh">固定资产 100</span><span lang="en">PPE 100</span></td>
+              <td><span lang="zh">银行存款 100</span><span lang="en">Cash 100</span></td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">2. 银行借款 500</span><span lang="en">2. Borrow ¥500 from bank</span></td>
+              <td><span lang="zh">银行存款 500</span><span lang="en">Cash 500</span></td>
+              <td><span lang="zh">短期借款 500</span><span lang="en">ST debt 500</span></td>
+              <td class="num up">+500</td>
+              <td class="num up">+500</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">3. 发行股票筹资 200</span><span lang="en">3. Issue ¥200 of stock</span></td>
+              <td><span lang="zh">银行存款 200</span><span lang="en">Cash 200</span></td>
+              <td><span lang="zh">实收资本 200</span><span lang="en">Share capital 200</span></td>
+              <td class="num up">+200</td>
+              <td class="num">0</td>
+              <td class="num up">+200</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">4. 赊销 300, 成本 200</span><span lang="en">4. Credit sale ¥300, COGS ¥200</span></td>
+              <td><span lang="zh">应收 300; 主营成本 200</span><span lang="en">AR 300; COGS 200</span></td>
+              <td><span lang="zh">主营收入 300; 库存 200</span><span lang="en">Revenue 300; Inventory 200</span></td>
+              <td class="num up">+100</td>
+              <td class="num">0</td>
+              <td class="num up">+100</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">5. 计提折旧 50</span><span lang="en">5. Depreciation expense ¥50</span></td>
+              <td><span lang="zh">折旧费用 50</span><span lang="en">Depr. exp. 50</span></td>
+              <td><span lang="zh">累计折旧 50</span><span lang="en">Accum. depr. 50</span></td>
+              <td class="num down">−50</td>
+              <td class="num">0</td>
+              <td class="num down">−50</td>
+            </tr>
+            <tr>
+              <td><span lang="zh">6. 收到上述应收回款 300</span><span lang="en">6. Collect the ¥300 receivable</span></td>
+              <td><span lang="zh">银行存款 300</span><span lang="en">Cash 300</span></td>
+              <td><span lang="zh">应收账款 300</span><span lang="en">AR 300</span></td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>第 6 行的反直觉细节</strong>: 收到现金, "公司更有钱了", 但 $A$、$L$、$E$ 全部不变 — 因为收入早在第 4 行就已经被 accrual 原则计入了。这是 accrual 会计与 cash 会计的本质区别。Ch.03 详述。</p>
+        <p lang="en"><strong>The counterintuitive detail on row 6:</strong> the firm receives cash, "is richer," yet $A$, $L$, and $E$ are all unchanged — because revenue was already booked in row 4 under accrual. This is the core difference between accrual and cash accounting. Ch.03 expands.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 3 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span>
+        </h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600519</span>
+            <span class="company"><span lang="zh">贵州茅台</span><span lang="en">Kweichow Moutai</span></span>
+            <span class="period">FY2023 · <span lang="zh">合并资产负债表 (年报)</span><span lang="en">Consolidated B/S (annual report)</span></span>
+          </div>
+
+          <p lang="zh">先看任意一份 A 股年报的资产负债表最末三行 — 它们必然满足 $A = L + E$。下面用近似的真实量级:</p>
+          <p lang="en">The last three "totals" rows of any A‑share balance sheet must satisfy $A = L + E$. Approximate magnitudes:</p>
+
+          <div class="case-table">
+            <table>
+              <thead>
+                <tr>
+                  <th><span lang="zh">合计行 / Total</span><span lang="en">Total line</span></th>
+                  <th class="num"><span lang="zh">金额 (亿元)</span><span lang="en">¥ bn</span></th>
+                  <th><span lang="zh">含义</span><span lang="en">Meaning</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span lang="zh">资产总计</span><span lang="en">Total assets</span></td>
+                  <td class="num">2,820</td>
+                  <td><span lang="zh">A — 公司持有的所有形态价值</span><span lang="en">A — total value held in any form</span></td>
+                </tr>
+                <tr>
+                  <td><span lang="zh">负债合计</span><span lang="en">Total liabilities</span></td>
+                  <td class="num">484</td>
+                  <td><span lang="zh">L — 外部债权人对资产的索取权</span><span lang="en">L — outside creditors' claims</span></td>
+                </tr>
+                <tr>
+                  <td><span lang="zh">所有者权益合计</span><span lang="en">Total equity</span></td>
+                  <td class="num">2,336</td>
+                  <td><span lang="zh">E — 股东对剩余资产的索取权</span><span lang="en">E — shareholders' residual claim</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>验算</strong>: $484 + 2{,}336 = 2{,}820$ ✓ — 恒等式在年报中是机械成立的。</p>
+          <p lang="en"><strong>Check:</strong> $484 + 2{,}336 = 2{,}820$ ✓ — the identity holds mechanically in the published filing.</p>
+
+          <p lang="zh">从这三个数字立刻能读出两件事:</p>
+          <p lang="en">Two readings drop out immediately:</p>
+
+          <ol>
+            <li><strong>D/A = 484/2820 ≈ 17%.</strong> <span lang="zh">极低杠杆。绝大部分资产由股东出资 + 历史利润累积而来, 不依赖外部债务。这与品牌型消费 / 高 ROIC 公司的特征完全吻合 — Ch.05 资本结构会展开。</span><span lang="en">Extreme low leverage. Most assets are funded by shareholders' contributions and retained earnings, not external debt. Consistent with brand‑driven, high‑ROIC consumer franchises — Ch.05 expands.</span></li>
+            <li><strong><span lang="zh">L 内部结构</span><span lang="en">Composition of L:</span></strong> <span lang="zh">茅台的负债里大量是<em>合同负债</em> (经销商预付货款) 与<em>应付职工薪酬 / 应交税费</em>。这些是"零利率甚至负利率"的运营负债, 不是付息债。所以 17% 的 D/A 实际包含一大块"免费杠杆"。</span><span lang="en">Most of Moutai's liabilities are <em>contract liabilities</em> (distributor prepayments) and accrued payroll/taxes — zero‑ or negative‑cost operating liabilities, not interest‑bearing debt. The 17% D/A actually contains a large slice of "free leverage."</span></li>
+          </ol>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 600519 信息披露 →</span>
+            <span lang="en">Cninfo 600519 disclosure →</span>
+          </a>
+        </div>
+
+        <p class="muted measure" lang="zh">
+          数据来源: 公司 2023 年年度报告。本站使用的是 ¥10 亿单位的整数级近似, 实操时请用年报披露值。
+        </p>
+        <p class="muted measure" lang="en">
+          Source: 2023 annual report. Values are rounded to ¥1 bn; pull exact figures from the filing in practice.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Mental models touched -->
+      <!-- ================================================================ -->
+      <h2>
+        <span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span>
+      </h2>
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">复式记账对称性</span><span lang="en">Double‑Entry Symmetry</span></h4>
+          <p lang="zh">本章核心。等式 $A=L+E$ 加上微分 $dA = dL + dE$, 推出所有借贷规则。</p>
+          <p lang="en">The core of this chapter. The identity plus its differential force every debit/credit rule.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">accrual vs cash</span><span lang="en">Accrual vs Cash</span></h4>
+          <p lang="zh">第 6 行案例 (收回款 → $A,L,E$ 都不变) 揭示 accrual 把"经济事件"和"现金流动"分离开 — 是后续所有内容的前提。Ch.03 详述。</p>
+          <p lang="en">Row 6 (cash receipt with no change in $A,L,E$) shows how accrual separates the economic event from the cash flow — the precondition for the rest of the module. Ch.03 develops this.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- Quiz -->
+      <!-- ================================================================ -->
+      <h2>
+        <span lang="zh">理解检验题</span><span lang="en">Trap Questions</span>
+      </h2>
+      <p class="muted">
+        <span lang="zh">先自己想清楚再展开答案。题目不长, 但每一题都设了至少一个反直觉点。</span>
+        <span lang="en">Think before unfolding. Every prompt has at least one counterintuitive twist.</span>
+      </p>
+
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 一家公司从银行借入 1 亿元用于偿还应付账款。这笔操作对 $A$、$L$、$E$ 各有何影响? 进一步: 这是公司的<em>结构改善</em>还是<em>结构恶化</em>?</span>
+            <span lang="en"><strong>Q1.</strong> A firm borrows ¥100m from a bank to pay down accounts payable. What happens to $A$, $L$, and $E$? And: is this structural <em>improvement</em> or <em>deterioration</em>?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">借款时: $\Delta A = +100$ (银行存款), $\Delta L = +100$ (短期借款), $\Delta E = 0$。<br>还应付时: $\Delta A = -100$ (银行存款), $\Delta L = -100$ (应付账款), $\Delta E = 0$。<br>净: $\Delta A = 0, \Delta L = 0, \Delta E = 0$。</p>
+            <p lang="zh"><strong>结构上是恶化</strong>: 应付账款是<em>无息</em>商业信用 (供应商给的免费短期资金), 短期借款是<em>付息</em>债。把无息债换成付息债, 资金成本上升, 净利润减少。看年报负债内部结构 (应付 vs 短期借款) 变化, 比看 D/A 总数更重要。</p>
+            <p lang="en">On borrowing: $\Delta A = +100$ (cash), $\Delta L = +100$ (ST debt), $\Delta E = 0$.<br>On paying down AP: $\Delta A = -100$ (cash), $\Delta L = -100$ (AP), $\Delta E = 0$.<br>Net: nothing moves at the aggregate level.</p>
+            <p lang="en"><strong>Structurally a deterioration:</strong> AP is a free, zero‑coupon supplier credit; ST debt is interest‑bearing. Swapping the former for the latter raises cost of funds and depresses earnings. The shift inside L matters more than the unchanged D/A.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 公司用 5,000 万元自有资金回购并注销股份。怎么记账? 对每股净资产 (BVPS) 是上升还是下降?</span>
+            <span lang="en"><strong>Q2.</strong> A firm buys back and cancels ¥50m of its own shares. How is it recorded? Does book value per share go up or down?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">分录 (简化): 借 库存股 / 减少实收资本与盈余 5,000 &nbsp; 贷 银行存款 5,000。<br>$\Delta A = -5{,}000$, $\Delta L = 0$, $\Delta E = -5{,}000$。等式保持。</p>
+            <p lang="zh"><strong>BVPS 上升 or 下降, 取决于回购价 vs 每股账面净资产</strong>: 假设回购前 $E = 10$ 亿, 总股本 1 亿股 → BVPS = 10 元。<br>若用 5,000 万买回 1,000 万股 (回购价 5 元 &lt; BVPS), 注销后 $E = 9.5$ 亿, 股本 0.9 亿 → BVPS ≈ 10.56 元, <em>上升</em>。<br>若回购价 = 15 元 &gt; BVPS, 注销后 BVPS 反而<em>下降</em>。<br>关键: 回购本身不创造价值, 但能以"低于账面价"买回时, 留下来的股东账面权益被动放大。</p>
+            <p lang="en">Entry (simplified): Dr Treasury stock / Reduce share capital &amp; retained earnings 50m &nbsp; Cr Cash 50m. $\Delta A = -50, \Delta L = 0, \Delta E = -50$ — identity holds.</p>
+            <p lang="en"><strong>BVPS direction depends on buyback price vs current BVPS.</strong> If $E=¥1$bn over 100m shares (BVPS = ¥10), buying 10m shares at ¥5 each (below BVPS) leaves $E = ¥950$m over 90m shares → BVPS ≈ ¥10.56, <em>up</em>. Buying at ¥15 (above BVPS) leaves BVPS <em>down</em>. Buyback creates no value; below‑book repurchases mechanically lift remaining shareholders' book equity.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> 公司收到客户预付款 200 万元 (合同尚未履约)。用 $A = L + E$ 推导: 为什么这 200 万元<em>不能</em>立即确认为收入?</span>
+            <span lang="en"><strong>Q3.</strong> A firm receives a ¥2m customer prepayment (contract not yet performed). Use $A = L + E$ to show why it <em>cannot</em> be booked as revenue.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">正确分录: 借 银行存款 200 &nbsp; 贷 合同负债 200。$\Delta A=+200, \Delta L=+200, \Delta E=0$。</p>
+            <p lang="zh">若直接确认收入: 借 银行存款 200 &nbsp; 贷 主营业务收入 200, 则 $\Delta E = +200$。但合同尚未履约 — 这意味着<em>公司还欠客户一次未来的服务</em> — 那就有未承担的负债, 不应该体现为净资产增加。</p>
+            <p lang="zh">极端测试: 第二天客户取消订单要求退款, 已"确认"的 200 万必须冲回, 净利润前后失真。这违反 accrual 与 matching: 收入必须在<em>履约义务被满足</em>时才确认, 而不是收钱时 (Ch.04 收入确认五步法详述)。</p>
+            <p lang="en">Correct entry: Dr Cash 200 &nbsp; Cr Contract liability 200. $\Delta A=+200, \Delta L=+200, \Delta E=0$.</p>
+            <p lang="en">If you booked it as revenue: Dr Cash 200 &nbsp; Cr Revenue 200, then $\Delta E = +200$. But the contract is unperformed — the firm <em>owes</em> a future service to the customer — so there's an unrecognized obligation; net assets shouldn't rise.</p>
+            <p lang="en">Stress test: if the customer cancels next day, the "recognized" 200 must reverse — distorting net income both periods. This violates accrual + matching: revenue is recognized on <em>satisfaction of the performance obligation</em>, not on cash receipt (Ch.04 develops the 5‑step model).</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> 折旧不引起任何现金流出, 为何还要在利润表上确认 (因而拉低 net income)? 用 $A = L + E$ 推导这一处理的<em>必要性</em>。</span>
+            <span lang="en"><strong>Q4.</strong> Depreciation involves no cash outflow. Why must it still hit the income statement (reducing net income)? Derive the necessity from $A = L + E$.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">假设买 100 万设备, 使用 5 年, 残值 0:</p>
+            <ul lang="zh">
+              <li>买入: 借 固定资产 100 贷 银行存款 100 → $\Delta A = 0$。</li>
+              <li>第 1 年末若<em>不计</em>折旧: 资产端"固定资产"仍记 100, 但实际经济价值已是约 80。$A$ 被高估 20。等式右边 ($L + E$) 不变 → 矛盾。要么 $A$ 也下降, 要么 $E$ 上升 — 都不符合事实。</li>
+              <li>正确处理: 借 折旧费用 20 → 当期净利 -20 → $E$ -20; 贷 累计折旧 20 → 固定资产账面 -20 → $A$ -20。$dA = -20 = dE$, 恒等式重新平衡。</li>
+            </ul>
+            <p lang="zh"><strong>结论</strong>: 折旧不是为了"现金", 是为了在 matching 原则下把"使用资源"翻译成"费用", 防止 $A$ 与 $E$ 同时被系统性高估。Ch.08 现金流量表深度解释: 在间接法 OCF 里折旧被加回, 不是因为它"创造现金", 而是因为它<em>本就不消耗现金</em>, 但已经在净利里扣过, 需要还回去。</p>
+            <p lang="en">Buy ¥1m of equipment, 5‑year life, zero salvage:</p>
+            <ul lang="en">
+              <li>Purchase: Dr PPE 100 Cr Cash 100 → $\Delta A = 0$.</li>
+              <li>If you <em>don't</em> depreciate at year 1 end: PPE still records 100 while real economic value is ~80. $A$ is overstated by 20. But the RHS ($L + E$) hasn't moved → contradiction with reality.</li>
+              <li>Correct: Dr Depr. exp. 20 → NI ↓ 20 → $E$ ↓ 20; Cr Accum. depr. 20 → PPE book value ↓ 20 → $A$ ↓ 20. $dA = -20 = dE$ — identity rebalances.</li>
+            </ul>
+            <p lang="en"><strong>Bottom line:</strong> depreciation isn't about cash; it's the matching‑principle translation of "resource consumed" into "expense," preventing systematic overstatement of both $A$ and $E$. Ch.08 deepens: depreciation is added back in indirect‑method OCF not because it "creates cash" but because it <em>never consumed cash</em>, yet net income already subtracted it.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> 永续债 (perpetual bond) 可能被分类为<em>负债</em>或<em>权益</em>, 取决于条款。同样一笔 100 亿融资, 两种分类对初始 $A = L + E$ 等式有无影响? 对后续 ROE 和 D/A 比率呢?</span>
+            <span lang="en"><strong>Q5.</strong> A perpetual bond can be classified as <em>liability</em> or <em>equity</em> depending on terms. For the same ¥10bn issuance, does the initial $A = L + E$ change? What about ROE and D/A afterwards?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>初始恒等式</strong>: 两种分类下 $\Delta A = +100$ 亿都成立, 等式右边分别配 $\Delta L = +100$ 或 $\Delta E = +100$ — 恒等式都满足。从 $A=L+E$ 看不出差别。</p>
+            <p lang="zh"><strong>后续影响</strong>:</p>
+            <ul lang="zh">
+              <li><strong>D/A = L/A</strong>: 计入权益时 D/A 不变; 计入负债时 D/A 上升 (设原 $A = 2{,}820, L = 484$, 加 100 亿则 D/A 从 17.2% → 20%)。账面杠杆差异 ~3 个百分点。</li>
+              <li><strong>ROE = NI / E</strong>: 计入权益时分母 $E$ 变大 → ROE 拉低; 计入负债时分母不变, 但利息费用 (假设 4%) 每年扣减 $4$ 亿税前利润 → 净利下降 → ROE 同样下降, 渠道是分子。</li>
+              <li><strong>债务利息可税前扣除, 股息不能</strong>: 计入负债的版本有税盾 (Ch.M2.03 MM 定理含税版本展开)。所以"计入权益更好看"是表象, 实际上放弃了税盾。</li>
+            </ul>
+            <p lang="zh"><strong>实际意义</strong>: 在中国大量基建/电力公司 (如中国电建 601669) 用永续债压低账面 D/A。分析师做"调整后杠杆"时, 通常把永续债从权益移回负债。Ch.06 详述判断标准 (强制赎回、利率重置、 step‑up 等)。</p>
+            <p lang="en"><strong>Initial identity:</strong> either way $\Delta A = +10$ bn matches $\Delta L = +10$ or $\Delta E = +10$ — the identity is silent on the choice.</p>
+            <p lang="en"><strong>Downstream:</strong></p>
+            <ul lang="en">
+              <li><strong>D/A:</strong> unchanged under equity classification; rises under debt (here from 17.2% to ~20%).</li>
+              <li><strong>ROE = NI / E:</strong> equity classification inflates the denominator → ROE down; debt classification keeps $E$ but adds ~¥400m interest expense → ROE down through the numerator. Same direction, different channel.</li>
+              <li><strong>Tax shield:</strong> interest is tax‑deductible, dividend‑style coupons are not. Equity classification gives up the tax shield (developed in M2 Ch.03 with taxes).</li>
+            </ul>
+            <p lang="en"><strong>In practice,</strong> many Chinese infrastructure / utility issuers (e.g. Sinohydro 601669) use perpetuals to depress reported leverage. Analysts often reclassify them back to debt for an "adjusted D/A." Ch.06 develops the classification criteria (mandatory redemption, step‑ups, coupon deferrability).</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="00-overview.html">
+            <span class="dir">← <span lang="zh">回模块导览</span><span lang="en">Overview</span></span>
+            <span class="title"><span lang="zh">Module I · 导览</span><span lang="en">Module I · Overview</span></span>
+          </a>
+          <div class="next disabled" aria-disabled="true">
+            <span class="dir"><span lang="zh">下一章 · 稍后开放</span><span lang="en">Next · coming soon</span></span>
+            <span class="title"><span lang="zh">02 · 三大报表与勾稽关系</span><span lang="en">02 · Three Statements &amp; Articulation</span></span>
+          </div>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key (sk-ant-...). Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+
+</body>
+</html>

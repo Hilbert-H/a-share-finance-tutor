@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>术语词典 — Glossary</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>
+.gloss-list dt { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--ink); }
+.gloss-list dt .en { font-family: var(--font-sans); font-size: 0.85em; color: var(--accent); margin-left: 0.4em; }
+.gloss-list dd { margin: 0.3em 0 1em 0; color: var(--ink-soft); font-size: 0.95rem; }
+.gloss-list dd .ref { font-family: var(--font-sans); font-size: 0.75rem; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+.gloss-anchor { font-family: var(--font-sans); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-top: var(--space-5); padding-bottom: 0.2em; border-bottom: 1px solid var(--rule); }
+</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Reference</span></div>
+<h1><span lang="zh">术语词典</span><span lang="en">Glossary</span></h1>
+<p class="lesson-subtitle"><span lang="zh">全站涉及的核心中英术语. 每条含定义 + 出处章节. 按主题分组排列。</span></p>
+
+<div class="gloss-anchor">A · <span lang="zh">会计学</span><span lang="en">Accounting</span></div>
+<dl class="gloss-list">
+<dt><span lang="zh">会计恒等式</span><span class="en">Accounting Identity</span></dt><dd>$A = L + E$ — 资产 = 负债 + 所有者权益. 会计学第一原理. <span class="ref">M1.01</span></dd>
+<dt><span lang="zh">权责发生制</span><span class="en">Accrual Basis</span></dt><dd>经济事件发生时确认, 不论现金移动. CAS 第 9 条 / IFRS Framework. <span class="ref">M1.03</span></dd>
+<dt><span lang="zh">应计盈余</span><span class="en">Accruals</span></dt><dd>NI − OCF, 反映非现金会计调节. Sloan (1996) 异象的核心. <span class="ref">M2.10</span></dd>
+<dt><span lang="zh">摊余成本</span><span class="en">Amortized Cost</span></dt><dd>用 EIR 摊销的成本计量方法. 适合"持有以收取本息"金融资产. <span class="ref">M1.05</span></dd>
+<dt><span lang="zh">合并报表</span><span class="en">Consolidation</span></dt><dd>母公司把控股子公司的资产 / 负债 / 收入 / 费用并入. CAS 33 / IFRS 10. <span class="ref">M1.07</span></dd>
+<dt><span lang="zh">控制三件套</span><span class="en">Three‑step Control Test</span></dt><dd>(1) 权力 + (2) 可变回报 + (3) 用权力影响回报. 决定合并范围. <span class="ref">M1.07</span></dd>
+<dt><span lang="zh">商誉</span><span class="en">Goodwill</span></dt><dd>收购对价 − 公允价值净资产份额. 不摊销, 每年减值测试. <span class="ref">M1.05, M1.07</span></dd>
+<dt><span lang="zh">现金流量表</span><span class="en">Cash Flow Statement</span></dt><dd>三大活动: 经营 / 投资 / 筹资. CAS 31 / IAS 7. <span class="ref">M1.08</span></dd>
+<dt><span lang="zh">公允价值层级</span><span class="en">FV Hierarchy</span></dt><dd>Level 1 (活跃市场) / 2 (可观察输入) / 3 (模型估计). IFRS 13. <span class="ref">M1.05</span></dd>
+<dt><span lang="zh">收入确认五步法</span><span class="en">5-step Revenue</span></dt><dd>合同 → 履约义务 → 价格 → 分配 → 满足时确认. CAS 14 / IFRS 15. <span class="ref">M1.04</span></dd>
+</dl>
+
+<div class="gloss-anchor">B · <span lang="zh">公司财务</span><span lang="en">Corporate Finance</span></div>
+<dl class="gloss-list">
+<dt>NPV<span class="en"> · Net Present Value</span></dt><dd>未来现金流折回今天 − 初始投资. NPV &gt; 0 接受. <span class="ref">M2.04</span></dd>
+<dt>IRR<span class="en"> · Internal Rate of Return</span></dt><dd>使 NPV=0 的折现率. 注意多 IRR 问题. <span class="ref">M2.04</span></dd>
+<dt>WACC<span class="en"> · Weighted Average Cost of Capital</span></dt><dd>$(E/V) r_e + (D/V) r_d (1-t)$. 公司层面的资本成本. <span class="ref">M2.03</span></dd>
+<dt>CAPM</dt><dd>$E(R) = r_f + \beta [E(R_m) - r_f]$. 单因子定价模型. <span class="ref">M2.02</span></dd>
+<dt>β <span class="en">· Beta</span></dt><dd>个股相对市场的协方差敏感性 = $\sigma_{iM} / \sigma_M^2$. <span class="ref">M2.02</span></dd>
+<dt>MM <span class="en">· Modigliani-Miller</span></dt><dd>MM I (无税): $V_L = V_U$; MM II 含税: $V_L = V_U + tD$. <span class="ref">M2.03</span></dd>
+<dt>FCFF / FCFE / DDM</dt><dd>三种 DCF 现金流口径. <span class="ref">M2.08, M3.05</span></dd>
+<dt>DuPont</dt><dd>ROE = Net Margin × Asset Turnover × Equity Multiplier (3-factor) 或 5-factor. <span class="ref">M2.08</span></dd>
+<dt>ROIC<span class="en"> · Return on Invested Capital</span></dt><dd>NOPAT / Invested Capital. 杠杆中性的资本回报率. <span class="ref">M2.08-09</span></dd>
+<dt>Beneish M-Score</dt><dd>8 因子盈余操纵检测模型, $M > -2.22$ 触发警报. Beneish (1999). <span class="ref">M2.10</span></dd>
+<dt>Altman Z-Score</dt><dd>5 变量破产预测模型, $Z < 1.81$ 困境区. Altman (1968). <span class="ref">M2.10</span></dd>
+<dt>Piotroski F-Score</dt><dd>9 维度财务质量评分, F &gt; 7 为优质. <span class="ref">M2.10</span></dd>
+<dt>CCC<span class="en"> · Cash Conversion Cycle</span></dt><dd>$\mathrm{DIO} + \mathrm{DSO} - \mathrm{DPO}$. 营运资金周转天数. <span class="ref">M2.07</span></dd>
+</dl>
+
+<div class="gloss-anchor">C · <span lang="zh">投资学</span><span lang="en">Investments</span></div>
+<dl class="gloss-list">
+<dt>MPT<span class="en"> · Modern Portfolio Theory</span></dt><dd>Markowitz 均值-方差最优化. <span class="ref">M3.01</span></dd>
+<dt>Sharpe Ratio</dt><dd>$(\mu_p - r_f)/\sigma_p$. 单位风险下的超额收益. <span class="ref">M3.01</span></dd>
+<dt>EMH<span class="en"> · Efficient Market Hypothesis</span></dt><dd>价格瞬间反映可得信息. 强 / 半强 / 弱三种形式. <span class="ref">M3.03</span></dd>
+<dt>Fama-French 因子</dt><dd>MKT + SMB + HML (3-factor) 或加 RMW + CMA (5-factor). <span class="ref">M3.02</span></dd>
+<dt>Margin of Safety</dt><dd>Graham 安全边际 = 1 − Price/IV. 建议 30%+. <span class="ref">M3.07</span></dd>
+<dt>Moat<span class="en"> · 护城河</span></dt><dd>5 种类型: 品牌 / 规模 / 转换成本 / 网络效应 / 特许. Buffett. <span class="ref">M3.07</span></dd>
+<dt><span lang="zh">能力圈</span><span class="en">Circle of Competence</span></dt><dd>Buffett: 只投自己<em>深入理解</em>的业务. 边界清晰最重要. <span class="ref">M3.07</span></dd>
+<dt><span lang="zh">反身性</span><span class="en">Reflexivity</span></dt><dd>Soros: 价格 ↔ 基本面 双向因果. <span class="ref">M3.04</span></dd>
+<dt>Gordon Model</dt><dd>$V = D_1/(r-g)$, 永续年金折现. 要求 $r &gt; g$. <span class="ref">M2.01, M3.05</span></dd>
+<dt>PEG</dt><dd>P/E ÷ 增长率. Lynch 价值-增长平衡. <span class="ref">M2.09</span></dd>
+</dl>
+
+<div class="gloss-anchor">D · <span lang="zh">A 股监管 + 会计准则</span><span lang="en">A-share Regulation &amp; Standards</span></div>
+<dl class="gloss-list">
+<dt>CSRC<span class="en"> · China Securities Regulatory Commission</span></dt><dd>中国证监会, 国务院直属事业单位. 证券业一线监管. <span class="ref">A1</span></dd>
+<dt>CAS<span class="en"> · Chinese Accounting Standards</span></dt><dd>中国企业会计准则. 2007 后基本与 IFRS 趋同. <span class="ref">M1.09</span></dd>
+<dt>IFRS / US GAAP</dt><dd>国际财务报告准则 / 美国一般公认会计原则. 三套准则的差异见. <span class="ref">M1.09</span></dd>
+<dt><span lang="zh">注册制</span><span class="en">Registration Reform</span></dt><dd>2019+ 科创板首推, 2020+ 创业板, 2021+ 北交所. 上市从审批到披露. <span class="ref">A1</span></dd>
+<dt><span lang="zh">巨潮 cninfo</span><span class="en">Cninfo</span></dt><dd>A 股唯一官方信披平台. <a href="http://www.cninfo.com.cn" target="_blank">cninfo.com.cn</a>. <span class="ref">A2</span></dd>
+<dt><span lang="zh">问询函</span><span class="en">Inquiry Letter</span></dt><dd>交易所要求上市公司解释疑问. 密集问询是危险信号. <span class="ref">A5</span></dd>
+<dt><span lang="zh">非标审计意见</span><span class="en">Modified Audit Opinion</span></dt><dd>非"标准无保留"的四类意见. 任一非标 = 立即停止持仓信号. <span class="ref">A5</span></dd>
+<dt>KAM<span class="en"> · Key Audit Matters</span></dt><dd>2017+ 强制披露的关键审计事项. 反复 KAM = 系统性判断难点. <span class="ref">M1.10, A5</span></dd>
+</dl>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="../../index.html">← Home</a><a class="next" href="references.html">Next → References</a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

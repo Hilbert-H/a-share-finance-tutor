@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>07 · 合并报表 — Consolidation</title>
+  <meta name="keywords" content="consolidation, control, equity method, NCI, goodwill, 合并报表, 控制, 权益法, 少数股东权益, 商誉, CAS 33, IFRS 10, 复星医药, 中信证券, VIE">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 07</span><span class="sep">·</span>
+        <span><span lang="zh">17 分钟</span><span lang="en">17 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.03, Ch.06</span><span lang="en">Prereq: Ch.03, Ch.06</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.08 现金流量表</span><span lang="en">Next: Ch.08 CFS</span></span>
+      </div>
+
+      <h1><span lang="zh">合并报表</span><span lang="en">Consolidation</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">合并不是数学相加, 是经济实质的认定问题: A 是否<em>控制</em> B? 若控制 → 把 B 当作 A 的"延伸部门"全面合并; 若仅有重大影响 → 权益法。CAS 33 / IFRS 10 把"控制"分解为权力 + 可变回报 + 用权力影响回报三件套, 这是反 SPV / VIE 套利的最后一道防线。</span>
+        <span lang="en">Consolidation isn't arithmetic — it's a substance determination: does A <em>control</em> B? If yes, B is folded in as if a department. If only significant influence, use the equity method. CAS 33 / IFRS 10 decompose "control" into power + variable returns + ability to use power, the last defense against SPV / VIE arbitrage.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用"三件套"判断任意股权结构下是否构成控制 (持股比例 + 协议 + 期权)。</li>
+          <li lang="zh">能在合并报表中识别商誉的产生公式: 合并对价 − 公允价值净资产份额。</li>
+          <li lang="zh">能区分"长期股权投资 — 权益法"与"成本法"; 知道何时切换。</li>
+          <li lang="zh">能在利润表上定位"少数股东损益"(NCI), 并解释它为什么不进归属母公司净利。</li>
+          <li lang="en">Apply the three‑step control test to any ownership / contract / option structure.</li>
+          <li lang="en">Derive goodwill: consideration − share of fair‑value net assets.</li>
+          <li lang="en">Distinguish equity method vs cost method LT investments; know the switching triggers.</li>
+          <li lang="en">Locate NCI on the IS and explain why it doesn't reach NI attributable to parent.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+        <p lang="zh">问一个问题: A 公司持有 B 公司 30% 股权。A 的报表应该: (1) 把 B 当作"投资", 只在 A 的 B/S 上记一个"长期股权投资"科目; (2) 把 B 的所有资产/负债/收入/费用都"加进 A 的报表"(合并)?</p>
+        <p lang="en">A holds 30% of B. Should A's statements: (1) just keep "long‑term investment" on its B/S, or (2) fold all of B's assets/liabilities/revenues/expenses into A's statements?</p>
+        <p lang="zh">答案不取决于<em>30% 这个数字</em>, 取决于 A 是否<em>实际控制</em> B。控制的实质是: A 是否能<em>决定</em> B 的关键经营决策 (生产什么、卖给谁、用什么人)? 若是, B 的经济活动其实是 A 经济活动的延伸 → 必须合并。</p>
+        <p lang="en">The answer doesn't depend on the 30% figure — it depends on whether A <em>actually controls</em> B. Control = A can <em>decide</em> B's key operating decisions. If yes, B's activities are A's economic activities by extension → must consolidate.</p>
+        <p lang="zh"><strong>反 SPV 套利的工程意义</strong>: 90 年代美国安然 (Enron) 用大量"特殊目的实体"(SPE) 把负债藏在表外 — 法律上 SPE 是独立法人, 但实际由安然控制。旧准则只看 50% 股权 → SPE 不合并 → 表面 D/A 很低。安然倒闭后, FASB/IASB 全面改写控制定义, 转向<em>实质判断</em>。这就是 IFRS 10 (2011)、CAS 33 (2014 修订) 的核心。</p>
+        <p lang="en"><strong>The anti‑SPV motivation:</strong> 1990s Enron used SPEs to hide debt off‑B/S — legally independent but economically controlled. Old standards looked only at 50% equity → no consolidation → low reported leverage. After Enron, FASB/IASB rewrote control to focus on substance — that's IFRS 10 (2011) / CAS 33 (2014 rev.).</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">控制三件套 (CAS 33 §7 / IFRS 10 §7)</span>
+          <span class="callout-label" lang="en">Three‑step control test</span>
+          <p lang="zh">A 控制 B 当且仅当<em>同时</em>满足:</p>
+          <ol lang="zh">
+            <li><strong>对被投资方有权力</strong> (power) — A 有现时权利, 主导对被投资方回报产生重大影响的相关活动</li>
+            <li><strong>因参与被投资方的相关活动而享有可变回报</strong> (exposure to variable returns) — 例如分红、剩余利润、风险共担</li>
+            <li><strong>有能力运用对被投资方的权力影响其回报金额</strong> (link power → returns)</li>
+          </ol>
+          <p lang="en">A controls B iff: (1) <em>power</em> over relevant activities; (2) <em>exposure to variable returns</em>; (3) <em>ability to use power to affect returns</em>. All three must hold.</p>
+          <span class="cite">CAS 33 §7-22 · IFRS 10 §5-18</span>
+        </div>
+
+        <p lang="zh"><strong>权力的判定</strong>(关键活动):</p>
+        <p lang="en"><strong>Determining power</strong> (relevant activities):</p>
+        <ul>
+          <li><span lang="zh">关键活动 = 对被投资方回报影响最大的活动 (生产/销售/研发/资本结构/人事任免)</span><span lang="en">Relevant activities = those that most significantly affect returns (production / sales / R&amp;D / capital structure / personnel)</span></li>
+          <li><span lang="zh">权力来源: 投票权、合同安排、潜在表决权 (期权)</span><span lang="en">Sources: voting rights, contractual arrangements, potential voting rights (options)</span></li>
+          <li><span lang="zh">即使持股 &lt; 50%, 若<em>实际多数</em>(de facto majority) 表决权 → 仍可能构成控制</span><span lang="en">Even with &lt;50% equity, <em>de facto majority</em> of voting rights → control possible</span></li>
+        </ul>
+
+        <h3 lang="zh">三类长期股权投资 (CAS 2)</h3>
+        <h3 lang="en">Three categories of long‑term investments</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">关系</span><span lang="en">Relationship</span></th><th><span lang="zh">通常持股</span><span lang="en">Typical ownership</span></th><th><span lang="zh">会计方法</span><span lang="en">Method</span></th><th><span lang="zh">合并报表</span><span lang="en">In consolidation</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">控制 (子公司)</span><span lang="en">Control (subsidiary)</span></td><td>&gt; 50% <span lang="zh">或实质控制</span><span lang="en">or de facto</span></td><td><span lang="zh">成本法 (单体), 合并范围内</span><span lang="en">Cost (entity), fully consolidated (group)</span></td><td><span lang="zh">全面合并</span><span lang="en">Full</span></td></tr>
+            <tr><td><span lang="zh">合营 (共同控制)</span><span lang="en">Joint control (joint venture)</span></td><td>—</td><td><span lang="zh">权益法</span><span lang="en">Equity method</span></td><td><span lang="zh">权益法</span><span lang="en">Equity method</span></td></tr>
+            <tr><td><span lang="zh">重大影响 (联营)</span><span lang="en">Significant influence (associate)</span></td><td>20-50%</td><td><span lang="zh">权益法</span><span lang="en">Equity method</span></td><td><span lang="zh">权益法</span><span lang="en">Equity method</span></td></tr>
+            <tr><td><span lang="zh">无影响</span><span lang="en">No influence</span></td><td>&lt; 20%</td><td><span lang="zh">FVTPL / FVOCI</span><span lang="en">FVTPL / FVOCI</span></td><td><span lang="zh">不并表, 按金融资产处理</span><span lang="en">Not consolidated; financial asset</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 lang="zh">合并对价与商誉</h3>
+        <h3 lang="en">Consideration &amp; Goodwill</h3>
+
+        <p lang="zh">A 以 1,000 收购 B 100% 股权, B 净资产公允价值 800 (账面 700):</p>
+        <p lang="en">A pays 1,000 for 100% of B. B's net assets at fair value: 800 (book 700):</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{Goodwill} = \mathrm{Consideration} - \mathrm{FV\,of\,Net\,Assets} \times \% $$</span><span class="num">(7.1)</span></div>
+          <p lang="zh">$\mathrm{Goodwill} = 1000 - 800 \times 100\% = 200$</p>
+          <p lang="zh"><strong>合并 B/S 的处理</strong>:</p>
+          <ul lang="zh">
+            <li>把 B 所有资产按<em>公允价值</em>(而非账面 700) 并入合并 B/S, 调整 100 (= 800 − 700) 为<em>评估增值</em></li>
+            <li>新增商誉 200 (= 1000 − 800)</li>
+            <li>消除"对 B 的长期股权投资 1000" (因为 B 已经被合并了)</li>
+            <li>消除 A 与 B 之间的内部应收/应付、内部销售收入/成本</li>
+          </ul>
+          <p lang="en">Bring all of B's assets at FV (not book 700) into consolidated B/S; record ¥200 goodwill; eliminate A's investment in B; eliminate intercompany balances and transactions.</p>
+        </div>
+
+        <h3 lang="zh">权益法 (重大影响 / 共同控制)</h3>
+        <h3 lang="en">Equity Method</h3>
+
+        <p lang="zh">A 持有 B 30% (重大影响, 不控制):</p>
+        <p lang="en">A holds 30% of B (significant influence, no control):</p>
+        <ul>
+          <li><span lang="zh">B/S: 长期股权投资 (权益法) — 初始按取得成本入账</span><span lang="en">B/S: long‑term investment, initially at cost</span></li>
+          <li><span lang="zh">B 实现净利 100, A 在 IS 上确认<em>投资收益</em> = 100 × 30% = 30, 同时<em>长期股权投资 +30</em></span><span lang="en">B earns NI 100 → A books "investment income" 30 (= 30%), increases the investment by 30</span></li>
+          <li><span lang="zh">B 分红 50, A 收到 50 × 30% = 15 现金, <em>长期股权投资 −15</em>, 不在 IS 上确认 (因为已经在权益法中确认了 30 的份额)</span><span lang="en">B pays dividend 50 → A gets 15 cash, decreases the investment by 15. No IS entry (income already recognized via equity method)</span></li>
+          <li><span lang="zh">B 期末公允价值变动: <em>不调整</em></span><span lang="en">FV changes: <em>ignored</em></span></li>
+        </ul>
+
+        <h3 lang="zh">少数股东权益 (NCI / 少数股东损益)</h3>
+        <h3 lang="en">Non‑controlling Interests (NCI)</h3>
+
+        <p lang="zh">A 持有 B 60%, B 实现净利 100。合并报表上:</p>
+        <p lang="en">A holds 60% of B; B's NI = 100. On the consolidated statements:</p>
+        <ul>
+          <li><span lang="zh">合并 B 的全部资产负债 (因为 A 控制 B)</span><span lang="en">Consolidate all of B's assets &amp; liabilities (A controls B)</span></li>
+          <li><span lang="zh">合并 B 的全部 NI (100)</span><span lang="en">Consolidate all of B's NI (100)</span></li>
+          <li><span lang="zh">利润表底部拆分: 归属母公司 60, 归属少数股东 40</span><span lang="en">IS bottom split: parent share 60, NCI share 40</span></li>
+          <li><span lang="zh">B/S 权益部分拆分: 归属母公司权益 + 少数股东权益</span><span lang="en">B/S equity split: parent equity + NCI equity</span></li>
+        </ul>
+        <p lang="zh"><strong>关键洞察</strong>: 投资者关心的"净利润"几乎永远是<em>归属母公司股东的净利润</em> (NI attributable to parent), 不是<em>合并净利</em>。区别就是 NCI 的部分。报表底部的"少数股东损益"是<em>从合并 NI 切出去给非控股股东</em>的份额。EPS 的分子是<em>归属母公司</em>, 不含 NCI。</p>
+        <p lang="en"><strong>Critical:</strong> investors care about NI <em>attributable to parent</em>, not the consolidated NI. NCI is sliced off at the IS bottom. EPS numerator = parent share only.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600196</span>
+            <span class="company"><span lang="zh">复星医药</span><span lang="en">Fosun Pharma</span></span>
+            <span class="period"><span lang="zh">大规模收购 → 商誉堆积</span><span lang="en">M&amp;A → goodwill buildup</span></span>
+          </div>
+          <p lang="zh">复星医药多年来通过收购整合医药资产, 截至 2023 年末商誉余额约 ~110 亿 (占归属母公司净资产 ~25%)。每一笔收购都按 (7.1) 公式生成商誉:</p>
+          <p lang="en">Fosun Pharma's goodwill: ~¥11bn (~25% of parent equity) by 2023YE, accumulated via successive acquisitions, each producing goodwill per (7.1):</p>
+          <ul>
+            <li><span lang="zh">2017 收购印度 Gland Pharma 74% 股权, 对价 ~78 亿, 公允价值净资产份额 ~28 亿 → 商誉 ~50 亿</span><span lang="en">2017: 74% of India's Gland Pharma, paid ~¥7.8bn, FV net assets share ~¥2.8bn → goodwill ~¥5bn</span></li>
+            <li><span lang="zh">类似交易累计</span><span lang="en">Successive deals compound the goodwill</span></li>
+          </ul>
+          <p lang="zh"><strong>读图洞察</strong>: 商誉占净资产 25% 是<em>临界值</em> — A 股监管和分析师对商誉 / 净资产 &gt; 30% 的公司给予红色警报 (Ch.05 减值测试讨论的 big bath 风险)。每年要查附注"商誉减值测试"的具体假设, 以及 Ch.05 quiz 4 的诊断框架。</p>
+          <p lang="en"><strong>Takeaway:</strong> goodwill/equity at 25% is near the warning line (30%+ triggers analyst alarm). Read the annual goodwill impairment test note carefully (Ch.05).</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600196" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600196 →</span><span lang="en">Cninfo 600196 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600030</span>
+            <span class="company"><span lang="zh">中信证券</span><span lang="en">CITIC Securities</span></span>
+            <span class="period"><span lang="zh">权益法 — 联营企业</span><span lang="en">Equity method — associates</span></span>
+          </div>
+          <p lang="zh">中信证券持有华夏基金 (62.2%) → 控制 → 全面合并。同时持有中信里昂、信银理财等多家联营/合营企业 (持股 20-49%) → 权益法。2023 年中信证券长期股权投资 (权益法) 余额约 ~250 亿, 当年权益法确认的<em>投资收益</em>约 ~30 亿 (在 IS "投资收益"科目中体现)。</p>
+          <p lang="en">CITIC controls China AMC (62.2%) → full consolidation. Holds many associates / JVs (20–49%) → equity method. 2023 LT investments (equity method) ~¥25bn, with ~¥3bn of equity‑method investment income on the IS.</p>
+          <p lang="zh"><strong>关键洞察</strong>: 权益法下, 联营企业的损益<em>已经</em>反映在母公司 NI 里 (通过"投资收益"), 但联营企业的<em>资产/负债/收入</em>都<em>没有</em>并入母公司报表。这就是"权益法 ≠ 合并"。读券商、保险等控股型公司时, 一定要看"对联营/合营企业的投资"这一栏的规模与变化。</p>
+          <p lang="en">Under equity method, the associate's NI flows to parent via "investment income," but assets/liab/revenue are NOT consolidated. "Equity method ≠ consolidation." When reading holding companies, watch this line carefully.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601766</span>
+            <span class="company"><span lang="zh">中国中车</span><span lang="en">CRRC</span></span>
+            <span class="period"><span lang="zh">多层 NCI 结构</span><span lang="en">Multi‑layer NCI</span></span>
+          </div>
+          <p lang="zh">中国中车通过多层级子公司持有大量铁路装备制造资产。例如对株洲电力机车 (持股 ~95%, NCI ~5%), 时代电气 (持股 ~76%, NCI ~24%) 等。合并层面:</p>
+          <p lang="en">CRRC owns rail equipment via multi‑layer subsidiaries — Zhuzhou Electric Locomotive (~95% owned, 5% NCI), Time Electric (~76% owned, 24% NCI), etc.</p>
+          <p lang="zh"><strong>2023 财报示意</strong> (近似量级):</p>
+          <ul lang="zh">
+            <li>合并净利润 ~120 亿</li>
+            <li>归属母公司净利润 ~110 亿</li>
+            <li>少数股东损益 (NCI 部分) ~10 亿</li>
+          </ul>
+          <p lang="en">FY2023 (approx): consolidated NI ~¥12bn, parent share ~¥11bn, NCI ~¥1bn.</p>
+          <p lang="zh"><strong>分析视角</strong>: 当一家公司的 NCI 比例显著时 (NCI / 合并 NI &gt; 15%), 用<em>合并 NI</em> 估算 EPS 会高估约 NCI 比例。这是分析中信、平安等控股型集团时常犯的错误。正确做法: 始终用<em>归属母公司净利</em>除以普通股股数。</p>
+          <p lang="en">When NCI is material (NCI/consolidated NI &gt; 15%), using consolidated NI for EPS overstates by the NCI %. Always use parent‑attributable NI ÷ common shares.</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">综合</span><span lang="en">Multi</span></span>
+            <span class="company"><span lang="zh">VIE 架构 — 实质重于形式</span><span lang="en">VIE structures — substance over form</span></span>
+          </div>
+          <p lang="zh">阿里巴巴、腾讯、新东方等大量中概股使用 VIE (variable interest entity, 可变利益实体) 架构:</p>
+          <p lang="en">Many Chinese tech firms use VIEs:</p>
+          <ul>
+            <li><span lang="zh">境外上市公司 (开曼/BVI) 通过 WFOE (外资独资企业) 持有境内 VIE (内资公司) 全部经济利益</span><span lang="en">Offshore listco (Cayman/BVI) holds, via a WFOE, the full economic interests of an onshore VIE</span></li>
+            <li><span lang="zh">境内 VIE 法律上由创始人持有 (因外资准入限制)</span><span lang="en">The onshore VIE is legally owned by founders (due to foreign‑investment restrictions)</span></li>
+            <li><span lang="zh">通过<em>一系列合同</em> (服务协议、股权质押、独家选择权) 实现"实质控制"</span><span lang="en">"Effective control" via a stack of contracts (service / pledge / exclusive option)</span></li>
+          </ul>
+          <p lang="zh"><strong>IFRS / US GAAP 处理</strong>: 三件套测试 → 上市公司虽不拥有 VIE 股权, 但通过合同获得权力 + 可变回报 + 影响回报的能力 → 合并 VIE。这就是 substance over form 的极致应用。</p>
+          <p lang="zh"><strong>A 股 CAS 33 处理</strong>: 同样适用控制三件套, 实务中 A 股极少有 VIE 架构 (因为 A 股市场对外资开放程度较低), 但<em>境外子公司的 VIE</em> 仍按合并处理。</p>
+          <p lang="zh"><strong>政策风险</strong>: 中国监管对 VIE 一直保持模糊态度 — 2021 年滴滴事件后, VIE 监管收紧。教培行业"双减"后, VIE 架构面临大规模重组。这是<em>实质</em> (会计) 与<em>形式</em> (法律) 长期张力的体现。</p>
+          <p lang="en">IFRS/US GAAP: control test → listco consolidates VIE despite no equity. CAS 33: same logic for any offshore VIE held. Policy risk: 2021 DiDi event tightened VIE oversight; "double reduction" forced education VIE restructurings. A continuing substance‑form tension.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">vii</span><div><h4><span lang="zh">控制</span><span lang="en">Control</span></h4><p lang="zh">合并范围的核心标尺 — 三件套 (权力 + 可变回报 + 影响能力)。</p><p lang="en">The criterion — power + variable returns + ability to use power.</p></div></div>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">实质重于形式</span><span lang="en">Substance over Form</span></h4><p lang="zh">VIE / SPV / 大股东协议都是 substance over form 的具体应用。</p><p lang="en">VIE / SPV / shareholder agreements all need substance‑over‑form to defeat form arbitrage.</p></div></div>
+      <div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">复式记账对称性</span><span lang="en">Double-entry symmetry</span></h4><p lang="zh">合并的"内部交易抵消"在数学上就是借贷双侧对称消除 — 保持合并恒等式不变。</p><p lang="en">Intercompany elimination is double‑entry symmetry preserving the group identity.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> A 持有 B 40% 股权。其他股东高度分散 (单个股东最多持 5%, 共 100 人)。董事会 9 席中 A 提名 5 席。A 是否控制 B?</span><span lang="en"><strong>Q1.</strong> A owns 40% of B. Other holders are dispersed (max 5%, 100 of them). A nominates 5 of 9 board seats. Control?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>三件套检验</strong>:</p>
+            <ol lang="zh">
+              <li><strong>权力</strong>: 40% 名义持股 + 100 个分散股东 → 实务表决中能召集到的对立票数极有限 (典型股东大会出席率 60-70%, 分散小股东大量缺席, 实际有效表决权可能 &gt; 50%)。<em>de facto 控制</em>。董事会 5/9 席多数 → 决策权确认。 → 满足"权力"。</li>
+              <li><strong>可变回报</strong>: 持股 40% → 享有 40% 的分红和剩余利润 → 满足。</li>
+              <li><strong>用权力影响回报</strong>: A 的董事会代表参与所有关键决策 (战略、人事、投资) → 满足。</li>
+            </ol>
+            <p lang="zh"><strong>结论</strong>: A 控制 B → <em>全面合并</em>, 不能用权益法。</p>
+            <p lang="zh"><strong>关键洞察</strong>: 这就是 IFRS 10 引入的"<em>de facto control</em>" (实际控制) 概念 — 即使股权 &lt; 50%, 通过分散对手 + 董事会多数, 实际控制完全成立。中国 A 股大量上市公司 (尤其银行) 的"国有大股东持股 30-40% 但完全控制"属于此类。</p>
+            <p lang="en">All three tests met: 40% + dispersed others = de facto voting majority; 5/9 board seats = decision power; 40% economic exposure; ability to use power. → Control → full consolidation. This is the "de facto control" concept introduced by IFRS 10, common in A‑share state‑holding banks.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> A 以 1,000 收购 B 80% 股权, B 净资产公允价值 800 (账面 600)。计算: 商誉、归属母公司权益增量、少数股东权益。</span><span lang="en"><strong>Q2.</strong> A pays 1,000 for 80% of B. B's net assets at FV: 800 (book 600). Compute goodwill, parent equity change, NCI.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>步骤 1 — 商誉</strong>:</p>
+            <p lang="zh">$\mathrm{Goodwill} = \mathrm{Consideration} - \mathrm{FV\,Net\,Assets} \times \% = 1000 - 800 \times 80\% = 1000 - 640 = 360$</p>
+            <p lang="zh"><strong>步骤 2 — 合并 B/S 调整</strong>:</p>
+            <ul lang="zh">
+              <li>B 的资产按 FV (800) 并入, 比账面 (600) 增加 200 → "资产评估增值"</li>
+              <li>新增商誉 360</li>
+              <li>A 的"现金"减少 1,000, "长期股权投资 1000"消除 (合并)</li>
+            </ul>
+            <p lang="zh"><strong>步骤 3 — 权益拆分</strong>:</p>
+            <ul lang="zh">
+              <li>B 在合并 B/S 上的净资产 (公允) = 800 + 商誉 360 = 1,160</li>
+              <li>归属母公司 80%: 928 (其中 640 是 B 净资产份额, 288 = 商誉 360 + 0; 实际上商誉全部归母公司, 不分给 NCI — 这是<em>partial goodwill method</em>, A 股默认; IFRS 也允许 full goodwill method)</li>
+              <li>NCI 20%: 800 × 20% = 160 (不含商誉, partial method 下)</li>
+            </ul>
+            <p lang="zh"><strong>验算</strong>: 母公司权益 928 + NCI 160 = 1,088 ≠ 1,160。差额 72 即 360 商誉中 NCI 应分摊但 partial method 未分的部分。partial goodwill 下: 商誉仅显示母公司部分 (360), 但合并 B/S 资产端商誉显示 360 → 总资产侧 800 + 360 = 1,160, 总权益侧 928 + 160 + 72 (调整) = 1,160 ✓。CAS 默认 partial goodwill 方法。</p>
+            <p lang="zh"><strong>关键洞察</strong>: A 股默认 partial goodwill — 商誉只反映母公司份额, 不给 NCI 分配商誉。IFRS 给企业选择 (partial vs full)。差异主要影响 NCI 数值, 不影响母公司利润。</p>
+            <p lang="en">Goodwill = 1000 − 800×80% = 360. Net asset uplift (FV 800 vs book 600) = 200. Equity split (partial goodwill, CAS default): parent share = 800×80% + goodwill 360 = 1000; NCI = 800×20% = 160. CAS uses partial; IFRS allows full (where NCI shares in goodwill).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> A 持有 B 15% 股权, 用 FVTPL 计量。年中收购至 35% (达到重大影响)。会计处理切换怎么做? 之前的公允价值变动收益如何处理?</span><span lang="en"><strong>Q3.</strong> A holds 15% of B at FVTPL. Mid‑year acquires up to 35% (significant influence). How to switch? What happens to prior FV gains?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>切换三步</strong>:</p>
+            <ol lang="zh">
+              <li>把原 15% 按<em>切换日的公允价值</em>"视同处置 + 重新取得"。已确认的公允价值变动损益<em>留在</em>当期损益 (FVTPL 下本来就在 IS 上)。</li>
+              <li>新购入 20% 按支付对价记入。</li>
+              <li>合并后 35% 按权益法计量, 从切换日开始按月或按季确认 B 的净利份额。</li>
+            </ol>
+            <p lang="zh"><strong>关键洞察</strong>: 切换日是一个"会计断点", 之前的 FV 损益保留, 之后按权益法。这避免了"切换前的 FV 累计涨幅突然被算回到投资成本里"造成扭曲。</p>
+            <p lang="zh"><strong>反向切换</strong> (从权益法 → FVTPL, 因持股 &lt; 20%): 按切换日公允价值重新计量, 差额一次性进当期损益。</p>
+            <p lang="zh"><strong>从重大影响 → 控制</strong> (从权益法 → 合并): 同样在切换日按公允价值重新计量, 但差额按"业务合并"规则处理 — 可能产生商誉或廉价购买利得。</p>
+            <p lang="en">Switch in three steps: treat the 15% as "disposed + reacquired" at FV on switch date — prior FV gains stay in IS; new 20% at consideration; subsequent 35% by equity method. Reverse switch (equity → FVTPL): remeasure at FV, difference to IS. Equity → consolidation: remeasure at FV, difference under business‑combination rules (potential goodwill / bargain purchase).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> A 与 A 的母公司 P 各自持有 B 30%, 共 60%。P 同时控制 A。A 是否应该把 B 合并到自己的报表? 这是<em>同一控制下企业合并</em>(中国特色) 还是<em>非同一控制下</em>?</span><span lang="en"><strong>Q4.</strong> A and A's parent P each hold 30% of B (60% total). P controls A. Should A consolidate B? Common‑control or not?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>A 是否控制 B?</strong> 仅 A 单独持有 30%, 不构成控制。但因 P 控制 A, P 与 A 在<em>P 的合并报表层面</em>视为一个集团 → P 通过 (P 直接 30% + A 持 30%) 共 60% 控制 B。在 P 的合并报表上, B 是子公司, 全面合并。</p>
+            <p lang="zh"><strong>A 自己的合并报表</strong>: A 仅持 30%, 不能控制 → A 在自己报表层面用<em>权益法</em>核算 B (不合并 B)。这里关键: 控制是<em>独立判断</em>每个层级, 不能"借用"母公司的控制。</p>
+            <p lang="zh"><strong>同一控制下企业合并</strong> (CAS 20 中国特色): 如果 P 把自己持有的 B 30% 股权<em>转让</em>给 A, 让 A 持有 60% → A 现在控制 B。但因为 P 同时控制 A 和 (原来的) B, 这是"同一控制下"的内部资产重组, 不构成业务合并:</p>
+            <ul lang="zh">
+              <li>A 取得 B 60% 控制权, 但<em>不</em>按公允价值入账, 而按 P 持有 B 的<em>账面价值</em>入账</li>
+              <li>不产生商誉</li>
+              <li>差额计入资本公积 (而非损益)</li>
+              <li>合并日<em>追溯</em>到 P 取得 B 的最早日 (而非 A 取得 B 的日期)</li>
+            </ul>
+            <p lang="zh"><strong>非同一控制下</strong> (CAS 20 / IFRS 3): A 从<em>无关</em>第三方买入 B 60%, 按公允价值入账, 产生商誉 (公式 7.1)。</p>
+            <p lang="zh"><strong>实务意义</strong>: A 股大量国有上市公司涉及"资产注入" (parent inject assets into listco), 几乎都是同一控制下企业合并。该规则避免了"集团内部重组反复产生商誉"的会计套利。但也意味着上市公司从大股东接收资产时, 账面价值<em>不反映公允</em>, 而是延续集团内的历史成本。这是 A 股特色之一。</p>
+            <p lang="en">A alone (30%) doesn't control B. P controls both A and B (P direct 30% + A 30% = 60%) → P's consolidation includes B. At A's standalone consolidation, A holds only 30% → equity method only. If P transfers its 30% to A (giving A 60%): common control — use book value (not FV), no goodwill, difference to capital surplus. Common in A‑share state‑holding asset injections.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一份合并 IS 显示: 合并营业收入 1,000, 合并净利润 100, 归属母公司 70, 少数股东损益 30。EPS 分母 = 10 亿股。请计算 EPS。再问: 如果分析师用"合并净利 / 股数" = 10 元/股, 会犯什么错?</span><span lang="en"><strong>Q5.</strong> Consolidated IS: revenue 1,000, NI 100, parent 70, NCI 30. Shares = 1bn. Compute EPS. What error does an analyst using consolidated NI ÷ shares make?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>正确 EPS</strong> = 归属母公司 NI / 母公司普通股股数 = 70 / 10 = 7 元/股。</p>
+            <p lang="zh"><strong>错误做法</strong>: 合并 NI 100 / 10 = 10 元/股 — 高估 ~43%。</p>
+            <p lang="zh"><strong>错误的本质</strong>: NCI 那 30 单位的净利属于子公司的其他股东, <em>不归母公司股东</em>。母公司股东只享有归母 70 的索取权。EPS 衡量"每股<em>归属母公司股东</em>的盈利", 必须用归母 NI。</p>
+            <p lang="zh"><strong>典型陷阱场景</strong>:</p>
+            <ul lang="zh">
+              <li><strong>控股型集团</strong>: 复星国际、中信集团、中国中铁等。NCI 占合并 NI 比例高 (15-30%) → 误用合并 NI 的高估幅度大。</li>
+              <li><strong>金融控股集团</strong>: 中国平安等持有多家子公司, NCI 复杂; EPS 必须严格用归母。</li>
+              <li><strong>地产/基建集团</strong>: 项目公司层面常有合资伙伴 → NCI 比例不可忽略。</li>
+            </ul>
+            <p lang="zh"><strong>更普遍的误区</strong>: 中国证券业界很多终端给出的"净利润"默认是<em>归母</em>口径 (Wind, 同花顺), 但少数终端 (尤其国际数据库) 默认<em>合并 NI</em>。看不同终端给出的同一家公司"净利润"差异时, 一定要先确认口径。</p>
+            <p lang="zh"><strong>反方向陷阱</strong>: 一些研究报告引用"扣非归母净利", 这是<em>归母 NI 减去非经常性损益</em>, 反映真实经营盈利。读 A 股研报必须搞清"归母" vs "扣非归母" vs "合并" 三种口径。</p>
+            <p lang="en">EPS = parent NI ÷ parent common shares = 70 / 10 = ¥7/share. Using consolidated NI 100 ÷ 10 = ¥10 overstates by 43%. NCI's 30 belongs to subsidiary minorities, not parent shareholders. Read consolidated holding companies (Fosun, CITIC, CRRC, Ping An) carefully — NCI is often 15–30%. Terminal default may differ: Wind/iFind default to parent NI; some international DBs to consolidated. Always clarify the basis. Also note "扣非归母" (parent NI ex non‑recurring) — the "real" operating NI for A‑share research.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="06-liab-equity.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">06 · <span lang="zh">负债与权益</span><span lang="en">Liab &amp; Equity</span></span></a>
+          <a class="next" href="08-cashflow.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">08 · <span lang="zh">现金流量表深度</span><span lang="en">Cash Flow Deep-Dive</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

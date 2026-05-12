@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>02 · 三大报表与勾稽关系 — Three Statements & Articulation</title>
+  <meta name="keywords" content="three statements, balance sheet, income statement, cash flow, articulation, 三表勾稽, 间接法, 海康威视, 002415, OCF, CAS 30, IAS 7">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html">
+      <span class="mark">A</span>
+      <span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span>
+    </a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 02</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">18 分钟</span><span lang="en">18 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01</span><span lang="en">Prereq: Ch.01</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.03 会计原则</span><span lang="en">Next: Ch.03 Principles</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">三大报表与勾稽关系</span>
+        <span lang="en">Three Statements &amp; Articulation</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">三张报表是同一家公司的三个视角: 资产负债表是状态向量, 利润表是 accrual 视角下一段时间的状态转移, 现金流量表是同一段时间转移中"动了现金"的那部分。三表必须勾稽一致 — 不一致就是造假信号。</span>
+        <span lang="en">Three views of the same firm: the balance sheet is the state vector, the income statement is the accrual‑basis state transition over a period, the cash flow statement is the cash‑basis slice of that same transition. They must articulate — failure to articulate is a fraud signal.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用 $\Delta\text{Cash} = \text{OCF} + \text{ICF} + \text{FCF}$ 验证任意 A 股年报的三表一致性。</li>
+          <li lang="zh">能从净利润推导出经营现金流 (间接法): $\text{OCF} = \text{NI} + \text{D\&A} + \Delta\text{WC} - \text{非经损益}$。</li>
+          <li lang="zh">能识别"净利为正但 OCF 为负"的三种典型情形, 并说出该查附注里的哪一项。</li>
+          <li lang="zh">能定位资产负债表"货币资金期末" = 现金流量表"期末现金及现金等价物余额"。</li>
+          <li lang="en">Use $\Delta\text{Cash} = \text{OCF} + \text{ICF} + \text{FCF}$ to consistency‑check any A‑share filing.</li>
+          <li lang="en">Derive operating cash flow from net income via the indirect method.</li>
+          <li lang="en">Identify three canonical patterns where NI is positive but OCF is negative.</li>
+          <li lang="en">Locate "ending cash" on the B/S as the bridge to the CFS.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 同一系统的三种视角</span>
+          <span class="en" lang="en"> · Three views of one system</span>
+        </h2>
+
+        <p lang="zh">把公司看作动力系统。任一时刻 $t$, 系统有一个<em>状态</em> — 由资产负债表描述。在区间 $[t-1, t]$ 内, 状态发生了变化 — 这个变化可以用两种独立的视角来核算:</p>
+        <p lang="en">Think of the firm as a dynamical system. At time $t$, the state is described by the balance sheet. Over the period $[t-1, t]$, the state changes — and this change can be accounted for from <em>two independent perspectives</em>:</p>
+
+        <ul>
+          <li lang="zh"><strong>Accrual 视角 (利润表)</strong>: 把每一笔"经济意义已发生"的事件累加 — 不管现金有没有动。卖了一台设备 → 收入立刻记; 计提折旧 → 费用立刻记。</li>
+          <li lang="zh"><strong>Cash 视角 (现金流量表)</strong>: 只记"现金真的动了"的事件 — 不管经济意义有没有发生。客户给了订金但还没发货 → cash 进了, OCF +; 销售但客户还没付 → cash 没动, OCF 不变。</li>
+          <li lang="en"><strong>Accrual view (Income Statement)</strong>: integrate events the moment their economic meaning occurs — regardless of cash.</li>
+          <li lang="en"><strong>Cash view (Cash Flow Statement)</strong>: only count events where cash actually moves — regardless of economic meaning.</li>
+        </ul>
+
+        <p lang="zh"><strong>关键洞察</strong>: 同一段时间里, accrual 视角看到的"利润"和 cash 视角看到的"现金净流入", 在<em>长期</em>必然趋于相等 (一切赊销最终会收回, 一切折旧最终伴随设备退役 → 报废所有非现金调节项最终抵消)。但<em>单期内</em>差异往往很大。这个差异就藏着公司经营质量的信号 — 也是造假最容易撕开的口子。</p>
+        <p lang="en"><strong>Key insight:</strong> across <em>long horizons</em>, accrual income and cash flow must converge (every receivable eventually gets collected, every depreciation eventually retires the asset). But within a single period, the gap is often large — and it's exactly where signal about earnings quality lives, and where fraud is most easily caught.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 720 280" role="img" aria-label="State vector, income statement, cash flow articulation">
+            <defs>
+              <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#EFE8D8"/>
+                <stop offset="1" stop-color="#E6DCC4"/>
+              </linearGradient>
+              <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#4A4540"/>
+              </marker>
+            </defs>
+            <style>
+              .lbl-big   { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; font-size: 18px; font-weight: 600; fill: #1A1814; }
+              .lbl-mid   { font-family: 'Noto Serif SC', 'Cormorant Garamond', serif; font-size: 13px; font-weight: 500; fill: #1A1814; }
+              .lbl-cap   { font-family: 'Inter Tight', 'Noto Sans SC', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: #8A8378; }
+              .item      { font-family: 'JetBrains Mono', 'Noto Serif SC', monospace; font-size: 10.5px; fill: #4A4540; }
+              .edge-lbl  { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; fill: #8B2C2C; }
+              .edge      { stroke: #4A4540; stroke-width: 1.2; fill: none; }
+            </style>
+
+            <!-- B/S t-1 (left state) -->
+            <rect x="30" y="100" width="130" height="120" rx="4" fill="url(#g2)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="95" y="135" text-anchor="middle">B/S</text>
+            <text class="lbl-mid" x="95" y="155" text-anchor="middle">资产负债表</text>
+            <text class="item" x="95" y="178" text-anchor="middle">at t−1</text>
+            <text class="item" x="95" y="200" text-anchor="middle">状态向量</text>
+
+            <!-- B/S t (right state) -->
+            <rect x="560" y="100" width="130" height="120" rx="4" fill="url(#g2)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="625" y="135" text-anchor="middle">B/S</text>
+            <text class="lbl-mid" x="625" y="155" text-anchor="middle">资产负债表</text>
+            <text class="item" x="625" y="178" text-anchor="middle">at t</text>
+            <text class="item" x="625" y="200" text-anchor="middle">状态向量</text>
+
+            <!-- IS box (top middle) -->
+            <rect x="220" y="30" width="280" height="80" rx="4" fill="url(#g2)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="360" y="58" text-anchor="middle">IS · 利润表 (Accrual)</text>
+            <text class="item" x="360" y="80" text-anchor="middle">Revenue − Expense + Gains − Losses</text>
+            <text class="item" x="360" y="97" text-anchor="middle">= NI → 进入留存收益</text>
+
+            <!-- CFS box (bottom middle) -->
+            <rect x="220" y="210" width="280" height="80" rx="4" fill="url(#g2)" stroke="#1A1814" stroke-width="1.5"/>
+            <text class="lbl-big" x="360" y="238" text-anchor="middle">CFS · 现金流量表 (Cash)</text>
+            <text class="item" x="360" y="260" text-anchor="middle">OCF + ICF + FCF</text>
+            <text class="item" x="360" y="277" text-anchor="middle">= ΔCash → 进入货币资金</text>
+
+            <!-- Edges from left B/S to IS / CFS -->
+            <path class="edge" d="M160 130 Q200 100 220 70" marker-end="url(#arr2)"/>
+            <path class="edge" d="M160 190 Q200 220 220 250" marker-end="url(#arr2)"/>
+            <!-- Edges from IS / CFS to right B/S -->
+            <path class="edge" d="M500 70 Q540 100 560 130" marker-end="url(#arr2)"/>
+            <path class="edge" d="M500 250 Q540 220 560 190" marker-end="url(#arr2)"/>
+
+            <!-- Period label -->
+            <text class="edge-lbl" x="360" y="170" text-anchor="middle">period [t−1, t]</text>
+            <text class="lbl-cap" x="360" y="16" text-anchor="middle">Accrual view</text>
+            <text class="lbl-cap" x="360" y="300" text-anchor="middle">Cash view</text>
+          </svg>
+          <figcaption>
+            <span lang="zh">两条路径描述同一段时间的状态转移 — accrual (上) 与 cash (下)。两条路径终点必须一致, 这就是勾稽。</span>
+            <span lang="en">Two paths describing the same state transition — accrual (top) and cash (bottom). Both must reach the same end state. That is articulation.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span>
+        </h2>
+
+        <p lang="zh">三大报表的核算逻辑用四个等式串起来:</p>
+        <p lang="en">The three statements are stitched by four equations:</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">恒等式 1 — 资产负债表</span>
+          <span class="callout-label" lang="en">Identity 1 — Balance Sheet</span>
+          <div class="eq">
+            <span>$$ A_t = L_t + E_t $$</span>
+            <span class="num">(2.1)</span>
+          </div>
+          <p lang="zh">某一时刻 $t$ 必然成立 (Ch.01)。</p>
+          <p lang="en">Holds at every instant (Ch.01).</p>
+        </div>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">恒等式 2 — 权益的时间演化</span>
+          <span class="callout-label" lang="en">Identity 2 — Equity dynamics</span>
+          <div class="eq">
+            <span>$$ E_t = E_{t-1} + \mathrm{NI}_t - D_t + \mathrm{OCI}_t + \mathrm{Contrib}_t $$</span>
+            <span class="num">(2.2)</span>
+          </div>
+          <p lang="zh">期末权益 = 期初权益 + 当期净利 (来自利润表) − 当期股利 + 其他综合收益 (汇兑/公允价值未实现损益等) + 当期增资。</p>
+          <p lang="en">Ending equity = beginning equity + net income (from IS) − dividends + other comprehensive income + new capital contributions.</p>
+          <span class="cite">CAS 30 · IFRS 1 · Brealey, Myers &amp; Allen Ch. 3</span>
+        </div>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">恒等式 3 — 现金的时间演化</span>
+          <span class="callout-label" lang="en">Identity 3 — Cash dynamics</span>
+          <div class="eq">
+            <span>$$ \mathrm{Cash}_t = \mathrm{Cash}_{t-1} + \mathrm{OCF} + \mathrm{ICF} + \mathrm{FCF} + \mathrm{FX}_{adj} $$</span>
+            <span class="num">(2.3)</span>
+          </div>
+          <p lang="zh">期末货币资金 = 期初货币资金 + 经营 + 投资 + 筹资 + 汇率调整。这就是现金流量表的总闭合关系。</p>
+          <p lang="en">Ending cash = beginning cash + operating + investing + financing + FX adjustment. This is the closing identity of the CFS.</p>
+          <span class="cite">CAS 31 · IAS 7</span>
+        </div>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">恒等式 4 — 间接法 OCF</span>
+          <span class="callout-label" lang="en">Identity 4 — Indirect-method OCF</span>
+          <div class="eq">
+            <span>$$ \mathrm{OCF} = \mathrm{NI} + (\mathrm{D\&A} + \text{其他非现金费用}) + \Delta\mathrm{WC} - \text{非经营性损益} $$</span>
+            <span class="num">(2.4)</span>
+          </div>
+          <p lang="zh">把"净利→现金"的差异拆成三类:</p>
+          <ul lang="zh">
+            <li><strong>非现金费用加回</strong>: 折旧 D, 摊销 A, 资产减值, 股份支付, 递延所得税。这些在 NI 里被扣过, 但没动现金, 加回。</li>
+            <li><strong>营运资本变化 $\Delta\mathrm{WC}$</strong>:
+              <ul>
+                <li>$\Delta\mathrm{AR}$ (应收账款) 增加 → 收入已记但现金没收 → 减项</li>
+                <li>$\Delta\mathrm{Inv}$ (存货) 增加 → 现金已花但成本没记 → 减项</li>
+                <li>$\Delta\mathrm{AP}$ (应付账款) 增加 → 费用已记但现金没付 → 加项</li>
+              </ul>
+            </li>
+            <li><strong>非经营性损益剔除</strong>: 出售固定资产的账面利得在 NI 里, 但<em>现金流入应归入 ICF</em>, 所以在 OCF 里减去, 在 ICF 里完整列示。</li>
+          </ul>
+          <p lang="en">Three groups of adjustments from NI to OCF: add back non‑cash expenses; account for working‑capital changes; strip out non‑operating gains/losses (their cash effects belong in ICF/FCF).</p>
+          <span class="cite">CAS 31 间接法 · IAS 7 §18(b)</span>
+        </div>
+
+        <h3 lang="zh">勾稽校验 — 三个必查闭合点</h3>
+        <h3 lang="en">Articulation checks — three closure points to verify</h3>
+
+        <p lang="zh">阅读任意一份 A 股年报, 这三处一定要对得上:</p>
+        <p lang="en">Three closure points must hold in any A‑share filing:</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><span lang="zh">闭合点</span><span lang="en">Closure</span></th>
+              <th><span lang="zh">B/S 这一项</span><span lang="en">B/S item</span></th>
+              <th><span lang="zh">必须等于</span><span lang="en">Must equal</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><span lang="zh">现金闭合</span><span lang="en">Cash closure</span></td>
+              <td><span lang="zh">货币资金期末 − 期初</span><span lang="en">Δ Cash on B/S</span></td>
+              <td>OCF + ICF + FCF + FX</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><span lang="zh">权益闭合</span><span lang="en">Equity closure</span></td>
+              <td><span lang="zh">所有者权益期末 − 期初</span><span lang="en">Δ Equity on B/S</span></td>
+              <td>NI − Dividends + OCI + Contributions</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><span lang="zh">留存收益闭合</span><span lang="en">RE closure</span></td>
+              <td><span lang="zh">留存收益期末 − 期初</span><span lang="en">Δ Retained earnings</span></td>
+              <td><span lang="zh">归母 NI − 分红</span><span lang="en">NI to parent − dividends</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>实操技巧</strong>: 在 Excel 里拉三表数据, 直接做 (B/S 期末 − B/S 期初) − (CFS 三大活动加总), 应当 ≈ 0 (差异通常 < 千分之一, 来自汇率四舍五入)。差异超千分之一 → 翻附注找"现金及现金等价物的构成"调节表。</p>
+        <p lang="en"><strong>In practice:</strong> pull all three statements into Excel and compute (ending B/S − beginning B/S) − (CFS totals). The residual should be ≈ 0 (within rounding). If not, jump to the cash reconciliation note.</p>
+      </section>
+
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span>
+        </h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SZ·002415</span>
+            <span class="company"><span lang="zh">海康威视</span><span lang="en">Hikvision</span></span>
+            <span class="period">FY2023 · <span lang="zh">合并三表勾稽</span><span lang="en">Articulation</span></span>
+          </div>
+
+          <p lang="zh">海康是 A 股"现金质量优等生"的样本: OCF 长期大于 NI, 这意味着<em>实际收到的现金</em>多于<em>账面利润</em>。下面用近似的真实量级展示勾稽:</p>
+          <p lang="en">Hikvision is an "A‑share earnings‑quality top student" — OCF consistently exceeds NI. Approximate magnitudes below:</p>
+
+          <div class="case-table">
+            <table>
+              <thead>
+                <tr>
+                  <th><span lang="zh">科目</span><span lang="en">Item</span></th>
+                  <th class="num"><span lang="zh">金额 (亿元)</span><span lang="en">¥ bn</span></th>
+                  <th><span lang="zh">说明</span><span lang="en">Note</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><span lang="zh">B/S 期初货币资金</span><span lang="en">Beginning cash (B/S)</span></td><td class="num">~410</td><td><span lang="zh">2022 年末</span><span lang="en">2022YE</span></td></tr>
+                <tr><td><span lang="zh">B/S 期末货币资金</span><span lang="en">Ending cash (B/S)</span></td><td class="num">~430</td><td><span lang="zh">2023 年末</span><span lang="en">2023YE</span></td></tr>
+                <tr><td><span lang="zh">ΔCash (B/S 口径)</span><span lang="en">ΔCash from B/S</span></td><td class="num up">+20</td><td>—</td></tr>
+                <tr><td colspan="3" style="background: rgba(60,50,30,0.08); font-style: italic; padding: 0.3em 0.8em; color: #8A8378; font-size: 0.85em;"><span lang="zh">— 现金流量表分项 —</span><span lang="en">— CFS breakdown —</span></td></tr>
+                <tr><td>OCF</td><td class="num up">+170</td><td><span lang="zh">经营性现金净流入</span><span lang="en">Operating</span></td></tr>
+                <tr><td>ICF</td><td class="num down">−90</td><td><span lang="zh">资本开支为主</span><span lang="en">Mainly CapEx</span></td></tr>
+                <tr><td>FCF</td><td class="num down">−60</td><td><span lang="zh">主要是分红</span><span lang="en">Mainly dividends</span></td></tr>
+                <tr><td><span lang="zh"><strong>OCF + ICF + FCF</strong></span><span lang="en"><strong>Sum</strong></span></td><td class="num up"><strong>+20</strong></td><td><span lang="zh"><strong>= ΔCash ✓</strong></span><span lang="en"><strong>= ΔCash ✓</strong></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh">第三, 我们验证间接法 OCF 构造:</p>
+          <p lang="en">Next, verify indirect‑method OCF construction:</p>
+
+          <div class="case-table">
+            <table>
+              <thead>
+                <tr><th><span lang="zh">间接法 OCF 推导</span><span lang="en">Indirect-method OCF</span></th><th class="num"><span lang="zh">金额 (亿元)</span><span lang="en">¥ bn</span></th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span lang="zh">净利润 NI</span><span lang="en">Net Income</span></td><td class="num">+141</td></tr>
+                <tr><td><span lang="zh">+ 折旧与摊销 D&amp;A</span><span lang="en">+ D&amp;A</span></td><td class="num up">+20</td></tr>
+                <tr><td><span lang="zh">+ 资产减值损失</span><span lang="en">+ Impairment</span></td><td class="num up">+5</td></tr>
+                <tr><td><span lang="zh">+ 股份支付费用</span><span lang="en">+ Share-based comp.</span></td><td class="num up">+4</td></tr>
+                <tr><td><span lang="zh">+ 营运资本变化 ΔWC</span><span lang="en">+ ΔWC favorable</span></td><td class="num up">+5</td></tr>
+                <tr><td><span lang="zh">− 非经营损益</span><span lang="en">− Non-operating gain</span></td><td class="num down">−5</td></tr>
+                <tr><td><span lang="zh"><strong>= OCF</strong></span><span lang="en"><strong>= OCF</strong></span></td><td class="num up"><strong>+170 ✓</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>读图洞察</strong>: OCF/NI = 170/141 ≈ 1.20, 表明海康每 1 元利润对应 1.2 元真金白银流入。这是 A 股优质制造业的常见特征 (折旧拉高 OCF, ΔWC 控制良好)。后续 M2 章节会用这个比率作为"应计利润质量"的核心指标 (与第 10 章 Beneish M-Score 对接)。</p>
+          <p lang="en"><strong>Takeaway:</strong> OCF/NI ≈ 1.20 — every ¥1 of paper profit corresponds to ¥1.20 of cash inflow. Typical for high‑quality manufacturers. M2 Ch.10 builds on this ratio in the accruals quality measure.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002415" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 002415 →</span><span lang="en">Cninfo 002415 →</span>
+          </a>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SH·600518</span>
+            <span class="company"><span lang="zh">康美药业</span><span lang="en">Kangmei Pharma</span></span>
+            <span class="period">FY2017 · <span lang="zh">勾稽失败的反面</span><span lang="en">Articulation failure</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+
+          <p lang="zh">康美 2017 年报披露货币资金 ~341 亿, NI ~41 亿。这本身没问题, 但<em>OCF 仅 ~28 亿 (远低于 NI)</em>, 同时应收/存货大幅增长 — 三者放在一起就出现破绽:</p>
+          <p lang="en">Kangmei reported ~¥34.1bn cash in 2017 and ~¥4.1bn NI. But OCF was only ~¥2.8bn — well below NI — while AR and inventory ballooned. The combination is the smoking gun:</p>
+
+          <ul lang="zh">
+            <li>若货币资金真的有 ~341 亿, 公司为何还要在年内大量借款 + 发债? (筹资活动现金流正 ~50 亿)</li>
+            <li>OCF &lt; NI 而 ΔAR 大增 → 营收增长但收不回来 → 净利润里的"赊销虚增"嫌疑</li>
+            <li>2019 年自查公告承认: 虚增货币资金 299 亿, 虚增收入 88 亿 (2017 年项)</li>
+          </ul>
+          <ul lang="en">
+            <li>If cash truly was ¥34.1bn, why did the firm raise ¥5bn of new debt during the same year?</li>
+            <li>OCF &lt; NI while AR ballooned → revenue growth Claude couldn't collect → suspected fictitious receivables</li>
+            <li>2019 self‑disclosure: ¥29.9bn cash overstated, ¥8.8bn revenue overstated in 2017 alone.</li>
+          </ul>
+
+          <p lang="zh">三表勾稽提供的检验, 比任何单项财务指标都更难造假: 你可以虚增 NI, 也可以虚增 Cash, 但要让 (B/S ΔCash) 同步等于 (OCF + ICF + FCF) <em>且</em> 间接法 OCF 又能从虚假的 NI 推回到虚假的 OCF — 难度指数级上升。这就是为什么康美的造假最终在三表对照下崩塌。</p>
+          <p lang="en">Articulation is harder to fake than any single number. You can inflate NI, you can inflate Cash, but making (ΔCash on B/S) consistently equal (OCF + ICF + FCF) <em>and</em> having indirect‑method OCF reconcile from inflated NI compounds the difficulty. That's why Kangmei eventually collapsed when investigators cross‑checked the three statements.</p>
+        </div>
+      </section>
+
+      <h2>
+        <span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span>
+      </h2>
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">accrual vs cash</span><span lang="en">Accrual vs Cash</span></h4>
+          <p lang="zh">三大报表的根本张力。两个视角必须最终收敛 — 短期发散就是信号。</p>
+          <p lang="en">The structural tension across the three statements. The two perspectives must eventually converge; short‑term divergence is information.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">★</span>
+        <div>
+          <h4><span lang="zh">状态向量 vs 状态转移</span><span lang="en">State vs Transition</span></h4>
+          <p lang="zh">B/S 是状态, IS 与 CFS 是同一段时间转移的两种描述。理解了这点, 三表勾稽变成纯代数闭合关系。</p>
+          <p lang="en">B/S is the state, IS and CFS are two views of the same transition. Once that lands, articulation is pure algebra.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">vii</span>
+        <div>
+          <h4><span lang="zh">信息含量</span><span lang="en">Information content</span></h4>
+          <p lang="zh">三表为何要并报? 单看任意一张都不够 — 三者交叉验证才能锁定经济实质。</p>
+          <p lang="en">Why publish three? No single statement is sufficient — cross‑checks are what pin down economic substance.</p>
+        </div>
+      </div>
+
+      <h2>
+        <span lang="zh">理解检验题</span><span lang="en">Trap Questions</span>
+      </h2>
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 一家公司本期净利润 +10 亿, 但 OCF −5 亿。给出至少三种可能情景, 每种说明你接下来要查附注的哪一项。</span>
+            <span lang="en"><strong>Q1.</strong> NI is +¥1bn but OCF is −¥0.5bn. Give at least three scenarios, and for each say which note you'd jump to.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>场景 A — 高速扩张 (可能合理)</strong>: 营收快速上升, 应收账款 + 存货同步暴涨, ΔWC 大幅负 → OCF 被压低。查附注: 应收账款账龄结构 + 存货周转天数 + 销售费用与营收增速对比。结论: 若客户集中度可控、账龄正常、存货流转无积压, 是高速成长公司的合理过渡。</p>
+            <p lang="zh"><strong>场景 B — 应收收不回 (危险)</strong>: 同样是 ΔAR 大增, 但账龄拉长且大量超过 1 年。可能是渠道压货、关联方占用或客户违约风险。查附注: 应收账款账龄 + 前五大客户集中度 + 关联方往来。结论: 收入未变现, NI 是"纸面利润"。</p>
+            <p lang="zh"><strong>场景 C — 大量非经营性损益 (中性需排除)</strong>: NI 里包含一次性大额公允价值变动收益、政府补助、出售投资资产收益 → 现金流入归 ICF 不归 OCF。查附注: 非经常性损益明细 + 营业外收入 + 投资活动现金流分项。结论: 扣非后 NI 可能很低, OCF 才是真实经营。</p>
+            <p lang="zh"><strong>场景 D — 造假 (极度危险)</strong>: NI 是虚增的, 通过虚假销售 (无真实客户) 推高营收, 同时虚增 AR 平衡借贷; OCF 无法虚构 (现金真的没动)。查附注: 与场景 B 同 + 关注审计师非标意见、问询函历史、关联方资金占用。结论: 康美模式。</p>
+            <p lang="zh"><strong>诊断三件套</strong>: ΔAR/Δ营收、OCF/NI 五年趋势、前五大客户 + 关联方占款。如果三个都亮红灯, 危险信号确认。</p>
+            <p lang="en">Four canonical scenarios: (A) Fast growth with WC ramp — check AR ageing + DIO; (B) Uncollectible AR — check ageing + customer concentration; (C) One‑off non‑operating gains in NI — check the non‑recurring items disclosure; (D) Outright fraud — Kangmei‑style. The triage triple: ΔAR/ΔRevenue, OCF/NI 5y trend, top‑5 customers + related‑party balances.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 间接法 OCF 中, "应收账款增加 100 万" 为何<em>减去</em>? 用 A=L+E 的微分推导。</span>
+            <span lang="en"><strong>Q2.</strong> In indirect‑method OCF, why is "Δ AR = +¥1m" <em>subtracted</em>? Derive from $dA = dL + dE$.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">考虑一笔赊销 100 万 (无成本简化):</p>
+            <ul lang="zh">
+              <li>分录: 借 应收账款 100  贷 主营业务收入 100</li>
+              <li>对 B/S: ΔA = +100 (AR), ΔE = +100 (RE)。等式 $dA = dL + dE$ 满足。</li>
+              <li>对 IS: Revenue +100 → NI +100。</li>
+              <li>对 Cash: 没动 — 因为没收钱。ΔCash = 0。</li>
+            </ul>
+            <p lang="zh">间接法从 NI 出发还原 OCF, NI 把 +100 已经算进去了。但实际 Cash 没动。所以要把这"虚收"再扣回去 — <strong>OCF = NI − ΔAR</strong>。等价说法: ΔAR 是"应记入收入但还没变成现金"的差额, 必须从 NI 中剔除才能得到现金口径。</p>
+            <p lang="en">A credit sale of ¥1m: Dr AR ¥1m, Cr Revenue ¥1m. NI rises by ¥1m, cash unchanged. To get from NI back to actual cash, subtract the ¥1m AR increase. Equivalently, ΔAR is the gap between "booked revenue" and "collected cash" — it must be reversed.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> 一笔出售固定资产: 售价 500, 账面价值 400, 产生账面利得 100。这笔交易在 OCF / ICF / FCF 各出现什么?</span>
+            <span lang="en"><strong>Q3.</strong> Sale of fixed asset: proceeds 500, book value 400, gain 100. How does it appear across OCF / ICF / FCF?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>IS</strong>: 资产处置利得 +100 → NI +100。</p>
+            <p lang="zh"><strong>CFS · OCF (间接法)</strong>: 从 NI 出发, <em>减去</em>这 100 的利得 (因为它<em>不属于经营活动</em>)。OCF 净影响: −100。</p>
+            <p lang="zh"><strong>CFS · ICF</strong>: 列示"处置固定资产收到的现金" +500。</p>
+            <p lang="zh"><strong>CFS · FCF</strong>: 不涉及。</p>
+            <p lang="zh"><strong>对现金的净影响</strong>: −100 + 500 = +400 = 资产的账面价值。这正确反映了"用账面 400 的资产换回 500 现金"的现金口径。</p>
+            <p lang="zh"><strong>对 B/S</strong>: A 减少 400 (固定资产), A 增加 500 (现金), E 增加 100 (NI 入留存) → 净 A +100, E +100。恒等式平衡。</p>
+            <p lang="en">IS: gain +100 lifts NI by 100. OCF (indirect): subtract the 100 (non‑operating). ICF: cash inflow +500 (proceeds). Net cash effect: −100 + 500 = +400 (book value). B/S: A −400 (PPE) +500 (Cash) = +100; E +100 (NI). Identity holds.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> 一家公司期末货币资金 100, 期初 80, 现金流量表披露 OCF + ICF + FCF = 25, 汇率调整 −1。这家公司有没有问题?</span>
+            <span lang="en"><strong>Q4.</strong> Ending cash 100, beginning 80; CFS shows OCF+ICF+FCF = 25 and FX adjustment −1. Anything off?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">B/S 口径 ΔCash = 100 − 80 = +20。<br>CFS 口径 = OCF + ICF + FCF + FX = 25 + (−1) = 24。<br>差异: 24 − 20 = +4。</p>
+            <p lang="zh"><strong>4 这个差异不允许出现</strong>。CFS 与 B/S 必须严格闭合 (差异通常 &lt; 千分之一, 来自四舍五入)。差 4 个单位说明:</p>
+            <ul lang="zh">
+              <li>(a) "货币资金"与"现金及现金等价物"口径不一致 (常见: 三个月以上定期存款不计入现金等价物, 但归入货币资金); 查附注"现金及现金等价物的构成";</li>
+              <li>(b) 三大活动分类错误 (例如把"购买理财"放进了 OCF 但应在 ICF);</li>
+              <li>(c) 真的存在披露错误或更严重的造假信号。</li>
+            </ul>
+            <p lang="zh">实操: 把附注里"现金及现金等价物的期末余额构成"与 B/S 货币资金对账。差异 4 通常是<em>定期存款 / 受限资金 / 保证金</em>未计入现金等价物。如果对账后差异仍未消, 进一步审视。</p>
+            <p lang="en">B/S says ΔCash = +20; CFS says +24 (OCF+ICF+FCF+FX). The 4 gap shouldn't exist — articulation must close. Likely causes: (a) scope difference between "cash & equivalents" and "cash on B/S" (e.g., 3M+ term deposits — check the reconciliation note); (b) misclassified activities; (c) genuine error or fraud. Reconcile against the "composition of cash & equivalents" note before escalating.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> "OCF / NI 比值" 长期 &gt; 1 vs 长期 &lt; 1, 各意味着什么? 给出至少两种 OCF/NI &gt; 1 但其实不健康的情景。</span>
+            <span lang="en"><strong>Q5.</strong> What does long‑run OCF/NI > 1 vs < 1 mean? Give at least two cases where OCF/NI > 1 is misleading.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>OCF/NI &gt; 1 (长期)</strong>: 公司每 1 元利润对应 &gt; 1 元现金, 通常说明: (i) 折旧大、资本密集 (制造业、电力); (ii) 收款能力强 (无赊销或客户预付); (iii) 应付账款上涨 (供应链上游议价权)。一般是健康信号。</p>
+            <p lang="zh"><strong>OCF/NI &lt; 1 (长期)</strong>: 通常是: (i) 高速增长 + WC 占用; (ii) 应收账款收不回; (iii) 利润里有大量非现金的"账面收益" (公允价值、长投权益法等)。需要进一步诊断。</p>
+            <p lang="zh"><strong>OCF/NI &gt; 1 但不健康的反例</strong>:</p>
+            <ul lang="zh">
+              <li><strong>反例 1 — 现金来自客户预收, 而商品未交付</strong>: 房地产业典型, 合同负债大涨拉高 OCF, 但公司履约义务积压。一旦市场转向, 客户要求退款, OCF 反转。判断方法: 看"合同负债"科目变化 + 行业基本面。</li>
+              <li><strong>反例 2 — 长期延迟支付供应商</strong>: 应付账款持续上涨拉高 OCF (ΔAP 加项), 但这是"对供应链的隐形借款"; 越往后越难维持。判断方法: 看 AP 周转天数趋势 + 供应商集中度。</li>
+              <li><strong>反例 3 — 一次性大额客户预付</strong>: 看似 OCF 飙升, 实则不可持续。判断方法: OCF 五年趋势是否平稳。</li>
+            </ul>
+            <p lang="zh"><strong>结论</strong>: OCF/NI 是优秀的"质量过滤器", 但不能脱离 (i) 行业属性 (ii) WC 结构变化 (iii) 五年趋势 三个上下文。</p>
+            <p lang="en">OCF/NI > 1 typically means capital‑intensive operations or strong collection. Misleading cases: customer prepayments (real estate), stretching payables (supplier‑funded growth), one‑off large prepayments. Read in context of industry, WC structure, and 5y trend.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="01-equation.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">01 · <span lang="zh">会计恒等式</span><span lang="en">The Accounting Identity</span></span></a>
+          <a class="next" href="03-principles.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">03 · <span lang="zh">accrual / matching / 谨慎 / 实质</span><span lang="en">Accrual · Matching · Substance</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

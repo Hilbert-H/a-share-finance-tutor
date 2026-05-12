@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>09 · A 股公告解读</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 09</span></div>
+<h1><span lang="zh">A 股公告解读</span><span lang="en">Reading A‑Share Filings</span></h1>
+<p class="lesson-subtitle"><span lang="zh">业绩预告 / 定增 / 回购 / 限售解禁 / ST 退市 / 问询函 — A 股的"公告流"是日常波动的主要来源. 学会读, 看出市场反应是否合理, 比看年报更高频。</span><span lang="en">Earnings preannouncement, placement, buyback, lock‑up expiry, ST/delisting, inquiry letters — A‑share's filing stream drives daily volatility. Reading it makes everyday market reactions interpretable.</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span>
+<ul><li lang="zh">识别 7 类高频公告 + 各自市场反应模式</li><li lang="zh">用 EMH + 行为金融解释短期股价反应</li><li lang="en">Identify 7 common filing types and typical reactions; explain via EMH + behavioral</li></ul>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">7 类公告与典型反应</span><span lang="en">Seven filings &amp; reactions</span></h2>
+
+<table><thead><tr><th><span lang="zh">公告</span><span lang="en">Filing</span></th><th><span lang="zh">内容</span><span lang="en">Content</span></th><th><span lang="zh">市场典型反应</span><span lang="en">Typical reaction</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">业绩预告 (季 / 年)</span><span lang="en">Earnings preannouncement</span></td><td><span lang="zh">预增 / 预减 / 扭亏 / 增亏</span><span lang="en">Up/down/turnaround/widen loss</span></td><td><span lang="zh">公告日 5-15% 跳空 + 后 3-6 月盈余漂移</span><span lang="en">5–15% gap + 3–6m drift (PEAD)</span></td></tr>
+<tr><td><span lang="zh">业绩快报</span><span lang="en">Earnings flash</span></td><td><span lang="zh">未审 NI / 营收</span><span lang="en">Unaudited NI/Rev</span></td><td><span lang="zh">温和反应, 等正式年报</span><span lang="en">Mild; await full report</span></td></tr>
+<tr><td><span lang="zh">定增 (private placement)</span><span lang="en">Private placement</span></td><td><span lang="zh">向特定对象发新股</span><span lang="en">Issue to specific investors</span></td><td><span lang="zh">公告负面 ~3-8% (稀释 + Myers 信号), 锁定期内可能反转</span><span lang="en">Negative initially; possibly reverse later</span></td></tr>
+<tr><td><span lang="zh">回购</span><span lang="en">Buyback</span></td><td><span lang="zh">公司回购 + 注销 / 库存</span><span lang="en">Repurchase, cancel/treasury</span></td><td><span lang="zh">公告正面 +3-10%, 大额则更强</span><span lang="en">Positive +3–10%</span></td></tr>
+<tr><td><span lang="zh">限售解禁</span><span lang="en">Lock‑up expiry</span></td><td><span lang="zh">大股东 / IPO 前股东解禁</span><span lang="en">Pre‑IPO holders unlock</span></td><td><span lang="zh">提前定价, 解禁日反应温和; 大额解禁有抛压</span><span lang="en">Mostly priced in; large unlock = selling pressure</span></td></tr>
+<tr><td>ST / *ST / <span lang="zh">退市</span><span lang="en">Delisting</span></td><td><span lang="zh">连续亏损 / 重大违法</span><span lang="en">Losses / material violations</span></td><td><span lang="zh">公告时已暴跌, 退市倒计时无人接</span><span lang="en">Already crashed; no buyers</span></td></tr>
+<tr><td><span lang="zh">问询函</span><span lang="en">Inquiry letter</span></td><td><span lang="zh">交易所要求公司答疑</span><span lang="en">Exchange queries</span></td><td><span lang="zh">高度负面 (-5 to -15%); 回复后可能反弹</span><span lang="en">Strongly negative</span></td></tr>
+<tr><td><span lang="zh">监管函 / 处罚</span><span lang="en">Regulator letter / fine</span></td><td><span lang="zh">CSRC / 交易所处罚</span><span lang="en">Penalty</span></td><td><span lang="zh">严重: -10-20%, 长期影响信誉</span><span lang="en">Severe; lasting reputation damage</span></td></tr>
+</tbody></table>
+
+<h3 lang="zh">读公告的<em>第一性</em>问题</h3>
+<h3 lang="en">First‑principle questions</h3>
+<ol lang="zh">
+<li><strong>这是<em>已被市场预期</em>的吗?</strong> 已预期的信息已反映在价格 (EMH 半强). 反应大小反映"超预期的程度"</li>
+<li><strong>是<em>暂时</em>还是<em>结构性</em>?</strong> 周期性业绩波动 vs 行业系统性恶化, 估值含义完全不同</li>
+<li><strong>对未来现金流<em>长期</em>影响?</strong> 把短期信号代入 DCF / 估值模型, 反推内在价值变化</li>
+<li><strong>是否触发护城河 / 能力圈边界变化?</strong></li>
+<li><strong>市场反应是否合理?</strong> 过度反应是机会, 不足反应是陷阱</li>
+</ol>
+<p lang="en">Five questions: Was it expected? Temporary or structural? Long‑run cash flow impact? Moat/competence boundary change? Is the market over‑/under‑reacting?</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">案例</span><span lang="en">Cases</span></h2>
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">立讯精密 002475 / 宁德时代 300750 大额定增</span><span lang="en">Luxshare 002475 / CATL 300750 placement</span></span></div>
+<p lang="zh">立讯 2022 年定增 ~135 亿建产能, 公告后 3 个交易日跌 8%. 行为分析:</p>
+<ul lang="zh"><li>稀释效应: 增发 7% 股本, EPS 即时摊薄</li><li>Myers pecking order 信号: 用权益融资 = 管理层认为股价合理或偏高</li><li>但定向对象是产业资本 (合资方 + 战投), 一定程度上缓冲负面信号</li><li>长期看融资<em>有用途</em> (扩产, 抢苹果 / 特斯拉订单) → 6 月内股价反弹</li></ul>
+<p lang="en">Luxshare 2022 ~¥13.5bn placement caused −8% in 3 days: dilution + Myers signal, but strategic placement (industrial + JV partners) cushioned. Funds had clear use (capacity for Apple/Tesla orders) → 6m rebound.</p>
+</div>
+
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">问询函经典案例 — 暴风集团 (退市)</span><span lang="en">Inquiry letter classic — Storm Group (delisted)</span></span></div>
+<p lang="zh">暴风 2017-2019 累计收到 20+ 份问询函, 涉及: 关联方资金占用、海外并购、商誉减值、应收账款异常. 每次问询函公告 -5% 到 -15%. 2019 实际退市. <em>问询函密集</em>本身就是<em>极强</em>负面信号 — 监管的注意意味着问题已经显化.</p>
+<p lang="en">Storm 2017–19 received 20+ inquiry letters covering related party extractions, M&amp;A, goodwill, AR. Each caused −5% to −15%. Delisted 2019. Dense inquiry letters = severe negative signal.</p>
+</div>
+</section>
+
+<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<ol class="quiz quiz-list">
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 公司宣布业绩预增 200%, 开盘高开 9%. 你买入吗?</span><span lang="en"><strong>Q1.</strong> 200% earnings preannouncement, +9% gap. Buy?</span></div>
+<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">看预期是否已被定价. 5 个问题:</p>
+<ol lang="zh"><li>预增是否已被分析师 consensus 预期? 若已预期, 9% 高开<em>不够</em>反应, 后续可能<em>继续涨</em> (PEAD)</li><li>预增<em>来源</em>? 经营好转 (持续) 还是非经常 (一次性, 投资收益 / 处置 / 政府补助)?</li><li>下一年预增是否可持续?</li><li>市场<em>过度反应</em>(常见 +15-20%) 还是<em>不足反应</em>?</li><li>结合估值: 9% 高开后 P/E 仍合理吗?</li></ol>
+<p lang="zh">若是经营持续改善 + 估值合理 + 未被充分预期 → 后续 3-6 月可能继续涨 (PEAD). 若是非经常性 + 估值已贵 → 不追高.</p>
+<p lang="en">Check: Was it consensus? Source (operating vs one‑off)? Sustainable next year? Over‑/under‑reaction? Post‑gap valuation? Sustained operating improvement + reasonable valuation + under‑reaction → PEAD. One‑off + expensive → don't chase.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 大股东大规模限售解禁前一周, 股价已跌 15%. 解禁日如何反应?</span><span lang="en"><strong>Q2.</strong> Major lock‑up expiry approaches; stock down 15% in prior week. Day‑of reaction?</span></div>
+<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">EMH 半强: 解禁日是<em>已知事件</em>, 抛压<em>已被提前定价</em>. 解禁日实际反应通常<em>温和</em> (±2%), 因市场已消化. 跌 15% 已经反映了预期抛压. 若实际解禁后大股东<em>没卖</em> (持有信号), 反而<em>正面</em>反弹.</p>
+<p lang="zh">行为视角: 散户在解禁日恐慌抛售是常见非理性. 若公司基本面良好, 解禁恐慌期是<em>逆向买入</em>机会. 福耀玻璃多次解禁周表现出这种模式.</p>
+<p lang="en">Semi‑strong EMH: priced in; day‑of typically ±2%. If insiders don't sell, signals confidence → rebound. Retail panic on lock‑up day creates contrarian opportunities for fundamentally sound firms (Fuyao Glass exemplifies).</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="08-financial-quality.html"><span class="dir">← Prev</span><span class="title">08 · <span lang="zh">财报应用</span></span></a><a class="next" href="../a-share/01-regulation.html"><span class="dir">Next →</span><span class="title">A 股特化</span></a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

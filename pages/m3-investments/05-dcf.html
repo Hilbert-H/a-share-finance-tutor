@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>05 · DCF 估值 — FCFF / FCFE / DDM</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 05</span></div>
+<h1><span lang="zh">DCF 估值 — FCFF / FCFE / DDM</span><span lang="en">DCF Valuation</span></h1>
+<p class="lesson-subtitle"><span lang="zh">DCF 是<em>第一性原理估值</em> — 把公司视为未来现金流的发生器, 用对应的折现率折回今天。三个版本: FCFF (公司层面) / FCFE (股权层面) / DDM (分红视角). 理论上等价, 实务取决于公司类型。</span><span lang="en">DCF is first‑principles valuation — discount future cash flows at the matching cost. Three versions: FCFF (firm) / FCFE (equity) / DDM (dividend). Theoretically equivalent; pick by firm type.</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span>
+<ul><li lang="zh">写出 FCFF / FCFE / DDM 三个公式</li><li lang="zh">用两阶段 DCF 估算茅台</li><li lang="zh">理解永续增长率 g 与折现率 r 的边界 (Gordon 奇点)</li><li lang="zh">做 DCF 敏感性分析 — g 与 r 各 ±100bp 对估值的影响</li>
+<li lang="en">Write FCFF/FCFE/DDM; two‑stage DCF on Moutai; understand $r &gt; g$; sensitivity at ±100bp</li></ul></section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+
+<p><strong>FCFF (Free Cash Flow to Firm)</strong>:</p>
+<div class="eq"><span>$$ V_{\text{firm}} = \sum_{t=1}^{T} \frac{\mathrm{FCFF}_t}{(1+\mathrm{WACC})^t} + \frac{\mathrm{TV}}{(1+\mathrm{WACC})^T} $$</span><span class="num">(5.1)</span></div>
+<div class="eq"><span>$$ \mathrm{TV} = \frac{\mathrm{FCFF}_{T+1}}{\mathrm{WACC} - g} = \frac{\mathrm{FCFF}_T (1+g)}{\mathrm{WACC}-g} $$</span><span class="num">(5.2)</span></div>
+<p>$V_{\text{equity}} = V_{\text{firm}} - \text{Debt} + \text{Cash}$. <span lang="zh">用 WACC 折现 (Ch.M2.03)</span><span lang="en">Discount at WACC.</span></p>
+
+<p><strong>FCFE (Free Cash Flow to Equity)</strong>:</p>
+<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{T} \frac{\mathrm{FCFE}_t}{(1+r_e)^t} + \frac{\mathrm{TV}_e}{(1+r_e)^T} $$</span><span class="num">(5.3)</span></div>
+<p>FCFE = OCF − CapEx + <span lang="zh">净借款</span><span lang="en">Net Borrowing</span>. <span lang="zh">用 $r_e$ (CAPM) 折现</span><span lang="en">Discount at $r_e$.</span></p>
+
+<p><strong>DDM (Dividend Discount Model)</strong> — <span lang="zh">最简单 / 稳定分红公司</span><span lang="en">simplest, for stable dividend firms</span>:</p>
+<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{\infty}\frac{D_t}{(1+r_e)^t} \quad \Rightarrow \quad V = \frac{D_1}{r_e - g} \text{ (Gordon)} $$</span><span class="num">(5.4)</span></div>
+
+<p lang="zh"><strong>三个版本何时用</strong>:</p>
+<table><thead><tr><th><span lang="zh">公司类型</span><span lang="en">Firm</span></th><th><span lang="zh">推荐</span><span lang="en">Use</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">非金融, 资本结构稳定</span><span lang="en">Non‑financial, stable capital</span></td><td>FCFF</td></tr>
+<tr><td><span lang="zh">金融机构 (银行 / 保险)</span><span lang="en">Bank / Insurer</span></td><td>FCFE</td></tr>
+<tr><td><span lang="zh">稳定分红 (公用事业)</span><span lang="en">Stable dividend (utilities)</span></td><td>DDM</td></tr>
+<tr><td><span lang="zh">未分红高速成长 (科技)</span><span lang="en">Non‑dividend growth (tech)</span></td><td>FCFF <span lang="zh">(用 EBITDA 倍数佐证)</span><span lang="en">(cross‑check with multiples)</span></td></tr>
+</tbody></table>
+
+<p lang="zh"><strong>两阶段 DCF</strong> — 处理增长非线性:</p>
+<ul lang="zh"><li>阶段 1: 显式预测 5-10 年 ($g_1$ 高速)</li><li>阶段 2: 永续增长 ($g_2 \le$ 长期 GDP 增长)</li><li>TV 通常占 V 的 50-80% — 故终值假设极其重要</li></ul>
+<p lang="en">Two‑stage: explicit 5–10 years high growth + perpetual at $g_2 \leq$ long‑run GDP. TV typically 50–80% of value — assumption is critical.</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">茅台 DCF 实操</span><span lang="en">Moutai DCF</span></h2>
+<div class="case"><div class="case-head"><span class="ticker">SH·600519</span><span class="company"><span lang="zh">贵州茅台 — FCFF 两阶段</span><span lang="en">Moutai — two‑stage FCFF</span></span></div>
+<p lang="zh"><strong>输入估算</strong>:</p>
+<ul lang="zh">
+<li>FY2023 营收 ~1,500 亿, FCFF ~700 亿 (经营现金流 - CapEx + 税后利息)</li>
+<li>阶段 1 (2024-2028): 每年 g_1 = 12% (假设, 反映品牌缓慢扩张)</li>
+<li>阶段 2 (2029+): g_2 = 3% (永续, 接近通胀)</li>
+<li>WACC ≈ 8% (Ch.M2.03)</li>
+</ul>
+<p lang="zh"><strong>显式 5 年现金流</strong>:</p>
+<div class="case-table"><table><thead><tr><th><span lang="zh">年</span><span lang="en">Year</span></th><th class="num">FCFF (<span lang="zh">亿</span><span lang="en">¥bn</span>)</th><th class="num">PV @8% (<span lang="zh">亿</span><span lang="en">¥bn</span>)</th></tr></thead><tbody>
+<tr><td>2024</td><td class="num">784</td><td class="num">726</td></tr>
+<tr><td>2025</td><td class="num">878</td><td class="num">753</td></tr>
+<tr><td>2026</td><td class="num">984</td><td class="num">781</td></tr>
+<tr><td>2027</td><td class="num">1,102</td><td class="num">810</td></tr>
+<tr><td>2028</td><td class="num">1,234</td><td class="num">840</td></tr>
+<tr><td><strong><span lang="zh">五年现值合计</span><span lang="en">5y PV total</span></strong></td><td></td><td class="num up"><strong>3,910</strong></td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>终值 (TV)</strong>:</p>
+<p>$\mathrm{FCFF}_{2029} = 1,234 \times 1.03 = 1,271$ 亿</p>
+<p>$\mathrm{TV} = 1,271 / (0.08 - 0.03) = 25,420$ 亿</p>
+<p>PV(TV) = $25,420 / 1.08^5 = 17,308$ 亿</p>
+
+<p lang="zh"><strong>合计企业价值</strong>: $V_{\text{firm}} = 3,910 + 17,308 = 21,218$ 亿</p>
+<p lang="zh">茅台几乎无债, $V_{\text{equity}} \approx V_{\text{firm}} + $ 现金 ~700 ≈ 21,900 亿 → 每股价值 ≈ 21,900 / 12.56 (亿股) ≈ 1,744 元</p>
+
+<p lang="zh"><strong>对比市场</strong>: 2024 茅台股价 ~1,500-1,700 元. DCF 隐含的估值与市场<em>接近</em>, 但<em>极度依赖假设</em>:</p>
+<div class="case-table"><table><thead><tr><th><span lang="zh">假设</span><span lang="en">Assumption</span></th><th class="num"><span lang="zh">基准</span><span lang="en">Base</span></th><th class="num">+100bp</th><th class="num">-100bp</th></tr></thead><tbody>
+<tr><td>g_2</td><td class="num">3%</td><td class="num up">~2,300 <span lang="zh">/股</span></td><td class="num down">~1,400 <span lang="zh">/股</span></td></tr>
+<tr><td>WACC</td><td class="num">8%</td><td class="num down">~1,420 <span lang="zh">/股</span></td><td class="num up">~2,300 <span lang="zh">/股</span></td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>结论</strong>: ±100bp 的关键假设变化, 估值波动 ±25-30%. <em>DCF 是<em>纪律工具</em>而非精确预测</em> — 用来分析市场隐含的 g 与 r, 不是给出"真实价值".</p>
+<p lang="en">Inputs: FCFF 2023 ~¥70bn, stage‑1 g₁=12% (5y), g₂=3%, WACC=8%. 5y PV ~¥391bn; TV PV ~¥1,731bn; total ~¥2,190bn → ~¥1,744/share. Market 2024 ¥1,500–1,700. Sensitivity: ±100bp on g₂ or WACC moves value ±25–30%. DCF is a discipline tool to decode market's implicit assumptions, not a precision oracle.</p>
+</div>
+</section>
+
+<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 茅台 DCF 中 TV 占总价值 80%. 这是否意味着"DCF 没用, 因为太依赖终值"?</span><span lang="en"><strong>Q1.</strong> TV is 80% of DCF value. Does this mean DCF is "useless because too TV‑dependent"?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">非也. TV 高占比是<em>所有</em>长寿命资产 (永续公司, 长生命周期项目) 的<em>数学必然</em>. 例: 即使你能精确预测前 10 年现金流, 终值反映"未来 30+ 年的折现现值"— 任何稳定经营的公司, 后 30 年现金流加总都会很大.</p>
+<p lang="zh">关键不是 "TV 占比高所以 DCF 无效", 而是<em>注意 TV 假设的合理性</em>:</p>
+<ul lang="zh"><li>$g_2 \le$ 长期 GDP 增长率 (实际 3-5%)</li><li>$r$ 与公司风险匹配</li><li>退出倍数法 (exit multiple) 作为 alternative: $TV = EBITDA_T \times $ 行业可比倍数</li><li>多种 TV 估算交叉验证</li></ul>
+<p lang="en">No — TV being large is mathematically inherent for long‑lived assets. Key is to vet TV assumptions: $g_2 \le$ GDP growth; $r$ matches risk; cross‑check with exit multiple ($EBITDA_T \times $ peer multiple); triangulate methods.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 银行用 FCFF 而非 FCFE 估值会犯什么错?</span><span lang="en"><strong>Q2.</strong> Why does FCFF fail for banks?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">银行的"债"是<em>业务原料</em> (存款 = 银行经营的输入), 不是<em>融资</em>. FCFF 公式假设 "债是公司层面的融资, 与经营独立" — 这对银行不成立. WACC 对银行也几乎无意义 (D/E 12+ 让权重错乱). 正确: 用 FCFE = 净利 − 资本变化 (反映保留资本支持业务增长), 用 $r_e$ 折现. M2 Ch.03 详述。</p>
+<p lang="en">For banks, deposits = business input, not financing. FCFF assumes capital structure is separable from operations — fails. Use FCFE = NI − ΔCapital, discount at $r_e$. M2 Ch.03 develops.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> DCF 算出茅台 1,744 元, 市场 1,600 元. 是买入信号吗?</span><span lang="en"><strong>Q3.</strong> DCF gives ¥1,744, market ¥1,600. Buy signal?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><em>不一定</em>, 取决于安全边际原则 (Ch.07):</p>
+<ul lang="zh"><li>1,744 是中性预测. 假设波动 ±25-30% → 真实价值可能 1,200-2,300 元</li><li>Graham 要求 30-50% margin of safety. 即只在 ~870-1,200 元才"安全". 1,600 元仍在中性区间, 不具安全边际</li><li>DCF 是<em>纪律</em>, 不是<em>买卖信号</em>. 8% WACC 假设可能错; g_2 = 3% 可能高估 (白酒消费长期增速可能低于 3%); 市场可能隐含别的 (例如政策风险溢价)</li></ul>
+<p lang="zh"><strong>Damodaran 建议</strong>: 多种估值方法对照 + 用 DCF 反推市场<em>隐含</em>的假设. 若市场 1,600 隐含 WACC = 9% 或 g_2 = 2%, 那要问"我相信哪个假设比市场更合理?". 若没有强证据自己更对, 不买 / 不卖。</p>
+<p lang="en">Not necessarily. Margin of safety (Ch.07): Graham requires 30–50% discount → buy at ¥870–1,200. ¥1,600 is neutral. DCF is discipline, not signal. Decode what assumptions market implies; only act if you have strong reason to disagree.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="04-behavioral.html"><span class="dir">← Prev</span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a><a class="next" href="06-relative-valuation.html"><span class="dir">Next →</span><span class="title">06 · <span lang="zh">相对估值</span><span lang="en">Multiples</span></span></a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

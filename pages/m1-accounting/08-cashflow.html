@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>08 · 现金流量表深度 — Cash Flow Statement Deep-Dive</title>
+  <meta name="keywords" content="cash flow statement, indirect method, direct method, free cash flow, FCFF, FCFE, OCF, 现金流量表, 间接法, 直接法, 自由现金流, 长江电力, 600900, 苏宁易购">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 08</span><span class="sep">·</span>
+        <span><span lang="zh">18 分钟</span><span lang="en">18 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.02</span><span lang="en">Prereq: Ch.02</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.09 准则差异</span><span lang="en">Next: Ch.09 Standards</span></span>
+      </div>
+
+      <h1><span lang="zh">现金流量表深度</span><span lang="en">Cash Flow Statement Deep-Dive</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">Ch.02 介绍了三大报表勾稽框架, 本章深入现金流量表本身: 直接法 vs 间接法、自由现金流 FCFF/FCFE 推导、营运资本变化的<em>分项</em>诊断、利息与税费的分类争议。学完本章你能用 OCF 与各类衍生指标判断公司的"现金质量"。</span>
+        <span lang="en">Ch.02 introduced articulation; this chapter dives into the CFS itself: indirect vs direct method, FCFF/FCFE derivation, line‑level working‑capital diagnostics, and interest/tax classification debates. After this you can read "cash quality" from OCF and its derivatives.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能从净利润完整推导出 OCF (间接法), 并解释每个调节项的来源。</li>
+          <li lang="zh">能从 OCF 推导 FCFF (公司自由现金流) 与 FCFE (股东自由现金流), 并说明二者差异。</li>
+          <li lang="zh">能拆分营运资本变化 ($\Delta\mathrm{AR}, \Delta\mathrm{Inv}, \Delta\mathrm{AP}$) 进行分项诊断。</li>
+          <li lang="zh">能判断 "OCF 持续为正但依赖筹资活动维持" 这类公司的隐藏风险。</li>
+          <li lang="en">Derive OCF from NI via indirect method and explain every adjustment.</li>
+          <li lang="en">Derive FCFF and FCFE from OCF; explain their difference.</li>
+          <li lang="en">Decompose working‑capital changes line by line for diagnosis.</li>
+          <li lang="en">Identify firms whose "positive OCF" depends on financing — a hidden‑risk pattern.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+        <p lang="zh">现金流量表回答两个问题:</p>
+        <p lang="en">The cash flow statement answers two questions:</p>
+        <ol lang="zh">
+          <li>这段时间公司的现金真正<em>从哪儿来、到哪儿去</em>?</li>
+          <li>这些来源/去向<em>能否持续</em>?</li>
+        </ol>
+        <ol lang="en">
+          <li>Where did cash actually <em>come from and go to</em> in this period?</li>
+          <li>Are those flows <em>sustainable</em>?</li>
+        </ol>
+        <p lang="zh">三大活动分类把现金流"按用途打标":</p>
+        <p lang="en">The three categories tag cash flows by purpose:</p>
+        <ul>
+          <li><strong>OCF (Operating)</strong>: <span lang="zh">主营业务产生的现金 — 这是<em>核心引擎</em>。健康公司这一项应当持续为正且大于 NI。</span><span lang="en">Cash from core operations — the <em>engine</em>. Healthy firms should have it sustainably positive and ≥ NI.</span></li>
+          <li><strong>ICF (Investing)</strong>: <span lang="zh">买/卖资产产生的现金 — 资本开支、对外投资。增长期公司这一项通常为<em>大额负</em> (在烧钱建产能), 成熟期公司较小。</span><span lang="en">Cash from buying/selling assets — CapEx, investments. Growing firms: large negative; mature: smaller.</span></li>
+          <li><strong>FCF (Financing)</strong>: <span lang="zh">从股东/债权人那里筹钱或还钱 — 借贷、还款、分红、回购。健康公司这一项通常为<em>负</em> (在还本付息 + 分红)。</span><span lang="en">Cash from/to capital providers — borrowing, repayment, dividends, buybacks. Healthy mature firms: negative (returning capital).</span></li>
+        </ul>
+        <p lang="zh"><strong>典型现金流"性格"</strong>:</p>
+        <p lang="en"><strong>Typical cash flow personalities:</strong></p>
+        <table>
+          <thead><tr><th>OCF</th><th>ICF</th><th>FCF</th><th><span lang="zh">含义</span><span lang="en">Meaning</span></th></tr></thead>
+          <tbody>
+            <tr><td>+</td><td>−</td><td>−</td><td><span lang="zh">成熟优质 (赚钱 + 投资扩张 + 还钱分红)</span><span lang="en">Mature winner (earns + invests + returns)</span></td></tr>
+            <tr><td>+</td><td>−</td><td>+</td><td><span lang="zh">高速成长 (赚钱不够投资, 靠融资补)</span><span lang="en">High growth (earnings insufficient for CapEx, raising capital)</span></td></tr>
+            <tr><td>+</td><td>+</td><td>−</td><td><span lang="zh">收缩 (变卖资产 + 还债)</span><span lang="en">Contracting (selling assets + repaying)</span></td></tr>
+            <tr><td>−</td><td>−</td><td>+</td><td><span lang="zh">早期烧钱 (借钱投资)</span><span lang="en">Early burn (financing investment)</span></td></tr>
+            <tr><td>−</td><td>+</td><td>+</td><td><span lang="zh">困境/造假待查 (操作不赚, 变卖 + 借钱续命)</span><span lang="en">Distress / suspect (no operating cash, selling assets, borrowing)</span></td></tr>
+          </tbody>
+        </table>
+        <p lang="zh">读 CFS 第一眼: <em>三个符号</em>就能定位公司处在哪个阶段。这比读 P&L 更不容易被会计处理操纵。</p>
+        <p lang="en">First glance at CFS: the three signs locate the firm's stage — and the picture is harder to manipulate than P&amp;L.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <h3 lang="zh">① 间接法 — 完整推导</h3>
+        <h3 lang="en">① Indirect method — full derivation</h3>
+
+        <div class="callout callout--formula">
+          <div class="eq">
+            <span>$$ \mathrm{OCF} = \mathrm{NI} + \underbrace{\mathrm{D\&A} + \mathrm{Impair} + \mathrm{SBC} + \mathrm{DT}}_{\text{非现金加回}} + \underbrace{\Delta\mathrm{AP} - \Delta\mathrm{AR} - \Delta\mathrm{Inv} + \Delta\mathrm{AccLiab}}_{\text{营运资本变化}} - \underbrace{\mathrm{Gain}_{nc} + \mathrm{Loss}_{nc}}_{\text{非经营性损益剔除}} $$</span>
+            <span class="num">(8.1)</span>
+          </div>
+          <p lang="zh">三组调节:</p>
+          <ul lang="zh">
+            <li><strong>非现金加回</strong>: 折旧 (D), 摊销 (A), 资产减值 (Impair), 股份支付 (SBC), 递延所得税 (DT)。这些在 NI 里扣过但没动现金, 加回。</li>
+            <li><strong>营运资本变化 ΔWC</strong>: $-\Delta\mathrm{AR}$ (应收增 → 收入已记但现金未收, 扣回), $-\Delta\mathrm{Inv}$ (存货增 → 现金已花但成本未确认, 扣回), $+\Delta\mathrm{AP}$ (应付增 → 费用已记但现金未付, 加回), $+\Delta\mathrm{AccLiab}$ (预提工资税费, 同理加回)。</li>
+            <li><strong>非经营损益剔除</strong>: 出售固定资产利得、公允价值变动收益等不属于 OCF, 从 NI 减去 (它们的现金流入应归 ICF/FCF)。</li>
+          </ul>
+          <p lang="en">Three adjustment groups: non‑cash add‑backs (D&amp;A, impairment, SBC, deferred tax); working‑capital changes (−ΔAR, −ΔInv, +ΔAP, +ΔAccLiab); strip out non‑operating gains/losses (their cash effects belong to ICF/FCF).</p>
+        </div>
+
+        <h3 lang="zh">② 直接法 — 按现金流类别列示</h3>
+        <h3 lang="en">② Direct method — by cash flow category</h3>
+        <p lang="zh">直接法不从 NI 推导, 而是直接列示经营活动的现金流入流出:</p>
+        <p lang="en">Direct method lists operating cash inflows and outflows directly, not via NI:</p>
+        <ul>
+          <li>+ <span lang="zh">销售商品提供劳务收到的现金</span><span lang="en">Cash from customers</span></li>
+          <li>− <span lang="zh">购买商品接受劳务支付的现金</span><span lang="en">Cash to suppliers</span></li>
+          <li>− <span lang="zh">支付给职工以及为职工支付的现金</span><span lang="en">Cash to employees</span></li>
+          <li>− <span lang="zh">支付的各项税费</span><span lang="en">Cash for taxes</span></li>
+          <li>+ <span lang="zh">收到的其他与经营活动有关的现金</span><span lang="en">Other operating receipts</span></li>
+          <li>− <span lang="zh">支付的其他与经营活动有关的现金</span><span lang="en">Other operating payments</span></li>
+          <li>= <strong>OCF</strong></li>
+        </ul>
+        <p lang="zh"><strong>CAS / IAS 7 要求</strong>: A 股 CAS 31 要求<em>同时披露</em>直接法 (在 CFS 主体) 与<em>间接法附表</em>。这是 A 股相对 US GAAP 的<em>信息优势</em> — US 公司只用间接法 (虽然 FASB 鼓励直接法), 投资者难以反推。</p>
+        <p lang="en">CAS 31 requires <em>both</em> — direct on the face, indirect in the supplementary schedule. A‑share information advantage over US GAAP (US uses indirect only).</p>
+        <p lang="zh"><strong>信息含量比较</strong>:</p>
+        <ul>
+          <li><span lang="zh">直接法<em>更易理解</em>: 现金流分项的实际含义直观 (谁来钱、给谁付钱)</span><span lang="en">Direct method is <em>more intuitive</em>: who paid us, who we paid</span></li>
+          <li><span lang="zh">间接法<em>信息更多</em>: 显示 NI 与 OCF 差异 → 应计利润质量信号 (Sloan 1996)</span><span lang="en">Indirect method has <em>more signal</em>: NI vs OCF gap = accruals quality (Sloan 1996)</span></li>
+        </ul>
+
+        <h3 lang="zh">③ 自由现金流 — FCFF vs FCFE</h3>
+        <h3 lang="en">③ Free Cash Flow — FCFF vs FCFE</h3>
+
+        <p lang="zh">CFS 主表上没有"自由现金流"科目, 这是分析师从 OCF 推导出来的概念:</p>
+        <p lang="en">FCF isn't a CFS line item — it's derived by analysts from OCF:</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label">FCFF</span>
+          <div class="eq">
+            <span>$$ \mathrm{FCFF} = \mathrm{OCF} + \mathrm{Int}_{after\,tax} - \mathrm{CapEx} $$</span>
+            <span class="num">(8.2)</span>
+          </div>
+          <p lang="zh">FCFF (Free Cash Flow to Firm, 公司自由现金流) = 经营活动产生的现金 + 税后利息支出 − 资本开支。代表给<em>全部资本提供方</em> (债权人 + 股东) 的可分配现金。CAPM/WACC 折现这个量算企业价值 (M3 Ch.05)。</p>
+          <p lang="en">FCFF = cash available to <em>all</em> capital providers (debt + equity). Discounted at WACC for enterprise value (M3 Ch.05).</p>
+        </div>
+
+        <div class="callout callout--formula">
+          <span class="callout-label">FCFE</span>
+          <div class="eq">
+            <span>$$ \mathrm{FCFE} = \mathrm{OCF} - \mathrm{CapEx} + \mathrm{Net}\,\mathrm{Borrowing} $$</span>
+            <span class="num">(8.3)</span>
+          </div>
+          <p lang="zh">FCFE (Free Cash Flow to Equity, 股权自由现金流) = OCF − 资本开支 + 净借款 (新借款 − 还款)。代表归<em>股东</em>独享的可分配现金。用 $r_e$ (股权成本) 折现算股权价值。</p>
+          <p lang="en">FCFE = cash available to <em>equity holders only</em>. Discounted at $r_e$ for equity value.</p>
+        </div>
+
+        <p lang="zh"><strong>关键差异</strong>: FCFF 用经营 + 投资视角, 完全不管资本结构 (无论债还是股, 都是同一个公司的现金); FCFE 还考虑了"借多少 / 还多少", 把对债权人的现金流也加入考虑。两者通过 WACC vs $r_e$ 对应折现率, 理论上 NPV 一致。</p>
+        <p lang="en">FCFF is capital‑structure‑agnostic; FCFE accounts for net borrowing. Both lead to identical NPVs when discounted at WACC vs $r_e$ (theoretically).</p>
+
+        <h3 lang="zh">④ 利息与税费的分类争议</h3>
+        <h3 lang="en">④ Interest &amp; tax classification — CAS vs IFRS vs US GAAP</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">现金流</span><span lang="en">Item</span></th><th>CAS</th><th>IFRS</th><th>US GAAP</th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">利息支付</span><span lang="en">Interest paid</span></td><td>FCF</td><td><span lang="zh">OCF 或 FCF (选择)</span><span lang="en">OCF or FCF (choice)</span></td><td>OCF</td></tr>
+            <tr><td><span lang="zh">利息收入</span><span lang="en">Interest received</span></td><td>OCF</td><td><span lang="zh">OCF 或 ICF (选择)</span><span lang="en">OCF or ICF (choice)</span></td><td>OCF</td></tr>
+            <tr><td><span lang="zh">股利支付</span><span lang="en">Dividends paid</span></td><td>FCF</td><td><span lang="zh">OCF 或 FCF (选择)</span><span lang="en">OCF or FCF (choice)</span></td><td>FCF</td></tr>
+            <tr><td><span lang="zh">所得税支付</span><span lang="en">Income taxes</span></td><td>OCF</td><td>OCF</td><td>OCF</td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>A 股口径 (CAS)</strong>: 利息支付归<em>筹资活动</em>。这与 US GAAP 不同 (US GAAP 利息支付归经营活动)。<em>结果</em>: 同一家公司在 A+H 双重披露中, A 股 CAS 报表的 OCF 通常比 H 股 IFRS 选择"利息归 OCF"时<em>更高</em>; 反过来 A 股的 FCF (筹资) 更负。这是分析师在比较跨地上市公司时常踩的坑。</p>
+        <p lang="en">CAS: interest paid → financing; US GAAP: interest paid → operating. Same firm reports higher OCF under CAS than under US GAAP. A common trap when comparing dual‑listed firms.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600900</span>
+            <span class="company"><span lang="zh">长江电力</span><span lang="en">China Yangtze Power</span></span>
+            <span class="period">FY2023 · <span lang="zh">稳定现金流的范本</span><span lang="en">Stable cash flow archetype</span></span>
+          </div>
+          <p lang="zh">长江电力运营三峡 + 葛洲坝 + 乌东德 + 白鹤滩等大型水电站。2023 年报近似量级:</p>
+          <p lang="en">Yangtze Power operates the Three Gorges &amp; other major hydro stations. FY2023 approximate magnitudes:</p>
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th class="num"><span lang="zh">金额 (亿元)</span><span lang="en">¥ bn</span></th><th><span lang="zh">分析</span><span lang="en">Note</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">营业收入</span><span lang="en">Revenue</span></td><td class="num">~780</td><td>—</td></tr>
+                <tr><td><span lang="zh">净利润</span><span lang="en">NI</span></td><td class="num">~272</td><td><span lang="zh">净利率 ~35%</span><span lang="en">35% margin</span></td></tr>
+                <tr><td>OCF</td><td class="num up">~535</td><td><span lang="zh">OCF/NI ≈ 1.97</span><span lang="en">OCF/NI ≈ 1.97</span></td></tr>
+                <tr><td>D&amp;A</td><td class="num">~225</td><td><span lang="zh">水电站长期资产折旧大</span><span lang="en">Heavy hydro depreciation</span></td></tr>
+                <tr><td>ICF</td><td class="num down">~-50</td><td><span lang="zh">维护性 CapEx, 无重大扩张</span><span lang="en">Maintenance CapEx only</span></td></tr>
+                <tr><td>FCF (<span lang="zh">筹资</span><span lang="en">financing</span>)</td><td class="num down">~-460</td><td><span lang="zh">还债 + 高分红</span><span lang="en">Debt repay + dividends</span></td></tr>
+                <tr><td><strong>FCFF</strong></td><td class="num up"><strong>~520</strong></td><td><span lang="zh">OCF + 税后利息 − CapEx</span><span lang="en">OCF + after-tax int − CapEx</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p lang="zh"><strong>读图洞察</strong>: 长江电力是 A 股最经典的 (OCF +, ICF −, FCF −) 成熟优质公司。OCF/NI ≈ 2 因为水电站折旧极大但实际维护开支远小于折旧 (设施寿命 50+ 年, 但按 30 年折旧)。FCFF 规模 ~520 亿支撑了高分红和有息债务的快速偿还。这种现金流"性格"是<em>DCF 估值 (M3 Ch.05) 最适合的对象</em> — 现金流稳定可预测, 折现率不确定性小。</p>
+          <p lang="en">Classic mature (+/−/−). OCF/NI ≈ 2 because heavy book depreciation exceeds true maintenance spend (hydro infra useful life 50+ years, depreciated over 30). The ~¥52bn FCFF supports both heavy dividends and rapid debt repayment. The textbook DCF target (M3 Ch.05).</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600900" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600900 →</span><span lang="en">Cninfo 600900 →</span></a>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SZ·002024</span>
+            <span class="company"><span lang="zh">苏宁易购</span><span lang="en">Suning.com</span></span>
+            <span class="period">FY2017-2020 · <span lang="zh">OCF 持续恶化先于暴雷</span><span lang="en">OCF deterioration precedes collapse</span></span>
+          </div>
+          <p lang="zh">苏宁从 2017 开始, 现金流"性格"恶化:</p>
+          <p lang="en">From 2017, Suning's cash‑flow personality deteriorated:</p>
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">年度</span><span lang="en">Year</span></th><th class="num">OCF (亿)</th><th class="num">NI (亿)</th><th class="num">OCF/NI</th><th class="num">ICF</th><th class="num">FCF</th><th><span lang="zh">"性格"</span><span lang="en">Profile</span></th></tr></thead>
+              <tbody>
+                <tr><td>2017</td><td class="num">~−66</td><td class="num">~42</td><td class="num down">−1.6</td><td class="num">+90</td><td class="num">−30</td><td><span lang="zh">异常 (NI 正, OCF 负)</span><span lang="en">Anomaly</span></td></tr>
+                <tr><td>2018</td><td class="num down">~−139</td><td class="num">~133</td><td class="num down">−1.0</td><td class="num">+1</td><td class="num">+170</td><td><span lang="zh">恶化 + 大借款</span><span lang="en">Worsening + heavy borrowing</span></td></tr>
+                <tr><td>2019</td><td class="num down">~−180</td><td class="num">~98</td><td class="num down">−1.8</td><td class="num">+155</td><td class="num">+85</td><td><span lang="zh">变卖资产 + 继续借款</span><span lang="en">Asset sales + more borrow</span></td></tr>
+                <tr><td>2020</td><td class="num down">~−97</td><td class="num">~-39</td><td class="num">—</td><td class="num">+102</td><td class="num">−40</td><td><span lang="zh">困境</span><span lang="en">Distress</span></td></tr>
+                <tr><td>2021</td><td class="num down">~−93</td><td class="num">~-433</td><td class="num">—</td><td class="num">+5</td><td class="num">+62</td><td><span lang="zh">实质破产, 国资接盘</span><span lang="en">Insolvent, state bailout</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p lang="zh"><strong>读图洞察</strong>: 2017 OCF 已经 −66 亿但 NI 还显示 +42 亿 — 这是<em>明确的造假/重大问题信号</em>。当时分析师如果用<em>三大现金流性格</em>判断, 已经能预警 (OCF−, ICF+, FCF− → 困境型)。但 NI 仍正掩盖了真实情况, 大量散户被"账面盈利"迷惑。这就是 Ch.02 quiz 1 反例的真实版本: 净利为正但 OCF 为负持续超过 1 年, 必是危险。</p>
+          <p lang="zh">2018 起进一步恶化: OCF 更负 + 大量借款 (FCF 大额+) → 用债务维持运营。2019 开始变卖资产 (ICF+155 来自出售物流地产、阿里股权等) — 经典"困境模式"。2021 全面崩溃, 张近东失去控制权, 江苏国资接盘。</p>
+          <p lang="zh"><strong>结构化诊断</strong>: 把 5 年的 (OCF, ICF, FCF) 符号画出来 → 完整恶化曲线。这种诊断比任何单年财报指标都更敏感。</p>
+          <p lang="en">2017 OCF −¥6.6bn while NI was +¥4.2bn — already a clear danger signal (NI+/OCF− for &gt;1 year). The three cash‑flow signs (−/+/−) located Suning in "distress" by 2018. Asset sales + heavy borrowing for 2 more years then full collapse and state bailout 2021. Plotting the 5y (OCF, ICF, FCF) sign trajectory beats any single‑year ratio.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">ii</span><div><h4>accrual vs cash</h4><p lang="zh">本章核心 — NI 与 OCF 的差异 (应计盈余) 是经营质量的最敏感信号。</p><p lang="en">The accruals = NI − OCF gap is the most sensitive signal of earnings quality.</p></div></div>
+      <div class="model-card"><span class="roman">★</span><div><h4><span lang="zh">现金流性格</span><span lang="en">Cash flow personality</span></h4><p lang="zh">(OCF, ICF, FCF) 三符号定位公司生命周期阶段 — 比任何单一比率都信息丰富。</p><p lang="en">The three‑sign tuple locates the firm's stage — richer than any single ratio.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 间接法 vs 直接法, 各自的信息优势是什么? 为什么 US GAAP 不强制直接法?</span><span lang="en"><strong>Q1.</strong> Indirect vs direct method — informational pros/cons? Why doesn't US GAAP mandate direct?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>间接法的信息优势</strong>: 显示 NI → OCF 的所有调节项 → 投资者可读出"应计盈余"(NI − OCF) 的具体来源。这是 Sloan (1996) 应计异象 (accruals anomaly) 研究的数据基础。读 NI 高但 OCF 低的公司, 通过 ΔAR + Δ存货 + Δ应付的分项, 能直接看出是哪一项把"账面"和"现金"分开了。</p>
+            <p lang="zh"><strong>直接法的信息优势</strong>: 营运现金的来源/去向直接列示 — "卖给客户收到多少" / "付给供应商多少"。对外行投资者更易理解。FASB 1987 SFAS 95 鼓励直接法但未强制, 理由是<em>编制成本</em>: 直接法要求企业重新整理交易, 间接法可从现有报表算出。</p>
+            <p lang="zh"><strong>CAS 31 的双轨披露</strong>: 主表用直接法 + 附表用间接法 → 同时保留两种信息。这是 A 股 (相对 US) 信息披露<em>更友好</em>的少数地方之一。</p>
+            <p lang="zh"><strong>实务建议</strong>: 读 A 股年报时, 先看直接法的"销售商品提供劳务收到的现金" vs 营业收入 → 看收款比例; 再看间接法的 ΔAR / Δ存货 → 诊断哪项调节最大。两个视角互补。</p>
+            <p lang="en">Indirect: shows the NI → OCF gap by adjustment → enables accruals‑anomaly analysis (Sloan 1996). Direct: more intuitive ("cash from customers", "to suppliers"); FASB recommended but didn't mandate due to preparation cost. CAS 31 requires <em>both</em> — a rare A‑share disclosure advantage. Practical: compare "cash from customers" vs revenue; then read indirect ΔWC for diagnosis.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 公司 A 的 OCF = 100, CapEx = 30, 利息支付 = 10 (税后 8), 净借款 = 20。计算 FCFF 和 FCFE。两者哪个更适合给银行用作"还本付息能力"评估?</span><span lang="en"><strong>Q2.</strong> OCF 100, CapEx 30, interest paid 10 (after‑tax 8), net borrowing 20. Compute FCFF and FCFE. Which is more relevant for a bank's debt‑service analysis?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>FCFF</strong> (假设 CAS 口径, 利息支付在筹资侧):
+            $\mathrm{FCFF} = \mathrm{OCF} + \mathrm{Int}_{after\,tax} - \mathrm{CapEx} = 100 + 8 - 30 = 78$</p>
+            <p lang="zh"><strong>FCFE</strong>:
+            $\mathrm{FCFE} = \mathrm{OCF} - \mathrm{CapEx} + \mathrm{Net\,Borrow} = 100 - 30 + 20 = 90$</p>
+            <p lang="zh">注: 不同教材的 FCFE 公式略有差异 — 此处用<em>OCF 起点</em>且<em>OCF 已含利息支付</em>的版本。如果 OCF 是<em>含利息支付前</em>的口径, 公式需调整。</p>
+            <p lang="zh"><strong>对银行用什么?</strong> 银行评估"还本付息能力", 应该用<em>FCFF</em> 或更严格的 EBITDA。理由:</p>
+            <ul lang="zh">
+              <li>FCFE 已经扣过利息和还本 — 是<em>给股东的钱</em>, 不是<em>给所有资本方的</em></li>
+              <li>FCFF 在<em>没付利息之前</em>就有 78, 这才反映"利息可以覆盖多少倍"</li>
+              <li>更严格的指标: EBITDA / (利息 + 当年到期债务本金) = 利息保障倍数 + 流动性。银行内部通常用这个</li>
+            </ul>
+            <p lang="zh"><strong>常见错误</strong>: 用 FCFE 评估偿债能力, 因为 FCFE 已经"假设按计划还款", 没有体现"如果不还款则有多少钱可拿来还"的真实信息。这是基本面分析与信用分析的视角差异。</p>
+            <p lang="en">FCFF = 100 + 8 − 30 = 78. FCFE = 100 − 30 + 20 = 90. For debt service, use FCFF (or EBITDA/interest + maturities) — these are pre‑capital‑structure measures. FCFE assumes scheduled repayment is already done and reports "what's left for equity," not "what's available to service debt." Confusing the two is a common credit‑analysis error.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一家公司过去 3 年的 (OCF, ICF, FCF) 符号是 (+, −, −) → (+, +, +) → (−, +, +)。描述这家公司发生了什么? 你会要求审计师查看哪些附注?</span><span lang="en"><strong>Q3.</strong> Past 3 years (OCF, ICF, FCF): (+, −, −) → (+, +, +) → (−, +, +). What's happening? Which notes to read?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>趋势解读</strong>:</p>
+            <ul lang="zh">
+              <li>Year 1 (+, −, −): 成熟优质 — 经营赚钱, 投资扩张, 还债分红。正常状态。</li>
+              <li>Year 2 (+, +, +): 开始变卖资产 (ICF +) 同时仍在筹资 (FCF +)。经营还是正的 — 但<em>开始储备现金</em>或<em>准备某事</em>。可能是: 收购前融资、分拆出售非核心资产、应对监管 / 政策变化。中性, 但要警觉。</li>
+              <li>Year 3 (−, +, +): 经营反转为负 (OCF −), 同时继续靠变卖 + 借款维持。这是<em>苏宁模式</em>的早期阶段 — 经营恶化, 用资产负债表硬撑。</li>
+            </ul>
+            <p lang="zh"><strong>诊断行动</strong>:</p>
+            <ol lang="zh">
+              <li><strong>OCF 为何转负</strong>? 查间接法附表: ΔAR / Δ存货 / Δ应付 哪一项最大? 是收入下降还是收款恶化?</li>
+              <li><strong>ICF + 来源</strong>? 处置了哪些资产? 是核心资产还是非核心? 处置价格是否公允 (关联方处置 → 红旗)?</li>
+              <li><strong>FCF + 来源</strong>? 新增的是银行借款 (利息成本压力) 还是发行新股 (稀释)? 期限结构 (短债 vs 长债)?</li>
+              <li><strong>财务费用率变化</strong>: 是否在加速上升 → 显示"借钱填补操作亏损"的循环</li>
+              <li><strong>关联方往来</strong>: 是否有大额资金流向关联方? 这是"困境前抽走资金"的标准信号</li>
+              <li><strong>审计师非标意见</strong>: 是否有保留意见、强调事项、否定意见?</li>
+            </ol>
+            <p lang="zh"><strong>结论</strong>: Year 3 这种"性格"在 A 股历史上预示了大量暴雷案例 (苏宁、乐视、康得新、康美等)。三符号变化诊断比单年比率敏感得多, 应作为每年读年报的<em>第一道筛</em>。</p>
+            <p lang="en">Year 1 (+/−/−) = mature winner. Year 2 (+/+/+) = asset sales + financing, possibly building cash or pre‑M&amp;A. Year 3 (−/+/+) = operations turn negative while still selling assets and borrowing — early Suning/LeTV pattern. Diagnostic notes: indirect WC breakdown; asset disposal details (related‑party check); new borrowing terms; financial‑expense trajectory; related‑party balances; auditor qualifications. The 3‑year sign trajectory is the best first filter.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 同一家公司, 在 A 股 (CAS) 报告 OCF = 100, 在 H 股 (IFRS, 选择利息归 OCF) 报告 OCF = ?。该公司当年付了 30 亿利息。</span><span lang="en"><strong>Q4.</strong> Same firm reports OCF = 100 under CAS. Under IFRS (electing interest to OCF), what's OCF? Firm paid ¥3bn interest.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>CAS 口径</strong>: 利息支付归筹资活动 (FCF), 不进 OCF。OCF = 100。</p>
+            <p lang="zh"><strong>IFRS 口径 (选择利息归 OCF)</strong>: 利息支付 30 计入 OCF (作为流出)。OCF = 100 − 30 = 70。</p>
+            <p lang="zh">同时 FCF 在 IFRS 下相对 CAS 高 30 (因为利息从 FCF 移到 OCF, FCF 不再扣减 30)。总现金流量不变 (利息支付影响总现金, 不影响"OCF + ICF + FCF"之和)。</p>
+            <p lang="zh"><strong>对分析的影响</strong>:</p>
+            <ul lang="zh">
+              <li><strong>OCF/NI 比较</strong>: A+H 同业比较时如果直接拿 A 股的 OCF/NI 与 H 股可比公司比较, 高估前者的"现金质量"</li>
+              <li><strong>FCFF 计算</strong>: FCFF = OCF + 税后利息 − CapEx。在 CAS 下, OCF 不含利息, 加回税后利息后, FCFF 反映完整经营; 在 IFRS 利息归 OCF 时, OCF 已扣利息, 不该再加回 (或加回但需注意双重计算)</li>
+              <li><strong>同业横向比较</strong>: 跨国比较时一定要看报表所用准则与利息分类政策, 否则可能比较两个完全不可比的口径</li>
+            </ul>
+            <p lang="zh"><strong>A+H 双重披露的公司</strong>: 中国国航、中石化、中国平安、中国人寿等。这些公司在 H 股财报后通常附"按 CAS / IFRS 编制的利润、净资产差异调节表" — 反映两套准则下的关键差异。读 H 股研究报告时务必注意。Ch.09 详述。</p>
+            <p lang="en">CAS: interest paid → financing. OCF = 100. IFRS (electing interest → OCF): OCF = 100 − 30 = 70. Total cash unchanged; FCF 30 higher under IFRS. Cross‑listed A+H firms typically publish reconciliation tables. Always check the standard and election before cross‑border comparison.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 房地产开发企业在<em>预售模式</em>下的 OCF 通常很高 (合同负债大涨 + AP 高), 但破产风险也高。如何调和?</span><span lang="en"><strong>Q5.</strong> Pre‑sale real estate developers often show high OCF (large contract liability + AP buildup) yet high bankruptcy risk. Reconcile.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>OCF 高的原因</strong>:</p>
+            <ul lang="zh">
+              <li>客户预付款 (合同负债) 大增 → 现金流入但<em>不</em>确认收入 (Ch.04 收入确认时点是交房) → 经营性现金流入 +, 但 NI 不增</li>
+              <li>应付供应商 + 预收款 + 工程款应付 → 都在 OCF 里加项</li>
+              <li>实际开发的 CapEx 部分计入"开发产品"作为存货, 也通过 ΔWC 影响 OCF (而<em>不</em>归 ICF)</li>
+            </ul>
+            <p lang="zh"><strong>风险藏在哪</strong>:</p>
+            <ol lang="zh">
+              <li><strong>合同负债是<em>负债</em></strong>, 不是收入 — 公司欠客户房子。如果未来几年不能按时交付, 这些"现金流入"可能要退还 (现金流入反转)</li>
+              <li><strong>预收款融资本质</strong>: 客户 + 银行按揭把现金提前给开发商, 开发商用这笔钱继续买地 / 开新项目 → 永续滚动的庞氏结构。任何一环 (按揭收紧、销售放缓、土地价格下跌) 都触发负反馈</li>
+              <li><strong>OCF 计算不反映期限错配</strong>: 收的现金都是"短期, 已到账"; 欠的房子都是"长期, 未来才交付"。CFS 不显示这个错配, B/S 上"合同负债"科目才能显示</li>
+              <li><strong>长期建造义务: CAS 21 / IFRS 16 视情况要求</strong>: 在建工程的资本化利息可能让 OCF 进一步虚高 (利息从财务费用资本化到存货 → 不直接扣 NI 与 OCF)</li>
+            </ol>
+            <p lang="zh"><strong>诊断方法</strong>:</p>
+            <ul lang="zh">
+              <li>看"合同负债 / 营业收入"比率 — 越高, 公司账上对客户的负债越大</li>
+              <li>看销售面积 vs 交付面积 → 如果销售远超交付, 未来交付义务积压</li>
+              <li>看短期债务到期 vs 货币资金 + 受限资金 (重点!) → 流动性测试</li>
+              <li>关注预售资金监管账户余额 — 监管要求开发商把预收款放专户, 不能挪用; 但许多公司通过关联方协议变相挪用</li>
+            </ul>
+            <p lang="zh"><strong>2021-2023 恒大、融创、碧桂园等的暴雷</strong>正是这个机制 — 销售放缓 + 按揭收紧 → 合同负债增速 ↓ → OCF 不再爆增 → 短期债务无法续作 → 流动性断裂 → 不能按时交付 → 进一步丧失客户信心 → 死循环。</p>
+            <p lang="zh"><strong>结论</strong>: 房地产业的 OCF 不是"经营质量"指标, 而是"销售融资规模"指标。判断风险要看 B/S (合同负债结构、短期债务到期) + 流动性 (受限资金 / 短期债务) + 行业基本面 (销售面积、按揭利率), CFS 单独看完全失真。这就是 CFS 必须与 B/S + 行业上下文共同读的标准案例。</p>
+            <p lang="en">High OCF comes from contract liabilities (customer prepayments) + AP buildup. But contract liabilities are <em>obligations</em> — to deliver future homes. If pre‑sales slow (mortgage tightening, demand drop), the OCF inflow reverses while delivery obligations remain. 2021–23 Evergrande/Sunac/Country Garden collapse is exactly this dynamic. For developers, OCF is a sales‑financing scale, not earnings quality — read B/S contract liability mix, short‑term debt maturities, restricted cash, alongside macro sales/mortgage trends. CFS alone is misleading.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="07-consolidation.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">07 · <span lang="zh">合并报表</span><span lang="en">Consolidation</span></span></a>
+          <a class="next" href="09-cas-vs-ifrs.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">09 · <span lang="zh">CAS/IFRS/US GAAP 差异</span><span lang="en">Standards Differences</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

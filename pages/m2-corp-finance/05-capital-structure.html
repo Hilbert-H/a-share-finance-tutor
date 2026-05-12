@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+  <title>05 · 资本结构 — Capital Structure</title>
+  <meta name="keywords" content="capital structure, trade-off, pecking order, agency cost, 资本结构, 茅台, 万科, 恒大, 宁德时代">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 05</span><span class="sep">·</span><span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.03</span><span lang="en">Prereq: Ch.03</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.06 股利</span><span lang="en">Next: Ch.06 Dividends</span></span></div>
+
+<h1><span lang="zh">资本结构</span><span lang="en">Capital Structure</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">"该用多少债?" — MM 给出"如果完美市场, 无所谓"的中性参照, 现实给出"取决于税盾 vs 困境成本 vs 信息不对称 vs 代理冲突"的内部最优。本章用 trade-off + pecking order 两个框架解释 A 股不同行业 D/E 极端分化的现象。</span>
+<span lang="en">"How much debt?" MM gives the neutral baseline (perfect markets → indifferent); reality gives an interior optimum from trade‑off + pecking order. This chapter uses both frameworks to explain extreme D/E divergence across A‑share industries.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能从 first principles 推导 trade-off 理论的内部最优 $D/E$。</li>
+<li lang="zh">能解释 pecking order (Myers 1984) 对发行决策的预测。</li>
+<li lang="zh">能识别 A 股不同行业的"目标"杠杆 — 公用 vs 消费 vs 周期 vs 科技各自的特征。</li>
+<li lang="zh">能解读"信号"视角下的发债 / 增发 / 回购公告。</li>
+<li lang="en">Derive trade‑off theory's interior optimum.</li>
+<li lang="en">Apply Myers (1984) pecking order to financing decisions.</li>
+<li lang="en">Identify "target" leverage across A‑share industries.</li>
+<li lang="en">Read debt/equity/buyback announcements as signals.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">MM 含税 (Ch.03 公式 3.4): $V_L = V_U + tD$ — 全杠杆最优。但现实没有 100% 杠杆的公司。三个偏离 MM 的真实力量:</p>
+<p lang="en">MM with tax: max leverage optimal. But no firm is 100% leveraged. Three real‑world deviations:</p>
+<ol lang="zh">
+<li><strong>财务困境成本</strong> (trade-off theory): $V_L = V_U + tD - \mathrm{PV(distress)}$. 困境成本随 $D$ 凸增 → 内部最优。直接成本 (破产法律 / 清算价值损失); 间接成本 (供应商收紧、客户流失、信誉损失)。</li>
+<li><strong>信息不对称</strong> (pecking order theory, Myers 1984): 管理层比投资者更了解公司价值。发行权益被市场解读为"管理层认为股价高估" → 股价下跌。结果: 公司偏好融资顺序: <em>内部留存 → 债务 → 权益</em>。</li>
+<li><strong>代理成本</strong>: 股东 vs 债权人 (资产替代、债务积压); 管理层 vs 股东 (帝国建设、过度投资)。每种冲突给杠杆决策不同压力。</li>
+</ol>
+<p lang="zh">现实公司的杠杆是这三种力量的均衡。<em>不存在</em>对所有公司适用的"最优 D/E", 但每个行业 / 商业模式有自己的均衡区间。</p>
+<p lang="en">Real firms balance the three. No universal "optimal D/E," but each industry/business has an equilibrium range.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① Trade-off 理论</h3>
+<h3 lang="en">① Trade‑off theory</h3>
+<div class="callout callout--formula">
+<div class="eq"><span>$$ V_L = V_U + \underbrace{tD}_{\text{税盾}} - \underbrace{\mathrm{PV}_{\text{distress}}(D)}_{\text{困境成本}} - \underbrace{\mathrm{PV}_{\text{agency}}(D)}_{\text{代理}} $$</span><span class="num">(5.1)</span></div>
+<p lang="zh">最优 $D^*$ 由 $\partial V_L / \partial D = 0$ 决定: 边际税盾 $t$ $=$ 边际困境 + 代理成本。</p>
+<p lang="en">Optimum $D^*$ where marginal tax shield ($= t$) equals marginal distress + agency costs.</p>
+</div>
+
+<h3 lang="zh">② Pecking order (Myers 1984)</h3>
+<h3 lang="en">② Pecking order</h3>
+<p lang="zh">公司融资顺序:</p>
+<ol lang="zh">
+<li><strong>内部资金</strong> (留存收益) — 无信号成本, 无外部审查</li>
+<li><strong>债务</strong> — 中等信号成本 (债权人对管理层估值较少, 主要关心偿付能力)</li>
+<li><strong>权益</strong> — 高信号成本 (发行新股被解读为"管理层认为股价偏高")</li>
+</ol>
+<p lang="en">Financing order: internal funds (no signal) → debt (modest signal) → equity (heavy negative signal).</p>
+<p lang="zh"><strong>预测</strong>: 盈利能力强的公司有大量内部留存 → <em>低</em>杠杆; 弱盈利公司必须外部融资 → <em>高</em>杠杆。<em>反 trade-off 直觉</em> — trade-off 说"高利润公司有更多税收价值, 应高杠杆"; pecking order 说"高利润公司有内部资金, 不需要外部"。两者预测<em>相反</em>。</p>
+<p lang="en">Prediction: profitable firms accumulate internal funds → <em>low</em> leverage. Weak firms must use external → high leverage. <em>Opposite</em> of trade‑off's prediction.</p>
+<p lang="zh"><strong>实证</strong>: Pecking order 对盈利-杠杆负相关的解释优于 trade-off。这就是为什么茅台 (盈利极强) 杠杆几乎为零, 而房地产 / 重资本行业 (盈利相对差) 杠杆高。</p>
+<p lang="en">Empirically: profitability‑leverage negative correlation favors pecking order. Moutai near zero D/E; real estate / capital‑heavy industries high.</p>
+
+<h3 lang="zh">③ 代理成本</h3>
+<h3 lang="en">③ Agency costs</h3>
+<ul lang="zh">
+<li><strong>股东 vs 债权人 — 资产替代</strong>: 高杠杆下股东偏好<em>高风险</em>项目 (上行归股东, 下行归债权人) → 债权人加 covenant 限制或提高利率</li>
+<li><strong>股东 vs 债权人 — 债务积压</strong>: 临近破产时, 股东拒绝注资 NPV+ 项目 (收益主要给债权人) → 公司错失机会</li>
+<li><strong>管理层 vs 股东 — 自由现金流</strong> (Jensen 1986): 大量自由现金流让管理层"过度投资" (帝国建设、低 NPV 项目)。<em>债务</em>可以作为<em>纪律工具</em> — 强制管理层把现金返回给债权人</li>
+</ul>
+<p lang="en">Asset substitution + debt overhang + free‑cash‑flow problem (Jensen 1986). Debt can serve as discipline (forcing managers to return cash).</p>
+
+<h3 lang="zh">④ 实证结论</h3>
+<h3 lang="en">④ Empirical patterns</h3>
+<table>
+<thead><tr><th><span lang="zh">行业特征</span><span lang="en">Industry</span></th><th><span lang="zh">典型 D/E</span><span lang="en">Typical D/E</span></th><th><span lang="zh">驱动因素</span><span lang="en">Driver</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">公用事业 (水电、燃气)</span><span lang="en">Utilities</span></td><td class="num">0.8-1.5</td><td><span lang="zh">现金流稳定 → 困境成本低 → 用足税盾</span><span lang="en">Stable CF → low distress → use tax shield</span></td></tr>
+<tr><td><span lang="zh">消费品 (白酒、调味)</span><span lang="en">Consumer staples</span></td><td class="num">0.05-0.3</td><td><span lang="zh">现金奶牛, 内部资金充裕 (pecking order)</span><span lang="en">Cash cows, internal funds (pecking order)</span></td></tr>
+<tr><td><span lang="zh">周期 (建材、化工、有色)</span><span lang="en">Cyclical</span></td><td class="num">0.5-1.5</td><td><span lang="zh">需要资本扩产, 但盈利波动 → 中等杠杆</span><span lang="en">CapEx but volatile earnings → middle</span></td></tr>
+<tr><td><span lang="zh">房地产</span><span lang="en">Real estate</span></td><td class="num">2.0-4.0</td><td><span lang="zh">资本极度密集 + 预售模式 + 历史宽松</span><span lang="en">Capital intensive + presale + lax history</span></td></tr>
+<tr><td><span lang="zh">科技 / 半导体</span><span lang="en">Tech / Semicon</span></td><td class="num">0.1-0.5</td><td><span lang="zh">高 R&amp;D 风险 + 资产可抵押性低</span><span lang="en">High R&amp;D risk, low pledgeability</span></td></tr>
+<tr><td><span lang="zh">生物医药</span><span lang="en">Biotech</span></td><td class="num">0.0-0.2</td><td><span lang="zh">极高研发不确定 → 困境成本极高 → 几乎零债务</span><span lang="en">Extreme R&amp;D uncertainty → near zero debt</span></td></tr>
+<tr><td><span lang="zh">银行 / 保险</span><span lang="en">Financials</span></td><td class="num">10.0+</td><td><span lang="zh">监管杠杆, 业务模式特殊 (见 Ch.03)</span><span lang="en">Regulated; business model (Ch.03)</span></td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker"><span lang="zh">对照</span><span lang="en">Contrast</span></span><span class="company"><span lang="zh">茅台 vs 恒大 — 极端的两种均衡</span><span lang="en">Moutai vs Evergrande — extreme equilibria</span></span></div>
+<div class="case-table"><table><thead><tr><th></th><th>600519 <span lang="zh">茅台</span></th><th>3333.HK <span lang="zh">恒大</span><span lang="en">Evergrande</span> (<span lang="zh">退市前峰值</span><span lang="en">peak</span>)</th></tr></thead><tbody>
+<tr><td>D/A</td><td class="num up">17%</td><td class="num down">85-90%</td></tr>
+<tr><td><span lang="zh">ROIC</span><span lang="en">ROIC</span></td><td class="num up">25-30%</td><td class="num">5-10%</td></tr>
+<tr><td><span lang="zh">OCF/NI</span></td><td class="num up">1.2</td><td class="num down">&lt; 0</td></tr>
+<tr><td><span lang="zh">利息保障倍数</span><span lang="en">Interest coverage</span></td><td class="num up">几乎无利息</td><td class="num down">逐年下降至 &lt; 1</td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>茅台 (低杠杆稳态)</strong>: 内部留存充裕, 不需要外部债务。Pecking order 解释 — 高盈利公司天然低杠杆。MM 含税角度看"放弃"了 50-100 亿税盾 PV; 但相对于品牌护城河 (千亿级估值), 这点税盾不值得换取任何困境风险。</p>
+<p lang="zh"><strong>恒大 (高杠杆暴雷)</strong>: 房地产预售模式让短期 OCF 看似正, 但实际是"用客户预付款建未来交付义务"。高杠杆叠加销售放缓 → 偿债能力崩塌 → 困境成本爆发 (供应链断、信誉崩塌、停工烂尾) → 2021 起暴雷, 2024 港股退市。</p>
+<p lang="en"><strong>Moutai (low‑leverage steady state):</strong> internal funds suffice; pecking order explains it. Forgoing ~¥5–10bn tax shield is trivial vs. brand moat. <strong>Evergrande (high‑leverage collapse):</strong> presale model masked underlying coverage; sales slowdown triggered distress cost cascade (supplier cuts, reputation collapse, unfinished projects). Delisted HK 2024.</p>
+</div>
+
+<div class="case">
+<div class="case-head"><span class="ticker">SZ·300750</span><span class="company"><span lang="zh">宁德时代</span><span lang="en">CATL</span></span><span class="period"><span lang="zh">Pecking order 实证</span><span lang="en">Pecking order in action</span></span></div>
+<p lang="zh">宁德 2018 上市后融资轨迹:</p>
+<p lang="en">CATL post‑2018 IPO financing trajectory:</p>
+<ul lang="zh">
+<li>2018-2020: 主要靠 IPO 募集 + 内部留存 (符合 pecking order: 上市筹得资金后, 内部留存优先)</li>
+<li>2020-2022: 业绩爆发, OCF 大幅增长, 内部留存覆盖了大部分 CapEx (符合 pecking order: 高盈利 → 内部)</li>
+<li>2022-2023: 大规模扩产, 内部不够 → 发可转债 + 部分银行借款 (符合 pecking order: 内部不够才用债)</li>
+<li>从未大规模再融资股权 (符合 pecking order: 权益是最后选项)</li>
+</ul>
+<p lang="zh"><strong>财务结构</strong> (2023): D/A ~25%, 仍然<em>低</em>于行业典型水平。这反映了 (1) 强盈利让内部资金充裕, (2) 高 R&amp;D / 技术不确定性让管理层<em>主动</em>压低杠杆。</p>
+<p lang="en">CATL D/A ~25% in 2023 — still <em>below</em> industry average. Reflects (1) strong profitability building internal funds, (2) high R&amp;D uncertainty driving management to stay conservative.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models</span></h2>
+<div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">代理成本</span><span lang="en">Agency cost</span></h4><p lang="zh">三种典型冲突 (资产替代 / 债务积压 / 自由现金流) 给杠杆决策不同压力。</p><p lang="en">Three conflicts (substitution / overhang / FCF) shape leverage.</p></div></div>
+<div class="model-card"><span class="roman">ix</span><div><h4><span lang="zh">信号 / 信息不对称</span><span lang="en">Signaling</span></h4><p lang="zh">Pecking order 的核心 — 发行权益是负面信号, 内部留存无信号成本。</p><p lang="en">Core of pecking order — equity issuance is negative signal.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> Trade-off 预测"高利润公司应当高杠杆 (税盾大)", 但实证看到的是"高利润公司低杠杆"。哪种理论更符合实证? 这对 trade-off 的预测有何修正?</span><span lang="en"><strong>Q1.</strong> Trade‑off predicts "profitable firms → high leverage." Empirical: opposite. Which theory fits? Implications?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>实证</strong>: 大量学术研究 (Fama-French 2002, Frank-Goyal 2009 等) 一致显示<em>盈利-杠杆负相关</em>。Pecking order 直接解释: 高盈利 → 内部资金充裕 → 不需要外部债 → 杠杆自然低。Trade-off 预测<em>相反</em>方向, 失实。</p>
+<p lang="zh"><strong>对 trade-off 的修正 (动态 trade-off)</strong>: 实际公司不是<em>静态</em>跳到最优 D/E, 而是有<em>调整成本</em>(发行费用、税务影响、信息成本)。结果: 公司在<em>目标</em> D/E 附近游走但不是完全锚定。盈利期间内部留存自然让 D/E 下降, 公司"懒得"立即<em>主动</em>增加债务 (因为发行成本 + 信号问题)。</p>
+<p lang="zh"><strong>综合解释</strong>: pecking order 解释<em>融资顺序</em>; trade-off 解释<em>长期均衡区间</em>; 动态调整成本解释<em>偏离均衡的持续性</em>。三者一起才能解释观察到的现象。</p>
+<p lang="zh"><strong>A 股启示</strong>: 茅台、海康、迈瑞医疗等高盈利公司低杠杆 — 符合 pecking order; 它们的"最优 D/E"不必教科书式追求 — 管理层主动接受"放弃税盾"以换取财务弹性。</p>
+<p lang="en">Pecking order fits the data better. Static trade‑off needs dynamic correction (adjustment costs). Combined view: pecking order explains <em>order</em>; trade‑off explains <em>equilibrium range</em>; adjustment costs explain <em>persistence</em>. A‑share examples: Moutai, Hikvision, Mindray accept "forgone tax shield" for financial flexibility.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 公司宣布"以高于市价 20% 价格回购股票"。市场反应通常如何? 用 pecking order + 信号理论解释。</span><span lang="en"><strong>Q2.</strong> Firm announces "buyback at 20% premium." Typical market reaction? Explain via signaling.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>典型反应</strong>: 股价立即<em>上涨</em>, 通常达到回购价附近 (甚至超过)。</p>
+<p lang="zh"><strong>信号解释</strong>:</p>
+<ol lang="zh">
+<li><strong>管理层信念</strong>: 管理层比市场更了解公司。20% 溢价回购意味着<em>管理层认为股票即使溢价 20% 仍值得回购</em> — 强烈"低估"信号</li>
+<li><strong>财务实力</strong>: 公司愿意拿出大笔现金回购, 说明<em>账上有钱</em>且<em>对未来现金流有信心</em>。这本身是正面信息</li>
+<li><strong>资本结构调整</strong>: 回购减少股本 → EPS 提升 (机械效应) → 投资者重估 P/E</li>
+<li><strong>承诺机制</strong>: Jensen (1986) 视角: 回购把自由现金流从管理层手里"返还"给股东 — 减少代理成本 (帝国建设)</li>
+</ol>
+<p lang="zh"><strong>反例</strong>: 若市场觉得"公司没钱却硬要回购, 是不是债务太多?"或"公司没好项目所以才回购?"也可能负面反应。市场反应取决于<em>具体情景</em>:</p>
+<ul lang="zh">
+<li>高盈利稳态公司宣布回购 → 强正面 (茅台、美的等)</li>
+<li>高负债公司宣布回购 → 中性甚至负面 (担心进一步加杠杆)</li>
+<li>无明确增长前景的公司宣布回购 → "公司放弃成长" 信号, 中性</li>
+</ul>
+<p lang="zh"><strong>对比新股发行</strong>: 发新股通常股价下跌 (Asquith-Mullins 1986 实证 ~3% 跌幅) — 因为"管理层认为股票被高估"信号。这就是 pecking order 的市场体现 — 权益融资被市场系统性折价。</p>
+<p lang="en">Typically positive reaction (price moves toward buyback price). Signals: (1) management believes stock undervalued (even at 20% premium); (2) confidence in future cash flow; (3) EPS boost; (4) return of free cash flow to shareholders (Jensen). Caveats: high‑debt or no‑growth firms may see neutral/negative. Mirror: equity issuance historically drops price ~3% (Asquith‑Mullins 1986) — pecking order's market expression.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> "资产替代"(asset substitution) 怎么解释为什么高杠杆生物医药公司难以获得债务融资?</span><span lang="en"><strong>Q3.</strong> How does asset substitution explain why high‑leverage biotech struggles to get debt financing?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>资产替代逻辑</strong>: 杠杆高的公司, 股东持有<em>下行有限 (有限责任) + 上行无限</em>的头寸 — 等价于持有公司价值的<em>看涨期权</em>。期权价值随<em>波动率 σ</em> 上升。所以股东<em>偏好高 σ 项目</em> (即使期望 NPV 较低), 因为成功归股东、失败归债权人。</p>
+<p lang="zh"><strong>对生物医药的应用</strong>: 新药研发本身就<em>极高波动</em> (90% 失败率, 但成功 = 10 亿+ 收益)。债权人预期股东会<em>持续选择更高风险项目</em> — 投资多个早期临床试验而非保守扩张已上市药物 → 失败时债权人受损。</p>
+<p lang="zh"><strong>债权人理性反应</strong>:</p>
+<ol lang="zh">
+<li><strong>不贷</strong>: 直接拒绝高杠杆生物医药贷款</li>
+<li><strong>高利率</strong>: 反映预期资产替代风险溢价</li>
+<li><strong>严苛 covenant</strong>: 限制公司做新药 R&amp;D、要求维持 D/E 上限、要求维持现金余额</li>
+<li><strong>分期发放 + 触发条件</strong>: 临床试验通过特定阶段才放款</li>
+</ol>
+<p lang="zh"><strong>结果</strong>: 生物医药行业的<em>债务融资几乎不可行</em>。资金主要来自:</p>
+<ul lang="zh">
+<li>风险投资 (股权, 接受高风险)</li>
+<li>IPO 募资 (科创板 / 港股 18A 改革后)</li>
+<li>大药企并购 / 战略投资</li>
+<li>政府研发资助</li>
+</ul>
+<p lang="zh">这就是为什么 A 股生物医药 (信达生物、君实生物、康希诺等) D/E 接近零 — <em>不是</em>因为"不需要钱", 而是"不能用债务".</p>
+<p lang="zh"><strong>反向</strong>: 当生物医药公司有了<em>稳定上市产品</em>(例如 BeiGene 的 PD-1) 后, 资产替代风险下降 → 可以发债 — 实证看, 多个晚期生物医药公司 2020+ 开始发可转债 / 优先股, 但仍是少量负债。</p>
+<p lang="en">Asset substitution: high leverage makes shareholders prefer high‑σ projects (call option on firm value); creditors anticipate. For biotech (90% R&amp;D failure, high σ), creditors refuse, charge punitive rates, or impose tight covenants. → Biotech rarely uses debt; finances via VC + IPO + Big Pharma M&amp;A + grants. A‑share biotechs (Innovent, Junshi, CanSino) near‑zero D/E. Once products stabilize (e.g., BeiGene's PD‑1), debt access opens but stays modest.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 国有上市公司倾向比同行业民企更高杠杆。给出至少三个解释。</span><span lang="en"><strong>Q4.</strong> SOE listed firms tend to be more leveraged than private peers. Give three reasons.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<ol lang="zh">
+<li><strong>政府隐性担保</strong>: 国企受困境时政府倾向救助 (历史上极少国企破产清算)。债权人 (主要是国有银行) 视国企债务为"准主权信用" → 利率低 + 信贷容易 → 困境成本被人为压低 → trade-off 最优 D/E 向高移</li>
+<li><strong>融资渠道</strong>: 国企更容易从国有银行借款 (政策导向 + 关系网); 民企更难, 必须靠内部 / 民间借贷 (利率高且不稳)。结构性约束让国企倾向多用债, 民企倾向少用债 (或被迫少用)</li>
+<li><strong>代理成本结构不同</strong>: 国企管理层<em>不是</em>所有者, 利益与股东不一致; 但有政绩 / 升迁动机 → 倾向扩张 → 高杠杆扩张。Jensen 自由现金流问题在国企更显性</li>
+<li><strong>风险承担偏好</strong>: 国企管理层"做错被原谅、做对获政绩"的<em>非对称</em>激励 → 偏好高杠杆扩张 (上行归个人政绩 + 国家, 下行归国家)</li>
+<li><strong>软预算约束</strong> (Kornai 1980 经典论述): 国企即使亏损, 政府仍持续注资 → 实际偿付压力小于民企 → 杠杆可承受更高</li>
+</ol>
+<p lang="zh"><strong>A 股实证</strong>: 央企 / 国企 D/A 中位数 ~55%, 民企 D/A 中位数 ~40%。这个 15 个百分点的差异在不同行业中都稳定存在, 是<em>所有制溢价</em>(ownership premium) 的真实表现。</p>
+<p lang="zh"><strong>对投资者的启示</strong>: 评估国企信用风险时不能仅看财报指标 — 必须考虑政府介入的可能性。但 2018+ 央企改革"不再隐性担保"的方向下, 这个隐性折价开始被市场重新定价。</p>
+<p lang="en">SOEs more leveraged because: (1) implicit government guarantee → lower distress cost, lower funding rate; (2) preferential bank access; (3) agency: SOE managers' non‑symmetric incentives favor expansion; (4) Kornai's soft budget constraint. A‑share evidence: SOE D/A ~55% vs private ~40%. Caveat: 2018+ "no implicit guarantee" reforms are repricing this.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一家高盈利公司持续超额积累现金, D/E 接近零, 但分红率也很低。Jensen 自由现金流理论说什么? 这家公司可能正在做什么?</span><span lang="en"><strong>Q5.</strong> A profitable firm hoards cash, D/E near zero, low dividend payout. Jensen's FCF theory? What might be happening?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>Jensen 自由现金流理论 (1986)</strong>: 大量超出 NPV+ 项目需要的现金 = 自由现金流。管理层倾向于把这些现金用于<em>低 NPV 甚至 NPV-</em> 项目 (帝国建设、不必要的并购、private benefits), 而非返还股东。债务可以作为<em>纪律工具</em> — 强制管理层产生足够现金还本付息, 减少可挥霍的自由现金流。</p>
+<p lang="zh"><strong>"低 D/E + 低分红 + 高利润"模式</strong>说明公司可能在做以下之一 (或几个):</p>
+<ol lang="zh">
+<li><strong>大额积累等待并购</strong>: 现金堆积是为了一次大并购 (例如腾讯、苹果都曾长期持有大量现金)。投资者应警惕: 大额并购成功率历史上低 (~50%)</li>
+<li><strong>过度保守</strong>: 管理层风险厌恶, 不愿用现金 — 但这是<em>价值损失</em> (现金回报低, 股东本可以再投资更好处)</li>
+<li><strong>未来大额 CapEx</strong>: 计划大规模扩产 / 进入新业务 — 但应该<em>透明告知</em>股东而不是默默积累</li>
+<li><strong>管理层私下利益</strong>: 现金给管理层带来安全感 + 私人福利支出空间 — 这是 Jensen 理论的核心警告</li>
+<li><strong>规避监管</strong>: 部分行业 (科技、教育) 历史上为应对监管储备现金</li>
+</ol>
+<p lang="zh"><strong>市场反应</strong>: 当公司宣布<em>大额分红</em>或<em>大额回购</em>时, 股价通常上涨 — 因为投资者认为"管理层把现金还给我, 我自己能更好地投资"。Apple 2012 启动分红 + 回购就是这种压力的结果。</p>
+<p lang="zh"><strong>A 股例子</strong>: 部分制造业 / 消费品公司长期保持极高现金 + 低分红 — 投资者多年呼吁加分红。2023+ 监管推动 "分红常态化"政策正是为了打破这种 Jensen 问题。</p>
+<p lang="zh"><strong>诊断框架</strong>: "现金 / 总资产 &gt; 30%" + "分红率 &lt; 30%" + "无明确大并购或 CapEx 计划"→ 高度怀疑 Jensen FCF 问题。激进股东 (activist investors) 经常以此为抓手要求公司"返还资本"。</p>
+<p lang="en">Jensen (1986): excess FCF tempts managers to overinvest (empire building, bad M&amp;A, private benefits). Low D/E + low payout + high cash = candidate for: (1) M&amp;A war chest (50% success rate); (2) over‑conservatism (value loss); (3) future CapEx (should disclose); (4) private benefits; (5) regulatory hedge. Markets often cheer dividend/buyback initiations (Apple 2012). A‑share regulators pushing "regular dividends" since 2023 addresses this Jensen problem. Diagnostic: cash/assets &gt; 30% + payout &lt; 30% + no announced M&amp;A/CapEx = activist candidate.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav"><a href="04-capital-budgeting.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">04 · <span lang="zh">资本预算</span><span lang="en">Cap Budgeting</span></span></a><a class="next" href="06-dividend.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">06 · <span lang="zh">股利与回购</span><span lang="en">Dividends &amp; Buybacks</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4><p><span lang="zh">填入 Anthropic API Key (sk-ant-...)。</span><span lang="en">Paste Anthropic API key.</span></p><label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save &amp; start</span></button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

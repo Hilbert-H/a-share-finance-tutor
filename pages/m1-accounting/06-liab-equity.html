@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>06 · 负债与权益 — Liabilities vs Equity</title>
+  <meta name="keywords" content="liability, equity, perpetual debt, preferred stock, convertible bond, 永续债, 优先股, 可转债, IAS 32, CAS 22, 中国电建, 601669, 工商银行, 601398, 隆基绿能, 601012">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 06</span><span class="sep">·</span>
+        <span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01 + Ch.03</span><span lang="en">Prereq: Ch.01 + Ch.03</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.07 合并报表</span><span lang="en">Next: Ch.07 Consolidation</span></span>
+      </div>
+
+      <h1><span lang="zh">负债与权益</span><span lang="en">Liabilities vs Equity</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">分类的根本标准: 公司是否有"无条件以现金或其他金融资产偿付"的义务? 永续债、优先股、可转债等"灰色工具"通过条款设计在这条线上跳舞 — D/A 被人为压低, ROE 失真。学完本章你能穿透条款做实质判断。</span>
+        <span lang="en">The classification rests on one question: is there an <em>unconditional obligation</em> to deliver cash or another financial asset? Hybrid instruments — perpetuals, preferreds, convertibles — dance on that line to depress D/A and distort ROE. After this you can see through contract design to economic substance.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">用 IAS 32 / CAS 22 的"无条件偿付义务"测试判定永续债到底是债还是权益。</li>
+          <li lang="zh">拆分可转债初始确认为<em>负债成分</em>与<em>权益成分</em>。</li>
+          <li lang="zh">识别优先股的三种主要变体 (累积/非累积、永续/到期、强制赎回/可选), 给出各自的分类。</li>
+          <li lang="zh">看到 A 股公司 D/A 下降时, 会本能问"是否通过永续债 / 优先股 / 表外结构做了账面修饰?"</li>
+          <li lang="en">Apply IAS 32 / CAS 22 unconditional‑obligation test to perpetuals.</li>
+          <li lang="en">Split convertible bonds into debt and equity components at initial recognition.</li>
+          <li lang="en">Classify the three preferred‑stock variants.</li>
+          <li lang="en">Automatically question D/A drops for hybrid‑instrument or off‑balance‑sheet dressing.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+        <p lang="zh">想象公司每月需要向各方"派发现金": 工资、税、利息、本金、股利。哪些是<em>无条件</em>必须付出的? 哪些是<em>有条件</em>可以选择不付?</p>
+        <p lang="en">Imagine the firm must "pay" various parties each month: wages, taxes, interest, principal, dividends. Which are <em>unconditional</em>? Which are <em>at the firm's discretion</em>?</p>
+        <ul>
+          <li lang="zh"><strong>银行借款</strong>: 利息和本金到期必须付, 不付就违约 → <em>负债</em></li>
+          <li lang="zh"><strong>普通股股利</strong>: 公司可以选择不分, 股东只能等 → <em>权益</em></li>
+          <li lang="zh"><strong>永续债</strong>: 票面看"利息可递延", 但 step-up 条款让递延变成自我惩罚 → 实质上的负债 (虽然法律形式像权益)</li>
+          <li lang="zh"><strong>优先股</strong>: 取决于条款细节, 累积 + 强制赎回 → 负债, 非累积 + 永续 → 权益</li>
+          <li lang="zh"><strong>可转债</strong>: 同时是债 (本息) + 期权 (转股权利) → 必须拆分</li>
+        </ul>
+        <p lang="en">Bank debt: must pay → liability. Common dividends: discretionary → equity. Perpetuals: looks like equity legally, but step‑ups make deferral self‑punishing → substantively debt. Preferreds: depends on terms. Convertibles: hybrid of debt + option → split.</p>
+        <p lang="zh"><strong>电学类比</strong>: 负债是"电压源"(强制电流流出), 权益是"电池储能"(吸收剩余电荷)。永续债像"可控开关" — 条款决定它接哪一端。</p>
+        <p lang="en"><strong>Electrical analogy:</strong> liability = voltage source (forces current out); equity = battery (absorbs residual charge); perpetual = a switch whose terms decide its side.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <div class="callout callout--def">
+          <span class="callout-label" lang="zh">金融负债定义 (IAS 32 §11 / CAS 22)</span>
+          <span class="callout-label" lang="en">Financial liability — IAS 32 §11 / CAS 22</span>
+          <p lang="zh">金融负债是符合下列任一条件的合同义务:</p>
+          <ol lang="zh">
+            <li>向另一方<em>交付现金或其他金融资产</em>的合同义务</li>
+            <li>在<em>潜在不利</em>条件下与另一方<em>交换</em>金融资产/金融负债</li>
+            <li>将以本公司自身权益工具结算 + 本公司股份数量<em>不固定</em></li>
+          </ol>
+          <p lang="zh">不满足以上任一条 + 不能强制偿还本金 → 权益工具。</p>
+          <p lang="en">A liability is any contractual obligation to (1) deliver cash/financial asset; (2) exchange under potentially unfavorable conditions; (3) settle in a variable number of own equity shares. Otherwise, with no forced principal repayment, it's equity.</p>
+          <span class="cite">IAS 32 §11, 16-20 · CAS 22 第一章 · 财政部解释 8 号 (永续债)</span>
+        </div>
+
+        <h3 lang="zh">① 永续债 perpetual debt</h3>
+        <h3 lang="en">① Perpetual debt</h3>
+        <p lang="zh">典型条款:</p>
+        <p lang="en">Typical terms:</p>
+        <ul>
+          <li><span lang="zh">无固定到期日 (no maturity)</span><span lang="en">No maturity</span></li>
+          <li><span lang="zh">票面利率前 5 年固定, 第 5 年后可重置 (step-up, 通常 +300bp)</span><span lang="en">Coupon fixed 5y, then step‑up (often +300bp)</span></li>
+          <li><span lang="zh">利息可递延 — 但通常含<em>累积条款</em> (递延的利息要补付)</span><span lang="en">Coupons deferrable — usually <em>cumulative</em></span></li>
+          <li><span lang="zh">发行人有赎回权, 投资者无</span><span lang="en">Issuer call, no investor put</span></li>
+        </ul>
+        <p lang="zh"><strong>实质判定</strong>: step-up 越激进 (例如第 6 年起 +500bp), 递延付息的<em>经济成本</em>越大, 发行人越不会真递延 → 实质上是"5 年期定期债 + 续作选择权"。财政部解释 8 号 (2019) 收紧: 含<em>显著的利率跳升机制</em>且<em>赎回时点明确</em>的永续债, 应分类为<em>负债</em>。</p>
+        <p lang="en"><strong>Substance:</strong> the more aggressive the step‑up, the more economically punitive deferral becomes, the less likely deferral is — substantively a 5y note with rollover option. China MoF Interpretation #8 (2019): perpetuals with material step‑ups + clear call dates are <em>liabilities</em>.</p>
+
+        <h3 lang="zh">② 优先股 preferred stock</h3>
+        <h3 lang="en">② Preferred stock</h3>
+        <p lang="zh">A 股优先股 (2014 试点后) 的三个维度决定分类:</p>
+        <p lang="en">Three axes determine classification:</p>
+        <table>
+          <thead><tr>
+            <th><span lang="zh">累积性</span><span lang="en">Cumulative?</span></th>
+            <th><span lang="zh">期限</span><span lang="en">Term</span></th>
+            <th><span lang="zh">赎回</span><span lang="en">Redemption</span></th>
+            <th><span lang="zh">分类</span><span lang="en">Class</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">累积</span><span lang="en">Cumulative</span></td><td><span lang="zh">固定到期</span><span lang="en">Fixed maturity</span></td><td><span lang="zh">强制</span><span lang="en">Mandatory</span></td><td><span lang="zh"><strong>全负债</strong></span><span lang="en"><strong>All liability</strong></span></td></tr>
+            <tr><td><span lang="zh">累积</span><span lang="en">Cumulative</span></td><td><span lang="zh">永续</span><span lang="en">Perpetual</span></td><td><span lang="zh">仅发行人有权</span><span lang="en">Issuer call only</span></td><td><span lang="zh"><strong>复合 (含负债成分)</strong></span><span lang="en"><strong>Compound</strong></span></td></tr>
+            <tr><td><span lang="zh">非累积</span><span lang="en">Non-cumulative</span></td><td><span lang="zh">永续</span><span lang="en">Perpetual</span></td><td><span lang="zh">仅发行人有权</span><span lang="en">Issuer call only</span></td><td><span lang="zh"><strong>全权益</strong></span><span lang="en"><strong>All equity</strong></span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 lang="zh">③ 可转债 convertible bond</h3>
+        <h3 lang="en">③ Convertible bond</h3>
+        <p lang="zh">可转债 = 普通债 + 转股期权 (call on issuer's stock)。会计上必须<em>拆分</em>:</p>
+        <p lang="en">Convertible = debt + equity call option. Must be split:</p>
+        <div class="callout callout--formula">
+          <div class="eq">
+            <span>$$ V_{\text{conv}} = V_{\text{debt}} + V_{\text{equity}} $$</span>
+            <span class="num">(6.1)</span>
+          </div>
+          <div class="eq">
+            <span>$$ V_{\text{debt}} = \sum_{t=1}^{T} \frac{C_t}{(1+r_m)^t} + \frac{F}{(1+r_m)^T} $$</span>
+            <span class="num">(6.2)</span>
+          </div>
+          <div class="eq">
+            <span>$$ V_{\text{equity}} = V_{\text{conv}} - V_{\text{debt}} $$</span>
+            <span class="num">(6.3)</span>
+          </div>
+          <p lang="zh">$C_t$ 是票面利息, $F$ 是面值, $r_m$ 是市场无转股选择权的<em>同评级、同期限</em>普通公司债收益率。负债成分按摊余成本计量 (Ch.05); 权益成分初始确认后<em>不再计量</em>, 除非转股或到期。</p>
+          <p lang="en">$C_t$ = coupon, $F$ = face, $r_m$ = market yield on a comparable non‑convertible bond. Debt component at amortized cost; equity component frozen at initial recognition unless converted.</p>
+        </div>
+
+        <p lang="zh"><strong>转股时</strong>: 负债成分 (账面值) + 权益成分 → 实收资本 + 资本公积。无损益。</p>
+        <p lang="en"><strong>On conversion:</strong> debt carrying + equity component → share capital + capital surplus. No P&amp;L impact.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601669</span>
+            <span class="company"><span lang="zh">中国电建</span><span lang="en">PowerChina</span></span>
+            <span class="period">FY2023 · <span lang="zh">永续债拉低账面 D/A</span><span lang="en">Perpetuals masking leverage</span></span>
+          </div>
+          <p lang="zh">中国电建 2023 年报披露"其他权益工具"约 ~600 亿, 主要为永续债。这些永续债条款典型: 5 年后利率重置 +300bp, 利息可递延但累积, 发行人有赎回权。</p>
+          <p lang="en">PowerChina 2023 reports ~¥60bn of "other equity instruments," mostly perpetuals with: 5y step‑up +300bp, deferrable cumulative coupons, issuer call.</p>
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th class="num"><span lang="zh">账面口径</span><span lang="en">As-reported</span></th><th class="num"><span lang="zh">调整后 (永续债→负债)</span><span lang="en">Adjusted</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">总资产 (亿元)</span><span lang="en">Total assets (¥bn)</span></td><td class="num">~11,500</td><td class="num">~11,500</td></tr>
+                <tr><td><span lang="zh">总负债</span><span lang="en">Total liabilities</span></td><td class="num">~8,650</td><td class="num">~9,250</td></tr>
+                <tr><td><span lang="zh">所有者权益</span><span lang="en">Equity</span></td><td class="num">~2,850</td><td class="num">~2,250</td></tr>
+                <tr><td><strong>D/A</strong></td><td class="num"><strong>~75%</strong></td><td class="num down"><strong>~80%</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p lang="zh"><strong>读图洞察</strong>: 5 个百分点的差异看似不大, 但行业基础设施类公司监管对 D/A 有 80% 的政策红线 — 永续债可以让公司"账面合规", 实际逼近红线。分析师做信用评级时通常把永续债"还原"到负债侧。这是 substance over form (Ch.03) 的典型应用。</p>
+          <p lang="en"><strong>Takeaway:</strong> the 5pp gap matters because infrastructure regulators target a ~80% D/A line. Perpetuals make firms "on‑paper compliant" while economically near the line. Credit analysts reclassify perpetuals as debt. Substance‑over‑form in action.</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=601669" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 601669 →</span><span lang="en">Cninfo 601669 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601398</span>
+            <span class="company"><span lang="zh">工商银行</span><span lang="en">ICBC</span></span>
+            <span class="period"><span lang="zh">优先股 + 永续债的双工具</span><span lang="en">Preferred + perpetual stack</span></span>
+          </div>
+          <p lang="zh">工行 2023 年末优先股 + 永续债 (二级资本债外) 合计约 ~2,800 亿, 全部分类为"其他权益工具"。这些工具的特点: 非累积 + 永续 + 自主分红 → CAS 下分类为权益。</p>
+          <p lang="en">ICBC 2023 has ~¥280bn of preferreds + AT1 perpetuals classified as "other equity instruments" — non‑cumulative + perpetual + discretionary dividends → equity under CAS.</p>
+          <p lang="zh"><strong>监管视角的差异</strong>: CAS 把这些计入权益, 但巴塞尔 III 区分:</p>
+          <ul lang="zh">
+            <li><strong>核心一级资本 (CET1)</strong>: 仅普通股 + 留存收益 (优先股 / 永续债不计入)</li>
+            <li><strong>其他一级资本 (AT1)</strong>: 包含优先股 / 永续债 (须满足条件)</li>
+            <li><strong>二级资本 (T2)</strong>: 次级债</li>
+          </ul>
+          <p lang="en">Basel III distinguishes: CET1 = common + retained earnings only; AT1 = preferreds + perpetuals (if qualifying); T2 = subordinated. CAS lumps all into "other equity." Read banks via both lenses.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·601012</span>
+            <span class="company"><span lang="zh">隆基绿能</span><span lang="en">LONGi Green Energy</span></span>
+            <span class="period">FY2020 · <span lang="zh">可转债拆分实例</span><span lang="en">Convertible bond split</span></span>
+          </div>
+          <p lang="zh">隆基 2020 年发行可转债 (隆 22 转债, 简化为示意金额): 面值 50 亿, 6 年期, 票面利率 0.3% (递增至 1.5%), 转股价 设定为发行时股价的 ~110%。市场同期可比纯债 (无转股权) 收益率约 4.5%。</p>
+          <p lang="en">LONGi 2020 issued a convertible: face ¥5bn, 6y, coupon 0.3–1.5%, conversion premium ~10%. Market yield on comparable non‑convertible: ~4.5%.</p>
+          <p lang="zh"><strong>拆分估算</strong> (用 6.2 简化):</p>
+          <ul lang="zh">
+            <li>负债成分 ≈ $\sum_t \frac{0.005 \times 50}{(1.045)^t} + \frac{50}{(1.045)^6}$ ≈ 39 亿</li>
+            <li>权益成分 (转股期权价值) = 50 − 39 = 11 亿</li>
+          </ul>
+          <p lang="en">Debt component ≈ ¥3.9bn (PV at 4.5%). Equity component ≈ ¥1.1bn.</p>
+          <p lang="zh"><strong>初始确认</strong>: 借: 银行存款 50; 贷: 应付债券 — 可转债 (负债) 39 + 资本公积 — 其他 (权益) 11。</p>
+          <p lang="zh"><strong>后续利息确认</strong>: 财务费用 = 39 × 4.5% ≈ 1.76 亿/年 (远高于票面 0.005 × 50 = 0.25 亿), 差额计入应付债券摊销。这就是"可转债票面利率低 — 但财务费用高"的会计来源, 容易被新手误以为"票面 0.3% = 实际成本 0.3%"。</p>
+          <p lang="en"><strong>Initial:</strong> Dr Cash 50; Cr Convertible bond (liability) 39, Cr Capital surplus — other (equity) 11. <strong>Subsequent interest:</strong> ≈ 39 × 4.5% = ¥1.76bn/yr, far above the 0.25 coupon — extra hits financial expense, amortized into the bond carrying amount. Hence "convertibles look cheap on coupon but cost as much as plain bonds in P&amp;L."</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">实质重于形式</span><span lang="en">Substance over Form</span></h4><p lang="zh">永续债 / 优先股的分类是 substance over form 的代数化版本 — 用"无条件偿付义务"测试穿透条款。</p><p lang="en">Perpetual/preferred classification is substance‑over‑form algebraized via the unconditional‑obligation test.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">谨慎性</span><span lang="en">Conservatism</span></h4><p lang="zh">分类不确定时, IAS 32 的默认是"满足任一负债条件即为负债" — 保守取向。</p><p lang="en">When uncertain, IAS 32 defaults to liability on any trigger — conservative bias.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 公司发行一笔永续债, 条款: 前 5 年票面 4%, 第 6 年起若不赎回则跳升至 9%。利息可递延 (累积)。这笔工具应分类为负债还是权益?</span><span lang="en"><strong>Q1.</strong> Perpetual: 4% coupon years 1–5, then jumps to 9% if not called. Coupons deferrable (cumulative). Liability or equity?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>实质判定</strong>: 第 6 年起利率从 4% 跳到 9% (step-up +500bp) 是显著的<em>经济强制</em>。理性的发行人若有任何替代融资 (例如新发 5% 普通债), 都会选择赎回旧债重新发行。因此<em>赎回</em>实质上是确定事件。</p>
+            <p lang="zh"><strong>分类</strong>: 财政部解释 8 号 (2019) 明确: 利率跳升幅度 &gt; 100bp 通常构成"显著经济强制" → 应分类为<em>金融负债</em>, 而非权益。</p>
+            <p lang="zh"><strong>对比</strong>: 若 step-up 仅 +50bp 且利息可递延 + 非累积 + 没有其他强制赎回, 则仍可能分类为权益。条款细节决定分类, 不是"永续 = 权益"。</p>
+            <p lang="en">+500bp step‑up is economically coercive — rational issuer will refinance. MoF Interpretation #8: step‑ups &gt; 100bp typically force liability classification. The +50bp non‑cumulative perpetual would still qualify as equity. Term details rule, not the "perpetual" label.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家公司发行可转债 50 亿, 同期可比纯债收益率 5%, 票面 2%, 6 年期。计算负债成分 + 权益成分。第 3 年若全部转股 (转股价不亏不赚), 会计处理如何?</span><span lang="en"><strong>Q2.</strong> ¥5bn convertible, 2% coupon, 6y, comparable plain-bond yield 5%. Split + entries on full conversion in year 3.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>初始拆分</strong>:</p>
+            <ul lang="zh">
+              <li>负债成分 = $\sum_{t=1}^{6} \frac{0.02 \times 50}{1.05^t} + \frac{50}{1.05^6} = 5.07 + 37.31 \approx 42.4$ 亿</li>
+              <li>权益成分 = 50 − 42.4 = 7.6 亿</li>
+            </ul>
+            <p lang="zh"><strong>初始分录</strong>: Dr Cash 50 / Cr 应付债券 (负债) 42.4 + 资本公积 (权益) 7.6。</p>
+            <p lang="zh"><strong>第 3 年负债账面值</strong> (按 5% 摊销, 票面 2% 现金付息): 每年摊销利息差额 ≈ 1.5 亿, 三年累计 ≈ 4.5 亿 → 第 3 年末账面 ≈ 42.4 + 4.5 = 46.9 亿 (简化, 忽略复利)。</p>
+            <p lang="zh"><strong>转股分录</strong>: Dr 应付债券 46.9 + 资本公积 7.6; Cr 股本 (面值部分) + 资本公积 — 股本溢价 (差额)。<em>无损益</em> — 这是转股的关键特征。</p>
+            <p lang="zh"><strong>常见错误</strong>: 把可转债当作"普通债 + 转股奖励", 忽略权益成分。结果: 当年财务费用低估 (按票面 2% 而非市场 5% 计提), 净利虚高 50%-150%。这是分析隆基、宁德、立讯等大量可转债企业的常见陷阱。</p>
+            <p lang="en">Debt component ≈ ¥4.24bn, equity ≈ ¥0.76bn. After 3y amortization at 5%, debt carrying ~¥4.69bn. Conversion: Dr Bond + Capital surplus; Cr Share capital + premium. <em>No P&amp;L</em>. Common error: treat coupon (2%) as the cost — understating financial expense and inflating NI 50–150%. Frequent trap when reading LONGi, CATL, Luxshare etc.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 累积优先股 vs 非累积优先股, 对当期净利的影响有何不同? 若发行人当年决定不分红, 普通股股东能立刻分到留存收益吗?</span><span lang="en"><strong>Q3.</strong> Cumulative vs non‑cumulative preferred: NI impact? If issuer skips a year, can common holders share in retained earnings?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>当期 NI 影响</strong>: 两者都<em>不直接</em>影响 NI (优先股属于权益时, 股息从留存收益分配, 而非作为费用扣减)。但分类为<em>负债</em>的优先股, 其"股息"实质上是利息, 进入<em>财务费用</em> → 降低 NI。</p>
+            <p lang="zh"><strong>累积 vs 非累积的影响在 EPS</strong>:</p>
+            <ul lang="zh">
+              <li><strong>累积优先股</strong>: 即使当年不分红, 应付股利<em>累积下来</em>欠优先股股东。EPS 计算分子 (归属普通股东) 中, 应<em>扣减</em>当年应付给优先股股东的股利 (即使没真发出去)。</li>
+              <li><strong>非累积优先股</strong>: 当年若不宣布分红, 优先股股东对该年股利<em>无权</em>。EPS 分子<em>仅扣减实际宣派的</em>股利。</li>
+            </ul>
+            <p lang="zh"><strong>普通股股东能否分留存收益</strong>? 法律上要看条款:</p>
+            <ul lang="zh">
+              <li>累积优先股: 必须先补付所有累积的优先股股利, 才能向普通股分红。否则违约。</li>
+              <li>非累积优先股: 若当年优先股不分红, 普通股<em>也通常不能分</em> (大多数条款规定"优先股股利未足额支付前, 普通股不得分红")。否则违约。</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>: 即使优先股是"权益分类", 其经济地位仍优于普通股。EPS 与 BVPS 都要扣除优先股的索取权才能反映普通股股东的真实位置。这就是为什么巴菲特长期持有的 BNSF 等优先股, 在分析他持仓质量时, 不能直接用账面市值减负债算"普通股部分"。</p>
+            <p lang="en">Neither directly hits NI (if classified equity; "dividend" reduces retained earnings). EPS numerator: subtract cumulative preferred dividends <em>whether paid or not</em>; for non‑cumulative, subtract only declared. Common holders typically can't receive dividends until all preferred (cumulative arrears included) are paid. Even classed as equity, preferreds are economically senior — read BVPS net of preferred claims.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 公司用一笔 100 亿永续债置换原有的 100 亿银行借款, 利率相近, 条款使永续债被分类为权益。账面 D/A、ROE 各有何变化? 真实经营有变化吗?</span><span lang="en"><strong>Q4.</strong> Firm replaces ¥10bn bank debt with ¥10bn perpetual (similar coupon) classified as equity. D/A and ROE effects? Any real change?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>账面变化</strong>:</p>
+            <ul lang="zh">
+              <li>负债 -100 (银行借款) + 0 (永续债不计) → L 下降 100</li>
+              <li>权益 +100 (其他权益工具) → E 增加 100</li>
+              <li>资产不变 → D/A 下降, E/A 上升</li>
+              <li>利息支付: 银行借款利息原为<em>财务费用</em> → 永续债"股利"从<em>留存收益</em>分配 → NI 增加 (利息没了, 但永续股利不算费用) → 但归属普通股东净利要减去永续股利</li>
+            </ul>
+            <p lang="zh"><strong>ROE</strong>: 分子 (归普通股东 NI) 不变 (利息变股利, 一进一出); 分母 (普通股东权益) 不变 (永续股归"其他权益"不归"归属母公司股东权益"); 综合 ROE 不变。</p>
+            <p lang="zh"><strong>但报表"权益乘数"= 总资产/总权益 = A/(E+永续) 下降</strong>, 看起来杠杆下降。如果分析师没区分"归属普通股东权益"vs"全部权益"会被误导。</p>
+            <p lang="zh"><strong>真实经营变化</strong>: 几乎没有。利息率相近 → 现金流出几乎一样。法律地位上, 永续债权人优先级低于银行 (好处) 但仍高于普通股 (代价) — 公司对永续债的<em>压力</em>略低 (可递延付息), 但 step-up 条款常常让递延变成假选项。</p>
+            <p lang="zh"><strong>结论</strong>: 这就是"账面套利" — 用会计分类换报表"颜值", 真实风险几乎无变化。分析师必须做调整后 D/A、调整后 ROE。Ch.09 详述 CAS vs IFRS vs US GAAP 在这类问题上的处理差异。</p>
+            <p lang="en">Liability −¥10bn, equity +¥10bn (other equity instr), assets unchanged → reported D/A falls. Interest no longer a P&amp;L expense (now a discretionary distribution from RE) → reported NI rises, but NI <em>attributable to common</em> subtracts the perpetual coupons → unchanged. ROE attributable to common: unchanged. Aggregate equity multiplier looks better. Real economics: barely different (similar cash outflow). Pure paper arbitrage — analysts must adjust.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> A 股公司 X 报告 ROE = 18%, 同行业平均 12%。深入查发现 X 的"其他权益工具"占总权益 25% (永续债)。X 的"真实 ROE"应该用什么口径? 给出两种调整方法及其差异。</span><span lang="en"><strong>Q5.</strong> Firm X reports ROE 18% vs industry 12%. Notes show "other equity instruments" = 25% of total equity (perpetuals). What's the "true" ROE? Two adjustment methods.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>方法 A — 公开数据"归属普通股东 ROE"</strong>: 大部分财务终端给的 ROE 默认是<em>归属母公司 ROE</em> = (归母 NI) / (归属普通股东权益)。这种计算已经自动排除了"其他权益工具"+少数股东权益。该口径下的 18% 已经是"普通股东视角"。</p>
+            <p lang="zh"><strong>方法 B — 还原永续债到负债, 重算 ROE</strong>:</p>
+            <ul lang="zh">
+              <li>分子: NI 加回"永续债股利" (这本是分配给永续股东, 还原为利息后需扣回 → 扣减) → NI* = NI − 永续股利
+              <br>等等, 实际是: 永续债如果<em>从未发行</em>, 公司会怎样? — 用银行借款替代, 利息从 NI 中扣减。所以 NI* ≈ NI − (永续利息支付的税后金额) [假设原本永续股利就已经从归母 NI 扣除, 不需重复]</li>
+              <li>分母: 普通股东权益 + 永续债"还原为负债" → E* = 普通股东权益。但若考虑还原: 总资产不变, 总负债 + 永续债, 普通股东权益不变 → E* = 普通股东权益 (不变)</li>
+              <li>结果: ROE* ≈ ROE 不变 — 但 D/A 大幅上升, 杠杆暴露</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>: 调整后 ROE 本身可能不变, 但<em>风险调整后回报</em>差异巨大。X 的真实杠杆比同业高 25 个百分点, 18% 的 ROE 中很大一部分是"杠杆放大", 而非"经营效率"。在<em>同质化风险</em>口径下 X 的 ROE 应该折价。这就是 DuPont 分解 (M2 Ch.08) 的核心: ROE = NPM × AT × EM, 把杠杆部分单独剥离。</p>
+            <p lang="zh"><strong>第三种方法 — 资本回报率 ROIC</strong>: 不依赖资本结构, 直接看营业利润 (EBIT) / 已投入资本 (债 + 永续 + 普通股 − 现金)。ROIC 对杠杆敏感度低, 是更可靠的"真实经营效率"度量。X 与同业的 ROIC 差异远小于 ROE 差异时, 说明 ROE 优势主要来自杠杆。</p>
+            <p lang="en">Method A — most terminals already report ROE attributable to common, which excludes other equity instruments + NCI; the 18% is already that. Method B — reclassify perpetuals as debt: NI attributable to common unchanged, common equity unchanged → ROE same, but D/A jumps. The real insight: risk‑adjusted return is lower because true leverage is higher. Method C — ROIC = EBIT / invested capital (debt + perp + common − cash) — leverage‑neutral. If X's ROIC matches peers despite ROE divergence, the ROE edge is leverage, not operations. DuPont (M2 Ch.08) makes this explicit.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="05-assets.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">05 · <span lang="zh">资产计量</span><span lang="en">Assets</span></span></a>
+          <a class="next" href="07-consolidation.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">07 · <span lang="zh">合并报表</span><span lang="en">Consolidation</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

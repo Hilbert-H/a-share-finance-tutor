@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>01 · 时间价值 — Time Value of Money</title>
+  <meta name="keywords" content="time value of money, PV, FV, annuity, perpetuity, discount rate, NPV, 时间价值, 永续年金, 折现率, 国债, 230018, 长江电力, 600900">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module II · 01</span><span class="sep">·</span>
+        <span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: 无</span><span lang="en">Prereq: none</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.02 风险与收益</span><span lang="en">Next: Ch.02 Risk &amp; Return</span></span>
+      </div>
+
+      <h1><span lang="zh">时间价值</span><span lang="en">Time Value of Money</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">公司财务的<em>第一原理</em>: 1 块今天 $\neq$ 1 块明天。所有跨期现金流必须折回同一时点才能比较。这条原理推出 NPV、WACC、DCF、债券定价、年金保险定价、按揭还款公式 — 全部都是它的同一种代数变形。</span>
+        <span lang="en">The first principle of corporate finance: ¥1 today $\neq$ ¥1 tomorrow. All cash flows must be discounted to a common date to be compared. This principle generates NPV, WACC, DCF, bond pricing, annuity pricing, mortgage formulas — all algebraic variations of the same idea.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能用 PV / FV / NPV 公式手算任意跨期现金流的等价值。</li>
+          <li lang="zh">能区分普通年金、年金前付、永续年金、增长永续年金 — 并知道各自的边界条件。</li>
+          <li lang="zh">能在名义利率、实际利率、APR、EAR、连续复利之间互相转换。</li>
+          <li lang="zh">理解为什么折现率本质是<em>机会成本</em>, 而非"主观选择"。</li>
+          <li lang="en">Compute PV / FV / NPV for any cash flow stream by hand.</li>
+          <li lang="en">Distinguish ordinary annuity, annuity due, perpetuity, growing perpetuity; know each boundary.</li>
+          <li lang="en">Convert among nominal, real, APR, EAR, and continuous compounding.</li>
+          <li lang="en">Understand the discount rate as <em>opportunity cost</em>, not an arbitrary parameter.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+        <p lang="zh">问: "我现在给你 100 元, vs 一年后给你 100 元, 你选哪个?"</p>
+        <p lang="en">Q: "Would you take ¥100 now or ¥100 a year from now?"</p>
+        <p lang="zh">所有理性人选"现在"。为什么? 三个独立原因:</p>
+        <p lang="en">Every rational person picks "now." Three independent reasons:</p>
+        <ol lang="zh">
+          <li><strong>时间偏好</strong>: 心理上, 即时消费比延迟消费愉悦 (Ramsey 1928 跨期效用模型的核心)</li>
+          <li><strong>通胀</strong>: 一年后的 100 元购买力可能只剩 96 元 (假设 4% 通胀)</li>
+          <li><strong>不确定性</strong>: 一年后可能拿不到 (违约、对方破产)</li>
+        </ol>
+        <ol lang="en">
+          <li><strong>Time preference</strong>: present consumption is psychologically preferred (Ramsey 1928 intertemporal utility)</li>
+          <li><strong>Inflation</strong>: ¥100 in a year may buy only ¥96 of today's goods (4% inflation)</li>
+          <li><strong>Uncertainty</strong>: you might not actually receive it</li>
+        </ol>
+        <p lang="zh">把这三种"消耗"打包成一个数, 就是<em>折现率</em>$r$。给定 $r$, 未来 1 元的<em>当前等价值</em>(PV) 是:</p>
+        <p lang="en">Combining the three into one number gives the <em>discount rate</em> $r$. Future ¥1 has present value:</p>
+        <div class="eq"><span>$$ \mathrm{PV}(¥1\ \text{in 1 year}) = \frac{1}{1+r} $$</span><span class="num">(1.1)</span></div>
+        <p lang="zh">注意: 这个公式不是"约定", 是<em>无套利</em>条件的代数表达。如果 PV $<$ $1/(1+r)$, 你可以借钱按 $r$ 买 PV → 一年后还 $1$ → 净赚正现金 → 套利。市场会瞬间把价格推到 $1/(1+r)$。</p>
+        <p lang="en">This isn't convention — it's the no‑arbitrage condition. If PV $<$ $1/(1+r)$, you can borrow at $r$, buy PV, pay back $1$ in a year, pocket the difference. Arbitrage closes the gap.</p>
+
+        <p lang="zh"><strong>工程类比</strong>: 折现 = exponential decay (类比 RC 电路放电); 复利 = exponential growth (类比单细胞分裂、雪球滚动)。本质上 $(1+r)^n$ 就是离散版本的 $e^{rt}$ — 当 $n \to \infty$ 且 $r/n$ 保持总数时, 离散复利趋于连续复利:</p>
+        <p lang="en"><strong>Engineering analogy:</strong> discounting = exponential decay (RC discharge); compounding = exponential growth (binary fission, snowball). $(1+r)^n$ is the discrete version of $e^{rt}$; as $n \to \infty$ holding total fixed, $(1+r/n)^n \to e^r$.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <h3 lang="zh">① 单期与多期</h3>
+        <h3 lang="en">① Single &amp; multi-period</h3>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{FV} = \mathrm{PV}\,(1+r)^n $$</span><span class="num">(1.2)</span></div>
+          <div class="eq"><span>$$ \mathrm{PV} = \frac{\mathrm{FV}}{(1+r)^n} $$</span><span class="num">(1.3)</span></div>
+          <p lang="zh">复利 $n$ 期。$r$ 是每期折现率。两式是逆运算。</p>
+          <p lang="en">Compound for $n$ periods at rate $r$ per period. Inverses.</p>
+        </div>
+
+        <p lang="zh">对一串现金流 $\{CF_0, CF_1, \dots, CF_n\}$, <strong>净现值 NPV</strong>:</p>
+        <p lang="en">For a stream of cash flows, <strong>NPV</strong>:</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{NPV} = \sum_{t=0}^{n} \frac{CF_t}{(1+r)^t} $$</span><span class="num">(1.4)</span></div>
+          <p lang="zh">$CF_0$ 通常是初始投资 (负数), 后续 $CF_t$ 是项目产生的回报 (正数)。$NPV > 0$ 意味着项目以 $r$ 的折现率仍然有剩余价值 — 应接受。</p>
+          <p lang="en">$CF_0$ usually the initial investment (negative); $CF_t$ for $t \geq 1$ are returns. $NPV > 0$ means the project earns more than $r$ — accept.</p>
+          <span class="cite">Brealey, Myers &amp; Allen ch. 2 · Bodie, Kane, Marcus ch. 5</span>
+        </div>
+
+        <h3 lang="zh">② 永续年金 (Perpetuity)</h3>
+        <h3 lang="en">② Perpetuity</h3>
+
+        <p lang="zh">永远以恒定金额 $C$ 收到现金, 每期间隔相等。代入 (1.4) 并取 $n \to \infty$:</p>
+        <p lang="en">Receive constant $C$ forever at equal intervals. Take $n \to \infty$ in (1.4):</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{PV} = \sum_{t=1}^{\infty} \frac{C}{(1+r)^t} = \frac{C}{r} $$</span><span class="num">(1.5)</span></div>
+          <p lang="zh">几何级数收敛要求 $r > 0$ (否则 PV $\to \infty$)。</p>
+          <p lang="en">Convergence requires $r > 0$.</p>
+        </div>
+
+        <h3 lang="zh">③ 增长永续年金 (Growing Perpetuity, Gordon Model)</h3>
+        <h3 lang="en">③ Growing Perpetuity (Gordon Model)</h3>
+
+        <p lang="zh">现金流每期增长率 $g$:</p>
+        <p lang="en">Cash flow grows at rate $g$ per period:</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{PV} = \sum_{t=1}^{\infty} \frac{C\,(1+g)^{t-1}}{(1+r)^t} = \frac{C}{r-g}, \quad r > g $$</span><span class="num">(1.6)</span></div>
+          <p lang="zh"><strong>$r > g$ 的边界</strong>: 若 $r \le g$, 级数发散 — PV 是无穷大。这反映了一个深刻的事实: 没有任何资产能<em>永远</em>以高于折现率的速度增长 — 否则它的现值就是无限大。M3 Ch.05 DCF 的终值估计依赖这条边界。</p>
+          <p lang="en"><strong>$r > g$ is essential.</strong> If $r \le g$, the sum diverges → PV = $\infty$. No asset can grow <em>forever</em> faster than the discount rate. The DCF terminal value (M3 Ch.05) depends on this boundary.</p>
+        </div>
+
+        <h3 lang="zh">④ 年金 (Annuity)</h3>
+        <h3 lang="en">④ Annuity</h3>
+
+        <p lang="zh"><em>有限期</em>恒定现金流 $C$, 持续 $n$ 期:</p>
+        <p lang="en">Constant $C$ for finite $n$ periods (ordinary annuity, paid end-of-period):</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ \mathrm{PV}_{\text{ord}} = \frac{C}{r}\left[1 - \frac{1}{(1+r)^n}\right] $$</span><span class="num">(1.7)</span></div>
+          <p lang="zh">推导: 把"$n$ 期年金"想象为"一个永续年金 (从 $t=1$ 开始) 减去另一个永续年金 (从 $t=n+1$ 开始)"。第一个 PV = $C/r$, 第二个的 PV = $\frac{C/r}{(1+r)^n}$。相减得 (1.7)。</p>
+          <p lang="en">Derivation: a finite annuity = perpetuity starting at $t=1$ − perpetuity starting at $t=n+1$. The latter's PV (at $t=0$) is $\frac{C/r}{(1+r)^n}$. Subtract.</p>
+        </div>
+
+        <p lang="zh"><strong>年金前付</strong> (annuity due, 每期开头付款) PV 比普通年金大 $(1+r)$ 倍 (因为每期现金流提前一个折现):</p>
+        <p lang="en"><strong>Annuity due</strong> (beginning of period) has $1+r$ times the ordinary annuity PV:</p>
+        <div class="eq"><span>$$ \mathrm{PV}_{\text{due}} = \mathrm{PV}_{\text{ord}} \times (1+r) $$</span><span class="num">(1.8)</span></div>
+
+        <h3 lang="zh">⑤ 名义利率 vs 实际利率 vs APR vs EAR</h3>
+        <h3 lang="en">⑤ Nominal vs Real vs APR vs EAR</h3>
+
+        <p lang="zh"><strong>名义 vs 实际</strong> (Fisher Equation):</p>
+        <p lang="en"><strong>Nominal vs real</strong> (Fisher equation):</p>
+        <div class="eq"><span>$$ 1 + r_{\text{real}} = \frac{1 + r_{\text{nom}}}{1 + \pi}, \quad \text{近似} \quad r_{\text{real}} \approx r_{\text{nom}} - \pi $$</span><span class="num">(1.9)</span></div>
+        <p lang="zh">$\pi$ 是通胀率。所有"折现实际现金流就用实际利率, 折现名义现金流就用名义利率" — 不能混用。</p>
+        <p lang="en">$\pi$ = inflation. Match real CFs to real $r$, nominal to nominal. Don't mix.</p>
+
+        <p lang="zh"><strong>APR (年化利率) vs EAR (实际年利率)</strong>:</p>
+        <p lang="en"><strong>APR vs EAR:</strong></p>
+        <div class="eq"><span>$$ \mathrm{EAR} = \left(1 + \frac{\mathrm{APR}}{m}\right)^m - 1 $$</span><span class="num">(1.10)</span></div>
+        <p lang="zh">$m$ 是年内复利次数。例: APR = 12%, 月复利 ($m=12$), EAR = $(1+0.01)^{12} - 1 \approx 12.68\%$。中国银行按揭、信用卡的"年化利率"是 APR, 实际利息成本是 EAR — 信用卡分期手续费"看似 6% / 年"实际 EAR 可能到 11-12%。</p>
+        <p lang="en">$m$ = compoundings per year. APR 12% with monthly compounding gives EAR ≈ 12.68%. Chinese mortgages and credit cards quote APR; true cost is EAR. Credit card installments at "6% annualized fee" often imply EAR 11–12%.</p>
+
+        <p lang="zh"><strong>连续复利</strong>:</p>
+        <p lang="en"><strong>Continuous compounding:</strong></p>
+        <div class="eq"><span>$$ \mathrm{FV} = \mathrm{PV}\,e^{rT} $$</span><span class="num">(1.11)</span></div>
+        <p lang="zh">极限 $m \to \infty$ 的 APR 复利。在期权定价 (Black-Scholes)、连续时间金融模型中常用。</p>
+        <p lang="en">Limit of $m \to \infty$ APR compounding. Used in options pricing (Black‑Scholes) and continuous‑time models.</p>
+
+        <h3 lang="zh">⑥ 折现率的本质 — 机会成本</h3>
+        <h3 lang="en">⑥ The nature of the discount rate — opportunity cost</h3>
+        <p lang="zh">"我应该用什么 $r$?" — 这是初学者最大的疑惑。答案: <em>用你这笔钱在同等风险下能拿到的最佳替代收益率</em>。这是机会成本的代数化。</p>
+        <p lang="en">"What $r$ should I use?" — answer: <em>the return you could earn on the next‑best alternative at the same risk</em>. Opportunity cost, algebraically.</p>
+        <ul lang="zh">
+          <li>评估无风险国债现金流 → 用<em>无风险利率</em> (中国 10Y 国债 ~2.5%, 美国 10Y ~4.5%)</li>
+          <li>评估上市公司股权现金流 → 用<em>股权成本</em> $r_e$ (CAPM 推导, Ch.02)</li>
+          <li>评估公司整体现金流 → 用<em>WACC</em> (Ch.03)</li>
+          <li>评估同行业并购项目 → 用<em>同行业 WACC</em> (而非自己公司的 WACC, 因为风险不同)</li>
+        </ul>
+        <p lang="en">Risk‑free CFs → risk‑free rate (China 10y ~2.5%, US 10y ~4.5%). Equity CFs → cost of equity (CAPM, Ch.02). Firm‑wide CFs → WACC (Ch.03). Acquisition target in a different industry → that industry's WACC, not your own.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">国债</span><span lang="en">Govt bond</span></span>
+            <span class="company"><span lang="zh">10 年期记账式附息国债</span><span lang="en">10y on‑the‑run Treasury</span></span>
+            <span class="period"><span lang="zh">YTM 反推折现率</span><span lang="en">YTM back-solve</span></span>
+          </div>
+          <p lang="zh">假设一只 10 年期国债, 票面 3%, 每年付息一次, 面值 100, 当前市价 105 (假设, 简化为整数)。则<em>到期收益率 YTM</em> $r$ 满足:</p>
+          <p lang="en">A 10y coupon bond, 3% annual, face 100, market price 105. Yield to maturity solves:</p>
+          <div class="eq"><span>$$ 105 = \sum_{t=1}^{10}\frac{3}{(1+r)^t} + \frac{100}{(1+r)^{10}} $$</span><span class="num">—</span></div>
+          <p lang="zh">数值解 $r \approx 2.43\%$。这就是市场对该期国债的<em>隐含折现率</em> — 反映了通胀预期 + 时间偏好 + (中国主权信用很高) 几乎无风险溢价。</p>
+          <p lang="en">Numerical solution $r \approx 2.43\%$. The market's <em>implied</em> discount rate — reflecting inflation expectations + time preference, minimal risk premium (high Chinese sovereign credit).</p>
+          <p lang="zh">不同期限国债的 YTM 拼成<em>收益率曲线</em> (yield curve)。曲线形状 (向上 / 倒挂 / 平坦) 反映市场对未来利率、通胀、经济周期的预期 — 是宏观分析的核心。中国 10Y vs 2Y 收益率差是观察货币政策松紧的常用指标。</p>
+          <p lang="en">YTMs across maturities form the <em>yield curve</em>. Shape (upward / inverted / flat) reads market expectations on rates, inflation, cycles — a macro analysis staple. China 10y−2y spread is a common monetary‑policy proxy.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600900</span>
+            <span class="company"><span lang="zh">长江电力</span><span lang="en">China Yangtze Power</span></span>
+            <span class="period"><span lang="zh">永续年金近似</span><span lang="en">Perpetuity approximation</span></span>
+          </div>
+          <p lang="zh">长江电力的水电站设施 (三峡 + 葛洲坝 + 乌东德 + 白鹤滩等) 物理寿命 80-100 年, 业务模式高度稳定。可以近似为"永续现金流"。</p>
+          <p lang="en">Yangtze Power's hydro stations have 80–100‑year physical lives and highly stable economics — well approximated as a perpetuity.</p>
+          <p lang="zh">2023 年股利 ~205 亿 (合每股约 0.84 元)。假设股利按 3% 永续增长 (与中国长期通胀 + 微小实际增长一致), 折现率取 7% (反映股权风险):</p>
+          <p lang="en">2023 dividend ~¥20.5bn (~¥0.84/sh). Assume 3% perpetual growth (China long‑run inflation + modest real growth), 7% discount rate (equity risk):</p>
+          <div class="eq"><span>$$ \mathrm{PV} = \frac{D_1}{r-g} = \frac{0.84 \times 1.03}{0.07 - 0.03} = \frac{0.865}{0.04} \approx 21.6\,\text{元/股} $$</span><span class="num">—</span></div>
+          <p lang="zh">2024 年长江电力股价在 24-28 元区间。模型隐含价 21.6 元 — 略低于市场, 提示市场对 $r$ 或 $g$ 的预期略乐观。这就是简单 Gordon 模型的<em>反推</em>用法: 不是"算出真实价值", 而是"看市场隐含的 $g$ 与 $r$ 假设"。M3 Ch.05 详述。</p>
+          <p lang="en">2024 stock price ranges ¥24–28. Gordon implies ¥21.6 — slightly below market, suggesting the market embeds either higher $g$ or lower $r$. Gordon's real use: not "find true value" but "decode market's implicit assumptions."</p>
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600900" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600900 →</span><span lang="en">Cninfo 600900 →</span></a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">房贷</span><span lang="en">Mortgage</span></span>
+            <span class="company"><span lang="zh">等额本息按揭 — 年金的具体应用</span><span lang="en">Mortgage — annuity in action</span></span>
+          </div>
+          <p lang="zh">200 万 30 年房贷, 5% APR, 月复利:</p>
+          <p lang="en">¥2m 30‑year mortgage at 5% APR, monthly compounding:</p>
+          <ul lang="zh">
+            <li>月利率 $r_m = 5\%/12 \approx 0.4167\%$</li>
+            <li>期数 $n = 360$</li>
+            <li>由 (1.7) 反解月供 $C$: $200 = \frac{C}{r_m}[1 - (1+r_m)^{-n}]$</li>
+            <li>解得 $C \approx 10{,}735$ 元/月</li>
+            <li>总还款 = $C \times 360 \approx 386$ 万 — 其中本金 200 万, 利息 186 万 (相当于本金的 93%!)</li>
+          </ul>
+          <ul lang="en">
+            <li>Monthly rate $r_m \approx 0.4167\%$, $n=360$</li>
+            <li>Monthly payment $C \approx ¥10{,}735$ from (1.7)</li>
+            <li>Total ≈ ¥3.86m — principal ¥2m, interest ¥1.86m (93% of principal!)</li>
+          </ul>
+          <p lang="zh"><strong>洞察</strong>: 在长周期 + 复利下, 利息总额接近本金。如果提前还款 5 年 (变 25 年贷), 总利息能省下 ~30%。这就是中国"等额本息 vs 等额本金 vs 提前还款"的核心算术。</p>
+          <p lang="en">In long‑duration compounding, total interest approaches principal. Cutting tenor by 5 years saves ~30% total interest. The arithmetic behind every "should I prepay?" debate.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">i</span><div><h4>time value of money</h4><p lang="zh">本章核心 — 跨期可比的"Lorentz 变换"。</p><p lang="en">Core — the "Lorentz transform" for inter‑temporal comparison.</p></div></div>
+      <div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">机会成本</span><span lang="en">Opportunity cost</span></h4><p lang="zh">折现率 = 在同等风险下能拿到的最佳替代收益率。</p><p lang="en">Discount rate = next‑best alternative at the same risk.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">无套利</span><span lang="en">No arbitrage</span></h4><p lang="zh">PV 公式不是约定, 是无套利条件的代数表达。</p><p lang="en">PV is not a convention but the algebraic statement of no‑arbitrage.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一笔现金流 $-100, +50, +50, +50$ (期 0/1/2/3)。当 $r = 5\%$ 时 NPV $\approx ?$ 当 $r = 30\%$ 时呢? 这两个 $r$ 之间存在一个使 NPV = 0 的<em>IRR</em>, 估算 IRR。</span><span lang="en"><strong>Q1.</strong> Cash flow $-100, +50, +50, +50$ at $t=0,1,2,3$. NPV at $r=5\%$? At $r=30\%$? Find the IRR.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>$r = 5\%$</strong>: NPV $= -100 + \frac{50}{1.05} + \frac{50}{1.05^2} + \frac{50}{1.05^3} = -100 + 47.62 + 45.35 + 43.19 = 36.16$。</p>
+            <p lang="zh"><strong>$r = 30\%$</strong>: NPV $= -100 + \frac{50}{1.3} + \frac{50}{1.3^2} + \frac{50}{1.3^3} = -100 + 38.46 + 29.59 + 22.76 = -9.19$。</p>
+            <p lang="zh"><strong>IRR</strong>: 在 5% 与 30% 之间二分搜索。$r = 23\%$: NPV $= -100 + 40.65 + 33.05 + 26.87 = 0.57$。$r = 24\%$: NPV $\approx -1.31$。<br>线性插值: $\mathrm{IRR} \approx 23\% + \frac{0.57}{0.57+1.31} \approx 23.3\%$。</p>
+            <p lang="zh"><strong>洞察</strong>: NPV 是 $r$ 的<em>单调递减函数</em> (在所有 $CF_t \ge 0$ for $t \ge 1$ 时)。IRR 是 NPV = 0 的特定 $r$。当公司的资本成本 $<$ IRR 时, 项目 NPV $> 0$, 应该接受。</p>
+            <p lang="zh"><strong>初学者常犯错</strong>: 以为"NPV 高就好", 忽视 $r$ 的选择。NPV 对 $r$ 的敏感度极高 — 同一项目 $r=5\%$ NPV +36, $r=30\%$ NPV -9。</p>
+            <p lang="en">NPV at 5% ≈ +36.16; at 30% ≈ −9.19. IRR ≈ 23.3% (by bisection/interpolation). NPV is monotone decreasing in $r$ when later CFs are positive; IRR is the rate that zeros NPV. NPV is very sensitive to $r$ — same project ranges +36 to −9 across the 5%–30% range.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> Gordon Model 的 $r > g$ 边界<em>物理上</em>意味着什么? 若一家公司声称"未来现金流每年增长 8%", 但市场要求 $r = 7\%$, Gordon 算出 $\mathrm{PV} = \infty$。这合理吗?</span><span lang="en"><strong>Q2.</strong> What does Gordon's $r > g$ boundary mean physically? If a firm claims 8% perpetual growth but the market demands $r = 7\%$, Gordon gives $\mathrm{PV} = \infty$. Sensible?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>物理意义</strong>: 在数学上, $r \le g$ 让几何级数 $\sum_t (1+g)^{t-1}/(1+r)^t$ 发散 → PV $= \infty$。在经济上, 这意味着该资产<em>永远以高于折现率的速度产生现金</em> → 它的现值"无限大" — 没有任何理性买家会以有限价格出售。市场套利会立即把价格推到无限大, 直到 $r$ 自动调整 (买盘推高估值 → 隐含 $r$ 下降 → 直到 $r = g$ 临界, 价格才停止上升)。</p>
+            <p lang="zh"><strong>经验事实</strong>: 没有任何公司在<em>无限</em>长时间内能保持 $g > $ 实际 GDP 增速。如果它做到, 它最终会大于整个经济。$g > r$ 不可持续。所以 $r > g$ 是<em>长期经济均衡条件</em>, 不是数学约定。</p>
+            <p lang="zh"><strong>实务陷阱</strong>: 用 Gordon 估值时, 选 $g$ 必须 &lt; 长期 GDP 增长率 (实际值约 3-5%)。否则模型崩溃。这就是为什么实务 DCF 中"终值"的永续增长率通常用 2-3% (与长期通胀接近)。</p>
+            <p lang="zh"><strong>反过来的问题</strong>: 若某成长股 $g_{\text{当前}} \approx 30\%$ (例如早期互联网公司), 不能用 Gordon。需要"两阶段 DCF": 前 5-10 年高速增长 $g_1 = 30\%$, 然后转入永续阶段 $g_2 = 3\%$。M3 Ch.05 详述。</p>
+            <p lang="en">Mathematically the series diverges. Economically: no asset grows faster than the discount rate forever — its PV would be infinite, no rational seller would let it go for finite money. $g \le r$ is a long‑run equilibrium condition, not just math. Real‑world: $g$ in Gordon must be ≤ long‑run GDP growth (~3–5%). For high‑growth firms, use two‑stage DCF: $g_1$ high for 5–10y, then $g_2 \approx 3\%$ in perpetuity (M3 Ch.05).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 信用卡分期"年化手续费 7.2%"(等额本息 12 期), 实际 EAR 是多少? 比表面利率高多少?</span><span lang="en"><strong>Q3.</strong> Credit card installment quotes "7.2% annualized fee" over 12 equal monthly payments. What's the EAR?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">"7.2% 年化手续费"的算法: 借 12,000 → 每月还 1,000 本金 + (12,000 × 0.072 / 12) = 72 手续费 → 月供 1,072, 12 期还 12,864, 总利息 864 = 7.2% × 12,000。这是<em>名义 APR</em>。</p>
+            <p lang="zh"><strong>但实际利率高得多</strong>。理由: 你<em>不是</em>持有 12,000 整 12 个月。第 1 个月底就还了 1,000 本金, 第 2 个月只剩 11,000, ..., 第 12 个月只剩 1,000。<em>平均占用资金</em>约为 (12,000 + 1,000) / 2 ≈ 6,500。864 利息 / 6,500 ≈ 13.3% — 这才接近<em>真实年化成本</em>。</p>
+            <p lang="zh"><strong>数学严谨算法</strong>: 把"每月 1,072 还款"看作年金, 用 (1.7) 反解 $r_m$:</p>
+            <div class="eq"><span>$$ 12{,}000 = \frac{1{,}072}{r_m}\left[1 - (1+r_m)^{-12}\right] $$</span><span class="num">—</span></div>
+            <p lang="zh">数值解 $r_m \approx 1.084\%$ / 月。EAR $= (1.01084)^{12} - 1 \approx 13.8\%$。</p>
+            <p lang="zh"><strong>结论</strong>: "年化手续费 7.2%"的实际 EAR ≈ 13.8% — 几乎是表面利率的<em>2 倍</em>! 这是中国信用卡分期的核心套利 (针对消费者认知偏差): 把利息说成"手续费", 把均匀分摊说成"年化", 让消费者觉得便宜。</p>
+            <p lang="zh"><strong>实务建议</strong>: 看任何"分期付款 / 等额本息"产品, 一定要用 (1.7) 反推 $r$, 别看广告里的<em>名义利率</em>。中国消费者权益保护法要求金融产品披露 EAR, 但执行不严, 实际仍以 APR 为主。</p>
+            <p lang="en">"7.2% annualized fee" with equal monthly amortization: you don't hold ¥12,000 for 12 months — average outstanding ≈ ¥6,500, so true cost ≈ 864/6500 ≈ 13.3%. Rigorously, solve (1.7) for $r_m$: ¥12,000 = (1072/$r_m$)[1−(1+$r_m$)^{−12}] → $r_m \approx 1.084\%$/month, EAR ≈ 13.8% — nearly double the headline 7.2%. Always re-derive the true $r$ from the equal‑payment formula.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 一项投资项目在 5 年内每年产生 100 万现金, 5 年后<em>没有</em>残值。WACC = 8%。计算项目 PV。若改为 10 年, PV 变多少倍? 若改为永续, 变多少倍?</span><span lang="en"><strong>Q4.</strong> A project yields ¥1m/year for 5 years, zero salvage, WACC 8%. PV? At 10 years? Perpetually?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>5 年年金</strong>: PV $= \frac{100}{0.08}[1 - 1.08^{-5}] = 1250 \times (1 - 0.6806) = 1250 \times 0.3194 \approx 399.3$ 万</p>
+            <p lang="zh"><strong>10 年年金</strong>: PV $= \frac{100}{0.08}[1 - 1.08^{-10}] = 1250 \times (1 - 0.4632) = 1250 \times 0.5368 \approx 671.0$ 万 → 比 5 年大 1.68 倍 (不是 2 倍!)</p>
+            <p lang="zh"><strong>永续年金</strong>: PV $= 100/0.08 = 1250$ 万 → 比 5 年大 3.13 倍, 比 10 年大 1.86 倍</p>
+            <p lang="zh"><strong>关键洞察</strong>: <em>未来现金流的 PV 贡献随时间指数衰减</em>。第 1 年的 100 = 92.6; 第 10 年的 100 = 46.3; 第 30 年的 100 = 9.9。<em>30 年后的现金流</em>对 PV 几乎可以忽略 (即使 8% 折现率)。这就是为什么:</p>
+            <ul lang="zh">
+              <li>DCF 估值的<em>终值</em>通常占总 PV 的 50-80%, 但实际"未来 50 年现金流"的 PV 占比很低 — 终值假设里隐含了大量<em>近期</em>预期</li>
+              <li>"永续" vs "30 年"的 PV 差异其实很小 (1250 vs 1126, 约 11%)</li>
+              <li>对项目评估, 一旦超过 20 年, 静态 PV 几乎稳定 — 不必精确预测 50 年后</li>
+            </ul>
+            <p lang="zh"><strong>反直觉点</strong>: 10 年是 5 年的 2 倍时长, 但 PV 只有 5 年的 1.68 倍 — 不是 2 倍。指数折现的非线性效应。</p>
+            <p lang="en">5y annuity PV ≈ ¥3.99m; 10y ≈ ¥6.71m (1.68×, not 2×); perpetuity = ¥12.5m (3.13× of 5y, 1.86× of 10y). Insight: future CFs decay exponentially. ¥100 in year 1 = ¥92.6 PV; year 10 = ¥46.3; year 30 = ¥9.9. For long projects, beyond ~20 years extra horizon adds little. Perpetuity vs 30y differ by only ~11%. The "terminal value" in DCF (50–80% of total PV) is really driven by near‑term assumptions in the perpetual growth formula, not by literal 50‑year forecasts.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 折现率 $r$ 反映了什么? 假设一家公司用 8% 的 WACC 评估所有项目。但有些项目风险高 (新业务), 有些项目低 (维护老设备)。统一用 8% 评估会出现什么问题?</span><span lang="en"><strong>Q5.</strong> What does $r$ reflect? If a firm uses 8% WACC for all projects, some high‑risk (new business) and some low (maintenance), what goes wrong?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>$r$ 的本质</strong>: 在同等风险下的<em>机会成本</em>。它不仅反映时间偏好与通胀, 还反映<em>风险溢价</em> — 高风险项目应当用高 $r$ 折现。</p>
+            <p lang="zh"><strong>统一用 8% 的问题</strong>:</p>
+            <ol lang="zh">
+              <li><strong>高风险项目被高估</strong>: 新业务实际所需的 $r$ 可能 15-20% (与同行业新创公司可比的资本成本), 用 8% 算 NPV 会得出过于乐观的结果 → 接受了实际 NPV 为负的项目 → 长期摧毁价值</li>
+              <li><strong>低风险项目被低估</strong>: 维护老设备的 $r$ 可能 5% 就足够 (与无风险利率 + 小风险溢价相当), 用 8% 算会算出过低的 NPV → 拒绝了应该接受的项目 → 漏掉创造价值的机会</li>
+              <li><strong>风险移转效应</strong>: 公司被诱导<em>系统性偏向</em>高风险项目 (因为它们的"账面 NPV"被人为提高)。结果: 公司风险结构系统性恶化, 而 WACC 还没调整 → 实际资本成本上升, 但管理层还在用低的旧 WACC → 进一步偏离正轨</li>
+            </ol>
+            <p lang="zh"><strong>正确做法 — 项目特定折现率</strong>:</p>
+            <ul lang="zh">
+              <li>对<em>核心业务</em>的延展项目, 用公司 WACC (Ch.03)</li>
+              <li>对<em>非核心业务</em>的新项目, 用<em>该项目所属行业</em>的 WACC (通过同行业可比公司估算, bottom-up β)</li>
+              <li>对<em>极高风险</em>(早期 R&D、风投性投资) 的项目, 用<em>风险调整后</em>的折现率, 或直接用<em>实物期权方法</em> (Ch.04)</li>
+            </ul>
+            <p lang="zh"><strong>A 股案例的启示</strong>: 中国不少综合性集团 (复星、海航、绿地等) 历史上对所有项目用统一的低折现率, 系统性偏向高风险扩张。结果在 2018-2021 流动性收紧时连锁暴雷 — 项目"账面 NPV 正"但实际"风险调整后 NPV 负"。这是<em>WACC 误用</em>的代表性后果。</p>
+            <p lang="zh"><strong>Damodaran 的金句</strong>: "<em>The most common mistake in valuation is using the wrong discount rate.</em>" 折现率是估值<em>最敏感</em>的输入, 也是<em>最容易出错</em>的输入。</p>
+            <p lang="en">$r$ reflects risk, not just time preference + inflation. One‑size‑fits‑all WACC overvalues risky projects (using too low $r$) and undervalues safe ones (using too high) → systematic bias toward risk. As risk compounds, true WACC rises but management keeps the old number → divergence. Correct: project‑specific discount rates by industry. China's diversified conglomerates (Fosun, HNA, Greenland) that used uniform low rates expanded into too-risky projects, then chain‑collapsed in 2018–21 liquidity tightening. Damodaran: "The most common valuation mistake is using the wrong discount rate."</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="00-overview.html"><span class="dir">← <span lang="zh">模块导览</span><span lang="en">Overview</span></span><span class="title">Module II · <span lang="zh">导览</span><span lang="en">Overview</span></span></a>
+          <a class="next" href="02-risk-return.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">02 · <span lang="zh">风险与收益 · CAPM</span><span lang="en">Risk &amp; Return</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

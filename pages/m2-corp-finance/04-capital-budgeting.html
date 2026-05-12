@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>04 · 资本预算 — Capital Budgeting NPV/IRR</title>
+  <meta name="keywords" content="capital budgeting, NPV, IRR, payback, real options, 资本预算, 中国神华, 隆基, 实物期权">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module II · 04</span><span class="sep">·</span><span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.01, Ch.03</span><span lang="en">Prereq: Ch.01, Ch.03</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.05 资本结构</span><span lang="en">Next: Ch.05 Cap. Structure</span></span></div>
+
+<h1><span lang="zh">资本预算 — NPV / IRR / 实物期权</span><span lang="en">Capital Budgeting — NPV / IRR / Real Options</span></h1>
+<p class="lesson-subtitle">
+<span lang="zh">"这个项目该不该投?" — 公司财务最核心的问题。NPV 是<em>正确</em>答案的代数化, IRR 是<em>常用但易错</em>的替代, payback 是<em>不严谨但直观</em>的辅助。实物期权把"等待 / 扩张 / 放弃"的灵活性也纳入估值。学完本章你能用 NPV 一票否决任何被高估的项目。</span>
+<span lang="en">"Should we take this project?" — corporate finance's most central question. NPV is the correct algebraic answer; IRR is the common but error‑prone substitute; payback is intuitive but unrigorous; real options price the flexibility to wait / expand / abandon. After this you can NPV‑reject any overvalued project.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能用 NPV 公式手算任意项目的可行性, 知道 $r$ 取 WACC 还是项目特定折现率的判断标准。</li>
+<li lang="zh">能识别 NPV 与 IRR 给出冲突结论的两种典型情形 (规模差异 + 时间分布差异)。</li>
+<li lang="zh">能识别"多 IRR"问题: cash flow 多次变号时, IRR 不唯一甚至不存在。</li>
+<li lang="zh">能用实物期权框架重新评估"高不确定性但可阶段性投入"的项目 (新药研发、矿山开发、技术 R&amp;D)。</li>
+<li lang="en">Compute NPV for any project; choose WACC vs project‑specific discount rate.</li>
+<li lang="en">Identify NPV‑IRR conflicts (scale + timing).</li>
+<li lang="en">Diagnose multiple‑IRR problems with sign‑changing cash flows.</li>
+<li lang="en">Apply real options to high‑uncertainty staged projects.</li>
+</ul>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">资本预算的本质问题: 公司有<em>有限资金</em>, 面对<em>多个候选项目</em>, 该选哪些?</p>
+<p lang="en">The capital budgeting question: with finite capital and multiple candidate projects, which to choose?</p>
+<p lang="zh"><strong>NPV 框架</strong>: 计算每个项目的"净现值" — 把未来现金流折回今天, 减去初始投资。$NPV > 0$ 说明项目<em>创造</em>价值 (在折现率 $r$ 下), 应当接受。NPV 是<em>价值守恒</em>(Ch.00 model iv) 的代数化 — 接受 NPV+ 项目 $\Leftrightarrow$ 增加公司价值。</p>
+<p lang="en"><strong>NPV framework:</strong> discount each project's future CFs to today and subtract initial outlay. $NPV>0$ means value‑creating at discount rate $r$ — accept. NPV is the algebraization of value additivity.</p>
+<p lang="zh"><strong>为什么 NPV 比"5 年回本"或"年化 IRR &gt; 20%"更可靠</strong>?</p>
+<ul lang="zh">
+<li>5 年回本 (payback) 不考虑回本之后的现金流 — 一个 5 年回本但之后立即崩塌的项目 vs 5 年回本然后稳定产生 20 年现金的项目, payback 认为相同, 显然荒谬</li>
+<li>IRR 是<em>项目自身收益率</em>, 但项目规模不一样 (10 亿 IRR=30% vs 100 亿 IRR=20%, 哪个更好? 答案: 看绝对 NPV)</li>
+<li>NPV 直接以"创造的价值"为目标 — 这就是<em>股东价值最大化</em>的代数表达</li>
+</ul>
+<p lang="en">Payback ignores post‑payback CFs. IRR ignores scale. NPV directly maximizes value — the algebraic statement of shareholder value maximization.</p>
+<p lang="zh"><strong>实物期权的额外价值</strong>: 静态 NPV 假设"现在做决定, 一路执行到底"。但很多项目实际允许<em>分阶段</em>(stage gates): 先小规模试点 → 看结果再决定扩张 / 收缩 / 放弃。这种"灵活性"本身有价值, Black-Scholes 期权定价框架可以量化。Ch.04 后半引入。</p>
+<p lang="en"><strong>Real options:</strong> static NPV assumes "decide now, execute fully." Many projects allow staged decisions — the flexibility itself has value, priced via option‑pricing.</p>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<h3 lang="zh">① NPV 与 IRR</h3>
+<h3 lang="en">① NPV &amp; IRR</h3>
+
+<div class="callout callout--formula">
+<div class="eq"><span>$$ \mathrm{NPV} = \sum_{t=0}^{n}\frac{CF_t}{(1+r)^t}, \quad \mathrm{IRR}: \mathrm{NPV}(r=\mathrm{IRR})=0 $$</span><span class="num">(4.1)</span></div>
+<p lang="zh">$CF_0$ 一般是负的 (初始投资), 后续为正。$r$ = WACC (公司层面项目) 或<em>项目特定</em>折现率 (业务风险与公司不同)。IRR 是使 NPV = 0 的 $r$。</p>
+<p lang="en">$CF_0$ typically negative (outlay); $r$ = WACC for typical projects, project‑specific for risk‑different ones. IRR solves $NPV(r)=0$.</p>
+</div>
+
+<p lang="zh"><strong>决策规则</strong>:</p>
+<p lang="en"><strong>Decision rules:</strong></p>
+<ul>
+<li><span lang="zh"><strong>独立项目</strong>: NPV &gt; 0 接受; IRR &gt; $r$ 接受 (两规则等价)</span><span lang="en"><strong>Independent projects:</strong> accept if NPV &gt; 0 (equivalently IRR &gt; $r$)</span></li>
+<li><span lang="zh"><strong>互斥项目</strong>: 选 NPV 最大者; 不能选 IRR 最高者 (后者忽略规模)</span><span lang="en"><strong>Mutually exclusive:</strong> pick max NPV; not max IRR (which ignores scale)</span></li>
+<li><span lang="zh"><strong>资本约束</strong>: 用 Profitability Index (PI) = NPV / Initial Investment, 按 PI 排序</span><span lang="en"><strong>Capital‑constrained:</strong> rank by Profitability Index (PI) = NPV / outlay</span></li>
+</ul>
+
+<h3 lang="zh">② NPV-IRR 冲突的两种典型情形</h3>
+<h3 lang="en">② NPV‑IRR conflict patterns</h3>
+<ol lang="zh">
+<li><strong>规模差异 (scale)</strong>: 项目 A 初始 10, NPV 5, IRR 30%; 项目 B 初始 100, NPV 30, IRR 18%。若 WACC = 8%, 两者均可接受 (独立); 但互斥时<em>B 更好</em> (创造更多<em>绝对</em>价值)。</li>
+<li><strong>时间分布差异 (timing)</strong>: A 的现金流前置, B 的后置。当 $r$ 低时 B 的 NPV 更高 (后期现金被相对更少折现); $r$ 高时反转。在<em>交叉点 (crossover)</em> $r^*$ 处 NPV 相等。互斥决策依赖<em>实际</em> $r$ 在 $r^*$ 的哪一边。</li>
+</ol>
+<ol lang="en">
+<li><strong>Scale:</strong> A (10 → NPV 5, IRR 30%) vs B (100 → NPV 30, IRR 18%). Mutually exclusive: pick B for absolute value.</li>
+<li><strong>Timing:</strong> A front‑loaded, B back‑loaded. At low $r$, B higher; high $r$, A higher. Crossover $r^*$ matters.</li>
+</ol>
+
+<h3 lang="zh">③ 多 IRR 问题</h3>
+<h3 lang="en">③ Multiple IRR</h3>
+<p lang="zh">当 cash flow 多次变号 (非常规项目, e.g. 矿山: 初始 −, 运营 +, 复垦 −), IRR 方程是高次多项式, 可能有<em>多个实根</em>或<em>无实根</em>。例: CF = (−100, +250, −156)。两个 IRR (~10% 和 ~50%) 都使 NPV = 0。"项目接受 if IRR &gt; WACC"完全失效。</p>
+<p lang="en">When CFs change sign multiple times (mining: outlay − operations + reclamation −), IRR is a high‑order polynomial with possibly multiple or no real roots. Example: CF = (−100, +250, −156) has two IRRs (~10% &amp; ~50%). "Accept if IRR &gt; WACC" breaks.</p>
+<p lang="zh"><strong>解决</strong>: 用 MIRR (modified IRR) 或直接用 NPV。MIRR 假设中间现金流按<em>再投资率</em>(通常 WACC) 复利到期末, 然后求一个唯一的"等效收益率"。</p>
+<p lang="en">Fix: MIRR or just NPV. MIRR reinvests at WACC and solves for a unique rate.</p>
+
+<h3 lang="zh">④ Payback 与 Discounted Payback</h3>
+<h3 lang="en">④ Payback &amp; Discounted Payback</h3>
+<p lang="zh"><strong>Payback</strong>: 累计现金流转正所需的年数。简单, 但忽略 (i) 折现 (ii) 回本之后的现金流。<strong>Discounted Payback</strong>: 累计折现现金流转正所需年数 — 修正 (i) 但仍忽略 (ii)。</p>
+<p lang="en">Payback: years until cumulative CF turns positive. Discounted payback uses PV. Both ignore post‑payback CFs.</p>
+<p lang="zh"><strong>实务地位</strong>: payback 不应作为主决策标准, 但作为<em>辅助风险指标</em>仍有用 — 反映"资金被锁定的时长"。资金紧张或政策不稳定的环境下, 短 payback 项目<em>独立于</em> NPV 也有价值。</p>
+<p lang="en">Payback isn't a primary decision rule but is useful as a risk proxy — capital lock‑up duration. In tight or uncertain environments, short‑payback projects have independent value.</p>
+
+<h3 lang="zh">⑤ 实物期权 — 灵活性的代数</h3>
+<h3 lang="en">⑤ Real options — the algebra of flexibility</h3>
+<p lang="zh">类比金融期权 (Black-Scholes), 实物期权把"延迟决策"、"扩张选项"、"放弃选项"看作公司持有的"看涨/看跌期权":</p>
+<p lang="en">By analogy to financial options, real options price the firm's "calls" and "puts" on future decisions:</p>
+<ul>
+<li><strong><span lang="zh">等待期权 (option to defer)</span><span lang="en">Option to defer</span></strong>: <span lang="zh">不确定时先不投资, 等更多信息再决定。价值 ≥ 静态 NPV。</span><span lang="en">Delay investment under uncertainty; value ≥ static NPV.</span></li>
+<li><strong><span lang="zh">扩张期权 (option to expand)</span><span lang="en">Option to expand</span></strong>: <span lang="zh">小规模试点 (NPV 可能略负), 若成功则放大 (后期获得大 NPV+)。</span><span lang="en">Pilot small (NPV possibly negative) to gain the right to scale up.</span></li>
+<li><strong><span lang="zh">放弃期权 (option to abandon)</span><span lang="en">Option to abandon</span></strong>: <span lang="zh">中途经营不及预期时清盘止损, 不必走完项目周期。</span><span lang="en">Cut losses mid‑stream.</span></li>
+<li><strong><span lang="zh">转换期权 (option to switch)</span><span lang="en">Option to switch</span></strong>: <span lang="zh">在多种输入/输出之间切换 (例如发电厂可烧煤或天然气)。</span><span lang="en">Switch inputs/outputs (e.g., a power plant burning coal or gas).</span></li>
+</ul>
+<p lang="zh">实物期权的精髓: 在静态 NPV 看似不利的项目中, <em>不确定性本身</em>可以是<em>资产</em> — 因为它让公司有机会"等观察"或"分阶段加注"。这与金融期权"高 σ → 高期权价值"同源。</p>
+<p lang="en">Real options' deep idea: <em>uncertainty itself</em> can be an <em>asset</em>, enabling "wait‑and‑see" or "stage and add." Same root as "high σ → high option value" in financial options.</p>
+
+<div class="callout callout--principle">
+<span class="callout-label" lang="zh">真实公式 (Black-Scholes 类比)</span>
+<span class="callout-label" lang="en">B‑S analog</span>
+<p lang="zh">对一个"延迟期权": 项目价值 $V$ 服从几何布朗运动 σ, 投资成本 $K$, 期权期限 $T$, 无风险利率 $r_f$:</p>
+<div class="eq"><span>$$ C = V\,N(d_1) - K e^{-r_f T} N(d_2) $$</span><span class="num">(4.2)</span></div>
+<p lang="zh">$d_1 = [\ln(V/K) + (r_f + \sigma^2/2)T] / (\sigma\sqrt{T})$, $d_2 = d_1 - \sigma\sqrt{T}$. 实物期权决策: 若 $C >$ 静态 NPV, 接受期权 (等而非立即投资); 否则立即投资。</p>
+<p lang="en">For a defer option: $C = V N(d_1) - Ke^{-r_f T} N(d_2)$. Decision: if $C >$ static NPV, defer; else invest now.</p>
+</div>
+</section>
+
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<div class="case">
+<div class="case-head"><span class="ticker">SH·601088</span><span class="company"><span lang="zh">中国神华</span><span lang="en">China Shenhua</span></span><span class="period"><span lang="zh">煤矿 NPV 决策</span><span lang="en">Mine project NPV</span></span></div>
+<p lang="zh">假设中国神华评估一个新煤矿项目: 初始投资 50 亿 (购地 + 设备 + 建设), 预计 20 年运营每年产生 8 亿 OCF, 第 20 年末复垦成本 5 亿 (负现金流)。WACC = 7%。</p>
+<p lang="en">A new mine: ¥5bn outlay, 20 years of ¥0.8bn OCF, ¥0.5bn reclamation in year 20. WACC = 7%.</p>
+<div class="case-table"><table><thead><tr><th>NPV <span lang="zh">分解</span><span lang="en">decomposition</span></th><th class="num"><span lang="zh">金额 (亿)</span><span lang="en">¥ bn</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">初始投资 ($CF_0$)</span><span lang="en">Initial outlay</span></td><td class="num down">−50</td></tr>
+<tr><td><span lang="zh">20 年运营年金 PV</span><span lang="en">20y annuity PV</span></td><td class="num up">+84.7</td></tr>
+<tr><td><span lang="zh">第 20 年复垦 PV</span><span lang="en">Year‑20 reclamation PV</span></td><td class="num down">−1.3</td></tr>
+<tr><td><strong>NPV</strong></td><td class="num up"><strong>+33.4</strong></td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>IRR 计算</strong>: 数值解约 $\mathrm{IRR} \approx 15\%$。WACC 7% &lt; IRR → 接受。</p>
+<p lang="en">IRR ≈ 15%, exceeds 7% WACC → accept.</p>
+<p lang="zh"><strong>多 IRR 检验</strong>: cash flow 变号<em>两次</em> (−, +, −), 理论上可能有两个 IRR。实际上由于 20 年运营现金流压倒第 20 年的小额负数, 仅一个合理 IRR ≈ 15% (另一个可能在 −100% 或非常大, 无经济意义)。但若复垦成本上升到 30 亿 (例如环保法规变化), 两个 IRR 会显化, 需用 MIRR。</p>
+<p lang="en">CFs sign‑change twice; with 20y operations dominating, only one meaningful IRR. If reclamation rises to ¥3bn (stricter regs), two IRRs emerge — use MIRR.</p>
+<p lang="zh"><strong>政策风险敏感性</strong>: 中国煤炭"双碳"目标下, 假设煤价长期下行 20%, OCF 降到 6.4 亿/年, NPV 会降为 $-50 + 6.4 \times 10.59 - 1.3 \approx 16.5$ 亿。仍正, 但下降 50%。<em>实物期权</em>视角: 若分阶段投资 (先 20 亿试点, 再 30 亿扩产), 可在前 5 年观察煤价走势, 不利则放弃后续 30 亿 — 这种"放弃期权"价值不可忽视。</p>
+<p lang="en">Carbon policy sensitivity: 20% coal price decline cuts NPV to ~¥1.65bn. Staged investment (¥2bn pilot, then ¥3bn expansion) preserves the option to abandon — meaningful real‑option value.</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=601088" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 601088 →</span><span lang="en">Cninfo 601088 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head"><span class="ticker">SH·601012</span><span class="company"><span lang="zh">隆基绿能</span><span lang="en">LONGi Green Energy</span></span><span class="period"><span lang="zh">硅料产能扩张的实物期权</span><span lang="en">Polysilicon expansion option</span></span></div>
+<p lang="zh">2020-2022 年隆基 (及行业整体) 大规模扩张硅料 / 硅片 / 电池片 / 组件产能。表面看是<em>静态资本预算</em>问题 (产能 vs 未来电力需求), 实际是<em>实物期权</em>问题:</p>
+<p lang="en">2020–22 LONGi expanded polysilicon/wafer/cell/module capacity. Surface: static capital budgeting; underlying: real option.</p>
+<ul lang="zh">
+<li><strong>分阶段投入</strong>: 不是一次性 500 亿建巨型工厂, 而是分 5-10 年陆续建设, 每个阶段都根据上一阶段的需求 / 技术 / 价格反馈调整</li>
+<li><strong>等待 vs 立即投资的权衡</strong>: 行业景气时立即投资抢占份额; 行业过剩时延迟开工 (隆基 2023 后部分项目延期)</li>
+<li><strong>转换期权</strong>: 单晶 PERC → TOPCon → HJT → BC 不同技术路线, 实物期权允许保留切换灵活性 (技术不锁定)</li>
+<li><strong>放弃期权</strong>: 2023-2024 行业大幅过剩, 部分产能闲置甚至变卖。这一选项的价值在景气期被忽视, 在下行期才显化</li>
+</ul>
+<ul lang="en">
+<li>Staged investment (5–10 years, not lump sum)</li>
+<li>Defer when oversupply emerges (some 2023+ projects postponed)</li>
+<li>Switch options across PERC → TOPCon → HJT → BC technologies</li>
+<li>Abandon: 2023–24 oversupply forced some capacity to be mothballed</li>
+</ul>
+<p lang="zh"><strong>事后看</strong>: 行业静态 NPV 在 2022 看是正的 (各家都算出 IRR &gt; 15%)。实际由于全行业同时扩产, 整体过剩, 龙头之外的公司 NPV 实际为负。<em>实物期权框架</em>更准确: 第一波先建 → 观察 → 第二波决定。绝大多数公司在第一波就一次性下注, 错失放弃期权价值。</p>
+<p lang="en">In hindsight: 2022 industry static NPV showed +IRR&gt;15%; but simultaneous industry‑wide expansion → oversupply → mid‑tier firms NPV turned negative. Real options framework would have valued staged commitment + abandon optionality.</p>
+</div>
+
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">iv</span><div><h4><span lang="zh">价值守恒</span><span lang="en">Value additivity</span></h4><p lang="zh">NPV 直接对应"项目对公司总价值的贡献", 是 value additivity 的代数表达。</p><p lang="en">NPV is the algebraic statement of the project's contribution to firm value.</p></div></div>
+<div class="model-card"><span class="roman">vii</span><div><h4><span lang="zh">实物期权</span><span lang="en">Real options</span></h4><p lang="zh">不确定性下"等待 / 扩张 / 放弃"本身有价值, 静态 NPV 系统性低估。</p><p lang="en">Flexibility under uncertainty has value; static NPV systematically underestimates.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 项目 A: $CF = (-10, 6, 6, 6)$。项目 B: $CF = (-100, 40, 40, 40)$。WACC = 8%。两者都可接受吗? 互斥时选哪个? 计算后说明 IRR 给出不同结论的原因。</span><span lang="en"><strong>Q1.</strong> A: CF = (−10, 6, 6, 6). B: CF = (−100, 40, 40, 40). WACC = 8%. Both acceptable? Mutually exclusive choice? Why does IRR conflict?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>计算</strong>:</p>
+<ul lang="zh">
+<li>A: NPV = $-10 + 6 \times [1-1.08^{-3}]/0.08 = -10 + 15.46 = 5.46$ 亿. IRR ≈ 36.3%</li>
+<li>B: NPV = $-100 + 40 \times [1-1.08^{-3}]/0.08 = -100 + 103.08 = 3.08$ 亿. IRR ≈ 9.7%</li>
+</ul>
+<p lang="zh"><strong>独立</strong>: 两个都 NPV+, 都接受。<br><strong>互斥</strong>: 选 <em>A</em>, 因为 NPV(A) = 5.46 &gt; NPV(B) = 3.08。<em>不</em>选 B 即使其规模更大 (40 vs 6 现金流)。</p>
+<p lang="zh"><strong>IRR 的冲突</strong>: IRR(A) = 36.3% &gt;&gt; IRR(B) = 9.7%。"IRR 高就选"会选 A, 与 NPV 结论<em>偶然一致</em>。但反例: 若 B 的 NPV 比 A 高时, IRR 仍可能 A 高 — 此时 IRR 给错答案。</p>
+<p lang="zh"><strong>规模/再投资假设</strong>: IRR 的隐含假设是"中间现金流按 IRR 再投资"。A 的 IRR 36% 意味着假设 6 块现金流也能找到 36% 收益率 — 现实中难以做到。NPV 假设"按 WACC 再投资", 更现实。这是 NPV 优于 IRR 的根本原因。</p>
+<p lang="en">A: NPV = 5.46, IRR = 36.3%. B: NPV = 3.08, IRR = 9.7%. Independent: both accept. Mutually exclusive: A (higher NPV). IRR's implicit reinvestment assumption (at IRR) is unrealistic; NPV assumes reinvestment at WACC. NPV is the more reliable rule.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 项目: $CF = (-100, +300, -210)$. 计算 IRR。给出 IRR 不唯一的几何意义, 并说明此时<em>正确</em>的决策标准。</span><span lang="en"><strong>Q2.</strong> CF = (−100, +300, −210). Compute IRR. Geometric meaning of non‑uniqueness?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">设 $x = 1+r$, NPV = $-100 + 300/x - 210/x^2 = 0$ → $-100x^2 + 300x - 210 = 0$ → $100x^2 - 300x + 210 = 0$ → $x = (300 \pm \sqrt{90000 - 84000})/200 = (300 \pm 77.46)/200$. $x_1 = 1.887$ → $r_1 = 88.7\%$, $x_2 = 1.113$ → $r_2 = 11.3\%$.</p>
+<p lang="zh"><strong>几何意义</strong>: NPV-r 曲线在 (11.3%, 88.7%) 两点穿过零。$r &lt; 11.3\%$ 时 NPV $&lt; 0$; $r \in (11.3\%, 88.7\%)$ 时 NPV $&gt; 0$; $r &gt; 88.7\%$ 时 NPV $&lt; 0$。曲线呈倒 U 型。</p>
+<p lang="zh"><strong>"IRR &gt; WACC 接受"的失效</strong>: 若 WACC = 20% (在 11.3% 和 88.7% 之间), NPV 正, 接受; 但 WACC 既<em>大于</em> $r_2$ 也<em>小于</em> $r_1$, "IRR 规则"无法直接应用。若 WACC = 5%, NPV 负, 拒绝; 但 IRR (11.3%) &gt; WACC (5%), "IRR 规则"会错误地接受。</p>
+<p lang="zh"><strong>正确决策</strong>: 直接看 NPV, 不用 IRR。或用 MIRR (modified IRR): 把所有正 CF 按 WACC 复利到期末, 所有负 CF 按融资利率折回期初, 然后求一个等效收益率。MIRR 保证唯一。</p>
+<p lang="zh"><strong>实务出现条件</strong>: cash flow 多次变号的项目 — 矿山 (开发+ 运营+ 复垦−)、特许经营 (运营+ 后期更新设备−)、风险投资 (前期− 中期+ 后期出场+)。这些场景下 IRR 不可靠。</p>
+<p lang="en">$100x^2 - 300x + 210 = 0$ → $r_1 = 88.7\%$, $r_2 = 11.3\%$. NPV is positive between them, negative outside. "IRR &gt; WACC accept" breaks. Use NPV or MIRR. Multiple‑IRR scenarios arise in mining, franchises with end‑of‑life renewals, staged VC.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一个新药项目: 立即投入 10 亿, 失败概率 60%, 成功概率 40% 带来 50 亿现值收益, 5 年内决定。WACC = 10%。静态 NPV 是多少? 用实物期权 (分阶段试验) 怎么改造决策?</span><span lang="en"><strong>Q3.</strong> New drug: ¥1bn outlay, 60% fail, 40% succeed (¥5bn PV), 5y decision window. WACC=10%. Static NPV? With real options?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>静态 NPV</strong>: $E[\text{Payoff}] = 0.4 \times 50 + 0.6 \times 0 = 20$ 亿。NPV = $-10 + 20 = 10$ 亿 (假设全部 5 年后实现)。乘 PV 因子 $1/1.1^5 = 0.621$ → 现值 $\approx -10 + 12.42 = 2.42$ 亿。NPV+ → 接受。</p>
+<p lang="zh"><strong>问题</strong>: 静态 NPV 假设"立即全投 10 亿"。现实中新药通常分三期临床: 一期 (1 亿, 安全性) → 二期 (3 亿, 有效性) → 三期 (6 亿, 大规模) → 上市。每期完成后才决定下一期。</p>
+<p lang="zh"><strong>实物期权 (分阶段)</strong>:</p>
+<ul lang="zh">
+<li>一期投 1 亿。失败概率 30% (假设) → 终止, 损失 1 亿; 成功概率 70% → 进入二期</li>
+<li>二期投 3 亿。失败 40% → 终止, 累计损失 4 亿; 成功 60% → 进入三期</li>
+<li>三期投 6 亿。失败 30% → 终止, 累计损失 10 亿; 成功 70% → 全 50 亿收益</li>
+<li>整体成功概率 = $0.7 \times 0.6 \times 0.7 = 29.4\%$ (假设独立)</li>
+</ul>
+<p lang="zh"><strong>实物期权 NPV (期望值)</strong>:</p>
+<ul lang="zh">
+<li>失败 一期 ($p_1 = 0.3$): −1 亿</li>
+<li>失败 二期 ($p_2 = 0.7 \times 0.4 = 0.28$): −4 亿</li>
+<li>失败 三期 ($p_3 = 0.7 \times 0.6 \times 0.3 = 0.126$): −10 亿</li>
+<li>成功 ($p_4 = 0.294$): 50 − 10 = +40 亿</li>
+<li>$E = 0.3 \times (-1) + 0.28 \times (-4) + 0.126 \times (-10) + 0.294 \times 40 = -0.3 - 1.12 - 1.26 + 11.76 = 9.08$ 亿</li>
+</ul>
+<p lang="zh">折回今天 (假设阶段间各 1.5 年, 总 5 年): PV ≈ $9.08 / 1.621 \approx 5.6$ 亿</p>
+<p lang="zh"><strong>对比</strong>:</p>
+<ul lang="zh">
+<li>静态 NPV: 2.42 亿</li>
+<li>实物期权 NPV: 5.6 亿</li>
+<li>"放弃期权"价值: ~3.2 亿 (来自避免无效投资)</li>
+</ul>
+<p lang="zh"><strong>结论</strong>: 不论是否同意, 实物期权框架<em>系统性高估</em>不确定性高项目的价值 — 因为它正确捕捉了"看情况再决定"的价值。新药、矿山勘探、风险投资、技术 R&amp;D 都属此类。静态 NPV 在这些领域错杀了大量值得做的项目。</p>
+<p lang="en">Static NPV: $E[\text{payoff}] = 0.4 \times 50 = 20$ → NPV ≈ 2.42. Staged with stop options (1 → 3 → 6 with abandonment): expected payoff ~9.08, PV ≈ 5.6. Real‑option value ~3.2 captures "abandon if early stages fail." High‑uncertainty projects (drugs, exploration, VC) are systematically undervalued by static NPV.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 公司有 100 亿资金, 3 个项目: A (投 60, NPV 25, PI 0.42), B (投 50, NPV 22, PI 0.44), C (投 40, NPV 16, PI 0.40)。能任意分割。怎么选最优组合?</span><span lang="en"><strong>Q4.</strong> ¥10bn budget; A (60, NPV 25, PI 0.42), B (50, NPV 22, PI 0.44), C (40, NPV 16, PI 0.40). Divisible. Optimal mix?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>资本约束 + 可分割</strong>: 按 PI (NPV/投资) 排序, 优先选 PI 最高的:</p>
+<ul lang="zh">
+<li>B (PI 0.44, 投 50) → 累计资金 50, 累计 NPV 22</li>
+<li>A (PI 0.42, 投 60) → 但只剩 50 资金, 按比例做 50/60 = 83.3% → 投 50, 获 NPV $25 \times 0.833 = 20.8$. 累计 100, NPV $22+20.8 = 42.8$</li>
+<li>C (PI 0.40) 不选</li>
+</ul>
+<p lang="zh"><strong>注意</strong>: 这要求项目<em>可任意分割</em>(divisible) — 现实中很多项目不可分割 (建一栋楼必须全建)。不可分割时是<em>0-1 整数规划</em>:</p>
+<ul lang="zh">
+<li>选 A+C: 投 100, NPV $25+16 = 41$</li>
+<li>选 B+C: 投 90, NPV $22+16 = 38$</li>
+<li>选 A: 投 60, NPV 25 (剩 40 闲置)</li>
+<li>选 B: 投 50, NPV 22 (剩 50 闲置)</li>
+</ul>
+<p lang="zh">不可分割时最优 = A+C, NPV 41。注意 PI 最高的 B 实际<em>不在</em>最优组合里。</p>
+<p lang="zh"><strong>关键洞察</strong>:</p>
+<ol lang="zh">
+<li>资金有限时, <em>PI</em> 是排序工具 (比 NPV 更适合排序)</li>
+<li>项目可分割时, 贪心算法 (按 PI 顺序逐个填入) 是最优</li>
+<li>项目不可分割时, 是 NP-hard 的背包问题; 实务上枚举或用启发式</li>
+<li>实物期权角度: 若资金可在多期分配 → 单期 budget 约束放松, 选项更多</li>
+</ol>
+<p lang="en">Divisible + PI ranking: B (full 50) + A (50 out of 60, prorated) → NPV 22 + 20.8 = 42.8. Indivisible: A+C = 41. PI is the right ranking tool when capital is binding; greedy is optimal for divisible; knapsack (NP‑hard) for indivisible.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 公司核心业务 WACC = 8%, 但评估"进军半导体新业务"项目。半导体行业 WACC ≈ 13%, 业务β远高于核心业务。用 8% 算项目 NPV 会犯什么错? 应该用什么 $r$?</span><span lang="en"><strong>Q5.</strong> Core WACC = 8%; evaluating "enter semiconductor" project (industry WACC ≈ 13%). What error using 8%? Correct $r$?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>错误用 8%</strong>: 半导体业务<em>风险</em>远高于核心 (周期性 + 技术不确定 + 资本密集) → 真实 $r$ ≈ 13%。用 8% 折现高风险现金流, NPV 被<em>系统性高估</em>:</p>
+<ul lang="zh">
+<li>假设项目 5 年, 每年 CF 10 亿. 用 8% 折现: PV $= 10 \times [1-1.08^{-5}]/0.08 \approx 39.93$</li>
+<li>用 13% 折现: PV $= 10 \times [1-1.13^{-5}]/0.13 \approx 35.17$</li>
+<li>差异 4.76 亿. 若初始投资 35 亿, 用 8% 算 NPV +4.93 (接受), 用 13% 算 NPV +0.17 (勉强); 用 14% 已 NPV 负</li>
+</ul>
+<p lang="zh">这就是<em>WACC 误用</em> — 用了"公司平均成本"折现"高风险新业务"。结果: 接受了实际 NPV 为负的项目, 长期摧毁价值。</p>
+<p lang="zh"><strong>正确做法 — 项目特定折现率</strong>:</p>
+<ol lang="zh">
+<li><strong>Bottom-up β</strong>: 取半导体行业可比公司 (SMIC, 长电科技, 北方华创等), 用 Hamada 去杠杆 → 取均值 → 用<em>本公司目标 D/E</em>重新杠杆 → 得项目 β</li>
+<li><strong>CAPM</strong>: $r_e = r_f + \beta_{\text{semicon}} \times \mathrm{ERP}$</li>
+<li><strong>项目 WACC</strong>: 用<em>本公司</em>的资本结构权重 + 项目 $r_e$ + $r_d$</li>
+<li><strong>额外调整</strong>: 若项目处于早期 / 不确定阶段, 加 1-3% 的"项目阶段风险溢价"</li>
+</ol>
+<p lang="zh"><strong>实务陷阱</strong>:</p>
+<ul lang="zh">
+<li><em>多元化集团</em>容易犯这错: 用集团 WACC 评估所有子业务, 高估周期/科技业务的 NPV</li>
+<li>结果: 系统性向高风险业务扩张 → 公司风险结构逐渐恶化 → 自身 WACC 实际上升 → 但仍用旧 WACC 评估新项目 → 失误叠加</li>
+<li>解决: 部门 / 项目级别折现率 + 定期重估 + 风险溢价透明化</li>
+</ul>
+<p lang="zh"><strong>Damodaran 名言重申</strong>: "估值最常见的错误是用错折现率"。M3 Ch.05 详述。</p>
+<p lang="en">Using 8% for a 13%‑risk project overstates NPV by ~14% on a 5y annuity. Many "value‑destroying conglomerate expansions" stem from this mistake. Correct: bottom‑up β from semicon peers (SMIC, JCET, NAURA) → unlever via Hamada → relever at own target D/E → project‑specific $r_e$ → project WACC. Add 1–3% premium for early‑stage risk. Damodaran: "The most common valuation mistake is using the wrong discount rate."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav"><a href="03-wacc-mm.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">03 · WACC &amp; MM</span></a><a class="next" href="05-capital-structure.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">05 · <span lang="zh">资本结构</span><span lang="en">Capital Structure</span></span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4><p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p><label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save &amp; start</span></button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>06 · 相对估值 — Multiples</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 06</span></div>
+<h1><span lang="zh">相对估值 — Multiples</span><span lang="en">Relative Valuation — Multiples</span></h1>
+<p class="lesson-subtitle"><span lang="zh">"市场对这家公司付了多少钱?"DCF 是绝对估值, 相对估值是<em>看同类资产的市场定价做对照</em>. 与 DCF 互为补充: DCF 给"应该值多少", 倍数给"市场愿意付多少". Damodaran 推荐两者并用。</span><span lang="en">"What does the market pay for this firm?" Multiples reflect market pricing of comparables, complementing DCF (should‑be vs market‑willing).</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span>
+<ul><li lang="zh">掌握 P/E, P/B, EV/EBITDA, P/S, PEG 的适用场景</li><li lang="zh">区分 trailing vs forward 倍数</li><li lang="zh">用相对估值反推市场对该股的隐含增长率</li><li lang="en">Master P/E, P/B, EV/EBITDA, P/S, PEG; trailing vs forward; reverse engineer implied growth</li></ul>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+
+<p><strong>P/E</strong>: <span lang="zh">市值 / 净利. 反映 "市场每元盈利愿付多少". 隐含增长 $g$: Gordon $\Rightarrow P/E = 1/(r-g)$</span><span lang="en">Implied $g$: $P/E = 1/(r-g)$</span></p>
+<p><strong>P/B</strong>: <span lang="zh">市值 / 净资产. 资产密集行业 (银行, 重工)</span><span lang="en">Asset‑heavy</span>. $P/B \approx (\mathrm{ROE} - g)/(r - g)$</p>
+<p><strong>EV/EBITDA</strong>: (Equity + Debt − Cash) / EBITDA. <span lang="zh">资本结构中性, 跨杠杆可比</span><span lang="en">Leverage‑neutral</span></p>
+<p><strong>P/S</strong>: <span lang="zh">市值 / 营收. 早期成长 (无利润)</span><span lang="en">Early growth (no profit)</span></p>
+<p><strong>PEG</strong>: P/E ÷ <span lang="zh">盈利增长率 %</span>. <span lang="zh">价值-增长平衡 (Lynch)</span><span lang="en">Lynch value‑growth balance</span></p>
+<p><strong>EV/Sales</strong>: <span lang="zh">不受利润率影响, 适合早期 SaaS</span><span lang="en">Margin‑independent; SaaS</span></p>
+
+<h3 lang="zh">用相对估值反推假设</h3>
+<h3 lang="en">Reverse engineering</h3>
+<p lang="zh">若 P/E = 20, $r$ = 10%, 由 Gordon 反推 $g$:</p>
+<div class="eq"><span>$$ P/E = \frac{1-b}{r-g}, \quad g = r - \frac{1-b}{P/E} $$</span><span class="num">(6.1)</span></div>
+<p lang="zh">$b$ = 留存比率. 若 $b = 0.4$ (派 60%), $r = 10\%$, $P/E = 20$: $g = 0.10 - 0.6/20 = 7\%$. 这就是市场<em>隐含</em>的永续增长率. 你若认为公司能持续 &gt; 7% 增长 → 当前估值便宜.</p>
+<p lang="en">If P/E=20, payout 60% ($b=0.4$), $r=10\%$: $g = 10\% - 0.6/20 = 7\%$. Market's <em>implied</em> growth. Buy if you think it can sustain &gt; 7%.</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">行业对比</span><span lang="en">Sector comparison</span></h2>
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">A 股不同行业典型倍数</span><span lang="en">A‑share sector multiples</span></span></div>
+<div class="case-table"><table><thead><tr><th><span lang="zh">行业</span><span lang="en">Sector</span></th><th class="num">P/E</th><th class="num">P/B</th><th class="num">EV/EBITDA</th></tr></thead><tbody>
+<tr><td><span lang="zh">白酒龙头</span><span lang="en">Top baijiu</span></td><td class="num">25-35</td><td class="num">6-8</td><td class="num">18-22</td></tr>
+<tr><td><span lang="zh">银行</span><span lang="en">Banks</span></td><td class="num">4-6</td><td class="num">0.5-0.8</td><td>N/A</td></tr>
+<tr><td><span lang="zh">公用事业</span><span lang="en">Utilities</span></td><td class="num">10-15</td><td class="num">1.5-2</td><td class="num">8-10</td></tr>
+<tr><td><span lang="zh">大宗 / 周期</span><span lang="en">Commodities/cyclical</span></td><td class="num">5-15</td><td class="num">1-2</td><td class="num">5-8</td></tr>
+<tr><td><span lang="zh">半导体</span><span lang="en">Semiconductor</span></td><td class="num">30-80</td><td class="num">3-8</td><td class="num">15-30</td></tr>
+<tr><td><span lang="zh">医药</span><span lang="en">Pharma</span></td><td class="num">20-40</td><td class="num">3-6</td><td class="num">15-25</td></tr>
+</tbody></table></div>
+<p lang="zh"><strong>洞察</strong>:</p>
+<ul lang="zh"><li>P/E 在 4 vs 80 的差异不是"便宜或贵"判断, 而是"预期增长率 + 风险"的差异</li><li>P/B &lt; 1 (银行) 反映市场对账面资产可靠性的担忧</li><li>EV/EBITDA 在跨行业对比时比 P/E 更稳健 (剔除资本结构 + 折旧政策差异)</li></ul>
+<p lang="en">P/E 4 vs 80 reflects different growth expectations + risk. P/B &lt; 1 (banks) = market skeptical of book. EV/EBITDA more robust cross‑sector.</p>
+</div></section>
+
+<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<ol class="quiz quiz-list">
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 银行 P/E = 5, 半导体 P/E = 50. 谁更便宜?</span><span lang="en"><strong>Q1.</strong> Bank P/E 5, semicon P/E 50 — which cheaper?</span></div>
+<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><em>不可直接比较</em>. P/E 比较的前提是"假设增长率与风险相似". 银行 P/E 5 隐含 $g \approx 0\%$ (or 负), 半导体 P/E 50 隐含 $g \approx 30\%$. 若实际增长符合预期, 估值合理. 真问"哪个更便宜"应当看<em>相对其自身行业历史</em>是低还是高位置. 跨行业用 EV/EBITDA + ROIC 比较更稳健。</p>
+<p lang="en">Not directly comparable. P/E embeds growth + risk. Compare within sector vs history. Cross‑sector use EV/EBITDA + ROIC.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 股票 P/E = 15, $r$ = 9%, payout = 50%. 计算市场隐含 $g$. 若你认为公司实际能持续 $g = 8\%$ 增长, 买不买?</span><span lang="en"><strong>Q2.</strong> P/E=15, r=9%, payout 50%. Implied g? If you think actual g=8%, buy?</span></div>
+<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
+<p>(6.1): $g = 9\% - 0.5/15 = 9\% - 3.3\% = 5.7\%$. <span lang="zh">市场隐含 5.7%</span>. <span lang="zh">你认为 8% &gt; 5.7% → 当前估值低估 → <em>考虑买入</em>. 但要做安全边际检查 (Ch.07): 8% 可信度多高? 一致估计 (consensus) 是多少? 你的 8% 比市场更合理的证据?</span></p>
+<p lang="en">Implied $g \approx 5.7\%$. Your 8% &gt; implied → considered undervalued. Apply margin of safety: how confident is 8%? Consensus estimate? Why is your view better than market's?</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="05-dcf.html"><span class="dir">← Prev</span><span class="title">05 · DCF</span></a><a class="next" href="07-value-investing.html"><span class="dir">Next →</span><span class="title">07 · <span lang="zh">价值投资</span><span lang="en">Value Investing</span></span></a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

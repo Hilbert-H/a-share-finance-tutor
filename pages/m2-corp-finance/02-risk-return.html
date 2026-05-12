@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>02 · 风险与收益 · CAPM — Risk &amp; Return</title>
+  <meta name="keywords" content="risk return, CAPM, beta, variance, covariance, sigma, diversification, systematic risk, 风险与收益, 贝塔, 沪深300, 中证500, 贵州茅台, 农业银行, 京东方">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .katex-display { margin: 0 !important; padding: 0 !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+  <aside class="nav"></aside>
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module II · 02</span><span class="sep">·</span>
+        <span><span lang="zh">17 分钟</span><span lang="en">17 min</span></span><span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01</span><span lang="en">Prereq: Ch.01</span></span><span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.03 WACC 与 MM</span><span lang="en">Next: Ch.03 WACC</span></span>
+      </div>
+
+      <h1><span lang="zh">风险与收益 · CAPM</span><span lang="en">Risk &amp; Return · CAPM</span></h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">"风险"在金融中有<em>两种</em>同时被使用的定义: Markowitz 的<em>波动率</em> $\sigma$ 与 Buffett 的<em>永久性损失</em>。CAPM 选择前者, 用它推出一条简洁结论: 单个资产的期望收益, 只取决于它对<em>整体市场</em>的协方差 — 个股自身的<em>波动率本身</em>反而不重要, 因为可分散。学完本章你能用 CAPM 估算任意 A 股的股权成本 $r_e$。</span>
+        <span lang="en">"Risk" in finance has two coexisting definitions: Markowitz's <em>volatility</em> $\sigma$ and Buffett's <em>permanent loss of capital</em>. CAPM takes the former and derives a clean result: an asset's expected return depends only on its covariance with the market — not its own volatility, which is diversifiable. After this you can estimate any A‑share's cost of equity $r_e$.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能区分算术收益率与几何收益率, 知道何时用哪种。</li>
+          <li lang="zh">能用两资产组合公式推导 diversification 如何降低 $\sigma$。</li>
+          <li lang="zh">能从 first principles 推导 CAPM 公式 $E(R_i) = r_f + \beta_i [E(R_m) - r_f]$。</li>
+          <li lang="zh">能用 CAPM 估算任意 A 股的股权成本 $r_e$, 并知道 CAPM 在实证中失效的具体场景。</li>
+          <li lang="en">Distinguish arithmetic vs geometric returns; know when each applies.</li>
+          <li lang="en">Derive how diversification reduces $\sigma$ from the two‑asset formula.</li>
+          <li lang="en">Derive CAPM from first principles.</li>
+          <li lang="en">Estimate cost of equity for any A‑share via CAPM; know empirical failure modes.</li>
+        </ul>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+
+        <h3 lang="zh">收益率: 算术 vs 几何</h3>
+        <h3 lang="en">Returns: arithmetic vs geometric</h3>
+        <p lang="zh">一个 100 元的投资, 第一年涨 50% (变 150), 第二年跌 33.3% (变 100, 回到起点)。<em>平均回报是多少?</em></p>
+        <p lang="en">A ¥100 investment: +50% year 1 (→ ¥150), then −33.3% year 2 (→ ¥100, back to start). Average return?</p>
+        <ul>
+          <li><strong>算术平均</strong>: $(50\% - 33.3\%) / 2 = +8.35\%$ — <em>看起来</em>赚了</li>
+          <li><strong>几何平均</strong>: $(1.5 \times 0.667)^{1/2} - 1 = (1.0005)^{1/2} - 1 \approx 0\%$ — 实际上没赚</li>
+        </ul>
+        <ul lang="en">
+          <li>Arithmetic mean: $(50 - 33.3)/2 = +8.35\%$ — looks like gain</li>
+          <li>Geometric mean: $(1.5 \times 0.667)^{1/2} - 1 \approx 0\%$ — actually flat</li>
+        </ul>
+        <p lang="zh"><strong>真相是几何平均</strong>。算术平均高估了实际财富增长。这就是 Sharpe 长期论述的"variance drag": $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$。波动率越高, 算术与几何差异越大 — 高波动股票的"长期回报"被人系统性高估。</p>
+        <p lang="en">The truth is geometric mean. Arithmetic overstates actual wealth growth — <em>variance drag</em>: $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$. The higher the volatility, the bigger the gap. High‑vol stocks' "long‑term return" is systematically overstated when arithmetic average is reported.</p>
+
+        <h3 lang="zh">风险: 两种定义的张力</h3>
+        <h3 lang="en">Risk: two competing definitions</h3>
+        <ul>
+          <li><strong>Markowitz (1952)</strong>: <span lang="zh">风险 = 收益率波动率 $\sigma$。对称地看待上行与下行偏离均值。</span><span lang="en">Risk = volatility $\sigma$. Treats upside and downside symmetrically.</span></li>
+          <li><strong>Buffett</strong>: <span lang="zh">风险 = <em>永久性</em>本金损失。"$\sigma$ 高的股票, 如果你<em>不卖</em>, 它的'波动'不构成损失。真正的风险是公司基本面变差, 5 年后股价仍未恢复。"</span><span lang="en">Risk = <em>permanent</em> loss of capital. "If you don't sell, volatility isn't loss. Real risk is fundamentals deteriorating such that 5y later the price still hasn't recovered."</span></li>
+        </ul>
+        <p lang="zh">两种定义服务<em>不同决策</em>:</p>
+        <p lang="en">The two definitions serve <em>different decisions</em>:</p>
+        <ul>
+          <li><span lang="zh">短期交易、套利策略 → Markowitz σ 适用 (你必须考虑路径)</span><span lang="en">Short‑term trading / arbitrage → Markowitz σ (path matters)</span></li>
+          <li><span lang="zh">长期价值投资 → Buffett 定义适用 (路径无关, 只看终点价值)</span><span lang="en">Long‑term value investing → Buffett (path‑independent, terminal value only)</span></li>
+        </ul>
+        <p lang="zh">本章用 Markowitz σ 推导 CAPM, 因为它是数学上可处理的。但要记得它的局限。</p>
+        <p lang="en">This chapter uses Markowitz σ to derive CAPM (mathematically tractable), with awareness of its limits.</p>
+
+        <h3 lang="zh">分散化的工程图像</h3>
+        <h3 lang="en">Diversification — engineering picture</h3>
+        <p lang="zh">把 $n$ 只<em>独立同分布</em>(IID) 收益率为 $r_i$, 标准差 $\sigma$ 的股票等权组合, 组合 $\sigma_p = \sigma/\sqrt{n}$。这是中心极限定理的直接应用 — 类比独立噪声的平均会平方根减弱。</p>
+        <p lang="en">For $n$ IID assets each with σ, equal‑weighted portfolio σ is $\sigma/\sqrt{n}$ (CLT). Independent noise averages out at rate $1/\sqrt{n}$.</p>
+        <p lang="zh">现实中股票<em>不</em> IID, 相关系数 $\rho$ 通常 0.3-0.6 (同一国市场的股票)。所以分散化降低 σ 有<em>下限</em>:</p>
+        <p lang="en">In reality assets aren't IID; pairwise correlation $\rho$ is ~0.3-0.6. Diversification has a floor:</p>
+        <div class="eq"><span>$$ \sigma_p \to \sigma \sqrt{\rho} \quad \text{as} \quad n \to \infty $$</span><span class="num">—</span></div>
+        <p lang="zh">即使持有<em>无穷只</em>同市场股票, 也无法消除掉 $\sigma\sqrt{\rho}$ 这部分波动 — 它就是<em>市场风险</em>(systematic risk)。剩下的 $\sigma\sqrt{1-\rho}$ 是<em>可分散风险</em>(idiosyncratic risk)。</p>
+        <p lang="en">Even infinite holdings can't eliminate $\sigma\sqrt{\rho}$ — that's <em>systematic (market) risk</em>. The $\sigma\sqrt{1-\rho}$ part is <em>idiosyncratic</em>, diversifiable.</p>
+        <p lang="zh"><strong>核心洞察</strong>: 市场只给<em>不可分散的风险</em>支付溢价 — 因为可分散风险任何投资者都能<em>免费</em>消除 (通过持有组合)。这是 CAPM 的起点。</p>
+        <p lang="en"><strong>Insight:</strong> the market only compensates non‑diversifiable risk — anyone can eliminate idiosyncratic risk for free by diversifying. That is CAPM's starting point.</p>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <h3 lang="zh">① 收益率与统计量</h3>
+        <h3 lang="en">① Returns &amp; moments</h3>
+
+        <p lang="zh">期望收益:</p>
+        <div class="eq"><span>$$ \mu_i = E[R_i] $$</span><span class="num">(2.1)</span></div>
+
+        <p lang="zh">方差 / 标准差:</p>
+        <div class="eq"><span>$$ \sigma_i^2 = E[(R_i - \mu_i)^2], \quad \sigma_i = \sqrt{\sigma_i^2} $$</span><span class="num">(2.2)</span></div>
+
+        <p lang="zh">协方差 / 相关系数:</p>
+        <div class="eq"><span>$$ \sigma_{ij} = E[(R_i - \mu_i)(R_j - \mu_j)], \quad \rho_{ij} = \frac{\sigma_{ij}}{\sigma_i \sigma_j} \in [-1, 1] $$</span><span class="num">(2.3)</span></div>
+
+        <h3 lang="zh">② 组合方差</h3>
+        <h3 lang="en">② Portfolio variance</h3>
+
+        <p lang="zh">权重 $w_i$ 的 $n$ 资产组合:</p>
+        <div class="eq"><span>$$ \sigma_p^2 = \sum_{i=1}^{n}\sum_{j=1}^{n} w_i w_j \sigma_{ij} = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w} $$</span><span class="num">(2.4)</span></div>
+
+        <p lang="zh">两资产特例:</p>
+        <div class="eq"><span>$$ \sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2 w_1 w_2 \rho_{12} \sigma_1 \sigma_2 $$</span><span class="num">(2.5)</span></div>
+
+        <p lang="zh"><strong>关键洞察</strong>: 当 $\rho < 1$ 时, 组合 σ 小于权重加权后的 σ。这就是 diversification 的"魔法" — 来自<em>非完美相关</em>。当 $\rho = -1$ 时, 存在权重使 $\sigma_p = 0$ (完美对冲)。</p>
+        <p lang="en">When $\rho<1$, portfolio σ &lt; weighted σ. The "magic" of diversification, coming from imperfect correlation. When $\rho=-1$, weights exist that drive $\sigma_p = 0$ (perfect hedge).</p>
+
+        <h3 lang="zh">③ β 的定义</h3>
+        <h3 lang="en">③ Beta</h3>
+
+        <p lang="zh">个股 $i$ 相对市场组合 $M$ 的 β:</p>
+        <div class="eq"><span>$$ \beta_i = \frac{\sigma_{iM}}{\sigma_M^2} = \rho_{iM} \cdot \frac{\sigma_i}{\sigma_M} $$</span><span class="num">(2.6)</span></div>
+
+        <p lang="zh">物理意义: 个股收益率对市场波动的"放大倍数"。$\beta = 1$ 表示与市场同步; $\beta > 1$ 高弹性 (顺周期, 例如建材、券商); $\beta < 1$ 低弹性 (防御性, 例如公用事业、消费必需品); $\beta < 0$ 反向 (罕见, 例如黄金股在某些时期)。</p>
+        <p lang="en">Physically: how much the stock amplifies market moves. $\beta=1$ moves with the market; $\beta>1$ cyclical (materials, brokers); $\beta<1$ defensive (utilities, staples); $\beta<0$ inverse (rare, e.g., some gold stocks).</p>
+
+        <h3 lang="zh">④ CAPM 的推导</h3>
+        <h3 lang="en">④ CAPM derivation</h3>
+
+        <p lang="zh">CAPM 的核心声明:</p>
+        <p lang="en">CAPM's core claim:</p>
+
+        <div class="callout callout--formula">
+          <div class="eq"><span>$$ E(R_i) = r_f + \beta_i \left[E(R_m) - r_f\right] $$</span><span class="num">(2.7)</span></div>
+          <p lang="zh"><em>Security Market Line</em>: 期望收益与 β 成线性关系, 截距 $r_f$ (无风险利率), 斜率 $E(R_m) - r_f$ (市场风险溢价 ERP)。</p>
+          <p lang="en">Security Market Line: expected return is linear in β, intercept $r_f$, slope $E(R_m) - r_f$ (ERP).</p>
+          <span class="cite">Sharpe (1964) · Lintner (1965) · Mossin (1966) · Bodie, Kane &amp; Marcus ch. 9</span>
+        </div>
+
+        <p lang="zh"><strong>简化推导</strong> (假设投资者均值-方差最优化):</p>
+        <p lang="en"><strong>Sketch of derivation</strong> (mean-variance optimizing investors):</p>
+        <ol lang="zh">
+          <li>所有投资者持有<em>无风险资产 + 风险资产组合</em>的某种线性组合 (两基金分离定理)</li>
+          <li>因为所有投资者面对同样的风险资产 covariance matrix, 他们持有的"风险组合"是<em>同一个</em> — 必然是<em>市场组合</em> $M$ (所有资产按市值加权)</li>
+          <li>市场均衡要求每个资产的风险/收益比相等 → 个股 $i$ 与 $M$ 之间</li>
+          <li>个股 $i$ 对 $M$ 的<em>边际贡献风险</em>是 $\sigma_{iM}$ (而非 $\sigma_i^2$), 因为只有相关的那部分进入 $M$ 的风险</li>
+          <li>等比条件化简 → $E(R_i) - r_f$ 与 $\sigma_{iM}$ 成正比 → 与 β 成正比 → 公式 (2.7)</li>
+        </ol>
+        <ol lang="en">
+          <li>All investors hold a mix of risk‑free asset + the same risky portfolio (two‑fund separation)</li>
+          <li>That risky portfolio must be the market portfolio $M$</li>
+          <li>Equilibrium: every asset's risk‑return ratio equals $M$'s</li>
+          <li>Asset $i$'s marginal contribution to $M$'s risk is $\sigma_{iM}$ (not $\sigma_i^2$), since only correlated risk enters $M$</li>
+          <li>Algebra gives $E(R_i) - r_f \propto \beta_i$ → (2.7)</li>
+        </ol>
+
+        <p lang="zh"><strong>核心结论</strong>: 单个资产的<em>预期超额收益</em>只取决于其 β, <em>不取决于</em>其自身 σ。一只 $\sigma = 60\%$ 但 $\beta = 0.5$ 的股票, 预期收益比一只 $\sigma = 20\%$ 但 $\beta = 1.5$ 的股票<em>低</em> — 因为它的高 σ 都是 idiosyncratic (可分散), 不被市场补偿。</p>
+        <p lang="en"><strong>Bottom line:</strong> expected excess return depends only on β, not own σ. A 60%‑vol stock with β = 0.5 has lower expected return than a 20%‑vol stock with β = 1.5 — its high σ is idiosyncratic and uncompensated.</p>
+
+        <h3 lang="zh">⑤ 实证估计 β</h3>
+        <h3 lang="en">⑤ Empirically estimating β</h3>
+
+        <p lang="zh">标准方法 — 历史回归:</p>
+        <p lang="en">Standard — historical regression:</p>
+        <div class="eq"><span>$$ R_{i,t} = \alpha_i + \beta_i \, R_{m,t} + \varepsilon_{i,t} $$</span><span class="num">(2.8)</span></div>
+        <p lang="zh">用 5 年月度数据 ($n=60$) 做 OLS 回归。$\beta_i$ 是斜率系数, $\alpha_i$ 是截距 ("alpha", 反映异常超额收益, 理论上 = 0)。</p>
+        <p lang="en">OLS on 60 monthly observations. $\beta_i$ slope, $\alpha_i$ intercept ("alpha," theoretically 0).</p>
+
+        <p lang="zh"><strong>常见调整</strong>:</p>
+        <p lang="en"><strong>Common adjustments:</strong></p>
+        <ul lang="zh">
+          <li><strong>Blume adjustment</strong>: $\beta_{\text{adj}} = 0.67 \beta_{\text{raw}} + 0.33$ — β 长期回归到 1, Blume 提供经验加权</li>
+          <li><strong>Bottom-up β</strong>: 取同行业资产 β (去杠杆化) → Hamada 公式重新杠杆化到目标公司</li>
+        </ul>
+        <p lang="en"><strong>Blume adjustment:</strong> $\beta_{\text{adj}} = 0.67 \beta_{\text{raw}} + 0.33$ (mean reversion). <strong>Bottom‑up β:</strong> peer asset β unlevered via Hamada, then relevered.</p>
+
+        <p lang="zh"><strong>Hamada 公式</strong> (Ch.03 详述):</p>
+        <p lang="en"><strong>Hamada</strong> (Ch.03):</p>
+        <div class="eq"><span>$$ \beta_{\text{levered}} = \beta_{\text{unlevered}} \left[1 + (1-t)\frac{D}{E}\right] $$</span><span class="num">(2.9)</span></div>
+      </section>
+
+      <section class="layer">
+        <h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">三档对照</span><span lang="en">Three β tiers</span></span>
+            <span class="company"><span lang="zh">茅台 vs 农行 vs 京东方 — A 股 β 分布</span><span lang="en">Moutai vs ABC vs BOE — A‑share β distribution</span></span>
+            <span class="period"><span lang="zh">5 年月度回归 (近似)</span><span lang="en">5y monthly regression (approx)</span></span>
+          </div>
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">公司</span><span lang="en">Company</span></th><th class="num">β</th><th class="num">σ <span lang="zh">月度</span><span lang="en">monthly</span></th><th><span lang="zh">特性</span><span lang="en">Character</span></th><th>$r_e$ (<span lang="zh">假设 $r_f=2.5\%$, ERP $=6\%$</span><span lang="en">if $r_f$=2.5%, ERP=6%</span>)</th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">贵州茅台 600519</span><span lang="en">Moutai 600519</span></td><td class="num">~0.8</td><td class="num">~6%</td><td><span lang="zh">防御性 — 品牌护城河, 现金奶牛</span><span lang="en">Defensive — brand moat, cash cow</span></td><td class="num">~7.3%</td></tr>
+                <tr><td><span lang="zh">农业银行 601288</span><span lang="en">ABC 601288</span></td><td class="num">~0.6</td><td class="num">~4%</td><td><span lang="zh">极防御 — 国有大行, 业绩稳定</span><span lang="en">Ultra-defensive — SOE bank</span></td><td class="num">~6.1%</td></tr>
+                <tr><td><span lang="zh">京东方 A 000725</span><span lang="en">BOE 000725</span></td><td class="num">~1.5</td><td class="num">~10%</td><td><span lang="zh">强周期 — 面板价格波动</span><span lang="en">High cyclical — panel pricing</span></td><td class="num">~11.5%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p lang="zh"><strong>洞察</strong>:</p>
+          <ul lang="zh">
+            <li>茅台 $\sigma$ 月 6% &gt; 农行 4%, 但 β 与 σ 不严格匹配 — 因为茅台与市场的<em>相关性</em>也强 (它是 CSI300 权重股)。"波动率高 = 风险高"在 CAPM 框架下<em>不成立</em>。</li>
+            <li>京东方 β 1.5: 经济好时弹性大涨, 经济差时大跌。这是<em>商品/制造业</em>周期股的典型特征。</li>
+            <li>三家的 $r_e$ 跨度 6-12% — 用同一个 WACC 评估所有项目会系统性误判 (Ch.01 Q5 引出的问题, Ch.03 详述)。</li>
+          </ul>
+          <p lang="en">Moutai's σ &gt; ABC's, but β doesn't track σ strictly because Moutai's market correlation is also high (it's an index heavyweight). "Volatility = risk" fails under CAPM. BOE β = 1.5: cyclical amplifier — typical for commodity/manufacturing cycles. Cost-of-equity range 6–12% — using a single WACC across projects systematically misjudges (revisited Ch.03).</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">指数</span><span lang="en">Index</span></span>
+            <span class="company"><span lang="zh">沪深 300 vs 中证 500 vs 国债 — 历史收益与协方差</span><span lang="en">CSI 300 vs CSI 500 vs Treasury — historical return &amp; covariance</span></span>
+            <span class="period">2010-2023 <span lang="zh">月度近似</span><span lang="en">monthly approx.</span></span>
+          </div>
+          <p lang="zh">中国 A 股长期 ERP 估算 (依据 Damodaran 隐含 ERP + 国内学术研究的综合):</p>
+          <p lang="en">A‑share long‑run ERP estimates (Damodaran implied + Chinese academic literature):</p>
+          <ul lang="zh">
+            <li>沪深 300 年化几何收益 ~6-8% (2010-2023, 含分红)</li>
+            <li>10Y 国债年化 ~3.5%</li>
+            <li>ERP (历史) ≈ 6% - 3.5% = 2.5% (低于美国, 但 2010-2023 周期效应)</li>
+            <li>ERP (隐含, Damodaran 方法) ≈ 5-6% (反映市场对未来盈利与折现率的预期)</li>
+          </ul>
+          <ul lang="en">
+            <li>CSI 300 annualized geometric ~6–8% (2010–2023, with dividends)</li>
+            <li>10y Treasury ~3.5%</li>
+            <li>Historical ERP ≈ 2.5% (lower than US — period effect)</li>
+            <li>Implied ERP (Damodaran method) ≈ 5–6%</li>
+          </ul>
+          <p lang="zh"><strong>实务取值</strong>: 中国 A 股估值中 ERP 常用 5-7%。Damodaran 在最新国家风险溢价表中给中国 ERP ~5.5-6%。这就是 $r_e$ 计算时 ERP 的来源。</p>
+          <p lang="en">In practice, A‑share valuations use ERP 5–7%. Damodaran's country risk premium table gives China ~5.5–6%.</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">争论</span><span lang="en">Debate</span></span>
+            <span class="company"><span lang="zh">CAPM 在 A 股的实证表现</span><span lang="en">CAPM's empirical performance in A‑share</span></span>
+          </div>
+          <p lang="zh">国内学术研究 (Fama-French 三因子 / 五因子在中国的应用) 显示:</p>
+          <p lang="en">Domestic empirical research (Fama-French 3/5 factor applied to China) shows:</p>
+          <ul lang="zh">
+            <li><strong>β 单因子的解释力有限</strong>: 个股回报中, β 只能解释 ~10-20% 的截面差异 (低于美国市场的 30-40%)</li>
+            <li><strong>规模因子 (SMB) 强</strong>: 中国小盘股长期跑赢大盘股 (但 2017+ 趋势反转)</li>
+            <li><strong>价值因子 (HML) 显著但弱</strong>: 低 P/B 公司有正超额收益, 但效应不如美国</li>
+            <li><strong>反转效应短期, 动量效应弱</strong>: 与美国市场的反转/动量结构不同</li>
+            <li><strong>"政策事件"主导短期</strong>: 中国 A 股政策敏感性远高于美股 — 例如 2008 救市、2015 杠杆牛市、2020 双减政策、2021 教培整治 — 这些事件冲击远超 CAPM 框架能描述的范围</li>
+          </ul>
+          <p lang="en">β alone explains only 10–20% of cross‑section returns (lower than US 30–40%). SMB (small‑cap premium) historically strong; HML (value premium) significant but weaker than US. Short‑term reversal, weak momentum. Policy events (2008 stimulus, 2015 leveraged bull, 2021 ed‑tech crackdown) dominate short‑run returns beyond what CAPM can capture.</p>
+          <p lang="zh"><strong>实务结论</strong>: CAPM 在 A 股估值的<em>起点</em>仍然好用 (用 β 给个股贴一个合理的"基线 $r_e$"), 但<em>不能</em>依赖它精确预测短期收益。M3 Ch.02 详述 CAPM/APT/Fama-French 在 A 股的差异。</p>
+          <p lang="en">CAPM remains a useful baseline for cost‑of‑equity in A‑share valuation, but isn't reliable for short‑run prediction. M3 Ch.02 develops CAPM/APT/Fama‑French in A‑share.</p>
+        </div>
+      </section>
+
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+      <div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">风险-收益 tradeoff</span><span lang="en">Risk-return tradeoff</span></h4><p lang="zh">CAPM 是这条原理的代数化版本 — 但只对<em>不可分散风险</em>支付溢价。</p><p lang="en">CAPM algebraizes the principle — and only compensates non‑diversifiable risk.</p></div></div>
+      <div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">无套利</span><span lang="en">No arbitrage</span></h4><p lang="zh">CAPM 假设市场均衡, 任何"高 α"机会会被套利消除 — 长期 α=0。</p><p lang="en">CAPM assumes market equilibrium; persistent α gets arbitraged away.</p></div></div>
+
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <ol class="quiz quiz-list">
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一只股票 6 年回报: +50%, −30%, +20%, −10%, +40%, −20%。算术平均? 几何平均? 为何后者才是"实际"年化收益?</span><span lang="en"><strong>Q1.</strong> Six annual returns: +50%, −30%, +20%, −10%, +40%, −20%. Arithmetic vs geometric mean? Why is geometric "real"?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>算术平均</strong>: $(50-30+20-10+40-20)/6 = 50/6 \approx 8.33\%$</p>
+            <p lang="zh"><strong>几何平均</strong>: 累计回报 $= 1.5 \times 0.7 \times 1.2 \times 0.9 \times 1.4 \times 0.8 = 1.270$ → 6 年累计 +27%。年化几何 $= 1.270^{1/6} - 1 \approx 4.07\%$。</p>
+            <p lang="zh"><strong>差异</strong>: 算术 8.33% vs 几何 4.07%, 差约 4.26 个百分点。Variance drag 公式: $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$。这里 $\sigma$ 月度约 33% → $\sigma^2 \approx 10.9\%$ → $\sigma^2/2 \approx 5.4\%$ → 与实际差异 4.26 吻合 (近似公式)。</p>
+            <p lang="zh"><strong>为何几何"真"</strong>: 如果你<em>实际持有</em>这只股票 6 年, 100 元变成 127 元。年化你实际拿到的复合增长率 = 4.07%, 而不是 8.33%。算术平均高估了波动率拖累后的实际财富增长。</p>
+            <p lang="zh"><strong>实务意义</strong>: 报告"过去 5 年股票年均回报 12%"几乎都是算术平均。如果该股波动 30%, 几何实际可能只有 7%。这是基金宣传材料常见的<em>合法误导</em>。投资者要主动算几何或看<em>累计收益</em>。</p>
+            <p lang="en">Arithmetic 8.33%, geometric 4.07%. Variance drag $\sigma^2/2 \approx 5.4\%$ explains the gap. If you held the stock, ¥100 → ¥127 over 6 years = 4.07% compounded, not 8.33%. Fund marketing often quotes arithmetic; read cumulative or compute geometric yourself.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 资产 A: $\sigma_A = 30\%$, $\beta_A = 0.5$。资产 B: $\sigma_B = 15\%$, $\beta_B = 1.5$。CAPM 下哪个预期收益高? 用 Markowitz σ 看哪个"风险高"? 用 Buffett 定义呢?</span><span lang="en"><strong>Q2.</strong> Asset A: σ=30%, β=0.5. Asset B: σ=15%, β=1.5. Under CAPM, which has higher expected return? Which is "riskier" by σ? By Buffett's definition?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>CAPM 下 (假设 $r_f = 3\%$, ERP $= 6\%$)</strong>:</p>
+            <ul lang="zh">
+              <li>$E(R_A) = 3 + 0.5 \times 6 = 6\%$</li>
+              <li>$E(R_B) = 3 + 1.5 \times 6 = 12\%$</li>
+            </ul>
+            <p lang="zh"><strong>B 期望收益高</strong>, 尽管 σ 低。原因: 高 β 是<em>不可分散的市场风险</em>, 必须被补偿; 高 σ 但低 β 说明 A 的大部分波动是<em>可分散的</em>, 不被补偿。</p>
+            <p lang="zh"><strong>Markowitz σ</strong>: A 风险高 (σ=30%) &gt; B (σ=15%)。但这只看个股, 没考虑分散化机会。</p>
+            <p lang="zh"><strong>Buffett 视角</strong>: 不能用 σ 或 β 直接判断 — 要看<em>基本面</em>。但若 A 有持续盈利能力 + B 是高 β 周期股, Buffett 会认为 A <em>风险更小</em> (即使 σ 高), 因为 A 的现金流路径无关重要, 终值价值稳定。</p>
+            <p lang="zh"><strong>关键洞察</strong>: σ vs β vs 永久性损失 — 三种风险定义可以给出<em>相反</em>的排序。理解这点的人, 不会被任何单一指标误导。CAPM 框架下做估值用 β; 价值投资框架下做选股看基本面与永久性损失。</p>
+            <p lang="en">CAPM: $E(R_A) = 6\%$, $E(R_B) = 12\%$ — B higher despite lower σ (high β = compensated systematic risk). Markowitz σ: A riskier. Buffett: depends on fundamentals — if A has stable earnings power, A may be lower "real risk" despite high σ. Three definitions can rank opposite ways. Use β for valuation under CAPM; fundamentals for stock picking under value investing.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 两资产组合: $\sigma_1 = \sigma_2 = 20\%$, $\rho_{12} = ?$。计算不同 $\rho$ 下的组合 $\sigma_p$ ($w_1 = w_2 = 50\%$): $\rho = 1, 0.5, 0, -0.5, -1$。在哪些情况下出现 $\sigma_p < $ 单资产 σ?</span><span lang="en"><strong>Q3.</strong> Two assets, $\sigma_1 = \sigma_2 = 20\%$, equal weights. Compute portfolio σ for $\rho = 1, 0.5, 0, -0.5, -1$. When is $\sigma_p$ &lt; single‑asset σ?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">用 (2.5): $\sigma_p^2 = 0.25 \times 0.04 + 0.25 \times 0.04 + 2 \times 0.25 \times \rho \times 0.04 = 0.02 + 0.02 \rho$</p>
+            <p lang="zh">即 $\sigma_p = \sqrt{0.02(1+\rho)}$:</p>
+            <ul lang="zh">
+              <li>$\rho = 1$: $\sigma_p = \sqrt{0.04} = 20\%$ (无分散化效应)</li>
+              <li>$\rho = 0.5$: $\sigma_p = \sqrt{0.03} \approx 17.3\%$</li>
+              <li>$\rho = 0$: $\sigma_p = \sqrt{0.02} \approx 14.1\%$ ($= 20\%/\sqrt{2}$, 这是 IID 极限)</li>
+              <li>$\rho = -0.5$: $\sigma_p = \sqrt{0.01} = 10\%$</li>
+              <li>$\rho = -1$: $\sigma_p = 0$ (完美对冲)</li>
+            </ul>
+            <p lang="zh"><strong>关键洞察</strong>:</p>
+            <ol lang="zh">
+              <li>只要 $\rho < 1$, 组合 σ &lt; 单资产 σ — 这就是 diversification 的<em>免费午餐</em> (Markowitz 1952 的核心发现)。</li>
+              <li>$\rho = -1$ 时可以零风险持有"双资产"对冲 — 这是套利定价、衍生品 delta 对冲、long-short 策略的基础。</li>
+              <li>实际市场: A 股个股之间 $\rho$ 通常 0.3-0.6, 国债与股票 $\rho$ 接近 0 甚至为负 (危机时为负) — 这就是"60/40 股债组合"长期稳定的根。</li>
+            </ol>
+            <p lang="zh"><strong>反直觉点</strong>: 即使两资产 $\sigma$ 相同, 只要 $\rho < 1$, 组合就<em>降风险</em>。这就是为什么"集中持有 5 只你最看好的股票" vs "分散持有 50 只"在 σ 视角下, 后者大幅占优 — 即使你"对前 5 只更有把握"。Markowitz vs Buffett 的张力在这里再次显现。</p>
+            <p lang="en">$\sigma_p = \sqrt{0.02(1+\rho)}$. At $\rho=1$ no benefit; $\rho=0$ gives $\sigma_p = 20\%/\sqrt{2} \approx 14.1\%$; $\rho=-1$ gives 0 (perfect hedge). Insight: any $\rho<1$ provides risk reduction — the "free lunch" of diversification. A‑share inter‑stock $\rho \approx 0.3-0.6$; stocks/bonds near zero or negative (especially in crises) — basis of 60/40 stability. Counter‑intuition: equal‑σ assets with imperfect correlation still benefit from combination.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q4.</strong> CAPM 的核心假设逐条列出。哪些假设在 A 股市场<em>明显不成立</em>? 这对用 CAPM 算 $r_e$ 的实务有何影响?</span><span lang="en"><strong>Q4.</strong> List CAPM's core assumptions. Which fail conspicuously in A‑share? Implications for using CAPM to compute cost of equity?</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>CAPM 假设清单</strong>:</p>
+            <ol lang="zh">
+              <li><strong>所有投资者均值-方差最优化</strong>: 现实中存在非理性投资者 (行为偏差, 见 M3 Ch.04)</li>
+              <li><strong>同质期望</strong>: 所有投资者对 $E(R)$ 和 $\Sigma$ 有相同信念。<em>明显不成立</em>。</li>
+              <li><strong>无摩擦市场</strong>: 无税、无交易成本、可借贷无限。<em>不成立</em> — 特别是中国市场, 卖空受限。</li>
+              <li><strong>市场组合可观测且全包含</strong>: 应包含全球所有风险资产 (股票 + 房产 + 私人企业等), 实务用沪深 300 或 CSI 全指。<em>不成立</em> — 中国房产财富 &gt;&gt; 股市市值, 但不易计入"市场组合"。</li>
+              <li><strong>单期模型</strong>: 投资者只关心一期回报。<em>不成立</em>。</li>
+              <li><strong>无风险利率可借贷</strong>: 个人不能按 $r_f$ 借款。<em>不成立</em>。</li>
+            </ol>
+            <p lang="zh"><strong>A 股特别失效的方面</strong>:</p>
+            <ul lang="zh">
+              <li><strong>政策风险</strong>: 监管突变 (双减、教培整治、平台反垄断、国企改革等) 引发的收益冲击, 不被 β 度量 → CAPM 严重低估某些行业的真实风险</li>
+              <li><strong>散户主导</strong>: 中国 A 股散户成交占比远高于美国 → 价格短期偏离基本面更显著 → α 不为零的窗口期更长 → CAPM 单因子失效更频繁</li>
+              <li><strong>卖空限制</strong>: 中国融券规模小, 限制套利消除偏差的能力 → 市场效率低于 CAPM 假设</li>
+            </ul>
+            <p lang="zh"><strong>实务影响</strong>:</p>
+            <ol lang="zh">
+              <li>CAPM 算出的 $r_e$ 仅是<em>基线</em>, 实务中常常需要加 1-3% 的"中国风险溢价"或"行业风险溢价"</li>
+              <li>对<em>政策敏感</em>行业 (互联网、教培、地产), 历史 β 不能反映未来风险 — 需要用情景分析 / 实物期权方法补充</li>
+              <li>对<em>新兴行业</em> (新能源、半导体等), 历史回归数据稀少 → 用 bottom-up β 从全球同业重塑</li>
+              <li>多因子模型 (Fama-French 三因子 / 五因子) 比 CAPM 单因子在 A 股更可靠 (M3 Ch.02 详述)</li>
+            </ol>
+            <p lang="zh"><strong>结论</strong>: CAPM 是教学起点和实务基线 — 但不要把它当作"算出真实 $r_e$"的工具。实务中要做多模型对照 + 情景分析。</p>
+            <p lang="en">Assumptions: mean‑variance optimization, homogeneous expectations, frictionless markets, observable market portfolio, single period, risk‑free borrowing/lending. In A‑share, especially: policy risk (β doesn't capture regulation shocks like the 2021 ed‑tech crackdown), retail dominance (longer α windows), short‑sale constraints. CAPM is a baseline; add China/industry premium; use scenario analysis for policy‑sensitive sectors; bottom‑up β for new industries; multi‑factor (FF 3/5) for robustness (M3 Ch.02).</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 沪深 300 指数 5 年年化 ~7%, 10Y 国债 ~3%。某 A 股股票 $\beta = 1.2$。估算其 $r_e$。该股票当前 P/E = 25, 净利长期增长率假设 5% → 用 Gordon (Ch.01) 估算<em>市场隐含的</em> $r_e$, 与 CAPM 比较。</span><span lang="en"><strong>Q5.</strong> CSI 300 5y annualized ~7%, 10y bond ~3%. A stock with β = 1.2. Estimate $r_e$. Currently P/E = 25, perpetual growth 5%. Use Gordon to back‑solve market‑implied $r_e$. Compare.</span></div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>CAPM</strong>: $r_e = r_f + \beta \times \mathrm{ERP} = 3 + 1.2 \times (7 - 3) = 3 + 4.8 = 7.8\%$</p>
+            <p lang="zh"><strong>Gordon 隐含 $r_e$</strong>: 简化模型 $P = E_1/(r_e - g)$, 即 P/E = $1/(r_e - g)$ → $r_e = g + 1/(P/E) = 5\% + 1/25 = 5\% + 4\% = 9\%$。</p>
+            <p lang="zh"><strong>对比</strong>:</p>
+            <ul lang="zh">
+              <li>CAPM: 7.8%</li>
+              <li>Gordon 隐含: 9%</li>
+              <li>差距 1.2%</li>
+            </ul>
+            <p lang="zh"><strong>解读</strong>: 市场对该股票要求的回报 (9%) 高于 CAPM 估算的"理论 $r_e$"(7.8%)。差异 1.2% 可能来自:</p>
+            <ol lang="zh">
+              <li><strong>β 低估</strong>: 用 5 年历史回归得到 $\beta = 1.2$, 但市场可能<em>预期未来 β 更高</em> (例如该股业务进入更周期化的阶段)</li>
+              <li><strong>g 高估</strong>: 5% 的长期增长率假设过于乐观, 市场实际隐含的 $g$ 更低 → "隐含 $r_e$"算出过高</li>
+              <li><strong>风险溢价偏离 CAPM</strong>: 该股票存在 CAPM 无法捕捉的风险 (例如政策、行业、个股特定 — α 风险, 或 size / value 因子未捕捉)</li>
+              <li><strong>市场情绪</strong>: 散户主导阶段, 价格短期偏离 CAPM 均衡</li>
+            </ol>
+            <p lang="zh"><strong>实务用法</strong>: 用两种方法的<em>对比</em>来理解市场的隐含假设, 而不是迷信任何一种。如果 CAPM 给 7.8%, Gordon 隐含 9%, 说明<em>市场比 CAPM 更悲观</em> — 投资机会的存在条件: 你认为基本面足够支持 CAPM 的 7.8%, 而市场错估到 9%。这是 Damodaran 强调的<em>双轨估值思路</em>。</p>
+            <p lang="zh"><strong>反向</strong>: 若 Gordon 隐含 $r_e$ &lt; CAPM, 说明市场对该股过于乐观 — 估值过高, 实际预期回报偏低。</p>
+            <p lang="en">CAPM $r_e = 3 + 1.2 \times 4 = 7.8\%$. Gordon implied $r_e = g + 1/(P/E) = 5 + 4 = 9\%$. Gap of 1.2%: could be (i) underestimated β, (ii) overoptimistic $g$, (iii) risk outside CAPM (factors), (iv) sentiment. Use the dual approach to read market's implied assumptions. Damodaran's recommended discipline. If CAPM $<$ Gordon‑implied, market is more pessimistic — possible opportunity if your fundamentals support CAPM number. Reverse: if Gordon $<$ CAPM, market overoptimistic.</p>
+          </div></div>
+          <div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+        </li>
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="01-time-value.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">01 · <span lang="zh">时间价值</span><span lang="en">Time Value</span></span></a>
+          <a class="next" href="03-wacc-mm.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">03 · <span lang="zh">WACC 与 MM</span><span lang="en">WACC &amp; MM</span></span></a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage。</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+  <div class="chat-footnote"><span lang="zh">Anthropic Claude Opus 4.7</span><span lang="en">Anthropic Claude Opus 4.7</span><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

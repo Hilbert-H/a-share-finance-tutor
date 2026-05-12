@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>01 · 现代组合理论 MPT</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 01</span><span class="sep">·</span><span><span lang="zh">12 分钟</span><span lang="en">12 min</span></span></div>
+<h1><span lang="zh">现代组合理论 MPT</span><span lang="en">Modern Portfolio Theory</span></h1>
+<p class="lesson-subtitle"><span lang="zh">Markowitz (1952): 投资者关心组合 σ 而非单一资产 σ. 通过组合构建, 在相同期望收益下可以<em>显著降低</em>风险. "<em>不把鸡蛋放一个篮子</em>"的数学化。</span><span lang="en">Markowitz (1952): investors care about portfolio σ. Combining assets with imperfect correlation lowers risk at given return. The math of "don't put all eggs in one basket."</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span>
+<ul><li lang="zh">写出两资产 / N 资产组合的方差公式</li><li lang="zh">用拉格朗日推导 minimum variance portfolio</li><li lang="zh">理解有效前沿 / 切线组合 / Sharpe ratio</li><li lang="en">Two‑asset and N‑asset variance; min‑variance portfolio; efficient frontier; tangent portfolio; Sharpe</li></ul>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
+<p lang="zh">单看一只股票, 你只看到它的"波动"$\sigma$. Markowitz 革命: <em>组合中</em>, 单只股票的<em>相关性</em>与其他股票决定了它对组合的贡献。两只波动率 30% 但相关系数 $\rho = 0$ 的股票, 等权组合 σ = $30/\sqrt{2} \approx 21\%$ — 风险降 30%, 期望收益不变。"免费午餐"。</p>
+<p lang="en">Within a portfolio, an asset's <em>correlation</em>, not its standalone σ, determines its risk contribution. Two 30%‑σ assets with ρ=0, equal weight → portfolio σ ≈ 21% — 30% lower risk, same expected return. Free lunch.</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+
+<p lang="zh"><strong>组合期望与方差</strong>:</p>
+<div class="eq"><span>$$ \mu_p = \mathbf{w}^\top \boldsymbol{\mu}, \quad \sigma_p^2 = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w} $$</span><span class="num">(1.1)</span></div>
+
+<p lang="zh"><strong>最小方差组合</strong> (无约束, 无短卖限制):</p>
+<div class="eq"><span>$$ \mathbf{w}_{\min} = \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} \mathbf{1}} $$</span><span class="num">(1.2)</span></div>
+
+<p lang="zh"><strong>切线组合</strong> (最大 Sharpe, 引入无风险利率 $r_f$):</p>
+<div class="eq"><span>$$ \mathbf{w}_{\text{tan}} = \frac{\boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})} $$</span><span class="num">(1.3)</span></div>
+
+<p lang="zh"><strong>Sharpe Ratio</strong>:</p>
+<div class="eq"><span>$$ \mathrm{Sharpe} = \frac{\mu_p - r_f}{\sigma_p} $$</span><span class="num">(1.4)</span></div>
+
+<p lang="zh">有效前沿: 给定每个期望收益 $\mu$, 找到对应最小 $\sigma$. 集合构成一条凸曲线。切线组合 + $r_f$ 直线 (Capital Allocation Line, CAL) 主导所有风险资产组合 (两基金分离).</p>
+<p lang="en">Efficient frontier: for each $\mu$ find min $\sigma$. With $r_f$, the tangent portfolio + risk‑free line (CAL) dominates all pure‑risky portfolios (two‑fund separation).</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">沪深 300 + 中证 500 + 10Y 国债</span><span lang="en">CSI 300 + CSI 500 + 10Y bond</span></span></div>
+<p lang="zh">2010-2023 月度估算: μ ≈ (7%, 8%, 3.5%), σ ≈ (20%, 28%, 5%), 相关系数: ρ(CSI300, CSI500) ≈ 0.85, ρ(equity, bond) ≈ 0. 用 (1.3) 解切线组合:</p>
+<p lang="en">2010–23 estimates: μ ≈ (7%, 8%, 3.5%), σ ≈ (20%, 28%, 5%), ρ_{eq,bond} ≈ 0. Tangent: ~60% bond, ~25% CSI 300, ~15% CSI 500 (high Sharpe due to low equity‑bond correlation).</p>
+<ul lang="zh"><li>切线组合: 约 60% 国债 + 25% 沪深 300 + 15% 中证 500</li><li>Sharpe ≈ 0.5 (远高于纯股 ~0.2)</li><li>反直觉: 想要"高收益"也应配债, 因股债相关低 → 风险下降快于收益下降</li></ul>
+</div>
+</section>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<ol class="quiz quiz-list">
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 为什么"60/40 股债组合"长期 Sharpe 高于 100% 股票?</span><span lang="en"><strong>Q1.</strong> Why does 60/40 stock‑bond beat 100% stocks on Sharpe long‑run?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">股债<em>低相关 (有时负相关)</em>. 60/40 组合 σ ≈ 0.6 × 18% ≈ 11% (近似), 但期望收益 ≈ 0.6 × 8% + 0.4 × 3.5% ≈ 6.2%. Sharpe = (6.2 − 2.5) / 11 ≈ 0.34, 高于 100% 股 (8 − 2.5)/18 ≈ 0.31. 危机时国债避险, 进一步降组合 σ. 这是 Bogle / 桥水"全天候组合"的数学根。</p>
+<p lang="en">Stocks‑bonds have low (sometimes negative) correlation. 60/40 σ ≈ 11% with return ≈ 6.2%; Sharpe ~0.34 vs 100% stocks ~0.31. Bonds hedge in crises. Math foundation of Bogle 60/40 and Bridgewater All Weather.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 在 ρ = −1 时, 两资产组合能否达到 σ = 0?</span><span lang="en"><strong>Q2.</strong> At ρ=−1, can two assets achieve σ=0?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">能. ρ=−1 时, $\sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 - 2 w_1 w_2 \sigma_1 \sigma_2 = (w_1 \sigma_1 - w_2 \sigma_2)^2$. 令 $w_1 \sigma_1 = w_2 \sigma_2$ → σ_p = 0. 即按反比配权重. 现实意义: 完美对冲 (期权 + 标的) 的基础. 大部分实际资产 ρ &gt; 0, 但接近这个极限的对冲是衍生品定价的核心。</p>
+<p lang="en">Yes. With ρ=−1, σ²_p = (w_1 σ_1 − w_2 σ_2)². Setting weights inversely proportional to σ gives σ_p=0 — perfect hedge. Most real assets ρ&gt;0; near‑hedge is the basis of derivative pricing.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> MPT 在 A 股市场实务中的主要局限?</span><span lang="en"><strong>Q3.</strong> MPT's main limits in A‑share?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<ul lang="zh"><li>$\mu$ 估计极不稳定 — 历史均值噪声大, 1 年误差远超均值本身</li><li>$\Sigma$ 在<em>危机时</em>突变 — 相关系数趋向 1, 分散化失效 (2008, 2020 等)</li><li>政策冲击突变 (双减、教培、地产), MPT 静态分布假设失效</li><li>卖空限制 → 实际不能持有 (1.3) 解出的负权重</li><li>A 股个股 ρ 普遍 0.3-0.6, 行业内 ρ 接近 0.8 — 分散化空间不如美国 (0.2-0.4 平均 ρ)</li></ul>
+<p lang="en">μ estimates noisy; Σ regime‑shifts in crises (correlations → 1); A‑share policy shocks; short‑sale constraints; higher intra‑industry correlations than US. MPT remains useful as a baseline but requires robust estimation (Black‑Litterman, shrinkage covariance).</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> Mark complete</button>
+<nav class="chap-nav"><a href="00-overview.html"><span class="dir">← Overview</span><span class="title">Module III · Overview</span></a><a class="next" href="02-capm-apt-ff.html"><span class="dir">Next →</span><span class="title">02 · CAPM / APT / FF</span></a></nav></div>
+
+</article></main>
+<aside class="toc"></aside>
+</div>
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title">AI Tutor <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off"><button class="save" data-key-save>Save</button></div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send" aria-label="Send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div>
+</div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body>
+</html>

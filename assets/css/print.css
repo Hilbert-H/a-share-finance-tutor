@@ -1,0 +1,64 @@
+/* ===========================================================================
+   print.css — A4 友好的打印样式
+   =========================================================================== */
+
+@media print {
+  :root {
+    --paper: #ffffff;
+    --paper-deep: #f6f6f6;
+    --paper-edge: #d0d0d0;
+    --ink: #000000;
+    --ink-soft: #222;
+    --rule: #888;
+  }
+  body {
+    background: #fff;
+    background-image: none;
+    color: #000;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  .topbar, .nav, .toc, .chat-fab, .chat-panel, .nav-toggle, .mark-done, .lesson-foot .chap-nav {
+    display: none !important;
+  }
+  .app {
+    display: block;
+  }
+  .main {
+    padding: 0;
+    max-width: 100%;
+  }
+  .lesson, .home {
+    max-width: 165mm;
+    margin: 0 auto;
+  }
+  h1 { font-size: 22pt; }
+  h2 { font-size: 16pt; page-break-after: avoid; border-bottom: 1px solid #000; }
+  h3 { font-size: 13pt; page-break-after: avoid; }
+  h4 { font-size: 11pt; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em; color: #333; word-break: break-all;
+  }
+  .case, .callout, .objectives, .dispute, .quiz-item, .model-card {
+    background: #fff !important;
+    border: 1px solid #888 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+  .case::before, .case--warn::before { background: #000 !important; color: #fff !important; }
+  .quiz-item .quiz-a { max-height: none !important; opacity: 1 !important; margin-top: 0.8rem !important; }
+  .quiz-toggle, .quiz-self { display: none !important; }
+  pre, code, .case-table, .case-table table {
+    background: #f6f6f6 !important;
+    color: #000 !important;
+  }
+  .case-table thead th { background: #ddd !important; color: #000 !important; }
+  .lesson > * { animation: none !important; }
+  /* Page numbers via headers/footers handled by browser print dialog */
+  @page {
+    size: A4;
+    margin: 18mm 16mm;
+  }
+}

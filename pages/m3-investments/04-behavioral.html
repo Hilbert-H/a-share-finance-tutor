@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>04 · 行为金融</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 04</span></div>
+<h1><span lang="zh">行为金融</span><span lang="en">Behavioral Finance</span></h1>
+<p class="lesson-subtitle"><span lang="zh">Kahneman, Tversky, Thaler 等人证明: 人类决策系统性偏离"理性"假设. 行为金融把这些偏差代数化, 解释 EMH 失效的具体机制. A 股散户主导, 行为偏差对短期价格的影响远超美股。</span><span lang="en">Kahneman, Tversky, Thaler showed: human decisions systematically violate rationality. Behavioral finance algebraizes biases to explain EMH failures. A‑share, retail‑heavy, exhibits stronger bias‑driven price effects than US.</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span>
+<ul><li lang="zh">识别 7 大常见认知偏差</li><li lang="zh">理解 Soros 反身性: 价格<em>影响</em>基本面</li><li lang="zh">把 A 股具体行情 (2015 杠杆牛, 2021 抱团股) 用行为金融解释</li>
+<li lang="en">Identify 7 common biases; understand Soros's reflexivity; explain A‑share episodes (2015 leveraged bull, 2021 herd)</li></ul></section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">七大偏差</span><span lang="en">Seven biases</span></h2>
+<ol>
+<li><strong><span lang="zh">锚定 (anchoring)</span><span lang="en">Anchoring</span></strong>: <span lang="zh">心理上以历史/初次接触到的数字为参考. A 股: 开盘价集合竞价以前一交易日收盘为锚</span><span lang="en">Anchored to historical or first‑seen numbers. A‑share: opening auction anchored to prior close</span></li>
+<li><strong><span lang="zh">过度自信</span><span lang="en">Overconfidence</span></strong>: <span lang="zh">投资者高估自己判断准确率. 表现为过度交易, 个人投资者换手率年化常 500%+, 主动管理费用过高</span><span lang="en">Overestimate own skill. Excessive trading; retail turnover often 500%+ annualized</span></li>
+<li><strong><span lang="zh">处置效应</span><span lang="en">Disposition effect</span></strong>: <span lang="zh">倾向于过早卖出盈利股票 (锁定利润), 太久持有亏损股票 (避免认输). Shefrin-Statman (1985)</span><span lang="en">Sell winners too early, hold losers too long</span></li>
+<li><strong><span lang="zh">羊群</span><span lang="en">Herding</span></strong>: <span lang="zh">模仿大多数行为. A 股板块行情, "茅指数" "宁组合" 是典型羊群</span><span lang="en">Follow the crowd. A‑share "Moutai index" / "CATL group" exemplify herding</span></li>
+<li><strong><span lang="zh">可得性偏差</span><span lang="en">Availability heuristic</span></strong>: <span lang="zh">用最近 / 最显著的事件估计概率. 新闻报道频繁的股票被高估</span><span lang="en">Estimate probability from most salient examples</span></li>
+<li><strong><span lang="zh">心理账户</span><span lang="en">Mental accounting</span></strong>: <span lang="zh">把不同来源的钱分账, 不同对待. Thaler (1985)</span><span lang="en">Treat money from different sources differently</span></li>
+<li><strong><span lang="zh">损失厌恶</span><span lang="en">Loss aversion</span></strong>: <span lang="zh">同等大小的损失痛苦感约为收益快感的 2 倍 (Kahneman-Tversky 1979). 这驱动了"宁可不动也不接受小亏"等行为</span><span lang="en">Pain of loss ~2× pleasure of equal gain. Drives "do nothing rather than realize a small loss"</span></li>
+</ol>
+
+<h3 lang="zh">反身性 (Soros)</h3>
+<h3 lang="en">Reflexivity (Soros)</h3>
+<p lang="zh">传统认知: 基本面 → 价格. Soros 反身性: 价格 ↔ 基本面 (双向). 例:</p>
+<ul lang="zh">
+<li>股价上涨 → 公司股权融资容易 / 信心提升 / 客户更愿付溢价 → 基本面真实改善 → 股价进一步上涨</li>
+<li>股价下跌 → 信贷收紧 / 信任丧失 / 客户流失 → 基本面真实恶化 → 股价进一步下跌</li>
+</ul>
+<p lang="en">Conventional: fundamentals → price. Soros: price ↔ fundamentals (two‑way). Up cycles: easy capital + confidence + customer trust → real improvement. Down cycles: credit tightens + trust loss → real deterioration. The mechanism behind bubbles and crashes.</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑share</span></h2>
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">2015 杠杆牛市与崩盘</span><span lang="en">2015 leveraged bull and crash</span></span></div>
+<p lang="zh">2014 下半年 - 2015 年 6 月: 沪深 300 从 2,300 涨到 5,300 (~130%); 上证综指从 2,000 涨到 5,178. 然后 6-9 月暴跌至 2,800. 典型反身性 + 羊群 + 过度自信:</p>
+<ul lang="zh">
+<li>政策"国家牛市"信号 → 散户大量入场 → 价格上涨 → 杠杆资金 (融资融券、伞形信托、配资) 跟进 → 价格进一步上涨 → 更多杠杆 → 反身性正循环</li>
+<li>6 月监管打击场外配资 → 平仓潮 → 价格下跌 → 更多平仓 → 加速下跌 → 反身性负循环</li>
+<li>断层式崩盘 — 流动性瞬间消失 (千股跌停成为日常)</li>
+</ul>
+<p lang="en">2014 H2–2015 mid: CSI 300 +130% (2,300 → 5,300). Then crash to 2,800. Reflexivity + herd + overconfidence: policy "national bull" signal → retail entry → leveraged buying → price up → more leverage. June regulator's off‑market financing crackdown → forced liquidations → spiral down.</p>
+</div>
+
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">2020-2021 "茅指数 / 宁组合" 抱团</span><span lang="en">2020–21 "Moutai/CATL" herd</span></span></div>
+<p lang="zh">公募基金集中持仓茅台、宁德、海康、迈瑞、爱尔眼科等"白马股", 抱团推高估值. 茅台 P/E 从 30 升至 60+, 宁德 P/E 一度 200+. 2022 起回归, 这些股票最大回撤 40-60%.</p>
+<p lang="en">2020–21 mutual funds concentrated in "white horse" stocks (Moutai, CATL, Hikvision, Mindray, Aier). Moutai P/E 30→60+; CATL briefly 200+. Reverted 2022+, max drawdowns 40–60%.</p>
+<p lang="zh"><strong>行为解释</strong>: 羊群 (基金互相模仿避免业绩排名落后) + 可得性偏差 (新能源 / 消费升级故事广泛传播) + 反身性 (高估值吸引更多买盘 → 估值更高 → 故事更动人).</p>
+<p lang="en">Bias: herding (fund managers avoid ranking risk) + availability (EV / consumption upgrade stories everywhere) + reflexivity.</p>
+</div></section>
+
+<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<ol class="quiz quiz-list">
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> A 股散户"亏损套牢不卖"的行为, 用哪个偏差最好解释? 与"盈利就跑"的关联?</span><span lang="en"><strong>Q1.</strong> A‑share retail "hold the loss, sell the gain" — which bias best explains?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>处置效应 + 损失厌恶 + 锚定</strong>:</p>
+<ul lang="zh"><li><strong>损失厌恶</strong>: 卖出实现亏损会触发 2 倍的痛苦感 (vs 同等数额收益快感). 心理上避免</li><li><strong>锚定</strong>: 锚定买入价, 觉得"等回本就卖". 但市场不知道你的成本, 价格按未来基本面而非历史成本</li><li><strong>处置效应</strong>: Shefrin-Statman 把这两者合成"过早卖盈利, 太久持亏损"的实证模式. 中国散户实证调查显示这一倾向显著</li></ul>
+<p lang="zh"><strong>纠正方法</strong>: 设定<em>止损规则</em> (例如 −15% 自动卖); 看的是<em>当前基本面与价格的对比</em>而非历史买入价; 把每只股票当成"今天才买进"来评估</li>
+<p lang="en">Loss aversion + anchoring + disposition effect. Pain of realized loss ~2× joy of gain → avoid; anchor to entry price → "wait for breakeven" but market doesn't know your basis. Fix: stop‑loss rules; evaluate at current price as if fresh purchase.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 2021 茅指数从 P/E 60 跌回 30 这种"均值回归"用反身性如何解释? 与 EMH 兼容吗?</span><span lang="en"><strong>Q2.</strong> 2021 Moutai P/E 60 → 30 reversion — explain via reflexivity. Compatible with EMH?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>反身性视角</strong>: P/E 60 时, 高估值<em>吸引</em>更多基金买入 → 估值更高 → 故事更动人 → 卖方继续推荐 → 自我强化. 但基本面没那么快增长, 总有一天必须回归. 触发点可以是<em>外部</em>(政策、利率、流动性) 或<em>内部</em>(业绩低预期). 一旦反转, 同样的反身性<em>反向</em>运行 — 跌得更快.</p>
+<p lang="zh"><strong>与 EMH 兼容性</strong>: 短期 (1-3 年) 显著不兼容 — 价格远偏离基本面. 长期 (5+ 年) 兼容 — 回归均值发生. EMH 不是"永远正确", 而是"长期回归". Damodaran 说"市场长期是机器, 短期是民意调查".</p>
+<p lang="en">Reflexivity: high P/E attracts buying → higher P/E → more stories. Fundamentals can't keep up → reversion triggered by external (rates, policy) or internal (earnings miss) shock. Same reflexivity runs reverse. EMH compatibility: incompatible short‑run (1–3y), compatible long‑run (5y+). Damodaran: "market is a machine long‑run, a polling station short‑run."</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="03-emh.html"><span class="dir">← Prev</span><span class="title">03 · EMH</span></a><a class="next" href="05-dcf.html"><span class="dir">Next →</span><span class="title">05 · DCF</span></a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>

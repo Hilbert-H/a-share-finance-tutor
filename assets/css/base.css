@@ -1,0 +1,228 @@
+/* ===========================================================================
+   base.css — Reset + base typography
+   =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, figure, blockquote {
+  margin: 0; padding: 0;
+}
+
+html {
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topbar-h) + 1rem);
+}
+
+body {
+  background: var(--paper);
+  background-image:
+    /* 极轻纸纹: 复合两层 SVG noise */
+    radial-gradient(circle at 0 0, rgba(0,0,0,0.012) 0 1px, transparent 1px),
+    radial-gradient(circle at 12px 18px, rgba(0,0,0,0.012) 0 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  min-height: 100vh;
+}
+
+::selection { background: var(--selection); color: var(--ink); }
+
+/* ---------------- Headings ---------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: var(--lh-tight);
+  font-weight: 500;
+}
+h1 {
+  font-size: var(--fs-h1);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 500;
+}
+h2 {
+  font-size: var(--fs-h2);
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--rule);
+}
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+h4 {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
+}
+
+/* small-caps section label */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-tiny);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: inline-block;
+}
+
+/* ---------------- Body text ---------------- */
+p, ul, ol, dl, blockquote, figure, pre, table {
+  margin-top: var(--space-4);
+}
+p:first-child, ul:first-child, ol:first-child { margin-top: 0; }
+
+p { max-width: var(--measure); }
+
+a {
+  color: var(--accent-2);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--accent-2-hov); }
+
+strong, b { font-weight: 700; color: var(--ink); }
+em, i { font-style: italic; }
+
+ul, ol { padding-left: 1.4em; max-width: var(--measure); }
+li { margin-top: 0.3em; }
+li::marker { color: var(--ink-faint); }
+
+dl { display: grid; grid-template-columns: minmax(8ch, 14ch) 1fr; gap: 0.4em 1.2em; }
+dt { font-weight: 700; color: var(--ink-soft); }
+dd { margin: 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.2em 0 0.2em 1.2em;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: rgba(60, 50, 30, 0.06);
+  padding: 0.08em 0.32em;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+}
+
+pre {
+  font-family: var(--font-mono);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--code-edge);
+  border-radius: var(--r-md);
+  padding: var(--space-4) var(--space-5);
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+pre code {
+  background: none; padding: 0; color: inherit; font-size: inherit;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  margin: var(--space-6) 0;
+}
+
+/* ---------------- Tables ---------------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+thead th {
+  font-family: var(--font-sans);
+  font-size: var(--fs-tiny);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5em 0.8em;
+  border-bottom: 1.5px solid var(--ink-faint);
+}
+tbody td {
+  padding: 0.5em 0.8em;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: 1px solid var(--rule); }
+td.num, th.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------------- Forms (used by chat) ---------------- */
+button, input, textarea, select {
+  font: inherit; color: inherit;
+}
+button { cursor: pointer; background: none; border: 0; }
+
+/* ---------------- KaTeX overrides ---------------- */
+/* KaTeX defaults to font-size: 1.21em via its `font:` shorthand on .katex.
+   We force math to body size everywhere — !important is needed because
+   the shorthand has odd cascade interactions with longhand font-size. */
+.katex,
+.katex-display,
+.katex-display > .katex {
+  font-size: 1em !important;
+  line-height: 1.25 !important;
+}
+.katex-display {
+  margin: var(--space-3) 0 !important;
+  padding: 0 !important;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+/* Subtitle inherits 1.35rem display serif — dial math down so it doesn't dominate */
+.lesson-subtitle .katex { font-size: 0.78em !important; }
+/* Headings render math at heading size by default, which still feels heavy — pull back */
+h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; font-style: normal; }
+/* Quiz items use 0.95rem body */
+.quiz-q .katex, .quiz-a-inner .katex { font-size: 0.95em !important; }
+/* Tighter spacing inside callouts and .eq blocks */
+.callout .katex-display { margin: var(--space-2) 0 !important; }
+
+/* ---------------- Bilingual visibility ---------------- */
+/* Default hides English; toggled via [data-lang] on html */
+html[data-lang="zh"] [lang="en"]:not([data-bilingual]) { display: none; }
+html[data-lang="en"] [lang="zh"]:not([data-bilingual]) { display: none; }
+/* Inline spans (use <i-zh> like wrapper class for inline phrasing) */
+html[data-lang="zh"] span[lang="en"]:not([data-bilingual]) { display: none; }
+html[data-lang="en"] span[lang="zh"]:not([data-bilingual]) { display: none; }
+
+/* ---------------- Utility ---------------- */
+.center { text-align: center; }
+.muted { color: var(--ink-soft); }
+.faint { color: var(--ink-faint); }
+.mono { font-family: var(--font-mono); }
+.tabular { font-variant-numeric: tabular-nums; }
+.measure { max-width: var(--measure); }
+.no-wrap { white-space: nowrap; }
+.divider {
+  height: 1px; background: var(--rule); margin: var(--space-6) 0;
+}
+.divider-thick {
+  height: 0; border-top: 3px double var(--rule); margin: var(--space-6) 0;
+}

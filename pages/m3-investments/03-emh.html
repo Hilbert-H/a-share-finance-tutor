@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
+<title>03 · 有效市场假说 EMH</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
+</head><body>
+<div class="app">
+<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+<aside class="nav"></aside>
+<main class="main"><article class="lesson">
+
+<div class="lesson-meta"><span class="crumb">Module III · 03</span></div>
+<h1><span lang="zh">有效市场假说 EMH</span><span lang="en">Efficient Market Hypothesis</span></h1>
+<p class="lesson-subtitle"><span lang="zh">Fama (1970): "市场价格瞬间反映所有可得信息". 强 / 半强 / 弱三种形式. 2013 诺奖<em>同时</em>颁给 Fama 与 Shiller — 学界承认 EMH 既<em>近似为真</em>又<em>系统性失效</em>。本章是理解 A 股短期波动与长期回归的关键。</span><span lang="en">Fama (1970): prices reflect all available information instantly. Three forms: strong / semi‑strong / weak. 2013 Nobel jointly to Fama and Shiller — academia acknowledges EMH is both approximately true and systematically fails.</span></p>
+
+<section class="objectives"><span class="section-label">Objectives</span><ul>
+<li lang="zh">区分弱 / 半强 / 强三种 EMH 形式</li>
+<li lang="zh">理解 EMH 与"市场风险溢价"的逻辑关系</li>
+<li lang="zh">识别 A 股 EMH 系统性失效的领域 (壳价值、政策驱动、散户主导板块)</li>
+<li lang="en">Distinguish weak/semi‑strong/strong; relate to risk premium; identify A‑share inefficiencies</li>
+</ul></section>
+
+<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义</span><span lang="en">Definitions</span></h2>
+<table><thead><tr><th>Form</th><th><span lang="zh">信息集</span><span lang="en">Info set</span></th><th><span lang="zh">含义</span><span lang="en">Meaning</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">弱</span><span lang="en">Weak</span></td><td><span lang="zh">历史价格</span><span lang="en">Past prices</span></td><td><span lang="zh">技术分析无效</span><span lang="en">Technical analysis useless</span></td></tr>
+<tr><td><span lang="zh">半强</span><span lang="en">Semi‑strong</span></td><td><span lang="zh">所有公开信息</span><span lang="en">All public info</span></td><td><span lang="zh">基本面分析也无效</span><span lang="en">Fundamental analysis useless</span></td></tr>
+<tr><td><span lang="zh">强</span><span lang="en">Strong</span></td><td><span lang="zh">所有信息含内幕</span><span lang="en">All info incl insider</span></td><td><span lang="zh">内幕交易也无超额</span><span lang="en">Even insiders fail</span></td></tr>
+</tbody></table>
+
+<p lang="zh"><strong>实证结论</strong>:</p>
+<ul lang="zh">
+<li>弱形式: 大部分发达市场<em>近似成立</em>. 但动量效应 (3-12 月) 与短期反转 (1 月内) 是稳健异象</li>
+<li>半强形式: <em>部分成立</em>. 财报公告后存在<em>盈余漂移</em>(PEAD, post-earnings announcement drift) — 业绩超预期股票公告后 1-3 个月持续上涨</li>
+<li>强形式: <em>不成立</em>. 大量实证显示内幕交易能稳定获取超额收益</li>
+</ul>
+<p lang="en">Weak ≈ true with momentum (3–12m) + short‑term reversal anomalies. Semi‑strong partially true; PEAD persists. Strong false; insider trading earns alpha.</p>
+</section>
+
+<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑share</span></h2>
+<div class="case"><div class="case-head"><span class="company"><span lang="zh">A 股 EMH 失效的几个领域</span><span lang="en">A‑share EMH failure pockets</span></span></div>
+<ol lang="zh">
+<li><strong>壳价值</strong>: 2015 前 ST 公司有显著"壳价值溢价" (借壳上市预期). 净资产为负的公司仍能维持 5-10 亿市值. 2018 退市新规后弱化, 但仍部分残留</li>
+<li><strong>盈余漂移</strong>: 业绩预增公告后 3-6 个月持续超额. 量化基金的"盈余惊喜"策略长期有效</li>
+<li><strong>政策驱动</strong>: 新基建、双碳、半导体国产化等政策公告后, 相关行业短期暴涨 — 市场过度反应 + 长期回归</li>
+<li><strong>散户驱动板块</strong>: 题材股 / 小盘股流动性溢价异常, 不能用基本面解释</li>
+<li><strong>打新</strong>: A 股新股长期上市首日大涨 → "中签是赚的"成为系统性回报来源, 直到 2019 注册制改革后弱化</li>
+</ol>
+<p lang="en">A‑share inefficiency pockets: (1) shell value pre‑2018 reform; (2) post‑earnings drift (3–6m); (3) policy‑driven sectors (overreact + revert); (4) retail‑driven small caps / story stocks; (5) IPO subscription returns (weakening post‑2019 registration reform).</p>
+</div></section>
+
+<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<ol class="quiz quiz-list">
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 半强 EMH 说"已公开信息已反映在价格". 但 A 股年报披露后量化策略仍能持续获利. 矛盾吗?</span><span lang="en"><strong>Q1.</strong> Semi‑strong says public info reflected. Quants still profit on annual reports — contradiction?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">不矛盾, 是<em>部分失效</em>. 三种调和:</p>
+<ul lang="zh"><li><strong>处理速度</strong>: 半强假设信息瞬间反映. 实际散户处理速度慢, 量化基金高频处理 → 短期套利窗口</li><li><strong>分析深度</strong>: 同样的年报, 不同分析师解读不同, 公开信息≠理解</li><li><strong>风险溢价 (Fama 派的回应)</strong>: 量化获得的不是 alpha, 而是承担额外风险 (流动性、动量、价值因子) 的补偿. 这与 Fama-French 一致</li></ul>
+<p lang="en">Not a contradiction: (1) processing speed differential (retail slow, quant fast); (2) interpretation depth; (3) Fama's response: returns are risk premia, not alpha. Consistent with FF.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> Shiller 1981 实证显示股价波动远超基本面波动. 用这个论证 EMH 错误。Fama 派如何反驳?</span><span lang="en"><strong>Q2.</strong> Shiller 1981: prices way more volatile than fundamentals. Argument vs EMH? Fama's counter?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>Shiller</strong>: 用 DDM 计算"理性"股价应有的波动率, 实际市场波动远大于此 → 价格非完全反映基本面 → EMH 失败. 这是"excess volatility puzzle"。</p>
+<p lang="zh"><strong>Fama 反驳</strong>: (1) 折现率本身波动 (风险溢价时变); (2) 永续增长率也波动; (3) 这些波动综合放大股价波动远超未来现金流的波动. 即"EMH 在<em>时变贴现率</em>下与高波动相容". 数学上是"$dP/P$ 等于 $d(\text{DCF})/P$, 其中 DCF 包含未来贴现率, 而贴现率本身可剧烈变动"。</p>
+<p lang="zh">学界至今没有定论. 但实务结论: 短期看 Shiller (情绪驱动), 长期看 Fama (回归基本面)。</p>
+<p lang="en">Shiller: prices much more volatile than fundamental DDM predicts. Fama: time‑varying discount rates can rationalize the volatility. Practical: Shiller short‑run, Fama long‑run.</p>
+</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="02-capm-apt-ff.html"><span class="dir">← Prev</span><span class="title">02 · CAPM/APT/FF</span></a><a class="next" href="04-behavioral.html"><span class="dir">Next →</span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a></nav></div>
+
+</article></main><aside class="toc"></aside></div>
+<button class="chat-fab">A?</button>
+<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+</body></html>
