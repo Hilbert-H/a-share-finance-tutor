@@ -7,16 +7,17 @@ index.html                                首页 / 学习地图
 
 pages/m1-accounting/                      Module I — 会计学
   00-overview.html                          模块导览 + 思维模型 + 专家分歧
-  01-equation.html                          会计恒等式 & 复式记账
-  02-three-statements.html                  三大报表结构与勾稽
-  03-principles.html                        accrual / matching / 谨慎 / 实质重于形式
-  04-revenue.html                           收入确认 CAS 14 / IFRS 15 五步法
-  05-assets.html                            资产计量: 公允/历史/摊余, 流动 vs 非流动
-  06-liab-equity.html                       负债 vs 权益 (永续债/优先股等灰色)
-  07-consolidation.html                    合并报表 & 长投权益法/成本法
-  08-cashflow.html                          现金流量表深度: 间接法构造
-  09-cas-vs-ifrs.html                       CAS / IFRS / US GAAP 关键差异
-  10-notes-events.html                      附注、关联交易、或有事项、期后事项
+  01-primer.html                            财报的五个原子 (零基础起点: 资产/负债/权益/收入/费用 + 借贷)
+  02-equation.html                          会计恒等式 & 复式记账
+  03-three-statements.html                  三大报表结构与勾稽
+  04-principles.html                        accrual / matching / 谨慎 / 实质重于形式
+  05-revenue.html                           收入确认 CAS 14 / IFRS 15 五步法
+  06-assets.html                            资产计量: 公允/历史/摊余, 流动 vs 非流动
+  07-liab-equity.html                       负债 vs 权益 (永续债/优先股等灰色)
+  08-consolidation.html                     合并报表 & 长投权益法/成本法
+  09-cashflow.html                          现金流量表深度: 间接法构造
+  10-cas-vs-ifrs.html                       CAS / IFRS / US GAAP 关键差异
+  11-notes-events.html                      附注、关联交易、或有事项、期后事项
 
 pages/m2-corp-finance/                    Module II — 公司财务
   00-overview.html                          模块导览 + 思维模型 + 专家分歧
@@ -126,15 +127,15 @@ H1: Module I — 会计学 / Accounting
 ## 章节依赖图
 
 ```
-M1 必学序: 01 → 02 → 03 → 08 → (04, 05, 06, 07 并行) → 09 → 10
+M1 必学序: 01 (五原子, 零基础起点) → 02 → 03 → 04 → 09 → (05, 06, 07, 08 并行) → 10 → 11
 M2 必学序: 01 → 02 → 03 → 04 → (05, 06, 07) → 08 → 09 → 10
 M3 必学序: 01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09
 
 跨模块依赖:
   M2.01 (时间价值) → M3.05 (DCF)
-  M1.02 (三表勾稽) → M2.08 (DuPont) → M3.08 (财报应用)
-  M1.10 (附注) → M2.10 (造假识别) → M3.09 (公告解读)
-  M1.04 (收入确认) → M2.10 (造假识别 - Beneish DSRI)
+  M1.03 (三表勾稽) → M2.08 (DuPont) → M3.08 (财报应用)
+  M1.11 (附注) → M2.10 (造假识别) → M3.09 (公告解读)
+  M1.05 (收入确认) → M2.10 (造假识别 - Beneish DSRI)
 ```
 
 ## 交互细节

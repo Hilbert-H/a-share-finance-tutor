@@ -26,12 +26,12 @@ API Key 来源：<https://console.anthropic.com/settings/keys>
 - [x] CSS / JS 骨架，bilingual + KaTeX + chat + 进度跟踪
 - [x] 首页
 - [x] Module I 导览
-- [x] Module I Ch.01 会计恒等式与复式记账（含三层 + 5 道检验题）
-- [ ] Module I Ch.02 – 10
-- [ ] Module II 全部
-- [ ] Module III 全部
-- [ ] A 股特化 5 章
-- [ ] Glossary / References
+- [x] Module I 全 11 章 (Ch.01 五原子 / Ch.02 恒等式 / 三表勾稽 / 原则 / 收入 / 资产 / 负债权益 / 合并 / 现金流 / 准则 / 附注)
+- [x] Module II 公司财务 全 11 章
+- [x] Module III 证券投资学 全 10 章 (深度较浅, 待加强)
+- [x] A 股特化 5 章
+- [x] Glossary / References / About / Progress
+- [ ] Module III 深度提升 (每章扩展到 350+ 行)
 
 ## 目录结构
 

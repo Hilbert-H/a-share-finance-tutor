@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <title>01 · 财报的五个原子 — Vocabulary Primer</title>
+  <meta name="keywords" content="vocabulary primer, 资产, 负债, 所有者权益, 收入, 费用, 利润, 借贷, T 字账户, balance sheet items, A-share zero-base">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../../assets/css/tokens.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/base.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/layout.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/components.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/chat.css?v=8">
+  <link rel="stylesheet" href="../../assets/css/print.css?v=8">
+  <style>
+    body .katex, body .katex *, body .katex-display, body .katex-display * {
+      font-size: 1em !important; line-height: 1.25 !important;
+    }
+    body .katex sup, body .katex sub { font-size: 0.75em !important; }
+    body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+    h1 .katex, h2 .katex, h3 .katex { font-size: 0.85em !important; }
+    .lesson-subtitle .katex { font-size: 0.78em !important; }
+    .eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+    .eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+    .eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+    /* T 字表 — 本章特有 */
+    .t-account {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 360px;
+      margin: 1rem auto;
+      border: 1.5px solid #1A1814;
+      font-family: 'JetBrains Mono', 'Noto Serif SC', monospace;
+      font-size: 0.95rem;
+    }
+    .t-account-name {
+      grid-column: 1 / 3;
+      text-align: center;
+      padding: 0.5rem;
+      background: #EFE8D8;
+      border-bottom: 1px solid #1A1814;
+      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .t-account .dr-head, .t-account .cr-head {
+      padding: 0.4rem 0.6rem;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8A8378;
+      background: #F7F2E8;
+      border-bottom: 1px dashed #C9BFA8;
+    }
+    .t-account .dr-head { border-right: 1px solid #1A1814; }
+    .t-account .dr-col, .t-account .cr-col {
+      padding: 0.5rem 0.8rem;
+      min-height: 4rem;
+    }
+    .t-account .dr-col { border-right: 1px solid #1A1814; }
+    .t-account .row { display: block; padding: 0.15rem 0; }
+    .t-account .row.gain { color: #2C6E2C; }
+    .t-account .row.loss { color: #8B2C2C; }
+    /* category grids */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) 2fr 2.5fr;
+      gap: 0.5rem 1.2rem;
+      margin: 0.8rem 0 1.4rem;
+      font-size: 0.92rem;
+      border-top: 1px solid #C9BFA8;
+      padding-top: 0.6rem;
+    }
+    .cat-grid > div { padding: 0.35rem 0; border-bottom: 1px dashed #E6DCC4; }
+    .cat-grid > div:nth-last-child(-n+3) { border-bottom: none; }
+    .cat-grid .h { font-family: 'Inter Tight', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8378; }
+    .cat-grid strong { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; font-weight: 600; color: #1A1814; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html">
+      <span class="mark">A</span>
+      <span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span>
+    </a>
+    <div class="search">
+      <input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search">
+      <div class="search-results"></div>
+    </div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle">
+        <span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span>
+      </button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
+
+  <aside class="nav"></aside>
+
+  <main class="main">
+    <article class="lesson">
+
+      <div class="lesson-meta">
+        <span class="crumb">Module I · 01</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: 无 (零基础起点)</span><span lang="en">Prereq: none (zero-base start)</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.02 会计恒等式</span><span lang="en">Next: Ch.02 Identity</span></span>
+      </div>
+
+      <h1>
+        <span lang="zh">财报的五个原子</span>
+        <span lang="en">The Five Atoms of a Financial Statement</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">在用 $A=L+E$ 之前, 先把 $A$、$L$、$E$ 各自是什么搞清楚。再加上"收入"和"费用", 就是整本财报里所有数字的<em>来源</em>。本章不出公式 — 只建立读者对 5 个原子的物理直觉。</span>
+        <span lang="en">Before manipulating $A=L+E$, know what $A$, $L$, $E$ actually <em>are</em>. Add "revenue" and "expense" and you have every number a financial statement contains. No formulas this chapter — just the physical intuition behind the five atoms.</span>
+      </p>
+
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">不打开课本, 能用 30 秒讲清"资产"和"负债"分别是什么 — 不允许用术语解释术语。</li>
+          <li lang="zh">看到任意一行财报科目 (如"应收账款""合同负债""资本公积"), 能立刻判断它属于资产 / 负债 / 权益 / 收入 / 费用中的哪一类。</li>
+          <li lang="zh">理解"借 (Dr)"和"贷 (Cr)"只是<em>左/右位置标签</em>, 不是"扣"和"加"。</li>
+          <li lang="zh">能画出任意一个账户的 T 字图, 并标出哪边代表增加。</li>
+          <li lang="en">In 30 seconds, explain what "asset" and "liability" mean without using accounting jargon.</li>
+          <li lang="en">Given any line item from a real A‑share filing (AR, contract liability, capital reserve…), classify it as asset / liability / equity / revenue / expense.</li>
+          <li lang="en">Understand that "debit (Dr)" and "credit (Cr)" are <em>positional labels</em> (left/right column), not "subtract" and "add."</li>
+          <li lang="en">Draw a T‑account for any line item and mark which side is the "increase" side.</li>
+        </ul>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 1 — 面馆 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 从一家街边面馆出发</span>
+          <span class="en" lang="en"> · Starting from a street noodle stall</span>
+        </h2>
+
+        <p lang="zh">老王在街角开了家牛肉面馆。开张第一天, 我们站在他身后, 看他把店里的"东西"和"欠的钱"都列出来:</p>
+        <p lang="en">Old Wang opens a beef‑noodle stall on the corner. On day one we stand behind him while he lists everything the shop "has" and everything it "owes":</p>
+
+        <ul>
+          <li lang="zh">柜台里的现金: <strong>5,000 元</strong></li>
+          <li lang="zh">还没卖出去的面粉、牛肉: <strong>3,000 元</strong></li>
+          <li lang="zh">下面用的灶台、桌椅: <strong>20,000 元</strong></li>
+          <li lang="zh">老王上个月从供应商赊的面粉钱, 还没付: <strong>2,000 元</strong></li>
+          <li lang="zh">向银行借的开店款: <strong>10,000 元</strong></li>
+          <li lang="zh">老王自己投进来的本金: <strong>16,000 元</strong></li>
+
+          <li lang="en">Cash in the till: <strong>¥5,000</strong></li>
+          <li lang="en">Flour and beef not yet sold: <strong>¥3,000</strong></li>
+          <li lang="en">Stove, tables, chairs: <strong>¥20,000</strong></li>
+          <li lang="en">Owed to supplier (last month's flour, not yet paid): <strong>¥2,000</strong></li>
+          <li lang="en">Bank loan for opening capital: <strong>¥10,000</strong></li>
+          <li lang="en">Wang's own seed money: <strong>¥16,000</strong></li>
+        </ul>
+
+        <p lang="zh">现在把它们分成两堆:</p>
+        <p lang="en">Now sort them into two piles:</p>
+
+        <p lang="zh"><strong>第一堆 — 店里现在<em>有什么</em></strong> (现金 + 面粉牛肉 + 灶台桌椅) = 28,000 元。会计学叫它<strong>资产</strong> (Assets, $A$)。它回答的问题是: "如果今天晚上把店搬空, 能搬走 28,000 元的<em>东西</em>"。注意, "东西"不必是看得见的: 应收别人的钱、买的专利、付出去的押金 — 只要将来能<em>给我换回好处</em>, 都是资产。</p>
+        <p lang="en"><strong>Pile 1 — what the shop currently <em>has</em></strong> (cash + ingredients + equipment) = ¥28,000. Accounting calls this <strong>assets</strong> ($A$). It answers: "if I emptied this shop tonight, ¥28,000 worth of <em>stuff</em> would walk out." Stuff need not be tangible: a receivable, a patent, a security deposit — anything that will deliver future benefit is an asset.</p>
+
+        <p lang="zh"><strong>第二堆 — 这 28,000 元是<em>谁给的</em></strong>:</p>
+        <p lang="en"><strong>Pile 2 — who supplied that ¥28,000</strong>:</p>
+        <ul>
+          <li lang="zh">外人 (供应商 2,000 + 银行 10,000) = 12,000 元 → 会计学叫<strong>负债</strong> (Liabilities, $L$)。这堆钱迟早要还出去。</li>
+          <li lang="zh">老王自己 (16,000) → 会计学叫<strong>所有者权益</strong> (Equity, $E$) — 也叫"净资产"。它是"假如今天把所有外债还清后, 店里还剩多少东西归老王"的答案。</li>
+
+          <li lang="en">Outsiders (supplier ¥2,000 + bank ¥10,000) = ¥12,000 → <strong>liabilities</strong> ($L$). Must eventually be returned.</li>
+          <li lang="en">Wang himself (¥16,000) → <strong>owners' equity</strong> ($E$), also called "net assets." It's the answer to "after I pay every outside creditor, what's left for Wang?"</li>
+        </ul>
+
+        <p lang="zh">凑一下: $A = 28,000 = L (12,000) + E (16,000)$ ✓ 。这并不是个"公式" — 它就是<em>同一堆钱从两个角度看</em>。左边问"是什么形态", 右边问"是谁的钱"。下一章我们把这件事写成 $A = L + E$, 但在今天这一章, 你已经懂了它的<em>物理含义</em>。</p>
+        <p lang="en">Check: $A = ¥28{,}000 = L\,(¥12{,}000) + E\,(¥16{,}000)$ ✓. This isn't a "formula" — it's <em>the same money seen from two angles</em>. Left side asks "what form?", right side asks "whose money?" Next chapter we'll write $A = L + E$ — but you already grasp its <em>physical content</em>.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 720 220" role="img" aria-label="Noodle stall A=L+E illustration">
+            <defs>
+              <linearGradient id="prim-g" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#EFE8D8"/>
+                <stop offset="1" stop-color="#E6DCC4"/>
+              </linearGradient>
+            </defs>
+            <style>
+              .b { fill: url(#prim-g); stroke: #1A1814; stroke-width: 1.4; }
+              .lbl-cap { font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; fill: #8A8378; }
+              .lbl-big { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; font-size: 17px; font-weight: 600; fill: #1A1814; }
+              .item { font-family: 'JetBrains Mono', 'Noto Serif SC', monospace; font-size: 11px; fill: #4A4540; }
+              .sum { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; fill: #8B2C2C; }
+              .eqsign { font-family: 'Cormorant Garamond', serif; font-size: 36px; fill: #8B2C2C; font-style: italic; }
+              .plus { font-family: 'Cormorant Garamond', serif; font-size: 26px; fill: #8B2C2C; }
+            </style>
+            <text class="lbl-cap" x="140" y="20" text-anchor="middle">店里有什么 · 形态</text>
+            <text class="lbl-cap" x="500" y="20" text-anchor="middle">谁给的钱 · 索取权</text>
+            <rect class="b" x="30" y="32" width="220" height="170" rx="3"/>
+            <text class="lbl-big" x="140" y="58" text-anchor="middle">资产 Assets</text>
+            <text class="item" x="140" y="84" text-anchor="middle">现金 5,000</text>
+            <text class="item" x="140" y="104" text-anchor="middle">存货 (面+肉) 3,000</text>
+            <text class="item" x="140" y="124" text-anchor="middle">设备 (灶桌) 20,000</text>
+            <line x1="60" y1="148" x2="220" y2="148" stroke="#C9BFA8" stroke-width="1"/>
+            <text class="sum" x="140" y="170" text-anchor="middle">合计 28,000</text>
+            <text class="eqsign" x="295" y="125" text-anchor="middle">=</text>
+            <rect class="b" x="350" y="32" width="300" height="75" rx="3"/>
+            <text class="lbl-big" x="500" y="58" text-anchor="middle">负债 Liabilities</text>
+            <text class="item" x="500" y="82" text-anchor="middle">应付供应商 2,000  ·  银行借款 10,000</text>
+            <text class="sum" x="500" y="100" text-anchor="middle">合计 12,000</text>
+            <text class="plus" x="500" y="128" text-anchor="middle">+</text>
+            <rect class="b" x="350" y="135" width="300" height="67" rx="3"/>
+            <text class="lbl-big" x="500" y="160" text-anchor="middle">所有者权益 Equity</text>
+            <text class="item" x="500" y="180" text-anchor="middle">老王投入 16,000</text>
+            <text class="sum" x="500" y="198" text-anchor="middle">合计 16,000</text>
+          </svg>
+          <figcaption>
+            <span lang="zh">同一堆钱从两个视角看 — 一栋楼站在哪边看, 它都是同一栋楼。</span>
+            <span lang="en">The same money from two sides of the same building.</span>
+          </figcaption>
+        </figure>
+
+        <p lang="zh">现在我们把这家店运营一天:</p>
+        <p lang="en">Now run the shop for one day:</p>
+        <ol>
+          <li lang="zh">卖出了 30 碗面, 每碗 25 元 → 收到现金 <strong>750 元</strong>。这 750 元在会计学叫<strong>收入</strong> (Revenue) — 是"客户给的, 因为我提供了服务"。</li>
+          <li lang="zh">这 30 碗面消耗了 200 元的面粉牛肉 → 这 200 元在会计学叫<strong>费用</strong> (Expense, 严格说叫"主营业务成本") — 是"为了拿到这 750 元而消耗掉的资源"。</li>
+          <li lang="zh">收入 − 费用 = 750 − 200 = <strong>550 元 — 这就是<em>利润</em> (Net Income)</strong>。利润不属于"资产"或"负债", 它最后会进入<em>权益</em>里, 让老王那一栏从 16,000 涨到 16,550。</li>
+
+          <li lang="en">Sells 30 bowls at ¥25 each → ¥750 cash. This ¥750 is <strong>revenue</strong> — "what customers paid because I served them."</li>
+          <li lang="en">Used ¥200 of flour and beef → this is <strong>expense</strong> (specifically "cost of goods sold") — "the resource consumed to earn that ¥750."</li>
+          <li lang="en">Revenue − Expense = ¥750 − ¥200 = <strong>¥550. This is profit (net income).</strong> It belongs to neither A nor L; it flows into <em>equity</em>, raising Wang's column from ¥16,000 to ¥16,550.</li>
+        </ol>
+
+        <p lang="zh">这就是第 4 个和第 5 个原子: <strong>收入</strong>和<strong>费用</strong>。它们不是"时点"(某一天有多少), 而是"<em>期间</em>"(一天里发生了多少) — 跟前 3 个原子的"时点"性质不一样。一年下来所有期间的"收入 − 费用"汇总, 就是当年净利, 进入权益。</p>
+        <p lang="en">That's atoms 4 and 5: <strong>revenue</strong> and <strong>expense</strong>. Unlike the first three (which are <em>states at a point in time</em>), these are <em>flows over a period</em>. A year's worth of revenue − expense sums to net income, which then enters equity.</p>
+
+        <div class="callout">
+          <p lang="zh"><strong>记忆锚点</strong>: 5 个原子 = 3 个<em>名词</em> (资产 / 负债 / 权益, 时点状态) + 2 个<em>动词</em> (收入 / 费用, 期间变化)。所有 200 多个会计科目, 都是这 5 个原子的<em>细化分类</em>。下面我们就把它们一个个剖开。</p>
+          <p lang="en"><strong>Memory anchor:</strong> 5 atoms = 3 <em>state nouns</em> (assets / liabilities / equity, snapshots) + 2 <em>flow verbs</em> (revenue / expense, period changes). The 200+ accounts in any A‑share filing are just refinements of these five.</p>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 2 — 把 5 个原子拆细 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">把 5 个原子拆成 A 股财报里的真实科目</span>
+          <span lang="en">Refining the five atoms into actual A‑share line items</span>
+        </h2>
+
+        <p lang="zh">下面 5 张表是<em>看任何一份 A 股年报都会反复遇到的科目</em>。先不必死记, 看完后你应该能"指认"它们的归属。</p>
+        <p lang="en">The five tables below cover the line items you'll meet in <em>every</em> A‑share filing. Don't memorize — just be able to identify which atom each belongs to.</p>
+
+        <h3 lang="zh">① 资产 (Assets) — 公司"现在持有"的所有形态</h3>
+        <h3 lang="en">① Assets — every form value currently takes inside the firm</h3>
+
+        <div class="callout callout--def">
+          <p lang="zh"><strong>定义 (CAS 基本准则 §20)</strong>: 资产是企业过去交易或事项形成的、由企业拥有或控制的、预期会给企业带来经济利益的资源。三要素: <em>过去发生</em> + <em>当下控制</em> + <em>未来流入经济利益</em>。三者缺一不是资产。</p>
+          <p lang="en"><strong>Definition (CAS Basic Standard §20):</strong> An asset is a resource controlled by the firm as a result of past events, from which future economic benefits are expected to flow. Three tests: past event + current control + probable future benefit. Missing any one disqualifies it.</p>
+        </div>
+
+        <p lang="zh">A 股资产负债表上, 资产按<em>变现速度</em>分两栏: 流动资产 (一年内变现) 和非流动资产 (一年以上才能变现)。</p>
+        <p lang="en">On A‑share balance sheets, assets are split by liquidity: current (convertible to cash within 1 year) and non‑current (longer).</p>
+
+        <div class="cat-grid">
+          <div class="h">流动资产 / Current</div>
+          <div class="h">含义 / Meaning</div>
+          <div class="h">在面馆类比中 · 真实公司例</div>
+
+          <div><strong>货币资金</strong><br>Cash &amp; equiv.</div>
+          <div lang="zh">现金 + 活期 + 三个月内到期定期 + 备付金。流动性最高。</div>
+          <div lang="zh">面馆柜台 5,000 / 茅台 2023 末 ~¥2,000 亿货币资金</div>
+
+          <div><strong>交易性金融资产</strong><br>FVTPL</div>
+          <div lang="zh">短期持有、按公允价值计量、价值变动直接进当期损益的金融工具。公募基金 / 股票 / 衍生品。</div>
+          <div lang="zh">无对应 / 复星、平安等金融控股公司大量持有</div>
+
+          <div><strong>应收账款</strong><br>AR (trade receivables)</div>
+          <div lang="zh">已发货已确认收入但<em>还没收到钱</em>的客户欠款。"赊销"产生的资产。</div>
+          <div lang="zh">老王给老主顾的赊账 / 比亚迪应收车企客户</div>
+
+          <div><strong>应收票据</strong><br>Notes receivable</div>
+          <div lang="zh">客户给的银行承兑汇票 / 商业承兑汇票, 到期可向银行兑付。本质是"有银行担保的应收账款"。</div>
+          <div lang="zh">无对应 / 制造业普遍 (上游集中度高)</div>
+
+          <div><strong>预付款项</strong><br>Prepayments</div>
+          <div lang="zh">提前付给供应商但货还没到的钱。是资产, 因为对方欠你"未来交货"的义务。</div>
+          <div lang="zh">老王预付下月面粉款 / 房企预付土地款</div>
+
+          <div><strong>存货</strong><br>Inventory</div>
+          <div lang="zh">原材料 + 在产品 + 产成品 + 周转材料。还没卖出的"未来收入的物理载体"。</div>
+          <div lang="zh">面粉 + 牛肉 3,000 / 茅台基酒库存数百亿(陈酿在罐里)</div>
+
+          <div><strong>合同资产</strong><br>Contract asset</div>
+          <div lang="zh">已履约 (干完活) 但收款权利依赖<em>除时间外的其他条件</em>。例: 建造合同里"工程进度款 70% 已完工但要等业主验收"。</div>
+          <div lang="zh">无对应 / 中国建筑、中国铁建</div>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">非流动资产 / Non‑current</div>
+          <div class="h">含义 / Meaning</div>
+          <div class="h">面馆类比 · 真实公司</div>
+
+          <div><strong>长期股权投资</strong><br>LT equity investment</div>
+          <div lang="zh">对子公司 (控制) / 合营企业 (共同控制) / 联营企业 (重大影响) 的股权投资。Ch.08 合并会展开。</div>
+          <div lang="zh">无对应 / 投资公司、集团母公司</div>
+
+          <div><strong>固定资产</strong><br>PPE (property, plant &amp; equipment)</div>
+          <div lang="zh">使用年限 &gt; 1 年的有形资产, 自用为主。逐年计提折旧。</div>
+          <div lang="zh">灶台 + 桌椅 20,000 / 京东方面板厂房 / 长江电力水电站</div>
+
+          <div><strong>在建工程</strong><br>CIP (construction in progress)</div>
+          <div lang="zh">还没建完的厂房 / 设备。建好后<em>转入</em>固定资产开始折旧。建造期间的利息可以资本化。</div>
+          <div lang="zh">无对应 / 半导体、化工厂周期长的项目</div>
+
+          <div><strong>无形资产</strong><br>Intangibles</div>
+          <div lang="zh">专利 + 软件 + 商标 + 土地使用权 + 特许经营权。逐年摊销 (除非寿命不确定)。</div>
+          <div lang="zh">无对应 / 药企专利、互联网公司软件</div>
+
+          <div><strong>开发支出</strong><br>Capitalized development</div>
+          <div lang="zh">研发的"开发阶段"满足条件可资本化, 累积在此, 项目完成后转入无形资产。"研究阶段"必须费用化。Ch.06 详述资本化 vs 费用化之争。</div>
+          <div lang="zh">无对应 / 高研发投入公司 — 这是 A 股做高利润的常用通道</div>
+
+          <div><strong>商誉</strong><br>Goodwill</div>
+          <div lang="zh">收购对价 − 被收购方可辨认净资产公允价值。"溢价买公司"形成的残差。不摊销, 每年减值测试。</div>
+          <div lang="zh">无对应 / 2014‑17 年大量影视、教育、医药并购形成商誉, 2018 年集中减值 (天神娱乐就是代表)</div>
+
+          <div><strong>递延所得税资产</strong><br>DTA</div>
+          <div lang="zh">现在多交了税、未来可少交税的部分 (例: 当期计提了减值, 税法不允许扣, 未来实际损失发生时才能扣)。</div>
+          <div lang="zh">无对应 / 银行、保险普遍较大</div>
+
+          <div><strong>使用权资产</strong><br>Right‑of‑use asset</div>
+          <div lang="zh">2019 年新租赁准则 (CAS 21): 长期租赁的"使用权"也是资产 — 同时确认一笔租赁负债。Ch.05 会展开。</div>
+          <div lang="zh">无对应 / 永辉、苏宁等大量门店租赁</div>
+
+          <div><strong>投资性房地产</strong><br>Investment property</div>
+          <div lang="zh">为<em>赚租金 / 增值</em>持有的房产, 不是自用。可选公允价值计量。</div>
+          <div lang="zh">无对应 / 万科持有的商业地产</div>
+        </div>
+
+        <h3 lang="zh">② 负债 (Liabilities) — 公司"未来必须给出去"的资源</h3>
+        <h3 lang="en">② Liabilities — what the firm must give up in the future</h3>
+
+        <div class="callout callout--def">
+          <p lang="zh"><strong>定义 (CAS §23)</strong>: 负债是企业过去的交易或事项形成的、预期会导致经济利益<em>流出</em>企业的<em>现时义务</em>。注意"现时义务" — 仅仅"可能将来要支付"还不够, 必须现在已经背上了义务。</p>
+          <p lang="en"><strong>Definition (CAS §23):</strong> A liability is a <em>present obligation</em> arising from past events whose settlement is expected to result in an outflow of resources. Note "present" — a mere "may have to pay in the future" doesn't qualify.</p>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">流动负债 / Current</div>
+          <div class="h">含义</div>
+          <div class="h">面馆 · 真实公司</div>
+
+          <div><strong>短期借款</strong><br>ST borrowings</div>
+          <div lang="zh">银行 / 非银行金融机构借的、到期 ≤ 1 年的有息债。</div>
+          <div lang="zh">老王从银行借 10,000 / 大量制造业公司</div>
+
+          <div><strong>应付账款</strong><br>AP (trade payables)</div>
+          <div lang="zh">已收货已确认成本但<em>没付钱</em>的对供应商的欠款。<em>无息</em>商业信用。</div>
+          <div lang="zh">老王欠面粉商 2,000 / 茅台对包装、运输商应付</div>
+
+          <div><strong>应付票据</strong><br>Notes payable</div>
+          <div lang="zh">开给供应商的银行承兑 / 商业承兑汇票。</div>
+          <div lang="zh">无对应 / 工程类、制造业普遍</div>
+
+          <div><strong>合同负债</strong><br>Contract liability</div>
+          <div lang="zh">客户已经付款但你<em>还没履约</em>。本质是"我欠客户一次未来的服务/商品"。预收账款的现代名字 (CAS 14 后)。</div>
+          <div lang="zh">老王收的下月预付餐券 / 茅台经销商打款 (核心指标!)</div>
+
+          <div><strong>应付职工薪酬</strong><br>Employee comp. payable</div>
+          <div lang="zh">已经发生 (员工已工作) 但没付的工资、社保、奖金。月底计提, 次月发放。</div>
+          <div lang="zh">无对应 / 任何雇员公司都有</div>
+
+          <div><strong>应交税费</strong><br>Taxes payable</div>
+          <div lang="zh">已计算但还没缴纳的增值税 / 所得税 / 消费税等。</div>
+          <div lang="zh">无对应 / 茅台应交消费税余额数百亿</div>
+
+          <div><strong>其他应付款</strong><br>Other payables</div>
+          <div lang="zh">不属于"应付账款"和"应付职工"的其他对外欠款 — 押金、关联方往来、暂收款等。<em>关联方占款</em>常藏在这里 (康美爆雷的口子之一)。</div>
+          <div lang="zh">无对应 / 必查的科目</div>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">非流动负债 / Non‑current</div>
+          <div class="h">含义</div>
+          <div class="h">真实公司</div>
+
+          <div><strong>长期借款</strong><br>LT borrowings</div>
+          <div lang="zh">到期 &gt; 1 年的有息债。基建、地产、重资产制造业的标配。</div>
+          <div lang="zh">中国建筑、保利发展</div>
+
+          <div><strong>应付债券</strong><br>Bonds payable</div>
+          <div lang="zh">公司发行的债券。包括普通公司债、可转债 (含权益成分)、永续债 (实质判断, M1 Ch.07)。</div>
+          <div lang="zh">绝大多数大型央企</div>
+
+          <div><strong>租赁负债</strong><br>Lease liability</div>
+          <div lang="zh">2019 新租赁准则后, 长期租赁同时确认"使用权资产"和这笔负债。</div>
+          <div lang="zh">连锁零售、餐饮</div>
+
+          <div><strong>预计负债</strong><br>Provisions</div>
+          <div lang="zh">很可能要支付、金额能可靠估计的<em>不确定</em>负债。例: 产品保修预提、未决诉讼预提、环保治理义务。</div>
+          <div lang="zh">汽车 (保修)、化工 (环保)</div>
+
+          <div><strong>递延所得税负债</strong><br>DTL</div>
+          <div lang="zh">现在少交了税、未来要补交的部分。与 DTA 镜像。</div>
+          <div lang="zh">公允价值变动产生的暂时性差异</div>
+        </div>
+
+        <h3 lang="zh">③ 所有者权益 (Equity) — 股东对剩余资产的索取权</h3>
+        <h3 lang="en">③ Equity — shareholders' residual claim</h3>
+
+        <div class="callout callout--def">
+          <p lang="zh"><strong>定义</strong>: 资产扣除负债后, 由企业所有者享有的剩余权益。$E = A - L$ — 这就是"净资产"。它不是某个具体科目, 是<em>残值</em>。</p>
+          <p lang="en"><strong>Definition:</strong> $E = A - L$ — the residual after liabilities are settled. Not a specific account but a <em>remainder</em>.</p>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">权益类科目</div>
+          <div class="h">含义</div>
+          <div class="h">真实公司</div>
+
+          <div><strong>实收资本 / 股本</strong><br>Share capital</div>
+          <div lang="zh">股东实际投入的注册资本 (上市公司即"股本", 等于股数 × 面值 1 元)。</div>
+          <div lang="zh">茅台股本 12.56 亿股 = 12.56 亿元</div>
+
+          <div><strong>资本公积</strong><br>Capital reserve</div>
+          <div lang="zh">投入资本中超过面值的部分 (股票发行溢价) + 接受其他资本性投入。"卖股票时收的钱超过 1 元面值的部分都进这里。"</div>
+          <div lang="zh">2001 年茅台 IPO 发行价 31.39 元/股, 超过面值 1 元的 30.39 元 × 7,150 万股进资本公积</div>
+
+          <div><strong>盈余公积</strong><br>Surplus reserve</div>
+          <div lang="zh">从历年净利按法定比例 (10%) 提取出来、不能分红的部分。"上市公司年净利 10% 强制存进来"。</div>
+          <div lang="zh">所有上市公司都有, 是"留给公司发展"的内部储备</div>
+
+          <div><strong>未分配利润</strong><br>Retained earnings</div>
+          <div lang="zh">历年净利累计 − 已分红 − 已提盈余公积 − 已转增股本。这是权益里<em>动得最频繁</em>的部分。</div>
+          <div lang="zh">茅台 2023 末 ~¥2,000 亿 (绝大多数权益在这里)</div>
+
+          <div><strong>库存股</strong><br>Treasury stock</div>
+          <div lang="zh">公司回购但<em>还没注销 / 没用于股权激励发出去</em>的自己的股票。账面上是权益的<em>减项</em>。</div>
+          <div lang="zh">美的、海尔、格力均有大额库存股</div>
+
+          <div><strong>其他综合收益</strong><br>OCI</div>
+          <div lang="zh">还<em>没实现</em>的公允价值变动 / 汇兑差额 (不进利润表, 直接进权益)。"账面浮盈/浮亏的暂存箱"。</div>
+          <div lang="zh">出海公司汇兑差额、长期股权投资的公允价值波动</div>
+
+          <div><strong>少数股东权益</strong><br>Minority interest</div>
+          <div lang="zh">合并报表里, 子公司中<em>不属于母公司</em>的那部分股东权益。Ch.08 合并展开。</div>
+          <div lang="zh">复星集团、海尔、美的等多元化集团</div>
+        </div>
+
+        <h3 lang="zh">④ 收入 (Revenue) — 已经"赚到"的钱 (期间概念)</h3>
+        <h3 lang="en">④ Revenue — what's been earned this period</h3>
+
+        <div class="callout callout--def">
+          <p lang="zh"><strong>定义</strong>: 企业在<em>日常活动</em>中形成的、会导致所有者权益增加的、与所有者投入资本无关的经济利益的<em>总流入</em>。关键: (1) 必须是日常活动 — 卖大楼一次性收入不是; (2) 必须导致权益增加; (3) 不是股东投钱进来。Ch.05 (收入确认五步法) 详述什么时候"算"赚到。</p>
+          <p lang="en"><strong>Definition:</strong> Gross inflow from <em>ordinary activities</em> that increases equity, excluding owner contributions. Key: (i) must be ordinary, (ii) must increase equity, (iii) not from owners injecting capital. Ch.05 develops the 5‑step model for <em>when</em> to recognize.</p>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">收入类科目</div>
+          <div class="h">含义</div>
+          <div class="h">例</div>
+
+          <div><strong>主营业务收入</strong></div>
+          <div lang="zh">公司核心业务的销售。占比应该 ≥ 80% 才算"专注主业"。</div>
+          <div lang="zh">茅台白酒销售 / 比亚迪汽车销售</div>
+
+          <div><strong>其他业务收入</strong></div>
+          <div lang="zh">非主业但经常发生的: 出租厂房、销售下脚料、技术服务等。</div>
+          <div lang="zh">制造业出租闲置厂房</div>
+
+          <div><strong>投资收益</strong></div>
+          <div lang="zh">长期股权投资 / 金融资产的分红、利息、处置利得。<em>不在</em>主营业务收入里, 单独列。</div>
+          <div lang="zh">控股型公司 (复星) 大量在此</div>
+
+          <div><strong>公允价值变动损益</strong></div>
+          <div lang="zh">交易性金融资产 / 投资性房地产 (公允价值模式) 当期未实现的公允价值变化。<em>纸面浮盈</em>。</div>
+          <div lang="zh">证券公司、保险公司主要利润源</div>
+
+          <div><strong>资产处置收益</strong></div>
+          <div lang="zh">卖固定资产 / 无形资产的利得或损失。一次性, 非经常。</div>
+          <div lang="zh">企业卖旧厂房</div>
+
+          <div><strong>营业外收入</strong></div>
+          <div lang="zh">与生产经营<em>无关</em>的偶发收入: 政府补助、罚没、捐赠收入。剔除后才是"经常性"利润。</div>
+          <div lang="zh">新能源补贴 (现在多数已纳入主业)、债务豁免</div>
+        </div>
+
+        <h3 lang="zh">⑤ 费用 (Expense) — 为了赚钱"花掉"的资源 (期间概念)</h3>
+        <h3 lang="en">⑤ Expense — resources consumed to earn revenue</h3>
+
+        <div class="callout callout--def">
+          <p lang="zh"><strong>定义</strong>: 企业在<em>日常活动</em>中发生的、会导致所有者权益减少的、与向所有者分配利润无关的经济利益的<em>总流出</em>。注意: <em>分红</em>不是费用 (它是分配利润, 不是为赚利润而花)。</p>
+          <p lang="en"><strong>Definition:</strong> Outflow that decreases equity in the course of ordinary activities, excluding distributions to owners. Dividends are <em>not</em> expenses — they distribute profit, they don't earn it.</p>
+        </div>
+
+        <div class="cat-grid">
+          <div class="h">费用类科目</div>
+          <div class="h">含义</div>
+          <div class="h">例</div>
+
+          <div><strong>营业成本</strong><br>COGS</div>
+          <div lang="zh">直接对应主营收入的成本 — 原材料 + 直接人工 + 制造费用。卖一件产品就配套确认一份。</div>
+          <div lang="zh">老王那 200 元 / 茅台基酒 + 包装成本</div>
+
+          <div><strong>税金及附加</strong></div>
+          <div lang="zh">消费税、城建税、教育费附加等 (不含增值税和所得税, 它们分别在"应交税费"和"所得税费用")。</div>
+          <div lang="zh">茅台消费税: 出厂价 × 20% + 0.5 元/500ml</div>
+
+          <div><strong>销售费用</strong></div>
+          <div lang="zh">为"卖出去"花的钱: 广告、销售人员工资、运输、售后。</div>
+          <div lang="zh">医药公司销售费用率 30%+ (推广)</div>
+
+          <div><strong>管理费用</strong></div>
+          <div lang="zh">非生产、非销售的总部职能开支: 管理层薪酬、行政办公、咨询审计费、折旧 (非生产用)。</div>
+          <div lang="zh">所有公司都有, 10%‑20% 营收较常见</div>
+
+          <div><strong>研发费用</strong></div>
+          <div lang="zh">研发的"研究阶段"全部费用化; "开发阶段"满足条件可资本化 (进"开发支出"资产)。</div>
+          <div lang="zh">华为 R&amp;D / 营收 &gt; 22%</div>
+
+          <div><strong>财务费用</strong></div>
+          <div lang="zh">利息支出 − 利息收入 + 汇兑损益 + 手续费。<em>资本化的利息不在这里</em> (进在建工程)。</div>
+          <div lang="zh">房地产、基建公司常占大比重</div>
+
+          <div><strong>资产减值损失 / 信用减值损失</strong></div>
+          <div lang="zh">存货跌价、固定资产减值、商誉减值、应收账款坏账等。是<em>非现金</em>费用。Ch.06 / Ch.11 详述。</div>
+          <div lang="zh">2018 年天神娱乐商誉减值 40 亿 → 当期巨亏</div>
+
+          <div><strong>所得税费用</strong></div>
+          <div lang="zh">利润表上的所得税 ≠ 实际现金交税。前者是按 accrual 计算的"应承担"; 后者是当期"已交"的。差额进 DTA / DTL。</div>
+          <div lang="zh">所有盈利公司都有, 通常 ~15‑25%</div>
+
+          <div><strong>营业外支出</strong></div>
+          <div lang="zh">与生产经营无关的偶发支出: 罚款、捐赠、非常损失。剔除后才是"经常性"成本。</div>
+          <div lang="zh">环保罚款、固定资产报废损失</div>
+        </div>
+
+        <p class="muted measure" lang="zh">
+          注: A 股 2018 年起新利润表格式把<strong>研发费用</strong>单独列出, 之前藏在"管理费用"里。读 2017 年以前的报表要小心格式变化。
+        </p>
+        <p class="muted measure" lang="en">
+          Note: A‑share income statements split out <strong>R&amp;D expense</strong> as a separate line since 2018; earlier filings buried it in admin expense. Watch for format shifts when reading pre‑2018 reports.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 3 — 借/贷 + 真实截图 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">借 / 贷不是"扣 / 加" — 它是 T 字表的左 / 右</span>
+          <span lang="en">Debit/Credit isn't "minus/plus" — it's left/right on the T</span>
+        </h2>
+
+        <p lang="zh">先说"借"和"贷"两个字的<em>词源陷阱</em>。中文的"借""贷"听起来像"借出""贷出", 但会计学里它们<em>跟借钱贷款一点关系都没有</em>。它们只是<strong>账户 T 字图左边和右边的两个位置标签</strong>。英文 debit (Dr) / credit (Cr) 也只是从拉丁文 <em>debere</em> / <em>credere</em> 来的<em>专业术语</em>, 不要去翻译它们的字面意思。</p>
+        <p lang="en">Word‑origin trap: "debit" and "credit" come from Latin <em>debere</em> / <em>credere</em> ("owe" / "trust"), but in accounting they are <em>positional labels</em> for the left and right columns of a T‑account. <em>Do not</em> read them as "subtract" / "add."</p>
+
+        <p lang="zh">对任意一个会计科目, 我们画一个 T 字:</p>
+        <p lang="en">For any account, draw a T:</p>
+
+        <div class="t-account">
+          <div class="t-account-name">货币资金 (一个资产类账户)</div>
+          <div class="dr-head">借 Dr (左)</div>
+          <div class="cr-head">贷 Cr (右)</div>
+          <div class="dr-col">
+            <span class="row gain">+ 收到客户付款 750</span>
+            <span class="row gain">+ 老王投资 16,000</span>
+            <span class="row gain">+ 银行借款入账 10,000</span>
+          </div>
+          <div class="cr-col">
+            <span class="row loss">− 买设备付出 20,000</span>
+            <span class="row loss">− 进货付现 3,000</span>
+            <span class="row loss">− 付供应商欠款 2,000</span>
+          </div>
+        </div>
+
+        <p lang="zh"><strong>关键</strong>: 这个 T 字上, "<em>借 (Dr) = 增加</em>", "<em>贷 (Cr) = 减少</em>"。这条规则<em>仅</em>对"资产类"账户成立。换成"负债"或"权益"账户, T 字方向就<em>翻转</em>:</p>
+        <p lang="en"><strong>The key:</strong> on this T, Dr = increase, Cr = decrease. This rule holds <em>only</em> for asset accounts. For liability or equity accounts, the rule <em>flips</em>:</p>
+
+        <div class="t-account">
+          <div class="t-account-name">短期借款 (一个负债类账户)</div>
+          <div class="dr-head">借 Dr (左)</div>
+          <div class="cr-head">贷 Cr (右)</div>
+          <div class="dr-col">
+            <span class="row loss">− 还本金 5,000</span>
+          </div>
+          <div class="cr-col">
+            <span class="row gain">+ 新借款 10,000</span>
+          </div>
+        </div>
+
+        <p lang="zh">注意: 借款<em>增加</em> 10,000 写在<strong>贷方 (Cr, 右)</strong>。还款<em>减少</em> 5,000 写在<strong>借方 (Dr, 左)</strong>。<em>跟资产相反</em>。</p>
+        <p lang="en">Borrowing <em>increases</em> liabilities — written on the Cr side. Repaying decreases — written on Dr. <em>Opposite of assets.</em></p>
+
+        <p lang="zh">为什么是相反的? 因为 $A = L + E$。资产在等式左边, 负债权益在右边。会计规则把"等式哪一边的<em>增加</em>"都标在 T 字的<em>外侧</em> (资产在等式左边 → 资产的增加在 T 字的左边 = 借方; 负债权益在等式右边 → 它们的增加在 T 字的右边 = 贷方)。看一眼下面这张总规则表, 这是会计学最重要的两件事之一 (另一件是 $A=L+E$ 本身):</p>
+        <p lang="en">Why flipped? Because $A = L + E$. Assets are on the equation's left; liabilities and equity on the right. The convention: <em>increases align with the side of the equation</em>. Asset increases go on the T's left (Dr); L/E increases go on the right (Cr).</p>
+
+        <div class="callout callout--principle">
+          <h4 lang="zh">五原子的借贷规则 (背下来, 终生有用)</h4>
+          <h4 lang="en">The five‑atom debit/credit rule (memorize once, use forever)</h4>
+          <table>
+            <thead>
+              <tr>
+                <th><span lang="zh">原子</span><span lang="en">Atom</span></th>
+                <th><span lang="zh">在 $A=L+E$ 中的位置</span><span lang="en">Position</span></th>
+                <th><span lang="zh">增加记在</span><span lang="en">Increase on</span></th>
+                <th><span lang="zh">减少记在</span><span lang="en">Decrease on</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span lang="zh">资产</span><span lang="en">Asset</span></td><td>$A$ (左)</td><td>Dr 借</td><td>Cr 贷</td></tr>
+              <tr><td><span lang="zh">负债</span><span lang="en">Liability</span></td><td>$L$ (右)</td><td>Cr 贷</td><td>Dr 借</td></tr>
+              <tr><td><span lang="zh">所有者权益</span><span lang="en">Equity</span></td><td>$E$ (右)</td><td>Cr 贷</td><td>Dr 借</td></tr>
+              <tr><td><span lang="zh">收入</span><span lang="en">Revenue</span></td><td><span lang="zh">最终增加 $E$</span><span lang="en">ultimately ↑ $E$</span></td><td>Cr 贷</td><td>Dr 借</td></tr>
+              <tr><td><span lang="zh">费用</span><span lang="en">Expense</span></td><td><span lang="zh">最终减少 $E$</span><span lang="en">ultimately ↓ $E$</span></td><td>Dr 借</td><td>Cr 贷</td></tr>
+            </tbody>
+          </table>
+          <p lang="zh">记忆口诀: "资产费用增在<em>左</em>(借), 负债权益收入增在<em>右</em>(贷)"。再多的科目都套这一条。</p>
+          <p lang="en">Mnemonic: assets &amp; expenses increase on the <em>left</em> (Dr); liabilities, equity &amp; revenue increase on the <em>right</em> (Cr). Every account fits this rule.</p>
+        </div>
+
+        <p lang="zh">最后, "<strong>复式记账</strong>"的含义就出现了: 任何一笔经济活动, 必须<em>同时</em>在至少两个账户上记 — 一边记借方, 另一边记贷方, 总金额相等。理由很简单 — $A=L+E$ 必须时刻成立。买一台 20,000 元的设备付现金: "固定资产"账户借方 +20,000 (资产增加, 记左), "货币资金"账户贷方 −20,000 (资产减少, 记右)。两个账户都在<em>资产</em>这一边, 一个增一个减 — 总 $A$ 不变, 等式仍立。下一章 Ch.02 就来正式建立 $A=L+E$ 和复式记账的代数推导。你已经具备了所有词汇基础。</p>
+        <p lang="en">Finally, <strong>double‑entry</strong>: every transaction touches at least two accounts — one Dr, one Cr, equal amounts. Reason: $A=L+E$ must hold every instant. Buy ¥20,000 of equipment in cash: PPE Dr +20,000 (asset up, left), Cash Cr −20,000 (asset down, right). Both on the asset side; one up, one down; $A$ unchanged. Next chapter builds $A = L + E$ formally — you now have the vocabulary.</p>
+
+        <h3 lang="zh">"在真实 A 股年报里 5 个原子长什么样" — 茅台 FY2023</h3>
+        <h3 lang="en">What the five atoms look like in a real A‑share filing — Moutai FY2023</h3>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600519</span>
+            <span class="company"><span lang="zh">贵州茅台 2023 年报关键科目</span><span lang="en">Kweichow Moutai FY2023 — key line items</span></span>
+            <span class="period"><span lang="zh">资产负债表 + 利润表</span><span lang="en">B/S + I/S</span></span>
+          </div>
+
+          <p lang="zh">下面这些都是茅台 2023 年报里的<em>真实科目名</em>。每一行都对应到刚才 5 个原子中的某一类:</p>
+          <p lang="en">Real line items from Moutai's FY2023 filing. Each maps to one of the five atoms:</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">科目</span><span lang="en">Line</span></th><th><span lang="zh">归属原子</span><span lang="en">Atom</span></th><th class="num"><span lang="zh">约 ¥亿</span><span lang="en">¥ bn</span></th><th><span lang="zh">这一行是什么</span><span lang="en">What it is</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">货币资金</span></td><td>资产</td><td class="num">1,944</td><td><span lang="zh">银行卡上的钱 + 短期理财</span><span lang="en">Cash + cash equiv.</span></td></tr>
+                <tr><td><span lang="zh">交易性金融资产</span></td><td>资产</td><td class="num">28</td><td><span lang="zh">买的基金 / 短期债券</span><span lang="en">Trading securities</span></td></tr>
+                <tr><td><span lang="zh">应收账款</span></td><td>资产</td><td class="num">0.04</td><td><span lang="zh">几乎没有 — 茅台是先收钱后发货</span><span lang="en">Near‑zero — Moutai pre‑collects</span></td></tr>
+                <tr><td><span lang="zh">存货</span></td><td>资产</td><td class="num">464</td><td><span lang="zh">基酒陈酿 + 包装在库</span><span lang="en">Aging baseliquor + packaging</span></td></tr>
+                <tr><td><span lang="zh">固定资产</span></td><td>资产</td><td class="num">198</td><td><span lang="zh">酒厂厂房 + 设备</span><span lang="en">Distillery PPE</span></td></tr>
+                <tr><td><span lang="zh">在建工程</span></td><td>资产</td><td class="num">26</td><td><span lang="zh">扩产项目 (酱香酒系列)</span><span lang="en">Capacity expansion CIP</span></td></tr>
+                <tr><td><strong><span lang="zh">资产总计</span></strong></td><td><strong>A</strong></td><td class="num"><strong>2,820</strong></td><td><span lang="zh">所有形态加总</span><span lang="en">All forms</span></td></tr>
+
+                <tr><td><span lang="zh">合同负债</span></td><td>负债</td><td class="num">141</td><td><span lang="zh">经销商打款但还没提货 — 茅台的"未来收入弹药"</span><span lang="en">Distributor prepayments — future revenue ammo</span></td></tr>
+                <tr><td><span lang="zh">应付职工薪酬</span></td><td>负债</td><td class="num">62</td><td><span lang="zh">已计提未发的工资奖金</span><span lang="en">Accrued comp</span></td></tr>
+                <tr><td><span lang="zh">应交税费</span></td><td>负债</td><td class="num">102</td><td><span lang="zh">应交消费税 + 增值税 + 所得税</span><span lang="en">Consumption tax + VAT + income tax payable</span></td></tr>
+                <tr><td><span lang="zh">其他流动负债</span></td><td>负债</td><td class="num">35</td><td><span lang="zh">含拟付股利等</span><span lang="en">Inc. dividends payable</span></td></tr>
+                <tr><td><strong><span lang="zh">负债合计</span></strong></td><td><strong>L</strong></td><td class="num"><strong>484</strong></td><td><span lang="zh">几乎没有有息债 — 这是茅台的特征</span><span lang="en">Almost zero interest‑bearing debt</span></td></tr>
+
+                <tr><td><span lang="zh">股本</span></td><td>权益</td><td class="num">13</td><td><span lang="zh">12.56 亿股 × 1 元面值</span><span lang="en">1.256 bn shares × ¥1 par</span></td></tr>
+                <tr><td><span lang="zh">资本公积</span></td><td>权益</td><td class="num">14</td><td><span lang="zh">2001 IPO 时溢价</span><span lang="en">2001 IPO premium</span></td></tr>
+                <tr><td><span lang="zh">盈余公积</span></td><td>权益</td><td class="num">13</td><td><span lang="zh">历年法定提取</span><span lang="en">Statutory reserve</span></td></tr>
+                <tr><td><span lang="zh">未分配利润</span></td><td>权益</td><td class="num">2,260</td><td><span lang="zh">23 年净利累计 − 分红 + ...</span><span lang="en">Cumulative retained earnings</span></td></tr>
+                <tr><td><span lang="zh">少数股东权益</span></td><td>权益</td><td class="num">36</td><td><span lang="zh">茅台集团财务公司等子公司中非母公司部分</span><span lang="en">Non‑controlling stake in subs</span></td></tr>
+                <tr><td><strong><span lang="zh">权益合计</span></strong></td><td><strong>E</strong></td><td class="num"><strong>2,336</strong></td><td><span lang="zh">$E = A - L = 2{,}820 - 484$ ✓</span><span lang="en">$E = A - L$ ✓</span></td></tr>
+
+                <tr><td><span lang="zh">营业收入</span></td><td>收入</td><td class="num">1,505</td><td><span lang="zh">茅台酒 + 系列酒 全年销售</span><span lang="en">Liquor sales</span></td></tr>
+                <tr><td><span lang="zh">营业成本</span></td><td>费用</td><td class="num">128</td><td><span lang="zh">毛利率 91.5% — 中国制造业天花板</span><span lang="en">91.5% gross margin — A‑share ceiling</span></td></tr>
+                <tr><td><span lang="zh">税金及附加</span></td><td>费用</td><td class="num">222</td><td><span lang="zh">消费税大头 (20% + 0.5/500ml)</span><span lang="en">Mostly excise tax</span></td></tr>
+                <tr><td><span lang="zh">销售费用</span></td><td>费用</td><td class="num">47</td><td><span lang="zh">营销 + 品牌</span><span lang="en">Marketing + brand</span></td></tr>
+                <tr><td><span lang="zh">管理费用</span></td><td>费用</td><td class="num">94</td><td><span lang="zh">总部 + 员工成本</span><span lang="en">HQ + employee</span></td></tr>
+                <tr><td><span lang="zh">研发费用</span></td><td>费用</td><td class="num">2</td><td><span lang="zh">微乎其微 — 工艺已成熟</span><span lang="en">Trivial — process mature</span></td></tr>
+                <tr><td><span lang="zh">所得税费用</span></td><td>费用</td><td class="num">261</td><td><span lang="zh">~25% 法定税率</span><span lang="en">~25% statutory</span></td></tr>
+                <tr><td><strong><span lang="zh">净利润</span></strong></td><td><strong><span lang="zh">利润</span></strong></td><td class="num"><strong>747</strong></td><td><span lang="zh">收入 − 全部费用 → 进入留存收益</span><span lang="en">Rev − all exp → Retained earnings</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>核对</strong>: $A = L + E$ → $2{,}820 = 484 + 2{,}336$ ✓ 。读完这张表, 你应该能回答: "茅台的资产中, 最大头是什么? 它的负债里有没有银行借款? 它有没有商誉? 它有研发吗?" 答案: 货币资金 (1,944, 占比 69%); 几乎没有有息债; 没有商誉 (茅台不靠并购); 研发费用极小。这就是"用 5 原子读懂一家公司"的<em>第一次</em>。</p>
+          <p lang="en"><strong>Check:</strong> $2{,}820 = 484 + 2{,}336$ ✓. After reading the table you should be able to answer: largest asset? interest‑bearing debt? goodwill? R&amp;D? Answers: cash (69% of assets); essentially none; none; trivial. Your first "read‑a‑company‑from‑the‑five‑atoms" exercise.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 600519 信息披露 →</span>
+            <span lang="en">Cninfo 600519 disclosure →</span>
+          </a>
+        </div>
+
+        <p class="muted measure" lang="zh">数据均为 2023 年合并报表近似整数, 实操请以年报披露值为准。</p>
+        <p class="muted measure" lang="en">Figures are FY2023 consolidated approximations; use exact annual report values in practice.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Mental models -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used</span></h2>
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">分类先于度量</span><span lang="en">Classify before measure</span></h4>
+          <p lang="zh">把任何报表项归到 5 个原子里的某一类, 是<em>读懂报表的第一步</em>。在分类正确之前讨论"高低""好坏"都没意义。</p>
+          <p lang="en">Classifying a line item into one of the five atoms must precede any "high vs low" or "good vs bad" judgement.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">时点 vs 期间</span><span lang="en">Stock vs flow</span></h4>
+          <p lang="zh">资产 / 负债 / 权益是<em>时点</em>状态 (像水池里此刻的水位), 收入 / 费用是<em>期间</em>流量 (像这一小时流入/流出多少水)。把两者混为一谈是初学者最大的错误。</p>
+          <p lang="en">A/L/E are <em>stocks</em> (water level now); Rev/Exp are <em>flows</em> (rate over the hour). Conflating them is the most common beginner error.</p>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="roman">iii</span>
+        <div>
+          <h4><span lang="zh">位置标签 vs 算术符号</span><span lang="en">Positional label vs arithmetic sign</span></h4>
+          <p lang="zh">"借"和"贷"不是加减号, 是 T 字表的左右位置。把它理解成位置, 余下所有规则都自然推出。</p>
+          <p lang="en">"Debit" and "credit" are not + and −. They are left and right on a T. Read them as positions and every rule follows.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- Quiz -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+      <p class="muted">
+        <span lang="zh">每道题考一个具体场景下"它属于哪类"的判断。先想清楚再展开答案。</span>
+        <span lang="en">Each question tests a specific "which atom is this" judgment. Think before unfolding.</span>
+      </p>
+
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 公司花 100 万买了一栋楼自用办公。这 100 万属于: (a) 费用 — 因为"花掉了 100 万"; (b) 资产; (c) 负债; (d) 权益减少。</span>
+            <span lang="en"><strong>Q1.</strong> A firm spends ¥1m on a building for its own use. Is this: (a) expense — "spent ¥1m"; (b) asset; (c) liability; (d) equity decrease?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>(b) 资产</strong>。"花了钱"和"产生费用"是两件事。花钱只是把价值的<em>形态</em>从"现金"换成了"楼" — 资产内部重排, 总 $A$ 不变, 不会进利润表。<em>未来</em>这栋楼提供办公服务的过程中, 才会通过<em>折旧</em>逐期把成本变成"管理费用" — 那时才是费用。</p>
+            <p lang="zh">这是初学者最容易犯的错: 把"现金支出 (cash outflow)" 和 "费用 (expense)"画等号。会计 accrual 制下这两件事独立。Ch.04 会展开。</p>
+            <p lang="en"><strong>(b) asset.</strong> "Spending cash" and "incurring expense" are different. The spend swaps one asset form (cash) for another (building) — internal rearrangement of $A$, total $A$ unchanged, nothing hits the P&amp;L. Over the building's useful life, <em>depreciation</em> gradually translates this cost into "admin expense" — that's when it becomes expense. Confusing cash outflow with expense is the #1 beginner trap (Ch.04 develops).</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 客户先给了 200 万订金, 货还没发。这 200 万对你的公司而言是: (a) 收入; (b) 资产; (c) 负债; (d) (a) 和 (b)。</span>
+            <span lang="en"><strong>Q2.</strong> A customer prepays ¥2m before the goods ship. To your company this ¥2m is: (a) revenue; (b) asset; (c) liability; (d) both (a) and (b).</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>(d) — (b) 是, 但 (a) 不是; 同时 (c) 也是</strong>。一笔交易在 5 原子里同时影响两个原子是常态:</p>
+            <ul lang="zh">
+              <li>收到 200 万现金 → "货币资金"<em>资产</em>+200 万 ✓ — 所以 (b) 对。</li>
+              <li>但你还没履约 (货没发), 这 200 万实质是<em>欠客户的</em>未来交货义务 → "合同负债"<em>负债</em>+200 万 ✓ — 所以 (c) 对。</li>
+              <li>(a) 不对 — 收入<em>未确认</em>, 因为履约义务还没满足 (Ch.05 收入确认五步法)。</li>
+            </ul>
+            <p lang="zh">所以答案是 (b) + (c), 即 <strong>(d)</strong>。$A$ 增 200, $L$ 增 200, $E$ 不变 — 等式 $A=L+E$ 保持。这就是<em>复式记账</em>的实际意义: 任何交易都要在两个原子上同时记录, 保证恒等式不破。</p>
+            <p lang="en"><strong>(d) — both (b) and (c).</strong> Cash receivable enters as asset (b). But you owe a future delivery → contract liability (c). Revenue is <em>not</em> recognized — performance obligation unmet (Ch.05). $A$ +200, $L$ +200, $E$ unchanged — $A=L+E$ holds. This is double‑entry in action.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> 公司支付了上年宣告的现金股利 5,000 万。这笔支出在利润表上算什么? 它和"销售费用"有什么不同?</span>
+            <span lang="en"><strong>Q3.</strong> The firm pays ¥50m of dividends declared last year. Does this appear in the income statement? How is it different from "selling expense"?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>不进利润表, 不是费用</strong>。股利是公司"<em>分配利润</em>"给股东 — 它发生在<em>已经赚到利润之后</em>, 而费用是"<em>赚利润所消耗的资源</em>"。</p>
+            <ul lang="zh">
+              <li>销售费用: 你<em>为了赚那 100 元收入</em>花了 20 元广告, 这 20 元在赚之前就发生, 应该从这 100 元中扣掉。利润 = 100 − 20 = 80。</li>
+              <li>股利: 公司今年赚了 80 元利润, 决定把其中 30 元发给股东 — 这 30 元不影响"赚了多少", 只影响"赚到的怎么分"。</li>
+            </ul>
+            <p lang="zh">分录上, 现金股利使<em>现金 (资产) ↓</em> 和<em>未分配利润 (权益) ↓</em>, 利润表完全不动。这就是为什么 $E = E_{t-1} + \text{NI} - D$ 中的 $D$ 是从权益直接扣的, 不通过利润表。</p>
+            <p lang="en"><strong>Not in the IS, not an expense.</strong> Dividends <em>distribute</em> profit; expenses are <em>consumed to earn</em> profit. Selling expense subtracts from revenue to compute NI. Dividends only divide already‑earned NI. Entry: Cash ↓ (asset), Retained earnings ↓ (equity). IS untouched. That's why $E_t = E_{t-1} + \text{NI} - D$: $D$ comes off equity, not through the income statement.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> "应收账款"和"合同负债"刚好是一对镜像 — 都和"赊"有关。它们镜像在哪? 找一家会同时大量出现这两项的公司类型, 解释为什么会同时出现。</span>
+            <span lang="en"><strong>Q4.</strong> "Accounts receivable" and "contract liability" are mirror images — both relate to credit. Where's the mirror? Name a kind of company that holds large amounts of both at once, and explain why.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>镜像</strong>:</p>
+            <ul lang="zh">
+              <li><strong>应收账款</strong>: 我已经发货 / 服务做完, 已确认<em>收入</em> → 但<em>客户还没付钱</em>。是<em>我赊给客户</em>的额度, 等于客户欠我 → <strong>我的资产</strong>。</li>
+              <li><strong>合同负债</strong>: <em>客户已经付钱</em> → 但我还没发货 / 服务没做完, 不能确认收入。是<em>客户预付给我</em>的额度, 等于我欠客户 → <strong>我的负债</strong>。</li>
+            </ul>
+            <p lang="zh">物理上同一条时间轴: 货物 / 服务转移 vs 现金转移, 看哪边先发生。先发货是 AR, 先收钱是合同负债。</p>
+            <p lang="zh"><strong>同时持有大量 AR 和合同负债的公司</strong>: 工程承包类 (中国建筑、中国铁建、中国中车) — 不同项目处于不同阶段。已完工待回款的项目挂在 AR, 已收预付款但工程还在进行的挂在合同负债。读他们的报表时, AR / 合同负债的相对大小变化反映了在手订单的"现金前置"程度 — 合同负债 / AR 比率上升, 说明客户更愿意提前付款 → 议价能力上升。</p>
+            <p lang="en"><strong>Mirror:</strong> AR = goods delivered, cash not yet collected → customer owes us, our asset. Contract liability = cash collected, goods not yet delivered → we owe customer a future service, our liability. Time axis: same goods/cash mismatch, opposite sign. <strong>Co‑holders</strong>: construction conglomerates (China State Construction, China Railway, CRRC). Different projects at different stages. The ratio "contract liability / AR" rising signals stronger pricing power — clients pre‑pay more.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> 给下面每一行选归属: 5 类原子 (资产 / 负债 / 权益 / 收入 / 费用) 各一个字母 A/L/E/R/X。仔细想, 题里至少有 2 个坑:</span>
+            <span lang="en"><strong>Q5.</strong> Classify each line as A / L / E / R / X (Asset / Liability / Equity / Revenue / Expense). At least two of these are traps:</span>
+            <ol type="i">
+              <li lang="zh">资本公积 (capital reserve)</li>
+              <li lang="zh">递延所得税资产 (DTA)</li>
+              <li lang="zh">递延收益 (deferred income, 多为政府补助分期确认前的余额)</li>
+              <li lang="zh">公允价值变动损益 (FV change, 浮盈那一栏)</li>
+              <li lang="zh">使用权资产 (right‑of‑use asset)</li>
+              <li lang="zh">应付债券 (bonds payable)</li>
+              <li lang="zh">少数股东权益 (minority interest)</li>
+              <li lang="zh">长期股权投资 (LT equity investment)</li>
+              <li lang="zh">其他综合收益 (OCI)</li>
+              <li lang="zh">应付职工薪酬 (wages payable)</li>
+              <li lang="en">i. Capital reserve · ii. Deferred tax asset · iii. Deferred income · iv. Fair‑value change · v. Right‑of‑use asset · vi. Bonds payable · vii. Minority interest · viii. LT equity investment · ix. OCI · x. Wages payable</li>
+            </ol>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh">答案:</p>
+            <ul lang="zh">
+              <li>i. 资本公积 — <strong>E</strong>。"公积"听起来像存了一笔东西, 其实是权益的一部分 (股本溢价)。</li>
+              <li>ii. DTA — <strong>A</strong>。"递延"听起来像负债, 但<em>资产</em>意味着"未来能少交税" → 经济利益流入 → 资产。镜像是 DTL = L。</li>
+              <li>iii. 递延收益 — <strong>L</strong>。<em>陷阱!</em> "收益"两字误导人。实质是政府补助提前发了, 但要按未来期间逐期确认收入 — 在确认前余额是"欠投资人/政府未来的收益分配义务" → 负债。</li>
+              <li>iv. 公允价值变动损益 — <strong>R (或 X)</strong>。当期变动直接进利润表 — 浮盈记 R, 浮亏记 X。注意 OCI 不一样, 见第 ix 条。</li>
+              <li>v. 使用权资产 — <strong>A</strong>。2019 新租赁准则后, 长期租赁的使用权也算资产 (因为公司控制了它的使用权 = 未来经济利益)。镜像负债是"租赁负债" L。</li>
+              <li>vi. 应付债券 — <strong>L</strong>。但注意永续债可能<em>分类为权益</em> (Ch.07 详述实质判断)。</li>
+              <li>vii. 少数股东权益 — <strong>E</strong>。<em>陷阱!</em> 合并报表里, 子公司有别的股东 — 他们对子公司的索取权也是权益, 只不过不属于母公司。仍归 E 而不是 L。</li>
+              <li>viii. 长期股权投资 — <strong>A</strong>。是<em>母公司持有</em>的子公司/联营/合营的股权 — 在母公司视角是资产。</li>
+              <li>ix. OCI — <strong>E</strong>。"其他综合收益"虽然有"收益"两字, 但<em>没进利润表</em>, 直接累计在权益里 (浮盈浮亏暂存箱)。</li>
+              <li>x. 应付职工薪酬 — <strong>L</strong>。已计提但没发。<em>已计提</em>那一刻同时记 X (管理 / 销售费用) 和 L。<em>发放</em>时记 L↓ + A↓ (现金支付)。</li>
+            </ul>
+            <p lang="zh">两个最大的陷阱: <strong>"递延收益"是负债, 不是收入</strong>; <strong>"少数股东权益"是权益, 不是负债</strong>。任何名字里带"权益""资本""公积""收益"的科目都要回到 5 原子定义重新归类, 不要被中文名字带偏。</p>
+            <p lang="en">Two biggest traps: <em>deferred income is a liability, not revenue</em>; <em>minority interest is equity, not liability</em>. Always test against the five‑atom definitions — don't trust Chinese/English names.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="00-overview.html">
+            <span class="dir">← <span lang="zh">回模块导览</span><span lang="en">Overview</span></span>
+            <span class="title"><span lang="zh">Module I · 导览</span><span lang="en">Module I · Overview</span></span>
+          </a>
+          <a class="next" href="02-equation.html">
+            <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
+            <span class="title"><span lang="zh">02 · 会计恒等式与复式记账</span><span lang="en">02 · The Accounting Identity</span></span>
+          </a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key (sk-ant-...). Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
+<script type="module" src="../../assets/js/main.js?v=9"></script>
+
+</body>
+</html>

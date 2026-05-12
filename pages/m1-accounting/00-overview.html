@@ -104,6 +104,7 @@
         <span class="section-label" lang="zh">学习目标</span>
         <span class="section-label" lang="en">Objectives</span>
         <ul>
+          <li lang="zh">在打开年报之前, 能 30 秒讲清 5 个原子 (资产 / 负债 / 权益 / 收入 / 费用) 各是什么, 不允许用术语解释术语。</li>
           <li lang="zh">用 $A = L + E$ 一致性检查任何一份 A 股资产负债表。</li>
           <li lang="zh">读懂三大报表的勾稽: 净利→OCF→期末现金, 经营/投资/筹资三大活动如何拼接出现金净变动。</li>
           <li lang="zh">把权责发生制 (accrual)、配比 (matching)、实质重于形式 (substance over form) 三原则套到具体科目上。</li>
@@ -122,7 +123,7 @@
         <span lang="en">Chapter Dependency Map</span>
       </h2>
       <figure class="figure">
-        <svg viewBox="0 0 720 360" role="img" aria-label="Chapter dependency graph">
+        <svg viewBox="0 0 720 400" role="img" aria-label="Chapter dependency graph">
           <defs>
             <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="#4A4540"/>
@@ -131,83 +132,106 @@
           <style>
             .node { fill: #F2E9D2; stroke: #4A4540; stroke-width: 1.2; }
             .node-major { fill: #8B2C2C; }
+            .node-primer { fill: #2C6E2C; }
             .lbl { font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 13px; fill: #1A1814; }
             .lbl-w { fill: #F7F2E8; }
             .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A8378; }
             .num-w { fill: #EFE8D8; }
             .edge { stroke: #4A4540; stroke-width: 1.2; fill: none; }
+            .edge-soft { stroke: #C9BFA8; stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
           </style>
-          <!-- Nodes -->
-          <g transform="translate(20, 20)">
-            <rect class="node node-major" width="120" height="48" rx="4"/>
+
+          <!-- Row 0: Ch.01 primer (full width banner) -->
+          <g transform="translate(180, 20)">
+            <rect class="node node-primer" width="360" height="48" rx="4"/>
             <text class="num num-w" x="8" y="16">01</text>
+            <text class="lbl lbl-w" x="8" y="34">财报的五个原子 · 零基础起点</text>
+          </g>
+
+          <!-- Row 1: Ch.02 → Ch.04, plus Ch.09 right side -->
+          <g transform="translate(20, 110)">
+            <rect class="node node-major" width="130" height="48" rx="4"/>
+            <text class="num num-w" x="8" y="16">02</text>
             <text class="lbl lbl-w" x="8" y="34">恒等式·复式</text>
           </g>
-          <g transform="translate(200, 20)">
-            <rect class="node" width="120" height="48" rx="4"/>
-            <text class="num" x="8" y="16">02</text>
+          <g transform="translate(200, 110)">
+            <rect class="node" width="130" height="48" rx="4"/>
+            <text class="num" x="8" y="16">03</text>
             <text class="lbl" x="8" y="34">三表勾稽</text>
           </g>
-          <g transform="translate(380, 20)">
-            <rect class="node" width="120" height="48" rx="4"/>
-            <text class="num" x="8" y="16">03</text>
+          <g transform="translate(380, 110)">
+            <rect class="node" width="150" height="48" rx="4"/>
+            <text class="num" x="8" y="16">04</text>
             <text class="lbl" x="8" y="34">accrual / matching</text>
           </g>
-          <g transform="translate(560, 20)">
+          <g transform="translate(560, 110)">
             <rect class="node" width="140" height="48" rx="4"/>
-            <text class="num" x="8" y="16">08</text>
+            <text class="num" x="8" y="16">09</text>
             <text class="lbl" x="8" y="34">现金流量表深度</text>
           </g>
 
-          <g transform="translate(60, 120)">
-            <rect class="node" width="120" height="48" rx="4"/>
-            <text class="num" x="8" y="16">04</text>
-            <text class="lbl" x="8" y="34">收入确认 5步</text>
-          </g>
-          <g transform="translate(220, 120)">
-            <rect class="node" width="120" height="48" rx="4"/>
+          <!-- Row 2: 05/06/07/08 (parallel) -->
+          <g transform="translate(20, 210)">
+            <rect class="node" width="130" height="48" rx="4"/>
             <text class="num" x="8" y="16">05</text>
+            <text class="lbl" x="8" y="34">收入确认 5 步</text>
+          </g>
+          <g transform="translate(180, 210)">
+            <rect class="node" width="130" height="48" rx="4"/>
+            <text class="num" x="8" y="16">06</text>
             <text class="lbl" x="8" y="34">资产计量</text>
           </g>
-          <g transform="translate(380, 120)">
-            <rect class="node" width="120" height="48" rx="4"/>
-            <text class="num" x="8" y="16">06</text>
+          <g transform="translate(340, 210)">
+            <rect class="node" width="150" height="48" rx="4"/>
+            <text class="num" x="8" y="16">07</text>
             <text class="lbl" x="8" y="34">负债 vs 权益</text>
           </g>
-          <g transform="translate(540, 120)">
-            <rect class="node" width="160" height="48" rx="4"/>
-            <text class="num" x="8" y="16">07</text>
+          <g transform="translate(520, 210)">
+            <rect class="node" width="180" height="48" rx="4"/>
+            <text class="num" x="8" y="16">08</text>
             <text class="lbl" x="8" y="34">合并报表 / 权益法</text>
           </g>
 
-          <g transform="translate(140, 230)">
-            <rect class="node" width="180" height="48" rx="4"/>
-            <text class="num" x="8" y="16">09</text>
+          <!-- Row 3: 10 + 11 -->
+          <g transform="translate(120, 310)">
+            <rect class="node" width="200" height="48" rx="4"/>
+            <text class="num" x="8" y="16">10</text>
             <text class="lbl" x="8" y="34">CAS / IFRS / US GAAP</text>
           </g>
-          <g transform="translate(380, 230)">
-            <rect class="node node-major" width="220" height="48" rx="4"/>
-            <text class="num num-w" x="8" y="16">10</text>
+          <g transform="translate(370, 310)">
+            <rect class="node node-major" width="240" height="48" rx="4"/>
+            <text class="num num-w" x="8" y="16">11</text>
             <text class="lbl lbl-w" x="8" y="34">附注 · 关联交易 · 或有事项</text>
           </g>
 
-          <!-- Edges -->
-          <path class="edge" d="M140 44 H200" marker-end="url(#arr)"/>
-          <path class="edge" d="M320 44 H380" marker-end="url(#arr)"/>
-          <path class="edge" d="M500 44 H560" marker-end="url(#arr)"/>
-          <path class="edge" d="M260 68 Q260 90 240 120" marker-end="url(#arr)"/>
-          <path class="edge" d="M260 68 Q260 90 280 120" marker-end="url(#arr)"/>
-          <path class="edge" d="M440 68 Q440 90 440 120" marker-end="url(#arr)"/>
-          <path class="edge" d="M440 68 Q440 90 600 120" marker-end="url(#arr)"/>
-          <path class="edge" d="M120 168 Q140 200 200 230" marker-end="url(#arr)"/>
-          <path class="edge" d="M280 168 Q280 200 230 230" marker-end="url(#arr)"/>
-          <path class="edge" d="M440 168 Q440 200 470 230" marker-end="url(#arr)"/>
-          <path class="edge" d="M620 168 Q620 200 540 230" marker-end="url(#arr)"/>
-          <path class="edge" d="M320 254 H380" marker-end="url(#arr)"/>
+          <!-- Edges from primer (01) to row 1 nodes (02-04, 09) -->
+          <path class="edge-soft" d="M360 68 V100"/>
+          <path class="edge" d="M85 68 Q85 90 85 110" marker-end="url(#arr)"/>
+          <path class="edge" d="M265 68 Q265 90 265 110" marker-end="url(#arr)"/>
+          <path class="edge" d="M455 68 Q455 90 455 110" marker-end="url(#arr)"/>
+          <path class="edge" d="M630 68 Q630 90 630 110" marker-end="url(#arr)"/>
+
+          <!-- Horizontal: 02 → 03 → 04 → 09 -->
+          <path class="edge" d="M150 134 H200" marker-end="url(#arr)"/>
+          <path class="edge" d="M330 134 H380" marker-end="url(#arr)"/>
+          <path class="edge" d="M530 134 H560" marker-end="url(#arr)"/>
+
+          <!-- Row 1 → Row 2 (parallel: 04 feeds 05, 06, 07, 08) -->
+          <path class="edge" d="M455 158 Q455 180 85 210" marker-end="url(#arr)"/>
+          <path class="edge" d="M455 158 Q455 180 245 210" marker-end="url(#arr)"/>
+          <path class="edge" d="M455 158 Q455 180 415 210" marker-end="url(#arr)"/>
+          <path class="edge" d="M455 158 Q455 180 610 210" marker-end="url(#arr)"/>
+
+          <!-- Row 2 → Row 3 (10 and 11) -->
+          <path class="edge" d="M85 258 Q85 280 220 310" marker-end="url(#arr)"/>
+          <path class="edge" d="M245 258 Q245 280 270 310" marker-end="url(#arr)"/>
+          <path class="edge" d="M415 258 Q415 280 490 310" marker-end="url(#arr)"/>
+          <path class="edge" d="M610 258 Q610 280 490 310" marker-end="url(#arr)"/>
+          <path class="edge" d="M320 334 H370" marker-end="url(#arr)"/>
         </svg>
         <figcaption>
-          <span lang="zh">必学序: 01 → 02 → 03 → 08 → (04, 05, 06, 07 并行) → 09 → 10</span>
-          <span lang="en">Recommended order: 01 → 02 → 03 → 08 → (04, 05, 06, 07 in parallel) → 09 → 10</span>
+          <span lang="zh">必学序: <strong>01 五原子</strong> → 02 恒等式 → 03 三表勾稽 → 04 四原则 → 09 现金流 → (05, 06, 07, 08 并行) → 10 → 11。新读者从绿色的 01 入门。</span>
+          <span lang="en">Recommended order: <strong>01 Primer</strong> → 02 Identity → 03 Articulation → 04 Principles → 09 Cash flow → (05, 06, 07, 08 in parallel) → 10 → 11. Start with the green Ch.01.</span>
         </figcaption>
       </figure>
 
@@ -401,8 +425,8 @@
         </div>
         <div class="dispute-foot">
           <span class="label" lang="zh">现状</span><span class="label" lang="en">State</span>
-          <span lang="zh">中国电建 601669、中国铁建 601186 等大量基建公司用永续债拉低账面资产负债率。第 06 章会展开。</span>
-          <span lang="en">Sinohydro 601669, China Railway Construction 601186 and many infrastructure issuers use perpetuals to depress reported leverage. Chapter 06 expands on this.</span>
+          <span lang="zh">中国电建 601669、中国铁建 601186 等大量基建公司用永续债拉低账面资产负债率。第 07 章会展开。</span>
+          <span lang="en">Sinohydro 601669, China Railway Construction 601186 and many infrastructure issuers use perpetuals to depress reported leverage. Chapter 07 expands on this.</span>
         </div>
       </div>
 
@@ -413,8 +437,8 @@
       <dl>
         <dt><span lang="zh">快速通道</span><span lang="en">Fast path</span></dt>
         <dd>
-          <span lang="zh">~8 小时。01 → 02 → 08 → 10。先把"恒等式 + 三表勾稽 + OCF 间接法 + 附注阅读"四件事做扎实, 其它章节按需回头读。</span>
-          <span lang="en">~8 hours. 01 → 02 → 08 → 10. Lock in the identity, statement articulation, indirect‑method OCF, and notes reading. Return to others as needed.</span>
+          <span lang="zh">~9 小时。<strong>01 五原子</strong> → 02 恒等式 → 03 三表 → 09 现金流 → 11 附注。先建立"5 个原子词汇 + 恒等式 + 三表勾稽 + OCF 间接法 + 附注阅读"五件事, 其他章节按需回头读。</span>
+          <span lang="en">~9 hours. <strong>01 Primer</strong> → 02 Identity → 03 Articulation → 09 Cash flow → 11 Notes. Lock in vocabulary, identity, articulation, indirect‑method OCF, and notes reading. Return to others as needed.</span>
         </dd>
         <dt><span lang="zh">系统通道</span><span lang="en">Systematic path</span></dt>
         <dd>
@@ -430,9 +454,9 @@
             <span class="dir">← <span lang="zh">回首页</span><span lang="en">Home</span></span>
             <span class="title"><span lang="zh">从会计学到证券投资学</span><span lang="en">A‑Share Finance Tutor</span></span>
           </a>
-          <a class="next" href="01-equation.html">
+          <a class="next" href="01-primer.html">
             <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
-            <span class="title"><span lang="zh">01 · 会计恒等式与复式记账</span><span lang="en">01 · The Accounting Identity</span></span>
+            <span class="title"><span lang="zh">01 · 财报的五个原子</span><span lang="en">01 · Vocabulary Primer</span></span>
           </a>
         </nav>
       </div>

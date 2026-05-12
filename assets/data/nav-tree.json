@@ -8,16 +8,17 @@
       "path": "pages/m1-accounting",
       "chapters": [
         { "n": "00", "slug": "overview",         "title_zh": "模块导览",                    "title_en": "Overview", "built": true },
-        { "n": "01", "slug": "equation",         "title_zh": "会计恒等式与复式记账",         "title_en": "The Accounting Identity & Double-Entry", "built": true },
-        { "n": "02", "slug": "three-statements", "title_zh": "三大报表与勾稽关系",           "title_en": "Three Statements & Their Articulation", "built": true },
-        { "n": "03", "slug": "principles",       "title_zh": "权责发生制·配比·谨慎·实质重于形式", "title_en": "Accrual · Matching · Conservatism · Substance", "built": true },
-        { "n": "04", "slug": "revenue",          "title_zh": "收入确认 CAS 14 / IFRS 15",   "title_en": "Revenue Recognition (5-Step)", "built": true },
-        { "n": "05", "slug": "assets",           "title_zh": "资产计量",                    "title_en": "Asset Measurement", "built": true },
-        { "n": "06", "slug": "liab-equity",      "title_zh": "负债与权益",                  "title_en": "Liabilities & Equity", "built": true },
-        { "n": "07", "slug": "consolidation",    "title_zh": "合并报表",                    "title_en": "Consolidation", "built": true },
-        { "n": "08", "slug": "cashflow",         "title_zh": "现金流量表深度",              "title_en": "Cash Flow Statement Deep-Dive", "built": true },
-        { "n": "09", "slug": "cas-vs-ifrs",      "title_zh": "CAS / IFRS / US GAAP 差异",   "title_en": "CAS / IFRS / US GAAP Differences", "built": true },
-        { "n": "10", "slug": "notes-events",     "title_zh": "附注·关联交易·或有事项",      "title_en": "Notes · Related-Party · Contingencies", "built": true }
+        { "n": "01", "slug": "primer",           "title_zh": "财报的五个原子",               "title_en": "Vocabulary Primer (Five Atoms)", "built": true },
+        { "n": "02", "slug": "equation",         "title_zh": "会计恒等式与复式记账",         "title_en": "The Accounting Identity & Double-Entry", "built": true },
+        { "n": "03", "slug": "three-statements", "title_zh": "三大报表与勾稽关系",           "title_en": "Three Statements & Their Articulation", "built": true },
+        { "n": "04", "slug": "principles",       "title_zh": "权责发生制·配比·谨慎·实质重于形式", "title_en": "Accrual · Matching · Conservatism · Substance", "built": true },
+        { "n": "05", "slug": "revenue",          "title_zh": "收入确认 CAS 14 / IFRS 15",   "title_en": "Revenue Recognition (5-Step)", "built": true },
+        { "n": "06", "slug": "assets",           "title_zh": "资产计量",                    "title_en": "Asset Measurement", "built": true },
+        { "n": "07", "slug": "liab-equity",      "title_zh": "负债与权益",                  "title_en": "Liabilities & Equity", "built": true },
+        { "n": "08", "slug": "consolidation",    "title_zh": "合并报表",                    "title_en": "Consolidation", "built": true },
+        { "n": "09", "slug": "cashflow",         "title_zh": "现金流量表深度",              "title_en": "Cash Flow Statement Deep-Dive", "built": true },
+        { "n": "10", "slug": "cas-vs-ifrs",      "title_zh": "CAS / IFRS / US GAAP 差异",   "title_en": "CAS / IFRS / US GAAP Differences", "built": true },
+        { "n": "11", "slug": "notes-events",     "title_zh": "附注·关联交易·或有事项",      "title_en": "Notes · Related-Party · Contingencies", "built": true }
       ]
     },
     {
