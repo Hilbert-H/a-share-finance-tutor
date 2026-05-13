@@ -73,32 +73,43 @@
 
       <section class="layer">
         <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-        <p lang="zh">问: "我现在给你 100 元, vs 一年后给你 100 元, 你选哪个?"</p>
-        <p lang="en">Q: "Would you take ¥100 now or ¥100 a year from now?"</p>
-        <p lang="zh">所有理性人选"现在"。为什么? 三个独立原因:</p>
-        <p lang="en">Every rational person picks "now." Three independent reasons:</p>
-        <ol lang="zh">
-          <li><strong>时间偏好</strong>: 心理上, 即时消费比延迟消费愉悦 (Ramsey 1928 跨期效用模型的核心)</li>
-          <li><strong>通胀</strong>: 一年后的 100 元购买力可能只剩 96 元 (假设 4% 通胀)</li>
-          <li><strong>不确定性</strong>: 一年后可能拿不到 (违约、对方破产)</li>
-        </ol>
-        <ol lang="en">
-          <li><strong>Time preference</strong>: present consumption is psychologically preferred (Ramsey 1928 intertemporal utility)</li>
-          <li><strong>Inflation</strong>: ¥100 in a year may buy only ¥96 of today's goods (4% inflation)</li>
-          <li><strong>Uncertainty</strong>: you might not actually receive it</li>
-        </ol>
-        <p lang="zh">把这三种"消耗"打包成一个数, 就是<em>折现率</em>$r$。给定 $r$, 未来 1 元的<em>当前等价值</em>(PV) 是:</p>
-        <p lang="en">Combining the three into one number gives the <em>discount rate</em> $r$. Future ¥1 has present value:</p>
-        <div class="eq"><span>$$ \mathrm{PV}(¥1\ \text{in 1 year}) = \frac{1}{1+r} $$</span><span class="num">(1.1)</span></div>
-        <p lang="zh">注意: 这个公式不是"约定", 是<em>无套利</em>条件的代数表达。如果 PV $<$ $1/(1+r)$, 你可以借钱按 $r$ 买 PV → 一年后还 $1$ → 净赚正现金 → 套利。市场会瞬间把价格推到 $1/(1+r)$。</p>
-        <p lang="en">This isn't convention — it's the no‑arbitrage condition. If PV $<$ $1/(1+r)$, you can borrow at $r$, buy PV, pay back $1$ in a year, pocket the difference. Arbitrage closes the gap.</p>
 
-        <p lang="zh"><strong>工程类比</strong>: 折现 = exponential decay (类比 RC 电路放电); 复利 = exponential growth (类比单细胞分裂、雪球滚动)。本质上 $(1+r)^n$ 就是离散版本的 $e^{rt}$ — 当 $n \to \infty$ 且 $r/n$ 保持总数时, 离散复利趋于连续复利:</p>
-        <p lang="en"><strong>Engineering analogy:</strong> discounting = exponential decay (RC discharge); compounding = exponential growth (binary fission, snowball). $(1+r)^n$ is the discrete version of $e^{rt}$; as $n \to \infty$ holding total fixed, $(1+r/n)^n \to e^r$.</p>
+        <p lang="zh">M1 结束时, 老王的面馆已经站稳。两年下来, 现金箱里攒下了 5 万多, 小张又追加了 5,000 元入股, 隔壁公司的老李是常客也成了朋友。今天起, 老王不再为"今天卖几碗"操心, 他面前出现了一连串<em>跨期</em>选择 — 这笔钱<em>现在</em>用 vs. <em>以后</em>用, 哪种更划算?我们一笔一笔看, 每笔结束都问同一个问题: "<em>今天的这笔钱和未来的那笔钱, 谁更值?</em>"</p>
+        <p lang="en">At the end of M1, Wang's stall is humming. Over two years he has accumulated more than ¥50,000 in cash, Zhang has put in another ¥5,000, and the neighbour Old Li, once a regular customer, is now a friend. From today on Wang isn't worrying about "how many bowls today" — instead a series of <em>across‑time</em> choices lands on his desk: spend the money <em>now</em> vs. <em>later</em>, which is the better deal? We walk through them one by one, and after each scene we ask the same question: <em>which is worth more — today's yuan or that future yuan?</em></p>
+
+        <p lang="zh"><strong>1. 早上, 老李递来 1,000 元现金。</strong>"还你上周借的 1,000 块。"老王收下, 同时心里冒出一个念头: 这 1,000 块, 现在拿和一年前借出时拿到的 1,000 块, "<em>等值</em>"吗?显然不等 — 这一年里, 这 1,000 块如果存银行能再生 30 块利息, 如果留在店里周转能进一批牛肉再卖几十碗面。"<em>同样面额的钱, 早一年到手就多出一年的可能性</em>" — 这个时间上的差价, 金融学叫 <strong>时间价值 (time value of money)</strong>。今天的 1,000 元 &gt; 一年后的 1,000 元。</p>
+        <p lang="en"><strong>1. Morning — Old Li returns ¥1,000.</strong> "Paying you back for last week." Wang pockets it, and a thought surfaces: is this ¥1,000 the <em>same</em> as the ¥1,000 he handed Li a year ago? Clearly not — over that year, the same ¥1,000 could have earned ¥30 of bank interest, or bought a batch of beef and turned into dozens of bowls of noodles. "<em>The same face‑value yuan, received a year earlier, carries one extra year of possibilities</em>" — that difference is what finance calls the <strong>time value of money</strong>. Today's ¥1,000 &gt; next year's ¥1,000.</p>
+
+        <p lang="zh"><strong>2. 中午, 银行柜员推销定存。</strong>"5 万元三年定存, 年利率 3%, 到期连本带利约 5.46 万。"老王心算: 三年后到手 54,600 元, 今天存进去的是 50,000 元。如果有人现在拿出 54,600 元三年后给他, 这笔"未来 5.46 万"在今天值多少?显然 = 50,000 元 (因为存银行就是把今天 5 万变成三年后 5.46 万)。换句话说: 给定一个利率, 未来一笔钱<em>折回</em>今天的等价值, 叫 <strong>现值 (present value, PV)</strong>; 反过来, 今天一笔钱<em>滚到</em>未来的等价值, 叫 <strong>终值 (future value, FV)</strong>。PV 和 FV 是同一笔钱在两个时点的两种说法。</p>
+        <p lang="en"><strong>2. Noon — the bank teller pitches a deposit.</strong> "¥50,000 locked for three years at 3%, matures at about ¥54,600." Wang does the mental arithmetic: ¥54,600 in three years for ¥50,000 today. If someone offered to hand him ¥54,600 three years from now, what is that future cash worth <em>today</em>? Exactly ¥50,000, since the bank turns one into the other. A future amount discounted back to today is called the <strong>present value (PV)</strong>; today's amount rolled forward is the <strong>future value (FV)</strong>. PV and FV are the same money, just labelled at two different dates.</p>
+
+        <p lang="zh"><strong>3. 下午, 老王盘算"店里再投 5 万"。</strong>添一台和面机 + 扩张第二口锅, 估计未来三年每年能多赚 1.8 万。也就是: 今天投 50,000 → 未来三年每年回 18,000。这笔投资划算吗?他得把<em>三笔未来现金流</em>都折回今天, 加总, 看是不是超过 50,000。"<em>用什么利率折?</em>" — 不能用银行的 3%, 因为店里投钱比定存风险高。老王选 10% (考虑到面条生意的波动、设备故障、自己的辛苦)。18,000/1.1 + 18,000/1.1² + 18,000/1.1³ ≈ 44,750。比 50,000 少 — 不划算。这种<em>未来回报折回今天减去投资</em>的算法, 叫 <strong>净现值 (net present value, NPV)</strong>。NPV &lt; 0, 否决。</p>
+        <p lang="en"><strong>3. Afternoon — Wang considers ploughing ¥50,000 back into the shop.</strong> A new dough mixer plus a second wok would, he reckons, add ¥18,000 of profit each year for three years. So: ¥50,000 out today, ¥18,000 back each year for three years. Worth it? He needs to <em>discount each future yuan</em> back to today, add them up, and see whether the sum beats ¥50,000. <em>What rate to discount with?</em> Not the bank's 3% — the noodle business is riskier than a deposit. Wang picks 10% (volatility, equipment risk, his own labour). The sum is 18,000/1.1 + 18,000/1.1² + 18,000/1.1³ ≈ 44,750, less than ¥50,000. Future returns discounted to today minus today's investment is the <strong>net present value (NPV)</strong>. NPV &lt; 0 → reject.</p>
+
+        <p lang="zh"><strong>4. 傍晚, 老王问自己: 那个 10% 是怎么决定的?</strong>不是任意选, 也不是"心情"。逻辑是: 这 50,000 元如果<em>不</em>投店里, 还能去哪?最现实的去处 — 朋友的新店入股 (每年大概 10-12% 回报)、买一只大盘 ETF (历史 8-9%)、或者放余额宝 (~2.5%)。在这一堆选项里, 老王选了最接近自己店<em>风险等级</em>的那个作为参照: 朋友店的 10%。这个数就叫<strong>机会成本 (opportunity cost)</strong>, 也是这笔投资的 <strong>折现率 (discount rate)</strong>。换言之: <em>折现率不是"主观参数", 它是你这笔钱在同等风险下能拿到的最佳替代回报率</em>。</p>
+        <p lang="en"><strong>4. Evening — Wang asks himself where that 10% came from.</strong> Not arbitrary. The logic: if these ¥50,000 don't go into the shop, where else could they go? Realistic alternatives — buy into a friend's new stall (about 10–12% a year), buy a broad index ETF (historical 8–9%), or park in Yu'ebao (~2.5%). From this menu he picks the one whose risk most resembles his shop: the friend's stall at 10%. That number is the <strong>opportunity cost</strong>, which is also this investment's <strong>discount rate</strong>. So: <em>the discount rate isn't a free parameter — it's the best return you could earn on this same money at the same risk elsewhere</em>.</p>
+
+        <p lang="zh"><strong>5. 晚上, 小张来电话。</strong>"我表哥的便利店缺 1 万周转金, 想问你借, 半年后还 1 万 1。" 老王心算: 借出 10,000 元, 半年后回 11,000, 半年利率 10%, 折成年利率约 21%。这笔放贷的"<em>承诺回报率</em>"高吗?跟自己店里 10% 比, 看似高一倍。但问题: 表哥的店半年后会不会还?如果有 30% 概率赖账, 期望回报实际只有 0.7 × 11,000 = 7,700, 相当于亏 23%。<em>表面利率高</em>不等于<em>风险调整后回报高</em>。每加一笔钱的去向, 都要问: 这笔钱的<em>风险等级</em>是什么?它能拿到的<em>无风险</em>回报 (国债, 约 2.5%) 是多少?它头上的<em>风险溢价</em>能否补偿可能的损失?</p>
+        <p lang="en"><strong>5. Night — Zhang calls.</strong> "My cousin's corner shop needs ¥10,000 of working capital. Lend it and he'll repay ¥11,000 in six months." Wang does the math: ¥10,000 out, ¥11,000 back in half a year — 10% semiannually, roughly 21% annualised. Looks like double his shop's 10%. But: what's the chance the cousin actually pays? If there's a 30% default risk, the expected return is only 0.7 × 11,000 = ¥7,700 — a 23% loss. <em>A high quoted rate isn't the same as a high risk‑adjusted rate.</em> Every yuan placed somewhere has to face: what's the risk level? What's the <em>risk‑free</em> rate at this horizon (Chinese 10y govt bond ~2.5%)? And does the offered <strong>risk premium</strong> (extra return above risk‑free) compensate for what might go wrong?</p>
+
+        <p lang="zh"><strong>6. 第二天, 老李提议租门口的空铺面。</strong>"30 年长租, 每月 2,000 房租, 一次性付清打八折。"算一下: 30 年共 360 个月, 总租金 720,000 元, 八折后是 576,000。但这<em>不</em>等于今天就值 576,000 — 因为后期每个月的 2,000 块需要折回今天, 越远的越不值钱。用年化 6% 折现率算, 360 期年金的现值约为 333,600 元 (Layer 2 会给公式)。所以"576,000 一次付清"反而<em>不</em>划算 — 因为未来 30 年的现金, 折回今天根本没值那么多。<em>一笔均匀的、按期重复的现金流</em>, 叫 <strong>年金 (annuity)</strong>; 如果永远不停, 叫 <strong>永续年金 (perpetuity)</strong>。它们的现值都有简洁公式, 不必逐笔加。</p>
+        <p lang="en"><strong>6. Next morning — Old Li proposes renting out the front shop.</strong> "Thirty‑year lease, ¥2,000 a month, 20% discount if you pay it all up front." Quick check: 30 years × 12 = 360 months × ¥2,000 = ¥720,000 nominal, ¥576,000 at 20% off. But ¥576,000 today is <em>not</em> the right number — those late‑year ¥2,000s have to be discounted back, and the farther out, the less they're worth. At 6% annualised, the present value of 360 monthly ¥2,000s is about ¥333,600 (Layer 2 has the formula). So "¥576,000 lump sum" is the <em>worse</em> deal — the future stream isn't worth that much today. A stream of equal, regular payments is an <strong>annuity</strong>; if it never stops, a <strong>perpetuity</strong>. Both have closed‑form present values, so you don't have to add term by term.</p>
+
+        <p lang="zh"><strong>7. 老王把今天的笔记合起来。</strong>六件事看似没关联 — 老李还钱、银行定存、店里再投资、朋友店参考、小张表哥借款、长租房铺 — 其实都在做<em>同一件事</em>: 把发生在<em>不同时点</em>的现金, 折回到同一个时点 (通常是"今天"), 才能比较。比较的尺子是<em>折现率</em>; 折现率是<em>机会成本</em>; 机会成本由<em>同等风险下的最佳替代</em>决定。所有跨期决策 (买设备、收购、买债券、还房贷、给员工股权激励) 都是这条原理的不同变形。这条原理本身, 写成符号就是 $\mathrm{PV} = \mathrm{FV}/(1+r)^n$。</p>
+        <p lang="en"><strong>Wang closes his notebook.</strong> Six scenes that look unrelated — Li's repayment, the bank deposit, reinvesting in the shop, the friend's stall benchmark, Zhang's cousin loan, the long lease — are doing the <em>same thing</em>: pulling cash flows that occur at <em>different times</em> back to a common date (usually "today") so they can be compared. The ruler is the <em>discount rate</em>; the discount rate is the <em>opportunity cost</em>; the opportunity cost is set by the <em>best alternative at the same risk</em>. Every cross‑time decision — buying equipment, an acquisition, a bond, a mortgage payoff, an employee stock grant — is a variation on this. Written symbolically, the principle is $\mathrm{PV} = \mathrm{FV}/(1+r)^n$.</p>
       </section>
 
       <section class="layer">
         <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <p lang="zh">Layer 1 用老王一天里的六个跨期决策, 把<em>同一笔钱在两个时点的两种说法</em>建立起来。现在我们形式化它, 并把"折现率 = 机会成本"用无套利论证给出严格依据。</p>
+        <p lang="en">Layer 1 used six of Old Wang's cross‑time decisions to anchor the idea of <em>the same money labelled at two different dates</em>. We now formalise it and ground "discount rate = opportunity cost" in a no‑arbitrage argument.</p>
+
+        <p lang="zh"><strong>工程类比</strong>: 折现 = exponential decay (类比 RC 电路放电); 复利 = exponential growth (类比单细胞分裂、雪球滚动)。本质上 $(1+r)^n$ 就是离散版本的 $e^{rt}$ — 当 $n \to \infty$ 且 $r/n$ 保持总数时, 离散复利趋于连续复利 $(1+r/n)^n \to e^r$。</p>
+        <p lang="en"><strong>Engineering analogy:</strong> discounting = exponential decay (RC discharge); compounding = exponential growth (binary fission, snowball). $(1+r)^n$ is the discrete version of $e^{rt}$; as $n \to \infty$ holding total fixed, $(1+r/n)^n \to e^r$.</p>
+
+        <p lang="zh"><strong>无套利论证</strong>: 公式 $\mathrm{PV} = 1/(1+r)$ 不是约定。如果某资产 PV $<$ $1/(1+r)$, 你可以借钱按 $r$ 买入这一资产 → 一年后凭它收回 $1$ → 还掉本息 → 净赚正现金, 这就是套利。市场会瞬间把价格推到 $1/(1+r)$。</p>
+        <p lang="en"><strong>No‑arbitrage:</strong> the formula isn't convention. If some asset has PV $<$ $1/(1+r)$, borrow at $r$, buy the asset, collect $1$ next year, repay principal+interest, pocket the gap. Arbitrage closes the price to $1/(1+r)$.</p>
 
         <h3 lang="zh">① 单期与多期</h3>
         <h3 lang="en">① Single &amp; multi-period</h3>
@@ -203,6 +214,8 @@
             <span class="company"><span lang="zh">10 年期记账式附息国债</span><span lang="en">10y on‑the‑run Treasury</span></span>
             <span class="period"><span lang="zh">YTM 反推折现率</span><span lang="en">YTM back-solve</span></span>
           </div>
+          <p lang="zh">老王那 50,000 元定存碰到的 3% 利率, 放大到债券市场, 就是这里要算的<em>到期收益率 YTM</em>。一张 10 年期国债等于把"今天给一笔钱、未来 10 年每年收息、第 10 年还本"的现金流串折回今天, 让总现值刚好等于市价。</p>
+          <p lang="en">The 3% deposit rate Old Wang faced earlier scales up — in the bond market it becomes the <em>yield to maturity (YTM)</em>. A 10‑year government bond is just "pay today, receive coupons for 10 years, get principal back at year 10" discounted so the present value equals the market price.</p>
           <p lang="zh">假设一只 10 年期国债, 票面 3%, 每年付息一次, 面值 100, 当前市价 105 (假设, 简化为整数)。则<em>到期收益率 YTM</em> $r$ 满足:</p>
           <p lang="en">A 10y coupon bond, 3% annual, face 100, market price 105. Yield to maturity solves:</p>
           <div class="eq"><span>$$ 105 = \sum_{t=1}^{10}\frac{3}{(1+r)^t} + \frac{100}{(1+r)^{10}} $$</span><span class="num">—</span></div>

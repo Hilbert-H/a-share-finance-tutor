@@ -42,19 +42,89 @@
 
 <section class="layer">
 <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-<p lang="zh">MM 含税 (Ch.03 公式 3.4): $V_L = V_U + tD$ — 全杠杆最优。但现实没有 100% 杠杆的公司。三个偏离 MM 的真实力量:</p>
-<p lang="en">MM with tax: max leverage optimal. But no firm is 100% leveraged. Three real‑world deviations:</p>
-<ol lang="zh">
-<li><strong>财务困境成本</strong> (trade-off theory): $V_L = V_U + tD - \mathrm{PV(distress)}$. 困境成本随 $D$ 凸增 → 内部最优。直接成本 (破产法律 / 清算价值损失); 间接成本 (供应商收紧、客户流失、信誉损失)。</li>
-<li><strong>信息不对称</strong> (pecking order theory, Myers 1984): 管理层比投资者更了解公司价值。发行权益被市场解读为"管理层认为股价高估" → 股价下跌。结果: 公司偏好融资顺序: <em>内部留存 → 债务 → 权益</em>。</li>
-<li><strong>代理成本</strong>: 股东 vs 债权人 (资产替代、债务积压); 管理层 vs 股东 (帝国建设、过度投资)。每种冲突给杠杆决策不同压力。</li>
-</ol>
-<p lang="zh">现实公司的杠杆是这三种力量的均衡。<em>不存在</em>对所有公司适用的"最优 D/E", 但每个行业 / 商业模式有自己的均衡区间。</p>
-<p lang="en">Real firms balance the three. No universal "optimal D/E," but each industry/business has an equilibrium range.</p>
+
+<p lang="zh">Ch.03 末尾, 老王已经过了"杠杆放大 ROE 也放大风险"这一关。现在问题升级: 第二家店运转一年后稳了, 他想在城南开<em>第三家</em>, 启动 ¥150,000。这次他不再只是"全自有 vs 一半借", 而是要回答一个更精细的问题: <em>到底借多少钱最划算?</em> 我们让老王在四种杠杆水平上各算一遍, 每算一遍都问同一句: "<em>边际多借的这一块, 税盾收益 vs 困境成本, 哪个更大?</em>"</p>
+<p lang="en">By the end of Ch.03 Old Wang has internalised "leverage amplifies ROE and risk." The question now upgrades: a year into running the second shop, things are stable; he wants to open a <em>third</em> in the south of town, startup cost ¥150,000. Not just "all‑own vs half‑borrow" — the sharper question is <em>exactly how much to borrow</em>. We have him run four leverage levels, asking the same question after each: <em>for the marginal yuan borrowed, which is bigger — the tax shield gain or the distress cost?</em></p>
+
+<p lang="zh"><strong>1. 起点 — 假设没有税, 也不会破产 (MM 中性参照)。</strong> 老王想象一种理想化的世界: 没有所得税, 银行不会因为高杠杆涨利率, 老王也不会因为还不上利息而破产。在这个世界里, 借 0 / 借 50,000 / 借 100,000 / 借 135,000 (90%) 四种方案下, 店本身一年能赚多少钱<em>完全相同</em> — 不依赖于"是谁的钱"。借得多, 老王自有资金回报率高 (杠杆放大效应), 但同时承担的风险也大, 股东要求的回报率同步上升。两个效应完全抵消, <em>店的总价值不变</em>。这就是 Ch.03 讲的 <strong>MM 命题 I (无税)</strong>: 借多借少, 无所谓。</p>
+<p lang="en"><strong>1. Baseline — assume no taxes and no possibility of distress (MM neutral baseline).</strong> Wang imagines an idealised world: no corporate tax, the bank doesn't raise rates as leverage rises, and Wang himself can't go bust. In that world, the shop's annual profit is identical whether he borrows ¥0, ¥50k, ¥100k, or ¥135k. More debt boosts his own return through leverage, but it also raises the risk shareholders bear and the return they demand. The two cancel exactly — <em>firm value doesn't move with leverage</em>. This is <strong>MM Proposition I (no tax)</strong> from Ch.03: borrow more or borrow less, doesn't matter.</p>
+
+<p lang="zh"><strong>2. 加上中国 25% 所得税 (MM 含税)。</strong> 真实世界里, 老王要交税。店一年赚 ¥30,000 (20% 资产回报)。<em>利息可以税前扣除</em>。算一下四种方案:</p>
+<p lang="en"><strong>2. Add the 25% corporate tax (MM with tax).</strong> In reality Wang pays tax. The shop earns ¥30,000 a year (20% asset return). <em>Interest is deductible</em>. The four cases:</p>
+<ul lang="zh">
+<li>借 0 元: 税前 30,000, 交税 7,500, 税后 22,500 归老王</li>
+<li>借 50,000 元 (5% 利率, 利息 2,500): 利息扣除后税前 27,500, 交税 6,875, 税后 20,625 + 利息税盾节省 = 给银行 2,500 + 老王 20,625; <em>总和 23,125</em> (比方案 1 多 625)</li>
+<li>借 100,000 元 (利息 5,000): 利息扣除后税前 25,000, 交税 6,250, 总和 (银行 5,000 + 老王 18,750) = 23,750 (比方案 1 多 1,250)</li>
+<li>借 135,000 元 (利息 6,750): 总和 24,062 (比方案 1 多 1,562)</li>
+</ul>
+<ul lang="en">
+<li>Borrow ¥0: pre‑tax ¥30,000 → tax ¥7,500 → Wang nets ¥22,500</li>
+<li>Borrow ¥50k (5%, interest ¥2,500): pre‑tax after interest ¥27,500 → tax ¥6,875 → bank ¥2,500 + Wang ¥20,625 = ¥23,125 (¥625 better than ¥0 case)</li>
+<li>Borrow ¥100k (interest ¥5,000): bank ¥5,000 + Wang ¥18,750 = ¥23,750 (+¥1,250)</li>
+<li>Borrow ¥135k (interest ¥6,750): total ¥24,062 (+¥1,562)</li>
+</ul>
+<p lang="zh">每多借 ¥1 元, 公司"在国家这边"省的税是 利率 × 税率 = 5% × 25% = 1.25% 元 — 这就是<em>边际税盾</em>。MM 含税版本 (1963) 的极端结论: <em>借得越多越好</em>, 直到 100% 杠杆。如果这就是全部, 老王应该把 ¥149,999 借了, 自己只出 ¥1 元。但他没这么做 — 因为现实里还有别的力量。</p>
+<p lang="en">For each extra ¥1 borrowed, the firm saves 利率 × 税率 = 5% × 25% = 1.25% in tax — the <em>marginal tax shield</em>. MM with tax (1963) reaches the extreme conclusion: <em>borrow as much as possible</em>, up to 100%. If that were the whole story, Wang would borrow ¥149,999 and put up only ¥1. He doesn't — because of the other forces.</p>
+
+<p lang="zh"><strong>3. 加入"困境成本"。</strong>问: 借 ¥135,000 (90% 杠杆) 真的没风险吗?——并不。如果第三家店第一年只赚 ¥10,000 (而不是预期的 30,000), 老王要付银行 ¥6,750 利息 + 至少要还一些本金, 现金流紧得喘不过气。如果连续两年生意差:</p>
+<p lang="en"><strong>3. Bring in distress costs.</strong> Is borrowing ¥135k (90% leverage) really risk‑free? No. If the third shop earns only ¥10,000 in year 1 (instead of the expected ¥30,000), Wang has to pay ¥6,750 interest plus some principal — cash flow is suffocating. Two bad years in a row brings:</p>
+<ul lang="zh">
+<li>供应商听说老王在硬撑, 不再"3 天后付钱", 改成"现金提货" → 流动资金压力翻倍</li>
+<li>老李 (常客) 听邻居议论"老王要倒" → 减少订单转去别家 → 营收进一步下降</li>
+<li>关键员工 (面师傅) 担心拿不到工资, 跳槽去另一家面馆 → 招新人手培训成本</li>
+<li>极端情况下, 银行收回贷款, 老王店里所有家当被处置, 残值远低于账面 — <em>真破产成本</em>登场</li>
+</ul>
+<ul lang="en">
+<li>Suppliers, hearing he's stretched, switch from "pay in 3 days" to cash on delivery → working capital squeezed</li>
+<li>Old Li hears the neighbourhood gossip "Wang's in trouble" → places fewer orders → revenue drops further</li>
+<li>Key staff (the head noodle puller) worries about wages, leaves for a rival shop → retraining costs</li>
+<li>Worst case: the bank calls the loan, Wang's equipment is seized at fire‑sale prices — real bankruptcy costs land</li>
+</ul>
+<p lang="zh">这些都是<strong>困境成本 (distress cost)</strong>。它有两种: <em>直接成本</em> (诉讼 / 清算价值损失) 和<em>间接成本</em> (供应商收紧、客户流失、人才离开)。困境成本不是<em>线性</em>的 — 低杠杆时几乎为零, 接近某个阈值后<em>陡升</em> (像信用评级从 BBB 跌到 BB 的瞬间)。把困境成本的<em>现值</em>从税盾里减掉, MM 含税公式修正为<strong>权衡理论 (trade-off theory)</strong>: $V_L = V_U + tD - \mathrm{PV(distress)}$。"借得越多越好"的结论被推翻 — 有<em>内部最优</em>。</p>
+<p lang="en">These are <strong>distress costs</strong>. Two kinds: <em>direct</em> (legal, liquidation losses) and <em>indirect</em> (supplier tightening, customer loss, staff flight). They aren't linear — near zero at low leverage, then climb steeply past some threshold (like the cliff between BBB and BB credit ratings). Subtracting the PV of distress costs from the tax shield turns MM into <strong>trade‑off theory</strong>: $V_L = V_U + tD - \mathrm{PV(distress)}$. "Borrow as much as possible" no longer holds — there's an <em>interior optimum</em>.</p>
+
+<p lang="zh"><strong>4. 加入"信息不对称"(融资啄食顺序)。</strong>老王筹钱的<em>顺序</em>也有讲究。如果老王手里已经有现金 ¥80,000 (前两家店赚的内部留存), 第三家店启动只缺 ¥70,000, 他会选什么?——观察现实: <em>大部分</em>老板会先用内部资金, 不够再考虑借, 最后才考虑找新合伙人入股。为什么?</p>
+<p lang="en"><strong>4. Add information asymmetry — the pecking order.</strong> The <em>order</em> in which Wang raises money also matters. If he already has ¥80,000 cash on hand (retained earnings from the first two shops) and only needs ¥70,000 for the third, what does he do? In practice, most owners use internal cash first, then debt, then equity. Why?</p>
+<ul lang="zh">
+<li><strong>内部资金最便宜</strong>: 不付利息, 不付审查成本, 不让外人插手</li>
+<li><strong>债务次之</strong>: 银行只关心你能还本付息, 不参与经营。如果店真的好, 多借不是问题</li>
+<li><strong>外部权益最贵</strong>: 找小张追加投资意味着以后利润要分给他, 而且<em>市场会怀疑</em>"为什么连老王自己都不愿意全押"? — 引入新股东本身被解读为"<em>老板觉得这次没把握</em>"的负面信号</li>
+</ul>
+<ul lang="en">
+<li><strong>Internal cash:</strong> no interest, no scrutiny cost, no outsider involvement</li>
+<li><strong>Debt:</strong> the bank only cares about coverage, not management. If the shop is genuinely good, more debt isn't a problem</li>
+<li><strong>External equity:</strong> taking in fresh equity from Zhang means sharing future profit forever — and the market reads it as "if Wang himself didn't bet his own cash, maybe he doesn't believe in this one" — a negative signal</li>
+</ul>
+<p lang="zh">这就是 Myers 1984 的 <strong>融资啄食顺序 (pecking order)</strong>: 内部留存 → 债务 → 权益。这条原理预测: 盈利能力强的公司有大量内部资金, 自然杠杆<em>低</em> (内部够用); 盈利差的公司被迫借, 反而杠杆<em>高</em>。这与 trade-off 理论的预测<em>相反</em> — 实证上 pecking order 更符合数据。</p>
+<p lang="en">Myers (1984)'s <strong>pecking order</strong>: internal funds → debt → equity. Prediction: profitable firms have ample internal cash, so naturally <em>low</em> leverage (no need to borrow); weak firms are forced to borrow, so <em>high</em> leverage. Opposite of trade‑off's prediction — and empirically pecking order fits the data better.</p>
+
+<p lang="zh"><strong>5. 把四股力量画在同一张图上 (杠杆 vs 公司价值)。</strong></p>
+<p lang="en"><strong>Four forces on one picture (leverage vs firm value).</strong></p>
+<ul lang="zh">
+<li>无税 (MM I): 水平线 — 杠杆与价值无关</li>
+<li>加税盾 (MM 含税): 斜率向上的直线 — 越借越值钱</li>
+<li>加困境成本: 在某档之前继续上升, 过了拐点开始下降, 整体呈<em>倒 U 型</em> — 顶点是最优杠杆</li>
+<li>加信息不对称 + 代理成本: 把这条曲线整体左移 (公司主动选低于"纯权衡最优点"的杠杆, 保留财务弹性 / 避免发权益的信号成本)</li>
+</ul>
+<ul lang="en">
+<li>No tax (MM I): flat line — leverage irrelevant</li>
+<li>Plus tax shield (MM with tax): upward sloping — more debt = more value</li>
+<li>Plus distress cost: rises then falls past an inflection — <em>inverted U</em> with an interior optimum</li>
+<li>Plus asymmetry and agency: shifts the curve left (firms actively pick leverage below the pure‑tradeoff peak to preserve financial flexibility and avoid equity‑issuance signals)</li>
+</ul>
+
+<p lang="zh"><strong>6. 老王选了什么?</strong>他权衡: ¥150,000 需求, 内部有 ¥80,000 现金, 缺口 ¥70,000。如果借 ¥70,000 (47% 杠杆): 边际税盾 ≈ 875 元/年 (微利好), 困境成本几乎没有 (店里第三家相对前两家是补充, 不会因为这家失败拖垮前两家)。如果借 ¥120,000 (80% 杠杆): 边际税盾继续累加, 但万一第三家店开张第一年生意差, 老王得动用前两家的现金来还利息 — 风险从"<em>一家店</em>"扩散到"<em>三家店</em>", 困境成本陡升。老王最终选: 自己出 ¥80,000, 借 ¥70,000。47% 杠杆 — 远低于 MM 含税的"全杠杆最优", 因为实际有困境成本 + 财务弹性需求。<em>这就是真实公司决策的样子: 数学的最优点和实际选择的点, 隔着"还要保命"的距离。</em></p>
+<p lang="en"><strong>What does Wang pick?</strong> He weighs: ¥150,000 need, ¥80,000 internal, ¥70,000 gap. Borrowing ¥70k (47% leverage): marginal tax shield ≈ ¥875/year (nice), distress cost almost nothing (the third shop is incremental — its failure won't drag down the first two). Borrowing ¥120k (80%): tax shield keeps stacking, but a soft first year on shop 3 would force him to draw cash from shops 1 and 2 to service interest — risk spills from <em>one shop</em> to <em>three shops</em>, distress cost climbs steeply. Wang's final choice: own ¥80,000, borrow ¥70,000. 47% leverage — far below "MM with tax" maximum, because in reality there are distress costs + a need for financial flexibility. <em>This is what real corporate decisions look like: the mathematical optimum and the chosen point are separated by the distance called "stay alive."</em></p>
+
+<p lang="zh"><strong>老王合上账本。</strong>"借多少钱开第三家店?" 不是一个公式能给的数字, 是<em>四股力量</em>共同作用的均衡: (i) MM 中性参照说<em>不重要</em>; (ii) 税盾说<em>越多越好</em>; (iii) 困境成本说<em>过多会塌</em>; (iv) 信息不对称说<em>留点弹性</em>。每个行业、每家公司的最优点不同 — 公用事业稳现金流可以高杠杆, 白酒高利润自然低杠杆, 房地产历史宽松导致超高杠杆, 生物医药极不确定<em>几乎零杠杆</em>。Layer 2 把四股力量形式化, Layer 3 用 A 股极端案例对照。</p>
+<p lang="en"><strong>Wang closes the ledger.</strong> "How much debt for the third shop?" isn't a formula — it's the equilibrium of four forces: (i) MM neutrality says <em>doesn't matter</em>; (ii) tax shield says <em>more is better</em>; (iii) distress cost says <em>too much will collapse</em>; (iv) asymmetry says <em>keep some flexibility</em>. The optimum varies by industry and firm — utilities ride stable cash flows into high leverage, baijiu's high profits keep it naturally low, real estate historically ran extreme leverage on lax conditions, biotech's R&amp;D uncertainty keeps it near zero. Layer 2 formalises the four forces; Layer 3 reads the extremes from A‑share data.</p>
 </section>
 
 <section class="layer">
 <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王第三家店的"借多少"决策, 把<em>MM 中性 → 税盾 → 困境成本 → 信息不对称</em>四股力量逐层加上, 最终落在 47% 杠杆。现在我们形式化这四股力量, 给出 trade-off 方程、pecking order 排序、三种代理成本类型, 以及实证上不同行业 D/E 区间。</p>
+<p lang="en">Layer 1 used Old Wang's "how much to borrow" call on his third shop to add four forces in sequence — <em>MM neutrality → tax shield → distress costs → information asymmetry</em> — landing him at 47% leverage. We now formalise: the trade‑off equation, the pecking order, three agency‑cost mechanisms, and empirical D/E ranges by industry.</p>
 
 <h3 lang="zh">① Trade-off 理论</h3>
 <h3 lang="en">① Trade‑off theory</h3>
@@ -108,6 +178,8 @@
 
 <div class="case">
 <div class="case-head"><span class="ticker"><span lang="zh">对照</span><span lang="en">Contrast</span></span><span class="company"><span lang="zh">茅台 vs 恒大 — 极端的两种均衡</span><span lang="en">Moutai vs Evergrande — extreme equilibria</span></span></div>
+<p lang="zh">老王在 47% 杠杆这个点上停下来, 是因为他的店有<em>稳定现金流 + 内部资金 + 几家店相互不完全连带</em>。把这个权衡放到 A 股两端的极端公司上, 就是茅台 (内部资金极度充裕 → 零杠杆) 和恒大 (内部不够 + 预售模式延迟暴露风险 → 极高杠杆)。两家公司用<em>同一套</em>四股力量, 得出<em>完全相反</em>的最优杠杆。</p>
+<p lang="en">Old Wang stops at 47% leverage because his shops have <em>stable cash flow + internal funds + partially independent failure modes</em>. Apply the same four‑force framework to the two extremes of A‑share land and you get Moutai (overflowing internal funds → near‑zero leverage) and Evergrande (insufficient internal funds + presale model masking risk → extreme leverage). Same four forces, opposite optima.</p>
 <div class="case-table"><table><thead><tr><th></th><th>600519 <span lang="zh">茅台</span></th><th>3333.HK <span lang="zh">恒大</span><span lang="en">Evergrande</span> (<span lang="zh">退市前峰值</span><span lang="en">peak</span>)</th></tr></thead><tbody>
 <tr><td>D/A</td><td class="num up">17%</td><td class="num down">85-90%</td></tr>
 <tr><td><span lang="zh">ROIC</span><span lang="en">ROIC</span></td><td class="num up">25-30%</td><td class="num">5-10%</td></tr>

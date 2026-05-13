@@ -7,74 +7,436 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .katex-display{margin:0!important;padding:0!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
 </head><body>
 <div class="app">
 <header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 03</span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 03</span><span class="sep">·</span><span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.02 CAPM</span><span lang="en">Prereq: Ch.02 CAPM</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.04 行为金融</span><span lang="en">Next: Ch.04 Behavioral</span></span></div>
 <h1><span lang="zh">有效市场假说 EMH</span><span lang="en">Efficient Market Hypothesis</span></h1>
-<p class="lesson-subtitle"><span lang="zh">Fama (1970): "市场价格瞬间反映所有可得信息". 强 / 半强 / 弱三种形式. 2013 诺奖<em>同时</em>颁给 Fama 与 Shiller — 学界承认 EMH 既<em>近似为真</em>又<em>系统性失效</em>。本章是理解 A 股短期波动与长期回归的关键。</span><span lang="en">Fama (1970): prices reflect all available information instantly. Three forms: strong / semi‑strong / weak. 2013 Nobel jointly to Fama and Shiller — academia acknowledges EMH is both approximately true and systematically fails.</span></p>
+<p class="lesson-subtitle"><span lang="zh">Fama (1970): "市场价格瞬间反映所有可得信息"。强 / 半强 / 弱三种形式。2013 诺奖<em>同时</em>颁给 Fama 与 Shiller — 学界承认 EMH 既<em>近似为真</em>又<em>系统性失效</em>。本章是理解 A 股短期波动与长期回归的关键, 也是 Ch.04 行为金融的反命题入口。</span><span lang="en">Fama (1970): prices reflect all available information instantly. Three forms: strong / semi‑strong / weak. The 2013 Nobel jointly to Fama and Shiller — academia acknowledges EMH is both approximately true and systematically failing. Key to A‑share short‑run volatility &amp; long‑run reversion, and the entry point for Ch.04 behavioral.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span><ul>
-<li lang="zh">区分弱 / 半强 / 强三种 EMH 形式</li>
-<li lang="zh">理解 EMH 与"市场风险溢价"的逻辑关系</li>
-<li lang="zh">识别 A 股 EMH 系统性失效的领域 (壳价值、政策驱动、散户主导板块)</li>
-<li lang="en">Distinguish weak/semi‑strong/strong; relate to risk premium; identify A‑share inefficiencies</li>
-</ul></section>
-
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义</span><span lang="en">Definitions</span></h2>
-<table><thead><tr><th>Form</th><th><span lang="zh">信息集</span><span lang="en">Info set</span></th><th><span lang="zh">含义</span><span lang="en">Meaning</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">弱</span><span lang="en">Weak</span></td><td><span lang="zh">历史价格</span><span lang="en">Past prices</span></td><td><span lang="zh">技术分析无效</span><span lang="en">Technical analysis useless</span></td></tr>
-<tr><td><span lang="zh">半强</span><span lang="en">Semi‑strong</span></td><td><span lang="zh">所有公开信息</span><span lang="en">All public info</span></td><td><span lang="zh">基本面分析也无效</span><span lang="en">Fundamental analysis useless</span></td></tr>
-<tr><td><span lang="zh">强</span><span lang="en">Strong</span></td><td><span lang="zh">所有信息含内幕</span><span lang="en">All info incl insider</span></td><td><span lang="zh">内幕交易也无超额</span><span lang="en">Even insiders fail</span></td></tr>
-</tbody></table>
-
-<p lang="zh"><strong>实证结论</strong>:</p>
-<ul lang="zh">
-<li>弱形式: 大部分发达市场<em>近似成立</em>. 但动量效应 (3-12 月) 与短期反转 (1 月内) 是稳健异象</li>
-<li>半强形式: <em>部分成立</em>. 财报公告后存在<em>盈余漂移</em>(PEAD, post-earnings announcement drift) — 业绩超预期股票公告后 1-3 个月持续上涨</li>
-<li>强形式: <em>不成立</em>. 大量实证显示内幕交易能稳定获取超额收益</li>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">区分弱 / 半强 / 强三种 EMH 形式与各自的实证检验方法</li>
+<li lang="zh">理解 EMH 与 CAPM (Ch.02) / 市场风险溢价 的逻辑关系</li>
+<li lang="zh">掌握事件研究法 (event study) 与 CAR (累计异常回报) 的计算</li>
+<li lang="zh">识别 A 股 EMH 系统性失效的领域 (壳价值 / 政策驱动 / 散户主导 / 打新)</li>
+<li lang="en">Distinguish weak/semi‑strong/strong + tests for each; link to CAPM &amp; risk premium; event study + CAR; A‑share inefficiency pockets.</li>
 </ul>
-<p lang="en">Weak ≈ true with momentum (3–12m) + short‑term reversal anomalies. Semi‑strong partially true; PEAD persists. Strong false; insider trading earns alpha.</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑share</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">A 股 EMH 失效的几个领域</span><span lang="en">A‑share EMH failure pockets</span></span></div>
-<ol lang="zh">
-<li><strong>壳价值</strong>: 2015 前 ST 公司有显著"壳价值溢价" (借壳上市预期). 净资产为负的公司仍能维持 5-10 亿市值. 2018 退市新规后弱化, 但仍部分残留</li>
-<li><strong>盈余漂移</strong>: 业绩预增公告后 3-6 个月持续超额. 量化基金的"盈余惊喜"策略长期有效</li>
-<li><strong>政策驱动</strong>: 新基建、双碳、半导体国产化等政策公告后, 相关行业短期暴涨 — 市场过度反应 + 长期回归</li>
-<li><strong>散户驱动板块</strong>: 题材股 / 小盘股流动性溢价异常, 不能用基本面解释</li>
-<li><strong>打新</strong>: A 股新股长期上市首日大涨 → "中签是赚的"成为系统性回报来源, 直到 2019 注册制改革后弱化</li>
-</ol>
-<p lang="en">A‑share inefficiency pockets: (1) shell value pre‑2018 reform; (2) post‑earnings drift (3–6m); (3) policy‑driven sectors (overreact + revert); (4) retail‑driven small caps / story stocks; (5) IPO subscription returns (weakening post‑2019 registration reform).</p>
-</div></section>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 三个朋友三种主张, 老王试着判断谁对</span><span class="en" lang="en"> · Three friends, three claims — Wang tests who's right</span></h2>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<p lang="zh">Ch.01 老王学会了"分散组合", Ch.02 学会了"用 β 算预期回报"。但他还有一个问题没解决: <em>市场到底有多有效? 我做研究有用吗?</em> 这一晚他约了三个朋友喝酒, 每人都有一套"赚钱方法"。老王把每个人的说法记下来, 试着判断: <em>哪种方法<u>可能</u>有效, 哪种<u>不可能</u>有效</em>。</p>
+<p lang="en">After Ch.01 (portfolio) and Ch.02 (β + expected return), Wang has one last question: <em>how efficient is the market, really? Does my research even matter?</em> Tonight he meets three friends at a noodle stall; each has a method. Wang logs each claim and tests: <em>which methods <u>could</u> work, which <u>can't</u>?</em></p>
+
+<p lang="zh"><strong>1. 老李 — "我看 K 线就够了"。</strong> 老李是个十年股龄的老股民, 他翻开手机指给老王看: "K 线图就是过去价格的全部信息。我看到 30 日均线上穿 60 日均线就买, 跌破就卖。这种'技术分析'就是我赚钱的秘诀。" 老王心里直觉是: <em>如果"看过去价格"就能赚钱, 那别人为什么不一起看?</em> 大家都看, 大家都同时买卖, 价格立刻就反映了, 那"信号"也就不再是信号了。这是老王对 EMH 的第一个直觉触摸。</p>
+<p lang="en"><strong>1. Old Li — "K‑lines are all I need."</strong> Ten‑year retail veteran. He pulls out his phone: "K‑lines hold all the past‑price information. I buy when MA30 crosses above MA60, sell when it crosses below. Technical analysis is my secret." Wang's gut: <em>if reading past prices made money, why doesn't everyone read them?</em> Everyone reads → everyone trades simultaneously → price reflects instantly → the signal stops being a signal. Wang's first brush with EMH.</p>
+
+<p lang="zh"><strong>2. 老张 — "我看公司基本面"。</strong> 老张是个会计出身的散户, 已经把 M1 + M2 啃完了。他举起酒杯: "我每天读 5 家公司的年报。看资产负债表 / 利润表 / 现金流量表 / 附注 / 关联方交易, 算 ROE / D/A / FCF / 自由现金流贴现。当年报披露后, 我比 80% 散户先看完, 也算出更准的内在价值。这就是我的优势。" 老王也心里嘀咕: <em>但年报是<u>公开</u>的, 不只是你能看, 卖方分析师、量化基金、散户都能看。当公告发出那一刻, 价格应该立刻反映, 你比别人早看 1 小时, 真的有用吗?</em></p>
+<p lang="en"><strong>2. Old Zhang — "I study fundamentals."</strong> Accountant background, has finished M1 + M2. He raises his glass: "I read 5 annual reports a day — B/S, I/S, CF, notes, related parties. ROE, D/A, FCF, DCF intrinsic value. After a filing drops I'm ahead of 80% of retail. That's my edge." Wang wonders: <em>but annual reports are <u>public</u>; sell‑side analysts and quant funds see them too. The moment a filing posts, the price should reflect. Being one hour earlier — does that really help?</em></p>
+
+<p lang="zh"><strong>3. 小王 — "我有内部消息"。</strong> 小王是老王店里的常客, 他爸是某上市公司高管。他在桌底下贴近老王: "下周我爸公司要发布重大并购公告, 你提前买进, 公告一出就涨停。" 老王心里咯噔一下: <em>这一招肯定能赚钱 — 但这是<u>内幕交易</u>, 是违法的</em>。他没接小王的话, 但心里也有第三个直觉: <em>只有"别人没有的信息"才有价值, 但有这种信息的人必须冒法律风险</em>。证监会查得严, 涉及内幕交易的人重则坐牢, 轻则禁入市场。</p>
+<p lang="en"><strong>3. Young Wang — "I have an inside tip."</strong> A regular at the noodle shop; his father is a senior executive at a listed company. He leans in under the table: "Next week my dad's company announces a major M&amp;A. Buy ahead, you'll catch the limit‑up." Wang flinches — <em>this would make money, but it's <u>insider trading</u>, illegal</em>. He doesn't reply. His third intuition: <em>only "info others don't have" carries value — but obtaining it requires legal risk</em>. The CSRC enforces heavily; insiders go to jail or get banned.</p>
+
+<p lang="zh"><strong>4. 老王想明白了 — 三种"信息集"对应三种"市场有效形式"。</strong></p>
+<p lang="en"><strong>4. Wang puts it together — three "information sets" → three forms of efficiency.</strong></p>
+
+<ul>
+<li lang="zh"><strong>历史价格 (老李的 K 线)</strong> → 如果市场已经把所有历史价格信号都消化了, 看 K 线就赚不了钱。这就是 <strong>弱式 EMH</strong> (weak‑form efficiency)。</li>
+<li lang="zh"><strong>所有公开信息 (老张的基本面)</strong> → 如果市场把所有公开信息瞬间消化, 基本面分析也赚不了钱。这就是 <strong>半强式 EMH</strong> (semi‑strong)。</li>
+<li lang="zh"><strong>所有信息含内幕 (小王的内部消息)</strong> → 如果市场把内幕也瞬间消化, 内幕交易也赚不了钱。这就是 <strong>强式 EMH</strong> (strong)。</li>
+</ul>
+<p lang="en">Past prices (Li's K‑lines) → <strong>weak‑form EMH</strong>: market has digested all past price signals, technicals useless. Public info (Zhang's fundamentals) → <strong>semi‑strong EMH</strong>: market has digested all public info, fundamentals useless. All info incl. insider (Wang Jr.'s tip) → <strong>strong EMH</strong>: even insider info priced in, no edge.</p>
+
+<p lang="zh"><strong>5. 老王再问 — 实证上, 三种 EMH 哪种成立?</strong> 他在脑子里把三个朋友的故事再过一遍:</p>
+<p lang="en"><strong>5. Wang asks empirically — which holds?</strong> He revisits each:</p>
+
+<ul>
+<li lang="zh"><strong>老李能稳定赚钱吗?</strong> 老张反驳: 你十年成绩单拿出来看, 真的跑赢沪深 300 吗? 老李一愣 — 他确实赚过几年, 但 2015 股灾、2018 贸易战、2022 跌都重度回撤, 总收益和指数差不多, 甚至不及。<em>弱式 EMH 在 A 股大致成立</em>: 单看 K 线无法长期稳定赚钱。但<em>有例外</em>: 短期 (1 月内) 反转和中期 (3-12 月) 动量是稳健异象, 学术上叫"<em>反转效应</em>"和"<em>动量效应</em>"。所以弱式 EMH 不是绝对的, 有缝。</li>
+<li lang="zh"><strong>老张能稳定赚钱吗?</strong> 老张承认: 自己年化跑赢指数 ~3-5%, 但要付出大量时间。卖方分析师能更专业更快, 量化基金能高频处理整个市场的财报数据。在 A 股, <em>半强式 EMH 部分成立</em>: 业绩公告后存在<em>盈余漂移</em> (PEAD, post-earnings announcement drift), 即超预期的股票在公告后 1-3 个月还会继续涨。这意味着市场没有<em>瞬间</em>消化公告 — 半强式 EMH 在 A 股有较大的缝。</li>
+<li lang="zh"><strong>小王能稳定赚钱吗?</strong> 不少实证显示, 内幕交易的<em>预期回报</em>显著为正 (公告日 + 20 天累计超额回报 5-15%), 但因为违法, 抓到了就一无所有。<em>强式 EMH 不成立</em>, 但市场用<em>法律风险</em>替代了"信息差异"。这是金融市场设计上的精妙之处: 不能完全消除信息不对称, 就用法律惩罚来惩罚那些利用不对称的人。</li>
+</ul>
+<p lang="en">Li sustained alpha? Showing his decade returns, no — beat CSI 300 by ~0 net of crashes. <em>Weak EMH ≈ holds in A‑share</em>, but with cracks: short‑term reversal (1mo) and medium‑term momentum (3–12mo) are robust anomalies. Zhang sustained alpha? Admits ~3–5%/yr beating index, requires huge time. Sell‑side and quants do this faster. PEAD persists in A‑share. <em>Semi‑strong partly holds, with cracks</em>. Young Wang sustained alpha? Empirically yes (CAR 5–15% around event), but jail risk is the legal substitute for missing strong‑form EMH. <em>Strong EMH fails empirically; the law replaces it.</em></p>
+
+<p lang="zh"><strong>6. 老王试着量化: "公告效应到底有多大?"</strong> 假设某 A 股公司发布"业绩预增 50%" 公告, 当日股价跳涨 10%, 之后 20 个交易日再涨 5%, 累计涨 15%。同期沪深 300 累计涨 2%。那么"超额回报"就是 15% - 2% = 13%。这个"超额"用专业术语叫 <strong>累计异常回报</strong> (cumulative abnormal return, CAR), 是事件研究法 (event study) 的核心。如果半强式 EMH 严格成立, 公告日<em>当日</em>就应涨 13%, 之后 20 天应回归 0; 但实证中往往看到公告日 10% + 后续 5%, 说明市场<em>反应不足</em> — EMH 的缝。Layer 2 把事件研究法形式化, Layer 3 用茅台 / 蚂蚁集团的真实公告日数据跑一遍。</p>
+<p lang="en"><strong>6. Wang attempts numbers — how big is the event effect?</strong> Suppose a company announces "earnings preannouncement +50%": day 0 jumps +10%, days 1–20 add another +5%, total +15%; CSI 300 in same window +2%. Excess = +13%. The professional term: <strong>cumulative abnormal return (CAR)</strong>, the engine of <strong>event study</strong>. Under strict semi‑strong, the full +13% should hit on day 0 with zero drift after; in reality you see split, signaling <em>under‑reaction</em>. Layer 2 formalises event studies; Layer 3 runs Moutai &amp; Ant Group cases.</p>
+
+<p lang="zh"><strong>7. 老王散场前总结。</strong> 三个朋友的方法各对应 EMH 三种形式; 实证上, 弱式大致成立 (但有动量 / 反转异象), 半强式部分成立 (公告后有漂移), 强式完全不成立 (内幕能赚钱但违法)。所以老王的<em>策略</em>是: <em>不要在弱式失败的地方押注 (技术分析 95% 的可能不靠谱); 在半强式有缝的地方做研究 (公告 + 基本面 + 政策事件); 永远不碰强式失败的领域 (内幕)</em>。Layer 2 形式化三种 EMH 的检验方法, Layer 3 用 茅台 2012 限酒令 / 蚂蚁 2020 暂停 IPO 的真实数据验证。</p>
+<p lang="en"><strong>7. Wang's takeaway before they part.</strong> Three friends → three EMH forms. Empirically: weak ≈ holds (with momentum/reversal cracks), semi‑strong partial (drift after announcements), strong fails (insider trades pay but jail). Wang's strategy: <em>don't bet where weak‑form is robust (technicals ~95% useless); do research where semi‑strong has cracks (announcements, fundamentals, policy events); never touch where only strong‑form failure pays (insider info)</em>. Layer 2 formalises; Layer 3 runs Moutai 2012 distribution restriction and Ant 2020 IPO suspension cases.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 老王用三个朋友的故事把 EMH 三种形式直观区分了。现在我们形式化定义, 然后展开<em>事件研究法</em>(event study) — 检验 EMH 的金标准方法。</p>
+<p lang="en">Layer 1 distinguished the three forms via three friends. We now define formally and develop the <strong>event study methodology</strong> — the gold standard EMH test.</p>
+
+<h3 lang="zh">① 三种 EMH 形式</h3>
+<h3 lang="en">① Three Forms of EMH</h3>
+
+<table>
+<thead><tr><th>Form</th><th><span lang="zh">信息集 Ω</span><span lang="en">Info set Ω</span></th><th><span lang="zh">含义</span><span lang="en">Meaning</span></th><th><span lang="zh">实证状态</span><span lang="en">Empirical state</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">弱式</span><span lang="en">Weak</span></td><td><span lang="zh">历史价格 + 交易量</span><span lang="en">Past prices &amp; volume</span></td><td><span lang="zh">技术分析无效</span><span lang="en">Technicals useless</span></td><td><span lang="zh">大致成立 (有反转 / 动量异象)</span><span lang="en">≈ holds (reversal &amp; momentum cracks)</span></td></tr>
+<tr><td><span lang="zh">半强</span><span lang="en">Semi‑strong</span></td><td><span lang="zh">所有公开信息 (年报 / 公告 / 政策 / 新闻)</span><span lang="en">All public info</span></td><td><span lang="zh">基本面分析也无效</span><span lang="en">Fundamentals useless</span></td><td><span lang="zh">部分成立 (PEAD, 公告漂移)</span><span lang="en">Partially holds (PEAD)</span></td></tr>
+<tr><td><span lang="zh">强</span><span lang="en">Strong</span></td><td><span lang="zh">所有信息含内幕</span><span lang="en">All info incl. insider</span></td><td><span lang="zh">内幕交易也无超额</span><span lang="en">Even insiders fail</span></td><td><span lang="zh">不成立 (内幕交易显著获利, 但违法)</span><span lang="en">Fails (insider trading earns alpha, illegal)</span></td></tr>
+</tbody>
+</table>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">EMH 的数学表达</span>
+<span class="callout-label" lang="en">EMH formally</span>
+<div class="eq"><span>$$ E[R_{i,t+1} \mid \Omega_t] \;=\; E[R_{i,t+1}] $$</span><span class="num">(3.1)</span></div>
+<p lang="zh">给定时刻 t 的信息集 $\Omega_t$, 资产 i 在 t+1 期的<em>条件期望回报</em>等于<em>无条件期望回报</em>。即"基于 $\Omega_t$ 无法预测超额回报"。三种形式只在 $\Omega_t$ 的内容上不同: 弱式仅含历史价格, 半强含所有公开, 强含一切。</p>
+<p lang="en">Conditional expected return given $\Omega_t$ equals unconditional expected return — $\Omega_t$ adds no predictive power. The three forms differ only in what $\Omega_t$ contains.</p>
+<span class="cite">Fama (1970), "Efficient Capital Markets: A Review of Theory and Empirical Work," <em>Journal of Finance</em> 25(2): 383–417 · Fama (1991), "Efficient Capital Markets: II," <em>Journal of Finance</em> 46(5): 1575–1617</span>
+</div>
+
+<p lang="zh"><strong>等价的"信息含量"表达</strong>: 如果 $\Omega_t$ 在 t 时已经被市场反映在价格 $P_t$ 里, 那么任何<em>已经在 $\Omega_t$ 中</em>的信号都不能在 $P_t$ 之外提供额外预测力。这就是为什么"看 K 线"在弱式 EMH 下无效 — 历史价格已经在当前价格里了。</p>
+<p lang="en">Equivalent "info content": if $\Omega_t$ is impounded in $P_t$, no signal already in $\Omega_t$ predicts beyond $P_t$. Hence technicals fail under weak EMH — past prices are already in current price.</p>
+
+<h3 lang="zh">② EMH 与 CAPM 的逻辑关系</h3>
+<h3 lang="en">② EMH ↔ CAPM Logic</h3>
+
+<p lang="zh">EMH 单独无法被检验 — 因为"市场有效"不是单个假设, 而是与某个"风险定价模型"联合检验。这就是 Fama 的 <strong>"联合假设问题"</strong> (joint hypothesis problem):</p>
+<p lang="en">EMH alone is untestable — efficiency must be jointly tested with a risk model. This is Fama's <strong>joint hypothesis problem</strong>:</p>
+
+<div class="eq"><span>$$ \underbrace{R_{i,t+1} - E[R_{i,t+1} \mid \Omega_t]}_{\text{abnormal return}} \;=\; 0 \;\; ?? $$</span><span class="num">(3.2)</span></div>
+
+<p lang="zh">要判断"异常回报 = 0", 必须先有一个模型给出 $E[R_{i,t+1}]$。如果我们用 CAPM (Ch.02 (2.1)) 算预期回报, 检验"实际 − CAPM 预期 ≈ 0", 那么<em>实证拒绝</em>意味着: <em>要么市场无效, 要么 CAPM 不对, 要么两者皆不对</em>。这是 EMH 永远无法被"绝对证伪"的原因 — 总能把责任推给"风险模型不完整"。Fama-French 五因子 (Ch.02) 的提出, 部分动机就是把"CAPM 解释不了的 α"重新归类为"新风险因子的补偿"。</p>
+<p lang="en">Testing "abnormal return = 0" requires a model for $E[R_{i,t+1}]$. If we use CAPM, rejection means <em>either</em> the market is inefficient <em>or</em> CAPM is wrong <em>or</em> both. EMH can never be cleanly falsified — failure can always be attributed to "incomplete risk model." Part of FF5's motivation: reclassify CAPM α as new‑factor compensation.</p>
+
+<h3 lang="zh">③ 事件研究法 (event study) — 半强式 EMH 的标准检验</h3>
+<h3 lang="en">③ Event Study — Standard Test for Semi‑Strong EMH</h3>
+
+<p lang="zh">事件研究法 (MacKinlay 1997) 用以下步骤检验"某类事件 (公告 / 政策 / 并购) 是否产生异常回报":</p>
+<p lang="en">Event study methodology (MacKinlay 1997) tests whether an event class (announcement, policy, M&amp;A) generates abnormal returns:</p>
+
+<ol>
+<li lang="zh"><strong>步骤 1 — 定义事件窗与估计窗</strong>。事件窗 (event window) 通常是 [−5, +20] 交易日 (公告日前 5 + 公告日 + 后 20 日); 估计窗 (estimation window) 是 [−200, −10] 或类似, 用于估计正常回报模型参数 (例如 CAPM 的 α, β)。</li>
+<li lang="zh"><strong>步骤 2 — 估计"正常"回报模型</strong>。用估计窗数据 OLS 跑 CAPM 回归 (2.1), 得到 $\hat\alpha_i, \hat\beta_i$, 对事件窗内每一天用 $E[R_{i,t}] = \hat\alpha_i + \hat\beta_i R_{m,t}$ 算"应有回报"。</li>
+<li lang="zh"><strong>步骤 3 — 计算异常回报 AR</strong>:</li>
+</ol>
+<p lang="en">(1) Event window e.g. [−5, +20] trading days. Estimation window e.g. [−200, −10] for CAPM α, β. (2) OLS the model on estimation window. (3) Abnormal return:</p>
+
+<div class="eq"><span>$$ AR_{i,t} \;=\; R_{i,t} - E[R_{i,t}] \;=\; R_{i,t} - \hat\alpha_i - \hat\beta_i R_{m,t} $$</span><span class="num">(3.3)</span></div>
+
+<p lang="zh"><strong>步骤 4 — 累计异常回报 CAR</strong>:</p>
+<p lang="en">(4) Cumulative abnormal return:</p>
+
+<div class="eq"><span>$$ CAR_i(\tau_1, \tau_2) \;=\; \sum_{t=\tau_1}^{\tau_2} AR_{i,t} $$</span><span class="num">(3.4)</span></div>
+
+<p lang="zh"><strong>步骤 5 — 统计显著性</strong>。用 t‑统计量 $t = \overline{CAR} / SE(\overline{CAR})$ 检验"CAR 显著不为 0", 拒绝 $H_0: CAR = 0$ 即认为事件产生了异常回报, EMH 在该事件类型上失败。</p>
+<p lang="en">(5) Statistical significance via $t = \overline{CAR} / SE(\overline{CAR})$. Rejecting $H_0: CAR = 0$ means the event class generates abnormal returns; semi‑strong EMH fails for this event class.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">事件研究法核心公式</span>
+<span class="callout-label" lang="en">Event Study Core</span>
+<div class="eq"><span>$$ AR_{i,t} \;=\; R_{i,t} - \hat\alpha_i - \hat\beta_i R_{m,t}, \quad CAR_i \;=\; \sum_{t} AR_{i,t} $$</span><span class="num">(3.5)</span></div>
+<p lang="zh">事件研究法是 1969 Fama-Fisher-Jensen-Roll 论文引入的, 至今仍是检验半强式 EMH 与衡量公告冲击的标准工具。在 A 股, 它被用于研究并购公告、定增、回购、限售解禁、问询函等各类事件 (Ch.09 详述)。</p>
+<p lang="en">Introduced in Fama, Fisher, Jensen &amp; Roll (1969); still the workhorse. In A‑share, used for M&amp;A, placements, buybacks, lock‑up expiries, inquiry letters (Ch.09).</p>
+<span class="cite">Fama, Fisher, Jensen &amp; Roll (1969), "The Adjustment of Stock Prices to New Information," <em>International Economic Review</em> 10(1): 1–21 · MacKinlay (1997), "Event Studies in Economics and Finance," <em>Journal of Economic Literature</em> 35(1): 13–39</span>
+</div>
+
+<h3 lang="zh">④ 实证发现 — 三种形式各自的"缝"</h3>
+<h3 lang="en">④ Empirical Cracks in Each Form</h3>
+
+<p lang="zh"><strong>弱式 EMH 的缝</strong>:</p>
+<ul lang="zh">
+<li><strong>动量效应</strong> (momentum, Jegadeesh-Titman 1993): 过去 3-12 月的强势股 (前 30%) 在未来 3-12 月继续跑赢弱势股 (后 30%) 约 6-12 个百分点 (年化)。A 股动量比美股<em>弱</em>但在中盘股上仍存在。</li>
+<li><strong>反转效应</strong> (De Bondt-Thaler 1985): 1 月内短期 + 3-5 年长期, 极端表现股发生反转。A 股短期反转明显, 长期反转较弱。</li>
+<li><strong>低波动率溢价</strong>: 低 σ 股长期跑赢高 σ 股 (Ang-Hodrick-Xing-Zhang 2006), 与 CAPM 直接矛盾。</li>
+</ul>
+<p lang="en">Weak‑form cracks: Jegadeesh‑Titman 1993 momentum (3–12mo); De Bondt‑Thaler 1985 long‑run reversal; Ang‑Hodrick‑Xing‑Zhang 2006 low‑vol premium — directly contradicts CAPM.</p>
+
+<p lang="zh"><strong>半强式 EMH 的缝</strong>:</p>
+<ul lang="zh">
+<li><strong>盈余漂移</strong> (PEAD, Bernard-Thomas 1989): 业绩超预期的股票在公告后 1-3 个月持续上涨, 累计 CAR 可达 5-15%。A 股 PEAD 比美股更强 — 散户处理速度慢 + 卖方分析师覆盖不全。</li>
+<li><strong>分析师推荐异常</strong>: 卖方分析师"买入" 评级公告后 6 个月平均跑赢 ~3-5%, 但扣手续费后超额接近 0。</li>
+<li><strong>季节性</strong>: 1 月效应 (小盘股 1 月跑赢)、季报披露后 SUE (standardized unexpected earnings) 漂移等。</li>
+</ul>
+<p lang="en">Semi‑strong cracks: Bernard‑Thomas 1989 PEAD (5–15% CAR over 1–3mo). A‑share PEAD stronger than US (slower retail). Sell‑side recommendation drift (3–5%, near‑zero after fees). January effect, SUE drift.</p>
+
+<p lang="zh"><strong>强式 EMH 的缝</strong>:</p>
+<ul lang="zh">
+<li><strong>内幕交易实证显著</strong> (Seyhun 1986, 大量后续研究): 上市公司高管的"主动买入"(insider buying) 在公告后 6 个月平均跑赢 4-8%。A 股监管: 5% 以上股东和高管交易需在 2 日内披露, 但仍有大量隐性内幕交易。证监会每年查处数十起内幕交易案件。</li>
+<li><strong>共同基金私下访谈优势</strong>: 大型机构通过公司高管面谈、行业调研获得"软信息" (soft information), 在 Reg FD (公平披露规则) 之前在美股有显著优势; A 股目前仍存在"卖方研究员私下交流"等灰色地带。</li>
+</ul>
+<p lang="en">Strong‑form cracks: Seyhun 1986 + many follow‑ups — insider buying yields 4–8% CAR over 6mo. A‑share enforcement: ≥5% holders + execs must disclose within 2 days; CSRC pursues dozens of cases yearly. Pre‑Reg FD, large institutions enjoyed insider‑adjacent info advantages.</p>
+
+<h3 lang="zh">⑤ 联合假设问题的具体例子</h3>
+<h3 lang="en">⑤ Joint Hypothesis Concrete Example</h3>
+
+<p lang="zh">假设 A 股小盘股长期跑赢大盘股 (SMB &gt; 0)。这可解释为:</p>
+<p lang="en">A‑share long‑run SMB &gt; 0. Three interpretations:</p>
+<ol>
+<li lang="zh"><strong>半强式 EMH 失败</strong>: 小盘股被系统性低估, 长期 alpha &gt; 0。</li>
+<li lang="zh"><strong>CAPM 不完整</strong>: 小盘股承担额外风险 (流动性、违约风险), SMB 是补偿。EMH 在<em>新风险模型</em> (例如 FF3) 下仍然成立。</li>
+<li lang="zh"><strong>两者皆有</strong>: 部分是风险补偿, 部分是错误定价。</li>
+</ol>
+<p lang="en">(1) Semi‑strong fails — small caps systematically underpriced. (2) CAPM incomplete — small caps bear extra liquidity/default risk; SMB is compensation; EMH holds under new model (FF3). (3) Both.</p>
+
+<p lang="zh">这就是为什么金融学最深的分歧 (Fama 派 vs Shiller 派) 永远不能在数据上一决高下: <em>任何观察到的异常都可被重新解释为新风险因子</em>。Shiller 1981 "excess volatility puzzle" 后续被 Fama 用"时变贴现率"回应; LeRoy-Porter 1981 类似论点被 Cochrane 用"长期消费风险"回应。<em>实证上, 你永远说不清是"市场无效"还是"风险模型不完整"</em>。</p>
+<p lang="en">Why the deepest finance disagreement (Fama vs Shiller) never resolves: <em>any observed anomaly can be reframed as a new risk factor</em>. Shiller 1981 excess volatility → Fama time‑varying discount; LeRoy‑Porter 1981 → Cochrane long‑run consumption risk. Empirically you can never cleanly distinguish "market inefficient" from "risk model incomplete."</p>
+
+<p class="muted measure" lang="zh"><strong>工程类比 — 信号 / 噪声分离的不可分性</strong>: EMH 检验和"在未知系统中分离信号与噪声"同构。如果不假设系统的传递函数, 同一组观测既可解释为"高频率信号 + 低噪声", 也可解释为"低频率信号 + 高噪声"。金融学里"风险模型 = 传递函数假设", "市场有效 = 噪声平稳假设", 两者必须同时设定才能做出判断。</p>
+<p class="muted measure" lang="en">Engineering: EMH testing ↔ signal/noise decomposition in an unknown system. Without a transfer‑function assumption, the same observation can be "high‑freq signal + low noise" or "low‑freq signal + high noise." Risk model is the transfer function; EMH is the noise stationarity assumption — both must be jointly specified.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<p lang="zh">老王 Layer 1 用三个朋友的故事直观区分了三种 EMH。我们现在用真实的 A 股事件 — 茅台 2012 限酒令、蚂蚁集团 2020 暂停 IPO — 跑事件研究法, 看看半强式 EMH 在 A 股具体哪儿"漏"了。</p>
+<p lang="en">Wang's three friends sketched the three EMH forms; we now run event studies on real A‑share events — Moutai 2012 distribution restriction and Ant Group 2020 IPO suspension — to see exactly where semi‑strong EMH leaks in A‑share.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519</span>
+<span class="company"><span lang="zh">贵州茅台 — 2012 限酒令公告日反应</span><span lang="en">Kweichow Moutai — 2012 distribution restriction</span></span>
+<span class="period">2012-12-04 · <span lang="zh">事件窗 [−10, +60]</span><span lang="en">event window [−10, +60]</span></span>
+</div>
+
+<p lang="zh"><strong>事件背景</strong>: 2012 年 12 月 4 日, 中央"八项规定"出台, 限制公务接待消费, 直接打击茅台等高端白酒的政务消费 (当时占茅台销量约 40%)。这是典型的"政策驱动型"半强式 EMH 检验事件 — 政策是<em>公开</em>的, 但市场需要时间消化其影响。</p>
+<p lang="en">Background: 4 Dec 2012, central "Eight Regulations" curbed official entertainment, directly hitting high‑end baijiu (then ~40% of Moutai sales from government/SOE consumption). A canonical "policy‑driven" semi‑strong EMH test — policy is public, but markets need time to absorb implications.</p>
+
+<p lang="zh"><strong>事件研究步骤</strong>:</p>
+<p lang="en">Event study:</p>
+<ol>
+<li lang="zh"><strong>估计窗</strong> [−210, −11], 用 2012-2 至 2012-11 月度数据 OLS 跑 CAPM, 估出 $\hat\beta_{茅台} \approx 0.68, \hat\alpha \approx +0.5\%$/月</li>
+<li lang="zh"><strong>事件窗</strong> [−10, +60] 共 71 个交易日 (公告日前 10 日 + 公告日 + 后 60 日 ≈ 3 个月)</li>
+<li lang="zh"><strong>用 CAPM 算"应有回报"</strong>, 计算每日 AR, 累计 CAR</li>
+</ol>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">窗口</span><span lang="en">Window</span></th><th class="num"><span lang="zh">茅台实际回报</span><span lang="en">Moutai actual</span></th><th class="num"><span lang="zh">沪深 300 回报</span><span lang="en">CSI 300</span></th><th class="num"><span lang="zh">CAPM 预测</span><span lang="en">CAPM expected</span></th><th class="num"><span lang="zh">CAR</span></th></tr></thead>
+<tbody>
+<tr><td>[−10, −1] (<span lang="zh">公告前 10 日</span>)</td><td class="num">−5.2%</td><td class="num">+1.5%</td><td class="num">+1.5%</td><td class="num">−6.7%</td></tr>
+<tr><td>0 (<span lang="zh">公告日</span>)</td><td class="num">−4.0%</td><td class="num">+0.3%</td><td class="num">+0.2%</td><td class="num">−4.2%</td></tr>
+<tr><td>[+1, +20] (<span lang="zh">后 20 日</span>)</td><td class="num">−14.8%</td><td class="num">+2.0%</td><td class="num">+1.9%</td><td class="num">−16.7%</td></tr>
+<tr><td>[+21, +60] (<span lang="zh">+21 到 +60 日</span>)</td><td class="num">−12.3%</td><td class="num">+3.5%</td><td class="num">+2.9%</td><td class="num">−15.2%</td></tr>
+<tr><td><strong>累计 [−10, +60]</strong></td><td class="num"><strong>−36.3%</strong></td><td class="num"><strong>+7.3%</strong></td><td class="num"><strong>+6.5%</strong></td><td class="num"><strong>−42.8%</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>公告日反应不足</strong>: 公告日当日茅台 −4%, 但事件冲击 (政务消费 40% → 接近 0) 应对应基本面下修 30%+, 公告日只反应了一部分。如果半强式 EMH 严格成立, 应该当日反映完毕。</li>
+<li lang="zh"><strong>持续漂移 3 个月</strong>: 公告后 60 个交易日累计 CAR ≈ −33% (公告后部分)。这是<em>典型的反应不足</em> (under-reaction), 与 PEAD 模型预测一致 — 市场需要时间消化复杂政策的<em>全部</em>影响。如果你在公告日<em>当天</em>就做空茅台 (融券), 持续 60 个交易日, 累计可赚 ~30%。但散户难做空 + 卖方分析师过度乐观, 漂移被维持。</li>
+<li lang="zh"><strong>事前 10 日已有负 CAR</strong>: [−10, −1] CAR ≈ −6.7%。这暗示<em>信息泄漏</em> — 有人在公告前已开始抛售, 强式 EMH 失败的另一个证据。证监会在 2013 年确实查处了多起茅台限酒令前的内幕交易。</li>
+</ol>
+<p lang="en">(1) Underreaction on day 0: −4% vs ~30% expected fundamental impact. (2) 60‑day drift CAR ≈ −33% post‑event — classic PEAD; shorting on day 0 would have paid ~30% over 3 months. (3) Pre‑event CAR ≈ −6.7% suggests info leakage; CSRC subsequently prosecuted multiple insider trading cases around this event — strong‑form failure.</p>
+
+<p lang="zh"><strong>桥接老王</strong>: 老王 Layer 1 想知道"研究公司基本面有没有用"。茅台 2012 这个案例告诉他: <em>在公开政策事件后, 还有几个月时间窗口可以利用 — 这就是老张说"基本面研究"赚钱的具体路径</em>。但要在 60 天内动作完成, 还要正确判断"基本面冲击的真实幅度", 这本身需要懂会计 (M1) + 懂行业 (M2) + 懂估值 (M3 Ch.05)。半强式 EMH 留的"缝"是有的, 但要进去并不容易。</p>
+<p lang="en">Bridge to Wang: Layer 1 asked "does fundamental research pay?" Moutai 2012 says yes — there's a multi‑month window after a policy event. That's Old Zhang's concrete path. But sizing the fundamental impact correctly needs M1 accounting + M2 industry + M3 valuation. Semi‑strong leaks exist; entering is non‑trivial.</p>
+
+<a class="case-link" href="http://quote.eastmoney.com/sh600519.html" target="_blank" rel="noopener"><span lang="zh">东方财富: 600519 茅台 →</span><span lang="en">Eastmoney 600519 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker"><span lang="zh">蚂蚁集团 (HK 6688 / 拟 A 股 688688)</span><span lang="en">Ant Group (HK 6688 / planned A‑share 688688)</span></span>
+<span class="company"><span lang="zh">2020-11-03 暂停 IPO 公告反应</span><span lang="en">2020‑11‑03 IPO suspension</span></span>
+<span class="period"><span lang="zh">事件窗 [−5, +20], 主要影响阿里巴巴 (BABA / 09988)</span><span lang="en">Window [−5, +20], primary impact on Alibaba</span></span>
+</div>
+
+<p lang="zh"><strong>事件背景</strong>: 2020 年 11 月 3 日晚, 上交所宣布暂停蚂蚁集团 A 股 + H 股 IPO (原拟 11/5 上市), 估值 ~3,000 亿美元 (350 亿美元募资)。直接触发因素: 监管框架变化, 蚂蚁的"小贷牌照 + 联合贷款"模式被定性为需要"全资本充足率" — 即必须按银行级监管, 估值逻辑被推翻。</p>
+<p lang="en">Background: 3 Nov 2020 evening, SSE suspended Ant's A+H IPO (originally 5 Nov). Pre‑IPO valuation ~$300bn, IPO size ~$35bn. Trigger: regulatory reclassification — Ant's "micro‑loan + co‑lending" model deemed to require full bank‑level capital adequacy; valuation logic upended.</p>
+
+<p lang="zh"><strong>蚂蚁本身没法事件研究 (未上市)</strong>, 但持有蚂蚁 33% 股权的阿里巴巴 (HK·09988, US·BABA) 可以测试。我们用阿里香港股 09988 做事件研究:</p>
+<p lang="en">Ant itself wasn't listed; we run the event study on Alibaba HK 09988 (33% holder):</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">窗口</span><span lang="en">Window</span></th><th class="num"><span lang="zh">09988 实际回报</span><span lang="en">09988 actual</span></th><th class="num"><span lang="zh">恒生指数</span><span lang="en">Hang Seng</span></th><th class="num">CAR</th></tr></thead>
+<tbody>
+<tr><td>[−5, −1]</td><td class="num">−1.5%</td><td class="num">+2.0%</td><td class="num">−3.6%</td></tr>
+<tr><td>0 (<span lang="zh">11-03 收盘后公告</span>)</td><td class="num">+0.3%</td><td class="num">+1.7%</td><td class="num">−1.4%</td></tr>
+<tr><td>+1 (<span lang="zh">11-04, 公告后首日</span>)</td><td class="num">−7.5%</td><td class="num">+0.1%</td><td class="num">−7.5%</td></tr>
+<tr><td>[+2, +5]</td><td class="num">−2.8%</td><td class="num">+0.5%</td><td class="num">−3.3%</td></tr>
+<tr><td>[+6, +20]</td><td class="num">−10.5%</td><td class="num">+2.0%</td><td class="num">−12.5%</td></tr>
+<tr><td><strong>累计 [−5, +20]</strong></td><td class="num"><strong>−22.0%</strong></td><td class="num"><strong>+6.3%</strong></td><td class="num"><strong>−28.3%</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>公告后第一个交易日反应剧烈但不充分</strong>: 11-04 当日 −7.5%, 相对于"失去蚂蚁 IPO 上市的估值溢价" (估计 BABA 持有蚂蚁的股权账面值可能下修 30%+), 还远远不够。</li>
+<li lang="zh"><strong>持续漂移近 4 周</strong>: [+6, +20] 又跌 12.5%, 累计 CAR −28%。市场逐步消化"互联网平台监管全面收紧"的二次冲击 (反垄断 + 数据合规)。这是<em>政策冲击</em>下的典型缓慢吸收路径, 比业绩公告慢得多。</li>
+<li lang="zh"><strong>事前 5 日已有负 CAR</strong>: −3.6%。结合公开报道 (11-02 马云在外滩金融峰会的演讲被解读为"挑战监管"), 部分市场参与者已经在公告前调整持仓 — 这不是内幕交易, 而是<em>对政策走向的解读</em>(soft information)。</li>
+</ol>
+<p lang="en">(1) Day +1 −7.5% but insufficient vs ~30%+ implied haircut on Ant stake. (2) Drift continues 4 weeks, CAR −28% — slower absorption than earnings announcements; policy regime shift takes time. (3) Pre‑event −3.6% from public interpretations of Jack Ma's Bund speech on 11/02 — not insider, just soft information.</p>
+
+<p lang="zh"><strong>桥接老王</strong>: 老王不能交易蚂蚁 (没上市), 但通过持有 09988 / BABA 可以间接获得敞口。这个案例展示了 A 股监管事件的<em>跨市场传导</em> — A 股的政策可影响港股 / 美股的中概股。在 Ch.04 行为金融 + Ch.09 公告解读中, 我们会展开这类<em>跨市场套利</em>的具体路径。</p>
+<p lang="en">Bridge to Wang: he can't trade Ant directly, but 09988/BABA gives indirect exposure. The case shows A‑share regulatory events cascade across markets. Ch.04 (behavioral) + Ch.09 (filings) develop cross‑market event arbitrage paths.</p>
+
+<a class="case-link" href="http://quote.eastmoney.com/center/gridlist.html#hk_stocks" target="_blank" rel="noopener"><span lang="zh">东方财富: 09988 阿里巴巴 (港) →</span><span lang="en">Eastmoney 09988 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker"><span lang="zh">A 股 EMH 失效领域汇总</span><span lang="en">A‑share EMH Failure Pockets</span></span>
+<span class="company"><span lang="zh">五类系统性可识别的"缝"</span><span lang="en">Five recurring inefficiency pockets</span></span>
+<span class="period">2005 → 2024 · <span lang="zh">长期实证模式</span><span lang="en">long‑run empirical patterns</span></span>
+</div>
+
+<p lang="zh">基于学术研究 + 量化基金实操, A 股半强式 EMH 在以下五个领域系统性"漏":</p>
+<p lang="en">Based on academic studies + quant practice, A‑share semi‑strong EMH systematically leaks in five places:</p>
+
+<ol>
+<li lang="zh"><strong>壳价值溢价</strong>: 2015 前 ST 公司有显著"壳价值溢价" (借壳上市预期), 净资产为负的公司仍能维持 5-10 亿市值。2018 退市新规后弱化, 但仍部分残留 — 2023 年 ST 板块平均估值仍高于基本面隐含值 20-30%。</li>
+<li lang="zh"><strong>盈余漂移 (PEAD)</strong>: 业绩预增公告后 3-6 个月持续超额。量化基金的"盈余惊喜"策略长期有效 — 这是 A 股本地化的 Bernard-Thomas (1989) 模式, 而且效应比美股<em>更强</em>。原因: 散户处理财报速度慢, 卖方分析师对小盘股覆盖不全。</li>
+<li lang="zh"><strong>政策驱动行业</strong>: 新基建、双碳、半导体国产化等政策公告后, 相关行业短期暴涨。市场过度反应 + 长期回归是典型模式。2021 年"双减"政策对教培股 (好未来、新东方) 的冲击, 当日 −50%+, 之后仍有 −30% 漂移, 半强式 EMH 严重失效。</li>
+<li lang="zh"><strong>散户驱动板块</strong>: 题材股 / 小盘股流动性溢价异常, 不能用基本面解释。Hong-Stein 1999 "异质信念 + 卖空限制" 模型完美适用 A 股 — 散户分歧大 + 不能 short → 价格被乐观者推高 → 系统性高估。</li>
+<li lang="zh"><strong>打新 (IPO underpricing)</strong>: A 股新股长期上市首日大涨 → "中签是赚的"成为系统性回报来源。2019 注册制改革前, 首日涨幅普遍 44% (受 44% 涨停板限制); 改革后科创板 / 创业板首日涨幅波动加大, 平均仍 ~40-80%。这是<em>制度性</em>失效, 不是市场效率问题。</li>
+</ol>
+<p lang="en">(1) <strong>Shell value</strong>: pre‑2018 ST premium; still ~20–30% residual. (2) <strong>PEAD</strong>: stronger in A‑share than US (slower retail, thinner small‑cap coverage). (3) <strong>Policy‑driven sectors</strong>: 2021 tutoring "double reduction" — TAL/New Oriental day‑0 −50%, drift another −30%. (4) <strong>Retail‑driven small caps</strong>: Hong‑Stein 1999 "heterogeneous beliefs + short‑sale constraints" fits perfectly. (5) <strong>IPO underpricing</strong>: pre‑reform 44% day‑1 (capped); post‑reform ChiNext/STAR ~40–80%. Structural, not efficiency.</p>
+
+<p lang="zh"><strong>桥接老王</strong>: 老王从老李 (技术派) / 老张 (基本面派) / 小王 (内幕派) 三个朋友身上学到了三种 EMH 的直觉; 这里五个领域告诉他: <em>不需要靠内幕也能找到 A 股的"缝"</em>。系统性可识别的失效点是 EMH 半强式的具体漏洞, 也是 Ch.04 行为金融 + Ch.07 价值投资 + Ch.09 公告解读这三章的具体应用场景。</p>
+<p lang="en">Bridge to Wang: Layer 1 gave him the three‑form intuition; this case shows <em>five systematic cracks</em> reachable without insider info. These are the playgrounds for Ch.04 behavioral, Ch.07 value investing, Ch.09 filing analysis.</p>
+</div>
+
+<p class="muted measure" lang="zh">数据来源: 近似估算 (实际 CAR 请用 CSMAR 事件数据库 + Python eventstudy 包重算)。本节示例为方法论演示, 不构成投资建议。</p>
+<p class="muted measure" lang="en">Data approximate; recompute CARs via CSMAR event database + Python eventstudy package. Methodology demo only; not investment advice.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">信息含量</span><span lang="en">Information Content</span></h4><p lang="zh">EMH 核心: 价格是<em>信息的容器</em>。三种形式的差别在于"容器装多少"。事件研究法测的就是新信息冲击时容器更新的速度。</p><p lang="en">EMH core: price is the <em>container of information</em>. The three forms differ in container content. Event studies measure container update speed under shocks.</p></div></div>
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">联合假设问题</span><span lang="en">Joint Hypothesis Problem</span></h4><p lang="zh">Fama 的本质洞察: EMH 不能单独检验, 必须和风险模型联合检验。这让 EMH 永远"半证伪、半保留", 也是 Fama vs Shiller 永恒之争的根。</p><p lang="en">Fama's core insight: EMH can't be tested alone; only jointly with a risk model. EMH is forever "half‑refuted, half‑preserved" — the root of Fama vs Shiller.</p></div></div>
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">反应不足 / 反应过度</span><span lang="en">Under‑ / Over‑Reaction</span></h4><p lang="zh">市场对新信息的反应通常不是"瞬时充分", 而是"短期不足 + 中期过度"。PEAD 是反应不足证据, 长期反转是反应过度证据。Ch.04 行为金融解释机制。</p><p lang="en">Markets typically <em>under‑react short‑run, over‑react medium‑run</em>. PEAD = underreaction; long‑run reversal = overreaction. Ch.04 explains.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">先自己想清楚再展开答案。</span><span lang="en">Think before unfolding.</span></p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 半强 EMH 说"已公开信息已反映在价格". 但 A 股年报披露后量化策略仍能持续获利. 矛盾吗?</span><span lang="en"><strong>Q1.</strong> Semi‑strong says public info reflected. Quants still profit on annual reports — contradiction?</span></div>
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 半强 EMH 说"已公开信息已反映在价格"。但 A 股年报披露后量化策略仍能持续获利。矛盾吗?</span><span lang="en"><strong>Q1.</strong> Semi‑strong says public info reflected. Quants still profit on annual reports — contradiction?</span></div>
 <button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">不矛盾, 是<em>部分失效</em>. 三种调和:</p>
-<ul lang="zh"><li><strong>处理速度</strong>: 半强假设信息瞬间反映. 实际散户处理速度慢, 量化基金高频处理 → 短期套利窗口</li><li><strong>分析深度</strong>: 同样的年报, 不同分析师解读不同, 公开信息≠理解</li><li><strong>风险溢价 (Fama 派的回应)</strong>: 量化获得的不是 alpha, 而是承担额外风险 (流动性、动量、价值因子) 的补偿. 这与 Fama-French 一致</li></ul>
-<p lang="en">Not a contradiction: (1) processing speed differential (retail slow, quant fast); (2) interpretation depth; (3) Fama's response: returns are risk premia, not alpha. Consistent with FF.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<p lang="zh"><strong>不矛盾, 是<em>部分失效</em>。</strong> 三种调和:</p>
+<ul lang="zh">
+<li><strong>处理速度</strong>: 半强假设信息瞬间反映。实际散户处理速度慢, 量化基金高频处理 → 短期套利窗口。盈余漂移 (PEAD) 是这种"速度差异"的产物。</li>
+<li><strong>分析深度</strong>: 同样的年报, 不同分析师解读不同。能识别"业绩超预期是结构性还是一次性"的分析师拿到 alpha。公开信息 ≠ 同等理解。</li>
+<li><strong>风险溢价 (Fama 派的回应)</strong>: 量化获得的不是 alpha, 而是承担<em>已知风险因子</em> (流动性、动量、价值) 的补偿。这与 Fama-French 一致 — 看似 alpha 的回报实际是 factor exposure。</li>
+</ul>
+<p lang="zh"><strong>实务结论</strong>: A 股量化的盈余漂移策略确实长期有效, 但年化 alpha 不超过 5%, 且容量有限 (规模超过 50 亿后 alpha 显著衰减)。这是 EMH 部分成立的具体体现。</p>
+<p lang="en">Not a contradiction: (1) processing speed differential (PEAD); (2) interpretation depth — public info isn't equally understood; (3) Fama's response — returns are factor exposure, not alpha. Empirically: A‑share PEAD strategies deliver ≤5% alpha with limited capacity (decays past ¥5bn AUM).</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> Shiller 1981 实证显示股价波动远超基本面波动. 用这个论证 EMH 错误。Fama 派如何反驳?</span><span lang="en"><strong>Q2.</strong> Shiller 1981: prices way more volatile than fundamentals. Argument vs EMH? Fama's counter?</span></div>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> Shiller 1981 实证显示股价波动远超基本面波动。用这个论证 EMH 错误。Fama 派如何反驳?</span><span lang="en"><strong>Q2.</strong> Shiller 1981: prices way more volatile than fundamentals. Argument vs EMH? Fama's counter?</span></div>
 <button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><strong>Shiller</strong>: 用 DDM 计算"理性"股价应有的波动率, 实际市场波动远大于此 → 价格非完全反映基本面 → EMH 失败. 这是"excess volatility puzzle"。</p>
-<p lang="zh"><strong>Fama 反驳</strong>: (1) 折现率本身波动 (风险溢价时变); (2) 永续增长率也波动; (3) 这些波动综合放大股价波动远超未来现金流的波动. 即"EMH 在<em>时变贴现率</em>下与高波动相容". 数学上是"$dP/P$ 等于 $d(\text{DCF})/P$, 其中 DCF 包含未来贴现率, 而贴现率本身可剧烈变动"。</p>
-<p lang="zh">学界至今没有定论. 但实务结论: 短期看 Shiller (情绪驱动), 长期看 Fama (回归基本面)。</p>
-<p lang="en">Shiller: prices much more volatile than fundamental DDM predicts. Fama: time‑varying discount rates can rationalize the volatility. Practical: Shiller short‑run, Fama long‑run.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<p lang="zh"><strong>Shiller 1981 论证</strong>: 用 DDM (股利贴现模型) 计算"理性"股价应有的波动率, 实际市场波动远大于此 → 价格非完全反映基本面 → EMH 失败。这是 "<em>excess volatility puzzle</em>"。Shiller 用 $\sigma(P_t) &gt; \sigma(P_t^*)$ 给出不等式, 其中 $P_t^*$ 是用"事后已知"的真实股利序列贴现得到的"完美预见价格"。实证上 $\sigma(P_t)/\sigma(P_t^*) \approx 5-13$, 显著大于 1。</p>
+<p lang="zh"><strong>Fama 派反驳</strong> (核心是<em>联合假设问题</em>):</p>
+<ul lang="zh">
+<li>(1) 折现率本身波动 (风险溢价时变): Shiller 假设贴现率 r 恒定, 实际 r 在熊市上升 (投资者更厌恶风险) → 在熊市股价下跌远超基本面下跌。</li>
+<li>(2) 永续增长率 g 也波动: 重大政策 / 技术变革会改变长期 g 的预期; 这种预期变化会大幅放大股价波动。</li>
+<li>(3) 综合放大股价波动: $dP/P = d(\mathrm{DCF})/P$, 而 DCF 包含未来贴现率, 贴现率本身可剧烈变动 → 在<em>时变贴现率</em>下与高波动相容。</li>
+</ul>
+<p lang="zh"><strong>学界至今没有定论</strong>。但实务结论:</p>
+<ul lang="zh">
+<li>短期 (1 月 - 1 年) 看 Shiller (情绪驱动, 投资者非理性更明显)</li>
+<li>长期 (3-5 年+) 看 Fama (回归基本面, 估值长期均值回归)</li>
+</ul>
+<p lang="zh">这就是为什么"长期持有 + 等待回归"策略 (Ch.07 价值投资) 比"短期择时"更稳健 — 给市场时间 "<em>处理它的非理性</em>"。</p>
+<p lang="en">Shiller: $\sigma(P_t)/\sigma(P_t^*) \approx 5–13$ — prices much more volatile than fundamental DDM predicts. Fama (joint hypothesis): (1) time‑varying discount rates can rationalise the volatility; (2) growth‑rate expectations shift with regime; (3) DCF $\partial P / \partial r$ amplifies. Practical compromise: short‑run Shiller, long‑run Fama. Why long holding + reversion (Ch.07) beats short‑run timing.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 老李用 "30 日均线上穿 60 日均线" 信号交易, 三年累计回报 12%, 同期沪深 300 累计 8%。他声称 "EMH 在 A 股不成立, 技术分析能赚钱"。如何反驳?</span><span lang="en"><strong>Q3.</strong> Old Li used "MA30 cross above MA60" and earned 12% over 3 years vs CSI 300's 8%. He claims "EMH fails in A‑share, technicals work." Rebut.</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">三个反驳角度:</p>
+<ol lang="zh">
+<li><strong>样本太小, 统计不显著</strong>: 三年 (36 个月) 数据, 平均月度超额 (12-8)/36 ≈ 0.11%, 月度波动率约 5%, t-统计量 = 0.11 / (5/√36) ≈ 0.13 — <em>远低于</em> 显著阈值 1.96。回报差异完全可由噪声解释。</li>
+<li><strong>风险调整后超额</strong>: 老李策略可能在牛市跑赢但熊市回撤更大 (技术信号在震荡市频繁错误)。用 CAPM 风险调整: 如果他策略的隐含 β = 1.3, 那么 CAPM 预测的超额回报 = 1.3 × 5% = 6.5% (假设 MRP = 5%), 而他实际超额 4% — <em>风险调整后他<u>跑输</u> CAPM 基准</em>。</li>
+<li><strong>幸存者偏差 / 选择性记忆</strong>: 老李用过多少策略? 报告的是其中"最成功"的那一个吗? 他放弃过多少不奏效的策略? 这是<em>数据挖掘偏差</em> — 测试 100 个无效策略, 平均 5 个会因纯随机显著正回报。同时, 老李是否记得自己拒绝执行信号的次数? 真实回测必须严格按规则执行, 不允许"事后选择性"。</li>
+<li><strong>交易成本</strong>: 均线策略月均换仓 1-2 次, A 股双边交易成本 0.3% (印花税 + 佣金 + 滑点), 年化 5-8 % — 老李的"12%" 是<em>毛回报</em>, 扣完交易成本可能只剩 4-7%, 反而<em>跑输</em>指数。</li>
+</ol>
+<p lang="zh">学术界对"技术分析"做过几百次回测, Brock-Lakonishok-LeBaron 1992 等大样本研究都给出: <em>扣交易成本后, 技术分析的超额回报不显著</em>。A 股长期数据也支持这一结论 (中信证券 / 国信证券量化团队均做过, 见公开报告)。</p>
+<p lang="en">(1) Sample too small — 3‑year monthly t ≈ 0.13, far below significance. (2) Risk‑adjusted: if implied β = 1.3, CAPM expects 6.5% excess; actual 4% — underperforms risk‑adjusted. (3) Survivorship + data‑mining bias — how many strategies did Li try? (4) Transaction costs: A‑share round‑trip 0.3%, monthly turnover eats 5–8%/yr — 12% gross likely 4–7% net, below index. Brock‑Lakonishok‑LeBaron 1992 + multiple A‑share studies (CITIC, Guosen) all conclude: technicals net of costs are not significant.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 2020-11-03 蚂蚁 IPO 暂停, 阿里 09988 当日仅 +0.3%, 但次日 −7.5%。为什么市场反应"分两段"? 这是否违反半强 EMH?</span><span lang="en"><strong>Q4.</strong> On 2020‑11‑03 Ant suspension, Alibaba HK 09988 closed +0.3%; next day −7.5%. Why the split reaction? Violates semi‑strong EMH?</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>关键: 公告时间 + 市场开闭时段</strong>:</p>
+<ol lang="zh">
+<li>2020-11-03 (周二) 21:00 上交所发布公告, <em>当日 A 股 / 港股已收盘</em>。当日 09988 收盘价 (+0.3%) 不反映该信息。</li>
+<li>11-04 (周三) 上午港股开盘后, 信息开始反映, 当日 09988 −7.5%, 美股 BABA 盘前同样大跌。</li>
+<li>之后 [+2, +20] 继续漂移 -13%, 是市场逐步消化"互联网监管全面收紧"的<em>二次冲击</em> (反垄断 + 数据合规 + 平台经济治理整体收紧)。这是<em>政策含义</em>的多步消化, 不是单一新闻。</li>
+</ol>
+<p lang="zh"><strong>是否违反半强 EMH?</strong></p>
+<ul lang="zh">
+<li><strong>对"公告本身"的反应不违反</strong> — 11-04 当日 −7.5% 即时反映了已发布信息, 这符合 EMH 在<em>当日开盘后</em>的逐步定价。</li>
+<li><strong>但持续 4 周的漂移违反严格半强 EMH</strong> — 累计 −28% 没有在 11-04 当日反映完, 暗示市场对政策<em>全景含义</em>的消化是渐进的。如果半强 EMH 严格成立, +6 到 +20 这段应漂移 0, 实际却 −12.5%。</li>
+</ul>
+<p lang="zh"><strong>调和</strong>: "公告冲击 + 多步政策含义" 这种事件 EMH 半强式部分失效是正常的, PEAD 一样的机制。Ch.04 行为金融用"信息扩散速度差异" + "信念锚定" 解释为什么市场需要数周才消化复杂监管事件。</p>
+<p lang="en">Timing: 21:00 close‑of‑day Tue announcement → A‑share/HK closed already → +0.3% Tue doesn't reflect; Wed open registers −7.5%. Subsequent 4‑week drift (−13%) reflects multi‑step absorption of broader regulatory shift (antitrust + data + platform economy). Not violating EMH on day +1, but the multi‑week drift does — same mechanism as PEAD. Ch.04 explains via "diffusion speed" + "belief anchoring."</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一位 A 股策略师说: "EMH 在中国不适用, 因为散户占交易量 70%+, 非理性行为多。" 评估这个观点。</span><span lang="en"><strong>Q5.</strong> An A‑share strategist says: "EMH doesn't apply in China — retail makes up 70%+ of turnover, irrationality dominates." Evaluate.</span></div>
+<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>部分正确, 部分简化</strong>。详细分析:</p>
+<ol lang="zh">
+<li><strong>事实层面</strong>: A 股散户交易量占比 60-75% (近年逐步下降, 2024 年约 60%), 美股仅约 20-25%。这确实<em>暗示</em>非理性程度更高, 但<em>交易量占比 ≠ 持仓占比</em>。机构持仓占流通市值 35-50%, 散户持仓约 30-40%。<em>持仓决定长期定价, 交易量决定短期流动性</em>。</li>
+<li><strong>EMH 形式区分</strong>:
+<ul>
+<li>弱式 EMH 在 A 股<em>大致成立</em> — 技术分析扣费后不赚钱, 与美股一致。</li>
+<li>半强式 EMH 在 A 股有<em>更多</em>漏洞 (PEAD 更强、壳价值溢价、政策反应延迟) — 这部分支持策略师的观点。</li>
+<li>强式 EMH 在两个市场都不成立。</li>
+</ul>
+</li>
+<li><strong>结构性因素 (不只是"散户多")</strong>:
+<ul>
+<li>A 股<em>卖空限制</em>更严: 融券规模小, 个股能借的非常少, 没有大量做空力量去纠正高估。Hong-Stein 1999 理论预测此环境下高估会持续。</li>
+<li>A 股<em>分析师覆盖不均</em>: 大盘股覆盖深, 小盘股覆盖浅 → 小盘股半强式失效更明显。</li>
+<li>A 股<em>停牌 / 涨跌停板</em>限制日内信息消化, 推迟反应到下一日。</li>
+<li>A 股<em>退市机制不完善</em>: 长期亏损公司可以维持上市, 散户对"借壳"预期支撑估值。</li>
+</ul>
+</li>
+<li><strong>过去 10 年的趋势</strong>: 北向资金 + 公募基金扩张 + 私募量化兴起 → 机构占比上升 → A 股 EMH 半强式漏洞<em>在收窄</em>。2015 年前的小盘股套利, 2020 年后已经显著弱化。</li>
+</ol>
+<p lang="zh"><strong>结论</strong>: 这位策略师说对了"A 股半强式 EMH 更漏", 但简化了原因 (不只是"散户多")。更精确的说法: <em>A 股的制度性因素 (卖空限制 + 涨跌停 + 分析师覆盖不均 + 退市机制) 与散户主导共同导致半强式漏洞更大</em>。</p>
+<p lang="en">Partly right, oversimplified. (1) Retail turnover 60–75% vs US 20–25%, but turnover ≠ holdings — institutions hold 35–50% of float. Holdings determine long‑run pricing. (2) Form by form: weak ≈ holds in both; semi‑strong more leaks in A‑share (PEAD stronger, shell premium, policy delay); strong fails in both. (3) Structural causes beyond retail: tight short‑sale constraints (Hong‑Stein 1999), uneven analyst coverage, daily price limits, weak delisting. (4) Trend: northbound flows + mutual fund growth + quant rise → institutional share rising → leaks closing. More accurate framing: institutional structure + retail dominance jointly explain larger semi‑strong leaks.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="02-capm-apt-ff.html"><span class="dir">← Prev</span><span class="title">02 · CAPM/APT/FF</span></a><a class="next" href="04-behavioral.html"><span class="dir">Next →</span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="02-capm-apt-ff.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">02 · CAPM/APT/FF</span></a><a class="next" href="04-behavioral.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

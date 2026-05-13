@@ -42,20 +42,48 @@
 
 <section class="layer">
 <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-<p lang="zh">财务造假本质是<em>在多张报表的多个科目同时违背一致性</em>。任何单一科目都可能编造, 但<em>所有勾稽关系同步保持一致</em>极难做到 (Ch.M1.02 的核心洞察). M-Score / Z-Score / F-Score 都是<em>多维信号融合</em>的产物 — 把多个易识别的"假货特征"加权汇总, 转化为单一可比的分数。</p>
-<p lang="en">Fraud requires inconsistency across multiple statement items. Single items can be faked; keeping all articulations consistent is extremely hard (M1 Ch.02). M/Z/F‑scores are <em>multi‑signal aggregations</em> — weighted sums of recognizable "fake signatures" into a comparable score.</p>
-<p lang="zh">三个模型的关注点不同:</p>
-<p lang="en">Three models, different lenses:</p>
-<ul lang="zh">
-<li><strong>Beneish M-Score (1999)</strong>: 操纵盈余 (虚增利润 / 应收 / 存货) 的概率</li>
-<li><strong>Altman Z-Score (1968)</strong>: 财务困境/破产的概率</li>
-<li><strong>Piotroski F-Score (2000)</strong>: 基本面质量 (用于低 P/B 股票中筛选真正"便宜的好公司")</li>
+
+<p lang="zh">上一章里, 老王让银行经理小赵 5 分钟读懂了自家店面的健康度。今天故事反过来 — <em>老王要去读别人的账本</em>。隔壁巷子的老周想退休, 把他的小餐馆 (开了 8 年, 比老王店更大) 卖给老王, 开价 100,000 元。老周拍着胸脯说: "我账本一清二楚, 你随便看。" 老王翻开账本, 数字<em>看上去都正</em>—— 但他心里有点不踏实, 决定一项一项查。</p>
+<p lang="en">In the last chapter Wang let bank manager Zhao read his stall's health in five minutes. Today the story flips — <em>Wang has to read someone else's books</em>. Old Zhou, who runs a slightly larger restaurant down the alley, wants to retire and is offering his 8‑year‑old shop to Wang for ¥100,000. "My books are clean," Zhou insists. "Look at anything you want." Wang opens the ledger. The numbers <em>look reasonable</em> — but something nags. He decides to check line by line.</p>
+
+<p lang="zh"><strong>1. 老王先看应收账款。</strong> 老周报告: 营收 80,000 元, 应收账款 16,000 元 — 大约 73 天的 DSO (16,000 / 80,000 × 365)。老王想了想: 老周这种小餐馆基本应该现结, 偶尔挂一两单, DSO 顶多 10-15 天才正常。<em>73 天的应收</em>异常得让人警觉。再翻三年前的账: 当时营收 50,000 元, 应收只有 2,000 元 — DSO 仅 15 天。<em>应收账款相对营收的扩张速度, 远高于营收本身的增长</em>。这是第一个红旗。老王问自己: 老周是不是为了把营收数字做漂亮, 把"还没收到钱"的销售也算进去了? 这种"应收异常增长"现象有个名字, 叫 <strong>应收/销售指数 (DSRI, Days Sales in Receivables Index)</strong> 异常。回核: 应收周转突然变慢 → 可能信号?</p>
+<p lang="en"><strong>1. Wang starts with receivables.</strong> Zhou reports revenue ¥80,000, AR ¥16,000 — about 73 days of DSO (16,000 / 80,000 × 365). Wang thinks: a small restaurant like Zhou's mostly takes cash on the spot — DSO of 10–15 days at most. <em>73 days is alarming.</em> Wang flips back three years: revenue ¥50,000, AR ¥2,000 — DSO just 15 days. <em>AR is growing far faster than revenue itself.</em> Red flag #1. Wang asks: is Zhou inflating revenue by booking sales that never collected? This pattern has a name: an abnormal <strong>DSRI (Days Sales in Receivables Index)</strong>. Recheck: AR turnover suddenly slowing → what does it signal?</p>
+
+<p lang="zh"><strong>2. 老王再看毛利率。</strong> 三年前毛利率 35%, 今年突然跳到 52% — 同行业 (本地小餐馆) 平均 38%, 而且原材料这两年涨价。老周怎么<em>逆势</em>把毛利率拉这么高? 老王问老周: "你成本是不是少算了?" 老周笑笑: "我谈了好供应商。" 但老王知道这条巷子里的供应商就那么几家, 价格不可能差这么多。<em>毛利率异常跳升</em>常常意味着: 要么成本被刻意低估 (例如把原材料挂账到下年, 不计入当年成本), 要么收入被虚增 (营收涨得快, 但成本没同步涨)。这就是第二个红旗。回核: 毛利率跳升而行业不升 → 暗示什么?</p>
+<p lang="en"><strong>2. Wang checks gross margin.</strong> Three years ago, gross margin was 35%; this year it jumps to 52% — local restaurant peers average 38%, and raw materials have inflated over those years. How did Zhou raise margins <em>against the wind</em>? Wang asks: "Are you understating costs?" Zhou smiles: "Good supplier deals." But Wang knows this alley — only a few suppliers, prices can't differ this much. <em>An anomalous gross margin spike</em> usually means: costs are quietly deferred (raw materials parked in next year's books) or revenue is inflated (sales up, costs not matching). Red flag #2. Recheck: gross margin jumping while industry doesn't → suggests what?</p>
+
+<p lang="zh"><strong>3. 关键的一步: 把利润对照现金流。</strong> 老王问老周: "今年净利 12,000 元, 那经营现金流大概多少?" 老周翻账: "经营现金流 ~2,000 元, 不太多。" — 老王心头一紧。<em>净利 12,000 而现金只收回 2,000</em>, 意味着 10,000 元利润是<em>纸面</em>的 (挂在应收、存货、预付的形式上, 还没变成现金)。这种"利润和现金背离"是<em>所有造假最敏感</em>的指标 (M1 第二个思维模型: accrual vs cash)。一个学者叫 Sloan 发现: 这种"高应计盈余比"的公司, 下一年股票回报普遍跑输市场 ~10%。老王在草纸上算: 应计盈余比 = (12,000 − 2,000) / 平均资产 80,000 = 12.5% — 极高, 异常。第三个红旗。回核: 净利 12,000, 现金流仅 2,000 → 利润是真的还是纸面的?</p>
+<p lang="en"><strong>3. The key step: profit vs cash flow.</strong> Wang asks: "Net profit ¥12,000 — how much operating cash?" Zhou flips: "OCF about ¥2,000." Wang tightens. <em>NI ¥12,000 but only ¥2,000 of cash</em> — the other ¥10,000 of "profit" is <em>paper</em> (parked in AR, inventory, prepaids, never converting). This "profit vs cash divergence" is the <em>single most sensitive fraud signal</em> (M1's second mental model: accrual vs cash). A researcher named Sloan found that firms with high accruals underperform the market by ~10% the following year. Wang scribbles: accruals ratio = (12,000 − 2,000) / avg assets 80,000 = 12.5% — extremely high, anomalous. Red flag #3. Recheck: NI ¥12,000 but OCF ¥2,000 → real or paper profit?</p>
+
+<p lang="zh"><strong>4. 老王翻到资产负债表底部, 检查"其他资产"。</strong> 三年前老周账上没有"长期待摊费用"项, 今年这一项突然挂了 8,000 元。老王问: "这 8,000 元是什么?" 老周: "店面装修费, 我分 5 年摊销。"老王想了想: 一个 80,000 元营收的小餐馆, 装修一次摊 8,000 元 → 摊销期延 5 年, 每年只扣 1,600 元成本。<em>如果一次扣完</em>, 今年净利会立刻从 12,000 跌到 4,400。老周把"应该当年扣的成本"<em>资本化</em>成了一项长期资产, 把当年利润垫高了。这种"激进资本化"的做法, 学术上叫<strong>资产质量指数 (AQI)</strong> 异常。第四个红旗。回核: 不该资本化的成本被资本化 → 当年利润是高估还是低估?</p>
+<p lang="en"><strong>4. Wang flips to "other assets."</strong> Three years ago Zhou had no "long‑term deferred expense" line; this year ¥8,000 sits there. Wang: "What's this?" Zhou: "Renovation, amortising over 5 years." Wang thinks: an ¥80,000‑revenue stall amortising ¥8,000 over 5 years → only ¥1,600 hits expense each year. <em>If expensed in full</em>, net profit would drop from ¥12,000 to ¥4,400 today. Zhou has <em>capitalised</em> what should have been a current expense, inflating this year's profit. This pattern of aggressive capitalisation is the abnormal <strong>Asset Quality Index (AQI)</strong>. Red flag #4. Recheck: cost that shouldn't be capitalised gets capitalised → current profit overstated or understated?</p>
+
+<p lang="zh"><strong>5. 最后一项: 现金真假。</strong> 老周账上"货币资金"30,000 元, 老王说要看银行流水。老周犹豫了一下: "流水有点麻烦, 我手抄给你看吧。" — 老王立刻警觉。任何<em>不愿意提供银行流水原件</em>的卖方, 都可能在<em>虚增现金</em>。<em>真现金</em>是最难造假的科目 (因为银行流水第三方可验证), 但 A 股历史上多次出现"账上 100 亿现金, 实际银行账户空空"的暴雷 — 康得新 122 亿存款"无法使用"、康美 200+ 亿虚增货币资金都是典型。第五个红旗 — 而且是最致命的。回核: 卖方不愿出示银行流水 → 信任度该往哪个方向走?</p>
+<p lang="en"><strong>5. Last item: is the cash real?</strong> Zhou's ledger shows ¥30,000 of "cash and equivalents." Wang asks to see bank statements. Zhou hesitates: "Originals are inconvenient — I'll copy them by hand." Wang's alarm sounds. Any seller <em>unwilling to provide raw bank statements</em> may be <em>inflating cash</em>. <em>Real cash</em> is the hardest line to fake (third‑party verifiable), yet A‑share history has plenty of "¥10bn on the books, empty in the bank" cases — Kangde Xin's ¥12.2bn "unusable deposits," Kangmei's ¥20bn+ of fictitious cash. Red flag #5 — and the most lethal. Recheck: seller won't show original bank statements → which way does trust go?</p>
+
+<p lang="zh"><strong>6. 五个红旗加起来。</strong> 老王在草纸上列出来:</p>
+<p lang="en"><strong>Five red flags add up.</strong> Wang lists them:</p>
+<ul>
+<li lang="zh">应收账款相对营收暴涨 (DSRI 异常) — 收入可能虚增</li>
+<li lang="zh">毛利率反常上跳 (GMI 异常) — 成本可能低估</li>
+<li lang="zh">净利 12,000 但 OCF 仅 2,000 (高应计) — 利润是纸面的</li>
+<li lang="zh">激进资本化 (AQI 异常) — 当年费用塞到资产里</li>
+<li lang="zh">不愿出示银行流水 — 现金可能是假的</li>
+<li lang="en">AR jumps vs revenue (DSRI anomaly) — revenue likely inflated</li>
+<li lang="en">Gross margin spikes against industry (GMI anomaly) — cost likely understated</li>
+<li lang="en">NI ¥12,000 vs OCF ¥2,000 (high accruals) — paper profit</li>
+<li lang="en">Aggressive capitalisation (AQI anomaly) — expenses parked in assets</li>
+<li lang="en">Won't show bank statements — cash possibly fake</li>
 </ul>
-<p lang="en">Beneish: earnings manipulation. Altman: bankruptcy. Piotroski: quality (within low‑P/B value stocks).</p>
+<p lang="zh">老王把账本合上, 摇头: "老周, 你这账本我读出来五处不对, 100,000 元我不敢接。要不你拿真账本来, 价咱再谈?" — 这就是<strong>多信号融合 (multi‑signal aggregation)</strong> 的精髓: <em>单一红旗可能是误报, 五个红旗同时亮 = 几乎不可能误报</em>。把这五条 (再加几条) 加权打分, 就是学术界的 <strong>Beneish M-Score (盈余操纵)</strong>; 把"是否破产"相关的五项财务指标加权打分, 就是 <strong>Altman Z-Score</strong>; 把"基本面质量"九项二元指标加总, 就是 <strong>Piotroski F-Score</strong>。Layer 2 给出三个分数的完整公式与阈值; Layer 3 用康美、康得新、獐子岛三个真实暴雷案例验证: 这些指标在暴雷前 1-2 年都已经亮了红灯。</p>
+<p lang="en">Wang closes the ledger and shakes his head: "Zhou, five things don't add up. I can't pay ¥100,000. Show me the real books and we'll talk price." That's <strong>multi‑signal aggregation</strong> in a nutshell: <em>one red flag can be noise; five at once is almost never noise</em>. Weight these five (plus a few more) and you get the academic <strong>Beneish M‑Score (earnings manipulation)</strong>; weight five bankruptcy‑related ratios and you get <strong>Altman Z‑Score</strong>; sum nine binary quality checks and you get <strong>Piotroski F‑Score</strong>. Layer 2 gives the full formulas and thresholds; Layer 3 verifies with three real A‑share collapses — Kangmei, Kangde Xin, and Zhangzidao — all of which flashed red 1–2 years before the blow‑up.</p>
 </section>
 
 <section class="layer">
 <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王查老周账本时发现的五个红旗, 直观展示了"多信号融合"的逻辑。现在把这种思想形式化为三个学术评分: Beneish M-Score (盈余操纵)、Altman Z-Score (破产困境)、Piotroski F-Score (质量), 再加上一个最简的 Sloan 应计盈余比。</p>
+<p lang="en">Layer 1 used Wang's five red flags while inspecting Zhou's books to show the "multi‑signal aggregation" logic. We now formalise this into three academic scores — Beneish M (earnings manipulation), Altman Z (bankruptcy distress), Piotroski F (quality) — plus the simplest one‑number Sloan accruals ratio.</p>
 
 <h3 lang="zh">① Beneish M-Score (8 因子)</h3>
 <h3 lang="en">① Beneish M‑Score (8 factors)</h3>
@@ -144,6 +172,8 @@
 
 <div class="case case--warn">
 <div class="case-head"><span class="ticker">SH·600518</span><span class="company"><span lang="zh">康美药业</span><span lang="en">Kangmei Pharma</span></span><span class="period">2016-2017 · <span lang="zh">Beneish M-Score 暴雷预警</span><span lang="en">Beneish M signal</span></span><span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span></div>
+<p lang="zh">把老王查老周账本时发现的"应收暴涨 + 现金存疑"两条红旗, 放大到 A 股一家市值上千亿的"白马股"上 — 康美药业 2017 年报。Beneish M‑Score 把老王那种<em>逐项查验</em>的直觉, 标准化成 8 个因子的加权分数; 老周隐瞒的虚增收入和虚假货币资金, 在康美这里也都有 — 只是规模放大了百亿倍。</p>
+<p lang="en">Scale Wang's two red flags from Zhou's books ("AR explosion + cash that doesn't check") up to a once‑hundred‑billion‑yuan "white horse" — Kangmei Pharma's 2017 annual report. Beneish's M‑Score standardises Wang's line‑by‑line instinct into an 8‑factor weighted score; the inflated revenue and fictitious cash Zhou tried to hide also exist in Kangmei — just scaled by a hundred billion.</p>
 <p lang="zh">康美 2017 年报 (暴雷前) 估算各因子 (使用公开年报数据近似):</p>
 <p lang="en">Kangmei 2017 (pre‑collapse) approximate factors:</p>
 <div class="case-table"><table><thead><tr><th><span lang="zh">因子</span><span lang="en">Factor</span></th><th class="num">2017 <span lang="zh">值</span><span lang="en">Value</span></th><th><span lang="zh">解读</span><span lang="en">Interpretation</span></th></tr></thead><tbody>

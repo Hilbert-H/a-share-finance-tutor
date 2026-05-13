@@ -7,7 +7,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}.eq>*:first-child{flex:1!important;min-width:0!important;overflow-x:auto!important}.eq .num{font-family:'JetBrains Mono',monospace!important;font-style:normal!important;font-size:.82em!important;white-space:nowrap!important;color:#8A8378!important}</style>
 </head><body>
 <div class="app">
 <header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
@@ -16,63 +16,399 @@
 
 <div class="lesson-meta"><span class="crumb">Module III · 06</span></div>
 <h1><span lang="zh">相对估值 — Multiples</span><span lang="en">Relative Valuation — Multiples</span></h1>
-<p class="lesson-subtitle"><span lang="zh">"市场对这家公司付了多少钱?"DCF 是绝对估值, 相对估值是<em>看同类资产的市场定价做对照</em>. 与 DCF 互为补充: DCF 给"应该值多少", 倍数给"市场愿意付多少". Damodaran 推荐两者并用。</span><span lang="en">"What does the market pay for this firm?" Multiples reflect market pricing of comparables, complementing DCF (should‑be vs market‑willing).</span></p>
+<p class="lesson-subtitle"><span lang="zh">"市场对这家公司付了多少钱?" DCF 是绝对估值, 相对估值是<em>看同类资产的市场定价做对照</em>。两者互为补充: DCF 给"应该值多少", 倍数给"市场愿意付多少"。Damodaran 推荐并用。</span><span lang="en">"What does the market pay for this firm?" Multiples reflect market pricing of comparables; complement DCF (should‑be vs market‑willing).</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">掌握 P/E, P/B, EV/EBITDA, P/S, PEG 的适用场景</li><li lang="zh">区分 trailing vs forward 倍数</li><li lang="zh">用相对估值反推市场对该股的隐含增长率</li><li lang="en">Master P/E, P/B, EV/EBITDA, P/S, PEG; trailing vs forward; reverse engineer implied growth</li></ul>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">用 5 个直觉维度比较 老李 面馆和 老张 面馆, 类推到公司估值倍数</li>
+<li lang="zh">掌握 P/E, P/B, EV/EBITDA, P/S, PEG 的适用场景与陷阱</li>
+<li lang="zh">区分 trailing vs forward 倍数, 理解周期股 P/E 反转之谜</li>
+<li lang="zh">从 Gordon 模型推出 justified P/E, 把倍数与基本面 ROE / g / r 对接</li>
+<li lang="zh">用相对估值反推市场对该股的<em>隐含</em>增长率, 再判断合理性</li>
+<li lang="zh">对比 招行 vs 工行 (P/B 与 ROE 关系) 和 茅台 vs 五粮液 (P/E premium 拆解)</li>
+<li lang="en">Compare two noodle stalls on 5 intuitive metrics, then map to corporate multiples</li>
+<li lang="en">Master P/E, P/B, EV/EBITDA, P/S, PEG — when each applies and where each breaks</li>
+<li lang="en">Trailing vs forward; the cyclical P/E inversion puzzle</li>
+<li lang="en">Derive justified P/E from Gordon — bridge multiples to ROE / g / r</li>
+<li lang="en">Reverse engineer market's implied growth and judge it</li>
+<li lang="en">Apply: CMB vs ICBC (P/B–ROE) and Moutai vs Wuliangye (premium decomposition)</li>
+</ul></section>
+
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span>
+<span class="en" lang="en"> · Two noodle stalls, five comparison angles</span>
+<span class="en" lang="zh"> · 两家面馆, 五个比较维度</span></h2>
+
+<p lang="zh">上一章 老王 用 DCF 给 老李 面馆估了值。今天他又遇到一件事: 巷子另一头还有一家 老张 面馆, 也在转让。两家面馆 老王 都想买, 但只能买一家, 必须比较出哪家"更值"。问题是 — 该比什么?</p>
+<p lang="en">In the last chapter Old Wang DCF'd Old Li's stall. Today there's another twist: down the alley is a second stall, Old Zhang's, also for sale. Wang would buy either, but can only afford one. He must compare. Compare what, exactly?</p>
+
+<p lang="zh"><strong>维度 1 — 每碗面卖多少钱 ÷ 每天卖几碗。</strong> 老王 第一个想到的就是售价。老李 面馆每碗 18 元, 一天卖 200 碗; 老张 面馆每碗 22 元, 一天卖 180 碗。每天营收: 老李 3,600 元, 老张 3,960 元。营收差不多, 但<em>定价方式</em>不同 — 老李 走量, 老张 走"附近最贵"路线。老王 问: "营收差不多, 怎么知道谁更值钱?"答: 营收只是输入, 还要看<em>谁能更高效地把营收转成利润</em>。这就是后面要说的 <strong>P/S (市值除以营收) 比率</strong>: 同样 1 元营收, 市场愿意为谁付更多钱?如果两家面馆都开价 100 万, 但 老李 一年营收 130 万, 老张 一年营收 144 万, 那 老张 的 P/S 更低 — <em>每元营收换来的报价更低</em>, 在营收口径上 老张 看起来"更便宜"。</p>
+<p lang="en"><strong>Angle 1 — price per bowl × bowls per day.</strong> Old Li: ¥18 × 200/day = ¥3,600/day. Old Zhang: ¥22 × 180/day = ¥3,960/day. Revenue is similar but pricing strategy differs — Li runs volume, Zhang charges the alley's max. "Same revenue, who's worth more?" — revenue is an input; the question is who turns revenue into profit efficiently. This is the <strong>P/S (price‑to‑sales)</strong> ratio: per ¥1 of revenue, how much is the market paying? If both asking prices are ¥1m but Li does ¥1.3m and Zhang ¥1.44m annually, Zhang's P/S is lower — by revenue Zhang looks "cheaper."</p>
+
+<p lang="zh"><strong>维度 2 — 每年赚多少钱。</strong> 老王 翻账本: 老李 营收 130 万, 净利 25 万 (净利率 19%); 老张 营收 144 万, 净利 18 万 (净利率 12.5%)。咦 — 老张 营收高, 但净利反而低。为什么?老张 房租贵 (位置好), 进货价高 (用更高档食材)。从<em>盈利</em>角度看, 老李 反而强。如果都开价 100 万, 老李 P/E (price ÷ earnings) = 100/25 = 4 倍; 老张 P/E = 100/18 ≈ 5.6 倍。同样的售价, <em>老李 一年回本</em>得更快, <em>P/E 越低越便宜</em>。</p>
+<p lang="en"><strong>Angle 2 — annual profit.</strong> Li: ¥1.3m revenue, ¥250k net (19% margin). Zhang: ¥1.44m revenue, ¥180k net (12.5% margin). Higher revenue, lower profit — Zhang pays for prime rent and premium ingredients. At ¥1m ask: Li P/E = 4, Zhang P/E ≈ 5.6. By earnings <em>Li is cheaper</em> — faster payback per yuan of price.</p>
+
+<p lang="zh"><strong>维度 3 — 店里有多少"固定资产"。</strong> 老李 店面 50 平米, 桌椅 20 套, 厨房设备齐全, 装修近 3 年, 估清算价 40 万。老张 店面 35 平米, 桌椅 15 套, 设备较旧, 清算价 25 万。100 万开价对比清算价: 老李 P/B (price ÷ book) = 100/40 = 2.5; 老张 P/B = 100/25 = 4。在<em>资产</em>口径上 老李 又便宜。但这<em>不</em>意味着 老李 一定更好 — 维度 3 反映"店倒了能卖多少破烂", 而面馆主要价值在<em>未来现金流</em>, 不在桌椅。所以 P/B 在面馆这种<em>轻资产 + 看品牌</em>的生意上参考价值有限; 但在"店主要价值就是有形资产"的行业 (银行、重工、地产) 就关键 — 后面会讲。</p>
+<p lang="en"><strong>Angle 3 — physical assets.</strong> Li: 50 m², 20 tables, fitted kitchen, liquidation ¥400k. Zhang: 35 m², 15 tables, older gear, liquidation ¥250k. P/B at ¥1m ask: Li 2.5, Zhang 4. By assets Li is cheaper again. But this only matters when "if it closes, what can I sell for parts?" matters — for a brand‑and‑traffic business like a noodle stall, P/B is mostly a floor, not a useful comparison. P/B becomes critical for banks, heavy industry, real estate (assets <em>are</em> the business).</p>
+
+<p lang="zh"><strong>维度 4 — 比赚的钱前面再加上"租金、利息、税"。</strong> 老王 想了一下 — 直接比净利不公平: 老张 房租 8 万 / 年, 老李 房租 2 万 / 年 (店是 老李 自己的, 算"机会成本"才 2 万)。如果按"剔除房租 / 利息 / 税"后的 <em>核心经营收益</em> 比, 老张 是 18 + 8 = 26 万, 老李 是 25 + 2 = 27 万 — 几乎一样。"剔除融资结构和场地结构差异、只看经营本身"的这个指标, 公司估值里有对应物: <strong>EBITDA (息税折旧摊销前利润)</strong>。把企业总价值 (含债务) 除以 EBITDA, 就是 <strong>EV/EBITDA</strong> 倍数 — 它的好处是<em>跨杠杆、跨折旧政策可比</em>, 让两家"会计政策不同"的公司能放在同一个尺子上量。</p>
+<p lang="en"><strong>Angle 4 — strip out rent, interest, tax.</strong> Comparing net profit penalizes Zhang's ¥80k rent vs Li's ¥20k (Li owns the storefront). Pre‑rent profit: Zhang ¥260k, Li ¥270k — basically tied. The corporate analogue is <strong>EBITDA</strong>; dividing total firm value (including debt) by EBITDA gives <strong>EV/EBITDA</strong>. Its virtue: <em>leverage‑neutral, depreciation‑policy‑neutral</em> — two firms with different financing and accounting choices sit on the same ruler.</p>
+
+<p lang="zh"><strong>维度 5 — 增长速度。</strong> 老王 最后一问: 这两家未来五年谁能更快增长? 老李 答: 我这家这两年新增午市, 客流稳定增加, 大概每年 8% 增长; 老张 说: 我这家所在位置最近写字楼搬走, 客流在下滑, 增长大概 0% 甚至 -2%。这下事情完全反转 — 即使 老张 P/E 略高, 但 老李 在<em>增长</em>上完胜。如果用一个把"P/E 和增长率"挂钩的指标, 比如 <strong>PEG = P/E ÷ 增长率%</strong>: 老李 PEG = 4/8 = 0.5; 老张 PEG = 5.6/0 = ∞ (无增长股的 PEG 没意义, 退回纯 P/E 看)。PEG 是 Peter Lynch 推广的简化指标: <em>PEG ≤ 1 通常被认为相对便宜</em>。当然这只是粗略的拇指法则, 不是真理。</p>
+<p lang="en"><strong>Angle 5 — growth.</strong> Li added a lunch shift; foot traffic up ~8%/yr. Zhang's nearby office block moved out; growth 0 or −2%. Suddenly Li wins regardless of P/E. The metric that ties P/E to growth is <strong>PEG = P/E ÷ growth%</strong> (Peter Lynch): Li PEG = 4/8 = 0.5; Zhang PEG = 5.6/0 = ∞ (undefined for no‑growth — fall back to plain P/E). PEG ≤ 1 is a rough "cheap" rule‑of‑thumb, not gospel.</p>
+
+<p lang="zh"><strong>把五个维度并起来看:</strong> 在 P/S 上 老张 略便宜, 但在 P/E、P/B、增长和 PEG 上 老李 都领先, EV/EBITDA 上几乎打平。综合判断 — 应该买 老李。但 老王 注意到一件事: <em>每个倍数都讲了一个不同的故事</em>。P/S 说"营收便宜", P/E 说"盈利便宜", P/B 说"资产便宜", EV/EBITDA 说"经营便宜", PEG 说"成长便宜"。<strong>没有一个倍数能单独决定哪家更好</strong> — 必须几个倍数交叉看, 各自补足对方看不见的角度。</p>
+<p lang="en"><strong>Putting all five together:</strong> Zhang is cheaper on P/S; Li wins on P/E, P/B, growth, PEG; EV/EBITDA is roughly tied. Buy Li. But notice: <em>each multiple told a different story</em>. P/S says "revenue is cheap", P/E says "earnings are cheap", P/B says "assets are cheap", EV/EBITDA says "operations are cheap", PEG says "growth is cheap". <strong>No single multiple decides anything alone</strong> — they cross‑check by covering the blind spots of one another.</p>
+
+<p lang="zh">老王 把面馆比较的五个维度记在本子上, 然后翻到下一页, 写: "茅台 P/E 30 倍, 五粮液 P/E 20 倍, 谁更值得买?"他突然意识到 — <em>这就是面馆问题的放大版</em>。茅台和五粮液都是白酒龙头, 同样的逻辑可以用上: P/E、P/B、EV/EBITDA、P/S、PEG 五条线一起看, 谁在哪些倍数上贵了, 这些贵是因为增长更快还是只是市场偏好。Layer 2 会把这五个倍数写成正式公式, 把它们与 DCF 挂钩 (justified P/E、justified P/B), 解释为什么 P/B = ROE/r 这种关系成立。Layer 3 会拿 招行 vs 工行 (P/B 与 ROE 的关系) 和 茅台 vs 五粮液 (P/E premium 拆解) 两组真实 A 股案例打透。</p>
+<p lang="en">Wang writes the five angles in his notebook, flips the page, and writes: "Moutai P/E 30, Wuliangye P/E 20 — which to buy?" He realizes this is the <em>same problem scaled up</em>. Two baijiu leaders, same five‑lens method: P/E, P/B, EV/EBITDA, P/S, PEG. Layer 2 formalises the five into equations and bridges them to DCF (justified P/E, justified P/B), explaining why $P/B \approx (\mathrm{ROE} - g)/(r - g)$. Layer 3 cracks it open with two real A‑share pairs: CMB vs ICBC (P/B–ROE link) and Moutai vs Wuliangye (decomposing the P/E premium).</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
 
-<p><strong>P/E</strong>: <span lang="zh">市值 / 净利. 反映 "市场每元盈利愿付多少". 隐含增长 $g$: Gordon $\Rightarrow P/E = 1/(r-g)$</span><span lang="en">Implied $g$: $P/E = 1/(r-g)$</span></p>
-<p><strong>P/B</strong>: <span lang="zh">市值 / 净资产. 资产密集行业 (银行, 重工)</span><span lang="en">Asset‑heavy</span>. $P/B \approx (\mathrm{ROE} - g)/(r - g)$</p>
-<p><strong>EV/EBITDA</strong>: (Equity + Debt − Cash) / EBITDA. <span lang="zh">资本结构中性, 跨杠杆可比</span><span lang="en">Leverage‑neutral</span></p>
-<p><strong>P/S</strong>: <span lang="zh">市值 / 营收. 早期成长 (无利润)</span><span lang="en">Early growth (no profit)</span></p>
-<p><strong>PEG</strong>: P/E ÷ <span lang="zh">盈利增长率 %</span>. <span lang="zh">价值-增长平衡 (Lynch)</span><span lang="en">Lynch value‑growth balance</span></p>
-<p><strong>EV/Sales</strong>: <span lang="zh">不受利润率影响, 适合早期 SaaS</span><span lang="en">Margin‑independent; SaaS</span></p>
+<p lang="zh">Layer 1 把五个倍数用 老李 和 老张 的面馆讲清楚了直觉。现在我们把每个倍数写成公式, 并把它们与 DCF (Ch.05) 对接 — 这样可以看清楚每个倍数<em>背后</em>隐含的 ROE、增长率、风险假设。</p>
+<p lang="en">Layer 1 gave intuition through Old Li and Old Zhang. We now formalise each multiple and bridge it to DCF — exposing the ROE, growth, and risk assumptions each one implicitly carries.</p>
 
-<h3 lang="zh">用相对估值反推假设</h3>
-<h3 lang="en">Reverse engineering</h3>
-<p lang="zh">若 P/E = 20, $r$ = 10%, 由 Gordon 反推 $g$:</p>
-<div class="eq"><span>$$ P/E = \frac{1-b}{r-g}, \quad g = r - \frac{1-b}{P/E} $$</span><span class="num">(6.1)</span></div>
-<p lang="zh">$b$ = 留存比率. 若 $b = 0.4$ (派 60%), $r = 10\%$, $P/E = 20$: $g = 0.10 - 0.6/20 = 7\%$. 这就是市场<em>隐含</em>的永续增长率. 你若认为公司能持续 &gt; 7% 增长 → 当前估值便宜.</p>
-<p lang="en">If P/E=20, payout 60% ($b=0.4$), $r=10\%$: $g = 10\% - 0.6/20 = 7\%$. Market's <em>implied</em> growth. Buy if you think it can sustain &gt; 7%.</p>
+<h3 lang="zh">五个核心倍数</h3>
+<h3 lang="en">The five core multiples</h3>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">P/E — 市盈率</span>
+<span class="callout-label" lang="en">P/E — Price‑to‑Earnings</span>
+<div class="eq"><span>$$ \mathrm{P/E} = \frac{\text{Price}}{\text{EPS}} = \frac{\text{Market cap}}{\text{Net income}} $$</span><span class="num">(6.1)</span></div>
+<p lang="zh">"市场每元盈利愿付多少"。Trailing P/E 用 TTM 净利; forward P/E 用未来 12 月预测净利, 数值通常低于 trailing。</p>
+<p lang="en">"How much the market pays per ¥1 of earnings." Trailing uses TTM; forward uses next‑12m forecast — usually lower than trailing.</p>
+</div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">P/B — 市净率</span>
+<span class="callout-label" lang="en">P/B — Price‑to‑Book</span>
+<div class="eq"><span>$$ \mathrm{P/B} = \frac{\text{Price}}{\text{BVPS}} = \frac{\text{Market cap}}{\text{Book equity}} $$</span><span class="num">(6.2)</span></div>
+<p lang="zh">资产密集行业 (银行、重工、地产) 的主指标。P/B &lt; 1 意味着市场认为账面资产<em>不可信</em> — 银行的常见情形。</p>
+<p lang="en">Primary metric for asset‑heavy sectors (banks, heavy industry, real estate). P/B &lt; 1 means the market doubts the book — common for banks.</p>
+</div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">EV/EBITDA — 企业价值倍数</span>
+<span class="callout-label" lang="en">EV/EBITDA — Enterprise Value multiple</span>
+<div class="eq"><span>$$ \mathrm{EV/EBITDA} = \frac{\text{Market cap} + \text{Debt} - \text{Cash}}{\text{EBITDA}} $$</span><span class="num">(6.3)</span></div>
+<p lang="zh">资本结构中性 (杠杆不影响), 折旧政策中性 (D&amp;A 已加回)。跨杠杆 / 跨行业对比比 P/E 更稳健。</p>
+<p lang="en">Leverage‑neutral and depreciation‑policy‑neutral. More robust cross‑leverage / cross‑sector than P/E.</p>
+</div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">P/S — 市销率</span>
+<span class="callout-label" lang="en">P/S — Price‑to‑Sales</span>
+<div class="eq"><span>$$ \mathrm{P/S} = \frac{\text{Market cap}}{\text{Revenue}} $$</span><span class="num">(6.4)</span></div>
+<p lang="zh">早期成长 (无利润、亏损) 公司的主指标。但忽略利润率差异 — 1 亿营收的高毛利软件公司和 1 亿营收的低毛利钢贸公司不能直接比。</p>
+<p lang="en">For early‑growth (no profit) firms. But blind to margin — ¥100m revenue of high‑margin software vs ¥100m of low‑margin steel trading aren't comparable.</p>
+</div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">PEG — 增长调整后市盈率</span>
+<span class="callout-label" lang="en">PEG — growth‑adjusted P/E</span>
+<div class="eq"><span>$$ \mathrm{PEG} = \frac{\mathrm{P/E}}{g\% \text{ (annual earnings growth)}} $$</span><span class="num">(6.5)</span></div>
+<p lang="zh">Peter Lynch 在 <em>One Up On Wall Street</em> 推广。PEG ≤ 1 通常视为"价值-增长平衡"; PEG &gt; 2 警惕高估。但 g 用 trailing 或 forward 差异大, 慎用。</p>
+<p lang="en">Popularized by Peter Lynch in <em>One Up On Wall Street</em>. PEG ≤ 1 = "value‑growth balanced"; PEG &gt; 2 = warning. Sensitive to whether $g$ is trailing or forward.</p>
+<span class="cite">Damodaran, <em>The Little Book of Valuation</em> Ch. 4–5 · Brealey, Myers &amp; Allen Ch. 4 · Lynch, <em>One Up On Wall Street</em>, 1989 · CFA Curriculum Level II</span>
+</div>
+
+<h3 lang="zh">把倍数推回到 DCF — Justified Multiples</h3>
+<h3 lang="en">Bridging multiples to DCF — justified multiples</h3>
+
+<p lang="zh">"P/E = 20"这个数本身只是一个比率, 不告诉你贵或便宜。但如果我们从 Gordon 模型 (Ch.05) 出发, 就能推出一个"<em>给定 ROE、g、r, 应当对应多少 P/E</em>"的公式 — 这就是 <strong>justified P/E</strong>。把市场 P/E 与 justified P/E 比, 才能判断便宜或贵。</p>
+<p lang="en">"P/E = 20" alone tells you nothing about cheap or dear. Starting from Gordon, we can derive what P/E <em>should</em> equal given ROE, $g$, $r$ — the <strong>justified P/E</strong>. Comparing actual to justified judges cheap vs dear.</p>
+
+<p lang="zh">Gordon: $P_0 = D_1 / (r - g)$。设 $b$ 为留存比率 (1 − 派息率), 则 $D_1 = E_1 \cdot (1-b)$。除以 $E_1$ 得到 <strong>forward P/E</strong>:</p>
+<p lang="en">Gordon: $P_0 = D_1 / (r - g)$. With retention $b = 1 -$ payout: $D_1 = E_1(1-b)$. Divide by $E_1$:</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Justified Forward P/E</span>
+<span class="callout-label" lang="en">Justified forward P/E</span>
+<div class="eq"><span>$$ \frac{P_0}{E_1} = \frac{1-b}{r-g} \quad\text{or}\quad \mathrm{P/E}_{\text{just}} = \frac{\text{payout}}{r-g} $$</span><span class="num">(6.6)</span></div>
+<p lang="zh">直觉: 高派息 ↑ P/E, 高 r ↓ P/E, 高 g ↑ P/E。但有约束: 增长率 g 与 ROE 通过留存挂钩 — $g = b \cdot \mathrm{ROE}$。所以增长率不是自由参数, 而是 ROE 和留存的乘积。这与 ROE 杜邦分解形成自洽 (M2 Ch.06)。</p>
+<p lang="en">High payout ↑ P/E; high $r$ ↓ P/E; high $g$ ↑ P/E. Constraint: $g = b \cdot \mathrm{ROE}$ — growth not free; it's a product of retention and ROE. Self‑consistent with DuPont (M2 Ch.06).</p>
+</div>
+
+<p lang="zh">类似地推出 <strong>justified P/B</strong>。把 (6.6) 用 $E_1 = \mathrm{ROE} \cdot B_0$ 代入, 得:</p>
+<p lang="en">Similarly for justified P/B. Substituting $E_1 = \mathrm{ROE} \cdot B_0$ into (6.6):</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Justified P/B</span>
+<span class="callout-label" lang="en">Justified P/B</span>
+<div class="eq"><span>$$ \mathrm{P/B}_{\text{just}} = \frac{\mathrm{ROE} - g}{r - g} $$</span><span class="num">(6.7)</span></div>
+<p lang="zh">关键直觉: <strong>P/B 主要由 ROE − r 驱动</strong>。当 ROE = r, P/B = 1; ROE &gt; r, P/B &gt; 1 (公司创造超额回报, 市场给溢价); ROE &lt; r, P/B &lt; 1 (公司毁灭价值, 市场打折)。这就是为什么银行 P/B &lt; 1 — 市场认为银行的 ROE 不足以补偿其风险。</p>
+<p lang="en">Key intuition: <strong>P/B is mostly driven by ROE − r</strong>. ROE = r → P/B = 1; ROE > r → P/B > 1 (firm creates excess returns, premium); ROE < r → P/B < 1 (value destruction, discount). Banks trade below P/B 1 because the market thinks their ROE doesn't compensate for their risk.</p>
+</div>
+
+<h3 lang="zh">行业可比公司选择标准 (Damodaran)</h3>
+<h3 lang="en">Comparable selection criteria (Damodaran)</h3>
+
+<p lang="zh">用倍数估值的前提是<em>找到真正可比的公司</em>。Damodaran 在 <em>The Little Book of Valuation</em> 列出 4 条筛选标准:</p>
+<ol lang="zh">
+<li><strong>同行业</strong>: 业务模式相似 (不只是 SIC 代码相同 — 比如苏宁和京东都属"零售", 但模式完全不同)。</li>
+<li><strong>同增长阶段</strong>: 增长率、市占率成熟度接近。"成长股可比成长股, 价值股可比价值股"。</li>
+<li><strong>同盈利能力</strong>: ROE / ROIC 接近, 反映商业模式效率。</li>
+<li><strong>同风险</strong>: β, 杠杆, 经营波动率 (季度盈利标准差) 接近。</li>
+</ol>
+<p lang="en">Damodaran's 4 screens for comparables: (1) same industry by business model, not SIC; (2) same growth stage; (3) similar ROE / ROIC (business‑model efficiency); (4) similar risk (β, leverage, earnings volatility).</p>
+
+<h3 lang="zh">反向用法 — 反推市场隐含假设</h3>
+<h3 lang="en">Reverse engineering — implied assumptions</h3>
+
+<p lang="zh">把 (6.6) 反过来解 $g$: $g = r - (1-b)/\mathrm{P/E}$。若已知 r 和 payout, 一个市场 P/E 反映一个 g。例: P/E = 20, $r = 10\%$, payout = 60%: $g = 0.10 - 0.6/20 = 7\%$。市场<em>隐含</em>该公司永续增长 7%。</p>
+<p lang="en">Solve (6.6) for $g$: $g = r - (1-b)/\mathrm{P/E}$. With P/E = 20, $r = 10\%$, payout 60%: $g = 10\% - 0.6/20 = 7\%$. The market <em>implies</em> 7% perpetual growth.</p>
+
+<p lang="zh">买入判断: 你自己估的 g (基于行业研究) 高于 7% → 当前估值偏低; 低于 7% → 偏高。这把"P/E = 20 是贵还是便宜"这个模糊问题, 翻译成"市场假设 g = 7%, 你的研究告诉你它能不能超过 7%"这个可证伪问题。<em>反向 DCF / 反向倍数</em>是 Damodaran 教学的核心方法。</p>
+<p lang="en">Buy if your independent $g$ estimate > 7%; sell if < 7%. This turns "is P/E 20 cheap?" into "is the market's implicit 7% beatable?" — falsifiable. Reverse valuation is Damodaran's central pedagogical move.</p>
+
+<h3 lang="zh">周期股 P/E 反转之谜</h3>
+<h3 lang="en">The cyclical P/E inversion puzzle</h3>
+
+<p lang="zh">周期股 (钢铁、煤炭、化工、地产) 有一个反直觉特征: <em>盈利最高时 P/E 最低, 盈利最低时 P/E 最高</em>。原因: 盈利峰值时市场<em>预期</em>下行, 提前给低 P/E (分母大, 分子受预期压制); 盈利底部时市场<em>预期</em>反弹, 给高 P/E (分母小, 分子等待复苏)。结论: <strong>对周期股, 低 P/E ≠ 便宜, 高 P/E ≠ 贵</strong>。应换用 P/B 或 PEG 与周期位置 (库存周期、产能利用率) 综合判断。Lynch 称之为 "the trick of cyclicals"。</p>
+<p lang="en">Cyclical stocks (steel, coal, chemicals, real estate) show an inversion: <em>P/E lowest at peak earnings, highest at trough</em>. Because the market anticipates the next phase. Conclusion: <strong>for cyclicals, low P/E ≠ cheap, high P/E ≠ dear</strong>. Use P/B + capacity utilization or PEG with cycle context. Lynch calls it "the trick of cyclicals."</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">行业对比</span><span lang="en">Sector comparison</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">A 股不同行业典型倍数</span><span lang="en">A‑share sector multiples</span></span></div>
-<div class="case-table"><table><thead><tr><th><span lang="zh">行业</span><span lang="en">Sector</span></th><th class="num">P/E</th><th class="num">P/B</th><th class="num">EV/EBITDA</th></tr></thead><tbody>
-<tr><td><span lang="zh">白酒龙头</span><span lang="en">Top baijiu</span></td><td class="num">25-35</td><td class="num">6-8</td><td class="num">18-22</td></tr>
-<tr><td><span lang="zh">银行</span><span lang="en">Banks</span></td><td class="num">4-6</td><td class="num">0.5-0.8</td><td>N/A</td></tr>
-<tr><td><span lang="zh">公用事业</span><span lang="en">Utilities</span></td><td class="num">10-15</td><td class="num">1.5-2</td><td class="num">8-10</td></tr>
-<tr><td><span lang="zh">大宗 / 周期</span><span lang="en">Commodities/cyclical</span></td><td class="num">5-15</td><td class="num">1-2</td><td class="num">5-8</td></tr>
-<tr><td><span lang="zh">半导体</span><span lang="en">Semiconductor</span></td><td class="num">30-80</td><td class="num">3-8</td><td class="num">15-30</td></tr>
-<tr><td><span lang="zh">医药</span><span lang="en">Pharma</span></td><td class="num">20-40</td><td class="num">3-6</td><td class="num">15-25</td></tr>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">老王 用面馆五维比较法练完手, 现在要把它放到 A 股上去 — 选两组同行业、规模可比的公司, 验证公式 (6.6)(6.7) 在真实市场中是否成立。一组是银行 (招行 vs 工行, 主看 P/B–ROE 关系), 一组是白酒 (茅台 vs 五粮液, 主看 P/E premium 拆解)。两组的逻辑结构对称: 同行业头部 vs 次头部, 长期估值<em>差</em>稳定存在, 用相对估值能不能<em>解释</em>这个差。</p>
+<p lang="en">Wang practiced the five‑angle method on noodle stalls; now he scales to A‑share. Two same‑industry, size‑comparable pairs verify (6.6) and (6.7) against real markets. Pair 1: banks (CMB vs ICBC, focus P/B–ROE). Pair 2: baijiu (Moutai vs Wuliangye, focus P/E premium decomposition). Both pairs share a structure: leader vs runner‑up in the same industry, with a persistent valuation gap — can relative valuation <em>explain</em> the gap?</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600036 vs SH·601398</span>
+<span class="company"><span lang="zh">招商银行 vs 工商银行 — P/B 与 ROE 的关系</span><span lang="en">CMB vs ICBC — P/B vs ROE</span></span>
+<span class="period">FY2023 · <span lang="zh">近似数据</span><span lang="en">approximate</span></span>
+</div>
+<p lang="zh">银行 P/B 长期低于 1, 是 A 股 (和全球) 银行业的共同现象。两家头部银行的 P/B 差距也长期存在 — 招行 P/B 通常是工行的 1.5-2 倍。我们用 (6.7) 拆解为什么。</p>
+<p lang="en">Bank P/B persistently below 1 is universal. The CMB/ICBC P/B gap is long‑standing — CMB usually trades 1.5–2× ICBC's P/B. We decompose with (6.7).</p>
+
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">指标</span><span lang="en">Metric</span></th>
+<th class="num"><span lang="zh">招行 600036</span><span lang="en">CMB 600036</span></th>
+<th class="num"><span lang="zh">工行 601398</span><span lang="en">ICBC 601398</span></th>
+</tr></thead><tbody>
+<tr><td>FY2023 ROE</td><td class="num">~16.0%</td><td class="num">~10.5%</td></tr>
+<tr><td>FY2023 <span lang="zh">净息差</span><span lang="en">NIM</span></td><td class="num">~2.15%</td><td class="num">~1.61%</td></tr>
+<tr><td><span lang="zh">不良率</span><span lang="en">NPL ratio</span></td><td class="num">~0.95%</td><td class="num">~1.36%</td></tr>
+<tr><td><span lang="zh">市值 (¥ 亿, 2024 中)</span><span lang="en">Mkt cap (¥ bn, mid‑2024)</span></td><td class="num">~9,200</td><td class="num">~21,000</td></tr>
+<tr><td><span lang="zh">每股净资产 ¥</span><span lang="en">BVPS ¥</span></td><td class="num">~38</td><td class="num">~9.5</td></tr>
+<tr><td><strong>P/B</strong></td><td class="num up"><strong>~0.95</strong></td><td class="num down"><strong>~0.62</strong></td></tr>
+<tr><td><strong>P/E (TTM)</strong></td><td class="num">~6.0</td><td class="num">~5.9</td></tr>
+<tr><td><span lang="zh">股息率</span><span lang="en">Dividend yield</span></td><td class="num">~6.0%</td><td class="num">~6.7%</td></tr>
 </tbody></table></div>
-<p lang="zh"><strong>洞察</strong>:</p>
-<ul lang="zh"><li>P/E 在 4 vs 80 的差异不是"便宜或贵"判断, 而是"预期增长率 + 风险"的差异</li><li>P/B &lt; 1 (银行) 反映市场对账面资产可靠性的担忧</li><li>EV/EBITDA 在跨行业对比时比 P/E 更稳健 (剔除资本结构 + 折旧政策差异)</li></ul>
-<p lang="en">P/E 4 vs 80 reflects different growth expectations + risk. P/B &lt; 1 (banks) = market skeptical of book. EV/EBITDA more robust cross‑sector.</p>
-</div></section>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<p lang="zh"><strong>用 (6.7) 拆解 P/B 差</strong>: 假设两家 $g_2 = 3\%$, $r_e = 10\%$ (银行业 β ~1.0):</p>
+<ul lang="zh">
+<li>招行 justified P/B = (16% − 3%) / (10% − 3%) = 1.86; 实际 P/B 0.95 ⇒ <em>市场认为招行实际 ROE 持续低于 16%</em>, 反向推算市场隐含 ROE ≈ 0.95 × 7% + 3% ≈ 9.7%。市场预期招行 ROE 终将向行业均值回归。</li>
+<li>工行 justified P/B = (10.5% − 3%) / (10% − 3%) = 1.07; 实际 P/B 0.62 ⇒ 市场隐含 ROE ≈ 0.62 × 7% + 3% ≈ 7.3%。市场预期工行 ROE 受不良和净息差压力进一步下行。</li>
+<li>两个 justified P/B 差 1.86 − 1.07 = 0.79; 实际差 0.95 − 0.62 = 0.33。市场<em>承认</em>招行更优, 但<em>大部分</em>溢价被消化掉了 — 因为市场也对招行的 ROE 持续性怀疑。</li>
+</ul>
+<p lang="en">Justified P/B at $g=3\%, r=10\%$: CMB 1.86, ICBC 1.07. Actual 0.95 and 0.62 imply the market expects CMB's ROE to drop toward ~9.7% and ICBC's toward ~7.3%. The 0.79 justified gap collapses to 0.33 actual — the market grants CMB a premium but discounts much of it because it doubts the persistence of CMB's outperformance.</p>
+
+<p lang="zh"><strong>P/E 几乎相同 (6.0 vs 5.9) 怎么解释?</strong> P/E 把 ROE 差异<em>隐藏</em>了 — 因为银行 P/E 反映的是 NI / 市值, 而招行 NI 已经大了, 市值也大了, 比率拉平。这就是为什么银行业<em>必须用 P/B 而不是 P/E</em>。Damodaran 多次强调: 选错倍数会得出完全错误的结论。</p>
+<p lang="en">Why are P/Es nearly equal (6.0 vs 5.9)? P/E hides the ROE difference — CMB's higher NI is offset by its higher cap. This is why banks <em>must</em> use P/B, not P/E. Damodaran: picking the wrong multiple yields wrong conclusions.</p>
+
+<p lang="zh"><strong>买入判断</strong>: 如果你认为招行能维持 ROE ≥ 13% 而非市场假设的 9.7%, 那么招行 justified P/B 应在 1.4 以上, 当前 0.95 偏低 → 价值机会。如果你认为 16% ROE 不可持续, 那 0.95 已经接近合理。这个判断需要看招行的零售 / 财富管理护城河能否经受经济周期 — 是基本面研究问题, 不再是估值数学问题。</p>
+<p lang="en">Buy decision: if you think CMB can hold ROE ≥ 13% (vs market's 9.7%), justified P/B is 1.4+, current 0.95 is cheap. If 16% isn't sustainable, 0.95 is fair. This becomes a fundamental research question about CMB's retail / wealth‑management moat across cycles — no longer a math question.</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600036" target="_blank" rel="noopener">
+<span lang="zh">巨潮 600036 信息披露 →</span><span lang="en">Cninfo 600036 disclosure →</span>
+</a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519 vs SZ·000858</span>
+<span class="company"><span lang="zh">茅台 vs 五粮液 — P/E premium 拆解</span><span lang="en">Moutai vs Wuliangye — decomposing the P/E premium</span></span>
+<span class="period">FY2023 · <span lang="zh">近似数据</span><span lang="en">approximate</span></span>
+</div>
+<p lang="zh">茅台 P/E 长期高于五粮液约 8-15 个点 (例如 2024 茅台 ~25-28x, 五粮液 ~18-20x)。两家都是高端白酒龙头, 商业模式相似 — 为什么 P/E 持续相差这么多? 用 (6.6) 拆解。</p>
+<p lang="en">Moutai's P/E persistently exceeds Wuliangye's by 8–15 points (mid‑2024: Moutai ~25–28×, Wuliangye ~18–20×). Both are premium baijiu leaders with similar models. Why the persistent gap? Decompose via (6.6).</p>
+
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">指标</span><span lang="en">Metric</span></th>
+<th class="num"><span lang="zh">茅台 600519</span><span lang="en">Moutai 600519</span></th>
+<th class="num"><span lang="zh">五粮液 000858</span><span lang="en">Wuliangye 000858</span></th>
+</tr></thead><tbody>
+<tr><td>FY2023 <span lang="zh">营收 (亿)</span><span lang="en">Rev (¥ bn)</span></td><td class="num">~1,500</td><td class="num">~830</td></tr>
+<tr><td>FY2023 <span lang="zh">净利 (亿)</span><span lang="en">Net inc (¥ bn)</span></td><td class="num">~750</td><td class="num">~300</td></tr>
+<tr><td><span lang="zh">毛利率</span><span lang="en">Gross margin</span></td><td class="num">~92%</td><td class="num">~75%</td></tr>
+<tr><td><span lang="zh">净利率</span><span lang="en">Net margin</span></td><td class="num">~50%</td><td class="num">~36%</td></tr>
+<tr><td>ROE</td><td class="num">~32%</td><td class="num">~24%</td></tr>
+<tr><td><span lang="zh">3yr 净利复合增长</span><span lang="en">3yr earnings CAGR</span></td><td class="num">~15%</td><td class="num">~12%</td></tr>
+<tr><td><span lang="zh">派息率</span><span lang="en">Payout</span></td><td class="num">~52%</td><td class="num">~58%</td></tr>
+<tr><td><strong>P/E (TTM, 2024 mid)</strong></td><td class="num up"><strong>~27</strong></td><td class="num down"><strong>~19</strong></td></tr>
+<tr><td><strong>P/B</strong></td><td class="num">~8.5</td><td class="num">~4.2</td></tr>
+<tr><td><strong>EV/EBITDA</strong></td><td class="num">~18</td><td class="num">~12</td></tr>
+</tbody></table></div>
+
+<p lang="zh"><strong>反推市场隐含 g (用 6.6 的反演)</strong>: 假设 $r_e = 9\%$ (消费龙头 β ~0.9)。</p>
+<ul lang="zh">
+<li>茅台: $g_{\text{implied}} = 9\% - 52\%/27 = 9\% - 1.9\% \approx 7.1\%$。市场隐含茅台永续 7% 增长。</li>
+<li>五粮液: $g_{\text{implied}} = 9\% - 58\%/19 = 9\% - 3.05\% \approx 5.95\%$。市场隐含五粮液永续 ~6% 增长。</li>
+</ul>
+
+<p lang="zh"><strong>P/E premium 拆解</strong>: 茅台比五粮液 P/E 高 8 个点。把这 8 个点拆成三块:</p>
+<ol lang="zh">
+<li><strong>增长溢价 (~3 个点)</strong>: 茅台 g_implied 7.1% vs 五粮液 6.0%, 高 1.1pp。代入 (6.6), 这部分占 P/E 差的约 ~3 个点。</li>
+<li><strong>风险溢价 (~3 个点)</strong>: 茅台 β 经验上低于五粮液 (品牌护城河更宽, 业绩波动更小); 假设茅台 $r_e = 8.5\%$ 而五粮液 $r_e = 9.5\%$, 这 1pp 折现率差又解释约 3 个点 P/E 差。</li>
+<li><strong>商业模式溢价 (~2 个点)</strong>: 茅台单瓶定价权强 (终端价远高于出厂价, 留出渠道利润), 价格管控能力更强 — 市场为这部分确定性付钱。这一项无法直接代入公式, 但反映在更低的 $r_e$ 与更稳的 $g$ 上。</li>
+</ol>
+<p lang="en">Decomposition (Moutai − Wuliangye P/E ≈ +8): (1) Growth premium ~3 pts (implied $g$ 7.1% vs 6.0%, ≈1.1 pp higher); (2) Risk premium ~3 pts (Moutai's wider moat → lower β → assume $r_e$ 8.5% vs 9.5%, the 1 pp difference accounts for ~3 pts of P/E); (3) Business‑model premium ~2 pts (Moutai's pricing power and channel discipline = more certain $g$, shows as lower $r_e$ and steadier $g$).</p>
+
+<p lang="zh"><strong>EV/EBITDA 验证</strong>: 18 vs 12, premium 6 个点 — 与 P/E premium 方向一致, 量级相近。这种"多倍数交叉一致"是相对估值的金标准。如果 P/E premium 大但 EV/EBITDA premium 小, 说明 P/E premium 主要由资本结构差异 (税盾、利息) 造成, 而非商业模式差异 — 这种情形要警惕。两家白酒杠杆都很低, 所以 P/E 与 EV/EBITDA 一致。</p>
+<p lang="en">EV/EBITDA cross‑check: 18 vs 12, premium of 6 points — same direction and magnitude as the P/E gap. Cross‑consistency across multiples is the gold standard of relative valuation. A large P/E premium with small EV/EBITDA premium would indicate capital‑structure (tax shield / interest) differences rather than business‑model differences — a warning signal. Both baijiu firms have minimal leverage, so the two metrics align.</p>
+
+<p lang="zh"><strong>买入判断</strong>: 如果你认为茅台 g 持续 8% 而非市场假设 7.1%, 茅台 P/E 应该到 30+, 当前 27 合理偏低 → 持有/加仓。如果你担心高端白酒消费降级 (年轻人不喝白酒, 商务接待去白酒化), g 可能跌到 4-5%, 那茅台 P/E 应该到 17-20, 当前 27 偏贵 → 减仓。两个故事都有支持证据, 选择取决于你对消费长周期的判断 — 估值数学只把问题<em>翻译</em>到合适的层次, 不替你做决定。</p>
+<p lang="en">Buy decision: if you believe Moutai's $g$ holds at 8% (vs market's 7.1%), P/E should be 30+, 27 is mildly cheap → hold/add. If you worry about premium‑baijiu consumption downgrading (young people don't drink baijiu; business entertainment moves away from baijiu), $g$ could fall to 4–5%, P/E should be 17–20, 27 is expensive → trim. Both narratives have supporting evidence; the call hinges on your long‑cycle consumption thesis. Valuation math <em>translates</em> the question to the right level — it doesn't decide for you.</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=000858" target="_blank" rel="noopener">
+<span lang="zh">巨潮 000858 信息披露 →</span><span lang="en">Cninfo 000858 disclosure →</span>
+</a>
+</div>
+
+<p lang="zh"><strong>回到 老王</strong>: 两组案例完成后, 老王 翻回笔记本第一页, 在 老李 vs 老张 面馆比较的旁边写: "和招行 vs 工行 一样的逻辑 — 高 ROE 的店应该有高 P/B premium; 但市场只承认<em>一部分</em>。我应该在'市场不承认而我承认'的地方买。"他突然明白了 Damodaran 那句话: <strong>估值不是寻找绝对真相, 是寻找市场与你的认知差</strong>。Layer 1 老李 vs 老张, Layer 3 招行 vs 工行 和 茅台 vs 五粮液 — 同一个比较结构在不同规模上重现。</p>
+<p lang="en">Back to Old Wang: after both case pairs, he flips back to Old Li vs Old Zhang and adds: "Same logic as CMB vs ICBC — higher ROE deserves a P/B premium, but the market only partly grants it. Buy where the market disagrees with me." He's just discovered Damodaran's central point: <strong>valuation isn't about finding absolute truth — it's about finding the gap between market and your view</strong>. Old Li vs Old Zhang in Layer 1, CMB vs ICBC and Moutai vs Wuliangye in Layer 3 — the same structure, three scales.</p>
+
+<p class="muted measure" lang="zh">数据来源: 招商银行、工商银行、贵州茅台、五粮液 2023 年年度报告; Wind 行情。数字为近似值, 用于教学; 实操请用原始披露。</p>
+<p class="muted measure" lang="en">Sources: 2023 annual reports of CMB, ICBC, Moutai, Wuliangye; Wind quotes. Values approximate for teaching; pull originals for live work.</p>
+
+<h3 lang="zh">行业典型倍数参考表</h3>
+<h3 lang="en">A‑share sector multiples (reference)</h3>
+
+<div class="case-table"><table><thead><tr><th><span lang="zh">行业</span><span lang="en">Sector</span></th><th class="num">P/E</th><th class="num">P/B</th><th class="num">EV/EBITDA</th><th><span lang="zh">首选倍数</span><span lang="en">Primary</span></th></tr></thead><tbody>
+<tr><td><span lang="zh">白酒龙头</span><span lang="en">Top baijiu</span></td><td class="num">20-30</td><td class="num">5-8</td><td class="num">14-20</td><td>P/E + EV/EBITDA</td></tr>
+<tr><td><span lang="zh">银行</span><span lang="en">Banks</span></td><td class="num">4-7</td><td class="num">0.5-1.0</td><td>N/A</td><td>P/B + ROE</td></tr>
+<tr><td><span lang="zh">公用事业</span><span lang="en">Utilities</span></td><td class="num">10-15</td><td class="num">1.5-2.5</td><td class="num">8-12</td><td>DDM + EV/EBITDA</td></tr>
+<tr><td><span lang="zh">大宗 / 周期</span><span lang="en">Commodities/cyclical</span></td><td class="num">5-15*</td><td class="num">1-2</td><td class="num">5-8</td><td>P/B (P/E <span lang="zh">反转</span><span lang="en">inverted</span>)</td></tr>
+<tr><td><span lang="zh">半导体</span><span lang="en">Semiconductor</span></td><td class="num">30-80</td><td class="num">3-8</td><td class="num">15-30</td><td>EV/EBITDA + P/S</td></tr>
+<tr><td><span lang="zh">医药</span><span lang="en">Pharma</span></td><td class="num">20-40</td><td class="num">3-6</td><td class="num">15-25</td><td>P/E + Pipeline DCF</td></tr>
+<tr><td><span lang="zh">新能源车</span><span lang="en">EV / NEV</span></td><td class="num">15-50</td><td class="num">2-6</td><td class="num">10-25</td><td>EV/Sales + P/E</td></tr>
+<tr><td><span lang="zh">SaaS / <span lang="en">early</span></span><span lang="en">SaaS / early</span></td><td>N/A</td><td>N/A</td><td>N/A</td><td>EV/Sales + LTV/CAC</td></tr>
+</tbody></table></div>
+<p class="muted" lang="zh">* 周期股 P/E 在波峰偏低、波谷偏高, 需要结合周期位置判断。</p>
+<p class="muted" lang="en">* Cyclical P/E is low at the peak and high at the trough — interpret only with cycle context.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div>
+<h4><span lang="zh">justified multiple — 倍数与基本面的桥</span><span lang="en">Justified multiple — bridging multiples to fundamentals</span></h4>
+<p lang="zh">P/E 单看是数字, 通过 (6.6)(6.7) 翻译回 ROE / g / r 三个基本面参数, 才能比较。</p>
+<p lang="en">A multiple alone is just a number; (6.6)/(6.7) translate it back to ROE / g / r so comparison is meaningful.</p>
+</div></div>
+<div class="model-card"><span class="roman">ii</span><div>
+<h4><span lang="zh">反向估值 — 市场假设的可证伪化</span><span lang="en">Reverse valuation — falsifying market assumptions</span></h4>
+<p lang="zh">从市场价格反推隐含 g, 把"贵 / 便宜"翻译成"市场假设能不能跑赢"。Damodaran 教学核心。</p>
+<p lang="en">Back out implied $g$ from market price; translate "cheap/dear" into "can the market's assumption be beaten?" — Damodaran's core teaching device.</p>
+</div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted">
+<span lang="zh">先自己想清楚再展开答案。每题至少一个反直觉点。</span>
+<span lang="en">Think before unfolding. Every prompt has at least one counterintuitive twist.</span>
+</p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 银行 P/E = 5, 半导体 P/E = 50. 谁更便宜?</span><span lang="en"><strong>Q1.</strong> Bank P/E 5, semicon P/E 50 — which cheaper?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><em>不可直接比较</em>. P/E 比较的前提是"假设增长率与风险相似". 银行 P/E 5 隐含 $g \approx 0\%$ (or 负), 半导体 P/E 50 隐含 $g \approx 30\%$. 若实际增长符合预期, 估值合理. 真问"哪个更便宜"应当看<em>相对其自身行业历史</em>是低还是高位置. 跨行业用 EV/EBITDA + ROIC 比较更稳健。</p>
-<p lang="en">Not directly comparable. P/E embeds growth + risk. Compare within sector vs history. Cross‑sector use EV/EBITDA + ROIC.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 银行 P/E = 5, 半导体 P/E = 50。谁更便宜?</span><span lang="en"><strong>Q1.</strong> Bank P/E 5, semicon P/E 50 — which cheaper?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><em>不可直接比较</em>。P/E 在不同行业可比的前提是"假设增长率、ROE 与风险相似"。代入 (6.6):</p>
+<ul lang="zh">
+<li>银行 P/E 5, $r = 10\%$, payout 30% → 隐含 $g = 10\% - 0.3/5 = 4\%$ — 但银行 ROE 仅 ~10%, 加 g 假设勉强合理。问题是市场 P/E 5 隐含的市场<em>怀疑度</em>很高 (相当于把 ROE 折扣到 7-8%)。</li>
+<li>半导体 P/E 50, $r = 12\%$ (高 β), payout 10% → 隐含 $g = 12\% - 0.1/50 \approx 11.8\%$ — 必须假设公司能持续 ~12% 增长。如果实际增长更高, 估值合理; 更低, 严重高估。</li>
+</ul>
+<p lang="zh"><strong>正确比较</strong>: <em>每个行业相对其自身历史/同行</em>。银行 P/E 5 比历史平均 7 低 → 在<em>行业内</em>偏便宜; 半导体 P/E 50 比历史平均 60 低 → <em>行业内</em>也偏便宜。但跨行业比较应用 EV/EBITDA + ROIC (剔除税、杠杆、折旧政策差异), 或反推隐含 g 比较合理性。Damodaran: "永远不要直接跨行业比 P/E"。</p>
+<p lang="en">Not directly comparable. Implied $g$ at bank P/E 5 with $r=10\%$, payout 30% is 4% — okay given bank ROE ~10%. Semicon P/E 50 with $r=12\%$, payout 10% implies $g \approx 11.8\%$ — must believe ~12% growth holds. Compare each within sector vs history. Cross‑sector: EV/EBITDA + ROIC, or reverse implied $g$. Damodaran: "never directly compare P/E across sectors."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 股票 P/E = 15, $r$ = 9%, payout = 50%. 计算市场隐含 $g$. 若你认为公司实际能持续 $g = 8\%$ 增长, 买不买?</span><span lang="en"><strong>Q2.</strong> P/E=15, r=9%, payout 50%. Implied g? If you think actual g=8%, buy?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p>(6.1): $g = 9\% - 0.5/15 = 9\% - 3.3\% = 5.7\%$. <span lang="zh">市场隐含 5.7%</span>. <span lang="zh">你认为 8% &gt; 5.7% → 当前估值低估 → <em>考虑买入</em>. 但要做安全边际检查 (Ch.07): 8% 可信度多高? 一致估计 (consensus) 是多少? 你的 8% 比市场更合理的证据?</span></p>
-<p lang="en">Implied $g \approx 5.7\%$. Your 8% &gt; implied → considered undervalued. Apply margin of safety: how confident is 8%? Consensus estimate? Why is your view better than market's?</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 股票 P/E = 15, $r = 9\%$, payout = 50%。计算市场隐含 $g$。若你认为公司实际能持续 $g = 8\%$ 增长, 买不买?</span><span lang="en"><strong>Q2.</strong> P/E=15, r=9%, payout 50%. Implied $g$? If you think actual $g=8\%$, buy?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">代入 (6.6): $g = 9\% - 0.5/15 = 9\% - 3.3\% = 5.7\%$。市场隐含 5.7%。</p>
+<p lang="zh">你认为 8% &gt; 5.7% → 当前估值<em>偏低</em> → 考虑买入。但买前应做三层安全检查 (Ch.07):</p>
+<ul lang="zh">
+<li><strong>信心度</strong>: 8% 是你自己研究的结果还是听别人说的? 公司的护城河是否足以支撑 8% 永续?</li>
+<li><strong>一致估计 (consensus)</strong>: 卖方分析师平均预测是多少? 若 consensus 也是 8%, 那市场已经在 pricing 你的观点 — 没有 alpha。若 consensus 是 5%, 而你认为 8%, 那这是 differentiated view, 真正的机会。</li>
+<li><strong>反证</strong>: 为什么市场只给 5.7%? 你能识别市场<em>错</em>的具体机制吗? 如果回答不了, 大概率是你错。</li>
+</ul>
+<p lang="zh"><strong>安全边际</strong>: 即使你判断 8% 正确, 也应在<em>偏离公允价值</em>足够多 (Graham 30-50%) 时再买。否则即使方向对, 短期波动可能套你 2-3 年。</p>
+<p lang="en">Implied $g \approx 5.7\%$. Your 8% > 5.7% → undervalued → consider buying. Three safety checks: (1) confidence — own research or hearsay? does the moat support 8% perpetual? (2) consensus — if sell‑side also at 8%, no alpha; differentiated view only if consensus is lower; (3) falsification — can you identify <em>why</em> the market is wrong? If not, probably you are. Margin of safety: buy only at sufficient discount (Graham 30–50%) even if directionally right.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一家钢铁公司 2021 年顶峰 P/E 仅 4 (净利创历史新高), 2023 年低谷 P/E 高达 30 (净利大幅下滑)。这是不是说 2021 年是"4 倍便宜买入良机", 2023 年是"30 倍贵了卖出"?</span><span lang="en"><strong>Q3.</strong> A steel company: P/E 4 at 2021 peak earnings; P/E 30 at 2023 earnings trough. Was 2021 a "P/E 4 cheap buy" and 2023 a "P/E 30 dear sell"?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>恰恰相反 — 这是周期股 P/E 反转的教科书案例</strong>。"the trick of cyclicals" (Lynch):</p>
+<ul lang="zh">
+<li><strong>2021 P/E 4 是危险信号</strong>: 钢铁价格在历史峰值, 利润率被周期顶部放大, 净利不可持续。市场已预知周期下行, 故拒绝给高 P/E — 用低 P/E "<em>反向贴现</em>"未来盈利下滑。买入 = 接刀子。</li>
+<li><strong>2023 P/E 30 是机会信号</strong>: 净利被周期底部压低, 利润率低甚至亏损, P/E 分母 (E) 变小, 比率虚高。但市场已 pricing 周期反转, 当前股价可能已包含未来 1-2 年的复苏预期。卖出 = 在底部割肉。</li>
+</ul>
+<p lang="zh"><strong>正确做法</strong>: 周期股<em>不用 P/E</em>, 用 <strong>P/B</strong> (账面价相对稳定, 不受周期扭曲) + 周期位置判断 (产能利用率、库存、价格 vs 历史中位)。或用 <strong>正常化 P/E (normalized P/E)</strong>: 用<em>整个周期平均盈利</em> (例如 10 年平均) 代替当前年度盈利。Shiller's CAPE (周期调整后市盈率) 在大盘指数层面是这个思想的应用。</p>
+<p lang="zh"><strong>关联 老王</strong>: 这与 老王 错误 1 ("茅台 1800 还买?")是<em>同一个本质</em> — 都是把<em>当前数字</em>当成<em>永远的真相</em>, 忽略周期 / 增长 / 风险变化。但表现形式相反: 老王 锚定历史低点不敢买, 周期股投资者锚定当前峰值利润不敢卖。</p>
+<p lang="en">Opposite — the textbook "trick of cyclicals." 2021 P/E 4 is a warning: peak earnings won't last; market prices in the looming downturn with low P/E. 2023 P/E 30 is the opportunity: trough earnings collapse the denominator; market already prices recovery. Use P/B (insulated from cycle) + cycle indicators (capacity utilization, inventory, price vs historical median), or normalized P/E (Shiller CAPE‑style: 10y average earnings). Same essence as Old Wang's Mistake 1 (Moutai anchoring) — treating a snapshot number as eternal truth.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 招行 ROE 16%, 工行 ROE 10.5%, 都用同一条 P/B 公式 (6.7) 算 justified 值, 但实际 P/B 都<em>低于</em> justified。为什么"市场总是错"?或者是公式错?</span><span lang="en"><strong>Q4.</strong> CMB ROE 16%, ICBC ROE 10.5%, both have actual P/B below the justified value from (6.7). Is "the market always wrong" or is the formula wrong?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>都不是 — 是公式假设与市场认知不一致</strong>。(6.7) 假设 ROE 永续不变, 但市场看到三件公式不知道的事:</p>
+<ol lang="zh">
+<li><strong>ROE 均值回归</strong>: 银行业的高 ROE 通常不可持续。监管 (资本充足率)、利率周期 (NIM 下行)、不良暴露 (信用周期) 都会把 ROE 拉回行业均值。市场<em>提前</em>给 P/B 折扣反映这一点。</li>
+<li><strong>账面资产的真实质量</strong>: 银行资产负债表上有大量"未爆雷"的隐藏不良。市场对账面价值的<em>可信度</em>打折 — 这相当于把 BVPS 的有效值降低。如果实际坏账率比披露高 1pp, BVPS 可能虚高 15-20%。</li>
+<li><strong>极端尾部风险</strong>: 银行有"流动性危机"的小概率大损失尾部 (Bear Stearns/Lehman 类型)。投资者要求额外风险溢价, 等价于把 $r_e$ 调高, 进而压低 justified P/B。</li>
+</ol>
+<p lang="zh"><strong>对公式的修正</strong>: 把 (6.7) 改写为 $\mathrm{P/B} = (\mathrm{ROE}_{\text{sustainable}} - g)/(r_e + \pi - g)$, 其中 $\pi$ 是<em>账面不确定性风险溢价</em>。对银行 $\pi$ 通常加 2-3pp, 这就解释了 P/B 持续低于 1 的现象。Damodaran: 对金融机构使用 P/B 时必须考虑"账面质量"。</p>
+<p lang="zh"><strong>结论</strong>: 不是市场错, 也不是公式错; 而是 (6.7) 是简化模型, 实际公式需要纳入"账面可信度"和"ROE 持续性"两个真实世界因素。这告诉你: 倍数估值的<em>艺术</em>在于辨识公式的简化在你这个 case 中是否成立。</p>
+<p lang="en">Neither — assumption mismatch. (6.7) assumes ROE is perpetual but the market sees: (1) ROE mean reversion (regulation, rate cycle, NPL cycle pull bank ROE to industry mean); (2) book quality (hidden NPL discounts BVPS — a 1 pp higher real NPL could inflate book by 15–20%); (3) extreme tail risk (liquidity crisis, Bear/Lehman type) demands extra premium, equivalent to lifting $r_e$. Modified: $\mathrm{P/B} = (\mathrm{ROE}_{\text{sustainable}} - g)/(r_e + \pi - g)$ with book‑quality premium $\pi$ (~2–3 pp for banks). Multiples valuation is an <em>art</em> of judging whether the formula's simplifications hold for the case at hand.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 茅台 P/E 27, 五粮液 P/E 19。差 8 个点的 premium 在 Layer 3 被拆成 (1) 增长 3 (2) 风险 3 (3) 商业模式 2。如果有一天市场重新评估茅台 — 比如年轻人不喝白酒导致市场担忧 g 永续降到 4%, 会发生什么? 给具体数字。</span><span lang="en"><strong>Q5.</strong> Moutai P/E 27, Wuliangye P/E 19. 8‑point premium decomposed in Layer 3. If the market re‑rates Moutai down because young people stop drinking baijiu, $g_2 \to 4\%$, what happens? Quantify.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>用 (6.6) 重新算茅台 justified P/E</strong>: $r_e = 8.5\%$, payout 52%, 新 $g = 4\%$:</p>
+<p>$\text{P/E}_{\text{new}} = 0.52 / (0.085 - 0.04) = 0.52 / 0.045 \approx 11.6$。</p>
+<p lang="zh">从 27 降到 ~12 — 接近 60% 跌幅。茅台股价从 ~1,500 元跌到 ~650 元 (假设 EPS 保持稳定; 实际下跌中 EPS 也会同步走弱, 跌幅可能更大)。</p>
+<p lang="zh"><strong>类比 2021 抱团股</strong>: 行为金融 Ch.04 讲过, 2021 末茅台 P/E 60 跌回 30 用的是同样机制 — 不是基本面立刻恶化, 而是<em>市场重新评估 $g_2$ 假设</em>。一旦市场对永续增长率从 7% 改 pricing 到 4%, 即使当前盈利不变, 估值立即重置。这就是为什么"P/E 高的股票更容易腰斩" — 它的 P/E 对 $g_2$ 假设的<em>导数</em>最大 (回顾 Ch.05 5.6 节)。</p>
+<p lang="zh"><strong>反过来思考</strong>: 如果 $g_2$ 上调到 8% (例如海外市场打开), P/E justified 应到 $0.52 / (0.085 - 0.08) = 104$ — Gordon 奇点附近, 数学崩了。实际中 $g_2 = 8\%$ 远高于长期 GDP, 不应当作永续假设。这说明: <strong>用 (6.6) 反推 $g_2$ 时, 必须用永续可持续的值, 不能用短期高速增长</strong>。Damodaran 反复强调: $g_2$ 在永续模型里数值很小, 但威力巨大。</p>
+<p lang="zh"><strong>给 老王 的教训</strong>: 别只看"P/E 27 比五粮液高"或"P/E 27 比历史均值低", 要看 P/E 27 隐含的 $g_2$ 假设。如果你不认同这个 $g_2$, 你就不应该被 P/E 数字本身说服。Layer 1 老李 vs 老张 比较时 老王 算的是<em>静态</em>对比, 但真实市场是<em>动态重定价</em>过程 — 倍数随时可以变。这是相对估值最重要的告诫。</p>
+<p lang="en">Recompute justified P/E for Moutai at $r_e=8.5\%$, payout 52%, $g=4\%$: $0.52/(0.085-0.04) \approx 11.6$. From 27 → ~12, roughly a 60% drop. Stock from ~¥1,500 → ~¥650 (with EPS held constant; in practice EPS also weakens, so drop is worse). This is the 2021 herd reversion mechanism (Ch.04): not fundamentals collapsing, but the market <em>re‑rating the $g_2$ assumption</em>. High‑P/E stocks halve more easily because their derivative w.r.t. $g_2$ is largest (Ch.05 §5.6). Reversal: if $g_2 \to 8\%$, justified P/E hits 104, near the Gordon singularity — math breaks. So $g_2$ in a perpetuity must be small but is exceptionally powerful (Damodaran). Lesson for Old Wang: don't be persuaded by P/E 27 alone — examine the $g_2$ it implies. The Old Li vs Old Zhang comparison in Layer 1 was static; real markets re‑rate dynamically.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="05-dcf.html"><span class="dir">← Prev</span><span class="title">05 · DCF</span></a><a class="next" href="07-value-investing.html"><span class="dir">Next →</span><span class="title">07 · <span lang="zh">价值投资</span><span lang="en">Value Investing</span></span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="05-dcf.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">05 · DCF</span></a><a class="next" href="07-value-investing.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">07 · <span lang="zh">价值投资</span><span lang="en">Value Investing</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

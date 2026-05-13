@@ -179,51 +179,70 @@
       <section class="layer">
         <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
 
-        <h3 lang="zh">收益率: 算术 vs 几何</h3>
-        <h3 lang="en">Returns: arithmetic vs geometric</h3>
-        <p lang="zh">一个 100 元的投资, 第一年涨 50% (变 150), 第二年跌 33.3% (变 100, 回到起点)。<em>平均回报是多少?</em></p>
-        <p lang="en">A ¥100 investment: +50% year 1 (→ ¥150), then −33.3% year 2 (→ ¥100, back to start). Average return?</p>
-        <ul>
-          <li><strong>算术平均</strong>: $(50\% - 33.3\%) / 2 = +8.35\%$ — <em>看起来</em>赚了</li>
-          <li><strong>几何平均</strong>: $(1.5 \times 0.667)^{1/2} - 1 = (1.0005)^{1/2} - 1 \approx 0\%$ — 实际上没赚</li>
+        <p lang="zh">Layer 0 已经把 4 个原子建好: 收益率、波动率、相关系数、无风险利率。现在让老王上场, 用这 4 个原子在<em>真实的钱</em>上做一次分配决策。Ch.01 末尾老王手里还有 ¥10,000 的"闲钱" — 既不准备马上买设备, 也不想留着发霉。他想把这笔钱分到三种去处, 但每种"看起来都有道理"。我们一笔一笔看, 每笔结束都问同一对问题: "<em>这笔预期回报是多少? 它的风险是什么样的?</em>"</p>
+        <p lang="en">Layer 0 set up the four atoms: return, volatility, correlation, risk‑free rate. Now Old Wang takes the stage and applies them to <em>actual money</em>. At the end of Ch.01 he has ¥10,000 sitting idle — not earmarked for equipment, not happy growing dust. He's torn between three places to put it, each one "looks reasonable." We walk through them one by one, asking the same pair after each: <em>what's the expected return, and what does the risk look like?</em></p>
+
+        <p lang="zh"><strong>1. 银行 5 年定存, 年化 3%。</strong> 5 年后到期连本带利大约 11,593 元。这笔回报<em>几乎确定</em> — 中国大行国有信用, 违约概率近乎零。期望回报 = 3%, 标准差 ≈ 0%。这种"几乎不可能亏"的资产, 对应的回报就是 <strong>无风险利率 $r_f$</strong> — 它是所有其他选项的<em>基准线</em>。问: 这是高回报吗?——不是。但它是<em>任何风险资产都必须超越的底线</em>。</p>
+        <p lang="en"><strong>1. Five‑year bank deposit at 3% annualised.</strong> Matures to about ¥11,593. Return is <em>essentially certain</em> — a major state bank's default probability is near zero. Expected return = 3%, standard deviation ≈ 0%. The return on this near‑certain asset is the <strong>risk‑free rate $r_f$</strong> — the baseline every risky option must beat. High return? No. But it's the floor everything else must clear.</p>
+
+        <p lang="zh"><strong>2. 投朋友 1,000 元 / 5,000 元 / 10,000 元一档的"新店"入股。</strong>朋友的新煎饼店在隔壁街开张, 前景看似不错 — 如果做成, 一年内能给老王带来 20% 收益。但<em>一年内</em>朋友店亏到要关店的概率, 老王估摸大约 30%。也就是: 投 10,000 元, 70% 概率拿回 12,000 元 (+20%), 30% 概率拿回 0。期望回报 = 0.7 × 12,000 + 0.3 × 0 = 8,400, 相当于<em>负</em> 16% — 表面 20% 的"亮丽收益率"经不起<em>违约概率</em>的乘法。这种"<em>面值高但风险大</em>"的回报, 期望值反而比定存更差。每笔投资必须算<em>期望回报</em> (用所有可能结果按概率加权), 而不是只看"最好情况下的回报"。</p>
+        <p lang="en"><strong>2. Buy into a friend's new pancake stall.</strong> Tiers of ¥1,000 / ¥5,000 / ¥10,000. The friend's place looks promising — if it works, a year of 20% returns. But Wang reckons there's about a 30% chance the place folds within a year. So: invest ¥10,000, 70% chance of getting ¥12,000 back (+20%), 30% chance of zero. Expected value = 0.7 × 12,000 + 0.3 × 0 = ¥8,400 — an expected return of <em>negative</em> 16%. The headline "20%" doesn't survive multiplication by the default probability. The <strong>expected return</strong> must average all outcomes by probability — looking only at the best case is the most common beginner trap.</p>
+
+        <p lang="zh"><strong>3. 买一只沪深 300 ETF。</strong>过去 10 年, A 股大盘年化几何回报约 8%, 但每年回报<em>波动</em>很大 — 好年涨 30%, 坏年跌 20%。粗略看, 年回报的标准差约 15%。这笔投资的 "<em>期望回报 8% / 波动率 15%</em>" 怎么解读?——大致意思: 一个典型年份回报落在 [−7%, +23%] 之间 (一倍 σ); 极端年份可能更糟。一年后 10,000 元能变 8,500 也能变 12,000, 这就是<em>风险</em>。这种"<em>波动率</em>"度量, 是金融学里风险的<em>主流定义</em>之一 — Markowitz 1952 的核心。 同样的期望回报, 波动越大, 风险越高。</p>
+        <p lang="en"><strong>3. Buy a CSI 300 ETF.</strong> The past decade has delivered ~8% annualised geometric return on the broad A‑share index, but each year's return swings wildly — +30% in good years, −20% in bad. Standard deviation of annual return is roughly 15%. "Expected 8% / σ 15%" reads, loosely: a typical year lands in [−7%, +23%] (one σ); extreme years go further. After one year his ¥10,000 could be ¥8,500 or ¥12,000. That spread is <strong>risk</strong>. Volatility as risk measure is the dominant definition in finance (Markowitz 1952). Same expected return, more volatility = more risk.</p>
+
+        <p lang="zh"><strong>4. 把三种放一起比, 老王发现一个反直觉的事。</strong> 朋友的新店 (期望 −16%) 看似最差, 但<em>表面利率</em> 20% 是三者最高。ETF (期望 8% / σ 15%) 期望最高, 但波动大。定存 (期望 3% / σ ≈ 0%) 回报最低, 但<em>稳</em>。三种回报放进一张表:</p>
+        <p lang="en"><strong>4. Lining the three up, Wang notices a counter‑intuitive pattern.</strong> The friend's stall (expected −16%) is the worst, yet its <em>headline</em> rate (20%) is the highest. The ETF (expected 8% / σ 15%) has the best expectation but the biggest swings. The deposit (expected 3% / σ ≈ 0%) earns the least but is steady. Side by side:</p>
+        <ul lang="zh">
+          <li>定存: 期望 +3%, σ ≈ 0% → 收益/风险 = 无穷大</li>
+          <li>ETF: 期望 +8%, σ ≈ 15% → 每承担 1 单位风险, 拿到 (8−3)/15 ≈ 0.33 单位超额回报</li>
+          <li>朋友店: 期望 −16%, σ 极高 → 负收益, 比例不必算</li>
         </ul>
         <ul lang="en">
-          <li>Arithmetic mean: $(50 - 33.3)/2 = +8.35\%$ — looks like gain</li>
-          <li>Geometric mean: $(1.5 \times 0.667)^{1/2} - 1 \approx 0\%$ — actually flat</li>
+          <li>Deposit: +3%, σ ≈ 0% → return/risk infinite</li>
+          <li>ETF: +8%, σ ≈ 15% → 0.33 unit of excess return per unit of risk: (8−3)/15</li>
+          <li>Friend's stall: −16%, σ huge → negative; ratio irrelevant</li>
         </ul>
-        <p lang="zh"><strong>真相是几何平均</strong>。算术平均高估了实际财富增长。这就是 Sharpe 长期论述的"variance drag": $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$。波动率越高, 算术与几何差异越大 — 高波动股票的"长期回报"被人系统性高估。</p>
-        <p lang="en">The truth is geometric mean. Arithmetic overstates actual wealth growth — <em>variance drag</em>: $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$. The higher the volatility, the bigger the gap. High‑vol stocks' "long‑term return" is systematically overstated when arithmetic average is reported.</p>
+        <p lang="zh">"每承担 1 单位风险, 拿到多少超额回报"这个数, 叫 <strong>夏普比率 (Sharpe ratio)</strong>。它把<em>回报</em>和<em>风险</em>放进一个分数里, 让两种期望-波动不同的资产<em>可比</em>。ETF 的 0.33 算"还行"; A 股长期 Sharpe 比美股低 (美股长期 ~0.5)。朋友店根本不该出现在这张表里。</p>
+        <p lang="en">"Excess return per unit of risk" is the <strong>Sharpe ratio</strong>. It collapses return and risk into one number, making different expected/volatility profiles comparable. The ETF's 0.33 is "okay"; A‑shares' long‑run Sharpe is below US equities' (~0.5). The friend's stall shouldn't even be in the table.</p>
 
-        <h3 lang="zh">风险: 两种定义的张力</h3>
-        <h3 lang="en">Risk: two competing definitions</h3>
-        <ul>
-          <li><strong>Markowitz (1952)</strong>: <span lang="zh">风险 = 收益率波动率 $\sigma$。对称地看待上行与下行偏离均值。</span><span lang="en">Risk = volatility $\sigma$. Treats upside and downside symmetrically.</span></li>
-          <li><strong>Buffett</strong>: <span lang="zh">风险 = <em>永久性</em>本金损失。"$\sigma$ 高的股票, 如果你<em>不卖</em>, 它的'波动'不构成损失。真正的风险是公司基本面变差, 5 年后股价仍未恢复。"</span><span lang="en">Risk = <em>permanent</em> loss of capital. "If you don't sell, volatility isn't loss. Real risk is fundamentals deteriorating such that 5y later the price still hasn't recovered."</span></li>
-        </ul>
-        <p lang="zh">两种定义服务<em>不同决策</em>:</p>
-        <p lang="en">The two definitions serve <em>different decisions</em>:</p>
-        <ul>
-          <li><span lang="zh">短期交易、套利策略 → Markowitz σ 适用 (你必须考虑路径)</span><span lang="en">Short‑term trading / arbitrage → Markowitz σ (path matters)</span></li>
-          <li><span lang="zh">长期价值投资 → Buffett 定义适用 (路径无关, 只看终点价值)</span><span lang="en">Long‑term value investing → Buffett (path‑independent, terminal value only)</span></li>
-        </ul>
-        <p lang="zh">本章用 Markowitz σ 推导 CAPM, 因为它是数学上可处理的。但要记得它的局限。</p>
-        <p lang="en">This chapter uses Markowitz σ to derive CAPM (mathematically tractable), with awareness of its limits.</p>
+        <p lang="zh"><strong>5. 老王决定不把 10,000 全押一处。</strong>分: 4,000 进定存, 6,000 买 ETF, 完全跳过朋友店。问: 这个组合的期望回报和风险是多少?期望回报好算 — 加权平均: 0.4 × 3% + 0.6 × 8% = 6%。但<em>风险</em>呢?——不能简单加权。定存 σ ≈ 0, ETF σ = 15%, 简单加权 = 9%。但定存和 ETF "<em>怎么一起动</em>"也要看。定存几乎不动, 所以它和 ETF 的<em>相关系数</em>近似 0 — 这意味着定存对组合波动的<em>贡献</em>主要是"稀释 ETF 的 σ"。组合 σ ≈ 0.6 × 15% = 9%。如果换成<em>两种 σ 都是 15% 但完全独立</em>的资产对半分, 组合 σ 会降到 15%/√2 ≈ 10.6% — 比单只低。这种"<em>两个不完全同向的风险资产放一起, 总波动会小于权重平均</em>"的现象, 叫<strong>分散化 (diversification)</strong>。它是金融学里唯一的"免费午餐"。</p>
+        <p lang="en"><strong>5. Wang decides not to push all ¥10,000 into one slot.</strong> Split: ¥4,000 to the deposit, ¥6,000 to the ETF, skip the friend's stall. Portfolio expected return is the weighted average: 0.4 × 3% + 0.6 × 8% = 6%. But the risk? Not a simple weighted average. The deposit barely moves, so its correlation with the ETF is ≈ 0 — meaning the deposit contributes to portfolio volatility mostly by <em>diluting</em> the ETF's σ. Roughly, portfolio σ ≈ 0.6 × 15% = 9%. If you instead held two σ = 15% assets that moved <em>independently</em> half‑and‑half, the combined σ would drop to 15%/√2 ≈ 10.6% — lower than either alone. "Two not‑perfectly‑correlated risky assets together have less total volatility than the weighted average" is <strong>diversification</strong>, the one free lunch in finance.</p>
 
-        <h3 lang="zh">分散化的工程图像</h3>
-        <h3 lang="en">Diversification — engineering picture</h3>
-        <p lang="zh">把 $n$ 只<em>独立同分布</em>(IID) 收益率为 $r_i$, 标准差 $\sigma$ 的股票等权组合, 组合 $\sigma_p = \sigma/\sqrt{n}$。这是中心极限定理的直接应用 — 类比独立噪声的平均会平方根减弱。</p>
-        <p lang="en">For $n$ IID assets each with σ, equal‑weighted portfolio σ is $\sigma/\sqrt{n}$ (CLT). Independent noise averages out at rate $1/\sqrt{n}$.</p>
-        <p lang="zh">现实中股票<em>不</em> IID, 相关系数 $\rho$ 通常 0.3-0.6 (同一国市场的股票)。所以分散化降低 σ 有<em>下限</em>:</p>
-        <p lang="en">In reality assets aren't IID; pairwise correlation $\rho$ is ~0.3-0.6. Diversification has a floor:</p>
-        <div class="eq"><span>$$ \sigma_p \to \sigma \sqrt{\rho} \quad \text{as} \quad n \to \infty $$</span><span class="num">—</span></div>
-        <p lang="zh">即使持有<em>无穷只</em>同市场股票, 也无法消除掉 $\sigma\sqrt{\rho}$ 这部分波动 — 它就是<em>市场风险</em>(systematic risk)。剩下的 $\sigma\sqrt{1-\rho}$ 是<em>可分散风险</em>(idiosyncratic risk)。</p>
-        <p lang="en">Even infinite holdings can't eliminate $\sigma\sqrt{\rho}$ — that's <em>systematic (market) risk</em>. The $\sigma\sqrt{1-\rho}$ part is <em>idiosyncratic</em>, diversifiable.</p>
-        <p lang="zh"><strong>核心洞察</strong>: 市场只给<em>不可分散的风险</em>支付溢价 — 因为可分散风险任何投资者都能<em>免费</em>消除 (通过持有组合)。这是 CAPM 的起点。</p>
-        <p lang="en"><strong>Insight:</strong> the market only compensates non‑diversifiable risk — anyone can eliminate idiosyncratic risk for free by diversifying. That is CAPM's starting point.</p>
+        <p lang="zh"><strong>6. 老王再问: 如果买 50 只 A 股, 是不是 σ 就能压到零?</strong> ——不能。中国市场上随便挑两只股票, <em>相关系数</em>通常在 0.3-0.6 之间 (它们一起被宏观情绪、政策、汇率推动), 不是完美独立。结果: 持有<em>无穷只</em>同市场股票, σ 也不会归零, 而是停在某个下限 — 这个不可消除的部分叫 <strong>系统性风险 (systematic / market risk)</strong>; 能通过分散化消掉的那部分叫 <strong>非系统性风险 (idiosyncratic risk)</strong>。这给出本章 Layer 2 的核心结论: <em>市场只为不可分散的那部分风险支付溢价</em> — 因为可分散的部分每个投资者都能自己消除, 不必出钱让别人帮忙消。</p>
+        <p lang="en"><strong>6. Wang follows up: if he held 50 A‑share stocks instead, would σ drop to zero?</strong> No. Any two Chinese stocks tend to have correlation 0.3–0.6 (they're pushed around together by macro sentiment, policy, currency). The result: even infinite holdings of same‑market stocks leave a floor of σ that cannot be diversified away. That residual is <strong>systematic (market) risk</strong>; the part that can be diversified away is <strong>idiosyncratic risk</strong>. This sets up Layer 2's punchline: <em>the market only pays a premium for non‑diversifiable risk</em> — because anyone can eliminate diversifiable risk for free, no one will pay extra for someone else to do it.</p>
+
+        <p lang="zh"><strong>7. 一天结束, 老王把笔记总结成一行: 每笔投资问两件事 — 期望回报多少 ? 风险多大 ?</strong> "期望" = 所有可能结果按概率加权; "风险" 主流定义为收益率的标准差 σ; 两者相除得 <em>Sharpe</em> 让不同资产可比; 多资产组合的<em>总风险</em>取决于资产间的<em>相关系数</em>; 持有越多越分散的资产, 总风险逼近一个不可消除的下限 — 那部分才是 CAPM 要给溢价的。这条原理写成符号就是: <em>预期超额回报 ∝ 与市场组合的协方差</em>, 即 $E[R_i] - r_f \propto \beta_i$。</p>
+        <p lang="en"><strong>End of day — Wang's notebook reduces to one line: every investment, ask two questions — what's the expected return, what's the risk?</strong> "Expectation" = probability‑weighted average of all outcomes. "Risk," mainstream definition, = standard deviation σ of returns. Their ratio gives the <em>Sharpe ratio</em>, making different assets comparable. Multi‑asset portfolios' total risk depends on inter‑asset <em>correlations</em>. The more diversified you are, the closer total risk approaches a floor that can't be eliminated — and only <em>that</em> floor earns a premium under CAPM. The symbolic form: <em>expected excess return is proportional to covariance with the market</em>, i.e. $E[R_i] - r_f \propto \beta_i$.</p>
       </section>
 
       <section class="layer">
         <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <p lang="zh">Layer 1 用老王 ¥10,000 的三选一决策, 把"期望回报 / 波动率 / 相关系数 / Sharpe / 分散化 / 系统性风险"这一串原子串了起来。现在我们形式化它, 并推导 CAPM。本节也接收 Layer 1 没有展开的两段细节: 一是算术 vs 几何回报的"variance drag", 二是分散化的工程图像 (CLT 与 $\sigma\sqrt{\rho}$ 下限)。</p>
+        <p lang="en">Layer 1 used Old Wang's ¥10,000 three‑way allocation to chain together expected return / volatility / correlation / Sharpe / diversification / systematic risk. We now formalise it and derive CAPM. This section also picks up two details Layer 1 deferred: variance drag (arithmetic vs geometric) and the engineering picture of diversification (CLT and the $\sigma\sqrt{\rho}$ floor).</p>
+
+        <h3 lang="zh">⓪ 算术 vs 几何回报 — variance drag</h3>
+        <h3 lang="en">⓪ Arithmetic vs geometric — variance drag</h3>
+        <p lang="zh">一个 100 元的投资, 第一年涨 50% (变 150), 第二年跌 33.3% (变 100, 回到起点)。算术平均 $(50\% - 33.3\%) / 2 = +8.35\%$ — <em>看起来</em>赚了; 几何平均 $(1.5 \times 0.667)^{1/2} - 1 \approx 0\%$ — 实际上没赚。<strong>真相是几何平均</strong>。算术平均高估了实际财富增长。这就是 Sharpe 论述的 "variance drag": $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$。波动率越高, 算术与几何差异越大 — 高波动股票的"长期回报"被人系统性高估。</p>
+        <p lang="en">¥100 invested: +50% year 1 (→¥150), then −33.3% year 2 (→¥100, back to start). Arithmetic mean $(50 - 33.3)/2 = +8.35\%$ looks like a gain; geometric mean $(1.5 \times 0.667)^{1/2} - 1 \approx 0\%$ is flat. Geometric is the truth. Arithmetic overstates actual wealth growth — <em>variance drag</em>: $\bar{r}_{\text{geom}} \approx \bar{r}_{\text{arith}} - \sigma^2/2$. The higher the volatility, the bigger the gap. High‑vol stocks' "long‑term return" is systematically overstated when arithmetic averages are quoted.</p>
+
+        <h3 lang="zh">⓪′ 风险的两种定义</h3>
+        <h3 lang="en">⓪′ Two definitions of risk</h3>
+        <ul>
+          <li><strong>Markowitz (1952)</strong>: <span lang="zh">风险 = 收益率波动率 $\sigma$。对称地看待上行与下行偏离均值。</span><span lang="en">Risk = volatility $\sigma$. Treats upside and downside symmetrically.</span></li>
+          <li><strong>Buffett</strong>: <span lang="zh">风险 = <em>永久性</em>本金损失。"$\sigma$ 高的股票, 如果你<em>不卖</em>, 它的'波动'不构成损失。真正的风险是公司基本面变差, 5 年后股价仍未恢复。"</span><span lang="en">Risk = <em>permanent</em> loss of capital. "If you don't sell, volatility isn't loss. Real risk is fundamentals deteriorating such that 5y later the price still hasn't recovered."</span></li>
+        </ul>
+        <p lang="zh">两种定义服务<em>不同决策</em>: 短期交易、套利策略 → Markowitz σ 适用 (路径有意义); 长期价值投资 → Buffett 定义适用 (路径无关, 只看终点价值)。本章用 Markowitz σ 推导 CAPM, 因为它是数学上可处理的。</p>
+        <p lang="en">The two definitions serve different decisions: short‑term trading / arbitrage → Markowitz σ (path matters); long‑term value investing → Buffett (path‑independent). This chapter uses Markowitz σ to derive CAPM (mathematically tractable).</p>
+
+        <h3 lang="zh">⓪″ 分散化的工程图像</h3>
+        <h3 lang="en">⓪″ Diversification — engineering picture</h3>
+        <p lang="zh">把 $n$ 只<em>独立同分布</em> (IID) 收益率为 $r_i$, 标准差 $\sigma$ 的股票等权组合, 组合 $\sigma_p = \sigma/\sqrt{n}$。这是中心极限定理的直接应用 — 独立噪声平均后按平方根减弱。现实中股票<em>不</em> IID, 相关系数 $\rho$ 通常 0.3-0.6, 所以分散化降低 σ 有<em>下限</em>:</p>
+        <p lang="en">For $n$ IID assets each with σ, equal‑weighted portfolio σ is $\sigma/\sqrt{n}$ (CLT) — independent noise averaging at rate $1/\sqrt{n}$. Real stocks aren't IID; pairwise correlation $\rho$ is ~0.3–0.6, so diversification has a floor:</p>
+        <div class="eq"><span>$$ \sigma_p \to \sigma \sqrt{\rho} \quad \text{as} \quad n \to \infty $$</span><span class="num">—</span></div>
+        <p lang="zh">不可消除的 $\sigma\sqrt{\rho}$ 就是<em>市场风险</em>; 可分散的 $\sigma\sqrt{1-\rho}$ 是<em>非系统性风险</em>。市场只为前者支付溢价 — 这是 CAPM 的起点。</p>
+        <p lang="en">The irreducible $\sigma\sqrt{\rho}$ is <em>market risk</em>; the diversifiable $\sigma\sqrt{1-\rho}$ is <em>idiosyncratic</em>. The market only pays a premium for the former — CAPM's starting point.</p>
 
         <h3 lang="zh">① 收益率与统计量</h3>
         <h3 lang="en">① Returns &amp; moments</h3>
@@ -322,6 +341,8 @@
             <span class="company"><span lang="zh">茅台 vs 农行 vs 京东方 — A 股 β 分布</span><span lang="en">Moutai vs ABC vs BOE — A‑share β distribution</span></span>
             <span class="period"><span lang="zh">5 年月度回归 (近似)</span><span lang="en">5y monthly regression (approx)</span></span>
           </div>
+          <p lang="zh">老王在 Layer 1 里挑的"<em>沪深 300 ETF</em>"不是一个抽象指数, 它是真实公司的市值加权篮子。现在把镜头推近到篮子里的三只代表性个股, 看它们各自的 β — 同样是 A 股, 防御性 / 极防御 / 强周期三档差异之大, 让"<em>用同一个折现率评估三类业务</em>"的做法立刻显得荒唐。</p>
+          <p lang="en">The "CSI 300 ETF" Wang considered in Layer 1 isn't an abstract index — it's a market‑cap basket of real companies. Zoom in on three representative names and read each one's β. Same A‑share market, three radically different risk profiles (defensive / ultra‑defensive / highly cyclical) — making "one discount rate for all businesses" look immediately absurd.</p>
           <div class="case-table">
             <table>
               <thead><tr><th><span lang="zh">公司</span><span lang="en">Company</span></th><th class="num">β</th><th class="num">σ <span lang="zh">月度</span><span lang="en">monthly</span></th><th><span lang="zh">特性</span><span lang="en">Character</span></th><th>$r_e$ (<span lang="zh">假设 $r_f=2.5\%$, ERP $=6\%$</span><span lang="en">if $r_f$=2.5%, ERP=6%</span>)</th></tr></thead>

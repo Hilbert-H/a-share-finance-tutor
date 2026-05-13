@@ -14,72 +14,455 @@
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 07</span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 07</span><span class="sep">·</span><span><span lang="zh">22 分钟</span><span lang="en">22 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.05 DCF + Ch.06 相对估值</span><span lang="en">Prereq: Ch.05 DCF + Ch.06 Multiples</span></span></div>
 <h1><span lang="zh">价值投资框架</span><span lang="en">Value Investing Framework</span></h1>
-<p class="lesson-subtitle"><span lang="zh">Graham → Buffett → Munger 的投资哲学. 核心: 内在价值 + 安全边际 + 能力圈 + 护城河 + Mr. Market. 这是估值模型 (Ch.05-06) 之上的<em>选股决策框架</em>。</span><span lang="en">Graham → Buffett → Munger philosophy. Five pillars: intrinsic value, margin of safety, circle of competence, moat, Mr. Market. Decision framework above valuation models.</span></p>
+<p class="lesson-subtitle"><span lang="zh">Graham → Buffett → Munger 的投资哲学. 核心: 内在价值 + 安全边际 + 能力圈 + 护城河 + Mr. Market. 这是估值模型 (Ch.05-06) 之上的<em>选股决策框架</em> — 估值告诉你"值多少", 价值投资告诉你"该不该买"。</span><span lang="en">Graham → Buffett → Munger philosophy. Five pillars: intrinsic value, margin of safety, circle of competence, moat, Mr. Market. The decision framework above valuation models — Ch.05–06 tell you "what it's worth," value investing tells you "whether to buy."</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">理解 Graham 安全边际的代数意义</li><li lang="zh">识别 Buffett 五种护城河类型</li><li lang="zh">应用能力圈原则筛选可投资标的</li><li lang="en">Margin of safety algebra; Buffett's five moat types; circle of competence</li></ul>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">把"价格 vs 价值"这件事从直觉变成可计算的安全边际 (MOS) 公式</li>
+<li lang="zh">识别 Buffett 的四把尺子: 看得懂的业务 / 护城河 / 老实的管理层 / 显著低价</li>
+<li lang="zh">用 Graham number、owner earnings、Greenblatt magic formula 三种估值工具交叉验证</li>
+<li lang="zh">把"护城河"五种类型 (品牌、规模、转换成本、网络效应、特许经营) 与 A 股标的对号入座</li>
+<li lang="en">Translate "price vs value" into a computable margin-of-safety formula.</li>
+<li lang="en">Identify Buffett's four filters: understandable business, moat, honest management, significantly low price.</li>
+<li lang="en">Cross-check via Graham number, owner earnings, Greenblatt magic formula.</li>
+<li lang="en">Map five moat types to specific A‑share franchises.</li>
+</ul>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">五大支柱</span><span lang="en">Five pillars</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王手里 12 万, 想用 Buffett 的方法挑 A 股</span><span class="en" lang="en"> · ¥120k of free cash, picking A‑shares the Buffett way</span></h2>
 
-<h3 lang="zh">① 内在价值 (intrinsic value)</h3>
-<p lang="zh">DCF 估算 (Ch.05). 没有"<em>精确</em>内在价值", 只有<em>合理区间</em>。Buffett: "<em>大致正确 优于 精确错误</em>".</p>
+<p lang="zh">老王最近读完了一本巴菲特股东信合订本, 也读了那本黄色封皮的《聪明的投资者》。他手里有 12 万块的闲钱, 想拿 8 万试试"价值投资", 4 万先放着。但他不知道从哪里下手 — 沪深两市加起来 5,300 多家公司, 总不能一家家翻年报。他把 Buffett 的话总结成<em>四把尺子</em>, 决定一只一只筛过去, 任何一把过不去就直接放过, 不勉强。</p>
+<p lang="en">Old Wang just finished a bound volume of Buffett's shareholder letters and the yellow-jacket "Intelligent Investor." He has ¥120k of free cash, plans to commit ¥80k to "value investing" and park the rest. He doesn't know where to start — Shanghai and Shenzhen list 5,300+ companies; he can't read every annual report. So he condenses Buffett into <em>four filters</em>: any name that fails any one filter is silently passed over, no excuses.</p>
 
-<h3 lang="zh">② 安全边际 (margin of safety, Graham 1934)</h3>
-<div class="eq"><span>$$ \mathrm{MOS} = 1 - \frac{\text{Market Price}}{\text{Intrinsic Value}} $$</span><span class="num">(7.1)</span></div>
-<p lang="zh">Graham: MOS ≥ 30% (深度价值) 或 50% (经典 Graham). 用法: 只在 MOS &gt; 阈值时买入. 是<em>对估值错误的工程冗余</em>.</p>
-<p lang="en">Graham: MOS ≥ 30% (modern value) or 50% (classical). Buy only when MOS exceeds threshold. Engineering redundancy against valuation errors.</p>
+<p lang="zh"><strong>1. 早上, 老王盯着自己的手机, 想从"看得懂的业务"开始筛。</strong> 他打开第一只: 某基因测序公司, 招股书里写满"NGS 平台"、"多组学"、"液体活检"。老王盯着看了十分钟, 还是不能用一句话向他媳妇解释这家公司怎么赚钱。他问自己: 我能不能预测它三年后会比今年更赚钱?——不能, 我连它的产品长什么样都不清楚。这只直接划掉。这一动作就是 Buffett 反复讲的 <strong>能力圈 (circle of competence)</strong>: 不在我能力圈里的, 哪怕涨得再凶, 都跟我无关。</p>
+<p lang="en"><strong>1. Morning: Wang opens his app and starts with "businesses I can explain."</strong> First name up — a genomics firm, prospectus stuffed with "NGS platform," "multi-omics," "liquid biopsy." Ten minutes in, he still can't tell his wife in one sentence how it makes money. Question: can I predict whether it earns more in three years than today? No — I don't even know what the product looks like. Cross it out. This move is what Buffett calls staying inside your <strong>circle of competence</strong>: things outside it don't exist, no matter how hot they run.</p>
 
-<h3 lang="zh">③ 能力圈 (circle of competence, Buffett)</h3>
-<p lang="zh">"只投自己能<em>深入理解</em>的业务. 能力圈的<em>大小</em>不重要, 它的<em>边界</em>清晰才重要". Buffett 长期不投科技股 (1990s 错过 Microsoft) 因不在其能力圈. 但 2016 后投 Apple — 因 Apple 的消费品特性回到能力圈内.</p>
-<p lang="en">Buffett: "Size of competence matters less than knowing its boundary." Avoided tech 1990s; embraced Apple post‑2016 as consumer product.</p>
+<p lang="zh"><strong>2. 中午, 他切到一家自己熟悉的: 茅台 (600519)。</strong> 业务一句话: 把高粱酒装瓶卖出去, 一瓶飞天 1,499 元出厂价, 经销商抢着拿货还要预付。这老王懂 — 他自己婚宴上买过, 朋友升职买过, 春节送礼买过。他再问第二把尺子: 它有<em>护城河</em>吗?——有。第一, 品牌: "茅台"两个字在中国白酒里就是质量信号; 第二, 产地: 必须用赤水河的水, 别人造不出来; 第三, 时间: 基酒要存五年, 谁也没法弯道超车。这三条加起来, 就是 Buffett 笔下的"<strong>护城河 (economic moat)</strong>": 别人想抢你的生意, 得先填掉一条又宽又深的护城河, 而护城河上还有鳄鱼。老王把茅台留下, 进下一步。</p>
+<p lang="en"><strong>2. Noon: he switches to one he actually knows — Moutai (600519).</strong> Business in one sentence: bottle sorghum liquor, ship at ¥1,499 per flagship bottle ex-factory, distributors fight to prepay. Wang gets this — he bought it for his own wedding banquet, for a friend's promotion, for Spring Festival gifts. Second filter: does it have a <strong>moat</strong>? Three answers. Brand: in Chinese baijiu, "Moutai" is a quality signal by itself. Geography: it must use water from the Chishui river — nobody else can produce it. Time: base liquor ages five years; you can't shortcut. Together, that's a <strong>wide and deep moat with crocodiles in it</strong> (Buffett's phrase). Wang keeps Moutai, moves on.</p>
 
-<h3 lang="zh">④ 护城河 (moat) — 五种类型</h3>
+<p lang="zh"><strong>3. 下午, 老王翻到福耀玻璃 (600660)。</strong> 这家他也懂 — 老王家车的前挡风玻璃就是福耀的, 4S 店换玻璃几乎只用这家。业务一句话: 给全球车厂做汽车玻璃, 全球份额 30% 以上。护城河呢?第一, 规模: 一条汽车玻璃产线烧的钱够买几十套茅台基酒, 后来者投不起。第二, 客户绑定: 福耀和大众、丰田、特斯拉的合作都是十几年的车型周期, 一旦定型谁都不会随便换。第三, 工艺: 曹德旺干这行 40 年, 设备和良品率别人短期赶不上。三条都成立, 老王想起 Charlie Munger 在 2003 年伯克希尔股东大会上专门提过曹德旺 — 一个会做实业、不乱花钱的老板。第三把尺子是 <strong>管理层是不是"老实人"</strong>: 福耀历年分红率长期在 60% 以上, 没玩花活的高送转、没有突然消失的关联交易, 这就是诚实的信号。福耀留下。</p>
+<p lang="en"><strong>3. Afternoon: Fuyao Glass (600660).</strong> Wang knows this one too — the windshield on his own car is Fuyao, and 4S service centres install almost nothing else. Business in one sentence: auto glass for global OEMs, 30%+ world share. Moat? Scale: one auto-glass line costs more than Wang can mentally count; latecomers can't fund it. Customer lock-in: contracts with VW, Toyota, Tesla span entire model cycles, ten years plus, nobody switches midway. Process: founder Cao Dewang has run this for 40 years, equipment and yield are hard to match. Three boxes ticked. Wang remembers Munger praising Cao at the 2003 Berkshire AGM — a builder, not a financial engineer. Third filter: <strong>is management honest?</strong> Fuyao's payout ratio has sat above 60% for years, no flashy stock splits, no related-party transactions that disappear next year. Honest signal. Fuyao stays.</p>
+
+<p lang="zh"><strong>4. 傍晚, 老王在万华化学 (600309) 这只上停下来。</strong> 这家做 MDI (聚氨酯原料), 老王自己用过的乳胶床垫和冰箱保温层都是 MDI 做的, 也算看得懂。护城河?MDI 全球只有 6 家能做, 万华是其中之一, 烟台基地的规模在全球第一, ROIC 长期 20%+, 妥妥的高资本回报。但第四把尺子 (<strong>当前价格</strong>) 让他犹豫: 万华 P/E 已经 18 倍, 比历史中位数 12 高出 50%。他翻 Ch.05 的 DCF 笔记, 粗算一下 — 假设未来 10 年自由现金流增长 8%, 折现率 10%, 内在价值大概对应 P/E 14 左右。当前价格 P/E 18, 明显贵于内在价值。第四把尺子说: "<strong>价格显著低于内在价值才买</strong>"。现在价格<em>高于</em>内在价值, 老王放弃, 把它放进观察清单, 等下次大跌再看。</p>
+<p lang="en"><strong>4. Dusk: Wanhua Chemical (600309).</strong> They make MDI (the polyurethane backbone in Wang's own latex mattress and refrigerator insulation), so it's inside the circle. Moat? Globally only six firms can produce MDI; Wanhua's Yantai base is #1 by scale; ROIC has held 20%+ for years — a textbook high-return franchise. But the fourth filter (<strong>price</strong>) gives him pause: P/E is 18, half above the 12 historical median. He re-opens his Ch.05 DCF notes, runs a back-of-envelope: assume FCF grows 8% for ten years, discount at 10%, intrinsic value lands around P/E 14. Current 18 is plainly above intrinsic. Filter four says: <strong>only buy when price is significantly below intrinsic value</strong>. It isn't. Wang shelves Wanhua into a watch list — wait for the next sell-off.</p>
+
+<p lang="zh"><strong>5. 晚上, 老王最后一只看的是宁德时代 (300750)。</strong> 业务老王能描述: 做动力电池, 装在电动车上, 主要客户特斯拉、比亚迪、蔚来、理想都用它。护城河?规模 + 技术专利 + 客户嵌入, 看着像样。管理层?创始人曾毓群是技术出身, 多次回购增持。问题来到第四把尺子: 当前 P/E 22, 但 2021 高点曾到 P/E 130 倍 — 这只票的<em>价格波动</em>大到老王心里发毛。他给自己定一条规矩: <em>波动率超过我能扛住的程度的, 即使估值合理也少买</em> — 这是 Buffett 没明说但默认遵守的"心理能力圈"。宁德他买半仓 (4 万), 给自己留出"跌 30% 也能睡得着"的缓冲。</p>
+<p lang="en"><strong>5. Evening: CATL (300750).</strong> Wang can describe the business — EV batteries; main customers Tesla, BYD, Nio, Li Auto. Moat? Scale plus patents plus customer integration; checks out. Management? Founder Zeng Yuqun has a research background and has bought stock multiple times. Filter four: current P/E 22, but in 2021 it touched P/E 130 — the <em>price swings</em> make him queasy. Personal rule: <em>even at fair valuation, downsize when volatility exceeds my tolerance</em> — Buffett's unspoken "psychological circle of competence." Wang takes a half position (¥40k), leaves himself a "−30% I can still sleep" buffer.</p>
+
+<p lang="zh"><strong>傍晚总结。</strong> 老王今天用四把尺子筛了 5 只: 基因测序公司 (看不懂, 出局) → 茅台 (四把全过, 买 2 万) → 福耀 (四把全过, 买 2 万) → 万华 (三过, 一不过, 进观察清单) → 宁德 (四过, 但波动太大, 买 4 万但减半仓)。8 万块全配完, 剩 4 万现金当 Buffett 说的"<strong>子弹</strong>" — 等下一次 Mr. Market 抑郁时再开火。这个流程, 用 Buffett 的话说是: "<strong>NO 比 YES 重要</strong>" — 一年看 100 家, 99 家都说 NO, 这才是价值投资。Layer 2 把这四把尺子背后的代数 (内在价值估算、安全边际公式、护城河量化) 写出来。</p>
+<p lang="en"><strong>Wrap-up.</strong> Wang's day, five names, four filters: genomics firm (incomprehensible, out) → Moutai (clears all four, ¥20k) → Fuyao (clears all four, ¥20k) → Wanhua (three of four, watch list) → CATL (four pass but volatility too high, half position ¥40k). The ¥80k is deployed; ¥40k stays in cash as Buffett's "<strong>bullets</strong>" — wait for Mr. Market's next depression. The flow is Buffett's <strong>"NO matters more than YES"</strong>: look at 100 names a year, say no to 99, that's value investing. Layer 2 below gives the algebra (intrinsic value, MOS, moat quantification) behind the four filters.</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 220" role="img" aria-label="Old Wang's four filters">
+<defs><linearGradient id="vg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient></defs>
+<style>
+.fb{fill:url(#vg);stroke:#1A1814;stroke-width:1.3}
+.ft{font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:12px;fill:#1A1814}
+.fh{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;fill:#1A1814}
+.fg{font-family:'Noto Serif SC',serif;font-style:italic;font-size:10px;fill:#8A8378}
+.fa{font-family:'Cormorant Garamond',serif;font-size:22px;fill:#8B2C2C}
+</style>
+<text class="fh" x="360" y="22" text-anchor="middle">Buffett 四把尺子 · 任何一把过不去就 NO</text>
+<rect class="fb" x="20" y="50" width="160" height="140" rx="3"/>
+<text class="fh" x="100" y="80" text-anchor="middle">① 看得懂</text>
+<text class="ft" x="100" y="105" text-anchor="middle">能力圈</text>
+<text class="fg" x="100" y="125" text-anchor="middle">三年后</text>
+<text class="fg" x="100" y="140" text-anchor="middle">业绩能预测?</text>
+<text class="fa" x="100" y="175" text-anchor="middle">→</text>
+<rect class="fb" x="195" y="50" width="160" height="140" rx="3"/>
+<text class="fh" x="275" y="80" text-anchor="middle">② 护城河</text>
+<text class="ft" x="275" y="105" text-anchor="middle">economic moat</text>
+<text class="fg" x="275" y="125" text-anchor="middle">品牌/规模/网络</text>
+<text class="fg" x="275" y="140" text-anchor="middle">转换/特许</text>
+<text class="fa" x="275" y="175" text-anchor="middle">→</text>
+<rect class="fb" x="370" y="50" width="160" height="140" rx="3"/>
+<text class="fh" x="450" y="80" text-anchor="middle">③ 老实人</text>
+<text class="ft" x="450" y="105" text-anchor="middle">honest mgmt</text>
+<text class="fg" x="450" y="125" text-anchor="middle">分红/回购</text>
+<text class="fg" x="450" y="140" text-anchor="middle">无关联占款</text>
+<text class="fa" x="450" y="175" text-anchor="middle">→</text>
+<rect class="fb" x="545" y="50" width="160" height="140" rx="3"/>
+<text class="fh" x="625" y="80" text-anchor="middle">④ 价格</text>
+<text class="ft" x="625" y="105" text-anchor="middle">significantly low</text>
+<text class="fg" x="625" y="125" text-anchor="middle">MOS &gt; 30%</text>
+<text class="fg" x="625" y="140" text-anchor="middle">价 &lt; 内在价值</text>
+<text class="fh" x="625" y="175" text-anchor="middle">BUY</text>
+</svg>
+<figcaption><span lang="zh">四把尺子串行: 前三把判断"质", 第四把判断"价"。前三过, 第四不过 = 留观察清单。任何一把过不去 = 出局。</span><span lang="en">Sequential filters: first three judge quality, the fourth judges price. Pass first three but fail fourth → watch list. Fail any one → out.</span></figcaption>
+</figure>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王的四把尺子把 5 只 A 股筛了一遍。现在我们把每一把尺子背后的代数与文献写出来 — 这套体系从 1934 年 Graham 的《Security Analysis》起步, 经过 1949 年《聪明的投资者》、1970-2020 年 Buffett 年度股东信、1997 年 Greenblatt 的 magic formula、2010s Damodaran 的估值方法论, 形成一个相当完整的可验证框架。</p>
+<p lang="en">Layer 1 ran four filters against five names. Layer 2 writes out the algebra and the lineage behind each filter — a body of work running from Graham's 1934 <em>Security Analysis</em>, through the 1949 <em>Intelligent Investor</em>, Buffett's annual letters 1970–2020, Greenblatt's 1997 magic formula, and Damodaran's modern valuation toolkit.</p>
+
+<h3 lang="zh">① 内在价值 (intrinsic value, IV)</h3>
+<h3 lang="en">① Intrinsic Value (IV)</h3>
+
+<p lang="zh">Buffett 对内在价值的定义 (1996 Owner's Manual, Berkshire Hathaway):</p>
+<p lang="en">Buffett's definition (1996 Owner's Manual):</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">内在价值</span><span class="callout-label" lang="en">Intrinsic value</span>
+<div class="eq"><span>$$ \mathrm{IV}_0 \;=\; \sum_{t=1}^{\infty} \frac{\mathrm{OE}_t}{(1+r)^t} $$</span><span class="num">(7.1)</span></div>
+<p lang="zh">公司在剩余生命期内可分配给所有者的现金流量 (Owner Earnings, OE) 的折现总和。$r$ 通常取长期国债收益率 + 适当风险溢价 (Buffett 实务中约 10%)。</p>
+<p lang="en">PV of cash distributable to owners over the remaining life of the business. Owner earnings (OE) defined below. $r$ ≈ long-bond yield + risk premium (~10% in Buffett's practice).</p>
+<span class="cite">Buffett 1996 Owner's Manual; Berkshire Hathaway 2014 letter (re-stated)</span>
+</div>
+
+<p lang="zh">Owner earnings 是 Buffett 在 1986 年股东信里造的词 — 比 GAAP 净利润、比 EBITDA、比 FCF 都更接近"股东能拿到的真钱":</p>
+<p lang="en">"Owner earnings," Buffett's 1986-letter coinage, sits between GAAP NI, EBITDA, and FCF — closest to "real cash distributable to owners":</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Owner Earnings</span><span class="callout-label" lang="en">Owner Earnings</span>
+<div class="eq"><span>$$ \mathrm{OE} \;=\; \mathrm{NI} \;+\; D\&A \;+\; \mathrm{NonCash}_{\text{other}} \;-\; \mathrm{CapEx}_{\text{maintenance}} \;-\; \Delta\mathrm{WC} $$</span><span class="num">(7.2)</span></div>
+<p lang="zh">NI = 净利润; D&amp;A = 折旧与摊销; CapEx<sub>maintenance</sub> = <em>仅</em>用于维持现有产能的资本支出 (而非扩张资本支出); ΔWC = 营运资金净增加。关键: 扩张性 CapEx 不扣 — 因为它在"为未来的 OE 服务"。</p>
+<p lang="en">NI + D&amp;A + other non-cash items − <em>maintenance</em> CapEx − increase in working capital. Growth CapEx is <em>not</em> deducted: it serves future OE.</p>
+<span class="cite">Buffett, 1986 letter to shareholders</span>
+</div>
+
+<p lang="zh"><strong>OE vs FCF 的关键差别</strong>: 标准 FCF (M2 Ch.04) 减的是<em>全部</em> CapEx; OE 只减<em>维持性</em> CapEx。对于一家高增长公司, OE &gt; FCF, 因为它在为扩张烧钱 — 这是 Buffett 给"成长股"的辩护。</p>
+<p lang="en"><strong>OE vs FCF:</strong> textbook FCF subtracts all CapEx; OE subtracts only maintenance CapEx. For growth firms, OE &gt; FCF — Buffett's algebraic defence of high-growth franchises.</p>
+
+<h3 lang="zh">② 安全边际 (margin of safety, MOS, Graham 1934)</h3>
+<h3 lang="en">② Margin of Safety (Graham 1934)</h3>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">安全边际</span><span class="callout-label" lang="en">MOS</span>
+<div class="eq"><span>$$ \mathrm{MOS} \;=\; 1 \;-\; \frac{P}{\mathrm{IV}} $$</span><span class="num">(7.3)</span></div>
+<p lang="zh">买入条件: $\mathrm{MOS} \geq \mathrm{MOS}^*$, 其中 $\mathrm{MOS}^*$ 是阈值 (Graham 经典阈值 50%; 现代实务 30%; 高确定性公司可松到 20%)。</p>
+<p lang="en">Buy iff $\mathrm{MOS} \geq \mathrm{MOS}^*$ — Graham classical 50%; modern practice 30%; reduce to 20% for very high certainty.</p>
+<span class="cite">Graham &amp; Dodd, Security Analysis (1934), Ch. 51 · Graham, The Intelligent Investor (1949), Ch. 20</span>
+</div>
+
+<p lang="zh">为什么是 30%? Graham 自己说: "<em>因为我估错的可能性 ≥ 30%</em>"。这是<em>工程冗余 (engineering redundancy)</em>: 桥梁建造时安全系数取 2-3 倍, 不是因为预期载荷会到 2-3 倍, 而是因为预期载荷的<em>估计</em>本身有误差。同理, IV 的估计误差 ±30% 是常见的 — 折现率从 9% 改到 11%, IV 可以差 25%; 增长率从 6% 改到 8%, IV 又差 20%。MOS 是对这些估计误差的统一缓冲。</p>
+<p lang="en">Why 30%? Graham: "<em>because my estimate of IV is itself wrong by 30%</em>." This is engineering redundancy. A bridge's 2–3× safety factor isn't because design load will triple — it's because the load <em>estimate</em> has error. Same logic: change $r$ from 9% to 11% and IV swings 25%; change $g$ from 6% to 8% and IV swings 20%. MOS is the unified buffer.</p>
+
+<h3 lang="zh">三种 IV 估算的交叉验证</h3>
+<h3 lang="en">Three IV estimators — cross-check</h3>
+
+<p lang="zh">单一估算容易被假设牵着走。实务上做三种估算, 取重叠区间:</p>
+<p lang="en">A single estimator is hostage to its assumptions. In practice, run three and overlap:</p>
+
+<table>
+<thead><tr><th><span lang="zh">方法</span><span lang="en">Method</span></th><th><span lang="zh">公式</span><span lang="en">Formula</span></th><th><span lang="zh">适用</span><span lang="en">Fits</span></th><th><span lang="zh">局限</span><span lang="en">Limit</span></th></tr></thead>
+<tbody>
+<tr><td><strong>Graham number</strong></td><td>$\sqrt{22.5 \cdot \mathrm{EPS} \cdot \mathrm{BVPS}}$</td><td><span lang="zh">稳定盈利的成熟公司</span><span lang="en">Mature, stable earners</span></td><td><span lang="zh">忽略增长 → 低估成长股</span><span lang="en">No growth → understates growers</span></td></tr>
+<tr><td><strong>Owner Earnings DCF</strong></td><td><span lang="zh">(7.1) + (7.2)</span><span lang="en">(7.1) + (7.2)</span></td><td><span lang="zh">高现金转化率、可预测公司</span><span lang="en">High cash conversion, predictable</span></td><td><span lang="zh">$r, g, T$ 假设敏感</span><span lang="en">Sensitive to $r, g, T$</span></td></tr>
+<tr><td><strong>Magic Formula (Greenblatt 1997)</strong></td><td><span lang="zh">高 ROC + 低 EV/EBIT 双排名</span><span lang="en">Rank by high ROC + low EV/EBIT</span></td><td><span lang="zh">中等规模、可统计筛选</span><span lang="en">Mid-cap statistical screens</span></td><td><span lang="zh">忽略护城河可持续性</span><span lang="en">Ignores moat durability</span></td></tr>
+</tbody>
+</table>
+
+<p lang="zh"><strong>Greenblatt magic formula (1997, <em>The Little Book That Beats the Market</em>)</strong>: 把美国市场所有股票按两个指标排序 — (1) 资本回报率 ROC = EBIT / (净营运资本 + 净固定资产); (2) 收益率 EBIT/EV。两个排名相加, 取前 30 名等权持有, 每年再平衡。1988-2004 年测试在美国市场年化超额收益约 13%。在 A 股上同样有效但需调整 — 关联占款、商誉减值等会扭曲 ROC, 需先筛掉。</p>
+<p lang="en"><strong>Greenblatt magic formula (1997):</strong> rank all stocks by (1) return on capital = EBIT / (net WC + net PPE) and (2) earnings yield EBIT/EV. Sum both ranks, hold top 30 equal-weight, rebalance annually. 1988–2004 US test: ~13% annual alpha. Works on A‑shares too, after filtering out related-party extractions and goodwill distortions that contaminate ROC.</p>
+
+<h3 lang="zh">③ 能力圈 (circle of competence)</h3>
+<h3 lang="en">③ Circle of Competence</h3>
+
+<p lang="zh">Buffett 1996 Owner's Manual: "<em>能力圈的<strong>边界</strong>清晰比它的<strong>大小</strong>重要。</em>" 即: 一个只懂 5 个行业但严守边界的投资者, 期望收益 &gt; 自以为懂 50 个行业的投资者。</p>
+<p lang="en">Buffett 1996 Owner's Manual: <em>"What matters is not the size of the circle but knowing its boundary."</em> An investor who knows only five industries but stays inside &gt; an investor who thinks she knows fifty.</p>
+
+<p lang="zh">能力圈的<strong>可操作判定</strong>: 你能不能给一个十岁孩子在 3 分钟内讲清楚这家公司怎么赚钱? 能否估计它三年后会更赚钱还是更不赚钱? 不能 → 出能力圈。</p>
+<p lang="en">Operational test: can you explain how the firm makes money to a 10-year-old in 3 minutes? Can you say whether it'll earn more or less three years out? If not, you're outside the circle.</p>
+
+<h3 lang="zh">④ 护城河 — 五种类型 (Pat Dorsey 2008 综合)</h3>
+<h3 lang="en">④ Moat — Five Types (Dorsey 2008 synthesis)</h3>
+
+<table>
+<thead><tr><th><span lang="zh">类型</span><span lang="en">Type</span></th><th><span lang="zh">代数表征</span><span lang="en">Algebraic mark</span></th><th><span lang="zh">A 股范例</span><span lang="en">A‑share example</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh"><strong>品牌</strong></span><span lang="en"><strong>Brand</strong></span></td><td><span lang="zh">毛利率 &gt; 同行 + 长期稳定</span><span lang="en">Gross margin &gt; peers, stable</span></td><td><span lang="zh">贵州茅台 600519 (毛利 92%+)</span><span lang="en">Moutai (gross 92%+)</span></td></tr>
+<tr><td><span lang="zh"><strong>规模 / 成本优势</strong></span><span lang="en"><strong>Scale</strong></span></td><td><span lang="zh">单位成本 &lt; 同行, ROIC 长期 &gt; WACC</span><span lang="en">Unit cost &lt; peers, ROIC &gt; WACC</span></td><td><span lang="zh">海康威视 002415 (R&amp;D 摊薄)</span><span lang="en">Hikvision (R&amp;D leverage)</span></td></tr>
+<tr><td><span lang="zh"><strong>转换成本</strong></span><span lang="en"><strong>Switching cost</strong></span></td><td><span lang="zh">客户留存率 &gt; 90%, ARPU 上升</span><span lang="en">Retention &gt; 90%, ARPU up</span></td><td><span lang="zh">用友网络 600588 (ERP)</span><span lang="en">Yonyou (ERP)</span></td></tr>
+<tr><td><span lang="zh"><strong>网络效应</strong></span><span lang="en"><strong>Network effect</strong></span></td><td><span lang="zh">MAU 增速正反馈, 边际成本下降</span><span lang="en">MAU positive feedback, marginal cost ↓</span></td><td><span lang="zh">分众传媒 002027 (楼宇)</span><span lang="en">Focus Media (lobby screens)</span></td></tr>
+<tr><td><span lang="zh"><strong>特许 / 监管壁垒</strong></span><span lang="en"><strong>Franchise / regulatory</strong></span></td><td><span lang="zh">牌照少 + 政府背书</span><span lang="en">Few licences, gov-backed</span></td><td><span lang="zh">长江电力 600900 (水电特许)</span><span lang="en">Yangtze Power (hydro)</span></td></tr>
+</tbody>
+</table>
+
+<p lang="zh"><strong>护城河的可持续性 (durability)</strong>是另一个维度。Buffett 多次强调"护城河必须每年加宽"。判断方法 (Dorsey 2008):</p>
+<p lang="en"><strong>Moat durability</strong> is a separate axis. Buffett: "the moat must widen every year." Dorsey's diagnostics:</p>
+
 <ol lang="zh">
-<li><strong>品牌</strong>: 茅台 (品质 + 文化), Coca-Cola</li>
-<li><strong>规模</strong>: 海康 (R&amp;D 摊薄), 中国移动 (基础设施)</li>
-<li><strong>转换成本</strong>: 微信生态, SAP / Oracle 企业软件</li>
-<li><strong>网络效应</strong>: 微信, 微博, 美团</li>
-<li><strong>特许经营 / 监管壁垒</strong>: 长江电力 (水电特许), 烟草, 银行牌照</li>
+<li><strong>ROIC 长期序列</strong>: 连续 10 年 ROIC &gt; 15% 是强护城河的统计标志</li>
+<li><strong>毛利率的<em>方向</em></strong>: 上升 → 护城河加宽; 下滑 → 护城河被侵蚀</li>
+<li><strong>行业份额</strong>: 稳定上升 + 行业集中度提高</li>
+<li><strong>新进入者出现频率</strong>: 一年新进 0-1 家 → 护城河保护; 一年新进 5+ → 护城河失效</li>
+</ol>
+<ol lang="en">
+<li>10-year ROIC &gt; 15% — statistical mark of a wide moat.</li>
+<li>Direction of gross margin: rising = widening; falling = eroding.</li>
+<li>Industry share: stable-rising + concentration up.</li>
+<li>New-entrant frequency: 0–1 per year = protected; 5+ = breached.</li>
 </ol>
 
-<h3 lang="zh">⑤ Mr. Market (Graham)</h3>
-<p lang="zh">把市场当作情绪化的合伙人, 每天报价但你可以选择不交易. 情绪是<em>机会</em>, 不是<em>指引</em>. Buffett: "市场短期是投票机, 长期是称重机".</p>
-<p lang="en">Treat market as emotional partner; quotes daily, you choose to act. Emotions are opportunities. Buffett: "Short‑run voting, long‑run weighing."</p>
+<h3 lang="zh">⑤ Mr. Market (Graham 1949, Ch. 8)</h3>
+<h3 lang="en">⑤ Mr. Market (Graham 1949)</h3>
+
+<p lang="zh">Graham 笔下的"市场先生"是一个情绪化的合伙人, 每天来到你门口报一个价。你<em>可以</em>跟他交易, 也<em>可以</em>不交易; 他的报价是机会, 不是你公司价值的指引。Buffett 著名总结 (1987): "<em>市场短期是投票机, 长期是称重机。</em>"</p>
+<p lang="en">Graham's "Mr. Market" is an emotional partner who shows up daily quoting a price. You <em>may</em> trade with him; you needn't. His quote is an opportunity, not a verdict on your firm's value. Buffett (1987): <em>"In the short run the market is a voting machine, in the long run a weighing machine."</em></p>
+
+<p class="muted measure" lang="zh"><strong>行为金融桥</strong>: Mr. Market 的情绪并非随机噪声, 而是<em>系统性</em>偏差 — Kahneman &amp; Tversky 1979 prospect theory 表明, 投资者对损失的痛感 ≈ 同等收益快感的 2-2.5 倍; Shiller 1981 论文显示股价波动远超基本面波动 (excess volatility puzzle)。这两条机制保证了 Mr. Market 在恐慌时一定<em>过度抛售</em>, 在亢奋时一定<em>过度追高</em> — 给价值投资者留下结构性机会。</p>
+<p class="muted measure" lang="en"><strong>Behavioral bridge:</strong> Mr. Market's mood isn't random noise — it's systematically biased. Kahneman &amp; Tversky (1979) prospect theory: loss aversion ratio ~2–2.5×. Shiller (1981): excess volatility puzzle — prices swing far more than fundamentals. Together these mechanics guarantee panic over-selling and euphoria over-buying, leaving structural opportunity for value investors.</p>
+
+<p class="muted measure" lang="zh"><strong>EMH 的张力</strong>: 半强式有效市场假说 (Fama 1970) 主张公开信息已反映在价格里, 价值投资似乎无效。但 Fama-French 1992 三因子模型自己也发现"小盘 + 价值 (低 P/B) 因子"的长期超额收益 — 即 value premium 客观存在 (1926-2020 美国, 约 4-5%/年)。学界一种和解: EMH 在<em>个股短期</em>大致成立, 但在<em>因子层面长期</em>存在系统性溢价。价值投资本质是采集这种溢价。</p>
+<p class="muted measure" lang="en"><strong>EMH tension:</strong> semi-strong EMH (Fama 1970) suggests value investing shouldn't work. Yet Fama-French (1992) themselves found a long-run value premium (low P/B factor) ~4–5% per year, 1926–2020 US. The compromise reading: EMH holds for individual short-run pricing but factor-level long-run premia persist. Value investing is the harvesting of that premium.</p>
+
+<p lang="zh"><strong>价值投资的 first-principles 总结</strong>: 公司有内在价值, 价格围绕内在价值波动且偏差时常 ≥ 30%, 而价值投资者通过<em>四个过滤器</em>(能力圈、护城河、管理层、价格)等到偏差出现时下手。这个流程的代数形式是<em>条件期望</em>: $E[\text{return} \mid \text{4 filters all pass}] \gg E[\text{return} \mid \text{random pick}]$。Layer 3 把这个流程落到具体 A 股标的上。</p>
+<p lang="en"><strong>First-principles summary:</strong> firms have intrinsic value, price wobbles around it with deviations often ≥ 30%, and value investors wait, via four filters, for the deviation to appear. Algebraically: $E[\text{return} \mid \text{4 filters pass}] \gg E[\text{return} \mid \text{random pick}]$. Layer 3 maps this onto specific A‑share names.</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股价值投资案例</span><span lang="en">A‑share value cases</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">福耀玻璃 600660 + 双汇发展 000895</span><span lang="en">Fuyao Glass + Shuanghui</span></span></div>
-<p lang="zh"><strong>福耀玻璃</strong> (汽车玻璃龙头, 全球份额 30%+):</p>
-<ul lang="zh"><li>护城河: 规模 (R&amp;D + 生产工艺), 客户嵌入 (与车厂数十年协作)</li><li>能力圈友好: 业务简单 (生产销售汽车玻璃), 财务清晰</li><li>历史 P/E 多次 10-15, 现金流稳定, MOS 充足时长期持有</li></ul>
-<p lang="zh"><strong>双汇发展</strong> (肉制品龙头):</p>
-<ul lang="zh"><li>护城河: 品牌 (火腿肠 / 冷鲜肉) + 规模 (生猪屠宰产业链)</li><li>2014-2016 估值低谷 (猪周期下行), 长期看 5-10 年回报丰厚</li></ul>
-<p lang="en">Fuyao Glass: scale + customer embedment moats, simple business in competence circle, low P/E entry. Shuanghui: brand + scale, deep cycle entries pay off long‑run.</p>
-</div></section>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股价值投资案例</span><span lang="en">A‑Share Value Cases</span></h2>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
-<ol class="quiz quiz-list">
-<li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 估算公司内在价值 100 元, MOS 要求 30%. 多少元以下买入?</span><span lang="en"><strong>Q1.</strong> IV ¥100, require 30% MOS. Buy below?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p>(7.1): $\mathrm{MOS} \geq 0.3 \Rightarrow P/IV \leq 0.7 \Rightarrow P \leq 70$. <span lang="zh">即 70 元以下才买入. 70 与 100 之间是"中性区", 不买不卖. &gt; 100 是<em>溢价</em>, 考虑卖出 (取决于持仓策略).</span></p>
-<p lang="en">Buy below ¥70. ¥70–100 neutral hold. Above ¥100 consider sell (depending on strategy).</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
-</li>
-<li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> "P/E = 8 的银行 vs P/E = 80 的科技, 哪个估值便宜". 用价值投资框架回答.</span><span lang="en"><strong>Q2.</strong> P/E 8 bank vs P/E 80 tech — value investor's answer?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">不直接比较. <em>价值便宜</em>不是 P/E 低, 而是<em>价格 &lt; 内在价值</em>. 评估各自内在价值后比较 MOS:</p>
-<ul lang="zh"><li>银行: 监管约束 + 不良资产 + 利率周期 → 估算难, MOS 需更大 (40%+)</li><li>科技: 增长不确定 + 商业模式风险 → 估算更难, MOS 需更大 (50%+)</li></ul>
-<p lang="zh"><strong>Buffett 实际答案</strong>: 看哪一个在<em>你能力圈</em>内. 不在能力圈的, 无论 P/E 多低都不投. 这就是"NO 比 YES 重要"的原则。</p>
-<p lang="en">Not directly. "Cheap" = price &lt; IV, not low P/E. Compute IV separately, compare MOS. Banks need 40%+ MOS (regulatory + NPL); tech 50%+ (growth uncertainty). Buffett: stay in circle of competence; NO matters more than YES.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
-</li>
+<p lang="zh">Layer 1 里老王今天筛中了茅台、福耀、宁德 — 现在把这三只 (加一只 Munger 推荐过的) 用 Layer 2 的代数检验一遍, 看看四把尺子在真实数据上的表现。</p>
+<p lang="en">Layer 1 had Wang pick Moutai, Fuyao, CATL; let's run the Layer 2 algebra over those names (plus one Munger highlighted) and see how the four filters perform on real data.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519</span>
+<span class="company"><span lang="zh">贵州茅台</span><span lang="en">Kweichow Moutai</span></span>
+<span class="period">FY2023 · <span lang="zh">Buffett 风格 case · 高 ROE 长期复利</span><span lang="en">Buffett-style: high ROE compounding</span></span>
+</div>
+
+<p lang="zh">老王今天上午买了 2 万的茅台 — 把这个决策代入 Layer 2 的四个过滤器逐一验证 (近似数据)。</p>
+<p lang="en">Wang put ¥20k into Moutai this morning. Let's run his decision through the four filters (近似数据 / approximate figures).</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">过滤器</span><span lang="en">Filter</span></th><th><span lang="zh">数据 (近似)</span><span lang="en">Data (approx)</span></th><th><span lang="zh">通过?</span><span lang="en">Pass?</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">① 看得懂 (能力圈)</span><span lang="en">① Understandable</span></td><td><span lang="zh">高粱酒装瓶卖出去, 一瓶飞天 1,499 元出厂, 经销商预付</span><span lang="en">Bottle sorghum liquor, ¥1,499 ex-factory, prepaid by distributors</span></td><td><strong>✓</strong></td></tr>
+<tr><td><span lang="zh">② 护城河</span><span lang="en">② Moat</span></td><td><span lang="zh">毛利率 92%, ROE 30%+ 持续 10 年; 品牌 + 地理 + 时间三重壁垒</span><span lang="en">Gross 92%, ROE 30%+ for 10y; brand + geography + time triple barrier</span></td><td><strong>✓✓</strong></td></tr>
+<tr><td><span lang="zh">③ 管理层</span><span lang="en">③ Management</span></td><td><span lang="zh">分红率 50%+ 稳定多年; 国资股东; 无激进 M&amp;A; 偶有营销舆情但不动经营</span><span lang="en">Payout 50%+ stable; SOE; no aggressive M&amp;A; occasional marketing noise but operations intact</span></td><td><strong>✓</strong></td></tr>
+<tr><td><span lang="zh">④ 价格</span><span lang="en">④ Price</span></td><td><span lang="zh">2023 末 P/E ~28, 历史中位 ~32; MOS ≈ 12% (低于 30% 阈值)</span><span lang="en">2023 P/E ~28, hist median ~32; MOS ≈ 12% (below 30% threshold)</span></td><td><strong>⚠</strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>判定</strong>: 前三过滤器全过, 第四只能算"勉强"。严格 Graham 派应当放弃; Buffett 派则会说"<em>极好的公司, 合理价格</em>" — 因为茅台的 ROIC 长期 30%+, 即使买价稍高, 内在价值的复利仍能补回来 (Buffett 1989: "<em>用合理价格买极好公司, 远胜过用极好价格买合理公司</em>")。老王买 2 万的决策, 落在 Buffett 派而非 Graham 派的边界上。</p>
+<p lang="en"><strong>Verdict:</strong> first three pass; the fourth is marginal. Strict Graham → pass. Buffett → "<em>a great business at a fair price</em>" — Moutai's 30%+ long-run ROIC means intrinsic value compounds fast enough to absorb a modest premium (Buffett 1989: "<em>far better to buy a wonderful company at a fair price than a fair company at a wonderful price</em>"). Wang's ¥20k decision sits on the Buffett side, not the Graham side.</p>
+
+<p lang="zh"><strong>复利的代数</strong>: 若 IV 以 ROE × (1 − payout) ≈ 30% × 50% = 15% 年增长, 当前 MOS 12% (即价格 ≈ IV × 0.88) — 第二年: IV 增 15%, 价格不变 → MOS 升至 23%; 第三年 32%; 第四年 41%。<em>持有时间本身就是一种安全边际</em>, 这是 Buffett "长持" 哲学的代数支撑。</p>
+<p lang="en"><strong>Compounding algebra:</strong> if IV grows at ROE × (1 − payout) = 30% × 50% = 15% p.a., starting MOS 12% (price ≈ 0.88 × IV) becomes year-2 MOS 23%, year-3 32%, year-4 41%. <em>Holding period itself is a margin of safety</em> — the algebraic skeleton of Buffett's long-hold philosophy.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600519 →</span><span lang="en">Cninfo 600519 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600660</span>
+<span class="company"><span lang="zh">福耀玻璃</span><span lang="en">Fuyao Glass</span></span>
+<span class="period">FY2023 · <span lang="zh">Munger 推荐过的 A 股 · 制造业护城河</span><span lang="en">Munger-endorsed A‑share · manufacturing moat</span></span>
+</div>
+
+<p lang="zh">老王下午也买了 2 万福耀。这只在 2003 年伯克希尔股东大会上 Munger 专门点过名 — "中国有一位玻璃企业家曹德旺, 是真正的实业家"。看 Layer 2 四把尺子的数据 (近似数据):</p>
+<p lang="en">Wang's afternoon ¥20k went to Fuyao. Munger called out founder Cao Dewang by name at the 2003 Berkshire AGM — "a Chinese glass entrepreneur, a real industrialist." Four-filter data (approximate):</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">过滤器</span><span lang="en">Filter</span></th><th><span lang="zh">数据 (近似)</span><span lang="en">Data (approx)</span></th><th><span lang="zh">通过?</span><span lang="en">Pass?</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">① 看得懂</span><span lang="en">① Understandable</span></td><td><span lang="zh">汽车玻璃 + 浮法玻璃, 全球份额 30%+, 客户大众 / 丰田 / 特斯拉</span><span lang="en">Auto glass + float glass; 30%+ global share; VW/Toyota/Tesla</span></td><td><strong>✓</strong></td></tr>
+<tr><td><span lang="zh">② 护城河</span><span lang="en">② Moat</span></td><td><span lang="zh">规模 (一条线投资数十亿) + 客户嵌入 (10y+ 车型周期) + 工艺 (40 年技术沉淀); 毛利率 35%, ROE 18%+ 长期稳定</span><span lang="en">Scale + customer lock-in + process know-how; gross 35%, ROE 18%+ stable long-run</span></td><td><strong>✓</strong></td></tr>
+<tr><td><span lang="zh">③ 管理层</span><span lang="en">③ Management</span></td><td><span lang="zh">分红率 60%+ 长期; 曹德旺多次个人捐赠 (河仁慈善基金); Munger 2003 公开称赞</span><span lang="en">Payout 60%+; founder's personal philanthropy (Heren Charity); Munger 2003 endorsement</span></td><td><strong>✓✓</strong></td></tr>
+<tr><td><span lang="zh">④ 价格</span><span lang="en">④ Price</span></td><td><span lang="zh">2023 末 P/E ~15, 历史中位 ~17; MOS ≈ 12% (与茅台类似, 略偏低)</span><span lang="en">P/E ~15, hist median ~17; MOS ≈ 12% (similar to Moutai)</span></td><td><strong>⚠</strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>三种 IV 估算交叉验证</strong> (使用 Layer 2 公式, 近似数据):</p>
+<p lang="en"><strong>Three-method IV cross-check</strong> (Layer 2 formulas, approximate):</p>
+
+<ul>
+<li><span lang="zh"><strong>Graham number</strong>: EPS ≈ 2.5, BVPS ≈ 14 → $\sqrt{22.5 \times 2.5 \times 14} \approx$ 28 元 — 接近当前股价</span><span lang="en"><strong>Graham number:</strong> EPS ≈ ¥2.5, BVPS ≈ ¥14 → $\sqrt{22.5 \times 2.5 \times 14} \approx$ ¥28 — close to current price</span></li>
+<li><span lang="zh"><strong>Owner Earnings DCF</strong>: 假设 OE ≈ 80 亿/年, 维持性 CapEx 占 D&amp;A 70%, $g = 6\%, r = 10\%$ → IV/股 ≈ 42 元 — 隐含 MOS 30%+</span><span lang="en"><strong>OE DCF:</strong> OE ~¥8bn p.a., maintenance CapEx 70% of D&amp;A, $g=6\%, r=10\%$ → IV ≈ ¥42/share — implied MOS 30%+</span></li>
+<li><span lang="zh"><strong>Magic formula</strong>: ROC (EBIT/Net WC+PPE) ≈ 22%, EBIT/EV ≈ 7% — 在 A 股化工 + 汽车零部件交集里排进前 20%</span><span lang="en"><strong>Magic formula:</strong> ROC ≈ 22%, EBIT/EV ≈ 7% — top quintile in A‑share chemicals + auto-parts intersection</span></li>
+</ul>
+
+<p lang="zh"><strong>判定</strong>: Graham number 严苛, 几乎不留 MOS; OE DCF 留 30%+ MOS; Magic formula 排名靠前。三个方法分歧 — 这是常态。规则: <em>看重叠区间, 而非单一数字</em>。福耀同时被 OE 和 Magic 看好, Graham 临界, 综合判定可买。老王 2 万的决策合理。</p>
+<p lang="en"><strong>Verdict:</strong> Graham number is severe (no MOS); OE DCF gives 30%+; magic formula ranks top quintile. Methods disagree — that's normal. Rule: <em>look at the overlap, not a single number</em>. Two of three positive, one marginal → buy. Wang's ¥20k allocation is justified.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600660" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600660 →</span><span lang="en">Cninfo 600660 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600309</span>
+<span class="company"><span lang="zh">万华化学</span><span lang="en">Wanhua Chemical</span></span>
+<span class="period">FY2023 · <span lang="zh">高 ROC 化工 · 价格过滤器失败的范例</span><span lang="en">High-ROC chemicals · Price-filter failure case</span></span>
+</div>
+
+<p lang="zh">Layer 1 里老王对万华喊停: 看得懂、有护城河、管理层老实, 但价格不够便宜。这正是<em>把万华放进观察清单</em>而不是组合的理由。在这里把"为什么放弃买入"的代数写清楚 (近似数据):</p>
+<p lang="en">In Layer 1 Wang shelved Wanhua: understood, moated, honest management — but not cheap enough. This is exactly why it lives on the watch list, not in the portfolio. Algebra for "why I passed" (approximate):</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th class="num"><span lang="zh">数值</span><span lang="en">Value</span></th><th><span lang="zh">解读</span><span lang="en">Read</span></th></tr></thead>
+<tbody>
+<tr><td>ROIC <span lang="zh">(10y avg)</span></td><td class="num">~22%</td><td><span lang="zh">远高于 WACC ~8%, 强护城河信号</span><span lang="en">Far above WACC ~8%, strong moat</span></td></tr>
+<tr><td><span lang="zh">毛利率</span><span lang="en">Gross margin</span></td><td class="num">~18%</td><td><span lang="zh">同行业 (巴斯夫 ~22%, 万华 18%, 国内同行 12%) — 中等偏上</span><span lang="en">BASF ~22%, peers ~12% — upper-mid in industry</span></td></tr>
+<tr><td>P/E <span lang="zh">(2023 末)</span></td><td class="num">~18</td><td><span lang="zh">高于历史中位 12, 高于行业中位 14</span><span lang="en">Above hist median 12, peer median 14</span></td></tr>
+<tr><td>IV (OE DCF)</td><td class="num">~P/E 14</td><td><span lang="zh">隐含 MOS = 1 − 18/14 = −29% (负 MOS)</span><span lang="en">Implied MOS = 1 − 18/14 = −29% (negative)</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>MOS 为负</strong>意味着<em>当前价格高于内在价值</em> — 任何价值投资准则都不应买入。但万华是好公司, 应保留在观察清单, 等待<em>触发条件</em>:</p>
+<p lang="en"><strong>Negative MOS</strong> = price &gt; IV. No value rulebook supports buying here. But Wanhua is a good firm, deserves the watch list. Trigger conditions:</p>
+
+<ol lang="zh">
+<li><strong>价格回落到 P/E ~13</strong> (即股价跌 ~28%) → MOS 转正, 可买入</li>
+<li><strong>IV 持续提升</strong>: 若公司 ROIC 维持 22%+, IV 以 ~12%/年增长, 3 年后 IV 跟上当前价格 — 老王可以等</li>
+<li><strong>行业周期低点</strong>: MDI 价格周期低谷时, NI 暂时下行, 但护城河仍在 — Buffett 称之为 "<em>暂时性问题, 永久性机会</em>"</li>
+</ol>
+<ol lang="en">
+<li>Price drops to P/E ~13 (~28% pullback) → MOS turns positive, buy.</li>
+<li>IV catches up: at sustained 22% ROIC and 12% IV growth p.a., IV reaches today's price in ~3 years.</li>
+<li>Cyclical trough: when MDI prices bottom, NI dips temporarily but moat intact — Buffett's "<em>temporary problem, permanent opportunity</em>."</li>
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="06-relative-valuation.html"><span class="dir">← Prev</span><span class="title">06 · <span lang="zh">相对估值</span><span lang="en">Multiples</span></span></a><a class="next" href="08-financial-quality.html"><span class="dir">Next →</span><span class="title">08 · <span lang="zh">财报在投资中</span><span lang="en">Financials in Investing</span></span></a></nav></div>
+<p class="muted measure" lang="zh"><strong>这就是观察清单的价值</strong>: 价值投资 70% 的工作是"<em>什么都不做</em>", 在好公司的<em>价格</em>陷落时下手。一年 1-2 次大机会就够了 — Buffett 在 2008-09 金融危机用 35 亿美元投资 BAC、GS, 是 25 年里最果断的几次出手, 其他大部分时间他在<em>读年报</em>。</p>
+<p class="muted measure" lang="en"><strong>That's the watchlist's purpose:</strong> 70% of value investing is "<em>doing nothing</em>," waiting for a good firm's <em>price</em> to crack. One or two big opportunities a year is enough. Buffett deployed $3.5bn into BAC + GS during 2008–09 — the boldest moves of a 25-year stretch; the rest of the time he was reading annual reports.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600309" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600309 →</span><span lang="en">Cninfo 600309 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600900</span>
+<span class="company"><span lang="zh">长江电力</span><span lang="en">Yangtze Power</span></span>
+<span class="period">FY2023 · <span lang="zh">特许经营护城河 + 现金牛</span><span lang="en">Franchise moat + cash cow</span></span>
+</div>
+
+<p lang="zh">作为对照, 看一只老王没买但<em>本来该考虑</em>的: 长江电力 (长江三峡 + 葛洲坝水电特许经营)。它是 Buffett 风格"看不到对手"型护城河的极端案例 — 一条长江上的水电站, 别人想再造一个永远造不出来。</p>
+<p lang="en">A contrast — one Wang didn't buy but probably should consider: Yangtze Power (Three Gorges + Gezhouba hydro concession). The clearest "no competitor possible" moat in A‑shares — nobody can build another Yangtze River.</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">过滤器</span><span lang="en">Filter</span></th><th><span lang="zh">数据 (近似)</span><span lang="en">Data (approx)</span></th><th><span lang="zh">通过?</span><span lang="en">Pass?</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">① 看得懂</span><span lang="en">① Understandable</span></td><td><span lang="zh">水电站发电卖给电网, 上网电价稳定, 现金流年度可预测</span><span lang="en">Hydro generation sold to grid at stable price, annual cash flow highly predictable</span></td><td><strong>✓✓</strong></td></tr>
+<tr><td><span lang="zh">② 护城河</span><span lang="en">② Moat</span></td><td><span lang="zh">特许经营 + 不可复制地理资源; 100 年寿命无替代; 边际成本接近零</span><span lang="en">Franchise + non-replicable geography; 100y lifespan, no substitute; marginal cost ≈ 0</span></td><td><strong>✓✓✓</strong></td></tr>
+<tr><td><span lang="zh">③ 管理层</span><span lang="en">③ Management</span></td><td><span lang="zh">国资控股; 分红率 70%+ 长期稳定; 资本支出主要为收购同体系电站, 透明可审</span><span lang="en">SOE; payout 70%+ stable; CapEx mainly for sibling-asset roll-ups, transparent</span></td><td><strong>✓</strong></td></tr>
+<tr><td><span lang="zh">④ 价格</span><span lang="en">④ Price</span></td><td><span lang="zh">2023 末 P/E ~22 (高于一般电力, 因永续型现金流); 股息率 ~3.5%; MOS 取决于折现率假设</span><span lang="en">P/E ~22 (above grid avg, perpetual CF nature); dividend yield ~3.5%; MOS depends on $r$</span></td><td><strong>⚠</strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>长江电力的特殊估值法</strong>: 标准 OE DCF 假设 10 年高速增长 + 终值, 但水电的特征是<em>近永续</em>稳定现金流, 应该用 Gordon 增长模型: $\mathrm{IV} = \mathrm{OE}_1 / (r - g)$。若 OE ≈ 230 亿/年, $g = 2\%$ (通胀), $r = 7\%$ (低于一般 10%, 因风险低), 则 IV ≈ 4,600 亿。当前市值 ~5,500 亿 → MOS ≈ −20%。但如果你的折现率取 6% (与永续国债 + 3% 风险溢价对应), IV 升到 5,750 亿, MOS 转正。这种<em>对折现率极度敏感</em>是低增长高确定性资产的共性。</p>
+<p lang="en"><strong>Special valuation:</strong> standard OE DCF assumes 10y high growth + terminal — but hydro is <em>near-perpetuity</em> stable cash flow. Use Gordon: $\mathrm{IV} = \mathrm{OE}_1 / (r-g)$. OE ~¥23bn p.a., $g=2\%$ (inflation), $r=7\%$ (below 10% for low risk): IV ≈ ¥460bn. Market cap ~¥550bn → MOS ≈ −20%. Drop $r$ to 6% (10y bond + 3% premium): IV jumps to ¥575bn, MOS positive. Low-growth high-certainty assets are <em>extremely sensitive</em> to $r$.</p>
+
+<p lang="zh"><strong>给老王的提醒</strong>: 长江电力是"<em>债性</em>"资产 — 它的价值 90% 来自<em>稳定的股息</em>, 不是<em>增长</em>。这种资产在低利率环境贵, 高利率环境便宜 — 2022 美联储加息时 A 股长江电力同步回落。如果老王 65 岁退休后想要"每月发工资"型资产, 长江电力是核心配置; 但 35-50 岁追求复利, 茅台 / 福耀这类"高 ROE 复合"型更合适。这就是 Buffett 说的: "<em>了解你自己要的是什么</em>"。</p>
+<p lang="en"><strong>Note for Wang:</strong> Yangtze Power is a "<em>bond-like</em>" asset — 90% of its value is stable dividend, not growth. Expensive in low-rate regimes, cheap in high-rate. (When the Fed hiked in 2022, Yangtze Power softened.) If post-retirement Wang wants "<em>monthly paycheck</em>" assets, this is core; for 35–50-year-old compounding, Moutai / Fuyao high-ROE compounders fit better. Buffett: <em>"know what you actually want."</em></p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600900" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600900 →</span><span lang="en">Cninfo 600900 →</span></a>
+</div>
+
+<p class="muted measure" lang="zh"><strong>桥接 Layer 1</strong>: 老王今天用四把尺子, 8 万本金最终配在茅台 + 福耀 + 宁德三只 (各 2 万 + 2 万 + 4 万)。三只代表三种价值投资风格 — 茅台是 Buffett 的"用合理价格买极好公司"; 福耀是 Munger 推荐过的"制造业护城河 + 老实人"; 宁德是"成长性价值"(高估值但护城河可能扩张)。剩下 4 万是 Buffett 说的"<em>子弹</em>" — 等 Mr. Market 下次抑郁时再开火。长江电力则放进了"如果将来想要月度现金流就买"的备选清单。这就是<em>价值投资的可操作流程</em>: 不是赌一只股, 而是用一套<em>过滤器</em>把 5,300 只 A 股压成 5-10 只可观察, 再压成 2-3 只可入场。</p>
+<p class="muted measure" lang="en"><strong>Bridge to Layer 1:</strong> Wang's ¥80k allocates to Moutai + Fuyao + CATL (¥20k + ¥20k + ¥40k). Three styles — Moutai = Buffett's "great company at fair price," Fuyao = Munger's "manufacturing moat + honest builder," CATL = "growth-at-value" (high P/E but moat possibly widening). The remaining ¥40k is Buffett's "<em>bullets</em>" — waiting for Mr. Market's next depression. Yangtze Power goes on a future "monthly-paycheck" list. <strong>This is the operational flow of value investing</strong>: not a single bet but a filter system that compresses 5,300 A‑shares to 5–10 watch-listed, then 2–3 in-portfolio.</p>
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">vii</span><div><h4><span lang="zh">安全边际</span><span lang="en">Margin of Safety</span></h4><p lang="zh">工程冗余思想在投资里的版本 — 桥梁 2-3 倍安全系数, 投资 30% MOS, 都是对<em>估计误差</em>的缓冲。</p><p lang="en">Engineering redundancy applied to investing: a bridge takes a 2–3× safety factor, an investor takes 30% MOS — both buffers against estimation error.</p></div></div>
+<div class="model-card"><span class="roman">viii</span><div><h4><span lang="zh">能力圈边界</span><span lang="en">Circle boundary &gt; size</span></h4><p lang="zh">Buffett 1996: 边界清晰比范围大重要。一个只懂 5 个行业但严守边界的投资者 &gt; 自以为懂 50 个行业的投资者。</p><p lang="en">Buffett 1996: knowing the boundary beats expanding the range. Five industries with hard edges &gt; fifty with fuzzy ones.</p></div></div>
+<div class="model-card"><span class="roman">ix</span><div><h4><span lang="zh">价值溢价 (factor)</span><span lang="en">Value premium (factor)</span></h4><p lang="zh">Fama-French 1992 三因子: 低 P/B + 小盘的长期超额收益约 4-5%/年 — 价值投资在因子层面客观存在。</p><p lang="en">Fama-French 1992 three-factor: low P/B + small-cap deliver 4–5% p.a. excess return long-run — value investing is factor-backed.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">先自己想清楚再展开答案。每一题都至少有一个反直觉点。</span><span lang="en">Think before unfolding. Each question hides a counterintuitive twist.</span></p>
+
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 估算公司内在价值 100 元, MOS 要求 30%. 多少元以下买入? 70 至 100 之间的"中性区"是不是浪费机会?</span><span lang="en"><strong>Q1.</strong> IV ¥100, require 30% MOS. Buy below? Is the ¥70–100 "neutral zone" a wasted opportunity?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">由 (7.3): $\mathrm{MOS} \geq 0.3 \Rightarrow P/IV \leq 0.7 \Rightarrow P \leq 70$. 即 70 元以下才买入。</p>
+<p lang="zh"><strong>中性区不是浪费, 而是 MOS 设计的必然</strong>: 70-100 这 30% 是给"我估错了 IV"的缓冲。若我估的 IV 实际是 80 (而非 100), 那么 70 仍然便宜, 但 95 就贵了 — 中性区允许我犯 30% 以内的估值错误而不亏钱。Buffett 1996: "<em>Margin of safety is what's left of risk after you've done all your homework</em>."</p>
+<p lang="zh"><strong>三种处理"中性区"的方式</strong>: (a) 完全不动, 严守 30% MOS — Graham 派; (b) 用小仓位 (10-20% 试探), MOS 大时加仓 — Klarman 派; (c) 高确定性公司 (茅台、长江电力) 把 MOS 阈值放宽到 15-20% — Buffett 派。三种都自洽, 但同一标的不应"混用"。</p>
+<p lang="en">By (7.3): buy below ¥70. The ¥70–100 zone isn't waste — it's the buffer for my own IV estimation error. If my "100" is actually 80, ¥70 still cheap, ¥95 already expensive. Three styles for the neutral zone: (a) strict 30% MOS (Graham); (b) toe-hold position, add on deeper MOS (Klarman); (c) relax MOS to 15–20% for highest-certainty firms (Buffett). All consistent; never mix on the same name.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> "P/E = 8 的银行 vs P/E = 80 的科技, 哪个估值便宜?" 用价值投资框架回答, 并说明为什么"低 P/E = 便宜"是一个常见错误。</span><span lang="en"><strong>Q2.</strong> "P/E 8 bank vs P/E 80 tech — which is cheap?" Answer via value framework, explain why "low P/E = cheap" is a common error.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不直接比较</strong>。"便宜"的定义是<em>价格 &lt; 内在价值</em>, 不是<em>低 P/E</em>。两家公司若 IV 都用 (7.1) 推导, 它们对 P/E 的隐含约束完全不同:</p>
+<ul lang="zh">
+<li>银行: ROE 12%, 资本约束严格, 增长 5%/年 → 合理 P/E 约 8-10 (匹配)。P/E 8 → MOS 接近 0。</li>
+<li>科技: 若 ROE 25%, 增长 25%/年, 现金流 5 年后可见 → 合理 P/E 可到 40-60。P/E 80 → 隐含未来 5 年增长 &gt; 35%/年, 高度脆弱。</li>
+</ul>
+<p lang="zh">用 P/E/g (PEG) 略好但仍不充分。<em>正确做法</em>: 各自做 OE DCF 估算 IV, 再比 MOS。</p>
+<p lang="zh"><strong>Buffett 的实际答案</strong>: 看哪一个在<em>你能力圈</em>内。不在能力圈的, P/E 多低都不投 — 这就是"<em>NO 比 YES 重要</em>"。Buffett 1990s 错过 Microsoft 不是错误, 是<em>纪律</em>。2016 后买 Apple 是因为 Apple 此时已转型为消费品 + 服务型公司, 回到 Buffett 能力圈。</p>
+<p lang="en">Don't compare directly. "Cheap" = price &lt; IV, not low P/E. Banks: ROE 12%, capital-constrained, 5% growth → fair P/E ~8–10 (matched). P/E 8 → MOS ≈ 0. Tech: ROE 25%, growth 25%, 5y horizon → fair P/E 40–60 possible. P/E 80 implies &gt;35% growth for 5y — fragile. Use PEG as rough check; properly do separate IV via OE DCF, compare MOS.</p>
+<p lang="en">Buffett's real answer: which is in <em>your</em> circle? Outside it, low P/E doesn't matter. Missing Microsoft in the 1990s was <em>discipline</em>, not error. Buying Apple post-2016 worked because Apple by then had become a consumer + services franchise — back inside the circle.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一家 ROIC 长期 25% 的公司, 当前 MOS 仅 10% (即价格 ≈ IV × 0.9)。Graham 严苛派会说"不买", Buffett 派会说"买"。用复利代数说明 Buffett 派为何可能正确。</span><span lang="en"><strong>Q3.</strong> A firm with sustained 25% ROIC has MOS only 10% (price ≈ IV × 0.9). Strict Graham → don't buy; Buffett → buy. Use compounding algebra to defend Buffett.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">假设 ROIC = 25%, payout = 40% (即 60% 留存再投资), 则 IV 复利增长率 ≈ ROIC × (1 − payout) = 25% × 60% = <strong>15%/年</strong>。</p>
+<p lang="zh">当前 MOS = 10% → 价格 = IV × 0.9。一年后, IV 增长到 1.15 × IV, 若价格保持不变, MOS = 1 − 0.9 / 1.15 ≈ 22%。两年后 MOS ≈ 32%。三年后 MOS ≈ 41%。</p>
+<p lang="zh">即: <em>持有时间本身就是一种安全边际</em>。Buffett 1989 致股东信原话: "<em>Time is the friend of the wonderful business, the enemy of the mediocre.</em>" 高 ROIC 公司的 IV 增长足以补偿入场时的较小 MOS — 这就是 Buffett 派愿意"用合理价格买极好公司"的代数基础。</p>
+<p lang="zh"><strong>但</strong> Graham 派的反驳: 复利只在<em>ROIC 持续 25%</em>的前提下成立。若公司护城河衰退, ROIC 5 年后跌到 12%, 那么 IV 增速也跟着塌, 原本 10% 的 MOS 远不够缓冲。所以这个分歧的本质是: <em>你对护城河可持续性的信心有多高</em>?</p>
+<p lang="zh">实务: 对高 ROIC 公司 (茅台、海康、招行), Buffett 派松一档 (MOS 15-20%); 对 ROIC 平庸或下滑的公司 (大部分周期股、传统制造), 严守 30%+。</p>
+<p lang="en">ROIC 25%, payout 40% → IV growth ≈ ROIC × (1 − payout) = 15% p.a. Start MOS 10% (P = 0.9 IV). Year 1: IV grows to 1.15 IV, P constant → MOS = 1 − 0.9/1.15 ≈ 22%. Year 2 ≈ 32%, Year 3 ≈ 41%. <em>Holding period itself is a margin of safety.</em></p>
+<p lang="en">Buffett 1989: "Time is the friend of the wonderful business, the enemy of the mediocre." High-ROIC IV growth absorbs the smaller entry MOS — algebraic basis for "fair price, great company."</p>
+<p lang="en"><strong>Graham counter:</strong> compounding assumes ROIC stays 25%. If moat erodes and ROIC falls to 12% in 5 years, the IV growth collapses and 10% MOS is too thin. So the disagreement reduces to: <em>how confident are you in moat durability?</em> In practice: relax to 15–20% for high-ROIC franchises; hold strict 30% for cyclicals and decliners.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> Greenblatt magic formula 在美国 1988-2004 测试年化超额 ~13%。同样的规则放到 A 股, 直接复制可能效果减半 — 至少列出三个"水土不服"的 A 股特殊点, 并提出修正方案。</span><span lang="en"><strong>Q4.</strong> Greenblatt magic formula yields ~13% annual alpha in 1988–2004 US tests. Copied to A‑shares, alpha often halves. Name three A‑share specifics that break the rule and propose fixes.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">原始 Magic formula: 排序 ROC = EBIT/(净 WC + 净 PPE) + 收益率 EBIT/EV, 取前 30 名等权。在 A 股有以下扭曲点:</p>
+<ol lang="zh">
+<li><strong>关联方占款扭曲 ROC</strong>: A 股大量公司有"其他应收"(关联方借走的钱) 挂在表内, EBIT 真实表现但 WC 被关联方占用 → ROC 失真。<em>修正</em>: 把"其他应收 − 应收账款"剔除出 WC, 或筛掉"其他应收 / 总资产 &gt; 10%"的公司。</li>
+<li><strong>商誉减值波动 EBIT</strong>: 2018-2019 A 股商誉减值集中爆发 (Ch.05 案例: 天神娱乐), 单年 EBIT 大幅波动, Magic formula 选中"减值前的高 ROC, 减值年塌方"型陷阱。<em>修正</em>: 用 3-5 年 EBIT 平均代替单年; 或筛掉"商誉/净资产 &gt; 30%"的公司。</li>
+<li><strong>停牌与流动性问题</strong>: A 股长期停牌、重大重组、限售解禁等导致等权再平衡的执行成本高。<em>修正</em>: 选取流通市值 &gt; 50 亿的"可操作池", 排除 ST 与近期重大重组。</li>
+<li><strong>财务造假特殊样本</strong>: 康得新、康美等高 ROC 公司事后被证实造假, magic formula 在事前无法识别。<em>修正</em>: 叠加 Beneish M-score &lt; −2.22 + Altman Z &gt; 2.99 筛选 (Ch.08 详述), 排除高造假风险样本。</li>
+<li><strong>政策周期</strong>: 集采、双减、互联网监管等 A 股特有的政策事件能在一夜之间消灭 ROC。<em>修正</em>: 行业内做 magic formula (而非全市场), 避免被某一个被政策"抽屉化"的板块拖累。</li>
+</ol>
+<p lang="zh">实务上, 经"质量过滤 + 行业内 + 流动性筛选"后的修正版 magic formula, A 股 2010-2020 测试年化超额约 5-8% — 仍正, 但显著低于美国, 反映 A 股相对低效但摩擦也大。</p>
+<p lang="en">Three (plus more) A‑share distortions: (1) related-party "other receivables" inflate ROC — exclude or filter ROR&gt;10%; (2) goodwill cliffs jolt EBIT — use 3–5y avg or filter goodwill/equity &gt;30%; (3) liquidity and suspensions — restrict to free-float &gt;¥5bn, exclude ST and reorgs; (4) accounting fraud — overlay Beneish + Altman; (5) policy shocks — run within-industry, not market-wide. Adjusted A‑share alpha 2010–20 ~5–8%, half of US but still positive.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一家 P/B = 0.6 的银行, Graham number 显示"严重低估", 但你认为可能是<em>价值陷阱</em>。列出至少四个验证它<em>是否</em>价值陷阱的诊断步骤。</span><span lang="en"><strong>Q5.</strong> A bank trades at P/B 0.6; Graham number says "deeply undervalued." You suspect a value trap. List four diagnostics to verify.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>"价值陷阱"</strong>定义: 表面便宜, 但内在价值正在<em>持续</em>下降, 价格其实没有偏离 IV — 只是 IV 自己在塌。诊断步骤:</p>
+<ol lang="zh">
+<li><strong>不良率与拨备覆盖率趋势</strong>: 银行的"账面净资产" (B) 取决于拨备的<em>充分性</em>。若 NPL 上升 + 拨备覆盖率下降 + 关注类贷款占比上升 → "B" 本身被虚高, 真实 P/B 可能远高于 0.6。看 5 年趋势, 不看单年。</li>
+<li><strong>地方政府融资平台 (LGFV) 与房地产风险敞口</strong>: 2024 年 A 股大量银行 P/B &lt; 1 的核心原因是"LGFV + 地产开发贷"两块隐藏不良。看附注分行业贷款 + 五级分类迁徙率, 估算<em>潜在</em>损失。若潜在损失 &gt; 当前净资产 × 30%, "便宜"立刻消失。</li>
+<li><strong>ROE 趋势</strong>: ROE 是否连续 5 年下降? 银行 ROE 从 18% 跌到 8% 不是"周期", 是"结构"。结构性下降的银行, IV 在持续下行, 当前 P/B 0.6 三年后可能仍是 0.6 (因为分母 B 自己在塌)。</li>
+<li><strong>资产负债表外</strong>: 表外理财、银证保通道、信托收益权 — 一旦表外"出表回不来", 立刻吞噬资本。看附注"或有事项"与"资本充足率敏感性"。</li>
+<li><strong>管理层与监管反馈</strong>: 是否有大规模管理层变动、监管处罚、被点名? 监管的关注是"账面 B 不真实"的最高频信号。</li>
+<li><strong>对比逻辑</strong>: 把它和同体量银行 (招行 600036, ROE ~16%, P/B ~1.2) 比 — 为什么差 50%? 若答案是"NPL 高、行业 / 区域风险敞口大", 那是合理折价, 不是机会。</li>
+</ol>
+<p lang="zh"><strong>诊断目标</strong>: 区分<em>市场过度悲观</em>(机会) vs <em>市场理性反映 IV 下降</em>(陷阱)。前者 P/B 反弹回 1.0+, 后者 P/B 三年后仍 0.6, 因为 B 自身在缩水。Buffett 多次拒绝"廉价银行"原因都在这里 — Wells Fargo 早期他敢买, 因可以亲自看到资产质量; 大部分中国地方城商行他不会碰。</p>
+<p lang="en">"Value trap" = price looks cheap because IV is silently falling, not because price wandered away from IV. Diagnostics: (1) NPL and provisioning coverage trend — book equity B depends on provisioning sufficiency; rising NPL + falling coverage + rising "special mention" loans → B is overstated; (2) LGFV and real-estate exposure — hidden NPL pockets; estimate latent loss / equity ratio; (3) ROE trend — 5-year decline from 18% to 8% is structural, not cyclical; IV deflates with it; (4) off-BS items — wealth products, trust beneficiary rights — once forced back on, capital evaporates; (5) management changes and regulator attention; (6) peer-relative — vs CMB ROE 16% P/B 1.2: why 50% gap? Goal: distinguish over-pessimism (opportunity) from rational discounting of falling IV (trap). Buffett historically passed on cheap regional banks for exactly this reason — he could verify Wells Fargo's loan book personally; he can't verify a Chinese city bank's.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="06-relative-valuation.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">06 · <span lang="zh">相对估值</span><span lang="en">Multiples</span></span></a><a class="next" href="08-financial-quality.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">08 · <span lang="zh">财报在投资中</span><span lang="en">Financials in Investing</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

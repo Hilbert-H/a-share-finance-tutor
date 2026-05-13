@@ -18,71 +18,330 @@
 <h1><span lang="zh">行为金融</span><span lang="en">Behavioral Finance</span></h1>
 <p class="lesson-subtitle"><span lang="zh">Kahneman, Tversky, Thaler 等人证明: 人类决策系统性偏离"理性"假设. 行为金融把这些偏差代数化, 解释 EMH 失效的具体机制. A 股散户主导, 行为偏差对短期价格的影响远超美股。</span><span lang="en">Kahneman, Tversky, Thaler showed: human decisions systematically violate rationality. Behavioral finance algebraizes biases to explain EMH failures. A‑share, retail‑heavy, exhibits stronger bias‑driven price effects than US.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">识别 7 大常见认知偏差</li><li lang="zh">理解 Soros 反身性: 价格<em>影响</em>基本面</li><li lang="zh">把 A 股具体行情 (2015 杠杆牛, 2021 抱团股) 用行为金融解释</li>
-<li lang="en">Identify 7 common biases; understand Soros's reflexivity; explain A‑share episodes (2015 leveraged bull, 2021 herd)</li></ul></section>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">识别 7 大常见认知偏差, 并能在自己交易记录中找到对应案例</li>
+<li lang="zh">理解前景理论 (prospect theory) 的 S 型效用曲线与损失厌恶系数 ≈ 2.25</li>
+<li lang="zh">理解 Soros 反身性: 价格<em>影响</em>基本面, 而非单向被反映</li>
+<li lang="zh">把 A 股具体行情 (2015 杠杆牛, 2021 抱团股, 2024 化债 / AI 行情) 用行为金融解释</li>
+<li lang="zh">能给自己 (散户) 设计三条对抗偏差的规则: 止损、再平衡、记录交易日志</li>
+<li lang="en">Identify 7 common biases and find them in your own trade log</li>
+<li lang="en">Understand prospect theory S‑curve and loss‑aversion coefficient ≈ 2.25</li>
+<li lang="en">Grasp Soros's reflexivity: price <em>influences</em> fundamentals, not just reflects</li>
+<li lang="en">Explain A‑share episodes (2015 leveraged bull, 2021 herd, 2024 AI / debt swap) via behavioral lens</li>
+<li lang="en">Design three retail‑facing rules: stop‑loss, rebalancing, trade journaling</li>
+</ul></section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">七大偏差</span><span lang="en">Seven biases</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 0 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 0</span> · <span lang="zh">起点</span><span lang="en">Starting Point</span></h2>
+<p lang="zh">行为金融最常见的误读是"它告诉你别人会犯什么错"。真正的用法相反: 它告诉你<em>自己</em>会犯什么错。本章用 老王 三年的交易日志当镜子, 把心理学家命名过的偏差一条一条对上他真实做过的决定。等你看完五个错误, 你会发现自己脑袋里也有同样的几个机关 — 它们不是 老王 一个人的, 是任何一个有杏仁核的人都会有的。</p>
+<p lang="en">The most common misuse of behavioral finance is "it tells you what mistakes <em>others</em> make." Its real use is the opposite: it tells you what mistakes <em>you</em> make. This chapter uses three years of Old Wang's trade log as a mirror, mapping psychologists' named biases onto decisions he actually made. By the end you'll recognize the same gears in your own head — they aren't Old Wang's; they belong to anyone with an amygdala.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span>
+<span class="en" lang="en"> · Old Wang's five trading mistakes</span>
+<span class="en" lang="zh"> · 老王复盘自己的 5 个交易错误</span></h2>
+
+<p lang="zh">老王这十年从面馆攒到了一百多万自由资金 (¥1,000,000+), 一头扎进 A 股。今晚他把过去三年的交易记录摊在桌上, 一笔一笔回看, 想看清"为什么明明读了三本书、看了无数研报, 还是亏钱"。我们陪他一起看。每发现一个错, 先描述事实, 再问一句"心理学家会管这种行为叫什么", 然后揭晓术语。</p>
+<p lang="en">After ten years of running the noodle shop, Old Wang built up over ¥1m of free capital and dove into A‑shares. Tonight he spreads three years of trade tickets across the table and reviews them ticket by ticket, trying to figure out why he keeps losing money despite reading three books and countless analyst reports. We sit beside him. For each mistake we describe the fact first, then ask <em>"what would a psychologist name this?"</em>, then reveal the term.</p>
+
+<p lang="zh"><strong>错误 1 — 2021 年 2 月, 茅台 1,800 元, 老王没买。</strong>他翻出当时的笔记: "茅台在 500 元的时候我觉得太贵了, 现在 1,800 还买?疯了。"两年后茅台到了 1,650 元也没回 500, 老王懊悔得要命。问题出在哪?他<em>把第一次接触的价格当成了"应该的价格"</em>, 后来无论新信息多丰富, 那个 500 元的影子一直拽着他。心理学家管这种"被最早或最显眼的数字钉住"叫 <strong>锚定 (anchoring)</strong>。锚不是基本面, 锚只是你<em>第一眼看到的数</em>。</p>
+<p lang="en"><strong>Mistake 1 — Feb 2021, Moutai at ¥1,800. Old Wang didn't buy.</strong> His notebook reads: "Moutai felt expensive at ¥500. Now ¥1,800? Crazy." Two years later the stock traded down to ¥1,650 — still not the ¥500 he was waiting for. What went wrong? He <em>treated the first price he ever saw as the price it ought to be</em>, and however much new information arrived, that ¥500 ghost kept tugging him back. Psychologists call this "being pinned to the earliest or most salient number" <strong>anchoring</strong>. The anchor isn't a fundamental — it's just <em>the first number your eye landed on</em>.</p>
+
+<p lang="zh"><strong>错误 2 — 2022 年 6 月, 老王把 60 万扔进同一只新能源股。</strong>当时群里所有人都在买宁德时代, 公募基金报告也在推, 抖音视频说"碳中和是国运"。老王心想: "这么多人都买, 应该没错。"结果半年后股价腰斩, 60 万亏成 30 万。问题出在哪?他没研究公司基本面, 只是<em>看到很多人买, 就跟着买</em>。心理学家管这种"模仿大多数人行动来代替自己思考"叫 <strong>羊群效应 (herding)</strong>。羊群在草原上还可能找到草, 在股市里只能找到山顶。顺带一个更糟的副作用: 老王把六成仓位押在一只股票一个行业, 这叫<em>集中度过高</em>; 如果分散到 5-10 只不相关股票, 单只腰斩对组合影响只有 10%, 不至于伤筋动骨。</p>
+<p lang="en"><strong>Mistake 2 — June 2022, Old Wang dumped ¥600k into a single battery stock.</strong> Every WeChat group was buying CATL; mutual fund reports pushed it; Douyin clips called carbon neutrality "national destiny." Wang thought, "this many people can't be wrong." Six months later the stock halved; ¥600k became ¥300k. The flaw? He didn't research fundamentals — he <em>copied the crowd's action in place of his own thinking</em>. Psychologists call substituting "many others do it" for "I have evaluated it" <strong>herding</strong>. Sheep find grass on prairies; in markets they find mountaintops. A worse side effect: 60% of his capital in one stock in one sector — <em>concentration risk</em>. Spread the same money across 5–10 uncorrelated names and a 50% drawdown on one position costs 10% of portfolio, not 30%.</p>
+
+<p lang="zh"><strong>错误 3 — 2022 年底, 一只医药股从 80 元跌到 56 元, 老王浮亏 30%, 死扛不卖。</strong>"再等等, 等回 80 再说。"他每天打开账户看到那个红色的 -30%, 心如刀绞, 但就是不愿意按下"卖出"。同期市场上有更好的机会, 资金却被这只票锁死。半年后这只票跌到 40 元, 老王终于卖了, 实亏 50%。问题出在哪?对老王来说, "纸面浮亏"和"实现亏损"是两件事 — 只要不点卖出, 那个亏就<em>不算数</em>。心理学家做过实验: 同样金额的亏, 痛苦感大约是赚的 <strong>2.25 倍</strong>。所以人会本能地<em>避免承认亏损</em>。这种"卖出实现亏损会触发不成比例的痛苦"叫 <strong>损失厌恶 (loss aversion)</strong>; 由此衍生的"赢了快跑、输了死扛"模式叫 <strong>处置效应 (disposition effect)</strong>。</p>
+<p lang="en"><strong>Mistake 3 — Late 2022, a pharma stock fell from ¥80 to ¥56 — Wang sat on a 30% paper loss and refused to sell.</strong> "I'll wait till it gets back to ¥80." Every day he opened the app, saw the red −30%, and felt sick — but never tapped "sell." Better opportunities passed; his capital was locked. Six months later the stock hit ¥40; he finally sold at a 50% realized loss. The flaw? To Old Wang, "paper loss" and "realized loss" are two different things — as long as he doesn't click sell, the loss <em>doesn't count</em>. Experiments show a loss of size X hurts roughly <strong>2.25 times</strong> as much as a gain of size X pleases. So humans instinctively <em>refuse to crystallize losses</em>. "Selling at a loss triggers disproportionate pain" is <strong>loss aversion</strong>; the resulting "run winners early, ride losers to zero" pattern is the <strong>disposition effect</strong>.</p>
+
+<p lang="zh"><strong>错误 4 — 2023 年初, 老王买的一只白电股从 40 元涨到 48 元, 赚了 20%, 老王立刻卖了"锁定收益"。</strong>结果那只股票一路涨到 65 元 — 老王少赚 35%。咦, 错误 3 是"亏了不卖", 错误 4 是"赚了快跑", 这两个看起来矛盾, 其实是<em>同一个偏差的两个对称面</em>。在 老王 心里, 浮盈是"还没到手的钱, 万一回吐怎么办", 浮亏是"还没真的失去的钱, 等等说不定回来"。两边都在<em>用情绪给账面数字打折</em>。这个对称模式正是上面提到的 <strong>处置效应</strong> 的完整定义: 倾向于过早卖出盈利、太久持有亏损 (Shefrin–Statman 1985)。这种"卖飞"的反向版有时被叫做 <strong>反向处置效应 (reverse disposition)</strong>。</p>
+<p lang="en"><strong>Mistake 4 — Early 2023, an appliance stock ran from ¥40 to ¥48 — Old Wang sold to "lock in 20%."</strong> The stock kept climbing to ¥65 — he left 35% on the table. Wait, Mistake 3 was "won't sell at a loss" and Mistake 4 is "sells too fast at a gain" — these look contradictory, but they're <em>two faces of the same bias</em>. To Wang, an unrealized gain is "money I haven't received yet — what if it gives back?", while an unrealized loss is "money I haven't truly lost yet — maybe it comes back." Both apply emotional discounts to the same paper numbers. The full Shefrin–Statman (1985) definition of the <strong>disposition effect</strong> includes both legs: <em>sell winners too early, hold losers too long</em>. The "sold too soon" half is sometimes labelled the <strong>reverse disposition effect</strong>.</p>
+
+<p lang="zh"><strong>错误 5 — 2023 年中, 群里"某私募大佬"发了一只小盘股的"内幕"。</strong>老王没研究公司, 看大家都在转发, "宁可信其有", 拿出 15 万买入。三周后股价跌 40%, 后来才知道这是一波坐庄出货 — 信息是真的, 但是别人喂给他<em>故意</em>让他接盘的。问题出在哪?老王没问"为什么有人愿意把这种'稳赚'机会免费给我", 直接跟群里大多数人一起冲。和错误 2 同根: 这又是一次 <strong>羊群</strong>, 只是这次羊群是被人为驱赶的; 同时还叠了一层 <strong>过度自信 (overconfidence)</strong> — 老王觉得自己"能识别真消息", 但其实他识别的只是"群里转发量"。</p>
+<p lang="en"><strong>Mistake 5 — Mid 2023, a "famous PM" posted an inside tip on a small‑cap in a WeChat group.</strong> Old Wang skipped due diligence, saw everyone forwarding, "better safe than sorry," and bought ¥150k. Three weeks later the stock dropped 40%; later it came out that this was a pump‑and‑dump — the tip was real, but it was fed to retail to provide exit liquidity. The flaw? Wang never asked, "why would anyone give a free, sure thing to me?" — he just rushed in with the crowd. Same root as Mistake 2: another bout of <strong>herding</strong>, this time herded on purpose by an operator. Layered on top: <strong>overconfidence</strong> — Wang thought he could distinguish real tips from noise, but what he actually measured was forward count.</p>
+
+<p lang="zh">把五个错误并排一看, 老王自己也愣住了: 锚定让他<em>错过买入</em>, 损失厌恶让他<em>不肯止损</em>, 处置效应让他<em>过早卖飞</em>, 羊群让他<em>追高接盘</em>, 过度自信让他<em>反复犯同样的错</em>。五个错没有一个出在"公司基本面看错了" — 全部出在<em>自己脑袋里的某个固定机关</em>。Layer 2 会把这些机关代数化: 把 老王 的五个故事画成一条 S 型效用曲线, 给损失厌恶一个数字 (≈ 2.25), 给羊群一个传染模型。Layer 3 会回到 A 股的两次大行情, 看这些"个人脑机关"如何被几百万人同步触发, 把整个市场推上山顶又拉下深谷。</p>
+<p lang="en">Lined up, Old Wang himself goes quiet: anchoring <em>blocked his entry</em>; loss aversion <em>blocked his exit on losers</em>; the disposition effect <em>cashed him out of winners too early</em>; herding <em>made him a top‑buyer</em>; overconfidence <em>made him repeat the same mistakes</em>. Not a single mistake was about misreading fundamentals — every one came from <em>a fixed gear in his own head</em>. Layer 2 algebraizes those gears: it draws his five stories as one S‑shaped utility curve, assigns loss aversion a number (≈ 2.25), and gives herding an infection model. Layer 3 returns to two A‑share episodes and shows how the same personal gears, fired simultaneously across millions of brains, push the market up a cliff and over the edge.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王的五个错误, 把五个偏差全部点了名。现在我们把它们形式化。一方面给每个偏差一个标准定义和文献出处, 另一方面把损失厌恶画成一条曲线 — 这就是 Kahneman 和 Tversky 1979 年 <em>Econometrica</em> 论文里那条改写了经济学半个世纪的曲线。</p>
+<p lang="en">Layer 1 named all five biases through Old Wang's mistakes. We now formalise them — first by listing each with its canonical citation, then by sketching loss aversion as a curve. That curve is the one Kahneman and Tversky drew in <em>Econometrica</em> in 1979 that rewrote half a century of economics.</p>
+
+<h3 lang="zh">七大偏差 (扩展版)</h3>
+<h3 lang="en">The seven biases (expanded)</h3>
+
 <ol>
-<li><strong><span lang="zh">锚定 (anchoring)</span><span lang="en">Anchoring</span></strong>: <span lang="zh">心理上以历史/初次接触到的数字为参考. A 股: 开盘价集合竞价以前一交易日收盘为锚</span><span lang="en">Anchored to historical or first‑seen numbers. A‑share: opening auction anchored to prior close</span></li>
-<li><strong><span lang="zh">过度自信</span><span lang="en">Overconfidence</span></strong>: <span lang="zh">投资者高估自己判断准确率. 表现为过度交易, 个人投资者换手率年化常 500%+, 主动管理费用过高</span><span lang="en">Overestimate own skill. Excessive trading; retail turnover often 500%+ annualized</span></li>
-<li><strong><span lang="zh">处置效应</span><span lang="en">Disposition effect</span></strong>: <span lang="zh">倾向于过早卖出盈利股票 (锁定利润), 太久持有亏损股票 (避免认输). Shefrin-Statman (1985)</span><span lang="en">Sell winners too early, hold losers too long</span></li>
-<li><strong><span lang="zh">羊群</span><span lang="en">Herding</span></strong>: <span lang="zh">模仿大多数行为. A 股板块行情, "茅指数" "宁组合" 是典型羊群</span><span lang="en">Follow the crowd. A‑share "Moutai index" / "CATL group" exemplify herding</span></li>
-<li><strong><span lang="zh">可得性偏差</span><span lang="en">Availability heuristic</span></strong>: <span lang="zh">用最近 / 最显著的事件估计概率. 新闻报道频繁的股票被高估</span><span lang="en">Estimate probability from most salient examples</span></li>
-<li><strong><span lang="zh">心理账户</span><span lang="en">Mental accounting</span></strong>: <span lang="zh">把不同来源的钱分账, 不同对待. Thaler (1985)</span><span lang="en">Treat money from different sources differently</span></li>
-<li><strong><span lang="zh">损失厌恶</span><span lang="en">Loss aversion</span></strong>: <span lang="zh">同等大小的损失痛苦感约为收益快感的 2 倍 (Kahneman-Tversky 1979). 这驱动了"宁可不动也不接受小亏"等行为</span><span lang="en">Pain of loss ~2× pleasure of equal gain. Drives "do nothing rather than realize a small loss"</span></li>
+<li><strong><span lang="zh">锚定 (anchoring)</span><span lang="en">Anchoring</span></strong>: <span lang="zh">心理上以历史或初次接触到的数字为参考。Tversky &amp; Kahneman (1974, <em>Science</em>) 让被试看一个明显随机的转盘数字, 再问"非洲国家在联合国占比", 回答与转盘数字显著正相关 — 即便受试者明确知道转盘是随机的。A 股: 开盘集合竞价以前一交易日收盘为锚; 老王买入价是他自己的私人锚, 但市场不知道也不在意。</span><span lang="en">Anchored to historical or first‑seen numbers. Tversky &amp; Kahneman (1974, <em>Science</em>) spun a clearly random wheel before asking subjects "what % of UN members are African countries" — answers correlated with the spin, even though subjects knew it was random. A‑share: opening auction anchored on prior close; Old Wang's purchase price is his private anchor that the market neither knows nor honors.</span></li>
+<li><strong><span lang="zh">过度自信 (overconfidence)</span><span lang="en">Overconfidence</span></strong>: <span lang="zh">投资者高估自己判断准确率。Barber &amp; Odean (2000, <em>JoF</em>) 用 66,000 个美国券商账户数据显示: 交易最频繁的 20% 账户年化收益比最不活跃的 20% 低 6.5 个百分点 — 完全被手续费和价差吃掉。A 股个人投资者换手率年化 500%+ 是常态。</span><span lang="en">Investors overrate skill. Barber &amp; Odean (2000, <em>JoF</em>) on 66,000 US brokerage accounts: most‑active 20% under‑perform least‑active 20% by 6.5pp/yr — eaten by commissions and spread. A‑share retail turnover 500%+ annualized is typical.</span></li>
+<li><strong><span lang="zh">处置效应 (disposition effect)</span><span lang="en">Disposition effect</span></strong>: <span lang="zh">过早卖盈利、太久持亏损。Shefrin &amp; Statman (1985, <em>JoF</em>) 命名。Odean (1998, <em>JoF</em>) 实证: 投资者卖出盈利股的概率是卖出同等亏损股概率的 1.5 倍。</span><span lang="en">Sell winners early, hold losers long. Named by Shefrin &amp; Statman (1985, <em>JoF</em>); empirically documented by Odean (1998, <em>JoF</em>): probability of selling a winner is ~1.5× that of selling an equal‑sized loser.</span></li>
+<li><strong><span lang="zh">羊群 (herding)</span><span lang="en">Herding</span></strong>: <span lang="zh">模仿大多数行为而非独立思考。Banerjee (1992) 的信息瀑布模型: 一旦少数人公开行动, 后来者会理性地"无视私人信号、跟随公共信号", 形成自我强化。A 股板块行情, "茅指数"、"宁组合"、"AI 概念股"是典型羊群。</span><span lang="en">Imitate majority behavior. Banerjee's (1992) information cascade: once a few act publicly, latecomers rationally ignore their private signal and follow the public one, self‑reinforcing. A‑share "Moutai index" / "CATL group" / "AI concept" exemplify it.</span></li>
+<li><strong><span lang="zh">可得性偏差 (availability heuristic)</span><span lang="en">Availability heuristic</span></strong>: <span lang="zh">用最易回忆 / 最显著的事件估计概率 (Tversky &amp; Kahneman 1973)。新闻报道频繁的股票被高估; 飞机失事让人高估航空风险却低估开车风险。</span><span lang="en">Estimate frequency by recallability of examples (Tversky &amp; Kahneman 1973). News‑heavy stocks get overvalued; plane crashes make flying feel riskier than driving.</span></li>
+<li><strong><span lang="zh">心理账户 (mental accounting)</span><span lang="en">Mental accounting</span></strong>: <span lang="zh">把不同来源的钱分账, 不同对待 (Thaler 1985, <em>Marketing Science</em>)。"年终奖的钱"和"工资的钱"在同一个账户里行为不同 — 前者更容易拿去赌。A 股: "炒股的钱"和"养老的钱"经常被人为隔离, 即使总财富一样。</span><span lang="en">Money is segregated by source and treated differently (Thaler 1985). "Bonus money" and "salary money" sit in the same bank account but behave differently — bonuses get gambled more. A‑share: "trading money" mentally walled off from "retirement money" even though total wealth is one number.</span></li>
+<li><strong><span lang="zh">损失厌恶 (loss aversion)</span><span lang="en">Loss aversion</span></strong>: <span lang="zh">同等大小的损失痛苦约为收益快感的 2 倍 (Kahneman &amp; Tversky 1979 <em>Econometrica</em>, λ ≈ 2.25)。驱动"宁可不动也不接受小亏"; 也是上述处置效应、禀赋效应 (endowment effect)、现状偏好 (status quo bias) 的共同源头。</span><span lang="en">A loss of size X hurts ~2× as much as an equal‑sized gain pleases (Kahneman &amp; Tversky 1979, λ ≈ 2.25). Drives "do nothing rather than realize a small loss" and underlies the disposition, endowment, and status‑quo effects.</span></li>
 </ol>
+
+<h3 lang="zh">前景理论的 S 型效用曲线</h3>
+<h3 lang="en">Prospect theory's S‑shaped value function</h3>
+
+<p lang="zh">古典经济学用一条凹效用 $u(W)$ 描述财富的边际效用递减 (Bernoulli 1738)。Kahneman–Tversky 把它替换成一条<em>S 型</em>价值函数 $v(x)$, 关键改动有三:</p>
+<p lang="en">Classical economics uses a single concave utility $u(W)$ to capture diminishing marginal utility of wealth (Bernoulli 1738). Kahneman–Tversky replace it with an <em>S‑shaped</em> value function $v(x)$ with three key edits:</p>
+
+<ul lang="zh">
+<li><strong>参考点 (reference point)</strong>: 价值不定义在<em>财富</em> $W$ 上, 而定义在<em>相对于参考点的变化</em> $x = W - W_{\text{ref}}$ 上。参考点通常是"买入价"或"上次心理报价"。</li>
+<li><strong>收益侧凹、损失侧凸 (concave gain, convex loss)</strong>: 第二个一万的快乐 &lt; 第一个一万; 第二个一万的痛 &lt; 第一个一万。两侧都<em>边际递减</em>, 但形状对称。</li>
+<li><strong>损失侧斜率 &gt; 收益侧 (loss aversion)</strong>: 损失曲线起步比收益曲线陡 ~2.25 倍。这是整条曲线的灵魂。</li>
+</ul>
+<ul lang="en">
+<li><strong>Reference point</strong>: value is defined on the <em>change</em> $x = W - W_{\text{ref}}$, not on absolute wealth $W$. Reference is typically the purchase price or last salient quote.</li>
+<li><strong>Concave on gains, convex on losses</strong>: each marginal gain is worth less than the last; each marginal loss hurts less than the last. Both sides diminish, with reflection symmetry.</li>
+<li><strong>Steeper on losses</strong>: the loss arm is roughly 2.25× steeper than the gain arm out of the origin. This asymmetry is the heart of the curve.</li>
+</ul>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">前景理论价值函数</span>
+<span class="callout-label" lang="en">Prospect theory value function</span>
+<div class="eq"><span>$$ v(x) = \begin{cases} x^{\alpha}, &amp; x \ge 0 \\ -\lambda \, (-x)^{\beta}, &amp; x &lt; 0 \end{cases} $$</span><span class="num">(4.1)</span></div>
+<p lang="zh">$\alpha, \beta \approx 0.88$ (两侧凹/凸度近似相同), $\lambda \approx 2.25$ (损失厌恶系数)。Tversky–Kahneman (1992) 用 25 个赌博实验拟合得到。</p>
+<p lang="en">$\alpha, \beta \approx 0.88$ (matching curvature on both arms); $\lambda \approx 2.25$ (loss‑aversion coefficient). Estimated by Tversky &amp; Kahneman (1992) from 25 gamble experiments.</p>
+<span class="cite">Kahneman &amp; Tversky 1979, <em>Econometrica</em> 47(2) · Tversky &amp; Kahneman 1992, <em>J. Risk Uncertain.</em> 5 · Barberis 2013, <em>JEP</em> 27(1) survey</span>
+</div>
+
+<p lang="zh">把 (4.1) 应用到 老王 的错误 3 (浮亏 30% 死扛): 卖出会触发 $v(-0.3) = -2.25 \times 0.3^{0.88} \approx -0.79$; 不卖, 价值<em>暂时</em>停在 0。等于他把<em>实现亏损</em>定价为 −0.79, 把<em>不实现</em>定价为 0 — 当然选择后者, 即使他理性上知道账面亏已经发生。这条曲线把"心慌的感觉"算成了一个数。</p>
+<p lang="en">Apply (4.1) to Mistake 3 (30% paper loss): realizing the loss triggers $v(-0.3) = -2.25 \times 0.3^{0.88} \approx -0.79$; not realizing parks value at 0. He's priced "realized loss" at −0.79 and "unrealized" at 0 — of course he picks the latter, even though he knows rationally the loss has already happened. The curve turns "sick to the stomach" into a number.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">概率权重函数 (Probability weighting)</span>
+<span class="callout-label" lang="en">Probability weighting</span>
+<div class="eq"><span>$$ w(p) = \frac{p^{\gamma}}{\left( p^{\gamma} + (1-p)^{\gamma} \right)^{1/\gamma}}, \quad \gamma \approx 0.61 $$</span><span class="num">(4.2)</span></div>
+<p lang="zh">人对小概率系统性<em>高估</em> ("彩票心理": 千万分之一被估成万分之一), 对接近 1 的高概率<em>低估</em>。这解释了为什么散户买垃圾股 (小概率翻倍幻想) 和买保险 (小概率大损失避险) 同时发生 — 同一个非线性权重曲线的两端。</p>
+<p lang="en">Humans systematically <em>overweight</em> small probabilities (lottery psychology: 1‑in‑10m feels like 1‑in‑10k) and <em>underweight</em> near‑certain ones. This explains why retail simultaneously buys junk stocks (long‑shot fantasy) <em>and</em> buys insurance (small‑probability catastrophe hedge) — both ends of the same non‑linear weighting curve.</p>
+</div>
 
 <h3 lang="zh">反身性 (Soros)</h3>
 <h3 lang="en">Reflexivity (Soros)</h3>
-<p lang="zh">传统认知: 基本面 → 价格. Soros 反身性: 价格 ↔ 基本面 (双向). 例:</p>
+
+<p lang="zh">传统认知 (EMH): 基本面 → 价格 (单向)。Soros 在 <em>The Alchemy of Finance</em> (1987) 提出反身性 (reflexivity): 价格 ↔ 基本面 (双向)。机制如下:</p>
+<p lang="en">Conventional (EMH): fundamentals → price (one‑way). Soros's reflexivity (<em>The Alchemy of Finance</em>, 1987): price ↔ fundamentals (two‑way). Mechanism:</p>
+
 <ul lang="zh">
-<li>股价上涨 → 公司股权融资容易 / 信心提升 / 客户更愿付溢价 → 基本面真实改善 → 股价进一步上涨</li>
-<li>股价下跌 → 信贷收紧 / 信任丧失 / 客户流失 → 基本面真实恶化 → 股价进一步下跌</li>
+<li><strong>上行循环</strong>: 股价上涨 → 公司股权融资容易 (定增、可转债); 信心提升, 客户更愿付溢价; 员工激励生效, 创新加速 → 基本面<em>真实</em>改善 → 股价进一步上涨。</li>
+<li><strong>下行循环</strong>: 股价下跌 → 信贷收紧 (银行下调授信、债券利率上行); 信任丧失, 客户流失, 员工跳槽 → 基本面<em>真实</em>恶化 → 股价进一步下跌。</li>
+<li><strong>反身性 vs 反馈循环</strong>: 区别在于反身性<em>改写了基本面本身</em>, 而不只是预期。这是泡沫和崩盘超出 EMH 解释力的根本原因。</li>
 </ul>
-<p lang="en">Conventional: fundamentals → price. Soros: price ↔ fundamentals (two‑way). Up cycles: easy capital + confidence + customer trust → real improvement. Down cycles: credit tightens + trust loss → real deterioration. The mechanism behind bubbles and crashes.</p>
+<p lang="en">Up‑cycle: rising price → easy equity issuance + customer trust + employee retention → real fundamental improvement → price rises further. Down‑cycle: falling price → credit tightens + customer flight + key‑staff exits → real deterioration → price falls further. Reflexivity differs from a simple feedback loop because it <em>rewrites the fundamentals themselves</em>, not just expectations — this is why bubbles and crashes exceed EMH's explanatory power.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">羊群传染的简化模型</span>
+<span class="callout-label" lang="en">A simple herding contagion</span>
+<div class="eq"><span>$$ \mathrm{Pr}(\text{buy}_t) = (1-\theta) \cdot \mathrm{Pr}(\text{buy} \mid \text{signal}) + \theta \cdot \frac{N_{\text{buyers},\,t-1}}{N_{\text{total}}} $$</span><span class="num">(4.3)</span></div>
+<p lang="zh">$\theta \in [0,1]$ 衡量"听别人 vs 信自己"的权重。当 $\theta \to 1$, 买入决策完全由<em>上一刻有多少人买</em>决定 — 信息瀑布形成。中国散户在板块行情中 $\theta$ 实证估计 $&gt; 0.6$ (Tan et al., 2008, <em>Pacific‑Basin Finance Journal</em>)。</p>
+<p lang="en">$\theta$ weights "listen to others vs trust own signal." As $\theta \to 1$, the buy decision depends entirely on <em>how many others just bought</em> — an information cascade. Chinese retail $\theta &gt; 0.6$ in sector rotations (Tan et al. 2008, <em>PBFJ</em>).</p>
+<span class="cite">Banerjee 1992, <em>QJE</em> 107 · Shiller 2003, <em>JEP</em> 17(1) · Soros, <em>The Alchemy of Finance</em>, 1987 · Tan, Chiang, Mason &amp; Nelling 2008</span>
+</div>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑share</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">2015 杠杆牛市与崩盘</span><span lang="en">2015 leveraged bull and crash</span></span></div>
-<p lang="zh">2014 下半年 - 2015 年 6 月: 沪深 300 从 2,300 涨到 5,300 (~130%); 上证综指从 2,000 涨到 5,178. 然后 6-9 月暴跌至 2,800. 典型反身性 + 羊群 + 过度自信:</p>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">把视角从老王一个人的茶几放大到整个 A 股。老王 错误 2 的"看别人买就跟"在他一个人身上是 ¥600,000 的亏损; 在几百万散户身上同步发生, 就是一个国家级的牛市加崩盘。</p>
+<p lang="en">Zoom out from Old Wang's coffee table to the whole A‑share market. His Mistake 2 — "buy because others buy" — is ¥600k of personal loss; multiplied across a few million retail accounts firing in sync, it becomes a national bull market and a national crash.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">CSI·300 / SSE</span>
+<span class="company"><span lang="zh">2015 杠杆牛市与崩盘</span><span lang="en">2015 leveraged bull and crash</span></span>
+<span class="period">2014 H2 – 2015 Q3</span>
+</div>
+<p lang="zh">2014 下半年 - 2015 年 6 月: 沪深 300 从 ~2,300 涨到 ~5,300 (+130%); 上证综指从 ~2,000 涨到 5,178。然后 6-9 月暴跌至 ~2,800。一年内一轮完整的"反身性 + 羊群 + 过度自信"循环。近似数据:</p>
+<p lang="en">2014 H2 to mid‑2015: CSI 300 ran from ~2,300 to ~5,300 (+130%); SSE Composite from ~2,000 to 5,178. Then crashed to ~2,800 by Sep 2015. A full reflexivity + herd + overconfidence cycle inside twelve months. Approximate magnitudes:</p>
+
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">指标</span><span lang="en">Metric</span></th>
+<th class="num">2014‑06</th>
+<th class="num">2015‑06 <span lang="zh">峰值</span><span lang="en">peak</span></th>
+<th class="num">2015‑09 <span lang="zh">底部</span><span lang="en">trough</span></th>
+</tr></thead><tbody>
+<tr><td><span lang="zh">沪深 300</span><span lang="en">CSI 300</span></td><td class="num">~2,300</td><td class="num up">~5,300</td><td class="num down">~2,800</td></tr>
+<tr><td><span lang="zh">融资融券余额 (¥ 亿)</span><span lang="en">Margin balance (¥ bn)</span></td><td class="num">~4,000</td><td class="num up">~22,000</td><td class="num down">~9,000</td></tr>
+<tr><td><span lang="zh">A 股日均换手率 (%)</span><span lang="en">A‑share daily turnover (%)</span></td><td class="num">~1</td><td class="num up">~3‑5</td><td class="num">~2</td></tr>
+<tr><td><span lang="zh">新增个人账户 (万 / 周)</span><span lang="en">New retail accounts (10k/wk)</span></td><td class="num">~10</td><td class="num up">~160</td><td class="num">~30</td></tr>
+</tbody></table></div>
+
+<p lang="zh"><strong>反身性 + 羊群 + 过度自信叠加</strong>:</p>
 <ul lang="zh">
-<li>政策"国家牛市"信号 → 散户大量入场 → 价格上涨 → 杠杆资金 (融资融券、伞形信托、配资) 跟进 → 价格进一步上涨 → 更多杠杆 → 反身性正循环</li>
-<li>6 月监管打击场外配资 → 平仓潮 → 价格下跌 → 更多平仓 → 加速下跌 → 反身性负循环</li>
-<li>断层式崩盘 — 流动性瞬间消失 (千股跌停成为日常)</li>
+<li><strong>政策信号触发</strong>: 官媒"4,000 点才是牛市起点"被市场解读为"国家牛市"。散户的<em>可得性偏差</em>被瞬间激活 — 这种"国家信号"的可得性远高于"市盈率已 30 倍"的事实。</li>
+<li><strong>反身性正循环</strong>: 价格上涨 → 融资融券和场外配资 (1:5 杠杆) 提供更多买盘 → 价格进一步上涨 → 更多杠杆。融资余额从 ~4,000 亿涨到 ~22,000 亿 (+450%), 价格反映的不再是基本面, 而是<em>杠杆资金的边际需求</em>。</li>
+<li><strong>反身性反向运行</strong>: 6 月监管打击场外配资 → 强制平仓 → 价格下跌 → 触发更多强制平仓 → 流动性瞬间消失 (千股跌停成为日常, 单日封死无成交)。崩盘速度远超基本面恶化速度 — 因为崩的不是基本面, 是 <em>杠杆链条</em>。</li>
+<li><strong>过度自信</strong>: 顶点附近, 散户调查显示 80%+ 认为"还能涨"。<em>Barber–Odean</em> 在中国市场再次被验证 — 牛市末期最活跃账户事后跑输最不活跃账户 10pp+。</li>
 </ul>
-<p lang="en">2014 H2–2015 mid: CSI 300 +130% (2,300 → 5,300). Then crash to 2,800. Reflexivity + herd + overconfidence: policy "national bull" signal → retail entry → leveraged buying → price up → more leverage. June regulator's off‑market financing crackdown → forced liquidations → spiral down.</p>
+<p lang="en">Policy signal "4,000 is just the start" triggered massive availability bias — the "national bull" narrative was easier to recall than a 30× P/E. Reflexivity up: margin from ¥400bn to ¥2.2tn (+450%) ramped buying pressure; price reflected leverage demand, not fundamentals. June crackdown on off‑market financing → forced liquidations → price down → more forced liquidations → liquidity vanished (thousands of stocks limit‑down daily). The crash outpaced any fundamental deterioration because the leverage chain, not the businesses, was collapsing.</p>
+<a class="case-link" href="http://www.csrc.gov.cn/" target="_blank" rel="noopener">
+<span lang="zh">CSRC 历史公告 →</span><span lang="en">CSRC historical disclosures →</span>
+</a>
 </div>
 
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">2020-2021 "茅指数 / 宁组合" 抱团</span><span lang="en">2020–21 "Moutai/CATL" herd</span></span></div>
-<p lang="zh">公募基金集中持仓茅台、宁德、海康、迈瑞、爱尔眼科等"白马股", 抱团推高估值. 茅台 P/E 从 30 升至 60+, 宁德 P/E 一度 200+. 2022 起回归, 这些股票最大回撤 40-60%.</p>
-<p lang="en">2020–21 mutual funds concentrated in "white horse" stocks (Moutai, CATL, Hikvision, Mindray, Aier). Moutai P/E 30→60+; CATL briefly 200+. Reverted 2022+, max drawdowns 40–60%.</p>
-<p lang="zh"><strong>行为解释</strong>: 羊群 (基金互相模仿避免业绩排名落后) + 可得性偏差 (新能源 / 消费升级故事广泛传播) + 反身性 (高估值吸引更多买盘 → 估值更高 → 故事更动人).</p>
-<p lang="en">Bias: herding (fund managers avoid ranking risk) + availability (EV / consumption upgrade stories everywhere) + reflexivity.</p>
-</div></section>
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519 / SZ·300750</span>
+<span class="company"><span lang="zh">2020-2021 "茅指数 / 宁组合" 抱团</span><span lang="en">2020–21 "Moutai / CATL" institutional herd</span></span>
+<span class="period">2020 H2 – 2022 Q1</span>
+</div>
+<p lang="zh">公募基金集中持仓茅台、宁德、海康、迈瑞、爱尔眼科等"白马股", 抱团推高估值。茅台 PE 从 30 升至 60+, 宁德 PE 一度 200+。2022 起回归, 这些股票最大回撤 40-60%。这一轮的特殊性: 主导者不是散户, 而是<em>机构</em> — 这本应是市场更理性的一端, 但同样陷入了羊群。</p>
+<p lang="en">Public mutual funds concentrated holdings in "white horse" stocks: Moutai, CATL, Hikvision, Mindray, Aier. Moutai P/E went 30 → 60+; CATL briefly 200+. Reverted from 2022; max drawdowns 40–60%. The twist: this herd was led by <em>institutions</em>, the supposedly more rational side — and they fell into the same trap.</p>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">股票</span><span lang="en">Stock</span></th>
+<th class="num"><span lang="zh">2020 PE</span><span lang="en">2020 P/E</span></th>
+<th class="num"><span lang="zh">2021 峰值 PE</span><span lang="en">2021 peak P/E</span></th>
+<th class="num"><span lang="zh">峰值至 2022 末回撤</span><span lang="en">Peak → end‑2022 drawdown</span></th>
+</tr></thead><tbody>
+<tr><td>600519 <span lang="zh">茅台</span><span lang="en">Moutai</span></td><td class="num">~30</td><td class="num up">~60</td><td class="num down">~−40%</td></tr>
+<tr><td>300750 <span lang="zh">宁德</span><span lang="en">CATL</span></td><td class="num">~60</td><td class="num up">~200</td><td class="num down">~−50%</td></tr>
+<tr><td>002415 <span lang="zh">海康</span><span lang="en">Hikvision</span></td><td class="num">~25</td><td class="num up">~50</td><td class="num down">~−55%</td></tr>
+<tr><td>300760 <span lang="zh">迈瑞</span><span lang="en">Mindray</span></td><td class="num">~50</td><td class="num up">~90</td><td class="num down">~−45%</td></tr>
+</tbody></table></div>
+
+<p lang="zh"><strong>行为机制分解</strong>:</p>
+<ul lang="zh">
+<li><strong>羊群 (机构版)</strong>: 公募基金考核以"排名"为主, 落后同行的痛远大于跑赢的快乐 — 这是机构层面的损失厌恶。结果是基金经理之间互相模仿, "宁可一起错, 不能一个人错" (keynesian beauty contest)。这就是 老王 错误 2 的机构同构版。</li>
+<li><strong>可得性 + 故事</strong>: 新能源 / 消费升级 / 国产替代叙事密集传播, 强化了"必涨"的可得性印象。茅台 = 喝不完的高端白酒; 宁德 = 卡脖子的全球电池; 海康 = AI 视觉。每个故事都<em>真实</em>, 但故事的<em>密度</em>让估值脱离基本面。</li>
+<li><strong>反身性</strong>: 高估值<em>吸引</em>更多基金买盘 (相对估值越高, 基金募集越容易) → 估值更高 → 故事更动人 → 卖方继续推荐 → 自我强化。直到 2022 年初, 加息预期 + 监管 + 业绩低预期三重外部冲击同步触发反转。</li>
+<li><strong>反向反身性</strong>: 估值下行 → 基金被赎回 → 被迫卖出抱团股 → 估值进一步下行 → 更多赎回。这是反向的反身性, 速度和向上时对称。</li>
+</ul>
+<p lang="en">Institutional herd: mutual fund evaluation is ranking‑based; loss of ranking hurts more than equal gain — institutional loss aversion. "Wrong together, never alone" — a Keynesian beauty contest. Old Wang's Mistake 2 reborn at fund manager scale. Availability + narrative: EV / consumption upgrade / domestic substitution stories saturated media; each story was real but the density divorced valuation from fundamentals. Reflexivity: high P/E attracted more fund flow → higher P/E → stronger story → more sell‑side support. Reversal in 2022 triggered by rates + regulation + earnings misses; same reflexivity ran reverse via fund redemptions forcing sales.</p>
+
+<p lang="zh"><strong>老王 在哪里?</strong> 错误 2 的钱就是在这一波抱团末期 (2021 中–末) 接的盘。整个市场都在被同一个"故事的密度"驱动, 他只是几百万分之一的羊。回到 Layer 1 的复盘: 不是"老王 一个人不理性", 而是<em>所有人同步不理性</em>, 所以这种错误在每个 A 股大行情结束后都会重新分发一次。</p>
+<p lang="en">Where was Old Wang? Mistake 2's capital landed at the tail of this herd (mid‑to‑late 2021). The entire market was driven by the same story density; he was simply one sheep in a few million. Back to Layer 1: it's not "Old Wang alone is irrational" — it's that <em>everyone is irrational simultaneously</em>, which is why this error gets re‑distributed at every A‑share top.</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener">
+<span lang="zh">巨潮 600519 信息披露 →</span><span lang="en">Cninfo 600519 disclosure →</span>
+</a>
+</div>
+
+<p class="muted measure" lang="zh">数据来源: 中国证券登记结算公司、上交所、Wind 行情。本案例使用整数级近似, 用于教学; 实操请用原始披露。</p>
+<p class="muted measure" lang="en">Sources: ChinaClear, SSE, Wind. Values rounded for instruction; pull originals for live work.</p>
+<p class="muted measure" lang="zh">补充阅读: Barberis &amp; Thaler (2003, <em>Handbook of the Economics of Finance</em>) "A Survey of Behavioral Finance" 给出系统综述; Shiller (2005, 2nd ed.) <em>Irrational Exuberance</em> 把行为偏差与历史泡沫连接, 含中国 A 股早期数据; Thaler &amp; Sunstein (2008) <em>Nudge</em> 把同一组偏差应用到政策与投资设计。</p>
+<p class="muted measure" lang="en">Further reading: Barberis &amp; Thaler (2003) "A Survey of Behavioral Finance" in <em>Handbook of the Economics of Finance</em>; Shiller's <em>Irrational Exuberance</em> (2nd ed., 2005) ties biases to historical bubbles including early A‑share episodes; Thaler &amp; Sunstein's <em>Nudge</em> (2008) applies the same bias inventory to policy and investment design.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div>
+<h4><span lang="zh">反身性</span><span lang="en">Reflexivity</span></h4>
+<p lang="zh">价格和基本面双向耦合。EMH 单向假设在牛熊极端处失效, 反身性是核心补丁。</p>
+<p lang="en">Two‑way coupling of price and fundamentals; the patch where EMH breaks at extremes.</p>
+</div></div>
+<div class="model-card"><span class="roman">ii</span><div>
+<h4><span lang="zh">前景理论 S 曲线</span><span lang="en">Prospect theory S‑curve</span></h4>
+<p lang="zh">把"心慌"翻译成 λ ≈ 2.25。所有处置、禀赋、现状偏差的几何根源。</p>
+<p lang="en">Quantifies "stomach‑sick" as λ ≈ 2.25. Geometric root of disposition, endowment, status‑quo biases.</p>
+</div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted">
+<span lang="zh">先自己想清楚再展开答案。每题至少一个反直觉点。</span>
+<span lang="en">Think before unfolding. Every prompt has at least one counterintuitive twist.</span>
+</p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
 <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> A 股散户"亏损套牢不卖"的行为, 用哪个偏差最好解释? 与"盈利就跑"的关联?</span><span lang="en"><strong>Q1.</strong> A‑share retail "hold the loss, sell the gain" — which bias best explains?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><strong>处置效应 + 损失厌恶 + 锚定</strong>:</p>
-<ul lang="zh"><li><strong>损失厌恶</strong>: 卖出实现亏损会触发 2 倍的痛苦感 (vs 同等数额收益快感). 心理上避免</li><li><strong>锚定</strong>: 锚定买入价, 觉得"等回本就卖". 但市场不知道你的成本, 价格按未来基本面而非历史成本</li><li><strong>处置效应</strong>: Shefrin-Statman 把这两者合成"过早卖盈利, 太久持亏损"的实证模式. 中国散户实证调查显示这一倾向显著</li></ul>
-<p lang="zh"><strong>纠正方法</strong>: 设定<em>止损规则</em> (例如 −15% 自动卖); 看的是<em>当前基本面与价格的对比</em>而非历史买入价; 把每只股票当成"今天才买进"来评估</li>
-<p lang="en">Loss aversion + anchoring + disposition effect. Pain of realized loss ~2× joy of gain → avoid; anchor to entry price → "wait for breakeven" but market doesn't know your basis. Fix: stop‑loss rules; evaluate at current price as if fresh purchase.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>处置效应 + 损失厌恶 + 锚定</strong>三者叠加:</p>
+<ul lang="zh">
+<li><strong>损失厌恶</strong>: 卖出实现亏损会触发 ~2.25 倍的痛苦感, 心理上避免。</li>
+<li><strong>锚定</strong>: 锚定买入价, 觉得"等回本就卖", 但市场不知道你的成本, 价格按未来基本面而非历史成本。</li>
+<li><strong>处置效应</strong>: Shefrin–Statman 把两者合成"过早卖盈利、太久持亏损"。Odean (1998) 实证: 卖盈利概率是卖等额亏损概率的 1.5 倍。</li>
+</ul>
+<p lang="zh"><strong>纠正方法</strong>: (1) 设定止损规则 (例如 −15% 自动卖); (2) 每周问自己"如果现在没持仓, 我会以当前价买这只票吗?"如果不会就卖; (3) 把仓位拆开思考, 别用"成本价"当锚, 用"机会成本"当锚。</p>
+<p lang="en">Loss aversion + anchoring + disposition effect, stacked. Loss realization triggers ~2.25× pain → avoid. Anchor to entry price → "wait for breakeven" while market doesn't know your basis. Shefrin–Statman pattern; Odean (1998) found selling‑winner probability is 1.5× selling‑equal‑loser. Fixes: (1) hard stop‑loss rule, (2) weekly "would I buy at current price with no position?" test, (3) anchor on opportunity cost, not purchase cost.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
 <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 2021 茅指数从 P/E 60 跌回 30 这种"均值回归"用反身性如何解释? 与 EMH 兼容吗?</span><span lang="en"><strong>Q2.</strong> 2021 Moutai P/E 60 → 30 reversion — explain via reflexivity. Compatible with EMH?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><strong>反身性视角</strong>: P/E 60 时, 高估值<em>吸引</em>更多基金买入 → 估值更高 → 故事更动人 → 卖方继续推荐 → 自我强化. 但基本面没那么快增长, 总有一天必须回归. 触发点可以是<em>外部</em>(政策、利率、流动性) 或<em>内部</em>(业绩低预期). 一旦反转, 同样的反身性<em>反向</em>运行 — 跌得更快.</p>
-<p lang="zh"><strong>与 EMH 兼容性</strong>: 短期 (1-3 年) 显著不兼容 — 价格远偏离基本面. 长期 (5+ 年) 兼容 — 回归均值发生. EMH 不是"永远正确", 而是"长期回归". Damodaran 说"市场长期是机器, 短期是民意调查".</p>
-<p lang="en">Reflexivity: high P/E attracts buying → higher P/E → more stories. Fundamentals can't keep up → reversion triggered by external (rates, policy) or internal (earnings miss) shock. Same reflexivity runs reverse. EMH compatibility: incompatible short‑run (1–3y), compatible long‑run (5y+). Damodaran: "market is a machine long‑run, a polling station short‑run."</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>反身性视角</strong>: P/E 60 时, 高估值<em>吸引</em>更多基金买入 (相对估值越高基金募集越容易) → 估值更高 → 故事更动人 → 卖方继续推荐 → 自我强化。基本面跟不上, 总有一天必须回归。触发点可以是<em>外部</em> (政策、利率、流动性) 或<em>内部</em> (业绩低预期)。一旦反转, 同样的反身性<em>反向</em>运行 — 估值下行 → 基金被赎回 → 被迫卖出 → 估值进一步下行, 跌得更快。</p>
+<p lang="zh"><strong>与 EMH 兼容性</strong>: 短期 (1-3 年) 显著不兼容 — 价格远偏离基本面。长期 (5+ 年) 兼容 — 均值回归发生。EMH 不是"永远正确", 而是"长期回归"。Damodaran: "市场长期是机器, 短期是民意调查"。Shiller (2003, <em>JEP</em>) 把这个矛盾系统化, 称为 "behavioral finance + limits to arbitrage"。</p>
+<p lang="en">High P/E attracted more fund flow → higher P/E → stronger story → self‑reinforcing. Fundamentals couldn't keep up; reversion triggered by external (rates, policy) or internal (earnings miss) shock. Same reflexivity ran reverse: lower P/E → redemptions → forced sales → lower P/E. EMH compatibility: incompatible short‑run (1–3y), compatible long‑run (5y+). Damodaran: "market is a machine long‑run, a polling station short‑run." Shiller (2003) systematized this as "behavioral finance + limits to arbitrage."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 用前景理论的 $\lambda \approx 2.25$ 解释: 为什么 老王 拒绝接受 −15% 的小亏, 却愿意一直拿着 −50% 的大亏? 这是不是矛盾?</span><span lang="en"><strong>Q3.</strong> Use $\lambda \approx 2.25$ to explain why Old Wang refuses a −15% small loss but rides a −50% large loss. Contradiction?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不矛盾, 而是 S 曲线损失侧"凸性"的直接结果</strong>。看 (4.1): 损失侧的边际痛感 <em>递减</em> (concave‑down on losses = convex value function on the $x &lt; 0$ side):</p>
+<ul lang="zh">
+<li>从 0 跌到 −15%: 痛感 $|v(-0.15)| = 2.25 \times 0.15^{0.88} \approx 0.43$。这是第一刀, 最痛。</li>
+<li>从 −15% 跌到 −50% (增量 −35%): 痛感增量 $|v(-0.50)| - |v(-0.15)| \approx 2.25 \times (0.50^{0.88} - 0.15^{0.88}) \approx 1.21 - 0.43 = 0.78$。增量 0.78, 但每 1% 跌幅带来的边际痛感只有 0.78/35 ≈ 0.022, 远低于第一段的 0.43/15 ≈ 0.029。</li>
+</ul>
+<p lang="zh">结论: 损失越深, 每追加 1% 跌幅的边际痛感越小。当 老王 已经亏到 −30%, 心理上他在"−30% 区间"麻木了 — 再跌 5% 几乎感觉不到。这就是<em>"既然都已经这么烂, 不如赌一把回本"</em>的数学根源。这也是为什么 <strong>第一次止损</strong> 远比深套之后的止损重要 — 系统性偏差让你在最重要的时候做最难的决定。</p>
+<p lang="en">No contradiction — it's the convexity of the loss arm in (4.1). $|v(-0.15)| \approx 0.43$ from origin; incremental $|v(-0.50)| - |v(-0.15)| \approx 0.78$ over 35 more percentage points. Marginal pain per 1% drop is ~0.029 over the first 15pp but ~0.022 over the next 35pp — diminishing. Once deep underwater, you go numb. This is the mathematical root of "since it's already trashed, may as well gamble for breakeven." Implication: the <em>first</em> stop‑loss is far harder than the tenth and far more valuable — the bias is most acute when the decision matters most.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 一个理性投资者在 2015 年 4 月看到"沪深 300 涨到 4,200, 融资余额 1.8 万亿"应该做什么? 反身性框架下"理性"的定义和经典 EMH 有何不同?</span><span lang="en"><strong>Q4.</strong> A rational investor sees "CSI 300 = 4,200, margin = ¥1.8tn" in April 2015 — what to do? How does "rational" under reflexivity differ from EMH "rational"?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>EMH 视角</strong>: 价格就是基本面, 没必要做任何事 — "市场是对的"。这种"理性"在反身性循环中是<em>错的</em>: 因为价格不只是<em>反映</em>基本面, 还在<em>改写</em>它 (融资余额本身就是一种被价格驱动的基本面变量)。</p>
+<p lang="zh"><strong>反身性视角</strong>: 应当问两个问题:</p>
+<ul lang="zh">
+<li><strong>循环位置</strong>: 当前处在反身性循环的哪一段?早期 (信号刚出, 杠杆还低) / 中期 (加速) / 晚期 (杠杆顶, 边际买盘耗尽)?2015 年 4 月: 融资余额从 4,000 亿到 18,000 亿仅 9 个月, +350%, 这是<em>晚期</em>特征 — 边际买盘必须越来越多才能维持价格。</li>
+<li><strong>触发条件</strong>: 什么会打破循环?监管 / 流动性 / 外部冲击。2015 年 4 月已有信号: 监管开始关注场外配资 (4 月 17 日新规)。</li>
+</ul>
+<p lang="zh"><strong>Soros 的"理性"</strong>: 不预测顶点 (没人能), 但<em>识别循环位置 + 准备退出</em>。具体: 减仓、移除杠杆、对冲。Stanley Druckenmiller 描述 Soros 牛市后期: "我们不是空头, 我们只是把仓位从'重仓多头'调成'轻仓多头', 留出弹药等反转"。这与 EMH 假设的"一直满仓持有市场组合"截然不同。</p>
+<p lang="en">EMH says: price reflects everything, do nothing. That's wrong under reflexivity because price is also <em>rewriting</em> fundamentals (margin balance is itself a price‑driven fundamental). Soros‑rational asks: (1) where in the cycle are we? Margin +350% in 9 months = late stage; marginal buying must keep accelerating to hold prices. (2) What breaks the cycle? Regulation, liquidity, external shock. By April 2015 the CSRC had begun targeting off‑market financing. Action: don't predict the top, but recognize cycle position + de‑risk. Druckenmiller on Soros: "We weren't short — we just went from heavy long to light long, leaving ammo for the reversal." Opposite of EMH's "always hold the market portfolio."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 老王 想给自己设三条"防偏差规则"。如果只能选三条, 应该是哪三条? 为每条规则对应到本章的一个偏差。</span><span lang="en"><strong>Q5.</strong> Old Wang wants three "anti‑bias rules" — only three. Pick them and pair each with one bias from this chapter.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>三条规则 + 对应偏差</strong>:</p>
+<ol lang="zh">
+<li><strong>预设止损规则, 严格执行</strong> (例如单只 −15% 自动卖, 全仓 −25% 强制减仓 50%) — 对抗 <strong>损失厌恶 + 处置效应</strong>。把决策从"亏损时做"挪到"亏损前做", 因为亏损时大脑被 λ = 2.25 劫持, 做不出好决定。</li>
+<li><strong>仓位上限 + 强制再平衡</strong> (单只 ≤ 20%, 单行业 ≤ 30%, 每季度再平衡一次) — 对抗 <strong>羊群 + 过度自信 + 反身性</strong>。即使你<em>觉得</em>某个故事很对, 数量上限强制你保持分散; 再平衡机制自动"涨了就卖、跌了就买", 反着情绪做。</li>
+<li><strong>交易日志 + 月度复盘</strong> (每笔交易写下"为什么买、预期 / 止损位、信息来源", 月底复盘并标注偏差类型) — 对抗 <strong>过度自信 + 锚定 + 可得性</strong>。日志让你回看时无法美化历史 ("我早就觉得..."), 强制你面对自己的判断准确率。Barber–Odean 数据告诉你: 大多数散户的"自我感觉"和实际收益严重背离。</li>
+</ol>
+<p lang="zh"><strong>注意</strong>: 单条规则的威力远不如三条配合。止损单独用会被频繁触发洗出, 仓位上限单独用对抗不了情绪激进, 日志单独用没有强制行动。三条形成闭环: 上限<em>事前</em>限制风险, 止损<em>事中</em>切断尾部, 日志<em>事后</em>修正认知。</p>
+<p lang="en">(1) Hard stop‑loss (−15% single name, −25% portfolio force a 50% trim) — fights <strong>loss aversion + disposition</strong> by moving the decision <em>before</em> the loss, when λ=2.25 hasn't hijacked you. (2) Position caps + scheduled rebalancing (≤20% single name, ≤30% single sector, quarterly rebalance) — fights <strong>herding + overconfidence + reflexivity</strong>; rebalancing mechanically "sells what rose, buys what fell" against emotion. (3) Trade journal + monthly review (write "why buy / target / stop / source" per trade; tag bias type at month end) — fights <strong>overconfidence + anchoring + availability</strong>; the journal blocks revisionist memory ("I knew it all along") and confronts you with your actual hit rate, which Barber–Odean shows diverges sharply from self‑perception. The three rules form a loop: caps cap risk ex‑ante, stops cut tails mid‑trade, journals correct beliefs ex‑post.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="03-emh.html"><span class="dir">← Prev</span><span class="title">03 · EMH</span></a><a class="next" href="05-dcf.html"><span class="dir">Next →</span><span class="title">05 · DCF</span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="03-emh.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">03 · EMH</span></a><a class="next" href="05-dcf.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">05 · DCF</span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

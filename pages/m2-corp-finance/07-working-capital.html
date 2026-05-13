@@ -40,23 +40,41 @@
 
 <section class="layer">
 <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-<p lang="zh">公司日常运营的现金流时间线:</p>
-<p lang="en">Daily operating cash timeline:</p>
-<ol lang="zh">
-<li>买原材料 (或商品) → 付供应商钱 (或欠下应付账款 AP)</li>
-<li>原材料放仓库 → <em>存货 (Inventory)</em></li>
-<li>生产 → 卖出 → 应收账款 (AR)</li>
-<li>客户付款 → 收回现金</li>
-</ol>
-<p lang="en">Buy materials → pay supplier (or AP) → inventory → produce → sell on credit (AR) → collect.</p>
-<p lang="zh"><strong>CCC</strong> = (存货占用天数 DIO) + (应收账款占用天数 DSO) − (应付账款欠付天数 DPO) = 从你<em>付钱给供应商</em>到<em>收到客户钱</em>需要多少天。</p>
-<p lang="en">CCC = DIO + DSO − DPO = days between paying suppliers and collecting from customers.</p>
-<p lang="zh">CCC 高 → 公司被迫"垫资"运营 → 需要更多<em>营运资金</em>支持每元营收 → 资金被锁死, 效率低。CCC 低甚至负 (例如京东、亚马逊、茅台) → 公司用<em>供应商或客户的钱</em>运营自身, 极度高效。</p>
-<p lang="en">High CCC → firm prepays operations → more working capital per ¥ of sales → capital locked, inefficient. Low or negative CCC (JD, Amazon, Moutai) → firm runs on suppliers'/customers' money → extreme efficiency.</p>
+
+<p lang="zh">上一章里, 老王把 30,000 元的年底利润分了一半给小张和自己, 留了 15,000 元在店里。今天我们换一个尺度看这家店 — 不看年底, 看<em>一天</em>。我们陪老王走一整天: 看现金从口袋里出去, 再看现金什么时候回到口袋里。这中间有多少天的"空窗", 决定了店面到底"被锁了多少钱"。</p>
+<p lang="en">In the last chapter Wang split year‑end profit and kept ¥15,000 in the shop. Today we change the timescale — not year, but <em>day</em>. We walk through one full day with Wang: cash leaving the till, cash coming back. The gap in between determines exactly how much money the shop has "locked up."</p>
+
+<p lang="zh"><strong>1. 清晨 5 点, 牛肉商敲门。</strong> 这一次老王不再赊账了, 现金 1,500 元当场付清 (做了几年生意, 老王的信用反而让他想"按时付款换更稳的供应")。账上现金 −1,500, 牛肉仓库 +1,500。老王问自己: <em>这 1,500 元的牛肉, 什么时候才能变回现金</em>? — 它要先变成面、再卖给客户、客户再付钱。这中间隔的天数, 就是<strong>存货占用的天数</strong>。它有个名字: <strong>存货周转天数 (Days Inventory Outstanding, DIO)</strong>。回核: 牛肉在仓库放多久 → 几天?</p>
+<p lang="en"><strong>1. 5 a.m. — beef delivery.</strong> This time Wang pays ¥1,500 cash on the spot (after a few years in business, paying promptly buys him steadier supply). Cash −¥1,500, inventory +¥1,500. Wang asks: <em>when will this ¥1,500 of beef turn back into cash</em>? It has to become noodles, get sold, and the customer has to pay. The number of days in that gap is <strong>Days Inventory Outstanding (DIO)</strong>. Recheck: how many days does the beef sit in storage?</p>
+
+<p lang="zh"><strong>2. 中午, 老李 (隔壁餐馆) 来订餐。</strong> 老李定了 20 碗面晚上要给员工聚餐用, 共 600 元。但老李说: "老规矩, 月底一起结。" — 老王做了 20 碗面 (耗掉 800 元牛肉里的一部分, 假设 400 元成本), 收入 600 元, 但<em>现金一分没到账</em>。账上多了一笔 600 元的"客户欠款"。老王问自己: <em>老李什么时候付钱</em>? 假设月底, 平均 15 天后。这 15 天就是<strong>应收账款占用的天数</strong>—— <strong>应收账款周转天数 (Days Sales Outstanding, DSO)</strong>。回核: 卖出面到收到钱 → 几天?</p>
+<p lang="en"><strong>2. Noon — Old Li orders takeout.</strong> Li orders 20 bowls for a staff dinner, ¥600 total. But Li says, "Put it on the tab — end of month." Wang makes 20 bowls (eating into roughly ¥400 of beef cost), books ¥600 of revenue, but <em>not a yuan of cash arrives</em>. The ledger now shows ¥600 of "customer owes us." Wang asks: <em>when will Li pay</em>? Month‑end, say 15 days. Those 15 days are <strong>Days Sales Outstanding (DSO)</strong>. Recheck: from selling the noodles to receiving the cash → how many days?</p>
+
+<p lang="zh"><strong>3. 下午, 面粉商打来电话。</strong> "上批面粉 800 元, 你下周打款。" — 老王现在反过来"欠人家"了: 货已经在店里, 钱还没付。这种"先拿货、晚付钱"的天数就是<strong>应付账款占用的天数</strong>—— <strong>应付账款周转天数 (Days Payable Outstanding, DPO)</strong>。假设老王压到了第 10 天才付, DPO = 10 天。回核: 用了人家的货, 几天后才掏钱?</p>
+<p lang="en"><strong>3. Afternoon — the flour vendor calls.</strong> "Last batch was ¥800, you can settle next week." Now Wang is on the other side — goods are in the shop, money hasn't gone out yet. The days between receiving goods and paying for them are <strong>Days Payable Outstanding (DPO)</strong>. Suppose Wang stretches it to day 10, so DPO = 10. Recheck: using the vendor's goods for how many days before paying?</p>
+
+<p lang="zh"><strong>4. 傍晚, 老王坐下来画一条时间线。</strong> 早上 5 点, 现金 −1,500 (买牛肉)。第 ? 天, 牛肉做成面, 卖出去 (DIO 天后)。又过 ? 天, 客户付钱 (DSO 天后)。— 等等, 还有一头: 面粉的钱是<em>第 10 天</em>才付的, 等于面粉商先"借"给了老王 10 天的资金。老王在草纸上写:</p>
+<p lang="en"><strong>4. Evening — Wang sketches a timeline.</strong> 5 a.m.: cash −¥1,500 (beef). Day DIO: beef becomes noodles, sold. Day DIO+DSO: customer pays. But — the flour wasn't paid until day 10, meaning the flour vendor effectively lent Wang the money for 10 days. On scrap paper Wang writes:</p>
+<p lang="zh"><em>"我自己掏钱的天数 = 存货放仓库的天数 + 客户欠我的天数 − 供应商让我欠他的天数"</em></p>
+<p lang="en"><em>"days I'm out of pocket = days inventory sits + days customer owes me − days supplier lets me delay"</em></p>
+<p lang="zh">这就是<strong>现金循环天数 (cash conversion cycle, CCC)</strong> = DIO + DSO − DPO。它衡量的是<em>从你自己付钱到自己收回钱</em>需要垫多少天。回核: 老王的钱总共在外面"飘"几天?</p>
+<p lang="en">That is the <strong>cash conversion cycle (CCC)</strong> = DIO + DSO − DPO. It measures how many days you are "out of pocket" from paying suppliers to collecting from customers. Recheck: how many days is Wang's money "out there"?</p>
+
+<p lang="zh"><strong>5. 老王做了个简单算术。</strong> 假设 DIO = 7 天 (牛肉一周内卖完), DSO = 15 天 (客户月底结账, 平均 15 天), DPO = 10 天 (压面粉商 10 天)。CCC = 7 + 15 − 10 = 12 天。每天店面平均销售额 200 元 → 老王需要 200 × 12 = 2,400 元的现金<em>永远</em>压在"运营周期"里, 才能让店转起来。这 2,400 元就是<strong>营运资本 (working capital)</strong>。回核: 把 CCC 缩短 1 天 → 释放多少现金?</p>
+<p lang="en"><strong>5. Quick arithmetic.</strong> Say DIO = 7 (beef sells out in a week), DSO = 15 (customers pay end‑of‑month, average 15), DPO = 10 (flour stretched to day 10). CCC = 7 + 15 − 10 = 12 days. Daily sales ¥200 → Wang has ¥200 × 12 = ¥2,400 <em>permanently</em> locked in the operating cycle to keep the shop running. That ¥2,400 is <strong>working capital</strong>. Recheck: cutting CCC by 1 day → how much cash is freed?</p>
+
+<p lang="zh"><strong>6. 老李提出一个反向思路。</strong> "你卖月票啊, 让客户每月初一次付 50 元面票, 一个月吃 20 碗。" — 这就翻转了 DSO: 客户<em>先付钱再吃面</em>, 老王收到的不再是"应收账款", 而是"<em>合同负债</em>"(预收款)。如果老王能让一半客户买月票, DSO 从 15 天降到 5 天, 甚至变成"负 DSO"(客户提前付款)。— 老王立刻意识到: 这就是大客户预付制 / 茅台经销商打款的小型版本。<em>用客户的钱运营</em>, CCC 可以做到很小、零、甚至<strong>负</strong>。负 CCC 意味着: <em>店面不再需要自己垫钱, 反而手上一直有别人的钱在用</em>。回核: 客户预付一个月 → DSO 是正是负? CCC 改善多少?</p>
+<p lang="en"><strong>6. Li suggests an inversion.</strong> "Sell monthly noodle cards — ¥50 upfront for 20 bowls." That flips DSO: customers <em>pay before eating</em>, and what Wang collects is no longer an account receivable but a <em>contract liability</em> (prepayment). If half his customers buy cards, DSO drops from 15 to 5 days, or even goes negative. Wang sees it: this is a tiny version of Moutai's distributor‑prepayment model. <em>Run on the customer's money</em> and CCC can shrink to zero — or even go negative, meaning Wang isn't fronting cash at all; he's permanently holding someone else's money. Recheck: prepayment of a month → is DSO positive or negative? How much does CCC improve?</p>
+
+<p lang="zh">回看一下: 老王从"早上 5 点付牛肉钱"到"晚上画一条时间线", 把日常运营的现金流转化成了三个可量化的天数 — DIO、DSO、DPO — 再合成一个总指标 CCC。它告诉老王<em>这家店到底需要多少营运资本才能转得动</em>。Layer 2 把这四个公式形式化, 并给出可对比的行业基准; Layer 3 用海尔智家 (CCC ≈ 5 天的优等生) 和苏宁 (CCC 5 年从 −20 变到 +90 天的暴雷案例) 验证: CCC 的变化趋势, 几乎总是<em>早于</em>净利润崩塌出现。</p>
+<p lang="en">Look back. Starting from "5 a.m. — pay the beef vendor" and ending with an evening timeline sketch, Wang has turned daily operations into three quantifiable day‑counts — DIO, DSO, DPO — and a single composite, CCC. It tells him exactly how much working capital the shop needs to function. Layer 2 formalises the four formulas with industry benchmarks; Layer 3 verifies with Haier Smart Home (CCC ≈ 5 days, top student) and Suning (CCC went from −20 to +90 over five years before collapse). CCC trends almost always lead net‑income deterioration.</p>
 </section>
 
 <section class="layer">
 <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王一天的现金流 (买牛肉 → 卖面 → 收账 → 拖付面粉钱) 推出了三个天数 + 一个 CCC。现在把这四条做成可计算的公式, 并给出跨行业 CCC 基准。</p>
+<p lang="en">Layer 1 derived three day‑counts and a CCC from Wang's one‑day cash trace (buy beef → sell noodles → collect → defer flour payment). We now formalise the four formulas with cross‑industry benchmarks.</p>
 
 <div class="callout callout--formula">
 <div class="eq"><span>$$ \mathrm{DIO} = \frac{\text{平均存货}}{\text{COGS}} \times 365 $$</span><span class="num">(7.1)</span></div>
@@ -92,6 +110,8 @@
 
 <div class="case">
 <div class="case-head"><span class="ticker">SH·600690</span><span class="company"><span lang="zh">海尔智家 — CCC 优等生</span><span lang="en">Haier Smart Home — top student</span></span></div>
+<p lang="zh">把老王那 12 天 CCC 放大到一家家电巨头看看 — 老王压面粉商 10 天 DPO, 海尔靠规模议价压到了 75 天; 老王 DSO 15 天, 海尔靠线上 + 经销商体系压到 30 天。结果: 海尔的 CCC 只有 5 天, 比老王还少 7 天。</p>
+<p lang="en">Scale Wang's 12‑day CCC up to a home appliance giant — where Wang stretches the flour vendor to 10 days of DPO, Haier uses scale to push it to 75; where Wang's DSO is 15, Haier's online + dealer network gets it to 30. Result: Haier's CCC is just 5 days — seven fewer than Wang.</p>
 <p lang="zh">海尔 2023 近似: DIO ~50, DSO ~30, DPO ~75 → CCC ≈ 5 天。意味着公司几乎只需"5 天的销售额"作为营运资本 — 极度高效。</p>
 <p lang="en">Haier 2023: DIO ~50, DSO ~30, DPO ~75 → CCC ≈ 5 days. Near zero working capital lock‑up.</p>
 <p lang="zh"><strong>CCC 低的来源</strong>:</p>

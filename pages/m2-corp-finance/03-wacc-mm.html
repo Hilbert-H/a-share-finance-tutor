@@ -145,44 +145,51 @@
       <section class="layer">
         <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
 
-        <p lang="zh">一家公司从两类资金来源获得钱: <em>股东</em>提供的权益 $E$, 和<em>债权人</em>提供的负债 $D$。每一种资金都有<em>对应的</em>回报要求 — 股东要 $r_e$, 债权人要 $r_d$。公司的<em>加权平均成本</em>(WACC) 就是这两个成本按规模加权:</p>
-        <p lang="en">A firm gets capital from two sources: equity $E$ from shareholders ($r_e$), debt $D$ from creditors ($r_d$). The <em>weighted average cost</em> blends them:</p>
-        <div class="eq"><span>$$ \mathrm{WACC} = \frac{E}{V} r_e + \frac{D}{V} r_d (1-t) $$</span><span class="num">—</span></div>
-        <p lang="zh">其中 $V = E + D$ 是公司总价值, $t$ 是企业所得税率。注意债务成本要乘 $(1-t)$ — 这是<em>税盾</em>(tax shield) 的体现, 因为利息可在税前扣除, 实际给债权人 $r_d$ 但只"花掉" $r_d(1-t)$。</p>
-        <p lang="en">$V = E + D$, $t$ is the corporate tax rate. Debt cost gets multiplied by $(1-t)$ — the <em>tax shield</em>, because interest is tax‑deductible: the firm pays creditors $r_d$ but the after‑tax cost is $r_d(1-t)$.</p>
+        <p lang="zh">Layer 0 已经把<em>股东 vs 债权人</em>、<em>资本结构 D/V</em>、<em>加权平均</em>、<em>税盾</em>这 4 个原子搭好。现在让老王上场, 用<em>自己的 10 万元</em>决定第二家店怎么融资。生意做得不错, 老王打算在城东开第二家面馆, 启动资金 ¥100,000。他面前有三种<em>融资结构</em>, 每种"看起来都行"。我们一笔一笔看, 每笔结束都问同一对问题: "<em>这种结构下我自己的回报率是多少? 我承担的风险是什么?</em>"</p>
+        <p lang="en">Layer 0 set up four atoms: equity vs debt, capital structure D/V, weighted average, tax shield. Now Old Wang takes the stage to decide how to finance a second stall. Business is good; he wants to open a second noodle shop across town, startup cost ¥100,000. Three financing structures sit in front of him, each "looks reasonable." We walk through them, asking the same pair after each: <em>what's my own return under this structure, and what risk do I bear?</em></p>
 
-        <h3 lang="zh">为什么 WACC 是<em>折现率</em>?</h3>
-        <h3 lang="en">Why WACC is the discount rate</h3>
-        <p lang="zh">公司投资一个新项目, 用的就是这两类资金。如果项目给股东和债权人的收益<em>低于</em>他们要求的 $r_e$ 和 $r_d$, 资金提供方就会去别处。WACC 就是项目必须超过的<em>最低门槛</em>(hurdle rate) — 这是机会成本 (Ch.01) 在公司层面的具体实现。</p>
-        <p lang="en">A new project uses both kinds of capital. If it returns less than $r_e$ and $r_d$, capital providers will go elsewhere. WACC is the firm‑level <em>hurdle rate</em> — the operationalization of opportunity cost.</p>
+        <p lang="zh"><strong>1. 方案 A: 全部自有资金。</strong>老王从两年攒下的现金里拿出 ¥100,000, 不借钱。预计第二家店一年能赚 15,000 元 (15% 的<em>资产回报率</em>)。老王这 10 万就拿到 15,000 元 — 他的<em>自有资金回报率</em>就是 15%。问: 这 15% 高吗?——比定存 3% 高很多, 比朋友新店期望负 16% 好得多。但要承担<em>店本身</em>的全部风险: 万一第一年生意差, 只赚 5,000 元, 老王的回报就跌到 5%; 万一亏 5,000, 老王自己承担 −5%。"<em>风险与回报全部归我</em>"是无杠杆结构的特征。</p>
+        <p lang="en"><strong>Option A — all own cash.</strong> Wang pulls ¥100,000 from his savings, borrows nothing. The new shop is expected to earn ¥15,000 a year — a 15% <em>asset return</em>. Wang gets the full ¥15,000 → his <em>return on own money</em> is 15%. High? Way above the 3% deposit, much better than the friend's stall (−16% expected). But he absorbs the shop's full risk: a soft first year of ¥5,000 profit drops his return to 5%; a ¥5,000 loss is a −5% on him. <em>All risk and all return are mine</em> — the signature of the unlevered structure.</p>
 
-        <h3 lang="zh">为什么资本结构问题<em>看起来</em>没意义?</h3>
-        <h3 lang="en">Why capital structure <em>seems</em> not to matter</h3>
-        <p lang="zh">Modigliani-Miller (MM 1958) 的洞察: 一家公司创造的总现金流不依赖于它如何切分给股东和债权人。<em>切割同一块蛋糕的方式不改变蛋糕大小</em>。如果你能任意调整 E/D, 公司价值 $V$ 应当<em>不变</em>。</p>
-        <p lang="en">MM (1958) insight: total cash flow doesn't depend on how the pie is sliced. The way you cut the pie doesn't change its size. If you can freely adjust $E/D$, firm value $V$ should be <em>unchanged</em>.</p>
-        <p lang="zh">这就是 MM Proposition I (无税): $V_{\text{levered}} = V_{\text{unlevered}}$。背后是<em>无套利</em>论证 — 如果两家相同公司一家用债一家用权益融资, 而价值不等, 投资者可以买便宜的、卖贵的, 自己造一个等价头寸 (用 personal leverage), 套利消除差异。</p>
-        <p lang="en">MM I (no tax): $V_L = V_U$. Underlying logic is no‑arbitrage — if two identical firms with different capital structures had different values, an investor could buy the cheap one and sell the expensive one, replicating the leverage via personal borrowing.</p>
+        <p lang="zh"><strong>2. 方案 B: 借一半, 自己出一半。</strong>老王从银行借 ¥50,000 (年利率 5%, 利息每年 2,500), 自己出 ¥50,000。还是预计店一年赚 ¥15,000。但这 15,000 要先付 2,500 利息给银行, 剩下 12,500 归老王。所以老王自己的 50,000 拿回 12,500 — 自有资金回报率 = 12,500 / 50,000 = 25%, 比方案 A 的 15% 高 10 个百分点。问: 借钱是不是"凭空多出"了 10 个百分点回报?——不是凭空。代价是: 万一店第一年亏 5,000 元, 老王还得付 2,500 利息, 自己亏 7,500 在 50,000 上, 即 −15%。"<em>杠杆放大上行也放大下行</em>" — 这就是 <strong>财务杠杆 (financial leverage)</strong>。</p>
+        <p lang="en"><strong>Option B — borrow half, put up half.</strong> Wang takes out a ¥50,000 bank loan at 5% (¥2,500 interest per year) and adds ¥50,000 of his own cash. Still expect ¥15,000 profit; pay ¥2,500 interest, ¥12,500 lands with Wang. Return on his own money = 12,500 / 50,000 = 25% — 10 percentage points higher than Option A. Did leverage create those 10 points from nothing? No. Price tag: a ¥5,000 loss year still owes the bank ¥2,500 interest → Wang loses ¥7,500 on his ¥50,000, i.e. −15%. <em>Leverage amplifies the upside and the downside.</em> This is <strong>financial leverage</strong>.</p>
 
-        <h3 lang="zh">现实为什么<em>偏离</em> MM?</h3>
-        <h3 lang="en">Why reality deviates</h3>
-        <ol lang="zh">
-          <li><strong>税收</strong>: 利息税前扣除产生税盾 — 偏好债务。MM 含税版本 (1963): $V_L = V_U + tD$, 全杠杆最优。</li>
-          <li><strong>财务困境成本</strong>: 高杠杆 → 破产概率上升 → 直接成本 (诉讼、清算) + 间接成本 (供应商收紧、客户流失、人才离开)。这抵消税盾, 产生<em>内部最优杠杆</em>。</li>
-          <li><strong>信息不对称</strong>: 管理层比外部投资者更了解公司。发行<em>权益</em>被市场解读为"管理层认为股价偏高"信号 → 股价下跌。结果: 公司偏好<em>内部留存 → 债务 → 权益</em>这一融资顺序 (Myers 1984 pecking order)。</li>
-          <li><strong>代理成本</strong>: 股东 vs 债权人冲突 (资产替代、债务积压); 管理层 vs 股东冲突 (过度投资、private benefits)。</li>
-        </ol>
-        <ol lang="en">
-          <li><strong>Taxes:</strong> interest tax shield favors debt. MM with tax: $V_L = V_U + tD$ → max leverage optimal.</li>
-          <li><strong>Distress costs:</strong> bankruptcy probability rises with leverage; direct (legal, liquidation) + indirect (supplier tightening, customer loss, talent flight). Offsets tax shield → interior optimum.</li>
-          <li><strong>Information asymmetry:</strong> equity issuance signals "management thinks shares overpriced" → price drops. Pecking order: internal → debt → equity (Myers 1984).</li>
-          <li><strong>Agency costs:</strong> shareholder–creditor conflicts (asset substitution, debt overhang); manager–shareholder (overinvestment, private benefits).</li>
-        </ol>
-        <p lang="zh">把这些放到一起就是<em>权衡理论</em>(trade-off theory): 最优杠杆在<em>税盾边际收益</em> $=$ <em>困境成本边际损失</em>处。每个行业、每家公司的最优点不同。</p>
-        <p lang="en">Combined: <em>trade‑off theory</em> — optimum where marginal tax shield = marginal distress cost. Industry‑ and firm‑specific.</p>
+        <p lang="zh"><strong>3. 方案 C: 借九成, 自己只出一成。</strong>从银行借 ¥90,000 (5% 利率, 利息 4,500), 自己出 ¥10,000。店里赚 15,000, 付完利息剩 10,500 给老王。自有资金回报率 = 10,500 / 10,000 = 105% — <em>一年翻倍</em>!但: 如果店第一年亏 5,000, 老王还要付 4,500 利息, 一共亏 9,500 在自己 10,000 上 — <em>接近亏光本金</em>。更要命: 第二年如果再亏, 老王连还利息的钱都没有, 银行就有权要求还本 — <em>违约</em>。这种结构下<em>正常年份回报飞起、坏年份直接出局</em>。这就是为什么"高杠杆 = 高破产风险": <em>困境成本 (distress cost)</em> 在杠杆超过某条线后陡升。</p>
+        <p lang="en"><strong>Option C — borrow 90%, put up 10%.</strong> ¥90,000 bank loan at 5% (¥4,500 interest), ¥10,000 of Wang's own. ¥15,000 profit, ¥4,500 to the bank, ¥10,500 to Wang. Return on his own ¥10,000 = 10,500/10,000 = 105% — <em>doubling in one year</em>! But: a ¥5,000 loss year plus ¥4,500 interest = ¥9,500 lost on a ¥10,000 stake — <em>near wipeout</em>. Worse, another bad year leaves Wang unable to service interest → the bank can call the principal → <em>default</em>. This structure flies in normal years and dies in bad ones. That's why "high leverage = high bankruptcy risk": <strong>distress cost</strong> climbs steeply once leverage crosses a threshold.</p>
+
+        <p lang="zh"><strong>4. 把三种方案放一张表里。</strong>同样一家"一年赚 15,000 / 偶尔亏 5,000"的店, 用三种不同结构融资:</p>
+        <p lang="en"><strong>The three options side by side.</strong> Same shop (expected ¥15,000 profit, occasional ¥5,000 loss), three different structures:</p>
+        <ul lang="zh">
+          <li>A (¥0 借): 好年回报 15%, 坏年 −5%, 波动 ~10%, 不会破产</li>
+          <li>B (¥50k 借): 好年 25%, 坏年 −15%, 波动 ~20%, 短期亏损可承受</li>
+          <li>C (¥90k 借): 好年 105%, 坏年 −95% (接近破产), 波动巨大</li>
+        </ul>
+        <ul lang="en">
+          <li>A (¥0 debt): good year 15%, bad year −5%, swing ~10%, no bankruptcy</li>
+          <li>B (¥50k debt): good year 25%, bad year −15%, swing ~20%, losses survivable</li>
+          <li>C (¥90k debt): good year 105%, bad year −95%, swings huge</li>
+        </ul>
+        <p lang="zh">店里赚多少 (¥15,000) 跟"<em>怎么融资</em>"没有任何关系 — 三个方案的店是<em>同一家店</em>, 资产端的现金流完全一样。变化的只是这块现金流<em>分给谁</em>: 一部分先给银行 (利息), 剩下归老王。这就是<strong>Modigliani-Miller 命题 I (MM I)</strong> 的核心洞察: <em>切蛋糕的方式不改变蛋糕大小</em>。在<em>理想化</em>条件下 (无税、无破产成本、无信息不对称), 三种结构下店本身的"<em>总价值</em>"应当相等。</p>
+        <p lang="en">What the shop earns (¥15,000) has nothing to do with <em>how</em> it's financed — all three options describe the <em>same shop</em>, with identical asset‑side cash flows. What varies is <em>who</em> gets what slice: the bank takes interest first, Wang gets the rest. This is <strong>Modigliani–Miller Proposition I</strong>: <em>slicing the pie differently doesn't change the pie's size</em>. Under idealised conditions (no taxes, no distress costs, no asymmetry), all three structures yield the same total firm value.</p>
+
+        <p lang="zh"><strong>5. 但老王的回报率<em>不是</em>一样的 — 25%、15%、105% — 怎么解释?</strong> 答案: 三种结构下老王自有资金对应的<em>风险</em>不同。方案 A 风险最低 (波动 10%), 方案 C 风险极高 (一年可能亏光本金)。市场对<em>不同风险</em>给<em>不同要求回报率</em>。在 CAPM 框架下, 高杠杆 → 股权 β 上升 → 股东要求的股权成本上升。表面上"杠杆放大 ROE", 实际上"<em>放大的 ROE 被同步放大的股权成本完全抵消</em>" — 公司价值不变, 这就是 <strong>MM Proposition II</strong>。Layer 2 会给出严格公式。</p>
+        <p lang="en"><strong>But Wang's own return <em>isn't</em> the same — 25%, 15%, 105% — how?</strong> Because the risk borne by Wang's own money differs under each structure. Option A: lowest risk (~10% swing). Option C: extreme (can wipe out in one year). The market demands different required returns for different risks. In CAPM terms: more leverage → equity β rises → required cost of equity rises. "Leverage boosts ROE" gets exactly cancelled by "leverage boosts the cost of equity" — firm value doesn't move. That's <strong>MM Proposition II</strong>. Layer 2 gives the formal equation.</p>
+
+        <p lang="zh"><strong>6. 现在加上中国的所得税 (25%)。</strong>店里赚 15,000 是<em>税前</em>利润。在方案 A 没有利息扣除, 全部 15,000 要按 25% 缴税, 税后留 11,250 给老王。在方案 B, 利息 2,500 先从税前利润里扣除, 12,500 上交 25% 税 (3,125), 税后 9,375 留给老王。比 A 高出 625 元 — 这就是<em>利息</em>带来的<strong>税盾 (tax shield)</strong>。年税盾 = 利息 × 税率 = 2,500 × 0.25 = 625。换言之: <em>借钱本身让公司少交税</em>。MM 含税版本 (1963) 推论: 全杠杆理论最优。但<em>现实</em>没有公司 100% 杠杆 — 因为方案 C 的<em>困境成本</em>会在某一档之后陡升, 抵消税盾收益。</p>
+        <p lang="en"><strong>Now layer in China's 25% corporate tax.</strong> The ¥15,000 profit is pre‑tax. Option A has no interest deduction; the full ¥15,000 pays 25% tax (¥3,750), leaving ¥11,250 for Wang. Option B deducts ¥2,500 interest first; ¥12,500 pays 25% tax (¥3,125), leaving ¥9,375 to Wang plus the ¥2,500 already paid as interest = ¥11,875 in total for the bank+Wang side; vs. Option A's ¥11,250 + ¥0 = ¥11,250. The extra ¥625 is the interest <strong>tax shield</strong>: annual shield = interest × tax rate = 2,500 × 0.25 = 625. Borrowing literally saves taxes. MM with tax (1963) implies maximum leverage looks optimal. But no real firm is 100% leveraged — the distress cost of Option C kicks in steeply past some point, swamping the tax shield.</p>
+
+        <p lang="zh"><strong>7. 老王把三种方案的"加权平均成本"算给自己听。</strong>方案 A: 全权益, WACC = 100% × 股权成本, 与店里 15% 资产回报率相同时, 等同于 15%。方案 B (50/50): 假设债务利率 5%, 税率 25%, 税后债务成本 = 3.75%; 杠杆使股权成本从 15% 升到约 18% (因为风险上升); WACC = 0.5 × 18% + 0.5 × 3.75% ≈ 10.9%。方案 C (10/90): 此时债务利率和股权成本都因高违约风险大幅上升, 实际 WACC 可能<em>反而比 B 高</em>。所以 WACC 对杠杆的反应是<strong>U 型</strong>: 适度负债压低 WACC (税盾贡献), 过度负债推高 WACC (困境成本贡献)。最低点就是<em>最优资本结构</em>。</p>
+        <p lang="en"><strong>Wang computes a "weighted average cost" for each.</strong> Option A: all equity, WACC = 100% × cost of equity ≈ 15% (same as the shop's 15% asset return). Option B (50/50): debt rate 5%, tax 25%, after‑tax debt cost 3.75%; cost of equity rises from 15% to about 18% due to leverage; WACC = 0.5 × 18% + 0.5 × 3.75% ≈ 10.9%. Option C (10/90): both debt rate and cost of equity jump because of default risk, so WACC may end up <em>higher</em> than Option B. WACC's response to leverage is therefore <strong>U‑shaped</strong>: moderate debt lowers WACC (tax shield wins), excessive debt raises WACC (distress costs win). The minimum is the <em>optimal capital structure</em>.</p>
+
+        <p lang="zh"><strong>老王合上笔记。</strong>三种融资结构看似只是"<em>谁出多少钱</em>"的差别, 实际牵动: 自有资金回报率 (放大或不放大)、风险等级 (波动率 / 破产概率)、税盾大小、加权资金成本。Modigliani-Miller 给出<em>理想化的中性参照</em> — 切蛋糕方式不改蛋糕大小; 现实把这中性<em>偏向债务</em> (税盾) 又<em>拉回均衡</em> (困境成本、信息不对称、代理冲突)。每个行业的最优杠杆不同, 但<em>原理</em>都是同一条: 找到税盾收益 = 困境成本损失的那个点。Layer 2 把这条原理形式化, 给出 WACC、MM I/II、Hamada 公式 $r_e = r_a + (r_a - r_d) \, D/E$。</p>
+        <p lang="en"><strong>Wang closes the notebook.</strong> Three structures look like just "who puts up how much," but they pull on: return on own money (amplified or not), risk level (volatility / default), tax shield magnitude, weighted cost of capital. Modigliani–Miller provides the idealised neutral baseline — slicing doesn't change the pie; reality tilts the baseline <em>toward debt</em> (tax shield) and pulls it <em>back to balance</em> (distress, asymmetry, agency). Different industries land at different optima, but the underlying logic is the same: find the point where marginal tax shield = marginal distress cost. Layer 2 formalises this and presents WACC, MM I/II, and Hamada — the closing equation being $r_e = r_a + (r_a - r_d) \, D/E$.</p>
       </section>
 
       <section class="layer">
         <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+        <p lang="zh">Layer 1 用老王第二家店的三种融资方案, 把"杠杆放大 ROE / 杠杆放大 $r_e$ / 税盾 / 困境成本"穿成一条线, 并定性说明 WACC 对杠杆是 U 型。现在我们把这条线形式化, 给出 WACC、MM I/II、Hamada 公式; 同时把<em>无套利</em>论证 (MM 证明的精髓) 严谨写出。</p>
+        <p lang="en">Layer 1 used Old Wang's three financing options to chain together "leverage amplifies ROE / leverage amplifies $r_e$ / tax shield / distress cost" and qualitatively argue WACC is U‑shaped in leverage. We now formalise the chain — WACC, MM I/II, Hamada — and write out the no‑arbitrage proof at the heart of MM.</p>
 
         <h3 lang="zh">① WACC 完整定义</h3>
         <h3 lang="en">① WACC formal</h3>
@@ -263,6 +270,8 @@
             <span class="company"><span lang="zh">海康威视</span><span lang="en">Hikvision</span></span>
             <span class="period">FY2023 · <span lang="zh">中等杠杆 WACC 估算</span><span lang="en">WACC estimation</span></span>
           </div>
+          <p lang="zh">老王第二家店三种结构的算盘, 放大三千倍就是上市公司的 WACC 估算。海康威视 2023 年市值 ¥3,000 亿、有息债务 ¥300 亿 — 9% 的杠杆比例介于老王的"方案 A 全权益"和"方案 B 50/50"之间, 接近方案 A。下面用真实数字过一遍 WACC 公式 (3.1)。</p>
+          <p lang="en">Old Wang's three‑structure ledger, scaled up by a factor of 3,000, becomes WACC estimation for a listed firm. Hikvision (2023): market cap ¥300bn, interest‑bearing debt ¥30bn — a 9% leverage sits between Wang's "Option A all‑equity" and "Option B 50/50," much closer to A. Plug real numbers into formula (3.1).</p>
           <p lang="zh">近似输入:</p>
           <p lang="en">Approximate inputs:</p>
           <ul lang="zh">

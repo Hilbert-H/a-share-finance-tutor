@@ -7,89 +7,454 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}</style>
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
 </head><body>
 <div class="app">
 <header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 08</span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 08</span><span class="sep">·</span><span><span lang="zh">23 分钟</span><span lang="en">23 min</span></span><span class="sep">·</span><span><span lang="zh">前置: M1 全部 + Ch.07</span><span lang="en">Prereq: M1 + Ch.07</span></span></div>
 <h1><span lang="zh">财报在投资中的应用</span><span lang="en">Financials in Investing</span></h1>
-<p class="lesson-subtitle"><span lang="zh">把 M1 + M2 学的财报知识整合成投资框架: 质量 / 成长 / 估值<em>三角</em>. 投资标的的"好"必须三个维度都过关 — 任一缺失即不投。</span><span lang="en">Integrate M1+M2 into investing's quality‑growth‑valuation triangle. A target must clear all three; missing any disqualifies.</span></p>
+<p class="lesson-subtitle"><span lang="zh">老王拿到一份报表, 净利润同比 +50%, 该不该信? 把 M1 + M2 的财报知识整合成<em>质量检验流程</em> + <em>三角框架</em> (质量 / 成长 / 估值) — 任一缺失即不投。</span><span lang="en">Wang sees NI up 50%. Trust it? Integrate M1+M2 into a quality-test pipeline plus the quality-growth-valuation triangle. Missing any leg disqualifies.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">用质量 / 成长 / 估值三维筛选 A 股</li><li lang="zh">把 Beneish/Z/F 集成到投资流程</li><li lang="zh">理解"高 ROIC + 增长可持续 + 合理估值"= 长期 alpha 的逻辑</li><li lang="en">Triangle screen; integrate Beneish/Z/F; understand sustainable high‑ROIC growth at fair price = long‑term alpha</li></ul>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">用 5 个红绿灯快速识别"净利润高质量 vs 纸面利润"</li>
+<li lang="zh">理解 Sloan 1996 accruals anomaly: 高应计组合 vs 低应计组合的 10%+ 年化差异</li>
+<li lang="zh">应用 Beneish M-score 8 变量公式给上市公司打分</li>
+<li lang="zh">把质量 / 成长 / 估值三维筛选落到具体 A 股标的</li>
+<li lang="en">Five-light quality test for "real earnings vs paper earnings."</li>
+<li lang="en">Sloan 1996 accruals anomaly: 10%+ annual spread between low-accrual and high-accrual portfolios.</li>
+<li lang="en">Apply 8-variable Beneish M-score to A‑shares.</li>
+<li lang="en">Operationalize the quality-growth-valuation triangle.</li>
+</ul>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">三角框架</span><span lang="en">Triangle framework</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王盯着五份年报, 五个红绿灯</span><span class="en" lang="en"> · Wang stares at five filings, five traffic lights</span></h2>
 
-<h3 lang="zh">质量 (Quality)</h3>
-<ul lang="zh">
-<li>ROIC &gt; 长期 WACC (持续创造价值)</li>
-<li>OCF/NI &gt; 1 (现金质量)</li>
-<li>Beneish M-Score &lt; −2.22, Altman Z &gt; 2.99</li>
-<li>Piotroski F &gt; 7</li>
-<li>商誉 / 净资产 &lt; 30%</li>
-<li>关联方占款 / 净资产 &lt; 5%</li>
-<li>审计标准无保留意见</li>
-</ul>
+<p lang="zh">老王上周从证券公司客户经理那里听到一句话: "<em>看年报最重要的不是看净利润, 是看净利润<strong>真不真</strong></em>"。回家以后他把手机里关注的 5 只 A 股年报全打开, 准备用 5 个"红绿灯"问题逐一检验。每只他只问 5 件事, 任何一盏亮红灯就直接出局, 不勉强。</p>
+<p lang="en">Last week Wang's broker said something that stuck: "<em>What matters most in an annual report isn't the NI number — it's whether the NI is <strong>real</strong>.</em>" He opens five filings on his phone and runs each through five traffic lights. Any red — out, no excuses.</p>
 
-<h3 lang="zh">成长 (Growth)</h3>
-<ul lang="zh">
-<li>3-5 年营收 / 净利复合增速 &gt; 8% (跑赢 GDP + 通胀)</li>
-<li>ROE 稳定或提升</li>
-<li>护城河有效 — 行业份额稳定或提升</li>
-<li>合同负债 / 营收增 (未来订单储备)</li>
-<li>研发投入 / 营收 高 (科技公司)</li>
-</ul>
+<p lang="zh"><strong>1. 第一只: 某创业板新能源公司, 净利润 +120%, 老王查"红绿灯一: 经营现金流 / 净利润"</strong>。年报里 NI = 8 亿, 但经营现金流 (OCF) 只有 1.5 亿。OCF/NI = 0.19, 远低于 1。老王琢磨: 公司说自己赚了 8 亿, 但银行账上实际只到账 1.5 亿, 剩下 6.5 亿在哪里?——挂在<em>应收账款</em>里。即"客户答应给我 8 亿, 但今年只到账了 1.5 亿, 剩下 6.5 亿欠着, 算我的利润"。这种"利润已认、钱没到手"的状态叫 <strong>纸面利润 (paper profit)</strong>。<strong>红灯</strong>。老王放弃这只。</p>
+<p lang="en"><strong>1. First name: a ChiNext new-energy firm, NI up 120%. Wang checks light #1: OCF/NI.</strong> Report shows NI = ¥800m, but operating cash flow only ¥150m. OCF/NI = 0.19, far below 1. Translation: the firm claims it earned ¥800m, but only ¥150m hit the bank — the other ¥650m sits in <em>accounts receivable</em>. "Customers promised ¥800m, paid ¥150m, the rest is on credit, I'm calling it profit." That's <strong>paper profit</strong>. <strong>Red.</strong> Wang passes.</p>
 
-<h3 lang="zh">估值 (Valuation)</h3>
-<ul lang="zh">
-<li>P/E &lt; 同行业中位数</li>
-<li>P/B &lt; 同行业中位数 (重资产) 或 P/E/g &lt; 1.5 (PEG)</li>
-<li>EV/EBITDA &lt; 历史 5 年中位数</li>
-<li>DCF 隐含 IV &gt; 当前价格 30%+ (安全边际)</li>
-<li>股息率 &gt; 10Y 国债 (现金回报底线)</li>
-</ul>
+<p lang="zh"><strong>2. 第二只: 某医疗设备公司, 营收 +60%, 应收账款 +210%</strong>。这是 <strong>红绿灯二: 应收账款增速 vs 收入增速</strong>。营收增 60%, 但欠老王的钱 (应收) 涨了 210%。这意味着: 要么客户付款速度<em>显著</em>变慢 (信用质量下降), 要么<em>更可能</em>—— 一些"收入"是<em>放宽信用</em>压货给经销商挂出来的 (Channel stuffing, 渠道压货)。老王想起 Beneish 那个论文里的"DSRI 指标" — 这是经典的虚增收入预警。<strong>红灯</strong>。出局。</p>
+<p lang="en"><strong>2. Second name: a medical-device firm, revenue +60%, AR +210%. Light #2: AR growth vs revenue growth.</strong> Revenue +60%, money customers owe +210%. Either customers are paying drastically slower (credit quality eroded), or — more likely — some "revenue" is channel-stuffed onto distributors via loosened credit terms. Beneish's DSRI ratio flags exactly this. <strong>Red.</strong> Out.</p>
 
-<p lang="zh"><strong>三角的逻辑</strong>: <em>质量</em>避免雷股 — 这是首要筛选; <em>估值</em>提供回报 — 即使再好公司, 买贵了仍亏钱; <em>成长</em>放大复利 — 长期是关键. 三者缺一: 漂亮但贵 (茅指数 2021) / 便宜但持续衰退 (传统出版业) / 高增长但财务造假 (康美) — 都不可投.</p>
-<p lang="en">Logic: <em>quality</em> avoids landmines (top filter); <em>valuation</em> provides return (buying expensive ruins even great firms); <em>growth</em> compounds. Any missing → disqualify: pretty‑but‑expensive (2021 Moutai herd), cheap‑but‑declining (legacy publishing), growth‑but‑fraud (Kangmei).</p>
+<p lang="zh"><strong>3. 第三只: 某重工设备厂商, 净利润 +30%, 但翻附注发现"折旧政策从 8 年延长到 12 年"</strong>。这是 <strong>红绿灯三: 折旧 / 摊销政策变更</strong>。同样 1 亿的设备, 之前 8 年折旧每年 1,250 万, 现在 12 年折旧每年 833 万 — 每年少计 417 万折旧, 净利就<em>凭空</em>多出 417 万 (税后 ≈ 350 万)。如果设备规模是 50 亿, 这一个动作就让 NI 凭空多 17.5 亿。老王看了同行业的折旧年限: 三一重工 6-10 年, 中联重科 8-10 年, 这家突然延到 12 年 — <strong>红灯</strong>。出局。会计上没违规, 但管理层的动机暴露无遗。</p>
+<p lang="en"><strong>3. Third name: a heavy-equipment maker, NI +30%. Footnote: depreciation life extended from 8 years to 12 years. Light #3: depreciation policy change.</strong> Same ¥100m equipment — 8-year life = ¥12.5m/y; 12-year = ¥8.33m/y; saves ¥4.17m/y per ¥100m of fixed assets. Scale to ¥5bn of assets → NI inflated by ¥1.75bn from this one move. Peer life: Sany 6–10y, Zoomlion 8–10y; this firm jumped to 12y. <strong>Red.</strong> Out. Not illegal — but management's motive is fully exposed.</p>
+
+<p lang="zh"><strong>4. 第四只: 某地方化工公司, 净利润 +80%, 翻附注发现"关联方往来"高达净资产 30%</strong>。这是 <strong>红绿灯四: 关联方交易 / 关联方占款</strong>。老王盯着附注看 — "公司向控股股东 XX 集团销售 5 亿、采购 3 亿、其他应收 12 亿"。控股股东和公司在<em>同一个口袋</em>里把钱倒来倒去, 5 亿"销售"很可能是把仓库里的货搬到关联方账上, 财报上变成"已确认收入"。这是 A 股造假最经典的套路: 通过关联方虚增收入 + 关联方占款隐藏现金流出。<strong>红灯</strong>。出局。规则: 关联方占款 (其他应收 + 其他应付里关联方部分) / 净资产 &gt; 10% 直接放弃。</p>
+<p lang="en"><strong>4. Fourth name: a local chemicals firm, NI +80%. Footnote: related-party balances ~30% of net assets. Light #4: related-party transactions / extractions.</strong> Notes say: "Sales to controlling shareholder XX Group ¥500m; purchases ¥300m; other receivables ¥1.2bn." Money churns between parent and listco within one pocket — "sales" are likely just inventory moved onto parent's books and booked as revenue. The classic A‑share fraud pattern. <strong>Red.</strong> Out. Rule: related-party "other receivables/payables" &gt; 10% of equity → automatic disqualify.</p>
+
+<p lang="zh"><strong>5. 第五只: 某医药公司, 净利润 +150%, 但仔细看构成: 净利 5 亿里有 4 亿是"出售子公司股权"的一次性投资收益</strong>。这是 <strong>红绿灯五: 非经常性损益占净利比</strong>。"经常性"利润 (主营业务赚的) 只有 1 亿; 真正的 NI 是 4 亿一次性 + 1 亿经常。明年还能卖一次子公司吗?不能。所以明年合理的 NI 预测是 1 亿, 不是 5 亿。但当下市场如果按 5 亿乘以 P/E 30 给估值 → 严重高估。<strong>黄灯 (不一定红, 但需要剥离非经常性损益重新估值)</strong>。老王把它放在观察清单, 等下一年看主营 NI 是否真的能撑住。</p>
+<p lang="en"><strong>5. Fifth name: a pharma firm, NI +150%. Drill in: of ¥500m NI, ¥400m is a one-off gain on disposing a subsidiary. Light #5: non-recurring items / NI.</strong> Recurring (operations) NI = ¥100m. True forward NI estimate is ¥100m, not ¥500m. If the market still values it at P/E 30 × ¥500m, it's massively overpriced. <strong>Yellow.</strong> Move to watch list — see if next year's operating NI holds up without the one-off.</p>
+
+<p lang="zh"><strong>傍晚总结。</strong> 老王今天 5 只样本, 4 红 1 黄, 0 通过。这正是 Buffett 说的 "<em>看 100 家公司, 99 家都该 NO</em>"。这五盏红绿灯不是要"诬陷"上市公司, 而是把<em>那些用各种会计技巧粉饰利润的样本</em>从你的关注池里筛掉, 让剩下的、真正干干净净赚钱的公司浮出水面。后面 Layer 2 会把这五个红绿灯背后的统计学 (Sloan accruals anomaly, Beneish M-score) 写清楚, Layer 3 会用 A 股最经典的造假案例 (康得新 002450, 康美药业 600518) 验证, 并用茅台 (600519) 作为"对照组" — 这五盏灯在一家真正高质量公司身上长什么样。</p>
+<p lang="en"><strong>Wrap-up.</strong> Wang's day: 5 samples, 4 red + 1 yellow, 0 pass. Exactly Buffett's <em>"99 of 100 should be NO."</em> The five lights aren't meant to slander listed firms — they sift out cosmetically-dressed earnings so the genuinely clean cash-makers float to the top. Layer 2 below gives the statistics (Sloan accruals anomaly, Beneish M-score); Layer 3 validates with two classic A‑share fraud cases (Kangde Xin 002450, Kangmei 600518) and uses Moutai as the control — what these five lights look like on a truly high-quality firm.</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 220" role="img" aria-label="Five traffic lights">
+<defs><linearGradient id="lg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient></defs>
+<style>
+.lb{fill:url(#lg);stroke:#1A1814;stroke-width:1.2}
+.lt{font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:11px;fill:#1A1814}
+.lh{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;fill:#1A1814}
+.lg{font-family:'Noto Serif SC',serif;font-style:italic;font-size:10px;fill:#8A8378}
+.red{fill:#8B2C2C}
+.green{fill:#3A6B2E}
+</style>
+<text class="lh" x="360" y="22" text-anchor="middle">五盏红绿灯 · 任一红 = 出局</text>
+<rect class="lb" x="15" y="50" width="135" height="150" rx="3"/>
+<text class="lh" x="82" y="80" text-anchor="middle">① OCF / NI</text>
+<text class="lt" x="82" y="105" text-anchor="middle">现金质量</text>
+<circle class="green" cx="82" cy="135" r="12"/><text class="lg" x="82" y="160" text-anchor="middle">≥ 1.0 绿</text>
+<text class="lg" x="82" y="175" text-anchor="middle">&lt; 0.7 红</text>
+<rect class="lb" x="160" y="50" width="135" height="150" rx="3"/>
+<text class="lh" x="227" y="80" text-anchor="middle">② AR/Rev</text>
+<text class="lt" x="227" y="105" text-anchor="middle">应收增速</text>
+<circle class="red" cx="227" cy="135" r="12"/><text class="lg" x="227" y="160" text-anchor="middle">AR ≤ Rev 绿</text>
+<text class="lg" x="227" y="175" text-anchor="middle">AR &gt; 2× Rev 红</text>
+<rect class="lb" x="305" y="50" width="135" height="150" rx="3"/>
+<text class="lh" x="372" y="80" text-anchor="middle">③ 折旧</text>
+<text class="lt" x="372" y="105" text-anchor="middle">同行可比</text>
+<circle class="red" cx="372" cy="135" r="12"/><text class="lg" x="372" y="160" text-anchor="middle">与同行一致 绿</text>
+<text class="lg" x="372" y="175" text-anchor="middle">突然延长 红</text>
+<rect class="lb" x="450" y="50" width="135" height="150" rx="3"/>
+<text class="lh" x="517" y="80" text-anchor="middle">④ 关联方</text>
+<text class="lt" x="517" y="105" text-anchor="middle">占款 / E</text>
+<circle class="red" cx="517" cy="135" r="12"/><text class="lg" x="517" y="160" text-anchor="middle">&lt; 5% 绿</text>
+<text class="lg" x="517" y="175" text-anchor="middle">&gt; 10% 红</text>
+<rect class="lb" x="595" y="50" width="110" height="150" rx="3"/>
+<text class="lh" x="650" y="80" text-anchor="middle">⑤ 非经常</text>
+<text class="lt" x="650" y="105" text-anchor="middle">/ 净利比</text>
+<circle class="green" cx="650" cy="135" r="12"/><text class="lg" x="650" y="160" text-anchor="middle">&lt; 20% 绿</text>
+<text class="lg" x="650" y="175" text-anchor="middle">&gt; 50% 红</text>
+</svg>
+<figcaption><span lang="zh">五盏灯并联, 任一红 = 出局。设计目的是"低误漏 (miss)、高误警 (false alarm)" — 宁可错过 99 家好公司也不踩 1 家造假地雷。</span><span lang="en">Five parallel lights; any red kills the name. Designed for low miss rate, high false-alarm tolerance — better skip 99 honest firms than step on one fraud.</span></figcaption>
+</figure>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">实战</span><span lang="en">In practice</span></h2>
-<p lang="zh">2020 年初评估海康威视 (002415) 的三角:</p>
-<ul lang="zh">
-<li><strong>质量</strong>: ROIC ~25% (强), OCF/NI 1.2 (优), 商誉低, 审计标准 — 通过</li>
-<li><strong>成长</strong>: 营收 5 年复合 ~15%, 海外扩张 + 物联网 — 通过</li>
-<li><strong>估值</strong>: 2020 初 P/E ~28, 高于历史中位 ~22, 但低于消费同行 — <em>勉强</em>通过, 需安全边际</li>
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用 5 盏红绿灯把 4 只 A 股筛掉、留下 1 只观察。现在把每盏灯背后的代数与文献写出来。中心思想由 Richard Sloan 1996 年那篇 <em>The Accounting Review</em> 经典论文奠定: <strong>净利润可以拆成现金部分和应计部分, 应计部分的<em>持续性</em>远低于现金部分</strong>。其余四盏灯都是这条 first principle 的不同侧面。</p>
+<p lang="en">Layer 1 ran five lights against five names. Layer 2 writes the algebra and lineage. The keystone: Sloan 1996 (<em>The Accounting Review</em>) — <strong>NI decomposes into a cash component and an accrual component; the accrual component is far less persistent than the cash component</strong>. The other four lights are facets of this single first principle.</p>
+
+<h3 lang="zh">质量检验的根基: NI = Cash + Accruals</h3>
+<h3 lang="en">The keystone: NI = Cash + Accruals</h3>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">利润分解</span><span class="callout-label" lang="en">Earnings decomposition</span>
+<div class="eq"><span>$$ \mathrm{NI}_t \;=\; \mathrm{CFO}_t \;+\; \mathrm{Accruals}_t $$</span><span class="num">(8.1)</span></div>
+<div class="eq"><span>$$ \mathrm{Accruals}_t \;=\; \Delta\mathrm{WC}_t \;-\; \mathrm{D\&A}_t \;+\; \text{Other non-cash adj.} $$</span><span class="num">(8.2)</span></div>
+<p lang="zh">CFO = 经营性现金流; ΔWC = 营运资金净增 (应收 + 存货 − 应付); D&amp;A = 折旧摊销。这一拆与 M1 Ch.09 间接法现金流量表数学上完全一致。</p>
+<p lang="en">CFO = cash from operations; ΔWC = increase in working capital; D&amp;A = depreciation &amp; amortization. Mathematically identical to the indirect-method cash-flow statement (M1 Ch.09).</p>
+<span class="cite">Sloan, R. (1996). "Do Stock Prices Fully Reflect Information in Accruals and Cash Flows about Future Earnings?" <em>The Accounting Review</em>, 71(3), 289–315.</span>
+</div>
+
+<p lang="zh"><strong>Sloan 1996 的实证结论</strong>: 把美国市场所有公司按 Accruals / 总资产 排序, 取最低 10% (低应计组) 和最高 10% (高应计组), 一年后看股价表现 — 低应计组年化超额收益约 +5%, 高应计组约 −5%, 差异 ~10%。这个现象后来被称为 <strong>accruals anomaly (应计异象)</strong>, 在多个市场重复验证, 是行为金融最稳健的发现之一。机制: 应计利润<em>不持续</em>, 市场短期不区分, 长期被迫修正 — 高应计公司报表"好看"但下期 NI 多半回落, 股价跟着掉。</p>
+<p lang="en"><strong>Sloan 1996 empirical:</strong> sort all US firms by Accruals / Total Assets; low-accrual decile +5% annual abnormal return, high-accrual decile −5%, ~10% spread. The <strong>accruals anomaly</strong> has replicated across markets and is one of the most robust behavioral findings. Mechanism: accrual earnings <em>don't persist</em>; markets ignore the distinction short-run and correct long-run. "Pretty" high-accrual firms see NI revert next period; price follows.</p>
+
+<h3 lang="zh">红绿灯一: OCF / NI 比率</h3>
+<h3 lang="en">Light #1: OCF / NI</h3>
+
+<div class="eq"><span>$$ \mathrm{Cash\,Quality} \;=\; \frac{\mathrm{CFO}}{\mathrm{NI}} $$</span><span class="num">(8.3)</span></div>
+
+<p lang="zh"><strong>阈值</strong>: 5 年平均 &gt; 1 是高质量信号 (经营赚到的现金 ≥ 报表利润, 多出来的部分主要是折旧加回); 5 年平均 &lt; 0.7 是预警; &lt; 0.5 是严重警告。注意单年波动正常 — 重资本支出年、应收账款周期变化都会造成单年异常, 应用 3-5 年滚动平均。</p>
+<p lang="en"><strong>Thresholds:</strong> 5-year average &gt; 1 = high quality (cash ≥ reported, surplus mostly D&amp;A add-back); &lt; 0.7 = warning; &lt; 0.5 = severe. Single-year noise is normal — use 3–5 year rolling.</p>
+
+<h3 lang="zh">红绿灯二: AR 增速 vs 收入增速 (Beneish DSRI 的基础)</h3>
+<h3 lang="en">Light #2: AR growth vs revenue growth (Beneish DSRI core)</h3>
+
+<div class="eq"><span>$$ \mathrm{DSRI}_t \;=\; \frac{(\mathrm{AR}_t / \mathrm{Sales}_t)}{(\mathrm{AR}_{t-1} / \mathrm{Sales}_{t-1})} $$</span><span class="num">(8.4)</span></div>
+
+<p lang="zh">DSRI &gt; 1.31 是 Beneish (1999) 给出的"造假" 警戒阈值。直觉: 销售应收比从 0.2 跳到 0.3 (即 DSRI = 1.5), 意味着"赚的钱里更多是赊账", 这是放宽信用、虚增收入、渠道压货的共同财务表现。</p>
+<p lang="en">Beneish (1999): DSRI &gt; 1.31 is the manipulation threshold. Intuition: AR/Sales ratio jumping from 0.2 to 0.3 (DSRI = 1.5) means more of "earnings" is on credit — the joint signature of credit loosening, revenue inflation, and channel stuffing.</p>
+
+<h3 lang="zh">红绿灯三 + 四 + 五: 折旧政策 / 关联方 / 非经常性损益</h3>
+<h3 lang="en">Lights #3 #4 #5</h3>
+
+<p lang="zh">这三盏灯都是<em>Beneish M-score 8 变量</em>的子集。完整的 M-score 公式 (Beneish 1999):</p>
+<p lang="en">All three are subsets of <em>Beneish's 8-variable M-score</em> (1999):</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Beneish M-score</span><span class="callout-label" lang="en">Beneish M-score</span>
+<div class="eq"><span>$$ M = -4.84 + 0.92\,\mathrm{DSRI} + 0.528\,\mathrm{GMI} + 0.404\,\mathrm{AQI} + 0.892\,\mathrm{SGI} + 0.115\,\mathrm{DEPI} - 0.172\,\mathrm{SGAI} + 4.679\,\mathrm{TATA} - 0.327\,\mathrm{LVGI} $$</span><span class="num">(8.5)</span></div>
+<p lang="zh">阈值: M &gt; −1.78 = 高造假可能 (Beneish 原阈值 −2.22 在 1999 论文; 2013 重估为 −1.78)。八个变量含义:</p>
+<p lang="en">Threshold: M &gt; −1.78 = high manipulation probability (Beneish 1999 used −2.22; 2013 update to −1.78). The eight variables:</p>
+<ul>
+<li><strong>DSRI</strong> <span lang="zh">应收账款销售指数 (灯 #2)</span><span lang="en">Days sales in receivables (light #2)</span></li>
+<li><strong>GMI</strong> <span lang="zh">毛利率指数 (毛利率<em>下降</em>则 GMI &gt; 1, 推高 M)</span><span lang="en">Gross margin index (declining GM → GMI&gt;1, raises M)</span></li>
+<li><strong>AQI</strong> <span lang="zh">资产质量指数 (非流动非 PPE 资产 / 总资产 比变化, 灯 #3 + #4)</span><span lang="en">Asset quality index (non-current non-PPE assets ratio, lights #3 + #4)</span></li>
+<li><strong>SGI</strong> <span lang="zh">销售增长指数 (高增长本身是造假动机的代理变量)</span><span lang="en">Sales growth index (high growth itself is a manipulation incentive)</span></li>
+<li><strong>DEPI</strong> <span lang="zh">折旧指数 (折旧率<em>下降</em>则 DEPI &gt; 1, 灯 #3)</span><span lang="en">Depreciation index (decreasing depr rate, light #3)</span></li>
+<li><strong>SGAI</strong> <span lang="zh">销管费率指数</span><span lang="en">Selling, general &amp; admin index</span></li>
+<li><strong>TATA</strong> <span lang="zh">总应计 / 总资产 (Sloan 思想的直接表达)</span><span lang="en">Total accruals / total assets (Sloan idea directly)</span></li>
+<li><strong>LVGI</strong> <span lang="zh">杠杆指数</span><span lang="en">Leverage index</span></li>
 </ul>
-<p lang="zh">2021 中评估: 美国制裁 + 增长放缓, 但价格<em>未下跌</em>到反映风险 → 三角失衡 → 卖出.</p>
-<p lang="zh">2024 评估: P/E ~20, 远低于历史中位, 但增长面临政策与海外限制 → 价值边界. 持仓决策因人而异。</p>
-<p lang="en">Hikvision 2020 entry: ROIC 25%, OCF/NI 1.2, P/E ~28 — passes triangle. 2021: US sanctions + slowing growth; price didn't drop enough → triangle broke → sell. 2024: P/E ~20 attractive but growth threats; case‑by‑case.</p>
+<span class="cite">Beneish, M. D. (1999). "The Detection of Earnings Manipulation." <em>Financial Analysts Journal</em>, 55(5), 24–36. · Beneish, M. D., Lee, C., &amp; Nichols, D. (2013). "Earnings Manipulation and Expected Returns." <em>FAJ</em>, 69(2).</span>
+</div>
+
+<p lang="zh"><strong>Beneish 检测能力</strong>: 1999 原始样本对 74 例已知造假公司, M-score 在事前能识别 ~76%。最著名的事后应用: 安然 (Enron) 在 1998 年 M-score 已经 &gt; −1.78, 距离 2001 年破产还有 3 年。在 A 股, 康得新 (002450) 在 2017 年 M-score 已超阈值, 距离 2019 年东窗事发尚有 18 个月。</p>
+<p lang="en"><strong>Beneish detection power:</strong> on 1999's 74-fraud sample, M-score flagged ~76% pre-event. Famous retro: Enron's M-score crossed −1.78 in 1998, three years before the 2001 collapse. In A‑shares, Kangde Xin (002450) crossed in 2017, 18 months before exposure in 2019.</p>
+
+<h3 lang="zh">配套指标: Altman Z-score + Piotroski F-score</h3>
+<h3 lang="en">Companions: Altman Z + Piotroski F</h3>
+
+<p lang="zh">Beneish 检测<em>造假风险</em>; Altman Z (1968) 检测<em>破产风险</em>; Piotroski F (2000) 检测<em>财务健康改善方向</em>。三者并用形成"质量三角":</p>
+<p lang="en">Beneish flags <em>manipulation</em>; Altman Z (1968) flags <em>bankruptcy</em>; Piotroski F (2000) flags <em>direction of financial health</em>. Together: the "quality triangle."</p>
+
+<div class="eq"><span>$$ Z = 1.2\,X_1 + 1.4\,X_2 + 3.3\,X_3 + 0.6\,X_4 + 1.0\,X_5 $$</span><span class="num">(8.6)</span></div>
+
+<p lang="zh">$X_1$ 营运资本/总资产, $X_2$ 留存收益/总资产, $X_3$ EBIT/总资产, $X_4$ 市值/总负债, $X_5$ 销售/总资产。Z &gt; 2.99 = 健康; 1.81-2.99 = 灰色区; &lt; 1.81 = 高破产风险。</p>
+<p lang="en">$X_1$ working capital/TA, $X_2$ retained earnings/TA, $X_3$ EBIT/TA, $X_4$ market cap/TL, $X_5$ sales/TA. Z &gt; 2.99 healthy; 1.81–2.99 grey; &lt; 1.81 high bankruptcy risk.</p>
+
+<p lang="zh"><strong>Piotroski F-score</strong> (2000, <em>JAR</em>): 9 个二元指标 (盈利、杠杆/流动性、营运效率), 每个达标得 1 分。F ≥ 7 = 高质量; F ≤ 3 = 低质量。Piotroski 原文实证: 在低 P/B 池里, F &gt; 7 的子集年化超额 +23%, F &lt; 3 的子集年化超额 −9%, 差异 30%+ — 比 magic formula 在低估值池里的表现更强。</p>
+<p lang="en"><strong>Piotroski F-score</strong> (2000, <em>JAR</em>): 9 binary indicators (profitability, leverage/liquidity, operating efficiency); each met = 1 point. F ≥ 7 high quality; F ≤ 3 low. Piotroski's evidence: within the low-P/B pool, F&gt;7 subset delivers +23% annual alpha vs F&lt;3 at −9% — 30% spread, stronger than magic formula in low-valuation pools.</p>
+
+<span class="cite">Altman, E. (1968). "Financial Ratios, Discriminant Analysis and the Prediction of Corporate Bankruptcy." <em>Journal of Finance</em>, 23(4). · Piotroski, J. (2000). "Value Investing: The Use of Historical Financial Statement Information to Separate Winners from Losers." <em>Journal of Accounting Research</em>, 38, 1–41.</span>
+
+<h3 lang="zh">三角框架: 质量 / 成长 / 估值</h3>
+<h3 lang="en">The triangle: Quality / Growth / Valuation</h3>
+
+<p lang="zh">把五盏灯 + Beneish/Altman/Piotroski 整合到投资流程, 加上成长性和估值, 形成<strong>三角</strong>:</p>
+<p lang="en">Combine the five lights + Beneish/Altman/Piotroski with growth and valuation: the <strong>triangle</strong>.</p>
+
+<table>
+<thead><tr><th><span lang="zh">维度</span><span lang="en">Axis</span></th><th><span lang="zh">指标</span><span lang="en">Metrics</span></th><th><span lang="zh">阈值</span><span lang="en">Thresholds</span></th></tr></thead>
+<tbody>
+<tr><td><strong><span lang="zh">质量</span><span lang="en">Quality</span></strong></td><td><span lang="zh">ROIC, OCF/NI, Beneish M, Altman Z, Piotroski F, 商誉占比, 关联占款</span><span lang="en">ROIC, OCF/NI, Beneish M, Altman Z, Piotroski F, goodwill ratio, related-party</span></td><td><span lang="zh">ROIC &gt; WACC; OCF/NI &gt; 1 (5y avg); M &lt; −1.78; Z &gt; 2.99; F &gt; 7; 商誉/净资产 &lt; 30%; 关联占款/E &lt; 5%</span><span lang="en">ROIC&gt;WACC; OCF/NI&gt;1 5y avg; M&lt;−1.78; Z&gt;2.99; F&gt;7; goodwill/E&lt;30%; related&lt;5%</span></td></tr>
+<tr><td><strong><span lang="zh">成长</span><span lang="en">Growth</span></strong></td><td><span lang="zh">营收 / 净利 CAGR, ROE 趋势, 合同负债, 行业份额</span><span lang="en">Rev / NI CAGR, ROE trend, contract liability, share</span></td><td><span lang="zh">3-5y CAGR &gt; 8% (跑赢 GDP + 通胀); ROE 稳定或提升; 行业份额稳定或提升</span><span lang="en">3–5y CAGR &gt; 8%; stable/rising ROE; stable/rising share</span></td></tr>
+<tr><td><strong><span lang="zh">估值</span><span lang="en">Valuation</span></strong></td><td><span lang="zh">P/E, P/B, EV/EBITDA, PEG, DCF MOS, 股息率</span><span lang="en">P/E, P/B, EV/EBITDA, PEG, DCF MOS, dividend yield</span></td><td><span lang="zh">P/E &lt; 行业中位; PEG &lt; 1.5; EV/EBITDA &lt; 5y 中位; DCF MOS &gt; 30%; 股息率 &gt; 10Y 国债</span><span lang="en">P/E &lt; industry median; PEG &lt; 1.5; EV/EBITDA &lt; 5y median; DCF MOS &gt; 30%; div yield &gt; 10y bond</span></td></tr>
+</tbody>
+</table>
+
+<p lang="zh"><strong>三角的逻辑</strong>: 三个维度<em>缺一不可</em>。质量缺 → 雷 (康得新型造假); 估值缺 → 漂亮但贵, 长期回报塌 (2021 茅指数高位); 成长缺 → 价值陷阱 (传统出版、煤炭某些子板块结构性衰退)。</p>
+<p lang="en"><strong>Triangle logic:</strong> all three are required. Missing quality → landmine (Kangde Xin); missing valuation → "pretty but expensive," long-run return collapses (2021 Moutai herd); missing growth → value trap (legacy publishing, parts of coal in structural decline).</p>
+
+<p class="muted measure" lang="zh"><strong>文献交叉</strong>: 这个三角和 Joel Greenblatt magic formula (Ch.07) 的关系是: magic formula 把"质量"压成 ROC、把"估值"压成 EBIT/EV, 两个一起排, 简化成可以等权组合的统计套利。三角框架是 magic formula 的"详细版" — 慢、需要读年报, 但能识别 magic formula 看不到的造假与陷阱。两者互补, 不是对立。</p>
+<p class="muted measure" lang="en"><strong>Cross-lineage:</strong> Greenblatt's magic formula (Ch.07) compresses quality → ROC and valuation → EBIT/EV into a two-rank statistical arbitrage. The triangle is the "verbose version" — slower, requires reading filings, but catches frauds and traps invisible to the magic formula. Complementary, not opposed.</p>
+
+<p class="muted measure" lang="zh"><strong>会计与投资的桥</strong>: Layer 2 的所有指标都直接基于 M1 学过的财报科目。OCF/NI 来自现金流量表; Accruals 是间接法的反推; 关联方占款在附注; 折旧政策在附注; 非经常性损益是 A 股财报必披的附表。"<em>会计学不是学会做账, 而是学会<strong>反过来读</strong>账</em>" — 这是 Ross-Westerfield-Jaffe <em>Corporate Finance</em> 教材中财报章节的核心立意。</p>
+<p class="muted measure" lang="en"><strong>The bridge from accounting to investing:</strong> every Layer 2 metric maps back to M1 line items. OCF/NI from the cash-flow statement; accruals from the indirect-method inversion; related-party in notes; depreciation policy in notes; non-recurring items in an A‑share mandated supplementary schedule. Ross-Westerfield-Jaffe's core message in the financials chapter: <em>"accounting isn't about learning to keep books — it's about learning to <strong>read books backwards</strong>."</em></p>
 </section>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">Layer 1 老王用五盏红绿灯把一天看过的 5 只 A 股淘掉 4 只。现在我们看 A 股两个最经典的造假案例 (康得新、康美) 和一个对照组 (茅台) — 这五盏灯在真实造假公司身上长什么样, 在真实优秀公司身上又长什么样。</p>
+<p lang="en">Layer 1: Wang rejected 4 of 5 names today. Layer 3: two classic A‑share fraud cases (Kangde Xin, Kangmei) and one control (Moutai) — what the five lights look like in reality, fraud vs quality.</p>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker">SZ·002450</span>
+<span class="company"><span lang="zh">康得新</span><span lang="en">Kangde Xin (delisted)</span></span>
+<span class="period">2015-2018 · <span lang="zh">122 亿"现金"对应不上 — 财务造假经典 case</span><span lang="en">¥12.2bn "cash" that wasn't there — classic A‑share fraud</span></span>
+<span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+</div>
+
+<p lang="zh">康得新主营预涂膜与光学膜。2015-2018 四年累计虚增利润 ~119 亿。2019 年 1 月一笔 10 亿短融到期违约 — 一家账上有 153 亿"货币资金"的公司居然还不上 10 亿债, 暴雷。证监会 2020 年立案: 122 亿"货币资金"实际被控股股东康得集团通过"现金管理协议"挪用占用。</p>
+<p lang="en">Kangde Xin made pre-coated film and optical film. 2015–18 cumulative inflated profit ~¥11.9bn. In January 2019 it defaulted on a ¥1bn short-term note — a firm reporting ¥15.3bn of "cash" couldn't pay ¥1bn. Exposure. CSRC 2020 finding: ¥12.2bn of "cash" was extracted by controlling-shareholder Kangde Group via a "cash management agreement."</p>
+
+<p lang="zh"><strong>事前用五盏红绿灯能否识别?</strong> 看 2017 年报 (距暴雷 18 个月):</p>
+<p lang="en"><strong>Could the five lights have caught it 18 months early?</strong> 2017 annual report:</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">红绿灯</span><span lang="en">Light</span></th><th><span lang="zh">康得新 2017 数据 (近似)</span><span lang="en">Kangde Xin 2017 (approx)</span></th><th><span lang="zh">判定</span><span lang="en">Verdict</span></th></tr></thead>
+<tbody>
+<tr><td>① OCF/NI</td><td><span lang="zh">NI ~24 亿, OCF ~10 亿, OCF/NI ≈ 0.42</span><span lang="en">NI ~¥2.4bn, OCF ~¥1.0bn, ratio ≈ 0.42</span></td><td><strong><span lang="zh">红 (远低于 0.7)</span><span lang="en">RED (well below 0.7)</span></strong></td></tr>
+<tr><td>② AR/Rev</td><td><span lang="zh">营收 +25%, 应收 +50% (DSRI ≈ 1.2)</span><span lang="en">Rev +25%, AR +50%, DSRI ≈ 1.2</span></td><td><strong><span lang="zh">黄 (临界)</span><span lang="en">YELLOW</span></strong></td></tr>
+<tr><td>③ 折旧</td><td><span lang="zh">折旧政策稳定, 与同行可比</span><span lang="en">Stable, in line with peers</span></td><td><span lang="en">GREEN</span></td></tr>
+<tr><td><span lang="zh">④ 关联方</span><span lang="en">④ Related-party</span></td><td><span lang="zh">其他应收 / 净资产 ~15%, 多笔大额关联方往来</span><span lang="en">Other AR / equity ~15%, multiple large related-party items</span></td><td><strong><span lang="zh">红 (&gt; 10%)</span><span lang="en">RED (&gt; 10%)</span></strong></td></tr>
+<tr><td><span lang="zh">⑤ 非经常</span><span lang="en">⑤ Non-recurring</span></td><td><span lang="zh">占比 10% 左右, 正常</span><span lang="en">~10%, normal</span></td><td><span lang="en">GREEN</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>Beneish M-score 2017</strong>: 估算约 −1.6 (高于阈值 −1.78), 命中"高造假可能"信号。<strong>关键</strong>: 2017 年中报和年报的两盏红灯就足够让谨慎投资者远离。康得新 2018 年股价仍涨到 26 元 — 因为大多数投资者只看"NI +24 亿、连续 4 年快速增长", 没人去算 OCF/NI。这正是 Sloan 1996 accruals anomaly 的<em>事中实证</em>: 高应计公司报表"好看", 市场短期不区分, 长期被迫修正。</p>
+<p lang="en"><strong>Estimated Beneish M-score 2017:</strong> ~−1.6 (above the −1.78 threshold), flagging "high manipulation probability." <strong>Key:</strong> two red lights in 2017 interim and annual reports were enough. Kangde Xin's stock still rallied to ¥26 in 2018 — most investors stared at "NI ¥2.4bn, 4-year fast growth" without computing OCF/NI. This is Sloan 1996's <em>live</em> demonstration: high-accrual filings look pretty, markets ignore short-term, correct violently long-run.</p>
+
+<p lang="zh"><strong>更深一层的漏洞</strong>: 122 亿"货币资金"为什么审计师没发现? 公司用了"现金管理协议" — 控股股东把上市公司的钱<em>归集</em>到集团统一管理, 形式上仍在"上市公司账户名下", 但实际<em>支配权已转移</em>。审计师只看银行函证 (回函显示账上有钱), 不看"控制权转移"。这是 A 股造假的一个结构性漏洞, 直到 2020 年证监会专门发文 (《关于上市公司资金占用、违规担保的专项治理》) 才系统性堵住。</p>
+<p lang="en"><strong>The deeper hole:</strong> how did auditors miss ¥12.2bn? Controlling shareholder used a "cash management agreement" — funds physically held in subsidiary accounts but <em>effective control transferred</em> to parent. Auditors verified bank balances (the cash <em>was</em> there) but didn't audit control. CSRC plugged this in 2020 with a dedicated rule on fund extraction and improper guarantees.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002450" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 002450 →</span><span lang="en">Cninfo 002450 →</span></a>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker">SH·600518</span>
+<span class="company"><span lang="zh">康美药业</span><span lang="en">Kangmei Pharma</span></span>
+<span class="period">2016-2018 · <span lang="zh">300 亿"现金"造假 — A 股史上最大单宗</span><span lang="en">¥30bn "cash" inflation — largest single A‑share fraud</span></span>
+<span class="delisted"><span lang="zh">[特别处理]</span><span lang="en">[Special treatment]</span></span>
+</div>
+
+<p lang="zh">康美药业主营中药饮片。2016-2018 年累计虚增货币资金 ~887 亿 (按证监会 2020 处罚决定书), 其中最大一笔是 2017 年末"货币资金"账面 341 亿、实际仅 42 亿, <strong>差额 ~300 亿</strong>。同期虚增收入 ~291 亿、虚增利润 ~39 亿。2018 年中报披露异常后, 股价从 28 元跌到 3 元, 跌幅 89%。</p>
+<p lang="en">Kangmei made traditional Chinese medicine slices. 2016–18 cumulative cash inflation ~¥88.7bn (per the 2020 CSRC decision); single largest entry — 2017 year-end cash booked at ¥34.1bn, actual ¥4.2bn, <strong>gap ~¥30bn</strong>. Revenue inflated ~¥29.1bn, profit ~¥3.9bn. After the 2018 interim disclosure, shares collapsed from ¥28 to ¥3 (−89%).</p>
+
+<p lang="zh"><strong>事前红绿灯检测</strong> (2017 年报, 距暴雷 9 个月):</p>
+<p lang="en"><strong>Pre-event check</strong> (2017 annual, 9 months before exposure):</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">红绿灯</span><span lang="en">Light</span></th><th><span lang="zh">康美 2017 数据 (近似)</span><span lang="en">Kangmei 2017 (approx)</span></th><th><span lang="zh">判定</span><span lang="en">Verdict</span></th></tr></thead>
+<tbody>
+<tr><td>① OCF/NI</td><td><span lang="zh">NI ~41 亿, OCF ~−13 亿 (负值!), 比率 −0.32</span><span lang="en">NI ~¥4.1bn, OCF ~−¥1.3bn (negative!), ratio −0.32</span></td><td><strong><span lang="zh">极红</span><span lang="en">DEEP RED</span></strong></td></tr>
+<tr><td>② AR + 存货 / Rev</td><td><span lang="zh">营收 +24%, 应收 +63%, 存货 +52% (DSRI &gt; 1.3)</span><span lang="en">Rev +24%, AR +63%, inventory +52%</span></td><td><strong><span lang="zh">红</span><span lang="en">RED</span></strong></td></tr>
+<tr><td>③ 折旧</td><td><span lang="zh">无显著变化</span><span lang="en">No significant change</span></td><td><span lang="en">GREEN</span></td></tr>
+<tr><td><span lang="zh">④ 货币资金 vs OCF</span><span lang="en">④ Cash vs OCF</span></td><td><span lang="zh">货币资金 341 亿但 OCF −13 亿: "有钱却赚不出现金"反逻辑</span><span lang="en">Cash ¥34.1bn but OCF −¥1.3bn — "lots of cash, no cash generation"</span></td><td><strong><span lang="zh">超红 (结构性矛盾)</span><span lang="en">DEEP RED (structural contradiction)</span></strong></td></tr>
+<tr><td><span lang="zh">⑤ 利息收入 / 货币资金</span><span lang="en">⑤ Interest / Cash</span></td><td><span lang="zh">利息收入 ~5 亿 / 货币资金 341 亿 = 1.5% (银行存款利率应为 2-3%)</span><span lang="en">Interest income ¥0.5bn / cash ¥34.1bn = 1.5% (vs 2–3% deposit rate)</span></td><td><strong><span lang="zh">红</span><span lang="en">RED</span></strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>"现金 vs 利息收入"反算法</strong> (本案关键): 如果你账上真有 341 亿货币资金, 哪怕只是活期存款, 一年利息收入也应该 ~10 亿; 定期存款则 ~15 亿。康美只报 5 亿利息收入 — 倒推真实"货币资金"只有 200 亿左右, 与披露的 341 亿差 ~140 亿。这是<strong>用同一份年报内部数据反算造假规模</strong>的经典手法, 不需要外部信息。这一手在著名做空报告 (Muddy Waters 2020 浑水做空瑞幸; 香橼做空康美 2018 年报) 中反复使用。</p>
+<p lang="en"><strong>The "cash vs interest income" reconciliation</strong> (the smoking gun in this case): if a firm truly holds ¥34.1bn in cash, annual interest income — even at current-account rates — should be ~¥1bn; term-deposit rate ~¥1.5bn. Kangmei reported just ¥0.5bn. Implied true cash ~¥20bn, gap ~¥14bn vs reported ¥34bn. This is the classic <strong>"reconcile within the same filing"</strong> technique — no outsider data needed. Used repeatedly in famous shorts (Muddy Waters on Luckin 2020; Citron on Kangmei 2018).</p>
+
+<p lang="zh"><strong>市场反应的滞后</strong>: 2018 年 5 月香橼公开做空报告, 市场<em>不信</em>, 股价继续涨; 6 月报告出错事项后, 才开始下跌。从"识别造假"到"市场修正"用了 6-9 个月 — 这是 Sloan 1996 accruals anomaly 的<em>时间维度</em>: 高应计的修正不是瞬间, 是慢慢挤的。</p>
+<p lang="en"><strong>Market-reaction lag:</strong> Citron published in May 2018; market <em>didn't believe</em>, price rose. Only after the late-June errata did the slide start. From "detect" to "market corrects" = 6–9 months — the <em>time dimension</em> of Sloan 1996: high-accrual correction isn't instantaneous, it grinds.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600518" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600518 →</span><span lang="en">Cninfo 600518 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519</span>
+<span class="company"><span lang="zh">贵州茅台 — 对照组</span><span lang="en">Kweichow Moutai — control</span></span>
+<span class="period">FY2023 · <span lang="zh">五盏灯全绿, 现金 / 利润长期稳定</span><span lang="en">Five lights all green, stable cash-to-profit</span></span>
+</div>
+
+<p lang="zh">对照组: 五盏红绿灯在一个真正高质量公司身上长什么样 (近似数据):</p>
+<p lang="en">Control: what the five lights look like on a genuinely high-quality firm (approximate):</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">红绿灯</span><span lang="en">Light</span></th><th><span lang="zh">茅台 2023 数据 (近似)</span><span lang="en">Moutai 2023 (approx)</span></th><th><span lang="zh">判定</span><span lang="en">Verdict</span></th></tr></thead>
+<tbody>
+<tr><td>① OCF/NI</td><td><span lang="zh">NI ~750 亿, OCF ~660 亿 + 经销商预付款贡献 → OCF/NI ≈ 1.0 (5y 均值 1.1)</span><span lang="en">NI ~¥75bn, OCF ~¥66bn, ratio ≈ 1.0 (5y avg ~1.1)</span></td><td><strong><span lang="en">GREEN</span></strong></td></tr>
+<tr><td>② AR/Rev</td><td><span lang="zh">应收账款近乎为零! (经销商<em>预付</em>而非赊账)</span><span lang="en">AR near zero! (Distributors <em>prepay</em>, not credit)</span></td><td><strong><span lang="zh">超绿</span><span lang="en">DEEP GREEN</span></strong></td></tr>
+<tr><td>③ 折旧</td><td><span lang="zh">基酒库存按 5 年存放, 折旧政策一致</span><span lang="en">Base liquor inventory aged 5y, depr policy stable</span></td><td><span lang="en">GREEN</span></td></tr>
+<tr><td><span lang="zh">④ 关联方</span><span lang="en">④ Related-party</span></td><td><span lang="zh">关联方往来 / 净资产 &lt; 1%</span><span lang="en">Related party / equity &lt; 1%</span></td><td><strong><span lang="en">GREEN</span></strong></td></tr>
+<tr><td><span lang="zh">⑤ 非经常</span><span lang="en">⑤ Non-recurring</span></td><td><span lang="zh">占比 &lt; 5% 长期稳定</span><span lang="en">Stable &lt; 5%</span></td><td><strong><span lang="en">GREEN</span></strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>更进一步: 茅台的"反逻辑"信号</strong>: 应收账款<em>近乎为零</em>而合同负债 (经销商预付) ~140 亿 — 这是真正的护城河。客户不是赊账拿货, 是<em>排队付钱</em>。把合同负债加回去, 实际"经营现金质量"远超账面 OCF/NI = 1.0。这就是为什么茅台的 5 年 OCF/NI 均值能到 1.1-1.2 (远高于一般高质量公司的 1.0 阈值)。</p>
+<p lang="en"><strong>The "inverse-logic" signal:</strong> AR near zero <em>and</em> contract liabilities (distributor prepayments) ~¥14bn — the real moat. Customers don't take on credit; they queue to prepay. Including contract liabilities, true operating cash quality far exceeds the headline OCF/NI = 1.0. That's why Moutai's 5-year OCF/NI averages 1.1–1.2 (well above the 1.0 threshold for "high quality").</p>
+
+<p lang="zh"><strong>Beneish M-score 2023</strong>: 估算约 −3.2 (远低于阈值 −1.78), "无造假信号"。<strong>Altman Z-score</strong>: ~12 (远高于 2.99, 极健康)。<strong>Piotroski F-score</strong>: 9/9。三个指标都在"最优"区间。</p>
+<p lang="en"><strong>Estimated Beneish M-score 2023:</strong> ~−3.2 (well below −1.78 threshold), "no manipulation signal." <strong>Altman Z:</strong> ~12 (far above 2.99). <strong>Piotroski F:</strong> 9/9. All three at the very top.</p>
+
+<p lang="zh"><strong>这个对照的意义</strong>: 把 Layer 1 老王手里那 4 只红灯公司和 1 只黄灯公司, 与茅台对比一下 — <em>数量级</em>的差异。"五盏灯全绿"不是说"完美无缺", 而是说"在已知工具能识别的范围内, 没有发现造假信号"。这是<em>否证 (falsification)</em> 而非<em>证实 (confirmation)</em> — 即"我没找到它有问题", 而非"我证明它没问题"。这是 Karl Popper 科学方法论在投资上的直接应用。</p>
+<p lang="en"><strong>The contrast's meaning:</strong> compare Layer 1's 4-red-1-yellow batch with Moutai — the difference is <em>order-of-magnitude</em>. "Five lights green" doesn't mean "flawless," it means "no manipulation signal detectable by known tools." This is <em>falsification</em>, not <em>confirmation</em> — Popper's scientific method applied directly to investing: "I haven't found problems with it" ≠ "I've proven it's problem-free."</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600519 →</span><span lang="en">Cninfo 600519 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SZ·002415</span>
+<span class="company"><span lang="zh">海康威视 — 三角综合实战</span><span lang="en">Hikvision — triangle in practice</span></span>
+<span class="period">2020 / 2021 / 2024 · <span lang="zh">质量 + 成长 + 估值三角随时间漂移</span><span lang="en">Triangle drift over time</span></span>
+</div>
+
+<p lang="zh">海康作为视频监控龙头, 是 A 股质量 / 成长 / 估值三角随时间变化的典型样本。把三个时点对比:</p>
+<p lang="en">Hikvision, A‑share video-surveillance leader, is a textbook case of how the triangle drifts over time:</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">时点</span><span lang="en">Time</span></th><th><span lang="zh">质量</span><span lang="en">Quality</span></th><th><span lang="zh">成长</span><span lang="en">Growth</span></th><th><span lang="zh">估值</span><span lang="en">Valuation</span></th><th><span lang="zh">判定</span><span lang="en">Verdict</span></th></tr></thead>
+<tbody>
+<tr><td>2020 <span lang="zh">初</span></td><td><span lang="zh">ROIC ~25%, OCF/NI 1.2, M-score −2.5</span><span lang="en">ROIC ~25%, OCF/NI 1.2, M ≈ −2.5</span></td><td><span lang="zh">5y CAGR ~15%, 海外扩张 + IoT 加速</span><span lang="en">5y CAGR ~15%, overseas + IoT</span></td><td><span lang="zh">P/E ~28 (历史中位 ~22), MOS ≈ 0</span><span lang="en">P/E ~28 (hist median 22), MOS ≈ 0</span></td><td><strong><span lang="zh">三角勉强通过</span><span lang="en">Marginal pass</span></strong></td></tr>
+<tr><td>2021 <span lang="zh">中</span></td><td><span lang="zh">ROIC ~22% (下降), OCF/NI 1.0</span><span lang="en">ROIC ~22% (down), OCF/NI 1.0</span></td><td><span lang="zh">美国实体清单制裁影响显现, 海外增速放缓</span><span lang="en">US Entity-List impact appearing, overseas slow</span></td><td><span lang="zh">P/E ~30, 价格未下行反映风险</span><span lang="en">P/E ~30, price hasn't reflected risk</span></td><td><strong><span lang="zh">三角失衡 — 卖出</span><span lang="en">Triangle broken — sell</span></strong></td></tr>
+<tr><td>2024</td><td><span lang="zh">ROIC ~18% (继续下降), OCF/NI 1.1</span><span lang="en">ROIC ~18% (continuing down), OCF/NI 1.1</span></td><td><span lang="zh">增长放缓至 5-8%, 政策与海外双限</span><span lang="en">Growth slowed to 5–8%, policy + overseas dual constraints</span></td><td><span lang="zh">P/E ~20 (低于历史中位); MOS ≈ 15%</span><span lang="en">P/E ~20 (below hist median); MOS ≈ 15%</span></td><td><strong><span lang="zh">价值边界 — case-by-case</span><span lang="en">Value boundary — case-by-case</span></strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>三角动态的启示</strong>: 投资不是一次性买入持有, 是<em>三角持续监测</em>。海康在 2020 三角勉强通过 → 2021 一边的"成长"塌了, 但"估值"没跟着调 → 三角失衡, 即使继续高 ROIC 也该卖。这是 Buffett 罕见的<em>主动卖出</em>纪律: 他在 2003 年减持中石油 (H 股), 2016 年减持 IBM, 都是同样逻辑 — "<em>不是公司变坏了, 是相对估值变化了</em>"。</p>
+<p lang="en"><strong>Dynamic lesson:</strong> investing isn't one-shot buy-and-hold — it's <em>continuous triangle monitoring</em>. Hikvision 2020 marginally passed → 2021 "growth" leg broke without "valuation" leg adjusting → triangle imbalanced, exit even with still-strong ROIC. This is Buffett's rare <em>active sell</em> discipline: trimming PetroChina in 2003, IBM in 2016 — same logic: "<em>the company didn't get worse, the relative valuation changed</em>."</p>
+
+<p lang="zh"><strong>2024 的判断更复杂</strong>: 价格回落到 P/E 20 (估值改善), 但成长面临政策 (国内集采) 与海外 (制裁) 双限。这种情况是 Buffett 派 "<em>合理价格的好公司</em>" 和 Graham 派 "<em>价值陷阱</em>" 的边界 — 取决于你对海康"<em>挺过这一波</em>"的判断有多强。一种谨慎的处理: 小仓位 (10-20%), 等下一年财报验证成长是否真的稳住。</p>
+<p lang="en"><strong>2024 is a harder call:</strong> P/E down to 20 (valuation improving), but growth squeezed by domestic centralized procurement and overseas sanctions. This is the boundary between Buffett's "<em>fair price, good firm</em>" and Graham's "<em>value trap</em>" — depends on your confidence in Hikvision "<em>weathering the storm</em>." Cautious play: 10–20% position, wait one more annual report to verify growth stabilizes.</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002415" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 002415 →</span><span lang="en">Cninfo 002415 →</span></a>
+</div>
+
+<p class="muted measure" lang="zh"><strong>桥接 Layer 1</strong>: 老王今天的 5 只样本里那 4 盏红灯 — 是不是看起来和康得新 / 康美的<em>事前形态</em>很像? 是的。这五盏灯不是"高深的学问", 它们是 Sloan 1996 的<em>1996 年</em>的事, 是 Beneish 1999 的<em>1999 年</em>的事 — 距今 25 年以上, 但 A 股每年仍有几十家"康得新型"公司在这五盏灯下原形毕露。老王不需要预测谁会造假 (难), 他只需要把<em>有这些信号</em>的公司全部排除 (易), 剩下的 5,300 家里那 3,000 多家就是合理候选池, 再用 Ch.07 价值投资的四把尺子继续筛。这就是"<em>NO 比 YES 重要</em>"在数据上的具体含义。</p>
+<p class="muted measure" lang="en"><strong>Bridge to Layer 1:</strong> the four red lights Wang saw today — do they look familiar to Kangde Xin and Kangmei pre-exposure? They do. These lights aren't esoteric: Sloan 1996 is <em>1996</em>, Beneish 1999 is <em>1999</em> — both 25+ years old. Yet A‑shares still produce dozens of Kangde-Xin-shaped firms yearly under these same lights. Wang doesn't need to <em>predict</em> fraud (hard) — he only excludes <em>everything that shows the signal</em> (easy). The 3,000-odd remaining names form a sane candidate pool, then Ch.07's four filters narrow further. This is the data-side meaning of "<em>NO matters more than YES</em>."</p>
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">x</span><div><h4><span lang="zh">Sloan accruals anomaly</span><span lang="en">Sloan accruals anomaly</span></h4><p lang="zh">现金部分持续, 应计部分不持续 — 把质量与可持续性分离的<em>统计学</em>支柱, 跨市场重复验证。</p><p lang="en">Cash persists, accruals don't — the statistical pillar separating quality from sustainability, replicated across markets.</p></div></div>
+<div class="model-card"><span class="roman">xi</span><div><h4><span lang="zh">否证 (falsification)</span><span lang="en">Falsification</span></h4><p lang="zh">Popper 科学方法在投资上的应用: 五盏灯不证实"好", 它们证伪"坏" — 没找到问题不等于没问题, 但找到问题 = 出局。</p><p lang="en">Popper applied to investing: five lights don't confirm "good," they falsify "bad." Not finding a problem ≠ no problem; finding one = out.</p></div></div>
+<div class="model-card"><span class="roman">xii</span><div><h4><span lang="zh">财报反向阅读</span><span lang="en">Read filings backwards</span></h4><p lang="zh">Ross-Westerfield-Jaffe 教材立意: 不是学做账, 是学<em>反过来读</em>账 — 同一份年报内部数据反算造假规模 (康美利息收入)。</p><p lang="en">Ross-Westerfield-Jaffe: not learning to keep books, learning to read them <em>backwards</em> — reconcile within one filing to size fraud (Kangmei's interest income).</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">每题都至少有一个反直觉点。</span><span lang="en">Each has at least one counterintuitive twist.</span></p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
 <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 三角框架: 质量高 + 估值便宜 + 成长低 = 投资 or 不投资?</span><span lang="en"><strong>Q1.</strong> High quality + cheap valuation + low growth — invest?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><em>视情况</em>. 这是典型"deep value"机会 — 大部分时候是<em>价值陷阱</em> (低增长公司估值便宜有理由), 少数情况是<em>真便宜</em>. 区分:</p>
-<ul lang="zh"><li>若低增长是<em>暂时</em> (周期下行) + 公司在<em>能力圈</em> → 可投, 等周期反转</li><li>若低增长是<em>结构性</em> (行业衰退) → 价值陷阱, 不投</li><li>核心问: 公司未来 5-10 年还能<em>产生现金</em>吗? 若能, 高股息率 + 回购 = 长期 OK</li></ul>
-<p lang="en">Case‑by‑case. Often a value trap; sometimes deep value. Distinguish cyclical vs structural decline; if cyclical and within competence, can be long‑run play.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><em>视情况</em>。这是典型"deep value"机会 — 大部分时候是<em>价值陷阱</em> (低增长公司估值便宜有理由), 少数情况是<em>真便宜</em>。区分:</p>
+<ul lang="zh">
+<li>若低增长是<em>暂时</em> (周期下行) + 公司在<em>能力圈</em> → 可投, 等周期反转</li>
+<li>若低增长是<em>结构性</em> (行业衰退, 例如某些传统出版、煤炭子板块) → 价值陷阱, 不投</li>
+<li>核心问: 公司未来 5-10 年还能<em>产生现金</em>吗? 若能, 高股息率 + 回购 = 长期 OK</li>
+</ul>
+<p lang="zh"><strong>用 (8.3) OCF/NI 5 年均值判断</strong>: 若过去 5 年 OCF/NI &gt; 1 且持续, 即使 NI 不增长, 现金流也稳定 — 这种是<em>债性资产</em> (类似长江电力)。若 OCF/NI 持续下行, 说明现金生成能力在塌, 即"质量"维度其实也在恶化, 三角实际是"质量下降 + 估值便宜 + 成长低", 应直接否决。</p>
+<p lang="en">Case-by-case. Often a value trap; sometimes deep value. Distinguish cyclical vs structural decline; if cyclical and within competence, can be long-run play. Key question: does the firm still generate cash in 5–10 years? If yes, high dividend + buybacks → long-run OK (bond-like asset, akin to Yangtze Power).</p>
+<p lang="en"><strong>Use 5-year OCF/NI (8.3):</strong> if &gt; 1 and stable, cash flow is stable even without growth — bond-like. If OCF/NI is itself declining, "quality" leg is also breaking; the real triangle is "quality down + cheap + low growth" — fail.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> "高 ROE + 低估值"的公司, 市场为何给低估值?</span><span lang="en"><strong>Q2.</strong> Why does market discount "high ROE + low valuation" firms?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<ul lang="zh"><li>ROE 高<em>来自杠杆</em>(ROIC 低 → 风险被低估)</li><li>ROE 不可持续 (周期顶部 / 即将均值回归)</li><li>财务质量隐忧 (高应计 / 关联方占款)</li><li>政策风险 (受监管收紧)</li><li>市场情绪冷淡 (无叙事 / 不在热门板块)</li></ul>
-<p lang="zh">前 4 项是<em>合理折价</em>, 第 5 项是<em>机会</em>. 投资者的工作是区分。</p>
-<p lang="en">Likely: ROE leverage‑driven (low ROIC); unsustainable; financial quality issues; policy risk; sentiment. First four = justified discount; #5 = opportunity. Distinguishing is the job.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> "高 ROE + 低估值"的公司, 市场为何给低估值? 给出至少四种可能, 并说哪几种是<em>合理折价</em>, 哪几种是<em>机会</em>。</span><span lang="en"><strong>Q2.</strong> Why does the market discount "high ROE + low valuation" firms? Give four possibilities and identify which are justified discounts vs opportunities.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<ol lang="zh">
+<li><strong>ROE 高<em>来自杠杆</em> (ROIC 低)</strong>: 杜邦拆 ROE = NI Margin × Asset Turnover × Leverage。若杠杆 5x, ROIC 8% × 5 = ROE 40%, 但风险被低估, 经济价值远低于表观 ROE。<em>合理折价</em>。</li>
+<li><strong>ROE 不可持续 (周期顶部 / 即将均值回归)</strong>: 强周期股 (钢铁、煤炭、化工) 在周期顶部 ROE 25%, 谷底 5%, 中位 10%。市场看 5 年均值给估值。<em>合理折价</em>。</li>
+<li><strong>财务质量隐忧</strong>: 高应计 / 关联方占款 / 商誉减值风险积聚 — Beneish M-score 已经接近阈值。<em>合理折价</em> (甚至应该更便宜)。</li>
+<li><strong>政策风险</strong>: 受监管收紧 (集采、双限、互联网监管)。例如 2021 后教培、互联网平台的 ROE 仍高, 但市场知道 ROE 即将被政策腰斩。<em>合理折价</em>。</li>
+<li><strong>市场情绪冷淡</strong>: 无叙事 / 不在热门板块 / 流动性差 — 例如部分基建央企、地方银行。<em>机会</em>: 基本面没问题, 只是没人买。</li>
+<li><strong>分类被边缘化</strong>: 公司被划在"夕阳行业"指数里, ETF 被动卖出。<em>机会</em>: 与基本面无关的技术性抛压。</li>
+</ol>
+<p lang="zh">前 1-4 项是<em>合理折价</em>, 第 5-6 项是<em>机会</em>。投资者的工作就是<em>区分</em>。区分的工具: (a) 5 年 ROE 均值看可持续性; (b) ROIC vs WACC 看真实回报; (c) 五盏红绿灯看质量; (d) 政策风险定性判断。</p>
+<p lang="en">Possibilities: (1) ROE leverage-driven (ROIC low) — justified; (2) cyclical peak — justified; (3) financial quality issues (high accruals, related-party, looming goodwill) — justified, possibly more discount needed; (4) policy overhang (centralized procurement, anti-trust) — justified; (5) sentiment / niche neglect — opportunity; (6) ETF passive selling — opportunity. (1)–(4) justified, (5)–(6) opportunity. Tools: 5-year ROE for sustainability; ROIC vs WACC for true return; five lights for quality; qualitative policy judgment.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 一家公司账面货币资金 50 亿, 年度利息收入 0.5 亿。这说明什么? 用同一份年报内部数据反算, 真实货币资金可能是多少?</span><span lang="en"><strong>Q3.</strong> A firm reports ¥5bn cash and annual interest income ¥50m. What's wrong? Reconcile within the filing to estimate true cash.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>反算</strong>: 利息收入 / 货币资金 = 0.5 / 50 = 1% — 远低于活期 (~0.3% 但要乘 12 个月平均) + 定期 (2-3%) 的合理范围。一般公司账面现金加权平均年化收益应在 1.5-3% (混合活期 + 通知存款 + 短期理财)。</p>
+<p lang="zh">若实际加权年化收益 2%, 反算真实"货币资金" ≈ 0.5 / 2% = 25 亿。账面 50 亿 - 真实 25 亿 = <strong>差 25 亿</strong>。</p>
+<p lang="zh"><strong>解释这 25 亿的去向</strong>:</p>
+<ul lang="zh">
+<li>(a) 被关联方占用 (康得新型: 122 亿被集团"现金管理")</li>
+<li>(b) 虚增 (康美型: 直接造假)</li>
+<li>(c) 限制性使用 (作为抵押 / 保证金 / 关联方融资担保)</li>
+<li>(d) 被冻结 (诉讼 / 监管查封)</li>
+</ul>
+<p lang="zh">公司必须在附注披露 (c)(d), 若附注未披露 → 高度怀疑 (a) 或 (b)。无论哪种, 投资者的合理结论都是"<strong>账面货币资金不可信, 真实流动性 50% 折算</strong>"。这一手法在著名做空报告中反复使用。</p>
+<p lang="en">Ratio 0.5/50 = 1% — far below the 1.5–3% blended yield on a mixed current + notice + short-term wealth portfolio. At 2% blended, implied true cash ≈ 0.5/0.02 = ¥2.5bn. Gap ¥2.5bn. Possible explanations: (a) extracted by related parties (Kangde Xin pattern); (b) outright inflated (Kangmei pattern); (c) restricted (collateral / guarantee); (d) frozen (litigation / regulator). (c) and (d) must be disclosed in notes; absence → suspect (a) or (b). Either way, sane investor conclusion: "<strong>book cash unreliable, true liquidity ≈ 50% haircut</strong>." Used repeatedly in famous short reports.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 五盏红绿灯都设置在"高造假风险预警"侧。这种"高误警 (false alarm) + 低误漏 (miss)"的设计是不是太保守, 会让你错过大量好公司?</span><span lang="en"><strong>Q4.</strong> The five lights err on "high false-alarm + low miss-rate." Isn't this so conservative it misses many great firms?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>是设计选择, 不是失误</strong>。投资中的损失非对称: 踩雷 −80% 到 −100% (康得新、康美、暴风、瑞幸), 错过好公司只是<em>机会成本</em> (年化少 5-10%)。Kahneman 损失厌恶 (2.5x): 大多数投资者宁可少赚 10% 也不愿亏 80%。所以五盏灯设计成"宁可错过 99 家好公司, 也不踩 1 家雷"。</p>
+<p lang="zh"><strong>统计学解释</strong>: 把它当作分类器, 设计目标是<em>高 recall</em> (识别所有造假, 误漏低) 而非<em>高 precision</em> (识别的都是造假)。投资中, 一次踩雷的损失远大于 99 次误警的机会成本。Buffett 1996: "<em>Rule No. 1: Never lose money. Rule No. 2: Never forget Rule No. 1.</em>"</p>
+<p lang="zh"><strong>错过的代价多大?</strong> A 股 5,300 只里, 五盏灯严苛筛选后剩 ~1,000 只。即使丢掉的 4,300 只里有 1,000 只是"被冤枉的好公司", 剩下的 1,000 池子仍然足够大 — 老王一年能深入研究 20-30 只就到极限了, 池子大小不是约束。所以"错过好公司"的边际成本极低, 而"踩雷"的边际成本极高。这就是<strong>非对称损益分布下的最优筛选策略</strong>。</p>
+<p lang="en"><strong>It's a design choice, not a defect.</strong> Investing losses are asymmetric: stepping on a fraud is −80% to −100% (Kangde Xin, Kangmei, Storm, Luckin); missing a good firm is only opportunity cost (~5–10% p.a.). Kahneman's loss aversion (2.5×): most investors prefer missing 10% gains to taking 80% losses. So design: "rather miss 99 great firms than touch 1 fraud."</p>
+<p lang="en"><strong>Statistically:</strong> the five-light classifier targets <em>high recall</em> (catch all frauds), not <em>high precision</em>. A single fraud hit dwarfs the opportunity cost of 99 false alarms. Buffett 1996: <em>"Rule No. 1: Never lose money. Rule No. 2: Never forget Rule No. 1."</em></p>
+<p lang="en"><strong>How costly is missing?</strong> After strict filtering, ~1,000 names remain from 5,300 A‑shares. Even if 1,000 of the dropped 4,300 are "wrongly accused good firms," the remaining 1,000 is still far larger than Wang can deeply research (~20–30 per year). Pool size isn't the binding constraint. Marginal cost of missing ≈ 0; marginal cost of touching a fraud ≈ ∞. This is the <strong>optimal filter under asymmetric loss</strong>.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> Sloan 1996 accruals anomaly 在 1996 年发表, 至今近 30 年。理论上, 公开发表的<em>赚钱的</em>异象应该被套利掉。它为什么仍然存在?</span><span lang="en"><strong>Q5.</strong> Sloan 1996 has been public for nearly 30 years. Anomalies that pay should be arbitraged away. Why does it persist?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">这是金融学界一个长期问题, 至少四种解释:</p>
+<ol lang="zh">
+<li><strong>套利成本 (limits to arbitrage, Shleifer-Vishny 1997)</strong>: 做空高应计公司风险大 — 短期可能继续涨, 借券成本高, 强制平仓风险。专业投资者面对客户赎回压力, 无法承受长期等待。所以即使知道异象存在, 也没多少资金去消除它。</li>
+<li><strong>行为偏差持续 (Kahneman-Tversky 1979)</strong>: 投资者对"过去高增长"过度乐观, 对"过去现金质量差"麻木 — 这是大脑层面的偏差, 论文发表不能改变它。理性"信息已传播"假设在行为层面不成立。</li>
+<li><strong>样本扩展</strong>: Sloan 原样本是美国 1962-1991。后续研究 (Lewellen 2010, Hirshleifer et al 2012) 在全球各市场重复验证, 异象幅度有<em>缓慢</em>下降但仍显著存在, 中国 A 股 2010-2020 测算约 4-6% (低于美国 10% 但仍 positive)。</li>
+<li><strong>异象的<em>结构性</em>本质</strong>: 应计 vs 现金的差异本身是会计制度造成的 — accrual accounting 必然产生这种张力, 只要制度不变, 异象的<em>生成机制</em>就不变。这与 P/E 异象不同 — P/E 异象可以被套利平掉一部分, 但应计异象的"源头"是会计制度本身。</li>
+</ol>
+<p lang="zh"><strong>Buffett 的观察</strong> (1989 致股东信, 间接表达): "<em>If past history was all there was to the game, the richest people would be librarians.</em>" 知道异象 ≠ 能赚到。能赚到需要: 套利资本 + 心理素质 + 时间。前两者大多数投资者都缺。</p>
+<p lang="en">A long-running puzzle, four explanations:</p>
+<ol lang="en">
+<li><strong>Limits to arbitrage (Shleifer-Vishny 1997):</strong> shorting high-accrual firms is risky — they can rally further, borrow costs, forced cover. Professionals face redemption pressure and can't ride it out. So even with the anomaly public, arbitrage capital is too thin to eliminate it.</li>
+<li><strong>Persistent behavioral bias (Kahneman-Tversky 1979):</strong> investors over-extrapolate past growth and ignore past cash quality — brain-level bias, publication doesn't fix.</li>
+<li><strong>Out-of-sample replication:</strong> Sloan's original sample was US 1962–91. Lewellen 2010, Hirshleifer et al 2012 replicate globally; spread has <em>slowly</em> compressed but remains; A‑share 2010–20 ~4–6% (vs US ~10%, still positive).</li>
+<li><strong>Structural source:</strong> the accrual-cash gap is created by accrual accounting itself. As long as the institution stands, the generation mechanism stands. Different from P/E anomaly (partly arbitrageable) — accrual anomaly's source is the accounting system.</li>
+</ol>
+<p lang="en">Buffett 1989 (paraphrased): <em>"If past history was all there was to the game, the richest people would be librarians."</em> Knowing the anomaly ≠ harvesting it. Harvesting needs arbitrage capital + psychological stamina + time — most investors lack the first two.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="07-value-investing.html"><span class="dir">← Prev</span><span class="title">07 · <span lang="zh">价值投资</span><span lang="en">Value</span></span></a><a class="next" href="09-announcements.html"><span class="dir">Next →</span><span class="title">09 · <span lang="zh">A 股公告</span><span lang="en">Filings</span></span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="07-value-investing.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">07 · <span lang="zh">价值投资</span><span lang="en">Value</span></span></a><a class="next" href="09-announcements.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">09 · <span lang="zh">A 股公告</span><span lang="en">Filings</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

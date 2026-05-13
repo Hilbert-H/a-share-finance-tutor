@@ -7,25 +7,109 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}</style>
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
 </head><body>
 <div class="app">
 <header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 09</span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 09</span><span class="sep">·</span><span><span lang="zh">22 分钟</span><span lang="en">22 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.04 EMH + Ch.07/08</span><span lang="en">Prereq: Ch.04 EMH + Ch.07/08</span></span></div>
 <h1><span lang="zh">A 股公告解读</span><span lang="en">Reading A‑Share Filings</span></h1>
-<p class="lesson-subtitle"><span lang="zh">业绩预告 / 定增 / 回购 / 限售解禁 / ST 退市 / 问询函 — A 股的"公告流"是日常波动的主要来源. 学会读, 看出市场反应是否合理, 比看年报更高频。</span><span lang="en">Earnings preannouncement, placement, buyback, lock‑up expiry, ST/delisting, inquiry letters — A‑share's filing stream drives daily volatility. Reading it makes everyday market reactions interpretable.</span></p>
+<p class="lesson-subtitle"><span lang="zh">业绩预告 / 定增 / 回购 / 限售解禁 / ST 退市 / 问询函 / 监管函 — A 股的"公告流"是日常波动的主要来源. 学会读, 看出市场反应是否合理, 比看年报更高频。</span><span lang="en">Earnings preannouncement, placement, buyback, lock‑up expiry, ST/delisting, inquiry letters, regulator letters — A‑share's filing stream drives daily volatility. Reading them makes everyday market reactions interpretable.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">识别 7 类高频公告 + 各自市场反应模式</li><li lang="zh">用 EMH + 行为金融解释短期股价反应</li><li lang="en">Identify 7 common filing types and typical reactions; explain via EMH + behavioral</li></ul>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">识别 7 类高频公告 + 各自市场反应模式</li>
+<li lang="zh">用 event study 方法 (估计窗 + 事件窗 + abnormal return + CAR) 形式化"公告反应"</li>
+<li lang="zh">理解 PEAD (post-earnings announcement drift) 现象: 信息<em>慢慢被消化</em></li>
+<li lang="zh">区分"市场过度反应"(机会) 与"信息含量真正大"(不要逆行)</li>
+<li lang="en">Identify 7 common filing types and typical reactions.</li>
+<li lang="en">Formalize "announcement reaction" via event study (estimation + event window + abnormal return + CAR).</li>
+<li lang="en">Understand PEAD: information is absorbed gradually.</li>
+<li lang="en">Tell over-reaction (opportunity) from genuinely large information (don't fight).</li>
+</ul>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">7 类公告与典型反应</span><span lang="en">Seven filings &amp; reactions</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王复盘 2023 年五个公告事件</span><span class="en" lang="en"> · Wang reviews five 2023 filing events</span></h2>
 
-<table><thead><tr><th><span lang="zh">公告</span><span lang="en">Filing</span></th><th><span lang="zh">内容</span><span lang="en">Content</span></th><th><span lang="zh">市场典型反应</span><span lang="en">Typical reaction</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">业绩预告 (季 / 年)</span><span lang="en">Earnings preannouncement</span></td><td><span lang="zh">预增 / 预减 / 扭亏 / 增亏</span><span lang="en">Up/down/turnaround/widen loss</span></td><td><span lang="zh">公告日 5-15% 跳空 + 后 3-6 月盈余漂移</span><span lang="en">5–15% gap + 3–6m drift (PEAD)</span></td></tr>
+<p lang="zh">老王最近翻自己 2023 年的交易记录, 发现一件事: 自己<em>持有的</em>股票里, 有几只在公告日当天 ±10% 跳, 自己当时全靠"凭感觉"反应 — 有一次果断卖了, 后来涨回去; 有一次没卖, 后来还在跌。他想搞清楚: 公告日的市场反应到底<em>合理不合理</em>? 反应快的能不能利用? 反应慢的能不能等? 他翻出 5 个有印象的事件, 一个一个复盘。</p>
+<p lang="en">Sorting through his 2023 trades, Wang notices: a handful of his holdings gapped ±10% on filing days. He reacted on gut — once sold and watched it recover, once held and watched it slide further. He wants to figure out: are filing-day moves <em>rational</em>? When does over-reaction create opportunity? When is the move genuinely warranted? He pulls five events from memory and walks through them.</p>
+
+<p lang="zh"><strong>1. 茅台 (600519) 价格上调公告 → 当日 +6%。</strong> 2023 年 11 月某天傍晚, 茅台公告飞天 53° 出厂价从 969 元上调到 1,169 元, 涨幅 20%。第二天开盘股价 +6%, 收盘 +5.8%。老王问自己: 这 +6% 合理吗?<em>简单算一下</em>: 飞天年销量约 4 万吨左右, 出厂价提 200 元/瓶 ≈ 4,800 万元/年, 相当于 NI 多 250 亿/年, 占当前 NI 750 亿的 ~33%。但实际涨价不会立即全部传导 (经销商提价节奏 + 消费者接受度需要时间), 第一年传导率假设 50%, 即 NI 多 125 亿。若 P/E 不变, 股价应该 +17%。<strong>当日 +6% 反而是<em>不足反应</em></strong> — 后续 3 个月还会继续涨。这就是 PEAD。老王检查: 茅台 2023 年 11 月公告后 3 个月内涨幅 +12%, 与他的估算吻合。</p>
+<p lang="en"><strong>1. Moutai (600519) ex-factory price hike → +6% next day.</strong> One evening in November 2023, Moutai announced ex-factory price on its flagship 53° Feitian moved from ¥969 to ¥1,169 (+20%). Next morning gap +6%, close +5.8%. Wang asks: is +6% rational? <em>Quick math:</em> annual Feitian volume ~40k tonnes, +¥200/bottle ≈ +¥48m/y per channel, scaled → NI +¥25bn/y, or ~33% of current ¥75bn NI. First-year pass-through ~50% (distributor and consumer absorption takes time) → NI +¥12.5bn. Holding P/E constant: price should rise ~17%. <strong>+6% is <em>under-reaction</em></strong> — the rest leaks out over 3 months. That's PEAD. Wang checks: cumulative +12% over the next 3 months, consistent with his estimate.</p>
+
+<p lang="zh"><strong>2. 某仿制药企集采落选 → −15%。</strong> 老王清晰记得这件事: 2023 年 3 月某天, 国家集采第八批 (糖尿病用药) 结果公布, 某中型仿制药企的核心产品<em>全部落选</em>。当天股价跌停 −10%, 第二天再 −5%。老王盯着想: 集采落选意味着这家公司未来该产品的销售额<em>归零</em>。如果该产品占公司营收 60% (常见集采核心产品占比), 那 NI 直接腰斩。若 P/E 不变, 股价应该 −50%。<strong>−15% 实际是<em>大幅不足反应</em></strong> — 老王查了后续: 该股 3 个月内继续 −20%, 6 个月内总跌幅 −40%。如果老王当天就懂"集采落选 → 营收归零"的传导, 第二天就该全部卖出, 而不是看到 −10% 就以为"已经跌够了"。</p>
+<p lang="en"><strong>2. A generic-pharma firm fails centralized procurement → −15%.</strong> Vividly remembered: in March 2023, the 8th centralized procurement round (diabetes drugs) results dropped. A mid-cap generic firm's core SKUs <em>all failed</em>. Daily limit −10% day 1, then −5% day 2. Wang reasons: failing centralized procurement means future revenue of that product line ≈ zero. If that product is 60% of company revenue (typical for "core" SKUs), NI halves. P/E constant: stock should drop −50%. <strong>−15% is <em>severe under-reaction</em></strong>. Wang checks: −20% over next 3 months, −40% cumulative over 6. If he'd grasped the "fail centralized → revenue → zero" transmission on day 1, he should have sold the day after, not assumed "−10% is enough."</p>
+
+<p lang="zh"><strong>3. 某新能源 业绩预增 +50% → 当日 +8% 但当日就回吐到 +2%。</strong> 2023 年 7 月某天, 一家二线新能源公司公告半年报预增 NI +50%。开盘高开 +8%, 但当天就一路回吐, 收盘只剩 +2%。老王仔细看公告: 预增的主要来源是"<em>处置某子公司</em>"产生 8 亿一次性投资收益, 而<em>经营性</em>净利润同比反而 −10%。当天高开 +8% 是市场看到"+50%"标题的本能反应, 但<em>读懂公告</em>的投资者一上午就把它卖回去了。这就是<strong>第五盏红绿灯 (Ch.08): 非经常性损益 / 净利比</strong>的实战版。教训: 别只看预增百分比, 要点开公告看<em>预增来源</em>。</p>
+<p lang="en"><strong>3. A second-tier new-energy firm preannounces NI +50% → gap +8% but fades to +2% intraday.</strong> July 2023, the H1 preannouncement. Gap +8%, faded all day, closed +2%. Detail in the filing: the +50% is almost entirely from a one-off ¥800m gain on disposing a subsidiary; <em>operating</em> NI actually fell −10% YoY. The morning gap was reflexive "+50% headline" reaction; investors who <em>read the filing</em> sold by lunch. This is Ch.08 Light #5 (non-recurring / NI) live: don't trust the preannouncement %, click into the source.</p>
+
+<p lang="zh"><strong>4. 重大重组公告 → 复牌涨停 +10% (但老王没参与)。</strong> 2023 年某重组案: A 公司停牌 3 个月, 复牌公告"拟以 35 亿收购 B 公司 100% 股权 (B 公司是 A 公司主营业务的国内龙头补充)"。复牌当日 +10% 涨停, 之后连续 3 个涨停。老王没买 (因为他在停牌前根本没持仓), 但事后复盘他问: <em>三个涨停后追不追</em>? 这是<strong>事件驱动 (event-driven) 策略</strong>的典型场景。判断的关键: (a) 重组的<em>协同价值</em>是否真实? (b) 收购对价 35 亿是否合理 (B 公司 NI 与同行业 EV/EBITDA)? (c) 监管批准的概率? 老王查了, 收购对价对应 B 公司 P/E ~25 (同行业 18-22) — 略贵, 但有产业协同。三个涨停后追入风险 / 回报已经不对称, 老王决定<em>不追</em>。后续: 完成 3 个涨停后还涨了 ~15%, 但波动加大, 半年后涨幅缩到 +20%。"<em>错过</em>"在事件驱动里是常态, 不追未必错。</p>
+<p lang="en"><strong>4. Major M&amp;A announcement → +10% limit-up on resumption (Wang didn't participate).</strong> An A‑share suspended for 3 months, resumes with "acquiring B for ¥3.5bn, B is the domestic complementary leader." Day-1 +10% limit-up, then three consecutive limit-ups. Wang wasn't holding pre-suspension. Post-hoc question: <em>chase after three limit-ups</em>? Classic event-driven setup. Tests: (a) is synergy real? (b) is ¥3.5bn fair given B's NI and peer EV/EBITDA? (c) regulator approval odds? Wang found: ¥3.5bn implies P/E ~25 for B vs peer 18–22 — slightly rich but synergy plausible. Post three limit-ups, risk/reward asymmetric, he <em>doesn't chase</em>. Outcome: another +15% over six weeks, then volatility took it back to +20% net. Missing is the norm in event-driven; not chasing isn't wrong.</p>
+
+<p lang="zh"><strong>5. 某实控人公告 拟减持 3% → 当周 −10%。</strong> 2023 年 9 月某天, 老王持有的一只中盘股突然公告"实际控制人拟在未来 6 个月内通过集中竞价方式减持不超过 3%"。当周股价 −10%。老王问自己: 这反应合理吗?<em>简单算</em>: 实控人持股原 25%, 减 3% 后 22%, 仍然绝对控股 (不会引发治理变化)。3% 流通量按当前股价折 ~8 亿, 相对于当周成交量 ~4 亿是 200%, 短期供需冲击大但有限。但市场<em>解读</em>更深: "实控人都要减, 一定是知道未来不好" — 这是<strong>信号效应 (signaling)</strong>, 与减持金额本身无关。是不是过度反应? 取决于其他信号 (公司是否有其他红灯、行业是否进入下行)。老王检查: 公司基本面无变化, 无红灯 — 判定<em>过度反应</em>, 适合<em>逆向小仓位加仓</em>。后续: 6 个月后, 减持执行完成且股价恢复到公告前水平 (即 −10% 跌幅几乎完全回补)。Mr. Market 又一次<em>过度反应</em>。</p>
+<p lang="en"><strong>5. Controlling shareholder announces 3% reduction → −10% in a week.</strong> September 2023, one of Wang's mid-caps announces controlling shareholder plans to reduce up to 3% over the next 6 months via secondary trades. Week-1 −10%. Reasonable? <em>Quick math:</em> insider stake from 25% to 22%, still absolute control (no governance change). 3% × current price ≈ ¥800m, vs weekly turnover ¥400m — short-term supply shock 200%. But market reads deeper: "insider sells = bad news ahead" — pure <strong>signaling effect</strong>, independent of size. Over-reaction? Depends on other signals (red flags elsewhere? sector decline?). Wang checks: no red lights, no sector turn. Verdict: <em>over-reaction</em>, contrarian small add. Outcome: 6 months later, reduction completed and price back to pre-announcement level. Mr. Market over-reacted again.</p>
+
+<p lang="zh"><strong>傍晚总结。</strong> 五个事件, 复盘后老王发现一个规律: <em>市场对结构性 / 慢传导信息(集采、价格上调)<strong>反应不足</strong>, 对情绪性 / 信号性信息(减持、业绩预增的标题数字)<strong>反应过度</strong></em>。这<em>不是</em>市场"低效", 而是市场<em>消化信息的速度</em>不同。慢传导信息需要 3-6 月 PEAD 慢慢落地; 情绪信息当日 / 当周就回吐。老王把这个规律写在小本子上: "<em>慢消息可以慢追, 快消息别追快</em>"。Layer 2 把这个直觉用 event study 方法论形式化 (估计窗 + 事件窗 + abnormal return + CAR + PEAD)。Layer 3 用蚂蚁集团 IPO 暂停 (2020-11-03) 和滴滴中概监管 (2021-07) 两个传导事件验证。</p>
+<p lang="en"><strong>Wrap-up.</strong> Five events. Pattern: market <em>under-reacts to structural / slow-transmission</em> news (centralized procurement, price hikes), <em>over-reacts to emotional / signaling</em> news (insider reductions, headline preannouncement numbers). Not "inefficiency" — different <em>absorption speeds</em>. Slow news leaks out over 3–6 months as PEAD; emotional news fades the same day or week. Wang writes a rule: <em>"chase slow news slowly, don't chase fast news fast."</em> Layer 2 below formalizes this with event study methodology (estimation window + event window + abnormal return + CAR + PEAD). Layer 3 validates with Ant IPO suspension (2020-11-03) and Didi regulatory event (2021-07).</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 240" role="img" aria-label="Two reaction patterns">
+<defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient></defs>
+<style>
+.ab{fill:url(#ag);stroke:#1A1814;stroke-width:1.2}
+.at{font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:11px;fill:#1A1814}
+.ah{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;fill:#1A1814}
+.ag{font-family:'Noto Serif SC',serif;font-style:italic;font-size:10px;fill:#8A8378}
+.line{fill:none;stroke:#8B2C2C;stroke-width:2}
+.line2{fill:none;stroke:#3A6B2E;stroke-width:2}
+.dotted{fill:none;stroke:#8A8378;stroke-width:1;stroke-dasharray:3,3}
+</style>
+<text class="ah" x="360" y="22" text-anchor="middle">两种公告反应模式</text>
+<rect class="ab" x="20" y="40" width="330" height="180" rx="3"/>
+<text class="ah" x="185" y="65" text-anchor="middle">慢消息: 反应不足 + PEAD</text>
+<text class="at" x="185" y="83" text-anchor="middle">茅台提价 / 集采落选</text>
+<line class="dotted" x1="50" y1="150" x2="320" y2="150"/>
+<text class="ag" x="48" y="153" text-anchor="end">0</text>
+<line class="dotted" x1="130" y1="100" x2="130" y2="200"/>
+<text class="ag" x="130" y="215" text-anchor="middle">公告日</text>
+<path class="line" d="M 60 150 L 125 150 L 130 130 L 200 115 L 280 100"/>
+<text class="ag" x="290" y="105" text-anchor="start">PEAD 3-6 月</text>
+<rect class="ab" x="370" y="40" width="330" height="180" rx="3"/>
+<text class="ah" x="535" y="65" text-anchor="middle">快消息: 反应过度 + 修正</text>
+<text class="at" x="535" y="83" text-anchor="middle">实控人减持 / 标题预增</text>
+<line class="dotted" x1="400" y1="150" x2="670" y2="150"/>
+<text class="ag" x="398" y="153" text-anchor="end">0</text>
+<line class="dotted" x1="480" y1="100" x2="480" y2="200"/>
+<text class="ag" x="480" y="215" text-anchor="middle">公告日</text>
+<path class="line2" d="M 410 150 L 475 150 L 480 175 L 510 195 L 560 175 L 620 158 L 660 153"/>
+<text class="ag" x="640" y="160" text-anchor="start">修正回 0</text>
+</svg>
+<figcaption><span lang="zh">两种典型反应: 慢消息当日反应不足, 后续 3-6 月 PEAD 漂移; 快消息当日反应过度, 当周 / 当月修正回均值。</span><span lang="en">Two patterns: slow news under-reacts on day and drifts over 3–6 months (PEAD); fast news over-reacts on day and reverts within weeks.</span></figcaption>
+</figure>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用 5 个公告事件画出了"慢消息反应不足 + 快消息反应过度"的双轨规律。现在我们把这套规律用<em>事件研究 (event study)</em> 方法论形式化 — 这是金融实证研究的标准工具, 由 Fama-Fisher-Jensen-Roll 1969 论文引入, 后经 Brown-Warner 1985 改进, 至今仍是检验"市场对事件的反应"的标准做法。</p>
+<p lang="en">Layer 1 sketched the dual rule: slow news under-reacts, fast news over-reacts. Layer 2 formalizes with the <em>event study</em> framework — the standard tool, introduced in Fama-Fisher-Jensen-Roll (1969) and refined by Brown-Warner (1985), still used today to test "market reaction to events."</p>
+
+<h3 lang="zh">7 类高频公告与典型反应</h3>
+<h3 lang="en">Seven common filings and typical reactions</h3>
+
+<table>
+<thead><tr><th><span lang="zh">公告</span><span lang="en">Filing</span></th><th><span lang="zh">内容</span><span lang="en">Content</span></th><th><span lang="zh">市场典型反应</span><span lang="en">Typical reaction</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">业绩预告 (季 / 年)</span><span lang="en">Earnings preannouncement</span></td><td><span lang="zh">预增 / 预减 / 扭亏 / 增亏</span><span lang="en">Up/down/turnaround/widen loss</span></td><td><span lang="zh">公告日 5-15% 跳空 + 后 3-6 月盈余漂移 (PEAD)</span><span lang="en">5–15% gap + 3–6m drift (PEAD)</span></td></tr>
 <tr><td><span lang="zh">业绩快报</span><span lang="en">Earnings flash</span></td><td><span lang="zh">未审 NI / 营收</span><span lang="en">Unaudited NI/Rev</span></td><td><span lang="zh">温和反应, 等正式年报</span><span lang="en">Mild; await full report</span></td></tr>
 <tr><td><span lang="zh">定增 (private placement)</span><span lang="en">Private placement</span></td><td><span lang="zh">向特定对象发新股</span><span lang="en">Issue to specific investors</span></td><td><span lang="zh">公告负面 ~3-8% (稀释 + Myers 信号), 锁定期内可能反转</span><span lang="en">Negative initially; possibly reverse later</span></td></tr>
 <tr><td><span lang="zh">回购</span><span lang="en">Buyback</span></td><td><span lang="zh">公司回购 + 注销 / 库存</span><span lang="en">Repurchase, cancel/treasury</span></td><td><span lang="zh">公告正面 +3-10%, 大额则更强</span><span lang="en">Positive +3–10%</span></td></tr>
@@ -33,55 +117,353 @@
 <tr><td>ST / *ST / <span lang="zh">退市</span><span lang="en">Delisting</span></td><td><span lang="zh">连续亏损 / 重大违法</span><span lang="en">Losses / material violations</span></td><td><span lang="zh">公告时已暴跌, 退市倒计时无人接</span><span lang="en">Already crashed; no buyers</span></td></tr>
 <tr><td><span lang="zh">问询函</span><span lang="en">Inquiry letter</span></td><td><span lang="zh">交易所要求公司答疑</span><span lang="en">Exchange queries</span></td><td><span lang="zh">高度负面 (-5 to -15%); 回复后可能反弹</span><span lang="en">Strongly negative</span></td></tr>
 <tr><td><span lang="zh">监管函 / 处罚</span><span lang="en">Regulator letter / fine</span></td><td><span lang="zh">CSRC / 交易所处罚</span><span lang="en">Penalty</span></td><td><span lang="zh">严重: -10-20%, 长期影响信誉</span><span lang="en">Severe; lasting reputation damage</span></td></tr>
-</tbody></table>
+</tbody>
+</table>
 
-<h3 lang="zh">读公告的<em>第一性</em>问题</h3>
-<h3 lang="en">First‑principle questions</h3>
+<h3 lang="zh">Event study 方法论</h3>
+<h3 lang="en">Event study methodology</h3>
+
+<p lang="zh">Event study 的标准流程 (Brown-Warner 1985 框架):</p>
+<p lang="en">Standard event-study flow (Brown-Warner 1985):</p>
+
 <ol lang="zh">
-<li><strong>这是<em>已被市场预期</em>的吗?</strong> 已预期的信息已反映在价格 (EMH 半强). 反应大小反映"超预期的程度"</li>
-<li><strong>是<em>暂时</em>还是<em>结构性</em>?</strong> 周期性业绩波动 vs 行业系统性恶化, 估值含义完全不同</li>
-<li><strong>对未来现金流<em>长期</em>影响?</strong> 把短期信号代入 DCF / 估值模型, 反推内在价值变化</li>
-<li><strong>是否触发护城河 / 能力圈边界变化?</strong></li>
-<li><strong>市场反应是否合理?</strong> 过度反应是机会, 不足反应是陷阱</li>
+<li><strong>事件日定义</strong> $t = 0$: 公告日。注意分清"事件首次公开日"与"事件发生日"—— 在 A 股, 内幕信息提前泄漏常见, 真正 $t=0$ 应取<em>第一次价格异动日</em>而非<em>公告日</em>。</li>
+<li><strong>估计窗 (estimation window)</strong>: 事件日前 [−250, −30] 交易日, 用来估计"正常收益率"参数 (CAPM 的 α 与 β)。</li>
+<li><strong>事件窗 (event window)</strong>: [−5, +30] 交易日 (短期) 或 [−5, +120] (长期 PEAD)。</li>
+<li><strong>异常收益 (abnormal return, AR)</strong>: 实际收益减去预期收益。</li>
+<li><strong>累计异常收益 (CAR)</strong>: AR 在事件窗内累加。</li>
+<li><strong>统计检验</strong>: CAR 显著不为零 → 事件含信息。</li>
 </ol>
-<p lang="en">Five questions: Was it expected? Temporary or structural? Long‑run cash flow impact? Moat/competence boundary change? Is the market over‑/under‑reacting?</p>
-</section>
+<ol lang="en">
+<li><strong>Event date</strong> $t=0$: announcement. In A‑shares insider leakage is common — true $t=0$ is the <em>first abnormal price-move day</em>, not the formal announcement day.</li>
+<li><strong>Estimation window:</strong> [−250, −30] trading days, used to estimate "normal return" parameters (CAPM α and β).</li>
+<li><strong>Event window:</strong> [−5, +30] (short-term) or [−5, +120] (long-term, PEAD).</li>
+<li><strong>Abnormal return (AR):</strong> realized return minus expected return.</li>
+<li><strong>Cumulative abnormal return (CAR):</strong> AR summed across the event window.</li>
+<li><strong>Significance test:</strong> CAR significantly ≠ 0 ⇒ event has information content.</li>
+</ol>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">案例</span><span lang="en">Cases</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">立讯精密 002475 / 宁德时代 300750 大额定增</span><span lang="en">Luxshare 002475 / CATL 300750 placement</span></span></div>
-<p lang="zh">立讯 2022 年定增 ~135 亿建产能, 公告后 3 个交易日跌 8%. 行为分析:</p>
-<ul lang="zh"><li>稀释效应: 增发 7% 股本, EPS 即时摊薄</li><li>Myers pecking order 信号: 用权益融资 = 管理层认为股价合理或偏高</li><li>但定向对象是产业资本 (合资方 + 战投), 一定程度上缓冲负面信号</li><li>长期看融资<em>有用途</em> (扩产, 抢苹果 / 特斯拉订单) → 6 月内股价反弹</li></ul>
-<p lang="en">Luxshare 2022 ~¥13.5bn placement caused −8% in 3 days: dilution + Myers signal, but strategic placement (industrial + JV partners) cushioned. Funds had clear use (capacity for Apple/Tesla orders) → 6m rebound.</p>
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Abnormal Return</span><span class="callout-label" lang="en">Abnormal return</span>
+<div class="eq"><span>$$ \mathrm{AR}_{i,t} \;=\; R_{i,t} \;-\; E[R_{i,t} \mid \mathrm{est. window}] $$</span><span class="num">(9.1)</span></div>
+<p lang="zh">$R_{i,t}$ = 股票 $i$ 在事件日 $t$ 的实际收益率; $E[\cdot]$ 通常用 CAPM: $E[R_{i,t}] = \alpha_i + \beta_i \cdot R_{m,t}$, 其中 $\alpha, \beta$ 在估计窗回归得到。</p>
+<p lang="en">$R_{i,t}$ = realized return on stock $i$ at event time $t$; $E[\cdot]$ usually from CAPM: $E[R_{i,t}] = \alpha_i + \beta_i \cdot R_{m,t}$, with $\alpha, \beta$ fit on the estimation window.</p>
+<span class="cite">Fama, Fisher, Jensen, &amp; Roll (1969). "The Adjustment of Stock Prices to New Information." <em>International Economic Review</em>, 10(1). · Brown &amp; Warner (1985). "Using Daily Stock Returns: The Case of Event Studies." <em>JFE</em>, 14.</span>
 </div>
 
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">问询函经典案例 — 暴风集团 (退市)</span><span lang="en">Inquiry letter classic — Storm Group (delisted)</span></span></div>
-<p lang="zh">暴风 2017-2019 累计收到 20+ 份问询函, 涉及: 关联方资金占用、海外并购、商誉减值、应收账款异常. 每次问询函公告 -5% 到 -15%. 2019 实际退市. <em>问询函密集</em>本身就是<em>极强</em>负面信号 — 监管的注意意味着问题已经显化.</p>
-<p lang="en">Storm 2017–19 received 20+ inquiry letters covering related party extractions, M&amp;A, goodwill, AR. Each caused −5% to −15%. Delisted 2019. Dense inquiry letters = severe negative signal.</p>
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Cumulative Abnormal Return</span><span class="callout-label" lang="en">Cumulative abnormal return</span>
+<div class="eq"><span>$$ \mathrm{CAR}_i(t_1, t_2) \;=\; \sum_{t=t_1}^{t_2} \mathrm{AR}_{i,t} $$</span><span class="num">(9.2)</span></div>
+<p lang="zh">事件窗 $[t_1, t_2]$ 内 AR 累加。例如 $\mathrm{CAR}(-1, +1) = \mathrm{AR}_{-1} + \mathrm{AR}_0 + \mathrm{AR}_{+1}$ 代表"公告前后 3 天的总异常收益"。</p>
+<p lang="en">Sum of AR over $[t_1, t_2]$. E.g. $\mathrm{CAR}(-1, +1)$ captures the 3-day window straddling the announcement.</p>
 </div>
+
+<h3 lang="zh">PEAD — Post-Earnings Announcement Drift</h3>
+<h3 lang="en">PEAD — Post-Earnings Announcement Drift</h3>
+
+<p lang="zh"><strong>PEAD 现象</strong>: Bernard &amp; Thomas (1989, 1990) 发现 — 公司业绩超预期 (SUE &gt; 0) 后, 股价不是当日完全反映, 而是<em>持续 3-9 个月慢慢漂移上行</em>; 业绩不及预期同样漂移下行。这是 EMH 半强式假说最坚固的反例之一。</p>
+<p lang="en"><strong>PEAD:</strong> Bernard &amp; Thomas (1989, 1990) — after a positive earnings surprise (SUE &gt; 0), the price doesn't fully reflect on day 0; it <em>drifts upward over 3–9 months</em>. Negative surprises drift downward. One of the most robust anomalies and the toughest counter-evidence to semi-strong EMH.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">SUE</span><span class="callout-label" lang="en">SUE</span>
+<div class="eq"><span>$$ \mathrm{SUE} \;=\; \frac{\mathrm{EPS}_{\text{actual}} - \mathrm{EPS}_{\text{forecast}}}{\sigma(\mathrm{EPS}_{\text{forecast}})} $$</span><span class="num">(9.3)</span></div>
+<p lang="zh">标准化未预期盈余。Bernard-Thomas 把 SUE 分 10 档, 最高档与最低档之间 60 天 CAR 差异约 7-8% (美国数据, 1974-1986)。中国 A 股 PEAD 幅度更大 (~10-15%) — 因散户占比高、信息处理慢。</p>
+<p lang="en">Standardized Unexpected Earnings. Bernard-Thomas decile 10 vs decile 1, 60-day CAR gap ~7–8% (US 1974–86). A‑share PEAD even larger (~10–15%) — high retail share, slower information processing.</p>
+<span class="cite">Bernard &amp; Thomas (1989). "Post‑Earnings Announcement Drift: Delayed Price Response or Risk Premium?" <em>JAR</em>, 27. · Bernard &amp; Thomas (1990). "Evidence That Stock Prices Do Not Fully Reflect the Implications of Current Earnings for Future Earnings." <em>JAE</em>, 13.</span>
+</div>
+
+<p lang="zh"><strong>为什么 PEAD 存在 30+ 年仍然 robust?</strong></p>
+<ol lang="zh">
+<li><strong>注意力有限 (Hirshleifer-Teoh 2003)</strong>: 散户和机构都来不及消化所有公告信息, 信息逐渐<em>渗透</em>到价格里。</li>
+<li><strong>锚定与缓慢更新 (Barberis-Shleifer-Vishny 1998)</strong>: 投资者对历史预期"锚定", 新信息一次只更新一部分。</li>
+<li><strong>套利成本 (Mendenhall 2004)</strong>: PEAD 在小盘股 / 高分析师分歧股 上更显著, 这些恰是套利成本最高的股 — limits to arbitrage 直接限制套利资本。</li>
+</ol>
+<ol lang="en">
+<li><strong>Limited attention (Hirshleifer-Teoh 2003):</strong> retail and institutional investors can't digest all filings; info <em>seeps</em> into prices.</li>
+<li><strong>Anchoring + slow updating (Barberis-Shleifer-Vishny 1998):</strong> investors anchor on prior expectations and update partially each step.</li>
+<li><strong>Limits to arbitrage (Mendenhall 2004):</strong> PEAD strongest in small-caps and high-analyst-disagreement stocks — precisely where arbitrage cost is highest.</li>
+</ol>
+
+<h3 lang="zh">读公告的<em>第一性</em> 5 问</h3>
+<h3 lang="en">Five first-principle questions</h3>
+
+<ol lang="zh">
+<li><strong>这是<em>已被市场预期</em>的吗?</strong> 已预期的信息已反映在价格 (EMH 半强). 反应大小反映"超预期的程度", 即 SUE 的方向与幅度</li>
+<li><strong>是<em>暂时</em>还是<em>结构性</em>?</strong> 周期性业绩波动 vs 行业系统性恶化, 估值含义完全不同 (Ch.07 价值陷阱判断)</li>
+<li><strong>对未来现金流<em>长期</em>影响?</strong> 把短期信号代入 DCF / 估值模型, 反推内在价值变化, 与价格变化对比 (Ch.05 + Ch.07)</li>
+<li><strong>是否触发护城河 / 能力圈边界变化?</strong> (Ch.07) 例如海康受美国制裁触发"海外护城河缩窄"</li>
+<li><strong>市场反应是否合理?</strong> 用 (9.1)(9.2) 估算合理 CAR, 与实际比对: 实际 &gt; 合理 = 过度反应 (机会逆向); 实际 &lt; 合理 = 不足反应 (顺势 PEAD)</li>
+</ol>
+<ol lang="en">
+<li><strong>Already expected?</strong> Priced-in info reflects in price (semi-strong EMH). Reaction magnitude reflects SUE.</li>
+<li><strong>Temporary or structural?</strong> Different valuation implications (Ch.07 value-trap distinction).</li>
+<li><strong>Long-run cash-flow impact?</strong> Plug into DCF, derive change in IV, compare to price change (Ch.05 + Ch.07).</li>
+<li><strong>Moat or competence-boundary shift?</strong> (Ch.07) — e.g., US sanctions narrowed Hikvision's overseas moat.</li>
+<li><strong>Is the reaction proportionate?</strong> Use (9.1)(9.2) to compute fair CAR; vs realized: over-react → contrarian opportunity; under-react → PEAD ride.</li>
+</ol>
+
+<p class="muted measure" lang="zh"><strong>对照 Brealey 与 Ross-Westerfield-Jaffe</strong>: Brealey <em>Principles of Corporate Finance</em> Ch.13 把 event study 作为检验半强式 EMH 的标准工具; Ross-Westerfield-Jaffe <em>Corporate Finance</em> Ch.14 把 PEAD 与定增反应作为 EMH 的"两个最大例外"。前者结论: 市场<em>大体</em>有效, PEAD 是边缘; 后者结论: 市场<em>有效但非完美</em>, 异象保留套利空间。两本经典教材在中国 MBA / MSF 课程通用, 立场不完全一致, 反映 EMH 仍是开放问题。</p>
+<p class="muted measure" lang="en"><strong>Brealey vs Ross-Westerfield-Jaffe:</strong> Brealey <em>Principles of Corporate Finance</em> Ch.13 uses event study as the standard test for semi-strong EMH; Ross-Westerfield-Jaffe <em>Corporate Finance</em> Ch.14 treats PEAD and private-placement reactions as the "two biggest exceptions" to EMH. Brealey concludes markets are "broadly efficient with edge cases"; RWJ concludes "efficient but imperfect, anomalies leave arbitrage space." Both standard texts in Chinese MBA / MSF programs — they disagree, reflecting that EMH remains an open question.</p>
+
+<p class="muted measure" lang="zh"><strong>把 5 问当 checklist</strong>: 老王每看一个公告, 在小本子上回答 5 个问题。如果 5 个回答全清楚且一致 (例如"已被预期 + 周期性 + 长期无影响 + 不触及护城河 + 反应合理"), 那他不做任何动作。任何一个问题的答案与价格反应<em>不一致</em>(例如"信息很大但价格只动 2%"), 就是<em>研究入口</em>。这就是"<em>NO 比 YES 重要</em>"在事件驱动场景的落地。</p>
+<p class="muted measure" lang="en"><strong>Use the 5 questions as a checklist:</strong> for every filing, Wang writes one-line answers. If all five are consistent (e.g., "expected + cyclical + no long-run impact + moat intact + proportionate"), no action. Any inconsistency between an answer and the price move (e.g., "huge info but +2%") is a <em>research entry</em>. The event-driven realization of "<em>NO matters more than YES</em>."</p>
 </section>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">Layer 1 老王复盘了 5 个 2023 年事件。Layer 3 用两个<em>更大尺度</em>的传导事件 — 蚂蚁集团 IPO 暂停 (2020-11-03) 与滴滴中概监管 (2021-07) — 说明 event study 方法如何捕捉<em>同一冲击的跨标的传导</em>。</p>
+<p lang="en">Layer 1 reviewed five 2023 events. Layer 3 takes two <em>larger-scale</em> transmission events — Ant Group IPO suspension (2020-11-03) and Didi regulatory event (2021-07) — to show how event-study methodology captures <em>cross-stock transmission of a single shock</em>.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="company"><span lang="zh">蚂蚁集团 IPO 暂停 (2020-11-03) → 对 阿里 / 招行 / 同业的传导</span><span lang="en">Ant Group IPO suspension (2020-11-03) → transmission to Alibaba / CMB / peers</span></span>
+<span class="period"><span lang="zh">事件研究: 监管冲击的跨标的扩散</span><span lang="en">Event study: regulatory shock cross-stock</span></span>
+</div>
+
+<p lang="zh">2020-11-03 晚间, 上交所公告暂停蚂蚁集团 IPO (距原定上市日 11-05 仅 2 天)。这是中国资本市场近 10 年最大的监管事件之一。直接受影响: 蚂蚁本身 (未上市, 无价格反应); 间接受影响通过 (a) 阿里巴巴 (持有蚂蚁 33%); (b) 互联网平台同行业 (腾讯、美团等 H 股 / 中概); (c) 银行业 (蚂蚁余额宝 + 借呗 + 花呗对传统银行的竞争被预期减弱); (d) 战略投资蚂蚁的 A 股标的 (中国人寿 601628 等)。</p>
+<p lang="en">Late on 2020-11-03, the SSE announced suspension of Ant Group's IPO — two days before the planned 11-05 listing. The largest A‑market regulatory event of the past decade. Direct: Ant itself (unlisted, no price reaction). Indirect: (a) Alibaba (33% Ant stake); (b) internet platform peers (Tencent, Meituan H‑share / China ADR); (c) banks (Ant's Yu'ebao + JieBei + HuaBei competitive pressure expected to relax); (d) A‑share strategic Ant investors (China Life 601628, etc.).</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">标的</span><span lang="en">Stock</span></th><th><span lang="zh">CAR(0,+5) 近似</span><span lang="en">CAR(0,+5) approx</span></th><th><span lang="zh">CAR(0,+60) 近似</span><span lang="en">CAR(0,+60) approx</span></th><th><span lang="zh">解读</span><span lang="en">Read</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">阿里 (NYSE/HK)</span><span lang="en">Alibaba</span></td><td class="num">−10%</td><td class="num">−25%</td><td><span lang="zh">直接持股缩水 + 监管不确定预期延伸到主业</span><span lang="en">Direct stake hit + regulatory overhang to core</span></td></tr>
+<tr><td>SH·600036 <span lang="zh">招商银行</span></td><td class="num">+2%</td><td class="num">+5%</td><td><span lang="zh">竞争压力预期减弱; 但反弹温和因银行整体面临利率周期下行</span><span lang="en">Reduced fintech competition expected; rebound mild due to broader rate environment</span></td></tr>
+<tr><td>SH·601628 <span lang="zh">中国人寿</span></td><td class="num">−1%</td><td class="num">−3%</td><td><span lang="zh">战略投资蚂蚁的小幅减损; 影响有限</span><span lang="en">Small write-down on strategic investment; limited overall impact</span></td></tr>
+<tr><td>SH·600600 <span lang="zh">青岛啤酒 / 对照组</span></td><td class="num">+0.5%</td><td class="num">+1%</td><td><span lang="zh">无相关行业 — 对照组应近 0, 验证模型</span><span lang="en">Unrelated — control approx 0, validates model</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>方法论应用</strong>:</p>
+<p lang="en"><strong>Methodology applied:</strong></p>
+
+<ol lang="zh">
+<li>事件日 $t=0$ = 2020-11-03 (晚间公告, 实际市场反应在 11-04 开盘)</li>
+<li>估计窗 = [2019-11-04, 2020-10-04] (一年, 排除事件附近)</li>
+<li>用 CAPM 估 $\alpha_i, \beta_i$ → 计算每个标的的预期收益率 $E[R_{i,t}]$</li>
+<li>事件窗 [0, +5] 算短期 CAR, [0, +60] 算 PEAD</li>
+<li>对照组应近 0 (验证)</li>
+</ol>
+
+<p lang="zh"><strong>实证发现</strong>: (a) 阿里 (直接受冲击) 短期 −10%, 之后继续阴跌, 60 天 −25% — 典型的 PEAD 在负面方向的应用, 监管的影响"<em>慢慢渗透</em>"。(b) 招行 (受益方) 短期 +2%, 60 天 +5% — 利好同样不是当日全反映, 而是慢慢释放。(c) 中国人寿 (小幅受影响) 反应温和 — 与持股比例 / NI 影响 成比例。(d) 对照组 (青岛啤酒) 近 0 — 模型 sanity check 通过。</p>
+<p lang="en"><strong>Findings:</strong> (a) Alibaba (direct hit) −10% short-run, −25% over 60 days — PEAD in negative direction, regulatory drag <em>seeped in slowly</em>. (b) CMB (beneficiary) +2% short-run, +5% over 60 days — positive news also under-reacts on day. (c) China Life proportionate to its stake. (d) Control near 0 — sanity check passes.</p>
+
+<p lang="zh"><strong>对老王的启示</strong>: 监管事件不是一次性冲击, 是一个<em>逐渐定价的过程</em>。事件日不卖也来得及 — 但要在 60 天内继续观察, 看监管动作是否扩散 (后续 2021 年蚂蚁拆分、阿里反垄断罚款 182 亿、滴滴事件, 都是这个监管周期的延续)。老王自己当时没持有阿里, 但他买的某只持有阿里港股的 ETF 受到牵连, 60 天 −15% — 这就是<em>间接传导</em>对零售投资者的影响。</p>
+<p lang="en"><strong>Lesson for Wang:</strong> regulatory events aren't one-shot — they're a <em>gradual repricing process</em>. You can still sell after day 0 — but monitor the next 60 days for the shock to spread (2021 Ant restructure, Alibaba ¥18.2bn antitrust fine, Didi event — all continuations of this cycle). Wang himself didn't own Alibaba but held an ETF with HK Alibaba exposure; that ETF lost −15% over 60 days — <em>indirect transmission</em> reaches retail investors.</p>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="company"><span lang="zh">滴滴 中概监管 事件 (2021-07-02) → ADR 与 A 股同行业反应</span><span lang="en">Didi regulatory event (2021-07-02) → ADR &amp; A‑share peer reactions</span></span>
+<span class="period"><span lang="zh">跨市场跨标的传导样本</span><span lang="en">Cross-market cross-stock transmission</span></span>
+</div>
+
+<p lang="zh">2021-07-02 (滴滴在美 IPO 后第 3 天), 国家网信办对滴滴启动"网络安全审查"。两天后 (07-04), 滴滴 App 被全面下架。当晚 07-04 滴滴 ADR (NYSE: DIDI) 暴跌, 但更有意思的是<em>同期 A 股 / 港股出行 / 互联网板块</em>的反应。</p>
+<p lang="en">On 2021-07-02 (3 days after Didi's US IPO), the CAC launched a "cybersecurity review" of Didi. Two days later (07-04), Didi's app was removed from all stores. The ADR (NYSE: DIDI) crashed. More interesting: <em>same-period reactions in A‑share / HK travel and internet sectors</em>.</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">标的</span><span lang="en">Stock</span></th><th><span lang="zh">CAR(0,+5) 近似</span><span lang="en">CAR(0,+5) approx</span></th><th><span lang="zh">CAR(0,+60) 近似</span><span lang="en">CAR(0,+60) approx</span></th><th><span lang="zh">解读</span><span lang="en">Read</span></th></tr></thead>
+<tbody>
+<tr><td>DIDI (NYSE)</td><td class="num">−35%</td><td class="num">−60%</td><td><span lang="zh">直接冲击, 监管 + APP 下架双重</span><span lang="en">Direct hit: regulatory + app removal</span></td></tr>
+<tr><td><span lang="zh">美团 港股</span><span lang="en">Meituan HK</span></td><td class="num">−8%</td><td class="num">−25%</td><td><span lang="zh">"互联网监管周期"恐慌外溢</span><span lang="en">"Internet regulatory cycle" spillover panic</span></td></tr>
+<tr><td><span lang="zh">阿里 港股</span><span lang="en">Alibaba HK</span></td><td class="num">−6%</td><td class="num">−20%</td><td><span lang="zh">同样属互联网监管周期, 但已部分定价 (2020-11 以来)</span><span lang="en">Same cycle but partly priced (since 2020-11)</span></td></tr>
+<tr><td>SZ·002595 <span lang="zh">豪迈科技 / 制造业对照</span></td><td class="num">+0.3%</td><td class="num">+2%</td><td><span lang="zh">无关行业 — 对照组验证</span><span lang="en">Unrelated — control validates</span></td></tr>
+<tr><td>SH·600519 <span lang="zh">茅台</span></td><td class="num">−2%</td><td class="num">−8%</td><td><span lang="zh">几乎无关但有大盘整体情绪传导</span><span lang="en">Largely unrelated but broader-market sentiment</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>跨市场传导的<em>非对称性</em></strong>: 美股 ADR (滴滴) 跌得最猛 — 不仅因为直接冲击, 还因为 ADR 投资者<em>从未见过</em>这种监管模式, 不知道"上限在哪", panic selling 占主导; 港股美团、阿里跌幅其次 — 同体系市场, 但已经在"互联网监管周期"中, 投资者已有一定免疫; A 股茅台等几乎无关行业的小幅下跌反映"整体市场情绪传导" (Aroused investor sentiment / VIX spillover)。</p>
+<p lang="en"><strong>Cross-market asymmetric transmission:</strong> ADR (DIDI) fell hardest — direct hit plus ADR holders had <em>never seen</em> this regulatory pattern, "no idea where the floor is," panic-driven selling dominated. HK Meituan / Alibaba next — same regulatory cycle but partly inoculated already. A‑share Moutai's small drop reflects broader-market sentiment spillover (VIX-like effect across unrelated sectors).</p>
+
+<p lang="zh"><strong>滴滴事件后市场效率提升</strong>: 接下来 2021-2022 年, 类似监管冲击 (互联网平台反垄断、教育双减、游戏版号收紧) 时, 市场反应<em>幅度依然大但<strong>速度</strong>加快</em> — 投资者学会了"<em>监管冲击 = 立刻定价 ~30% 跌幅, 不要等明天</em>"。这正是<em>市场学习</em>的过程: 同一类事件第一次发生反应慢, 第三次开始反应快 — 异象在<em>样本学习</em>后被压缩, 这就是为什么 PEAD 在美国从 1970s 的 10% 压到 2020s 的 4-5%。中国市场也在经历类似学习过程。</p>
+<p lang="en"><strong>Market efficiency improving post-Didi:</strong> in 2021–22 similar regulatory shocks (internet anti-trust, education "double reduction," gaming-licence tightening), reaction <em>magnitudes stayed large but <strong>speed accelerated</strong></em> — investors learned "regulatory shock → ~30% drop priced today, don't wait." Classic <em>market learning</em>: anomaly compresses with repeated samples — same reason PEAD in the US declined from ~10% in the 1970s to ~4–5% in the 2020s. China is going through the same learning curve.</p>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="company"><span lang="zh">立讯精密 002475 定增 (2022)</span><span lang="en">Luxshare 002475 placement (2022)</span></span>
+<span class="period"><span lang="zh">"短期负面 + 长期正面"双轨反应的范例</span><span lang="en">"Short-term negative, long-term positive" dual-track</span></span>
+</div>
+
+<p lang="zh">立讯 2022 年定增 ~135 亿建产能, 公告后 3 个交易日跌 8%。按 Layer 2 的 5 问 checklist:</p>
+<p lang="en">Luxshare's 2022 ~¥13.5bn placement for capacity expansion → 3-day drop −8%. Five-question checklist:</p>
+
+<ol lang="zh">
+<li><strong>已被预期?</strong> 部分 (市场知道公司需要扩产配合苹果/特斯拉订单), 但金额超预期</li>
+<li><strong>暂时 vs 结构性?</strong> 暂时 — 稀释只发生一次, 后续 EPS 摊薄</li>
+<li><strong>对未来现金流?</strong> 短期 EPS −7% (股本扩张), 长期 NI 随产能放大 — 净影响取决于新产能 ROIC</li>
+<li><strong>触及护城河?</strong> 不, 反而扩大规模优势 (Ch.07 护城河第二类: 规模)</li>
+<li><strong>反应合理?</strong> 短期 −8% 反映稀释 + Myers (1984) pecking order 信号 (用股权融资 = 管理层认为股价合理或偏高); 但忽略了"定向对象是产业资本 + 战投"的<em>正面</em>信号</li>
+</ol>
+
+<ol lang="en">
+<li><strong>Expected?</strong> Partly — market knew capacity needed; size exceeded expectations.</li>
+<li><strong>Temporary or structural?</strong> Temporary — dilution one-time, EPS downward step.</li>
+<li><strong>Long-run CF?</strong> Short-run EPS −7%, long-run NI scales with capacity — net depends on new-capex ROIC.</li>
+<li><strong>Moat?</strong> No — expands scale advantage (Ch.07 moat type #2).</li>
+<li><strong>Proportionate?</strong> −8% prices in dilution + Myers (1984) pecking-order signal (equity issue suggests management views stock as fair or overpriced); but ignores <em>positive</em> signal that the placement targets are industrial investors + strategic JV partners.</li>
+</ol>
+
+<p lang="zh"><strong>判定</strong>: 短期 −8% 是"反应合理"(稀释 + 信号), 但<em>包含</em>了过度悲观情绪 (忽略战投的正面信号)。后续: 6 个月内股价反弹 +15%, 因苹果 / 特斯拉订单确认 + 新产能爬坡。这就是<em>定增公告</em>的典型"双轨"模式: 短期负面, 长期正面 (条件: 募投项目 ROIC 真实)。</p>
+<p lang="en"><strong>Verdict:</strong> −8% short-run is "proportionate" (dilution + signal), but <em>contains</em> excessive pessimism (ignores strategic-investor positive). Outcome: +15% rebound over 6 months as Apple/Tesla orders confirmed and new capacity ramped. Classic "<em>dual-track</em>" pattern for placements: short-run negative, long-run positive (conditional on real ROIC of the use-of-proceeds).</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002475" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 002475 →</span><span lang="en">Cninfo 002475 →</span></a>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="company"><span lang="zh">问询函经典案例 — 暴风集团 (退市)</span><span lang="en">Inquiry letter classic — Storm Group (delisted)</span></span>
+<span class="period">2017-2019 · <span lang="zh">问询函密集 = 退市倒计时</span><span lang="en">Dense inquiry letters = delisting countdown</span></span>
+<span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+</div>
+
+<p lang="zh">暴风集团 2017-2019 累计收到 20+ 份问询函, 涉及: 关联方资金占用、海外并购 (MPS 体育版权 52 亿)、商誉减值、应收账款异常。每次问询函公告 CAR(0,+5) ≈ −5% 到 −15%。2019 实际退市。</p>
+<p lang="en">Storm Group 2017–19 received 20+ inquiry letters: related-party fund extraction, overseas M&amp;A (MPS sports-rights ¥5.2bn), goodwill impairment, AR anomalies. Each letter → CAR(0,+5) ≈ −5% to −15%. Delisted 2019.</p>
+
+<p lang="zh"><strong>问询函作为"领先指标"</strong>: 监管的注意意味着问题已经显化。从统计学角度: 一年内收到 3+ 份问询函的公司, 后续 2 年内退市概率显著高于市场均值 (具体倍数研究有差, 但定性结论稳健)。<em>密集问询函</em>本身是比单一问询函更强的负面信号。</p>
+<p lang="en"><strong>Inquiry letters as leading indicator:</strong> regulator attention signals that problems have materialized. Statistically: firms with 3+ inquiry letters in a year have significantly elevated 2-year delisting probability (exact multiple varies by study, qualitative finding robust). <em>Dense</em> inquiry letters is a stronger negative signal than any single one.</p>
+
+<p lang="zh"><strong>与 Ch.08 五盏红绿灯的合流</strong>: 暴风事前用 Ch.08 五盏灯检验 — OCF/NI 负值、关联方占款超 30%、商誉占净资产 60%+, 三盏红灯。如果老王在 2017 中就用 Ch.08 五盏灯 + Ch.09 公告关注度筛选, 暴风<em>双向</em>不通过, 自然不会买。这就是 Ch.08 + Ch.09 互补的实际效果: 财报筛选 + 公告监测 = 双重防线。</p>
+<p lang="en"><strong>Confluence with Ch.08's five lights:</strong> ex-ante Storm had negative OCF/NI, related-party &gt; 30% of equity, goodwill &gt; 60% of equity — three red lights. If Wang had run both Ch.08 (filings) and Ch.09 (announcements) filters in mid-2017, Storm fails both, never enters portfolio. Ch.08 + Ch.09 are complementary: filing-screen + announcement-monitor = dual defense.</p>
+</div>
+
+<p class="muted measure" lang="zh"><strong>桥接 Layer 1</strong>: 老王 Layer 1 复盘的 5 个事件, 现在用 Layer 2 的 5 问 + Layer 3 的传导框架重新看, 答案都更清晰了 — 茅台提价 (慢消息, 反应不足, PEAD 6%); 集采落选 (结构性, 严重不足反应); 一次性预增 (情绪标题, 反应过度后被修正); 重大重组 (定价已经反映, 不追); 实控人减持 (信号性, 反应过度, 逆向小仓位)。这五种模式覆盖 90% 的日常公告。<em>认得模式</em>本身就是一种 alpha — 不需要预测公告内容 (难), 只需要在公告出来后用 5 问快速分类 (容易)。</p>
+<p class="muted measure" lang="en"><strong>Bridge to Layer 1:</strong> Wang's five Layer-1 events now re-read through Layer 2's five questions and Layer 3's transmission framework — answers crystallize. Moutai hike (slow news, under-reaction, PEAD ~6%); centralized procurement failure (structural, severe under-reaction); one-off preannouncement (sentiment headline, over-reaction corrected); major M&amp;A (priced, don't chase); controlling-shareholder reduction (signaling, over-reaction, contrarian small add). These five patterns cover ~90% of daily filings. <em>Pattern recognition</em> is itself alpha — you don't need to predict announcements (hard), only classify them via the 5 questions after they appear (easy).</p>
+</section>
+
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">xiii</span><div><h4><span lang="zh">Event study 框架</span><span lang="en">Event study</span></h4><p lang="zh">Fama-Fisher-Jensen-Roll 1969: 估计窗 + 事件窗 + abnormal return + CAR — 把"事件影响"从 noise 中分离出来的标准方法。</p><p lang="en">Fama-Fisher-Jensen-Roll 1969: estimation + event window + abnormal return + CAR — the standard method to isolate event impact from noise.</p></div></div>
+<div class="model-card"><span class="roman">xiv</span><div><h4><span lang="zh">PEAD (Bernard-Thomas)</span><span lang="en">PEAD (Bernard-Thomas)</span></h4><p lang="zh">公告后盈余漂移: EMH 半强式最坚固的反例之一, 在 A 股幅度更大, 投资者注意力 + 锚定 + 套利成本三因素共同支撑。</p><p lang="en">Post-earnings drift: one of the most robust EMH counter-examples; larger in A‑shares; supported by limited attention, anchoring, and limits to arbitrage.</p></div></div>
+<div class="model-card"><span class="roman">xv</span><div><h4><span lang="zh">信息传导链 (transmission)</span><span lang="en">Transmission chains</span></h4><p lang="zh">一个事件通过持股、行业归属、监管周期等链路传导到其他标的, CAR 在传导链上递减 — 蚂蚁 → 阿里 → 招行的递减是经典样本。</p><p lang="en">An event propagates via stake / industry / regulatory-cycle links; CAR decays along the chain — Ant → Alibaba → CMB is the canonical sample.</p></div></div>
+
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">每题至少一个反直觉点。</span><span lang="en">Each question has at least one counterintuitive twist.</span></p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
 <div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 公司宣布业绩预增 200%, 开盘高开 9%. 你买入吗?</span><span lang="en"><strong>Q1.</strong> 200% earnings preannouncement, +9% gap. Buy?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">看预期是否已被定价. 5 个问题:</p>
-<ol lang="zh"><li>预增是否已被分析师 consensus 预期? 若已预期, 9% 高开<em>不够</em>反应, 后续可能<em>继续涨</em> (PEAD)</li><li>预增<em>来源</em>? 经营好转 (持续) 还是非经常 (一次性, 投资收益 / 处置 / 政府补助)?</li><li>下一年预增是否可持续?</li><li>市场<em>过度反应</em>(常见 +15-20%) 还是<em>不足反应</em>?</li><li>结合估值: 9% 高开后 P/E 仍合理吗?</li></ol>
-<p lang="zh">若是经营持续改善 + 估值合理 + 未被充分预期 → 后续 3-6 月可能继续涨 (PEAD). 若是非经常性 + 估值已贵 → 不追高.</p>
-<p lang="en">Check: Was it consensus? Source (operating vs one‑off)? Sustainable next year? Over‑/under‑reaction? Post‑gap valuation? Sustained operating improvement + reasonable valuation + under‑reaction → PEAD. One‑off + expensive → don't chase.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">看预期是否已被定价。Layer 2 的 5 问 + 一个特别问题:</p>
+<ol lang="zh">
+<li>预增是否已被分析师 consensus 预期? 若已预期 200%, 9% 高开<em>不够</em>反应, 后续可能<em>继续涨</em> (PEAD)。若 consensus 只预期 150%, 实际 200% 多出 50%, SUE &gt; 0 大, PEAD 概率高。</li>
+<li>预增<em>来源</em>? 经营好转 (持续) 还是非经常 (一次性, 投资收益 / 处置 / 政府补助)?</li>
+<li>下一年预增是否可持续? 周期顶部 vs 结构性改善?</li>
+<li>市场<em>过度反应</em>(常见 +15-20%) 还是<em>不足反应</em>?</li>
+<li>结合估值: 9% 高开后 P/E 仍合理吗?</li>
+</ol>
+<p lang="zh"><strong>三种典型情境</strong>:</p>
+<ul lang="zh">
+<li><strong>经营持续改善 + 估值合理 + 未被充分预期</strong> → 后续 3-6 月 PEAD, 可买入</li>
+<li><strong>非经常性 + 估值已贵</strong> → 不追高, 当日内可能就回吐 (Layer 1 第 3 个事件)</li>
+<li><strong>已被充分预期</strong> → 9% 高开就是终点, 后续可能<em>下跌</em> (Buy the rumor, sell the news)</li>
+</ul>
+<p lang="zh">操作建议: <em>不在公告日当日做决定</em>。公告日波动大、情绪噪音高, 等 1-2 天看市场是否冷静下来再做。Buffett 名言: "<em>Lethargy bordering on sloth remains the cornerstone of our investment style.</em>"</p>
+<p lang="en">Five-question check + one extra: was the 200% already in consensus? If consensus 150%, actual 200% delivers SUE &gt; 0 large; PEAD likely. If consensus was 200%, +9% is the terminus, may fade. Source: operating sustained vs non-recurring? Sustainable next year? Over-/under-reaction? Post-gap valuation?</p>
+<p lang="en">Three scenarios: sustained operating + reasonable valuation + under-reaction → PEAD ride; one-off + expensive → don't chase; fully expected → +9% is terminus, may fall ("buy the rumor, sell the news"). Practical rule: <em>don't decide on announcement day</em>. Wait 1–2 days for sentiment to cool. Buffett: <em>"Lethargy bordering on sloth remains the cornerstone of our investment style."</em></p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
 <div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 大股东大规模限售解禁前一周, 股价已跌 15%. 解禁日如何反应?</span><span lang="en"><strong>Q2.</strong> Major lock‑up expiry approaches; stock down 15% in prior week. Day‑of reaction?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">EMH 半强: 解禁日是<em>已知事件</em>, 抛压<em>已被提前定价</em>. 解禁日实际反应通常<em>温和</em> (±2%), 因市场已消化. 跌 15% 已经反映了预期抛压. 若实际解禁后大股东<em>没卖</em> (持有信号), 反而<em>正面</em>反弹.</p>
-<p lang="zh">行为视角: 散户在解禁日恐慌抛售是常见非理性. 若公司基本面良好, 解禁恐慌期是<em>逆向买入</em>机会. 福耀玻璃多次解禁周表现出这种模式.</p>
-<p lang="en">Semi‑strong EMH: priced in; day‑of typically ±2%. If insiders don't sell, signals confidence → rebound. Retail panic on lock‑up day creates contrarian opportunities for fundamentally sound firms (Fuyao Glass exemplifies).</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>EMH 半强</strong>: 解禁日是<em>已知事件</em> (上市时已披露解禁日期), 抛压<em>已被提前定价</em>。解禁日实际反应通常<em>温和</em> (±2%), 因市场已消化。跌 15% 已经反映了预期抛压。</p>
+<p lang="zh">三种可能的解禁日反应:</p>
+<ul lang="zh">
+<li><strong>大股东<em>没卖</em></strong> (公告"承诺不减持" 或 后续披露增持) → <em>正面</em>反弹 +3-5% — "<em>insider confidence signal</em>"</li>
+<li><strong>大股东<em>小幅减持</em></strong> (远低于解禁额) → 温和反应, 或继续慢跌</li>
+<li><strong>大股东<em>大幅减持</em></strong> (接近解禁额) → 继续 −3-5%, 但因已大跌 15%, 后续反弹概率高</li>
+</ul>
+<p lang="zh"><strong>逆向机会</strong>: 散户在解禁周恐慌抛售是常见非理性 (Mr. Market 抑郁期)。若公司基本面良好 (Ch.08 五盏灯 + Ch.07 四把尺子全过), 解禁恐慌期是<em>逆向小仓位买入</em>机会。福耀玻璃 600660、招行 600036 多次解禁周表现出"先恐慌后回升"的模式 — 6-12 月内 CAR &gt; 0。</p>
+<p lang="zh"><strong>风险点</strong>: 不要套用所有股。基本面恶化中的公司 (Ch.08 红灯) 解禁日是<em>真正</em>抛压释放的开始, 不是机会; 反而是<em>更深</em>下跌的起点。</p>
+<p lang="en">Semi-strong EMH: priced in; day-of typically ±2%. The 15% prior drop has absorbed expected pressure.</p>
+<p lang="en">Three possibilities: (a) insider <em>doesn't</em> sell (commitment or buy-back) → +3–5% rebound, "insider confidence signal"; (b) small reduction (well below cap) → mild; (c) large reduction (near cap) → −3–5% but rebound likely given 15% drop already.</p>
+<p lang="en"><strong>Contrarian opportunity:</strong> retail panic on lock-up week is common irrationality (Mr. Market depressed). For fundamentally sound names (clear five-light + four-filter pass), it's a small-add contrarian moment — Fuyao 600660, CMB 600036 historically show "panic then recover" with positive 6–12m CAR.</p>
+<p lang="en"><strong>Risk:</strong> don't generalize. For deteriorating names (red lights), the lock-up day is the <em>real</em> selling-pressure release, not opportunity — start of <em>deeper</em> drop, not bottom.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 用 event study 方法验证"公告日内幕信息提前泄漏"假设: 如果泄漏存在, 你预期估计窗与事件窗的交界处 (例如 $t = -5$ 到 $t = -1$) 会有什么数据特征?</span><span lang="en"><strong>Q3.</strong> Use event study to test "insider leakage before announcement." If leakage exists, what data feature do you expect near the estimation/event boundary ($t = -5$ to $t = -1$)?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>泄漏的数据特征</strong>: 在<em>正式公告日前</em>的几天 (典型 $t=-5$ 到 $t=-1$) 出现:</p>
+<ol lang="zh">
+<li><strong>显著非零 AR</strong>: $|\mathrm{AR}_{t<0}|$ 大于估计窗 $\sigma$ 的 2 倍以上 (即 t 统计量 &gt; 2)</li>
+<li><strong>AR 方向与公告内容一致</strong>: 公告若是利好, 提前 AR 显著为正; 利空则为负</li>
+<li><strong>成交量异常放大</strong>: $t=-5$ 到 $t=-1$ 成交量 / 估计窗均值 &gt; 1.5</li>
+<li><strong>价格变化在公告日<em>反而减弱</em></strong>: 因为很大一部分已经在 $t=-5$ 到 $t=-1$ 中定价了。CAR(-5, +1) 显著, 但 CAR(0, +1) 单独看可能小于无泄漏情境</li>
+</ol>
+<p lang="zh"><strong>实证发现 (A 股)</strong>: 多份学术研究 (例如清华、上财、北大光华的论文) 发现 A 股重大公告前 5 天 CAR 平均显著, 利好公告前 ≈ +2-3%, 利空公告前 ≈ −3-5%。利空的提前泄漏比利好更显著, 因"知情人"在利空公告前止损动机强。这与监管反复打击内幕交易但难以完全消除的现实吻合。</p>
+<p lang="zh"><strong>方法论修正</strong>: 在 A 股 event study 中, 真正的"事件日"应取<em>第一次显著异动日</em>而非<em>正式公告日</em>。这就是 Layer 2 提到的"$t = 0$ 修正"。Fama 等美国研究者也类似处理 SEC 投诉 / 内幕调查 case。</p>
+<p lang="en">Leakage features near $t \in [-5, -1]$:</p>
+<ol lang="en">
+<li>Significant non-zero AR: $|\mathrm{AR}_{t&lt;0}| &gt; 2\sigma$ (t-stat &gt; 2).</li>
+<li>AR direction matches announcement: positive for good news pre-event, negative for bad.</li>
+<li>Abnormal volume: volume(t&lt;0) / estimation-window mean &gt; 1.5.</li>
+<li>Day-0 price move <em>smaller</em> than no-leakage counterfactual — much already priced in $t \in [-5, -1]$. CAR(-5, +1) large but CAR(0, +1) alone smaller.</li>
+</ol>
+<p lang="en"><strong>Empirical (A‑share):</strong> Tsinghua, SUFE, PKU studies find significant pre-event CAR over 5 days — positive announcements ~+2–3%, negative ~−3–5%. Negative leakage stronger because insiders' stop-loss incentive on bad news is stronger. Consistent with regulators' inability to fully suppress insider trading despite repeated enforcement.</p>
+<p lang="en"><strong>Methodological fix:</strong> in A‑share event studies, true $t=0$ should be the <em>first significant move</em>, not the formal announcement day. Same convention applies in US studies of SEC investigations and insider cases.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> PEAD 在公开发表 30 年后仍存在。如果你是一名个人投资者, 想用 PEAD 套利, 列出至少四个实际操作障碍。</span><span lang="en"><strong>Q4.</strong> PEAD has been public for 30 years yet persists. As a retail investor wanting to arbitrage PEAD, list four practical obstacles.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<ol lang="zh">
+<li><strong>识别"SUE 大"需要快速 + 准确的数据</strong>: 你需要在公告日内拿到 (a) 公告 EPS; (b) 分析师 consensus; (c) 历史预测分散度 — 这些数据散户难以快速拿到, 通常分析师 consensus 在 Wind / Bloomberg 等付费终端。当你算出 SUE 时, 机构早已动手。</li>
+<li><strong>交易成本</strong>: A 股股票佣金 + 印花税合计 ~0.05-0.1% 单边, 频繁交易侵蚀 PEAD 的 5-10% 年化收益。如果只持有 60-90 天再换股, 一年换手 4-6 次, 成本可能占 alpha 的 1/3。</li>
+<li><strong>分散化要求</strong>: PEAD 在<em>组合层面</em>稳定, 单只股票仍有 30-50% 概率方向<em>错</em>。你需要持有 30-50 只股的组合才能实现期望收益。8 万元资金分散到 30 只, 每只 2,700 元, 在 A 股最小交易单位 (100 股) 下基本不可行 — 小盘股每股几十元一手就要几千元。</li>
+<li><strong>心理障碍</strong>: PEAD 平均收益 60 天 ~5-8%, 但波动大 (年化 σ 25%+), 中间会经历多次回撤。散户在回撤 10% 时往往止损, 错过反弹 — 这是行为偏差对策略的"无形税"。</li>
+<li><strong>样本偏差与生存者偏差</strong>: 历史 PEAD 数据基于"<em>当时仍存活的公司</em>"。一些"超预期"公司后来被退市 (康得新型), 历史回测忽略了这种极端尾部损失。实际操作中, 即使捕获 PEAD 平均收益, 偶尔踩到一只退市股的 −80% 足以抵消十次盈利。</li>
+<li><strong>规避方法不充分</strong>: 即使叠加 Ch.08 五盏灯过滤掉造假股, 仍有"基本面正常但 PEAD 不显著"的<em>失效</em>样本 — 任何策略在 A 股都有 30-40% 失效率, 散户对失效率的耐受性低。</li>
+</ol>
+<p lang="zh"><strong>实务建议</strong>: 散户用 PEAD 套利的<em>修正版</em>是: 在 Ch.07 + Ch.08 已经筛选出的 30 只优质池子内, 关注公告超预期且<em>方向与基本面一致</em>的样本, 小仓位顺势加仓。这不是纯 PEAD 套利, 是<em>价值投资 + PEAD 信号</em>的复合策略, 实际可行性更高。</p>
+<p lang="en">Obstacles: (1) <strong>SUE detection needs fast and accurate data</strong> — analyst consensus typically on Wind/Bloomberg; by the time retail computes, institutionals are already in. (2) <strong>Transaction costs</strong> — A‑share commission + stamp duty ~0.05–0.1% per side; 4–6 turnovers per year can eat 1/3 of alpha. (3) <strong>Diversification requirement</strong> — PEAD stable at <em>portfolio</em> level; single stock has 30–50% wrong-direction probability. Need 30–50 names; ¥80k split is ~¥2.7k each, infeasible given A‑share 100-share lots. (4) <strong>Psychological obstacle</strong> — average +5–8% over 60 days but σ ~25%; mid-window drawdowns trigger retail stop-losses, missing rebounds — "invisible tax" on the strategy. (5) <strong>Survivor bias</strong> — historical PEAD samples are "firms still listed." Some "surprise-positive" firms later delisted (Kangde Xin type); back-test ignores tail loss. (6) <strong>Imperfect filters</strong> — even with Ch.08 five-light overlay, ~30–40% of A‑share strategies fail; retail tolerance for failure rate is low.</p>
+<p lang="en"><strong>Practical:</strong> retail PEAD is best as a <em>signal</em> overlaid on the Ch.07 + Ch.08 quality pool — within that 30-name pool, monitor announcements for "surprise that aligns with fundamentals" and add positions on those. Hybrid value-investing + PEAD strategy, more feasible than pure PEAD arbitrage.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 2020-11-03 蚂蚁 IPO 暂停后, 港股阿里 60 天 CAR ≈ −25%, A 股茅台 60 天 CAR ≈ −8% (即使两者基本面无关)。茅台的 −8% 算"不合理"吗? 用 event study 方法分解。</span><span lang="en"><strong>Q5.</strong> Post-Ant 2020-11-03, HK Alibaba 60-day CAR ≈ −25%, A‑share Moutai 60-day CAR ≈ −8% (despite no business overlap). Is Moutai's −8% "irrational"? Decompose via event study.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">"看似不合理"的 −8% 实际可分解为三部分:</p>
+<ol lang="zh">
+<li><strong>市场 beta 传导</strong>: 蚂蚁事件冲击了沪深 300, 沪深 300 60 天 −3%。茅台 β ≈ 0.95, 这部分应贡献 −3% × 0.95 ≈ −2.8%。</li>
+<li><strong>板块情绪传导 (sentiment spillover)</strong>: 监管事件之后, 投资者对"行业头部公司"的<em>监管溢价 (regulatory premium)</em>普遍提高。茅台作为消费龙头, 一直有"政策风险" (反腐反三公消费历史阴影 + 高端消费的政策属性), 这部分溢价被重估, 贡献 −2% 到 −3%。</li>
+<li><strong>残差: 真正不合理部分</strong>: −8% − (−2.8%) − (−2.5%) ≈ −2.7%, 这是<em>抢踩踏</em>+<em>风险偏好下降</em>的非理性溢出。</li>
+</ol>
+<p lang="zh"><strong>判定</strong>: −8% 中约 65% (5.3 个百分点) 是<em>合理</em>的 (beta + 监管溢价上调); 约 35% (2.7 个百分点) 是<em>非理性</em>(踩踏)。后者是<em>逆向小仓位加仓</em>的机会, 前者不是。</p>
+<p lang="zh"><strong>历史验证</strong>: 茅台在 2020-11-03 后 60 天 −8%, 但 90-180 天恢复到事件前水平甚至超过, 反映那 2.7% 非理性部分被市场自我修正。这一现象与 Layer 1 老王观察到的"实控人减持 −10% 后 6 月恢复"模式一致 — 都是<em>情绪性</em>反应被<em>基本面</em>修正。</p>
+<p lang="zh"><strong>方法论提醒</strong>: 把 CAR 分解为 (beta + sector + residual) 是 event study 的标准做法 (Fama-French 三因子模型扩展)。残差 (residual abnormal return) 才是真正"个股层面的反应", 这才是判断"过度反应 / 不足反应"的<em>正确</em>指标。直接看 CAR 不分解会得出错误结论。</p>
+<p lang="en">The −8% decomposes into three parts:</p>
+<ol lang="en">
+<li><strong>Market beta transmission:</strong> Ant event hit CSI 300 by −3% over 60 days. Moutai β ≈ 0.95 → contributes −3% × 0.95 ≈ −2.8%.</li>
+<li><strong>Sector sentiment spillover:</strong> regulatory events raise investors' <em>regulatory premium</em> on all leading firms. Moutai, a consumer leader, has historical policy-risk overhangs (anti-corruption / "three-publics-consumption" history + high-end consumer political sensitivity). Re-priced premium contributes −2% to −3%.</li>
+<li><strong>Residual: truly irrational part:</strong> −8% − (−2.8%) − (−2.5%) ≈ −2.7%; rush-to-exit + risk-aversion non-rational spillover.</li>
+</ol>
+<p lang="en"><strong>Verdict:</strong> ~65% of the −8% is <em>rational</em> (beta + regulatory-premium repricing); ~35% (≈2.7%) is <em>irrational</em> (panic). The latter is a contrarian small-add opportunity; the former isn't.</p>
+<p lang="en"><strong>Historical validation:</strong> Moutai 60-day CAR was −8%, but at 90–180 days fully recovered or exceeded pre-event — the 2.7% non-rational portion self-corrected. Same pattern as Layer-1 insider-reduction case: emotional reaction → fundamental correction.</p>
+<p lang="en"><strong>Methodological note:</strong> decomposing CAR into (beta + sector + residual) is the standard refinement (Fama-French extension). The residual abnormal return is the true "stock-level reaction" and the correct metric for over/under-reaction. Reading raw CAR without decomposition leads to wrong conclusions.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="08-financial-quality.html"><span class="dir">← Prev</span><span class="title">08 · <span lang="zh">财报应用</span></span></a><a class="next" href="../a-share/01-regulation.html"><span class="dir">Next →</span><span class="title">A 股特化</span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="08-financial-quality.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">08 · <span lang="zh">财报应用</span><span lang="en">Financials</span></span></a><a class="next" href="../a-share/01-regulation.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title"><span lang="zh">A 股特化</span><span lang="en">A‑share specifics</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>

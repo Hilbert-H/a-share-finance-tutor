@@ -44,23 +44,61 @@
 
 <section class="layer">
 <h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-<p lang="zh">资本预算的本质问题: 公司有<em>有限资金</em>, 面对<em>多个候选项目</em>, 该选哪些?</p>
-<p lang="en">The capital budgeting question: with finite capital and multiple candidate projects, which to choose?</p>
-<p lang="zh"><strong>NPV 框架</strong>: 计算每个项目的"净现值" — 把未来现金流折回今天, 减去初始投资。$NPV > 0$ 说明项目<em>创造</em>价值 (在折现率 $r$ 下), 应当接受。NPV 是<em>价值守恒</em>(Ch.00 model iv) 的代数化 — 接受 NPV+ 项目 $\Leftrightarrow$ 增加公司价值。</p>
-<p lang="en"><strong>NPV framework:</strong> discount each project's future CFs to today and subtract initial outlay. $NPV>0$ means value‑creating at discount rate $r$ — accept. NPV is the algebraization of value additivity.</p>
-<p lang="zh"><strong>为什么 NPV 比"5 年回本"或"年化 IRR &gt; 20%"更可靠</strong>?</p>
+
+<p lang="zh">老王第二家店开张半年, 一切顺利。又一个新选择摆在他面前: 第一家店<em>切面</em>这道工序一直手工做, 每天雇一个学徒 8 小时, 月工资 2,000 元。隔壁早餐店老板说: "你买台 ¥8,000 的切面机, 一天 5 分钟搞定, 学徒省了。"老王心动, 但要不要真掏这 ¥8,000?这是个典型的"<em>资本预算</em>"问题 — 先掏一笔, 未来若干年回报。我们用<em>三种</em>不同的算法各算一遍, 每算一遍都问同一句: "<em>净现值大于零吗?投不投?</em>"</p>
+<p lang="en">Old Wang's second shop has been running smoothly for half a year. Another decision lands: at the first shop, noodle‑cutting is still done by hand — an apprentice 8 hours a day, ¥2,000 a month. The breakfast shop owner next door says, "Buy an ¥8,000 noodle‑cutting machine, 5 minutes a day, scrap the apprentice." Tempting, but should Wang actually fork over ¥8,000? Classic <em>capital budgeting</em>: pay now, get returns over multiple years. We work it three different ways, asking the same question after each: <em>is NPV greater than zero — invest or not?</em></p>
+
+<p lang="zh"><strong>1. 先算"回本期 (payback)"</strong>。机器 ¥8,000, 一年省的人工是 12 × 2,000 = ¥24,000?——不对, 学徒不仅做切面, 还做杂活, 估计真正能砍掉的成本是每月 600 元 (老王把学徒留下做别的工作)。哦不, 老王决定干脆裁掉学徒, 每年省 24,000 元雇佣成本太乐观了, 实际净节省 ¥2,000 / 年 (假设老王把多出来的时间用来做更多面)。回本期 = 8,000 / 2,000 = 4 年。问: 4 年回本算不算可以接受?老王觉得"<em>差不多</em>" — 但这答案非常粗糙: 没考虑钱有时间价值, 没考虑机器寿命超过 4 年后的额外现金流。<strong>回本期 (payback period)</strong> 是最直观但<em>最不可靠</em>的指标。</p>
+<p lang="en"><strong>1. Start with payback.</strong> The machine costs ¥8,000. Annual savings? Assume Wang nets ¥2,000 per year (after accounting for the apprentice's other useful chores, Wang chooses to free up time for serving more bowls). Payback = 8,000 / 2,000 = 4 years. Is 4 years acceptable? Wang feels "roughly yes" — but the answer is crude: it ignores time value of money, and ignores any cash flows beyond the breakeven point. <strong>Payback period</strong> is the most intuitive yet least reliable measure.</p>
+
+<p lang="zh"><strong>2. 再算"净现值 NPV"</strong>。机器寿命假设 5 年, 每年净省 ¥2,000, 5 年后报废残值 0。老王选用 8% 作为折现率 (对应自己开店的<em>机会成本</em>: 这 ¥8,000 不买机器, 大致能在别处拿到 8%)。把 5 笔未来现金流折回今天:</p>
+<p lang="en"><strong>2. Now compute NPV.</strong> Assume the machine lasts 5 years, saves ¥2,000 each year, scrap value zero at year 5. Wang picks 8% as the discount rate (his shop‑level opportunity cost — this ¥8,000 could earn roughly 8% elsewhere). Discount five future ¥2,000s to today:</p>
 <ul lang="zh">
-<li>5 年回本 (payback) 不考虑回本之后的现金流 — 一个 5 年回本但之后立即崩塌的项目 vs 5 年回本然后稳定产生 20 年现金的项目, payback 认为相同, 显然荒谬</li>
-<li>IRR 是<em>项目自身收益率</em>, 但项目规模不一样 (10 亿 IRR=30% vs 100 亿 IRR=20%, 哪个更好? 答案: 看绝对 NPV)</li>
-<li>NPV 直接以"创造的价值"为目标 — 这就是<em>股东价值最大化</em>的代数表达</li>
+<li>第 1 年 PV = 2,000 / 1.08 ≈ 1,852</li>
+<li>第 2 年 PV = 2,000 / 1.08² ≈ 1,715</li>
+<li>第 3 年 PV ≈ 1,588</li>
+<li>第 4 年 PV ≈ 1,470</li>
+<li>第 5 年 PV ≈ 1,361</li>
+<li>5 年现金流 PV 合计 ≈ 7,986 元</li>
 </ul>
-<p lang="en">Payback ignores post‑payback CFs. IRR ignores scale. NPV directly maximizes value — the algebraic statement of shareholder value maximization.</p>
-<p lang="zh"><strong>实物期权的额外价值</strong>: 静态 NPV 假设"现在做决定, 一路执行到底"。但很多项目实际允许<em>分阶段</em>(stage gates): 先小规模试点 → 看结果再决定扩张 / 收缩 / 放弃。这种"灵活性"本身有价值, Black-Scholes 期权定价框架可以量化。Ch.04 后半引入。</p>
-<p lang="en"><strong>Real options:</strong> static NPV assumes "decide now, execute fully." Many projects allow staged decisions — the flexibility itself has value, priced via option‑pricing.</p>
+<ul lang="en">
+<li>Year 1 PV ≈ 1,852; year 2 ≈ 1,715; year 3 ≈ 1,588; year 4 ≈ 1,470; year 5 ≈ 1,361</li>
+<li>Sum ≈ ¥7,986</li>
+</ul>
+<p lang="zh">NPV = −8,000 + 7,986 = −14 元。<strong>NPV 几乎是零, 略微为负 → 不投</strong>。老王心里咯噔一下: 表面看"4 年回本, 机器能用 5 年, 净赚 1 年"似乎稳赚, 但折现之后<em>实际刚好不赚</em>。"<em>净现值</em>"才是判断"投不投"的<em>正确</em>指标 — 因为它把<em>钱有时间价值</em>这一事实算了进去。</p>
+<p lang="en">NPV = −8,000 + 7,986 = −¥14. <strong>NPV is essentially zero, slightly negative → don't invest.</strong> Wang's stomach flips: on the surface "4‑year payback, 5‑year life, one bonus year" looks like a slam dunk, but after discounting it's <em>exactly breakeven</em>. NPV is the right yardstick because it bakes in time value of money.</p>
+
+<p lang="zh"><strong>3. 第三种算法: 内部收益率 IRR。</strong> 老王问: "<em>这个项目到底回报率是多少?</em>"这等于问: "什么样的折现率让 NPV 刚好等于 0?"——这个折现率就是项目的 <strong>内部收益率 (internal rate of return, IRR)</strong>。在本例, IRR 大约是 7.93% (略低于老王选的 8% 折现率)。决策规则: 项目 IRR &gt; 折现率 → 接受; IRR &lt; 折现率 → 拒绝。这里 IRR (7.93%) &lt; WACC (8%), 所以拒绝。与 NPV 结论<em>一致</em>。问: 这两个指标永远一致吗?——不一定。下面看冲突情形。</p>
+<p lang="en"><strong>3. Third method: internal rate of return.</strong> Wang asks, "What's the actual rate of return on this project?" Equivalently: "What discount rate makes NPV exactly zero?" That rate is the <strong>internal rate of return (IRR)</strong>. Here it's about 7.93% (just below Wang's 8% discount rate). Decision rule: IRR &gt; discount rate → accept; IRR &lt; discount rate → reject. Here IRR (7.93%) &lt; WACC (8%) → reject. Consistent with NPV. Always consistent? Not necessarily — see below.</p>
+
+<p lang="zh"><strong>4. 老李提醒老王: "你算的省钱太保守。"</strong>实际上, 切面机能让老王每天多出 2 小时, 这 2 小时多卖出 20 碗, 每碗毛利 5 元, 年贡献额外 30,000 元 (假设一年 300 天工作)。重新算: 每年净省 ¥2,000 (人工) + ¥30,000 (扩产) = ¥32,000。重做 NPV: ∑ (32,000 / 1.08ᵗ), t=1..5 ≈ 127,780 元。NPV = −8,000 + 127,780 = 119,780 元 — <em>大幅为正</em>!IRR 也跳到约 398%。决策反转: <strong>NPV &gt; 0, 投!</strong> 这个反转说明一件事: <em>NPV 的结果完全取决于"未来现金流"的估计</em>。同一台机器, 估计每年省 ¥2,000 → 拒绝; 估计每年省 ¥32,000 → 强烈接受。<em>资本预算的难点不是公式, 是估计未来现金流</em>。</p>
+<p lang="en"><strong>4. Old Li reminds Wang his savings estimate was too conservative.</strong> Freeing up 2 hours a day lets Wang sell another 20 bowls a day at ¥5 gross margin each, ~300 working days a year = ¥30,000 extra revenue. Revised annual saving: ¥2,000 (labour) + ¥30,000 (capacity) = ¥32,000. Redo NPV: ∑ (32,000 / 1.08ᵗ), t=1..5 ≈ ¥127,780. NPV = −8,000 + 127,780 = ¥119,780 — strongly positive! IRR jumps to ~398%. Decision flips: <strong>NPV &gt; 0, invest!</strong> The flip drives a deep point: NPV's answer hinges entirely on the future‑cash‑flow estimate. Same machine, ¥2,000/year saving → reject; ¥32,000/year saving → strong accept. <em>The hard part of capital budgeting isn't the formula, it's forecasting cash flows.</em></p>
+
+<p lang="zh"><strong>5. 把三种指标放到一张表, 比较它们的"性格"。</strong></p>
+<p lang="en"><strong>Three metrics side by side — their personalities.</strong></p>
+<ul lang="zh">
+<li><strong>回本期</strong>: 直观, 但忽略折现和回本后现金流。适合<em>流动性紧张</em>时的辅助判断 ("我多久能拿回这笔钱")</li>
+<li><strong>NPV</strong>: 直接对应"创造多少股东价值"。指标值<em>有量纲</em> (元)。<em>正确</em>的主要决策标准</li>
+<li><strong>IRR</strong>: 直观 ("项目的回报率"), 无量纲 (%)。但有两个陷阱: (i) 现金流多次变号时 IRR 不唯一; (ii) 互斥项目时<em>规模差异</em>会让 IRR 给错答案 — 选 IRR 高的小项目, 而 NPV 大的大项目更优</li>
+</ul>
+<ul lang="en">
+<li><strong>Payback:</strong> intuitive, but ignores discounting and post‑breakeven cash. Useful as a liquidity‑risk side check.</li>
+<li><strong>NPV:</strong> directly measures shareholder value created. Has units (¥). The correct primary criterion.</li>
+<li><strong>IRR:</strong> intuitive (%), unitless. Two traps: (i) non‑unique when cash flows change sign multiple times; (ii) for mutually exclusive projects, scale matters — IRR favours small projects, NPV favours big ones.</li>
+</ul>
+
+<p lang="zh"><strong>6. 三指标冲突的典型例子。</strong>假设老王同时面对两台机器: 切面机 (投 8,000, 每年省 32,000, 5 年, IRR ≈ 398%) vs 一台新煮面锅 (投 50,000, 每年净增收 18,000, 5 年, IRR ≈ 23%)。如果资金充裕、互不冲突, 两个都接受。但如果<em>必须二选一</em> (因为车间空间只够放一台)?——按 IRR 选切面机 (398% &gt; 23%); 按 NPV 选煮面锅 (其 NPV ≈ 18,000 × 3.99 − 50,000 ≈ 21,800, 高于切面机的 ¥119,780 — 等等, 切面机 NPV 高得多, 所以 NPV 和 IRR 一致都选切面机)。换个例子, 项目 A 投 1 万 IRR 50% (NPV 5,000), 项目 B 投 100 万 IRR 20% (NPV 50,000)。IRR 选 A, NPV 选 B。<em>NPV 是对的</em> — 它直接对应"为股东创造多少绝对价值"。</p>
+<p lang="en"><strong>6. A typical conflict.</strong> Suppose Wang faces two machines: the noodle cutter (¥8k → ¥32k/year, 5y, IRR ≈ 398%) and a new boiling pot (¥50k → ¥18k/year, 5y, IRR ≈ 23%). If both fit and capital is ample, accept both. If they're mutually exclusive (one slot in the kitchen)? IRR picks the cutter (398 &gt; 23); but project A (small) with IRR 50% / NPV ¥5,000 vs project B (large) with IRR 20% / NPV ¥50,000 — IRR picks A, NPV picks B. <em>NPV is right</em>, because it directly measures absolute shareholder value created.</p>
+
+<p lang="zh"><strong>7. 老王合上账本。</strong>切面机这一笔不大, 但暴露的<em>原理</em>很大: (i) 任何"投不投"的决策都要折现未来现金流, 不能光看"几年回本"或"看起来稳赚"; (ii) NPV 是核心标准, IRR 和 payback 是辅助; (iii) 决策最敏感的不是公式, 而是<em>未来现金流估计的准确性</em>; (iv) 在<em>不确定性高</em>的项目里 (新业务、新设备、新店), 静态 NPV 还会低估"<em>等等再说</em>"的价值 — 这就是 Layer 2 后半引入的<em>实物期权</em>。这条原理写成符号就是 $\mathrm{NPV} = \sum_{t=0}^{n} CF_t / (1+r)^t$, 接受当 NPV &gt; 0。</p>
+<p lang="en"><strong>Wang closes the ledger.</strong> The cutter is a small purchase but reveals a big principle: (i) every "invest or not" decision needs to discount future cash flows, not just check payback or "looks like a sure thing"; (ii) NPV is primary, IRR and payback are aides; (iii) the most sensitive input isn't the formula but the cash‑flow estimate; (iv) for high‑uncertainty projects (new business, new equipment, new shop), static NPV also undervalues "wait and see" — the <em>real options</em> idea introduced later in Layer 2. The principle in symbols: $\mathrm{NPV} = \sum_{t=0}^{n} CF_t / (1+r)^t$, accept when $\mathrm{NPV} > 0$.</p>
 </section>
 
 <section class="layer">
 <h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王 ¥8,000 切面机的决策, 把"<em>NPV / IRR / 回本期</em>"三种指标在同一个项目上各算一遍, 并暴露了规模冲突和现金流估计敏感性。现在我们形式化它, 补上多 IRR 问题、MIRR、实物期权的<em>价值守恒</em>论证 (NPV 直接对应股东价值增量)。</p>
+<p lang="en">Layer 1 used Old Wang's ¥8,000 noodle‑cutter to run NPV, IRR, and payback on the same project and surface scale conflicts plus cash‑flow sensitivity. We now formalise it, add the multiple‑IRR problem, MIRR, and tie real options to the value‑additivity argument (NPV equals the increment to shareholder value).</p>
 
 <h3 lang="zh">① NPV 与 IRR</h3>
 <h3 lang="en">① NPV &amp; IRR</h3>
@@ -132,6 +170,8 @@
 
 <div class="case">
 <div class="case-head"><span class="ticker">SH·601088</span><span class="company"><span lang="zh">中国神华</span><span lang="en">China Shenhua</span></span><span class="period"><span lang="zh">煤矿 NPV 决策</span><span lang="en">Mine project NPV</span></span></div>
+<p lang="zh">老王 ¥8,000 切面机的算盘, 放大六十二万倍, 就是国企评估新煤矿的资本预算。结构一样: 今天先投一笔, 未来若干年现金流入, 末年还有一笔<em>负</em>现金 (老王的机器有残值 0; 煤矿的复垦义务是<em>负</em>残值)。同一条 NPV 公式套上去 — 只是数字大了五个数量级, 还多了"现金流多次变号"带来的多 IRR 风险。</p>
+<p lang="en">Old Wang's ¥8,000 noodle‑cutter math, scaled up roughly 620,000×, becomes an SOE's mine‑project capital budget. Structure is identical: a lump‑sum outlay today, several years of inflow, plus a <em>negative</em> cash flow at the end (Wang's machine had zero scrap; the mine has reclamation as <em>negative</em> salvage). The same NPV formula applies — five orders of magnitude bigger, with an extra wrinkle: multiple sign changes mean multiple‑IRR risk.</p>
 <p lang="zh">假设中国神华评估一个新煤矿项目: 初始投资 50 亿 (购地 + 设备 + 建设), 预计 20 年运营每年产生 8 亿 OCF, 第 20 年末复垦成本 5 亿 (负现金流)。WACC = 7%。</p>
 <p lang="en">A new mine: ¥5bn outlay, 20 years of ¥0.8bn OCF, ¥0.5bn reclamation in year 20. WACC = 7%.</p>
 <div class="case-table"><table><thead><tr><th>NPV <span lang="zh">分解</span><span lang="en">decomposition</span></th><th class="num"><span lang="zh">金额 (亿)</span><span lang="en">¥ bn</span></th></tr></thead><tbody>

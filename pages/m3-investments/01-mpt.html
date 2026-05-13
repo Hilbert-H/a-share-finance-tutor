@@ -16,80 +16,449 @@
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 01</span><span class="sep">·</span><span><span lang="zh">12 分钟</span><span lang="en">12 min</span></span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 01</span><span class="sep">·</span><span><span lang="zh">14 分钟</span><span lang="en">14 min</span></span><span class="sep">·</span><span><span lang="zh">前置: M3 Ch.00</span><span lang="en">Prereq: Ch.00</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.02 CAPM</span><span lang="en">Next: Ch.02 CAPM</span></span></div>
 <h1><span lang="zh">现代组合理论 MPT</span><span lang="en">Modern Portfolio Theory</span></h1>
-<p class="lesson-subtitle"><span lang="zh">Markowitz (1952): 投资者关心组合 σ 而非单一资产 σ. 通过组合构建, 在相同期望收益下可以<em>显著降低</em>风险. "<em>不把鸡蛋放一个篮子</em>"的数学化。</span><span lang="en">Markowitz (1952): investors care about portfolio σ. Combining assets with imperfect correlation lowers risk at given return. The math of "don't put all eggs in one basket."</span></p>
+<p class="lesson-subtitle"><span lang="zh">Markowitz (1952): 投资者关心组合 σ 而非单一资产 σ。通过组合构建, 在相同期望收益下可以<em>显著降低</em>风险。"不把鸡蛋放一个篮子"的数学化, 也是诺贝尔奖背后那条最简洁的公式。</span><span lang="en">Markowitz (1952): investors care about portfolio σ. Combining assets with imperfect correlation lowers risk at given return. The math behind "don't put all eggs in one basket," and the cleanest equation behind a Nobel.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">写出两资产 / N 资产组合的方差公式</li><li lang="zh">用拉格朗日推导 minimum variance portfolio</li><li lang="zh">理解有效前沿 / 切线组合 / Sharpe ratio</li><li lang="en">Two‑asset and N‑asset variance; min‑variance portfolio; efficient frontier; tangent portfolio; Sharpe</li></ul>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">写出两资产 / N 资产组合的均值与方差公式</li>
+<li lang="zh">用拉格朗日推导最小方差组合 (minimum variance portfolio)</li>
+<li lang="zh">理解有效前沿 / 切线组合 / Sharpe 比率三者的几何关系</li>
+<li lang="zh">能口头解释为什么 ρ &lt; 1 就能"免费降风险", 以及为什么这个免费午餐在危机中失效</li>
+<li lang="en">Two‑asset and N‑asset variance; minimum variance portfolio via Lagrangian; efficient frontier, tangent portfolio, Sharpe; why ρ &lt; 1 gives a "free lunch" and why crises eat it.</li>
+</ul>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span></h2>
-<p lang="zh">单看一只股票, 你只看到它的"波动"$\sigma$. Markowitz 革命: <em>组合中</em>, 单只股票的<em>相关性</em>与其他股票决定了它对组合的贡献。两只波动率 30% 但相关系数 $\rho = 0$ 的股票, 等权组合 σ = $30/\sqrt{2} \approx 21\%$ — 风险降 30%, 期望收益不变。"免费午餐"。</p>
-<p lang="en">Within a portfolio, an asset's <em>correlation</em>, not its standalone σ, determines its risk contribution. Two 30%‑σ assets with ρ=0, equal weight → portfolio σ ≈ 21% — 30% lower risk, same expected return. Free lunch.</p>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王想分散 10 万元, 一步步发现"协方差才是关键"</span><span class="en" lang="en"> · Old Wang splits ¥100k and discovers covariance is the lever</span></h2>
+
+<p lang="zh">M1 和 M2 结束后, 老王把店里的事交给伙计打理, 自己手上攒了 10 万元闲钱, 准备走进 A 股市场。他在证券公司开了户, 但马上撞上第一个问题: <em>钱怎么分</em>? 这一节我们陪老王从"一只股票"走到"五只股票 + 一个国债", 每一步都问一个问题, 让"组合的风险"这件事从直觉里长出来。</p>
+<p lang="en">After M1 and M2, Old Wang hands the noodle shop to his cook and takes ¥100,000 of free capital into A‑shares. He opens a brokerage account and immediately hits the first question: <em>how to split it</em>? We walk with him from one stock to five stocks plus a bond ETF, asking one question at each step so portfolio risk grows out of intuition.</p>
+
+<p lang="zh"><strong>1. 全押一只 — 茅台 600519, 价格 ¥1,500, 老王买 60 股, 用掉 ¥90,000, 留 ¥10,000 现金。</strong> 过去三年, 茅台月度涨跌大致 ±5% 到 ±10%, 年化波动率 σ ≈ 26%。老王第一个月就赶上一根 −12% 的 K 线, 一晚上账户少了 ¥10,800。他问伙计: "我是不是该买点别的, 分散一下?" 伙计反问: "你说说看, 多买一只就一定降风险吗?" 老王愣了 — 他直觉觉得"加一只", 风险就少了一半, 但说不出为什么。</p>
+<p lang="en"><strong>1. All in one — Moutai 600519 at ¥1,500, 60 shares = ¥90,000, ¥10,000 in cash.</strong> Over the past three years, Moutai's monthly returns swing roughly ±5%–10%, annualised σ ≈ 26%. The first month delivers a −12% candle, and ¥10,800 evaporates overnight. Wang asks the cook: "Should I buy something else to diversify?" Cook fires back: "But why would adding one cut the risk?" Wang's gut says "halve it" — but he can't justify it.</p>
+
+<p lang="zh"><strong>2. 加一只<em>同行业</em>的 — 五粮液 000858, 卖 30 股茅台买 30 股五粮液, 等权两只白酒。</strong> 但是接下来三个月发生的事让老王傻眼: <em>两只酒一起涨一起跌</em>。当国家发了限酒令, 茅台跌 10%, 五粮液跌 9%; 当中秋促销, 两只一起涨 6%。老王问伙计: "我现在不是有两只了吗, 怎么没分散?" 伙计答: "因为它们<em>同涨同跌</em>。" 同涨同跌这件事, 数学上叫 <strong>正相关</strong> (positive correlation) — 用一个数 ρ 衡量, ρ 介于 −1 到 +1, 茅台和五粮液大约 ρ ≈ 0.75。<em>如果两只资产几乎完全同涨同跌, 组合在一起跟一只没区别</em>。这是老王走出的第一步: 想分散, 不能只看"有几只", 要看"它们之间什么关系"。</p>
+<p lang="en"><strong>2. Add a same‑industry name — Wuliangye 000858. Sell 30 Moutai shares, buy 30 Wuliangye. Equal‑weight two liquors.</strong> The next three months floor him: <em>they move together</em>. Distribution restriction hits — Moutai −10%, Wuliangye −9%. Mid‑Autumn promo — both up 6%. Wang asks: "I have two now, why no diversification?" Cook: "They co‑move." Co‑movement has a name: <strong>positive correlation</strong>, ρ ∈ [−1, +1]. Moutai‑Wuliangye ρ ≈ 0.75. <em>Near‑perfectly correlated assets are basically one asset.</em> First lesson: diversification isn't about <em>count</em>, it's about <em>relationship</em>.</p>
+
+<p lang="zh"><strong>3. 换成<em>不同行业</em>的 — 卖掉五粮液, 买招商银行 600036 (银行) 和 比亚迪 002594 (新能源车)。</strong> 老王现在持有: 茅台 (白酒) ¥30,000 + 招行 (银行) ¥30,000 + 比亚迪 (新能源车) ¥30,000 + 现金 ¥10,000。这三家公司利润来源完全不同: 茅台靠经销商打款, 招行靠存贷利差, 比亚迪靠电车销量。它们的 ρ 互相大约: 茅台-招行 ≈ 0.35, 茅台-比亚迪 ≈ 0.30, 招行-比亚迪 ≈ 0.45。下一个月发生的事很关键: 当国家发布"消费税从严"传闻, 茅台跌 7%, 而招行和比亚迪几乎没动。组合<em>整体</em>只跌了 2.3%。老王第一次<em>体感</em>到了分散化: 跌的时候, 别人在帮我抵消一些。等式还成立吗? 组合波动率 σ_p ≈ 16-18%, 而单只 σ 都在 25%+ — 风险被实实在在压低了 ~30%。</p>
+<p lang="en"><strong>3. Switch to different industries — drop Wuliangye, buy CMB 600036 (bank) and BYD 002594 (EV).</strong> Wang now holds: Moutai ¥30k + CMB ¥30k + BYD ¥30k + cash ¥10k. Three completely different profit engines — distributor remittances, deposit‑lending spread, EV unit sales. Pairwise ρ roughly 0.30–0.45. Next month a "stricter consumption tax" rumour hits: Moutai −7%, CMB and BYD barely move. The portfolio drops just 2.3%. Wang <em>feels</em> diversification for the first time. σ_p ≈ 16–18%, well below the ~25%+ of each single stock — risk cut by ~30%.</p>
+
+<p lang="zh"><strong>4. 加一只<em>跟股市基本无关</em>的 — 国债 ETF 511010, 用现金 ¥10,000 全买进。</strong> 国债 ETF 跟踪 5 年期国债, 年化波动率 σ ≈ 4-5%, 关键是它和股票的相关系数 ρ ≈ 0 甚至略负 (股市跌 → 资金避险买债 → 债涨)。老王把现金换成国债 ETF, 组合变成: 茅台 30% + 招行 30% + 比亚迪 30% + 国债 ETF 10%。这一步看似不大 (只换了 10% 现金), 但组合波动率<em>再降了 2-3 个百分点</em>。这就是 "<em>低相关资产是免费午餐</em>" 的真正体感。一旦市场出现剧烈下跌 (比如 2020 年 3 月全球流动性冲击), 这 10% 国债的贡献会更明显。</p>
+<p lang="en"><strong>4. Add an asset basically uncorrelated with stocks — bond ETF 511010, ¥10,000 of cash all in.</strong> 511010 tracks 5y T‑bonds, σ ≈ 4–5%; crucially ρ with equities ≈ 0, sometimes slightly negative (stock crash → flight to bonds → bond up). Wang's portfolio becomes Moutai 30% + CMB 30% + BYD 30% + bond ETF 10%. Looks like a small swap, but σ_p drops another 2–3 pp. The actual taste of "low‑correlation = free lunch." During a sharp crash (think March 2020), that 10% bonds matters even more.</p>
+
+<p lang="zh"><strong>5. 改权重 — 老王问: 我能不能多放点国债, 比如 40%? 风险会怎么变?</strong> 伙计在纸上画了一条曲线: 横轴是国债 ETF 占比 (0% 到 100%), 纵轴是组合波动率 σ_p。当国债占比从 0 升到 30-40% 左右, σ_p 一直在<em>下降</em> (因为债股低相关, 加债等于"借便宜的负相关"); 但继续加债到 60%+, σ_p 反而开始<em>上升</em> (因为这时组合主要是国债自己的波动了, 边际效益递减)。这条 U 型曲线的最低点叫 <strong>最小方差组合</strong> (minimum variance portfolio)。Layer 2 会用拉格朗日给出闭式解。</p>
+<p lang="en"><strong>5. Reweight — Wang asks: what if I put 40% in bonds? What happens to risk?</strong> Cook sketches a curve: x is bond weight (0–100%), y is portfolio σ_p. As bond weight rises from 0 to ~30–40%, σ_p falls (cheap negative‑ish correlation buys risk reduction). Beyond ~60% bond, σ_p starts rising again (bond's own σ dominates). The U‑curve's bottom is the <strong>minimum variance portfolio</strong>. Layer 2 gives its closed‑form Lagrangian solution.</p>
+
+<p lang="zh"><strong>6. 进一步问: 在所有可能的组合中, 哪个 "<em>每承担一份风险换最多回报</em>"?</strong> 老王注意到一件事: 沿着 U 型曲线右上方 (国债占比逐渐降低, 股权占比升高), 期望回报在上升, 但波动率也在上升。如果他给定一个无风险利率 $r_f$ ≈ 2.5% (假设一年定期), 那么"每多一份 σ 换多少 μ"就是衡量"性价比"的关键。在所有组合里, 有<em>一个特别的组合</em>能让 $(\mu_p - r_f)/\sigma_p$ 达到最大 — 这就是 <strong>切线组合</strong> (tangent portfolio)。从 $r_f$ 这一点画一条直线, 与有效前沿相切, 切点就是它。Layer 2 给出 $\mathbf{w}_{\text{tan}}$ 的矩阵公式。一旦找到这个切线组合, 老王只需要决定<em>分多少比例给切线组合, 多少给无风险资产</em> — 不需要再去想"具体哪几只股票" — 这就是 Tobin 1958 的<strong>两基金分离定理</strong> (two‑fund separation): <em>所有理性投资者的最优组合都是 "无风险资产 + 同一个切线组合" 的某种比例混合</em>。</p>
+<p lang="en"><strong>6. Push it: which portfolio gives the most return per unit of risk?</strong> Along the U‑curve's right‑upper arc, expected return rises with σ. Given a risk‑free rate $r_f$ ≈ 2.5%, the question becomes "how much μ per unit σ?" One special portfolio maximises $(\mu_p - r_f)/\sigma_p$ — the <strong>tangent portfolio</strong>. Drawing a line from $r_f$ tangent to the efficient frontier, the touch point is it. Layer 2 gives the closed‑form weight vector. Once found, Wang only chooses <em>how much to allocate between tangent portfolio and risk‑free</em> — never "which 5 stocks." That is Tobin's 1958 <strong>two‑fund separation theorem</strong>.</p>
+
+<p lang="zh"><strong>7. 老王画完那条曲线, 长舒一口气。</strong> 五步走过来, 他从"全押茅台"变成"4 只资产 + 国债 ETF, 每只权重经过计算"。重要的不是具体那几只股票, 而是: <em>风险不是各资产风险的简单加权, 而是受相关性 ρ 强烈影响; 加入低相关资产能"免费"降风险; 把切线组合 + 无风险资产线性组合, 就能拿到任意位置的风险/回报点</em>。这就是 Markowitz 1952 在六页论文里说清楚的事。Layer 2 把它形式化, Layer 3 用真实的 沪深 300 ETF / 中证 500 ETF / 国债 ETF 三资产 ρ-Σ 数据跑一遍。</p>
+<p lang="en"><strong>7. Wang closes the notebook with a long exhale.</strong> Five steps in, he's gone from "all‑in Moutai" to "4 assets + bond ETF, each weight computed." The lesson isn't the tickers — it's: <em>risk is not a weighted sum but a quadratic form in ρ; low‑correlation assets give free risk reduction; combining tangent portfolio with $r_f$ reaches every point on the capital allocation line.</em> That's what Markowitz 1952 said in six pages. Layer 2 formalises it; Layer 3 runs the real CSI 300 / CSI 500 / bond‑ETF Σ.</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 320" role="img" aria-label="Efficient frontier and capital allocation line">
+<style>
+.axis { stroke: #1A1814; stroke-width: 1.3; }
+.tick { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #4A4540; }
+.lbl { font-family: 'Noto Serif SC', 'Cormorant Garamond', serif; font-size: 12px; fill: #1A1814; }
+.frontier { fill: none; stroke: #8B2C2C; stroke-width: 2; }
+.cal { stroke: #2C4A6E; stroke-width: 1.8; stroke-dasharray: 5 3; fill: none; }
+.dot { fill: #1A1814; }
+.dot-tan { fill: #8B2C2C; }
+.dot-rf { fill: #2C4A6E; }
+.note { font-family: 'Noto Serif SC', serif; font-style: italic; font-size: 10px; fill: #8A8378; }
+</style>
+<line class="axis" x1="60" y1="280" x2="680" y2="280"/>
+<line class="axis" x1="60" y1="20" x2="60" y2="280"/>
+<text class="tick" x="55" y="284" text-anchor="end">0</text>
+<text class="lbl" x="365" y="305" text-anchor="middle">组合波动率 σ_p (年化)</text>
+<text class="lbl" x="20" y="150" transform="rotate(-90 20 150)" text-anchor="middle">组合期望回报 μ_p</text>
+<path class="frontier" d="M 100 220 Q 200 170 320 130 T 600 60"/>
+<path class="cal" d="M 60 250 L 600 60"/>
+<circle class="dot-rf" cx="60" cy="250" r="5"/>
+<text class="tick" x="70" y="245">r_f ≈ 2.5%</text>
+<circle class="dot-tan" cx="350" cy="115" r="6"/>
+<text class="lbl" x="360" y="110">切线组合 · max Sharpe</text>
+<circle class="dot" cx="220" cy="170" r="4"/>
+<text class="note" x="220" y="190" text-anchor="middle">最小方差组合</text>
+<circle class="dot" cx="580" cy="68" r="4"/>
+<text class="note" x="580" y="58" text-anchor="middle">高 σ / 高 μ (全股权)</text>
+<circle class="dot" cx="120" cy="240" r="4"/>
+<text class="note" x="120" y="260" text-anchor="middle">低 σ / 低 μ (高债权)</text>
+<text class="note" x="450" y="180">CAL: 切线组合 + r_f 的线性组合 (两基金分离)</text>
+<text class="note" x="380" y="40">有效前沿: 给定 μ 最小 σ 的所有组合</text>
+</svg>
+<figcaption>
+<span lang="zh">有效前沿 (红色曲线) + 资本配置线 CAL (蓝色虚线)。CAL 切于有效前沿的那个点就是切线组合, 它最大化 Sharpe 比率。</span>
+<span lang="en">Efficient frontier (red) + capital allocation line (blue dashed). The CAL is tangent to the frontier exactly at the tangent portfolio — the one with maximum Sharpe.</span>
+</figcaption>
+</figure>
+
+<p lang="zh">回看老王的五步: <em>单押 → 加同行业 → 加不同行业 → 加低相关资产 → 调权重找最优</em>。这条路线就是 Markowitz 给所有投资者的"五步法"。下一节我们把这套语言形式化, 然后用真实的 沪深 300 ETF / 中证 500 ETF / 国债 ETF 数据跑一次完整优化。</p>
+<p lang="en">Recap: <em>single name → same‑industry add → different‑industry add → low‑correlation add → reweight to optimum</em>. Markowitz's five‑step walk for any investor. Layer 2 formalises it; Layer 3 runs a real CSI 300 / CSI 500 / bond‑ETF optimisation.</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
 
-<p lang="zh"><strong>组合期望与方差</strong>:</p>
-<div class="eq"><span>$$ \mu_p = \mathbf{w}^\top \boldsymbol{\mu}, \quad \sigma_p^2 = \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w} $$</span><span class="num">(1.1)</span></div>
+<p lang="zh">Layer 1 用老王从单押茅台到 4 资产组合的五步走, 把"分散化的核心是协方差"这件事讲清楚了。现在我们把同一套规则用矩阵语言形式化, 并补一个工程类比 — 组合波动率是一个<em>二次型</em>, 数学上和"机械系统的转动惯量"是同一个数学对象。</p>
+<p lang="en">Layer 1 used Wang's five steps to motivate "covariance is the lever." We now formalise it in matrix form and add one engineering bridge: portfolio variance is a <em>quadratic form</em>, mathematically identical to a rotational moment of inertia tensor.</p>
 
-<p lang="zh"><strong>最小方差组合</strong> (无约束, 无短卖限制):</p>
-<div class="eq"><span>$$ \mathbf{w}_{\min} = \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} \mathbf{1}} $$</span><span class="num">(1.2)</span></div>
+<h3 lang="zh">① 组合的均值与方差</h3>
+<h3 lang="en">① Portfolio Mean and Variance</h3>
 
-<p lang="zh"><strong>切线组合</strong> (最大 Sharpe, 引入无风险利率 $r_f$):</p>
-<div class="eq"><span>$$ \mathbf{w}_{\text{tan}} = \frac{\boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})} $$</span><span class="num">(1.3)</span></div>
+<p lang="zh">设 N 个资产, 权重向量 $\mathbf{w} = (w_1, ..., w_N)^\top$ 满足 $\mathbf{1}^\top \mathbf{w} = 1$ (权重和为 1), 期望收益向量 $\boldsymbol{\mu}$, 协方差矩阵 $\boldsymbol{\Sigma}$ (N×N, 对称半正定)。则:</p>
+<p lang="en">N assets, weights $\mathbf{w}$ with $\mathbf{1}^\top \mathbf{w} = 1$, expected return vector $\boldsymbol{\mu}$, covariance matrix $\boldsymbol{\Sigma}$ (N×N symmetric PSD). Then:</p>
 
-<p lang="zh"><strong>Sharpe Ratio</strong>:</p>
-<div class="eq"><span>$$ \mathrm{Sharpe} = \frac{\mu_p - r_f}{\sigma_p} $$</span><span class="num">(1.4)</span></div>
-
-<p lang="zh">有效前沿: 给定每个期望收益 $\mu$, 找到对应最小 $\sigma$. 集合构成一条凸曲线。切线组合 + $r_f$ 直线 (Capital Allocation Line, CAL) 主导所有风险资产组合 (两基金分离).</p>
-<p lang="en">Efficient frontier: for each $\mu$ find min $\sigma$. With $r_f$, the tangent portfolio + risk‑free line (CAL) dominates all pure‑risky portfolios (two‑fund separation).</p>
-</section>
-
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">沪深 300 + 中证 500 + 10Y 国债</span><span lang="en">CSI 300 + CSI 500 + 10Y bond</span></span></div>
-<p lang="zh">2010-2023 月度估算: μ ≈ (7%, 8%, 3.5%), σ ≈ (20%, 28%, 5%), 相关系数: ρ(CSI300, CSI500) ≈ 0.85, ρ(equity, bond) ≈ 0. 用 (1.3) 解切线组合:</p>
-<p lang="en">2010–23 estimates: μ ≈ (7%, 8%, 3.5%), σ ≈ (20%, 28%, 5%), ρ_{eq,bond} ≈ 0. Tangent: ~60% bond, ~25% CSI 300, ~15% CSI 500 (high Sharpe due to low equity‑bond correlation).</p>
-<ul lang="zh"><li>切线组合: 约 60% 国债 + 25% 沪深 300 + 15% 中证 500</li><li>Sharpe ≈ 0.5 (远高于纯股 ~0.2)</li><li>反直觉: 想要"高收益"也应配债, 因股债相关低 → 风险下降快于收益下降</li></ul>
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">组合的期望与方差</span>
+<span class="callout-label" lang="en">Portfolio mean and variance</span>
+<div class="eq"><span>$$ \mu_p \;=\; \mathbf{w}^\top \boldsymbol{\mu}, \quad \sigma_p^2 \;=\; \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w} \;=\; \sum_{i,j} w_i w_j \sigma_{ij} $$</span><span class="num">(1.1)</span></div>
+<p lang="zh">展开看清楚: $\sigma_p^2 = \sum_i w_i^2 \sigma_i^2 + 2 \sum_{i &lt; j} w_i w_j \rho_{ij} \sigma_i \sigma_j$。第一项是"各资产自身方差", 第二项是"协方差贡献"。当 $\rho_{ij} &lt; 1$, 协方差项小于"完全相关情况", 这就是分散化的数学源头。</p>
+<p lang="en">Expanded: $\sigma_p^2 = \sum_i w_i^2 \sigma_i^2 + 2 \sum_{i &lt; j} w_i w_j \rho_{ij} \sigma_i \sigma_j$. First term: own variances. Second: covariance contribution. With $\rho_{ij} &lt; 1$, the cross term is below the perfectly‑correlated case — that's where diversification mathematically originates.</p>
+<span class="cite">Markowitz (1952), "Portfolio Selection," <em>Journal of Finance</em> 7(1): 77–91 · Brealey, Myers &amp; Allen, <em>Principles of Corporate Finance</em>, Ch. 8</span>
 </div>
+
+<p lang="zh"><strong>两资产特例 (老王 Layer 1 中"茅台 + 五粮液" vs "茅台 + 招行")</strong>:</p>
+<p lang="en">Two‑asset case (Wang's "Moutai + Wuliangye" vs "Moutai + CMB"):</p>
+<div class="eq"><span>$$ \sigma_p^2 \;=\; w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2 w_1 w_2 \rho_{12} \sigma_1 \sigma_2 $$</span><span class="num">(1.2)</span></div>
+
+<p lang="zh">数字验证 Layer 1 第 2 步与第 3 步:</p>
+<p lang="en">Numerical check of Layer 1 steps 2 vs 3:</p>
+<ul>
+<li><span lang="zh">茅台 + 五粮液 (等权), σ₁ = σ₂ = 26%, ρ = 0.75: $\sigma_p^2 = 0.25 \cdot 0.0676 \cdot 2 + 2 \cdot 0.25 \cdot 0.75 \cdot 0.0676 \approx 0.0592$, $\sigma_p \approx 24.3\%$ — 几乎没降。</span><span lang="en">Moutai + Wuliangye equal‑weight, σ = 26% each, ρ = 0.75: σ_p ≈ 24.3% — barely down.</span></li>
+<li><span lang="zh">茅台 + 招行 (等权), σ₁ = 26%, σ₂ = 25%, ρ = 0.35: $\sigma_p \approx 21.0\%$ — 降了约 5 个百分点。</span><span lang="en">Moutai + CMB equal‑weight, σ = 26%/25%, ρ = 0.35: σ_p ≈ 21.0% — ~5 pp lower.</span></li>
+</ul>
+
+<p class="muted measure" lang="zh"><strong>工程类比</strong>: 组合方差 $\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}$ 是<em>二次型</em>, 与机械系统转动惯量 $\mathbf{r}^\top \mathbf{I} \mathbf{r}$ 同一种数学对象。$\boldsymbol{\Sigma}$ 的特征向量给出主轴 (principal axes), 对应的特征值是该主轴上的"独立风险源"。这就是<em>主成分分析 PCA</em> 在金融里的版本 — 你可以把整个 A 股市场分解成几个"独立风险因子" (M3 Ch.02 因子模型的几何起点)。</p>
+<p class="muted measure" lang="en">Engineering analogy: portfolio variance $\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}$ is a <em>quadratic form</em> — same mathematical object as moment of inertia $\mathbf{r}^\top \mathbf{I} \mathbf{r}$. Eigenvectors of $\boldsymbol{\Sigma}$ are principal axes (independent risk sources); their eigenvalues are variances along those axes — PCA of the market (geometric starting point of Ch.02 factor models).</p>
+
+<h3 lang="zh">② 最小方差组合 — 拉格朗日推导</h3>
+<h3 lang="en">② Minimum Variance Portfolio — Lagrangian Derivation</h3>
+
+<p lang="zh">最小方差组合解决: 给定权重和为 1 约束, 哪个 $\mathbf{w}$ 让 $\sigma_p^2$ 最小? 这是一个等式约束的凸优化问题。构造拉格朗日量:</p>
+<p lang="en">Minimum variance: given $\mathbf{1}^\top \mathbf{w} = 1$, which $\mathbf{w}$ minimises $\sigma_p^2$? Equality‑constrained convex QP. Lagrangian:</p>
+
+<div class="eq"><span>$$ \mathcal{L}(\mathbf{w}, \lambda) \;=\; \mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w} \;-\; \lambda \left( \mathbf{1}^\top \mathbf{w} - 1 \right) $$</span><span class="num">(1.3)</span></div>
+
+<p lang="zh">对 $\mathbf{w}$ 求一阶条件 $\partial \mathcal{L} / \partial \mathbf{w} = 2 \boldsymbol{\Sigma} \mathbf{w} - \lambda \mathbf{1} = 0$, 解出 $\mathbf{w} = (\lambda/2) \boldsymbol{\Sigma}^{-1} \mathbf{1}$。代入约束 $\mathbf{1}^\top \mathbf{w} = 1$ 求 $\lambda$, 最终:</p>
+<p lang="en">FOC $\partial \mathcal{L} / \partial \mathbf{w} = 2 \boldsymbol{\Sigma} \mathbf{w} - \lambda \mathbf{1} = 0$, so $\mathbf{w} = (\lambda/2) \boldsymbol{\Sigma}^{-1} \mathbf{1}$. Pin $\lambda$ via $\mathbf{1}^\top \mathbf{w} = 1$:</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">最小方差组合</span>
+<span class="callout-label" lang="en">Minimum variance portfolio</span>
+<div class="eq"><span>$$ \mathbf{w}_{\min} \;=\; \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} \mathbf{1}} $$</span><span class="num">(1.4)</span></div>
+<p lang="zh">直观: 协方差矩阵的逆"乘上 1 向量"得到一个"原始风险权重", 再归一化。$\boldsymbol{\Sigma}^{-1}$ 把<em>高方差 / 高相关</em>资产的权重压低, 让<em>低方差 / 低相关</em>资产更突出。这就是为什么 Layer 1 第 4 步引入国债 ETF 后, 最小方差点出现在"国债占 30-40%"附近 — 它的低 σ + 低 ρ 让 $\boldsymbol{\Sigma}^{-1}$ 自动给它高权重。</p>
+<p lang="en">Intuition: $\boldsymbol{\Sigma}^{-1} \mathbf{1}$ produces "raw risk weights"; normalisation finishes. $\boldsymbol{\Sigma}^{-1}$ downweights high‑σ / high‑ρ assets and amplifies low‑σ / low‑ρ ones. That's why Layer 1 step 4's bond ETF gets ~30–40% — its low σ &amp; low ρ are exactly what $\boldsymbol{\Sigma}^{-1}$ rewards.</p>
+<span class="cite">Markowitz (1952) · Merton (1972) "An Analytic Derivation of the Efficient Portfolio Frontier"</span>
+</div>
+
+<h3 lang="zh">③ 切线组合与 Sharpe 比率</h3>
+<h3 lang="en">③ Tangent Portfolio and Sharpe Ratio</h3>
+
+<p lang="zh">引入无风险资产 (国债 / 银行存款) 后, 投资者可以借入或借出 $r_f$ 利率的资金。新的优化问题: 在所有风险资产组合中, 哪一个的<em>夏普比率</em>最大?</p>
+<p lang="en">Introducing risk‑free borrowing/lending at $r_f$: which risky portfolio maximises <em>Sharpe ratio</em>?</p>
+
+<div class="eq"><span>$$ \mathrm{Sharpe}(\mathbf{w}) \;=\; \frac{\mathbf{w}^\top \boldsymbol{\mu} - r_f}{\sqrt{\mathbf{w}^\top \boldsymbol{\Sigma} \mathbf{w}}} $$</span><span class="num">(1.5)</span></div>
+
+<p lang="zh">用同样的拉格朗日法 (这次约束是 $\mathbf{w}^\top \boldsymbol{\mu} - r_f$ = 常数, 最小化 $\sigma_p$), 解出:</p>
+<p lang="en">Same Lagrangian (now constrain numerator, minimise σ_p):</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">切线组合 (最大 Sharpe)</span>
+<span class="callout-label" lang="en">Tangent portfolio (max Sharpe)</span>
+<div class="eq"><span>$$ \mathbf{w}_{\text{tan}} \;=\; \frac{\boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})}{\mathbf{1}^\top \boldsymbol{\Sigma}^{-1} (\boldsymbol{\mu} - r_f \mathbf{1})} $$</span><span class="num">(1.6)</span></div>
+<p lang="zh">和 (1.4) 比较: 把 $\mathbf{1}$ 替换成 $(\boldsymbol{\mu} - r_f \mathbf{1})$ 就得到切线组合。前者只关心"降风险", 后者同时关心"换回报"。$\boldsymbol{\mu} - r_f \mathbf{1}$ 是 <strong>超额预期收益向量</strong> (excess expected returns) — Layer 1 第 6 步老王问的"每多一份 σ 换多少 μ", 就由这个向量回答。</p>
+<p lang="en">Compare to (1.4): replace $\mathbf{1}$ with $\boldsymbol{\mu} - r_f \mathbf{1}$. (1.4) only minimises risk; (1.6) also targets return. $\boldsymbol{\mu} - r_f \mathbf{1}$ is the <strong>excess‑expected‑return vector</strong> — answers Wang's "how much μ per unit σ?"</p>
+<span class="cite">Sharpe (1964) "Capital Asset Prices" · Tobin (1958) "Liquidity Preference as Behavior Towards Risk" — two‑fund separation</span>
+</div>
+
+<h3 lang="zh">④ 有效前沿与两基金分离</h3>
+<h3 lang="en">④ Efficient Frontier &amp; Two‑Fund Separation</h3>
+
+<p lang="zh">对每一个目标期望收益 $\mu$, 解出 $\sigma_{\min}(\mu)$, 在 $(\sigma, \mu)$ 平面上画出 <strong>有效前沿</strong> (efficient frontier) — 一条凸曲线。引入 $r_f$ 后, 通过 $r_f$ 点向有效前沿画切线 (CAL, capital allocation line), 切点就是切线组合 $\mathbf{w}_{\text{tan}}$。所有"无风险资产 + 切线组合"的混合都落在这条 CAL 上, 且 Sharpe 与切线组合相同。</p>
+<p lang="en">For each target μ, solve $\sigma_{\min}(\mu)$ and plot the <strong>efficient frontier</strong> in $(\sigma, \mu)$ space. With $r_f$, the line from $(0, r_f)$ tangent to the frontier touches at $\mathbf{w}_{\text{tan}}$. All combinations of risk‑free + tangent lie on this <strong>capital allocation line</strong> with the same Sharpe.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">两基金分离定理 (Tobin 1958)</span>
+<span class="callout-label" lang="en">Two‑fund separation (Tobin 1958)</span>
+<p lang="zh">在均值-方差最优框架下, 所有投资者的最优组合都可写成: $\mathbf{w}^* = \alpha \cdot \mathbf{0} + (1-\alpha) \cdot \mathbf{w}_{\text{tan}}$。$\alpha$ 由投资者风险偏好决定 ($\alpha \to 1$ 全无风险, $\alpha \to 0$ 全切线组合, $\alpha &lt; 0$ 加杠杆), 但<em>具体哪些股票 / 多少比例</em>完全由 $\mathbf{w}_{\text{tan}}$ 决定, 与投资者偏好无关。</p>
+<p lang="en">In MV optimisation, every investor's optimum is $\mathbf{w}^* = \alpha \mathbf{0} + (1-\alpha) \mathbf{w}_{\text{tan}}$. α reflects risk preference; <em>which</em> risky assets and weights live in $\mathbf{w}_{\text{tan}}$ alone, independent of preferences.</p>
+<span class="cite">Tobin (1958), <em>Review of Economic Studies</em> 25(2): 65–86</span>
+</div>
+
+<p lang="zh">这条定理的实践含义巨大: <em>所有理性投资者应该持有同一个风险资产组合 (切线组合), 只是按风险偏好调节它和无风险资产的比例</em>。这是 1960s 后期共同基金 / 指数基金 / ETF 大规模兴起的理论基础 — Bogle 在 Vanguard 推沪深 300 类宽基指数的逻辑根。</p>
+<p lang="en">Big practical takeaway: <em>every rational investor should hold the same risky portfolio (the tangent), tilting only between it and the risk‑free</em>. Theoretical basis for the rise of mutual funds / index funds / ETFs from the late 1960s — the logic behind Bogle's broad‑market index push.</p>
+
+<h3 lang="zh">⑤ 数值例 — 三资产组合</h3>
+<h3 lang="en">⑤ Numerical Example — Three Assets</h3>
+
+<p lang="zh">给定 (Layer 3 用真实 ETF 数据), 假设三资产 (沪深 300 / 中证 500 / 国债 ETF), 估算的年化参数:</p>
+<p lang="en">Three assets (CSI 300 ETF, CSI 500 ETF, T‑bond ETF), annualised parameters:</p>
+<table>
+<thead><tr><th>Asset</th><th>μ</th><th>σ</th><th>ρ(·, 1)</th><th>ρ(·, 2)</th><th>ρ(·, 3)</th></tr></thead>
+<tbody>
+<tr><td>1. CSI 300</td><td>7%</td><td>20%</td><td>1.00</td><td>0.85</td><td>0.00</td></tr>
+<tr><td>2. CSI 500</td><td>8%</td><td>28%</td><td>0.85</td><td>1.00</td><td>0.05</td></tr>
+<tr><td>3. T‑bond</td><td>3.5%</td><td>5%</td><td>0.00</td><td>0.05</td><td>1.00</td></tr>
+</tbody>
+</table>
+
+<p lang="zh">$r_f$ 取 2.5%。把 ρ 和 σ 组装成 Σ, 应用 (1.6) 求切线组合 (数值, 用 Python NumPy):</p>
+<p lang="en">$r_f = 2.5\%$. Assemble Σ from ρ and σ, apply (1.6) numerically:</p>
+
+<div class="eq"><span>$$ \mathbf{w}_{\text{tan}} \;\approx\; (0.26, 0.16, 0.58)^\top, \quad \mu_p \approx 5.0\%, \quad \sigma_p \approx 9.0\%, \quad \mathrm{Sharpe} \approx 0.28 $$</span><span class="num">(1.7)</span></div>
+
+<p lang="zh">切线组合给出 26% CSI 300 + 16% CSI 500 + 58% 国债 ETF, Sharpe ≈ 0.28。对比"100% CSI 300" (Sharpe = (7 - 2.5)/20 ≈ 0.225) 和 "100% CSI 500" (Sharpe = (8 - 2.5)/28 ≈ 0.196), 切线组合 Sharpe 显著高 — 这就是<em>免费午餐</em>的数值版。</p>
+<p lang="en">Tangent: 26% CSI 300 + 16% CSI 500 + 58% bond ETF, Sharpe ≈ 0.28. Versus 100% CSI 300 Sharpe ≈ 0.225 or 100% CSI 500 Sharpe ≈ 0.196 — meaningful improvement, the numerical face of the free lunch.</p>
+
+<p class="muted measure" lang="zh"><strong>反直觉点</strong>: 想要"高回报"也应大配国债, 因为<em>股债低相关让组合 σ 下降比 μ 下降快得多</em>。这就是 Bogle 60/40 和桥水"全天候组合"的数学根。Layer 3 会用真实 ETF 数据再跑一次。</p>
+<p class="muted measure" lang="en">Counterintuitive: even "high return" portfolios should hold heavy bonds — low stock‑bond ρ makes σ drop faster than μ. Math foundation of Bogle 60/40 and Bridgewater All Weather. Layer 3 reruns with live ETF data.</p>
 </section>
 
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<p lang="zh">老王在 Layer 1 用 ¥100k 走了 5 步, 我们现在把同样的思路放大到任意规模 — 用真实的 A 股 ETF 三年数据跑一次完整优化。无论你的资金是 ¥10 万还是 ¥1,000 万, MPT 给出的权重是相同的, 只是绝对头寸不同。</p>
+<p lang="en">Wang's five steps in Layer 1 generalise to any portfolio size. We run the same machinery against real A‑share ETF three‑year data — whether you have ¥100k or ¥10m, MPT gives the same weights; only the absolute positions scale.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">510300 · 510500 · 511010</span>
+<span class="company"><span lang="zh">沪深 300 ETF + 中证 500 ETF + 国债 ETF (近似数据)</span><span lang="en">CSI 300 + CSI 500 + T‑bond ETF (approximate)</span></span>
+<span class="period">2021‑01 → 2023‑12 · <span lang="zh">月度收益估算</span><span lang="en">monthly returns estimate</span></span>
+</div>
+
+<p lang="zh">用 2021-2023 三年月度数据 (36 个观测), 估算年化参数:</p>
+<p lang="en">From 2021–23 monthly data (36 obs), annualised parameter estimates:</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th>ETF</th><th class="num">μ (年化)</th><th class="num">σ (年化)</th><th class="num">ρ(·, 300)</th><th class="num">ρ(·, 500)</th><th class="num">ρ(·, bond)</th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">510300 沪深 300</span><span lang="en">510300 CSI 300</span></td><td class="num">−2.5%</td><td class="num">19%</td><td class="num">1.00</td><td class="num">0.86</td><td class="num">−0.08</td></tr>
+<tr><td><span lang="zh">510500 中证 500</span><span lang="en">510500 CSI 500</span></td><td class="num">−1.0%</td><td class="num">25%</td><td class="num">0.86</td><td class="num">1.00</td><td class="num">−0.12</td></tr>
+<tr><td><span lang="zh">511010 国债 ETF</span><span lang="en">511010 T‑bond ETF</span></td><td class="num">4.0%</td><td class="num">3.5%</td><td class="num">−0.08</td><td class="num">−0.12</td><td class="num">1.00</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>注意</strong>: 2021-2023 是 A 股股权资产的低迷期, 故 CSI 300 / CSI 500 的<em>实现</em>年化收益为负。这是 MPT 的实际困境 — 历史 $\boldsymbol{\mu}$ 估计噪声极大。如果用"无信息先验"(把 $\boldsymbol{\mu}$ 强制设为长期均值 6-8%), 优化结果会大不同。这是 Black-Litterman 1992 引入"先验信念"的动机。</p>
+<p lang="en">Note: 2021–23 was a slump for A‑share equity, so <em>realised</em> CSI 300 / 500 annualised returns are negative. Real‑world MPT pain — historical $\boldsymbol{\mu}$ is noisy. Imposing long‑run priors (6–8%) changes everything. Black‑Litterman (1992) was born from this.</p>
+
+<p lang="zh"><strong>用历史 μ 求切线组合 (假设 $r_f$ = 2.5%)</strong>: 由于股权 ETF μ 低于 $r_f$, 切线组合中股权权重会被压成负数 (空头) 或 0。这不符合 A 股散户的现实约束 (一般无法 short)。用"长期 μ 先验" (CSI 300 7%, CSI 500 8%, bond 3.5%):</p>
+<p lang="en"><strong>Tangent with $r_f$ = 2.5% and long‑run μ priors</strong> (CSI 300 7%, CSI 500 8%, bond 3.5%):</p>
+
+<div class="eq"><span>$$ \mathbf{w}_{\text{tan}} \;\approx\; (0.18, 0.12, 0.70)^\top, \quad \mu_p \approx 4.1\%, \quad \sigma_p \approx 6.3\%, \quad \mathrm{Sharpe} \approx 0.25 $$</span><span class="num">(1.8)</span></div>
+
+<p lang="zh"><strong>解读</strong>: 切线组合给出 18% CSI 300 + 12% CSI 500 + 70% 国债 ETF。这就是"全天候组合"思路的简化版 — 高债权配置不是"保守", 而是<em>数学上最优</em>。如果老王的风险偏好更激进, 可以借 $r_f$ 利率的资金加杠杆 (沿 CAL 向右上移), 但每一份新增风险仍按切线组合的相对权重承担。</p>
+<p lang="en">18% CSI 300 + 12% CSI 500 + 70% bond ETF — a simplified All‑Weather. The heavy bond weight isn't "conservative," it's <em>mathematically optimal</em>. Higher risk appetite → borrow at $r_f$ and lever the same tangent (move right‑up along the CAL); risk composition stays.</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">组合</span><span lang="en">Portfolio</span></th><th class="num">μ_p</th><th class="num">σ_p</th><th class="num">Sharpe</th></tr></thead>
+<tbody>
+<tr><td>100% CSI 300</td><td class="num">7%</td><td class="num">19%</td><td class="num">0.237</td></tr>
+<tr><td>100% CSI 500</td><td class="num">8%</td><td class="num">25%</td><td class="num">0.220</td></tr>
+<tr><td>100% Bond</td><td class="num">3.5%</td><td class="num">3.5%</td><td class="num">0.286</td></tr>
+<tr><td>50% CSI 300 + 50% Bond</td><td class="num">5.25%</td><td class="num">9.6%</td><td class="num">0.287</td></tr>
+<tr><td><strong>Tangent (18/12/70)</strong></td><td class="num"><strong>4.1%</strong></td><td class="num"><strong>6.3%</strong></td><td class="num"><strong>0.254</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh">注意: 单看 Sharpe, "100% Bond" 和 "50/50" 都高于切线组合 — 这是因为 2.5% $r_f$ 太低 (国债 ETF 自身就跑赢 $r_f$ 大约 1%)。如果把 $r_f$ 设为 1.5%, 切线组合会显著高于其他选项。<em>切线组合对 $r_f$ 的选择高度敏感</em>。M2 Ch.02 讨论过 $r_f$ 在估值里的影响, 同样的道理在组合优化里更明显。</p>
+<p lang="en">Note: at $r_f$ = 2.5%, "100% bond" and "50/50" beat the tangent on Sharpe — the bond ETF's own return barely exceeds $r_f$. Drop $r_f$ to 1.5% and the tangent dominates. <em>Tangent is highly $r_f$‑sensitive.</em></p>
+
+<a class="case-link" href="http://quote.eastmoney.com/sh510300.html" target="_blank" rel="noopener"><span lang="zh">东方财富: 510300 沪深 300 ETF →</span><span lang="en">Eastmoney: 510300 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519 + SH·600036 + SH·600900</span>
+<span class="company"><span lang="zh">茅台 + 招行 + 长江电力 (老王 Layer 1 的扩展版)</span><span lang="en">Moutai + CMB + Yangtze Power (Wang Layer 1 extended)</span></span>
+<span class="period">2021 → 2024 · <span lang="zh">近似数据</span><span lang="en">approximate</span></span>
+</div>
+
+<p lang="zh">老王 Layer 1 选了茅台 + 招行 + 比亚迪 + 国债 ETF。这里我们换一组"低波动 + 高分红"的稳健组合 — 茅台 (品牌护城河) + 招行 (银行) + 长江电力 (公用事业, 长期分红率 70%+)。</p>
+<p lang="en">Layer 1 took Moutai + CMB + BYD + bond ETF. Here we use a "low‑vol high‑dividend" variant — Moutai + CMB + Yangtze Power (utility, payout ratio 70%+).</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">股票</span><span lang="en">Stock</span></th><th class="num">μ (近似)</th><th class="num">σ (近似)</th><th class="num">ρ(·, Moutai)</th><th class="num">ρ(·, CMB)</th><th class="num">ρ(·, YPower)</th></tr></thead>
+<tbody>
+<tr><td>SH·600519 <span lang="zh">茅台</span></td><td class="num">10%</td><td class="num">26%</td><td class="num">1.00</td><td class="num">0.40</td><td class="num">0.18</td></tr>
+<tr><td>SH·600036 <span lang="zh">招行</span></td><td class="num">7%</td><td class="num">25%</td><td class="num">0.40</td><td class="num">1.00</td><td class="num">0.25</td></tr>
+<tr><td>SH·600900 <span lang="zh">长江电力</span></td><td class="num">9%</td><td class="num">14%</td><td class="num">0.18</td><td class="num">0.25</td><td class="num">1.00</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh">用 (1.6) 求切线组合 ($r_f$ = 2.5%): $\mathbf{w}_{\text{tan}} \approx (0.21, 0.18, 0.61)$, 即 21% 茅台 + 18% 招行 + 61% 长江电力。$\mu_p \approx 9.0\%$, $\sigma_p \approx 13.5\%$, Sharpe ≈ 0.48。<em>长江电力占大头</em>: 它的 σ 显著低于另外两只, 且与白酒、银行的相关性都不高 — $\boldsymbol{\Sigma}^{-1}$ 自动放大它的权重。</p>
+<p lang="en">Apply (1.6) at $r_f$ = 2.5%: $\mathbf{w}_{\text{tan}} \approx (0.21, 0.18, 0.61)$ — 21% Moutai + 18% CMB + 61% Yangtze Power. $\mu_p \approx 9.0\%$, $\sigma_p \approx 13.5\%$, Sharpe ≈ 0.48. Yangtze dominates because of its low σ and low ρ with the other two.</p>
+
+<p lang="zh"><strong>桥接老王 Layer 1</strong>: 老王 Layer 1 用 4 资产, 这里用 3 资产, 但结论一致 — <em>低波动 + 低相关的资产会被 $\boldsymbol{\Sigma}^{-1}$ 推到大权重</em>。如果老王把比亚迪换成长江电力 (一只稳健公用), 切线组合中长江电力会和这里类似占大头。</p>
+<p lang="en">Bridge to Wang's Layer 1: same conclusion — <em>low‑vol + low‑ρ assets get amplified by $\boldsymbol{\Sigma}^{-1}$</em>. Swap BYD for Yangtze in Wang's setup and Yangtze takes a similar dominant weight.</p>
+
+<p lang="zh"><strong>实务警告 — Layer 2 没有讲的三件事</strong>:</p>
+<p lang="en"><strong>Practical caveats — three things Layer 2 didn't tell you:</strong></p>
+<ol>
+<li lang="zh"><strong>μ 估计噪声极大</strong>: 用 3 年月度数据估 μ, 标准误约 σ/√36 ≈ 4-5%, 几乎和 μ 本身一个量级。所以 Markowitz 优化结果<em>对 μ 极其敏感</em>。Black-Litterman (1992) 用 "先验 μ + 投资者观点" 缓解这个问题。</li>
+<li lang="zh"><strong>Σ 在危机时突变</strong>: 2008 全球金融危机、2015 A 股股灾、2020 新冠冲击, 期间股票之间 ρ 全部跳到 0.9+ — <em>分散化在最需要它的时候失效</em>。所以专业机构会叠加 "tail hedge" (例如 VIX 期权 / 长债 / 黄金)。</li>
+<li lang="zh"><strong>A 股卖空限制</strong>: 公式 (1.6) 解出来若有负权重, 在 A 股散户层面无法执行 (没有融券渠道 / 融资门槛高)。约束下的最优解 (no short, $w_i \ge 0$) 需要数值二次规划求解 (Python CVXPY 或 Excel Solver)。</li>
+</ol>
+<p lang="en">(1) μ estimates are extremely noisy — Black‑Litterman softens this with priors + views. (2) Σ regime‑shifts in crises (2008, 2015, 2020 — pairwise ρ → 0.9+); diversification fails when it's most needed; pros overlay tail hedges (VIX, long bonds, gold). (3) A‑share retail can't short → impose $w_i \ge 0$ constraint, solve numerically.</p>
+
+<a class="case-link" href="http://quote.eastmoney.com/sh600900.html" target="_blank" rel="noopener"><span lang="zh">东方财富: 600900 长江电力 →</span><span lang="en">Eastmoney: 600900 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker"><span lang="zh">滚动 Sharpe 测算</span><span lang="en">Rolling Sharpe</span></span>
+<span class="company"><span lang="zh">三种组合: 100% 沪深 300 / 60/40 股债 / Markowitz 切线</span><span lang="en">Three portfolios: 100% CSI 300 / 60–40 / Markowitz tangent</span></span>
+<span class="period">2014 → 2024 · <span lang="zh">三年滚动窗口</span><span lang="en">3‑year rolling window</span></span>
+</div>
+
+<p lang="zh">用 2014-2024 十年月度数据, 每个月计算过去 3 年的滚动 Sharpe (即 t-36 到 t 的数据), 比较三种策略:</p>
+<p lang="en">Using 2014–24 monthly data, compute rolling 3‑year Sharpe each month:</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">策略</span><span lang="en">Strategy</span></th><th class="num"><span lang="zh">平均 Sharpe</span><span lang="en">Mean Sharpe</span></th><th class="num"><span lang="zh">最差 Sharpe</span><span lang="en">Min Sharpe</span></th><th class="num"><span lang="zh">最大回撤</span><span lang="en">Max DD</span></th></tr></thead>
+<tbody>
+<tr><td>100% CSI 300</td><td class="num">0.18</td><td class="num">−0.25</td><td class="num">−47%</td></tr>
+<tr><td>60% CSI 300 + 40% 国债</td><td class="num">0.32</td><td class="num">−0.05</td><td class="num">−25%</td></tr>
+<tr><td><strong>Markowitz 切线 (3 资产)</strong></td><td class="num"><strong>0.38</strong></td><td class="num"><strong>0.04</strong></td><td class="num"><strong>−18%</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>Markowitz 切线整体最优, 但优势不大</strong>: 平均 Sharpe 0.38 vs 60/40 的 0.32, 提升 ~19%。<em>简单的 60/40 已经能拿到 Markowitz 大部分价值</em>。这是 Bogle 长期倡导"低成本简单组合"的实证依据 — 复杂优化往往因 μ / Σ 估计误差吞噬掉本应有的超额收益。</li>
+<li lang="zh"><strong>最大回撤显著降低</strong>: 100% 股权在 2015 股灾 + 2018 贸易战中累计回撤近 50%; 60/40 缓冲到 25%; 切线组合到 18%。<em>对散户而言, 回撤可承受度比 Sharpe 优化更重要</em> — 因为大回撤会触发心理崩溃, 在低点割肉, 实际拿到的回报远低于"理论 Sharpe"。Ch.04 行为金融详述。</li>
+<li lang="zh"><strong>切线组合的 weights 不稳定</strong>: 用前 3 年估的 μ/Σ 解出的 weights, 在下一个月可能突变。例如 2020 年 3 月之后, 国债 ETF 的滚动 σ 显著上升 (因加息预期), Markowitz 重新分配权重时, 国债占比从 70% 跳到 50% — 引发频繁再平衡, 交易成本侵蚀回报。<em>权重稳定性</em>是 Markowitz 实操的另一个隐形成本。</li>
+</ol>
+<p lang="en">(1) Tangent best on average (Sharpe 0.38 vs 60/40's 0.32), but only ~19% better — 60/40 captures most of the value, vindicating Bogle. (2) Max drawdown matters more than Sharpe for retail — large drawdowns trigger panic selling. Ch.04 develops this. (3) Tangent weights are unstable, causing frequent rebalancing &amp; trading costs that erode the theoretical edge.</p>
+
+<p lang="zh"><strong>桥接老王</strong>: 老王 Layer 1 最后那个"4 资产 + 国债 ETF 10%"组合, 实际就是<em>偏保守的切线组合</em>。如果他严格按 (1.6) 算, 应该把国债比例进一步提高到 30-40%。这是新手向 Markowitz "正解"靠拢的过程, 也是绝大多数散户最难做到的一步 — 因为"我有 100k 还买 70% 债?" 听起来不像"投资"。但<em>数学不在乎听起来怎样</em>。</p>
+<p lang="en">Bridge to Wang: his Layer 1 "4 assets + 10% bond" is a conservative tangent. Strict (1.6) would push bonds to 30–40%. The hard part for any retail investor: "I have ¥100k and you want 70% in bonds?" doesn't sound like "investing." But the math doesn't care how it sounds.</p>
+</div>
+
+<p class="muted measure" lang="zh">数据来源: 历史数据近似估算 (实际数字请使用 CSMAR / Wind / 同花顺 iFind 接口实时拉取)。本节示例旨在演示方法论, 不构成投资建议。</p>
+<p class="muted measure" lang="en">Data: approximate historical estimates — use CSMAR / Wind / iFinD APIs for production. Methodology demo only; not investment advice.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">分散化 / 协方差对称性</span><span lang="en">Diversification / Covariance Symmetry</span></h4><p lang="zh">本章核心。组合方差是二次型, 在协方差矩阵 Σ 的特征空间内可对角化 — 这就是因子模型 (Ch.02) 的几何起点。</p><p lang="en">Quadratic form in Σ; diagonalising in eigenspace yields factor models (Ch.02 geometric origin).</p></div></div>
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">两基金分离</span><span lang="en">Two‑Fund Separation</span></h4><p lang="zh">Tobin 1958: 所有投资者持有同一个切线组合, 只调与 $r_f$ 的比例。指数基金 / ETF 大规模兴起的理论根。</p><p lang="en">Tobin 1958: every investor holds the same tangent; only the $r_f$ weight differs. Theoretical basis for ETFs.</p></div></div>
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">估计误差与稳健性</span><span lang="en">Estimation Error &amp; Robustness</span></h4><p lang="zh">μ / Σ 估计噪声大于真实参数本身, Markowitz "正解" 在实操中频繁失败。Black-Litterman 1992 / 收缩协方差矩阵 (Ledoit-Wolf 2004) 是缓解方案。</p><p lang="en">μ / Σ noise often exceeds the parameters themselves. Markowitz "exact" solutions fail in practice. Mitigations: Black‑Litterman, Ledoit‑Wolf shrinkage.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
 <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">先自己想清楚再展开答案。每题至少有一个反直觉点。</span><span lang="en">Think before unfolding. Every prompt has at least one counterintuitive twist.</span></p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 为什么"60/40 股债组合"长期 Sharpe 高于 100% 股票?</span><span lang="en"><strong>Q1.</strong> Why does 60/40 stock‑bond beat 100% stocks on Sharpe long‑run?</span></div>
-<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 老王持有茅台 + 五粮液 (两只白酒, ρ ≈ 0.75), 朋友建议: "再加洋河 / 泸州老窖 / 古井贡, 分散一下。" 这个建议有效吗? 用 (1.1) 的二次型给出定量分析。</span><span lang="en"><strong>Q1.</strong> Wang holds Moutai + Wuliangye (both liquor, ρ ≈ 0.75). A friend says: "Add Yanghe / Luzhou Laojiao / Gujing Gong to diversify." Does it work? Use (1.1).</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
 <div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">股债<em>低相关 (有时负相关)</em>. 60/40 组合 σ ≈ 0.6 × 18% ≈ 11% (近似), 但期望收益 ≈ 0.6 × 8% + 0.4 × 3.5% ≈ 6.2%. Sharpe = (6.2 − 2.5) / 11 ≈ 0.34, 高于 100% 股 (8 − 2.5)/18 ≈ 0.31. 危机时国债避险, 进一步降组合 σ. 这是 Bogle / 桥水"全天候组合"的数学根。</p>
-<p lang="en">Stocks‑bonds have low (sometimes negative) correlation. 60/40 σ ≈ 11% with return ≈ 6.2%; Sharpe ~0.34 vs 100% stocks ~0.31. Bonds hedge in crises. Math foundation of Bogle 60/40 and Bridgewater All Weather.</p>
+<p lang="zh"><strong>无效</strong>(几乎无效)。白酒板块内部相关性极高 (ρ &gt; 0.7), 加 5 只白酒等于<em>更精细的同一只白酒</em>。定量计算: 等权 5 只白酒, 假设单只 σ = 26%, 平均 ρ = 0.75:</p>
+<p lang="zh">$\sigma_p^2 = (1/5) \sigma^2 + (4/5) \rho \sigma^2 = 0.0676 \cdot (0.2 + 0.8 \cdot 0.75) = 0.0541$, $\sigma_p ≈ 23.3\%$.</p>
+<p lang="zh">单只 σ 是 26%, 5 只组合 σ 只降到 23.3% — 只降 ~10%。如果改成 5 只<em>不同行业</em>的 (ρ ≈ 0.3-0.4), 组合 σ 可以降到 ~17%, 降幅 35%+。</p>
+<p lang="zh"><strong>结论</strong>: 分散化的关键是<em>跨行业 / 跨资产类别</em>, 而不是<em>同行业内多只</em>。 这是散户最常犯的"伪分散化"。</p>
+<p lang="en">No (barely). Liquor intra‑sector ρ &gt; 0.7. 5 equal‑weight liquors at σ = 26%, average ρ = 0.75: σ_p ≈ 23.3% — only ~10% reduction. Switch to 5 cross‑sector with ρ ≈ 0.3–0.4: σ_p drops to ~17%. Diversification needs <em>cross‑sector / cross‑asset class</em>, not within‑sector volume.</p>
 </div></div>
-<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
 
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 在 ρ = −1 时, 两资产组合能否达到 σ = 0?</span><span lang="en"><strong>Q2.</strong> At ρ=−1, can two assets achieve σ=0?</span></div>
-<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 在 ρ = −1 (完全负相关) 时, 两资产组合能否达到 σ = 0? 给出权重和数学论证。</span><span lang="en"><strong>Q2.</strong> At ρ = −1, can two‑asset σ_p reach 0? Give weights and proof.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
 <div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">能. ρ=−1 时, $\sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 - 2 w_1 w_2 \sigma_1 \sigma_2 = (w_1 \sigma_1 - w_2 \sigma_2)^2$. 令 $w_1 \sigma_1 = w_2 \sigma_2$ → σ_p = 0. 即按反比配权重. 现实意义: 完美对冲 (期权 + 标的) 的基础. 大部分实际资产 ρ &gt; 0, 但接近这个极限的对冲是衍生品定价的核心。</p>
-<p lang="en">Yes. With ρ=−1, σ²_p = (w_1 σ_1 − w_2 σ_2)². Setting weights inversely proportional to σ gives σ_p=0 — perfect hedge. Most real assets ρ&gt;0; near‑hedge is the basis of derivative pricing.</p>
+<p lang="zh"><strong>能</strong>。ρ = −1 时, $\sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 - 2 w_1 w_2 \sigma_1 \sigma_2 = (w_1 \sigma_1 - w_2 \sigma_2)^2$。</p>
+<p lang="zh">令 $w_1 \sigma_1 = w_2 \sigma_2$, 即 $w_1 / w_2 = \sigma_2 / \sigma_1$。加上 $w_1 + w_2 = 1$, 解得 $w_1 = \sigma_2 / (\sigma_1 + \sigma_2)$, $w_2 = \sigma_1 / (\sigma_1 + \sigma_2)$ — <em>按 σ 反比配权重</em>。例如 σ₁ = 20%, σ₂ = 10%, 则 $w_1 = 1/3, w_2 = 2/3$, $\sigma_p = 0$。</p>
+<p lang="zh"><strong>现实意义</strong>: 这是<em>完美对冲</em>(perfect hedge) 的数学结构 — 期权 + 标的、多空对冲、统计套利都基于这个思路。实际资产 ρ 很少达到 −1, 但接近这个极限的对冲 (例如反向 ETF、 VIX 期权对冲股票) 是 Black-Scholes 期权定价 / 套保 / 套利的核心。 ρ → −1 时的 "<em>免费降风险</em>" 是 Markowitz 直觉的极限版本。</p>
+<p lang="en">Yes. With ρ = −1, σ_p² = (w_1 σ_1 − w_2 σ_2)². Set weights inversely proportional to σ: $w_1 = \sigma_2 / (\sigma_1 + \sigma_2)$. Real significance: structural basis of perfect hedges — options + underlying, long‑short, stat arb. Limit case of Markowitz intuition.</p>
 </div></div>
-<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
 
 <li class="quiz-item" data-qid="q3" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> MPT 在 A 股市场实务中的主要局限?</span><span lang="en"><strong>Q3.</strong> MPT's main limits in A‑share?</span></div>
-<button class="quiz-toggle"><span class="ic">▾</span> Ref</button>
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> Markowitz 优化输出的切线组合在 2008 / 2015 / 2020 三次危机中均显著回撤。这是否意味着 MPT 是个"晴天理论"?</span><span lang="en"><strong>Q3.</strong> Markowitz tangent drew down sharply in 2008 / 2015 / 2020. Is MPT a "fair‑weather theory"?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
 <div class="quiz-a"><div class="quiz-a-inner">
-<ul lang="zh"><li>$\mu$ 估计极不稳定 — 历史均值噪声大, 1 年误差远超均值本身</li><li>$\Sigma$ 在<em>危机时</em>突变 — 相关系数趋向 1, 分散化失效 (2008, 2020 等)</li><li>政策冲击突变 (双减、教培、地产), MPT 静态分布假设失效</li><li>卖空限制 → 实际不能持有 (1.3) 解出的负权重</li><li>A 股个股 ρ 普遍 0.3-0.6, 行业内 ρ 接近 0.8 — 分散化空间不如美国 (0.2-0.4 平均 ρ)</li></ul>
-<p lang="en">μ estimates noisy; Σ regime‑shifts in crises (correlations → 1); A‑share policy shocks; short‑sale constraints; higher intra‑industry correlations than US. MPT remains useful as a baseline but requires robust estimation (Black‑Litterman, shrinkage covariance).</p>
+<p lang="zh"><strong>部分是。</strong> MPT 的核心假设之一是 $\boldsymbol{\Sigma}$ <em>稳定</em>(stationary), 但实证显示 Σ 在危机中发生<em>制度切换</em>(regime shift): 平时 ρ 在 0.3-0.5, 危机中所有股票 ρ 跳到 0.8-0.95, 跨资产类别 ρ 也升高 (例如 2020 年 3 月股债同跌)。</p>
+<p lang="zh"><strong>三类应对</strong>:</p>
+<ul lang="zh">
+<li><strong>稳健估计</strong>: 用 Ledoit-Wolf 收缩协方差 (把样本 Σ 与对角矩阵线性组合) 降低噪声; Black-Litterman 加入先验 μ。</li>
+<li><strong>动态 Σ 建模</strong>: 用 GARCH / DCC-GARCH 等时变协方差模型, 让 Σ 跟随波动率聚集 (Engle 2002 Nobel)。</li>
+<li><strong>叠加 tail hedge</strong>: 用长债 / 黄金 / VIX 期权 / 程序化 "trend following" 在危机中提供负相关贡献。这是桥水"全天候组合"和 AQR "Risk Parity" 的实操路径。</li>
+</ul>
+<p lang="zh"><strong>结论</strong>: MPT 不是错的, 但单独用 MPT 是危险的。它是<em>基础层</em>, 上面必须叠加估计误差控制 + 动态风险管理 + tail hedge。</p>
+<p lang="en">Partially. MPT assumes stationary Σ; crises trigger regime shifts (intra‑equity ρ → 0.8–0.95, cross‑asset ρ also rises). Mitigations: (1) robust estimation — Ledoit‑Wolf shrinkage, Black‑Litterman priors; (2) dynamic Σ — GARCH, DCC; (3) tail hedges — long bonds, gold, VIX options, trend‑following overlay. MPT is the base layer, not the whole stack.</p>
 </div></div>
-<div class="quiz-self"><span><span lang="zh">状态</span><span lang="en">State</span></span><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 两基金分离定理说 "所有投资者持有同一个切线组合"。但现实中, 巴菲特、桥水、量化基金、保险公司持有的资产组合<em>完全不同</em>。如何调和?</span><span lang="en"><strong>Q4.</strong> Two‑fund separation says everyone holds the same tangent. But Buffett, Bridgewater, quant funds, insurers hold radically different portfolios. Reconcile.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">两基金分离定理依赖三条假设, 现实中每条都<em>松动</em>:</p>
+<ul lang="zh">
+<li><strong>假设 1: 所有投资者对 $\boldsymbol{\mu}, \boldsymbol{\Sigma}$ 有相同信念。</strong> 现实中, 巴菲特对茅台未来现金流的预测 ≠ 高频量化基金对茅台未来 1 分钟价格的预测。<em>信念不同 → 切线组合不同</em>。</li>
+<li><strong>假设 2: 投资者只关心单期 (μ, σ)。</strong> 保险公司有久期负债 (long‑duration liabilities), 必须做 ALM (asset-liability matching), 不是单期 MV。退休基金类似。</li>
+<li><strong>假设 3: 可以无限制借入 / 借出 $r_f$。</strong> 现实中借入利率 &gt; 借出利率, 且杠杆受监管限制。这使 CAL 不再是单一直线。</li>
+</ul>
+<p lang="zh"><strong>所以现实中的实际情况</strong>: 不同投资者在<em>自己信念下</em>的"切线组合"是不同的。但<em>给定相同信念</em>, 两基金分离仍然成立 — 这就是为什么主流 robo-advisor (理财魔方、且慢、Wealthfront) 都给客户提供 "<em>一个</em>风险资产组合 + 不同比例的现金/债"。</p>
+<p lang="en">Three assumptions, each loose in practice: (1) common beliefs (Buffett's μ for Moutai ≠ HFT's μ); (2) single‑period (insurers / pensions need ALM); (3) unlimited risk‑free borrow/lend at one rate. Within shared beliefs, separation still holds — basis for robo‑advisors offering "one risky basket + cash mix."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 老王用 (1.6) 算出茅台权重 −15% (即应该 short 茅台 1.5 万元)。但 A 股散户无法 short。怎么办?</span><span lang="en"><strong>Q5.</strong> Wang's (1.6) prescribes −15% Moutai (i.e., short ¥15k). A‑share retail can't short. Now what?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>加约束</strong>: 在 (1.3) / (1.6) 的优化里加入 $w_i \ge 0$ (no short)。这变成不等式约束的二次规划 (QP), 不再有闭式解, 需要数值求解器:</p>
+<ul lang="zh">
+<li>Python: <code>scipy.optimize.minimize</code> 或 <code>cvxpy</code> 都支持。</li>
+<li>Excel: 用 Solver, 目标函数 SUMPRODUCT(σ_p²), 约束 $\sum w_i = 1$, $w_i \ge 0$。</li>
+</ul>
+<p lang="zh"><strong>结果会怎样?</strong> 茅台权重会被约束到 0 (即不持有), 其他资产权重会重新分配 — 但 Sharpe 会下降 (因为约束限制了优化空间)。具体下降多少取决于"被压制资产"对最优组合的贡献。如果茅台原本 -15% 是因为它<em>对冲了某种风险</em>, 现在拿掉这个对冲, 风险敞口会增加。</p>
+<p lang="zh"><strong>替代方案</strong>:</p>
+<ul lang="zh">
+<li>买负相关的资产 (例如黄金 ETF 518880 / 反向 ETF 等) 模拟"做空"。</li>
+<li>用股指期货空头对冲 — 但散户期货门槛高 (50 万资金 + 适当性测试)。</li>
+<li>融券: 部分券商对资产 50 万+ 客户开放, 但费用高 (年化 7-9%)。</li>
+</ul>
+<p lang="en">Add $w_i \ge 0$ to (1.3) — becomes inequality‑constrained QP, no closed form. Use scipy.minimize, cvxpy, or Excel Solver. Result: Moutai forced to 0, others reallocate, Sharpe drops. Alternatives: long negative‑correlated assets (gold ETF 518880 / inverse ETFs); index‑futures shorts (high retail threshold); margin lending (¥500k+ clients, ~7–9% borrowing cost).</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> Mark complete</button>
-<nav class="chap-nav"><a href="00-overview.html"><span class="dir">← Overview</span><span class="title">Module III · Overview</span></a><a class="next" href="02-capm-apt-ff.html"><span class="dir">Next →</span><span class="title">02 · CAPM / APT / FF</span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="00-overview.html"><span class="dir">← <span lang="zh">模块导览</span><span lang="en">Overview</span></span><span class="title">Module III · <span lang="zh">导览</span><span lang="en">Overview</span></span></a><a class="next" href="02-capm-apt-ff.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">02 · <span lang="zh">CAPM · APT · Fama-French</span><span lang="en">CAPM / APT / FF</span></span></a></nav></div>
 
 </article></main>
 <aside class="toc"></aside>

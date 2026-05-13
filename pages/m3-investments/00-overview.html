@@ -21,65 +21,341 @@
 
 <h1><span lang="zh">证券投资学 — 模块导览</span><span lang="en">Investments — Module Overview</span></h1>
 <p class="lesson-subtitle">
-<span lang="zh">M1 教<em>读</em>财报, M2 教<em>用</em>财报做公司财务决策, M3 教<em>给资产定价</em>。三大支柱: 现代组合理论 (MPT) + 资产定价 (CAPM/APT/FF) + 估值 (DCF/相对估值/价值投资)。再加 EMH 与行为金融的张力 — 这是所有 A 股投资判断的理论基础。</span>
-<span lang="en">M1 reads, M2 uses, M3 prices. Three pillars: MPT + asset pricing + valuation. Plus EMH vs behavioral tension. The theoretical foundation for any A‑share decision.</span>
+<span lang="zh">M1 教<em>读</em>财报, M2 教企业怎么<em>用</em>财务杠杆做公司财务决策, M3 教<em>个人投资者</em>怎么给资产定价。三大支柱: 现代组合理论 (MPT) + 资产定价 (CAPM / APT / Fama-French) + 估值 (DCF / 相对估值 / 价值投资)。再加 EMH 与行为金融的张力 — 这是任何一个 A 股投资判断的理论基础。本模块的主角是<strong>老王</strong>: 上两个模块他经营了一家牛肉面馆, 攒下了约 10 万元闲钱, 现在他要走进 A 股市场。</span>
+<span lang="en">M1 reads, M2 uses, M3 prices. Three pillars: MPT + asset pricing + valuation. Plus EMH vs behavioral tension. The theoretical foundation for any A‑share decision. Our protagonist Old Wang has run his noodle shop for the first two modules; he now holds ~¥100k of free capital and is about to step into A‑share investing.</span>
 </p>
 
 <section class="objectives">
-<span class="section-label">Objectives</span>
+<span class="section-label" lang="zh">学习目标</span>
+<span class="section-label" lang="en">Objectives</span>
 <ul>
-<li lang="zh">构建均值-方差最优组合并理解有效前沿</li>
-<li lang="zh">用 CAPM / Fama-French 估算任意 A 股 $r_e$</li>
-<li lang="zh">用 DCF 和相对估值评估任意 A 股内在价值</li>
-<li lang="zh">用价值投资框架 (安全边际 / 护城河 / 能力圈) 做选股</li>
-<li lang="zh">解读 A 股公告 (业绩预告 / 定增 / 回购 / 限售解禁 / 问询函)</li>
-<li lang="en">Build mean‑variance portfolios; understand the efficient frontier</li>
-<li lang="en">Estimate $r_e$ via CAPM / Fama‑French</li>
-<li lang="en">Value firms via DCF and multiples</li>
-<li lang="en">Apply value investing (margin of safety / moat / circle of competence)</li>
-<li lang="en">Read A‑share filings (earnings preannouncements, placements, buybacks, lock‑ups, inquiry letters)</li>
+<li lang="zh">构建均值-方差最优组合, 理解有效前沿与切线组合 (M3 Ch.01)</li>
+<li lang="zh">用 CAPM / Fama-French 三因子或五因子估算任意 A 股 $r_e$ (M3 Ch.02)</li>
+<li lang="zh">判断 A 股市场在哪些场景下"足够有效"、哪些场景下系统性失效 (M3 Ch.03)</li>
+<li lang="zh">识别行为金融的常见陷阱 (锚定 / 损失厌恶 / 处置效应 / 过度自信) 并在自己的交易记录里找到证据 (M3 Ch.04)</li>
+<li lang="zh">用 DCF (FCFF / FCFE / DDM) 和相对估值 (PE / PB / EV/EBITDA) 评估任意 A 股内在价值 (M3 Ch.05-06)</li>
+<li lang="zh">用价值投资框架 (安全边际 / 护城河 / 能力圈) 做选股 (M3 Ch.07)</li>
+<li lang="zh">读 A 股公告 (业绩预告 / 定增 / 回购 / 限售解禁 / 问询函 / 减持) 并识别套利机会与风险信号 (M3 Ch.08-09)</li>
+<li lang="en">Build mean‑variance portfolios; understand efficient frontier &amp; tangent portfolio (Ch.01)</li>
+<li lang="en">Estimate $r_e$ via CAPM / FF3 / FF5 (Ch.02)</li>
+<li lang="en">Identify when A‑share is "efficient enough" and when it systematically fails (Ch.03)</li>
+<li lang="en">Recognise behavioral pitfalls (anchoring, loss aversion, disposition effect, overconfidence) in your own trade log (Ch.04)</li>
+<li lang="en">Value firms via DCF (FCFF / FCFE / DDM) and multiples (Ch.05–06)</li>
+<li lang="en">Apply value investing — margin of safety, moat, circle of competence (Ch.07)</li>
+<li lang="en">Read A‑share filings (preannouncements, placements, buybacks, lock‑ups, inquiry letters, insider sales) (Ch.08–09)</li>
 </ul>
 </section>
 
-<h2><span lang="zh">First-Principles Mental Models</span></h2>
-<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">复利</span><span lang="en">Compounding</span></h4><p lang="zh">指数增长反直觉。长期持有 + 红利再投资 = 价值投资的数学基础。</p><p lang="en">Exponential growth is counterintuitive. Long holding + reinvestment = math of value investing.</p></div></div>
-<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">能力圈</span><span lang="en">Circle of competence</span></h4><p lang="zh">Buffett: 只投自己能理解的业务。不在能力圈内的投资本质是赌博。</p><p lang="en">Only invest in what you can understand. Outside it = gambling.</p></div></div>
-<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">Mr. Market</span></h4><p lang="zh">Graham: 市场是个情绪化的合伙人, 每天报价但你可以选择不交易。情绪是机会, 不是指引。</p><p lang="en">Graham: Mr. Market quotes daily but you choose to act. Emotions are opportunities, not guidance.</p></div></div>
-<div class="model-card"><span class="roman">iv</span><div><h4><span lang="zh">安全边际</span><span lang="en">Margin of safety</span></h4><p lang="zh">Graham 核心: 只在价格<em>显著低于</em>内在价值时买入. 防止估值错误的工程冗余设计。</p><p lang="en">Buy only when price is significantly below intrinsic value — engineering redundancy against valuation errors.</p></div></div>
-<div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">护城河</span><span lang="en">Moat</span></h4><p lang="zh">五种类型: 品牌 / 规模 / 转换成本 / 网络效应 / 特许经营. 反映长期超额回报的可持续性。</p><p lang="en">Five types: brand / scale / switching costs / network effects / franchise. Drives sustained excess returns.</p></div></div>
-<div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">回归均值</span><span lang="en">Mean reversion</span></h4><p lang="zh">极端不持续。任何指标偏离长期均值, 终将回归。逆向投资的数学基础。</p><p lang="en">Extremes don't persist. Any metric far from its long‑run mean reverts. Math of contrarian investing.</p></div></div>
-<div class="model-card"><span class="roman">vii</span><div><h4><span lang="zh">反身性</span><span lang="en">Reflexivity</span></h4><p lang="zh">Soros: 价格<em>影响</em>基本面 (融资能力 / 信心 / 客户行为). 因果不是单向的。泡沫与崩溃的核心机制。</p><p lang="en">Soros: prices <em>shape</em> fundamentals. Two‑way causality. Core of bubbles and crashes.</p></div></div>
+<!-- ================================================================ -->
+<!-- Section 1: M3 学什么 — 投资决策框架 -->
+<!-- ================================================================ -->
+<h2><span lang="zh">M3 学什么 — 一个投资决策的四步框架</span><span lang="en">What M3 Covers — A Four‑Step Investment Framework</span></h2>
 
+<p lang="zh">老王在 M1 学会了"看一份年报", 在 M2 学会了"理解公司怎么做财务决策"。但读懂别人不等于能赚钱。M3 把 10 万元从"放在银行"到"配在 5 只股票 + 1 个国债 ETF"这条路, 拆成四个递进环节: <strong>组合 → 定价 → 估值 → 行为</strong>。每一环都有一条经典理论, 一组反例, 和一组 A 股的"中国特色"调整。</p>
+<p lang="en">M1 taught Old Wang to read a filing; M2 taught him how firms make financing and capital decisions. But reading isn't earning. M3 splits the path from "¥100k in a savings account" to "5 stocks + 1 bond ETF" into four stages: <strong>portfolio → pricing → valuation → behavior</strong>. Each stage has a canonical theory, a set of counter‑examples, and an "A‑share local adjustment."</p>
+
+<ol>
+<li lang="zh"><strong>组合 (Portfolio, Ch.01)</strong>: 与其问"哪只股票好", 不如问"五只股票合在一起、波动率是多少"。Markowitz 1952 的均值-方差分析告诉你: <em>组合的风险不是各资产风险的加权和, 而是受相关性强烈影响</em>。两只波动率都 30% 的股票, 如果相关系数为零, 等权组合的波动率只有约 21%。这就是"分散化"的数学基础。</li>
+<li lang="zh"><strong>定价 (Pricing, Ch.02)</strong>: 每只股票的预期回报由什么决定? CAPM 给出最简版本: 只与该股票对市场组合的 β 有关。APT 推广到多因子, Fama-French 把"规模 (SMB) + 价值 (HML)"乃至"盈利能力 (RMW) + 投资风格 (CMA)"显式加入。这一步告诉你: 持有 β = 1.5 的比亚迪, 你应该期望比持有 β = 0.6 的茅台多赚多少风险溢价。</li>
+<li lang="zh"><strong>估值 (Valuation, Ch.05-07)</strong>: 一旦知道贴现率 $r_e$, 把公司的未来自由现金流贴现回今天, 就得到内在价值。DCF 是"理论上正确但容易做错"的方法; 相对估值 (PE / PB / EV/EBITDA) 是"工程上稳健但隐含市场情绪"的方法。价值投资把两者结合在<em>安全边际</em>这一概念下: 只在价格<em>显著低于</em>估值时买。</li>
+<li lang="zh"><strong>行为 (Behavior, Ch.03-04)</strong>: 上面三步假设投资者理性。但 Kahneman-Tversky 的实证显示: 投资者系统性<em>厌恶损失</em>、<em>处置过早</em>、<em>过度自信</em>、<em>锚定历史买入价</em>。EMH (Ch.03) 给出市场"应该"多有效的理论, 行为金融 (Ch.04) 给出市场"实际"为什么不够有效。这一对张力贯穿 M3 后半段所有讨论。</li>
+</ol>
+
+<p lang="en">(1) <strong>Portfolio (Ch.01):</strong> instead of "which stock is best," ask "what is the joint volatility of 5 stocks." Markowitz 1952's mean‑variance machinery shows risk is not a weighted average — correlations matter. Two 30%‑σ assets with ρ=0 equal‑weighted → portfolio σ ≈ 21%. Math foundation of diversification. (2) <strong>Pricing (Ch.02):</strong> what determines expected return? CAPM: market beta alone. APT generalises to multifactor; Fama‑French adds size (SMB), value (HML), profitability (RMW), investment (CMA). Tells you how much more a β=1.5 BYD should earn than a β=0.6 Moutai. (3) <strong>Valuation (Ch.05–07):</strong> given $r_e$, discount future free cash flow. DCF is "theoretically right but easy to misuse"; multiples are "robust but absorb market sentiment." Value investing fuses both under a <em>margin of safety</em>. (4) <strong>Behavior (Ch.03–04):</strong> the first three steps assume rationality. Kahneman‑Tversky show investors systematically display loss aversion, disposition effect, overconfidence, price anchoring. EMH (Ch.03) gives the ideal; behavioral (Ch.04) gives the reality.</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 260" role="img" aria-label="Investment decision framework four steps">
+<defs>
+<linearGradient id="bgflow" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient>
+</defs>
+<style>
+.fb { fill: url(#bgflow); stroke: #1A1814; stroke-width: 1.3; }
+.ft { font-family: 'Cormorant Garamond', 'Noto Serif SC', serif; font-size: 16px; font-weight: 600; fill: #1A1814; }
+.fs { font-family: 'Noto Serif SC', serif; font-size: 11px; fill: #4A4540; }
+.fa { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #8A8378; }
+.fr { stroke: #8B2C2C; stroke-width: 1.5; fill: none; }
+</style>
+<text class="ft" x="360" y="22" text-anchor="middle">老王 ¥100k → 5 只股票 + 1 个国债 ETF</text>
+<rect class="fb" x="20" y="50" width="155" height="170" rx="4"/>
+<text class="fa" x="98" y="73" text-anchor="middle">STEP 1</text>
+<text class="ft" x="98" y="95" text-anchor="middle">组合</text>
+<text class="fs" x="98" y="118" text-anchor="middle">Markowitz</text>
+<text class="fs" x="98" y="136" text-anchor="middle">均值-方差</text>
+<text class="fs" x="98" y="154" text-anchor="middle">有效前沿</text>
+<text class="fs" x="98" y="180" text-anchor="middle">Ch.01</text>
+<rect class="fb" x="195" y="50" width="155" height="170" rx="4"/>
+<text class="fa" x="273" y="73" text-anchor="middle">STEP 2</text>
+<text class="ft" x="273" y="95" text-anchor="middle">定价</text>
+<text class="fs" x="273" y="118" text-anchor="middle">CAPM / APT</text>
+<text class="fs" x="273" y="136" text-anchor="middle">Fama-French</text>
+<text class="fs" x="273" y="154" text-anchor="middle">EMH</text>
+<text class="fs" x="273" y="180" text-anchor="middle">Ch.02–03</text>
+<rect class="fb" x="370" y="50" width="155" height="170" rx="4"/>
+<text class="fa" x="448" y="73" text-anchor="middle">STEP 3</text>
+<text class="ft" x="448" y="95" text-anchor="middle">估值</text>
+<text class="fs" x="448" y="118" text-anchor="middle">DCF</text>
+<text class="fs" x="448" y="136" text-anchor="middle">PE / PB / EV</text>
+<text class="fs" x="448" y="154" text-anchor="middle">价值投资</text>
+<text class="fs" x="448" y="180" text-anchor="middle">Ch.05–07</text>
+<rect class="fb" x="545" y="50" width="155" height="170" rx="4"/>
+<text class="fa" x="623" y="73" text-anchor="middle">STEP 4</text>
+<text class="ft" x="623" y="95" text-anchor="middle">行为 / 公告</text>
+<text class="fs" x="623" y="118" text-anchor="middle">Kahneman</text>
+<text class="fs" x="623" y="136" text-anchor="middle">质量分析</text>
+<text class="fs" x="623" y="154" text-anchor="middle">公告解读</text>
+<text class="fs" x="623" y="180" text-anchor="middle">Ch.04, 08–09</text>
+<path class="fr" d="M175 135 H195" marker-end="url(#arr2)"/>
+<path class="fr" d="M350 135 H370" marker-end="url(#arr2)"/>
+<path class="fr" d="M525 135 H545" marker-end="url(#arr2)"/>
+<defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B2C2C"/></marker></defs>
+<text class="fa" x="360" y="245" text-anchor="middle">每一步都有 A 股本地化调整 · 这是 M3 与外文教材最大的差别</text>
+</svg>
+<figcaption>
+<span lang="zh">投资决策的四步走: 先组合, 再定价, 再估值, 最后用行为金融纠偏并通过公告捕捉具体机会。</span>
+<span lang="en">Four steps: portfolio first, then pricing, then valuation, finally behavioral correction and event‑driven catches via filings.</span>
+</figcaption>
+</figure>
+
+<!-- ================================================================ -->
+<!-- Section 2: 工具链 -->
+<!-- ================================================================ -->
+<h2><span lang="zh">工具链 — 你最终会用到的几样东西</span><span lang="en">Toolchain — What You'll Actually Use</span></h2>
+
+<p lang="zh">M3 不只讲理论 — 学完每一章, 你应该能在 Excel / Python 里把对应的工具跑一遍。下面这张表把"理论 → 工具 → A 股本地化"三列对齐, 方便你随时回查。</p>
+<p lang="en">M3 isn't only theory — after each chapter you should be able to run the corresponding tool in Excel or Python. The table aligns theory → tool → A‑share local adjustment.</p>
+
+<table>
+<thead>
+<tr>
+<th><span lang="zh">理论</span><span lang="en">Theory</span></th>
+<th><span lang="zh">工具 / 数学</span><span lang="en">Tool / Math</span></th>
+<th><span lang="zh">A 股本地化</span><span lang="en">A‑share localisation</span></th>
+<th><span lang="zh">章</span><span lang="en">Ch.</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span lang="zh">现代组合理论 MPT</span><span lang="en">MPT</span></td>
+<td><span lang="zh">协方差矩阵, 二次规划, 拉格朗日, $\boldsymbol{\Sigma}^{-1}$</span><span lang="en">Covariance matrix, QP, Lagrangian, $\boldsymbol{\Sigma}^{-1}$</span></td>
+<td><span lang="zh">A 股个股 ρ 普遍 0.3-0.6, 行业内 ρ 接近 0.8 → 分散化空间小于美股. 危机时 ρ → 1, 必须叠加宏观避险 (黄金 / 国债)</span><span lang="en">A‑share intra‑industry ρ ≈ 0.8 → less diversification headroom; crisis ρ → 1; layer in macro hedges</span></td>
+<td>01</td>
+</tr>
+<tr>
+<td><span lang="zh">CAPM / 多因子</span><span lang="en">CAPM / multifactor</span></td>
+<td><span lang="zh">OLS 时间序列回归, $\beta$, 因子构造</span><span lang="en">OLS time series, β, factor construction</span></td>
+<td><span lang="zh">中国 SMB / HML / RMW 已有 CSMAR / Wind 数据库提供. 单 CAPM 在 A 股 $R^2$ ~ 0.4-0.5, 加上 SMB+HML 可达 0.65+</span><span lang="en">CSMAR / Wind ship Chinese factor data; CAPM alone $R^2 \approx 0.4$–$0.5$; FF3 reaches 0.65+</span></td>
+<td>02</td>
+</tr>
+<tr>
+<td><span lang="zh">DCF / DDM / FCFE / FCFF</span><span lang="en">DCF family</span></td>
+<td><span lang="zh">WACC, 永续增长公式, 终值倍数法</span><span lang="en">WACC, Gordon growth, exit multiple</span></td>
+<td><span lang="zh">$r_f$ 用 10Y 国债 ~2.5-3%, 市场风险溢价 ERP 5-7%; 终值 g 不能大于长期 GDP 增速 ~4-5%; A 股折现率往往比美股低 1-2 个百分点</span><span lang="en">$r_f$ ≈ China 10Y at ~2.5–3%; ERP 5–7%; terminal g ≤ long‑run GDP ~4–5%</span></td>
+<td>05</td>
+</tr>
+<tr>
+<td><span lang="zh">相对估值</span><span lang="en">Multiples</span></td>
+<td><span lang="zh">PE / PB / PS / EV / EBITDA / PEG</span><span lang="en">PE / PB / PS / EV / EBITDA / PEG</span></td>
+<td><span lang="zh">A 股小盘股 PE 长期高估 (壳价值残余); 银行 PB 长期 0.5-0.8 (低 ROE + 监管风险折价); 看附注调整商誉 / 永续债 / 一次性损益</span><span lang="en">Small caps trade at PE premium (shell value); banks at PB 0.5–0.8 (low ROE + regulatory discount); strip goodwill / perpetuals / one‑offs</span></td>
+<td>06</td>
+</tr>
+<tr>
+<td><span lang="zh">价值投资 / 质量分析</span><span lang="en">Value / quality</span></td>
+<td><span lang="zh">ROIC, ROE 杜邦拆解, F-Score, Z-Score</span><span lang="en">ROIC, DuPont, F‑Score, Z‑Score</span></td>
+<td><span lang="zh">A 股关注政策护城河 (白酒 / 电网 / 中烟) 与品牌护城河 (茅台 / 海天)</span><span lang="en">Policy moats (liquor / grid / tobacco) + brand moats (Moutai / Haitian)</span></td>
+<td>07–08</td>
+</tr>
+<tr>
+<td><span lang="zh">公告解读</span><span lang="en">Filings</span></td>
+<td><span lang="zh">事件研究法 (event study), CAR (累计超额回报)</span><span lang="en">Event study, CAR</span></td>
+<td><span lang="zh">业绩预告 / 定增 / 回购 / 限售解禁 / 问询函 — 五类高频事件均有可量化的市场反应</span><span lang="en">Preannouncements, placements, buybacks, lock‑ups, inquiry letters — five recurring event types with quantifiable reactions</span></td>
+<td>09</td>
+</tr>
+</tbody>
+</table>
+
+<p class="muted measure" lang="zh">本模块所有公式带编号 (例如 (1.1)、(2.3)), 你可以直接引用到笔记 / 自己的 Excel 模型里。</p>
+<p class="muted measure" lang="en">All formulas in this module are numbered (e.g. (1.1), (2.3)) for easy citation in your own notes and spreadsheets.</p>
+
+<!-- ================================================================ -->
+<!-- Section 3: 读完后能做什么 -->
+<!-- ================================================================ -->
+<h2><span lang="zh">读完后能做什么</span><span lang="en">What You Can Do After This Module</span></h2>
+
+<p lang="zh">M3 的训练目标不是让你"听过这些名词", 而是让你能<em>独立完成几件具体的事</em>。下面这五件事是这个模块结束时的可验证产出 — 如果你做不出来其中任何一件, 说明对应章节还需要回炉。</p>
+<p lang="en">M3 isn't about hearing the vocabulary — it's about being able to <em>do specific things end‑to‑end</em>. The five tasks below are the verifiable outputs by module's end. If any one is out of reach, the corresponding chapter needs another pass.</p>
+
+<ol>
+<li lang="zh"><strong>读懂一份招商证券 / 中金 / 国信的买方研究报告</strong>: 不再只看结论, 而是能挑出报告里的关键假设 (永续增长率 g、WACC、市场风险溢价 ERP)、敏感性分析的缺漏, 以及估值方法选择 (DCF 还是相对估值) 是否与公司商业模式匹配。当报告说"PE 估值给到 35x"时, 你能立即用 PEG &lt; 1 倒推: 隐含的 g 必须 &gt; 35%。当报告把 WACC 设为 7.5%, 你能反推 $r_f$ + $\beta \times \mathrm{ERP}$ + 债务税盾是否自洽。</li>
+<li lang="zh"><strong>构建一个 5 只股票 + 1 个国债 ETF 的均值-方差组合</strong>: 给定 ¥100k 资金、给定 5 只 A 股 (例如 茅台 600519 / 招行 600036 / 长电 600900 / 宁德 300750 / 比亚迪 002594) + 1 个国债 ETF (511010)。用过去 3 年月度收益估算 $\boldsymbol{\mu}, \boldsymbol{\Sigma}$, 解出切线组合 $\mathbf{w}_{\text{tan}}$, 计算 Sharpe 比率, 并能口头解释为什么"国债 ETF 占 30%+ 而不是 0%"是最优解。</li>
+<li lang="zh"><strong>不靠分析师, 给一家公司做一次 DCF 估值</strong>: 选一家你能讲清楚商业模式的 A 股 (建议从 长江电力 600900 或 招商银行 600036 这类<em>未来现金流可预测</em>的公司起步), 自己设 5 年明确预测期 + 永续增长期, 自己取 WACC, 算出每股内在价值, 并对每个核心假设做敏感性 (永续 g ± 1% 时估值变化几个百分点)。这个过程会让你意识到: <em>同一家公司, DCF 估值取决于你怎么填几个空格, 而不是市场"客观"告诉你的</em>。</li>
+<li lang="zh"><strong>看懂 A 股公告的市场反应</strong>: 给一份"业绩预告超预期 50%"的公告, 你能算出公告日 + 后 20 个交易日的累计超额回报 (CAR), 用 CAPM 算预期收益, 用 actual − expected 算 abnormal return, 再判断这次<em>反应是不足、合理、还是过度</em>。事件研究法是 EMH 第 3 章的核心方法论。</li>
+<li lang="zh"><strong>识别自己交易记录里的行为偏差</strong>: 翻出过去 6 个月自己的实盘交易, 用 Ch.04 的工具检查:
+  <ul>
+    <li><strong>处置效应</strong>: 是不是赚了 5% 就卖、亏了 15% 还死扛? (大多数散户都是。)</li>
+    <li><strong>锚定</strong>: 是不是把买入价当作公司"应该值"的价格?</li>
+    <li><strong>过度自信</strong>: 是不是认为自己跑赢了沪深 300? 实际算一下交易费用调整后的真实回报率。</li>
+  </ul>
+</li>
+</ol>
+
+<p lang="en">(1) Read a sell‑side report (CMS / CICC / Guosen) and pick apart assumptions (g, WACC, ERP), sensitivity gaps, valuation choice. (2) Build a 5‑stock + 1 bond ETF MV portfolio with real A‑share tickers, solve tangent portfolio, compute Sharpe. (3) DCF a company end‑to‑end without trusting any analyst — choose your own assumptions, sensitivity‑test each. (4) Run an event study on an A‑share announcement (preannouncement, placement, buyback) — compute CAR, judge whether the reaction was under/over/full. (5) Audit your own trade log for disposition effect, anchoring, overconfidence — the three most common retail biases.</p>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">First-Principles 思维模型</span><span lang="en">First‑Principles Mental Models</span></h2>
+<p lang="zh">本模块所有结论都由这九条思维模型推出。把它们装进脑子, 比记 100 个金融术语省力。</p>
+<p lang="en">All M3 conclusions follow from these nine mental models. Loading them is cheaper than memorising 100 finance terms.</p>
+
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">复利</span><span lang="en">Compounding</span></h4><p lang="zh">指数增长反直觉。年化 10% 复利 30 年 = 17.4 倍; 年化 12% = 30 倍。长期持有 + 红利再投资 = 价值投资的数学基础。</p><p lang="en">Exponential growth is counterintuitive. 10% for 30 years = 17.4×; 12% = 30×. Long holding + reinvestment is the math of value investing.</p></div></div>
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">能力圈</span><span lang="en">Circle of competence</span></h4><p lang="zh">Buffett: 只投自己能<em>讲清楚商业模式</em>的公司。不在能力圈内的投资本质是赌博。判别方法: 如果你不能在 5 分钟内向一个外行讲清这家公司怎么赚钱、利润来自哪里、护城河是什么 — 它不在你的圈里。</p><p lang="en">Buffett: only invest in businesses you can <em>articulate</em>. Outside the circle = gambling. Test: if you can't explain to a layman in 5 minutes how the company makes money, where profit comes from, and what the moat is — it's outside.</p></div></div>
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">Mr. Market</span></h4><p lang="zh">Graham: 市场是个情绪化的合伙人, 每天给你报价, 但你可以选择不交易。情绪是<em>机会</em>, 不是<em>指引</em>。2024 年 1 月 A 股最低点和 2024 年 10 月最高点的差距, 大多反映的是市场情绪而非公司基本面变化。</p><p lang="en">Graham: Mr. Market quotes daily; you choose whether to act. Emotions are <em>opportunities</em>, not <em>guidance</em>. The gap between A‑share Jan 2024 lows and Oct 2024 highs reflected sentiment far more than fundamentals.</p></div></div>
+<div class="model-card"><span class="roman">iv</span><div><h4><span lang="zh">安全边际</span><span lang="en">Margin of safety</span></h4><p lang="zh">Graham 核心: 只在价格<em>显著低于</em>内在价值时买入。30-50% 折让常见于熊市 / 行业危机, 是<em>对估值错误的工程冗余设计</em> — 即使你算错 20%, 还有 30% 缓冲。</p><p lang="en">Graham's core: buy only when price is <em>materially below</em> intrinsic value. 30–50% discounts appear in bear markets / sector crises. Engineering redundancy against valuation errors.</p></div></div>
+<div class="model-card"><span class="roman">v</span><div><h4><span lang="zh">护城河</span><span lang="en">Moat</span></h4><p lang="zh">五种类型: 品牌 (茅台 600519) / 规模 (中烟 / 国电) / 转换成本 (Office, 微信) / 网络效应 (淘宝, 美团) / 特许经营 (高速公路, 长江电力 600900)。<em>长期超额回报</em>的可持续性来自护城河, 而不是周期性顺风。</p><p lang="en">Five types: brand (Moutai) / scale (CNTC / SGCC) / switching costs (Office, WeChat) / network effects (Taobao, Meituan) / franchise (toll roads, Yangtze Power). Sustained excess returns come from moats, not cyclical tailwinds.</p></div></div>
+<div class="model-card"><span class="roman">vi</span><div><h4><span lang="zh">回归均值</span><span lang="en">Mean reversion</span></h4><p lang="zh">极端不持续。任何指标 (ROE, PE, 利润率, 行业增速) 偏离长期均值, 终将回归。逆向投资的数学基础。注意区分 "<em>暂时偏离</em>" 与 "<em>新长期均值</em>": 互联网颠覆了报纸的利润率, 后者再也回不去。</p><p lang="en">Extremes don't persist. Any metric (ROE, PE, margin, sector growth) reverts to the long‑run mean. Math of contrarian investing. Distinguish "temporary deviation" from "new mean" — internet permanently lowered newspaper margins.</p></div></div>
+<div class="model-card"><span class="roman">vii</span><div><h4><span lang="zh">反身性</span><span lang="en">Reflexivity</span></h4><p lang="zh">Soros: 价格<em>影响</em>基本面 (融资能力 / 信心 / 客户行为)。因果不是单向的。股价大涨 → 公司更容易融资 → 业绩改善 → 股价进一步涨. 反之亦然 — 这是泡沫与崩溃的核心机制。2007 年中国宁波银行, 2015 年乐视网都是典型。</p><p lang="en">Soros: prices <em>shape</em> fundamentals (funding access, confidence, customer behavior). Two‑way causality. Bubbles &amp; crashes. China examples: Ningbo Bank 2007, LeTV 2015.</p></div></div>
+<div class="model-card"><span class="roman">viii</span><div><h4><span lang="zh">损失厌恶</span><span lang="en">Loss aversion</span></h4><p lang="zh">Kahneman-Tversky 实证: 损失 ¥1 的痛苦 ≈ 获得 ¥2 的快乐。这导致散户<em>处置效应</em>: 盈利的股票快卖 (锁定快乐), 亏损的股票死扛 (回避痛苦)。结果是"卖出的都是涨的, 留下的都是跌的"。</p><p lang="en">Kahneman‑Tversky: losing ¥1 hurts ≈ 2× gaining ¥1. Drives the <em>disposition effect</em>: sell winners fast, ride losers. End result: "what stayed is what dropped."</p></div></div>
+<div class="model-card"><span class="roman">ix</span><div><h4><span lang="zh">信息含量</span><span lang="en">Information content</span></h4><p lang="zh">价格已经反映了多少信息? EMH 的核心问题。半强式 EMH 说所有公开信息瞬间反映, 行为派说反应不足或过度。事件研究法 (event study) 是检验的金标准, 也是 A 股套利的金钥匙。</p><p lang="en">How much information is in the price? Core EMH question. Semi‑strong says all public info instantly; behavioral says under/overreact. Event study is the gold standard test and the key to A‑share event arbitrage.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Expert disputes -->
+<!-- ================================================================ -->
 <h2><span lang="zh">专家最激烈的分歧</span><span lang="en">Where Experts Disagree</span></h2>
 
 <div class="dispute"><div class="dispute-head"><span class="label">EMH</span><span lang="zh">EMH 是否成立</span><span lang="en">Does EMH hold?</span></div>
 <div class="dispute-body">
-<div class="dispute-side"><div class="who">Fama (Nobel 2013)</div><h5><span lang="zh">市场有效</span><span lang="en">Markets efficient</span></h5><p lang="zh">所有可得信息瞬间反映在价格。主动投资长期跑不赢被动指数 (扣费后).</p><p lang="en">All info reflected instantly. Active loses to passive net of fees.</p></div>
-<div class="dispute-side"><div class="who">Shiller (Nobel 2013)</div><h5><span lang="zh">市场显著无效</span><span lang="en">Markets persistently inefficient</span></h5><p lang="zh">"非理性繁荣". 股价波动远超基本面波动. 行为偏差产生可预测的回报模式。</p><p lang="en">"Irrational exuberance." Volatility far exceeds fundamentals.</p></div>
+<div class="dispute-side"><div class="who">Fama (Nobel 2013)</div><h5><span lang="zh">市场近似有效</span><span lang="en">Markets approximately efficient</span></h5><p lang="zh">所有可得信息瞬间反映在价格。主动投资长期跑不赢被动指数 (扣费后)。SPIVA 报告 20 年数据: 美国 85% 主动基金跑输基准.</p><p lang="en">All info reflected instantly. Active loses to passive net of fees. SPIVA 20y: 85% of US active funds lose.</p></div>
+<div class="dispute-side"><div class="who">Shiller (Nobel 2013)</div><h5><span lang="zh">市场显著无效</span><span lang="en">Markets persistently inefficient</span></h5><p lang="zh">"非理性繁荣"。股价波动远超基本面波动 (excess volatility puzzle, 1981)。行为偏差产生可预测的回报模式。</p><p lang="en">"Irrational exuberance." Volatility far exceeds fundamentals. Behavioral biases yield predictable return patterns.</p></div>
 </div>
-<div class="dispute-foot"><span lang="zh">2013 Nobel 同时颁给两人 — 学界至今没有定论. 实务上用"弱有效"判断短期, "半强不完全有效"判断中期, "理性长期回归"判断长期.</span></div>
+<div class="dispute-foot"><span lang="zh">2013 Nobel 同时颁给两人 — 学界至今没有定论。实务上用"弱有效"判断短期, "半强不完全有效"判断中期, "理性长期回归"判断长期。</span><span lang="en">2013 Nobel jointly to both — academia unresolved. Practical compromise: weak‑form for short‑run, semi‑strong incomplete for medium, rational long‑run reversion for the long horizon.</span></div>
 </div>
 
 <div class="dispute"><div class="dispute-head"><span lang="zh">价值 vs 成长</span><span lang="en">Value vs Growth</span></div>
 <div class="dispute-body">
-<div class="dispute-side"><div class="who">Fama-French (value premium)</div><h5><span lang="zh">价值股长期跑赢</span><span lang="en">Value premium</span></h5><p lang="zh">低 P/B 股票 1927-2007 年化跑赢高 P/B ~5%. HML 因子被多次实证.</p><p lang="en">Low P/B stocks beat high P/B by ~5% annualized (1927–2007). HML factor.</p></div>
-<div class="dispute-side"><div class="who">Lynch / FAANG 投资者</div><h5><span lang="zh">伟大成长股不可替代</span><span lang="en">Growth dominates</span></h5><p lang="zh">2010-2021 FAANG 大幅跑赢价值股. 在科技革命周期, 成长股是新常态。</p><p lang="en">2010–21 FAANG crushed value. In tech revolutions, growth dominates.</p></div>
+<div class="dispute-side"><div class="who">Fama-French (value premium)</div><h5><span lang="zh">价值股长期跑赢</span><span lang="en">Value premium</span></h5><p lang="zh">低 P/B 股票 1927-2007 年化跑赢高 P/B ~5%。HML 因子被多次实证. A 股 2023-2024 价值回归 (银行、煤炭大跑赢) 是经典案例。</p><p lang="en">Low P/B stocks beat high P/B by ~5% annualised (1927–2007). HML factor. A‑share 2023–24 value reversion (banks, coal) is a recent textbook case.</p></div>
+<div class="dispute-side"><div class="who">Lynch / FAANG 投资者</div><h5><span lang="zh">伟大成长股不可替代</span><span lang="en">Growth dominates</span></h5><p lang="zh">2010-2021 FAANG 大幅跑赢价值股。在科技革命周期, 成长股是新常态。A 股 2019-2021 茅指数 / 宁组合是相同剧本.</p><p lang="en">2010–21 FAANG crushed value. In tech‑disruption cycles, growth dominates. A‑share 2019–21 "Moutai index / CATL set" was the same script.</p></div>
 </div></div>
 
 <div class="dispute"><div class="dispute-head"><span lang="zh">主动 vs 被动</span><span lang="en">Active vs Passive</span></div>
 <div class="dispute-body">
-<div class="dispute-side"><div class="who">Bogle (Vanguard)</div><h5><span lang="zh">被动指数最优</span><span lang="en">Passive wins</span></h5><p lang="zh">主动基金扣费后 70%+ 跑输指数. 长期持有低成本指数 = 普通投资者最优策略.</p><p lang="en">70%+ active funds lose to index net of fees. Low‑cost index = optimal default.</p></div>
-<div class="dispute-side"><div class="who">Buffett / <span lang="zh">对冲基金派</span><span lang="en">hedge funds</span></div><h5><span lang="zh">少数主动者长期跑赢</span><span lang="en">Selected active wins</span></h5><p lang="zh">Buffett 1965-2023 年化 ~20%, 远超 S&amp;P 500 ~10%. Renaissance Medallion Fund 30 年 ~40% 年化. <em>少数</em>策略持续创造 alpha.</p><p lang="en">Buffett 1965–2023 ~20% vs S&amp;P 10%. Medallion ~40% for 30y. A <em>few</em> strategies persistently outperform.</p></div>
+<div class="dispute-side"><div class="who">Bogle (Vanguard)</div><h5><span lang="zh">被动指数最优</span><span lang="en">Passive wins</span></h5><p lang="zh">主动基金扣费后 70%+ 跑输指数。长期持有低成本指数 = 普通投资者最优策略。A 股沪深 300 ETF (510300) 0.5% 管理费 vs 主动基金 1.5%, 3 年累计差异 ~3%.</p><p lang="en">70%+ active funds lose to index net of fees. Low‑cost index = optimal default. CSI 300 ETF (510300) 0.5% fee vs active 1.5% → ~3% cumulative gap over 3 years.</p></div>
+<div class="dispute-side"><div class="who">Buffett / <span lang="zh">对冲基金派</span><span lang="en">hedge funds</span></div><h5><span lang="zh">少数主动者长期跑赢</span><span lang="en">Selected active wins</span></h5><p lang="zh">Buffett 1965-2023 年化 ~20%, 远超 S&amp;P 500 ~10%。Renaissance Medallion Fund 30 年 ~40% 年化。<em>少数</em>策略持续创造 alpha. 国内例子: 高毅资产邓晓峰 / 睿远基金傅鹏博 长期跑赢沪深 300。</p><p lang="en">Buffett 1965–2023 ~20% vs S&amp;P 10%. Medallion ~40% for 30y. A <em>few</em> strategies persistently outperform. China: Deng Xiaofeng (Greenwoods), Fu Pengbo (Foresight) deliver multi‑year alpha vs CSI 300.</p></div>
 </div></div>
 
-<h2><span lang="zh">学习路径建议</span></h2>
+<div class="dispute"><div class="dispute-head"><span lang="zh">DCF 还是相对估值?</span><span lang="en">DCF vs Multiples?</span></div>
+<div class="dispute-body">
+<div class="dispute-side"><div class="who">DCF 派 (CFA / 学院派)</div><h5><span lang="zh">理论正确</span><span lang="en">Theoretically right</span></h5><p lang="zh">公司价值 = 未来自由现金流的现值。这是<em>定义</em>。相对估值只是"市场情绪"的反映, 没有理论根基。</p><p lang="en">Firm value = PV of future free cash flows — that's the definition. Multiples just reflect market sentiment; no first principles.</p></div>
+<div class="dispute-side"><div class="who">相对估值派 (实务 / 卖方)</div><h5><span lang="zh">工程稳健</span><span lang="en">Engineering robust</span></h5><p lang="zh">DCF 假设太多 (5 年现金流 + 永续 g + WACC), 微调参数估值翻倍。相对估值 (PE / PB) 至少能与同行比较, 反映市场均衡状态。</p><p lang="en">DCF has too many free parameters — small changes double the answer. Multiples at least benchmark against peers and reflect market equilibrium.</p></div>
+</div>
+<div class="dispute-foot"><span lang="zh">M3 Ch.05-06 的折中: DCF 用于"我自己怎么想", 相对估值用于"市场怎么想"。两个数字接近, 信心高; 显著背离, 找出原因。</span><span lang="en">M3 Ch.05–06 compromise: DCF for "what I think," multiples for "what the market thinks." Agreement → confidence; divergence → investigate.</span></div>
+</div>
+
+<!-- ================================================================ -->
+<!-- Common errors -->
+<!-- ================================================================ -->
+<h2><span lang="zh">散户最常犯的 8 个错误</span><span lang="en">Eight Most Common Retail Errors</span></h2>
+<p lang="zh">M3 整个模块的另一种读法 — 看下面 8 个错误, 每一个都对应模块里的一个具体章节。如果你过去 6 个月做过其中任何一件, 重点回那一章。</p>
+<p lang="en">A different way to read M3: each of the 8 errors below maps to one chapter. If you did any of them in the past 6 months, prioritise that chapter.</p>
+
+<ol>
+<li lang="zh"><strong>"分散"靠多只同行业股票</strong> (例如同时持有茅台 / 五粮液 / 泸州老窖 — 都是白酒)。ρ &gt; 0.7 时, 加 5 只跟买 1 只差不多。→ <strong>Ch.01 MPT</strong> 把"分散化要看协方差"讲清楚。</li>
+<li lang="zh"><strong>只看绝对回报, 不看风险调整</strong>。年化 15% 听起来好, 但如果波动率 40%, Sharpe 只有 0.31, 还不如 60/40 组合。→ <strong>Ch.01 MPT</strong> 引入 Sharpe; <strong>Ch.02 CAPM</strong> 用 β 给出"风险换回报"的定价。</li>
+<li lang="zh"><strong>买"低 β 股票"以为低风险</strong> — 实际上 CAPM 告诉你, 低 β 的股票<em>预期回报也低</em>; 不能既要"防御"又要"高回报"。→ <strong>Ch.02 CAPM</strong>。</li>
+<li lang="zh"><strong>看 K 线买卖</strong>, 自以为发现了"规律"。扣手续费后大概率跑不赢指数。→ <strong>Ch.03 EMH 弱式</strong>。</li>
+<li lang="zh"><strong>对业绩公告反应过度 / 不足</strong>。看到"业绩预增 50%" 就追高, 三个月后股价回归; 看到"业绩下修" 不卖, 三个月后再跌 20%。→ <strong>Ch.03 EMH 半强式</strong> + <strong>Ch.04 行为金融</strong>。</li>
+<li lang="zh"><strong>处置效应</strong> — 赚 5% 就卖 (落袋为安), 亏 15% 死扛 (等回本)。结果是"卖的都涨, 留的都跌"。→ <strong>Ch.04 行为金融</strong>。</li>
+<li lang="zh"><strong>跟着卖方研报追"目标价"</strong>, 不自己算 DCF。卖方的"目标价" 本质是相对估值 (PE × EPS), 隐含的市场情绪假设可能极度乐观。→ <strong>Ch.05 DCF</strong> + <strong>Ch.06 相对估值</strong>。</li>
+<li lang="zh"><strong>忽视质量, 追"概念股"</strong>。题材股 (元宇宙 / AIGC / 数据要素) 短期暴涨但缺乏护城河, 长期跑输。→ <strong>Ch.07 价值投资</strong> + <strong>Ch.08 质量分析</strong>。</li>
+</ol>
+<p lang="en">(1) "Diversifying" with same‑industry names — ρ &gt; 0.7 means 5 names ≈ 1 name (Ch.01). (2) Absolute return without risk adjustment — 15% at 40% σ is Sharpe 0.31, worse than 60/40 (Ch.01–02). (3) Low‑β = low expected return; you can't have defense + high return both (Ch.02). (4) Trading K‑lines — net of fees loses to index (Ch.03 weak). (5) Over/underreacting to earnings preannouncements (Ch.03 semi‑strong + Ch.04). (6) Disposition effect — sell winners, ride losers (Ch.04). (7) Chasing sell‑side "target prices" without DCF (Ch.05–06). (8) Concept stocks (metaverse / AIGC / "data factor") with no moat (Ch.07–08).</p>
+
+<!-- ================================================================ -->
+<!-- Canonical references -->
+<!-- ================================================================ -->
+<h2><span lang="zh">核心参考文献 — 直接读原文</span><span lang="en">Canonical References — Go to the Source</span></h2>
+<p lang="zh">M3 的每一个理论都来自一篇原始论文 + 一本经典教材。中文译本足够入门, 但读原文最快理解原意。下面是这个模块最重要的 10 篇/本:</p>
+<p lang="en">Every M3 theory traces to one paper or textbook. Translations are fine for entry; originals are faster. The ten core sources:</p>
+
+<table>
+<thead>
+<tr>
+<th><span lang="zh">主题</span><span lang="en">Topic</span></th>
+<th><span lang="zh">核心文献</span><span lang="en">Canonical reference</span></th>
+<th><span lang="zh">章</span><span lang="en">Ch.</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span lang="zh">现代组合理论</span><span lang="en">MPT</span></td>
+<td>Markowitz (1952), "Portfolio Selection," <em>Journal of Finance</em> 7(1): 77–91</td>
+<td>01</td>
+</tr>
+<tr>
+<td><span lang="zh">两基金分离</span><span lang="en">Two‑fund separation</span></td>
+<td>Tobin (1958), "Liquidity Preference as Behavior Towards Risk," <em>Review of Economic Studies</em> 25(2): 65–86</td>
+<td>01</td>
+</tr>
+<tr>
+<td>CAPM</td>
+<td>Sharpe (1964), "Capital Asset Prices: A Theory of Market Equilibrium," <em>Journal of Finance</em> 19(3): 425–442</td>
+<td>02</td>
+</tr>
+<tr>
+<td>APT</td>
+<td>Ross (1976), "The Arbitrage Theory of Capital Asset Pricing," <em>Journal of Economic Theory</em> 13(3): 341–360</td>
+<td>02</td>
+</tr>
+<tr>
+<td>Fama‑French 3 / 5 factor</td>
+<td>Fama &amp; French (1993, 2015), <em>Journal of Financial Economics</em></td>
+<td>02</td>
+</tr>
+<tr>
+<td>EMH</td>
+<td>Fama (1970), "Efficient Capital Markets," <em>Journal of Finance</em> 25(2): 383–417</td>
+<td>03</td>
+</tr>
+<tr>
+<td><span lang="zh">行为金融</span><span lang="en">Behavioral finance</span></td>
+<td>Kahneman &amp; Tversky (1979), "Prospect Theory," <em>Econometrica</em> 47(2): 263–291; Shiller (1981, 2000)</td>
+<td>04</td>
+</tr>
+<tr>
+<td><span lang="zh">价值投资</span><span lang="en">Value investing</span></td>
+<td>Graham &amp; Dodd, <em>Security Analysis</em> (1934); Graham, <em>The Intelligent Investor</em> (1949); Buffett's annual letters</td>
+<td>07</td>
+</tr>
+<tr>
+<td><span lang="zh">教材级综合</span><span lang="en">Textbook</span></td>
+<td>Bodie, Kane &amp; Marcus, <em>Investments</em> (11th ed.); Brealey, Myers &amp; Allen, <em>Principles of Corporate Finance</em></td>
+<td><span lang="zh">全</span><span lang="en">all</span></td>
+</tr>
+<tr>
+<td><span lang="zh">CFA 一二三级</span><span lang="en">CFA L1–L3</span></td>
+<td>CFA Institute curriculum (Portfolio Mgmt, Equity, Fixed Income volumes)</td>
+<td><span lang="zh">全</span><span lang="en">all</span></td>
+</tr>
+</tbody>
+</table>
+
+<p class="muted measure" lang="zh"><strong>读论文的建议顺序</strong>: Markowitz 1952 (短, 6 页, 必读) → Sharpe 1964 → Fama 1970 → Fama-French 1993 → Kahneman-Tversky 1979。前两篇是数学起点, 后三篇是实证主线。</p>
+<p class="muted measure" lang="en">Reading order: Markowitz 1952 (6 pages, mandatory) → Sharpe 1964 → Fama 1970 → Fama‑French 1993 → Kahneman‑Tversky 1979. First two are the math foundation; last three are the empirical mainline.</p>
+
+<!-- ================================================================ -->
+<!-- Study paths -->
+<!-- ================================================================ -->
+<h2><span lang="zh">学习路径建议</span><span lang="en">Suggested Paths</span></h2>
 <dl>
-<dt><span lang="zh">快速通道 ~6 小时</span></dt><dd>01 MPT → 03 EMH → 05 DCF → 07 价值投资 → 09 公告解读</dd>
-<dt><span lang="zh">系统通道 ~30 小时</span></dt><dd>全 10 章 + 全检验题 + Python 实操 (MPT 优化 / DCF 模型 / FF 因子回归)</dd>
+<dt><span lang="zh">快速通道 ~6 小时</span><span lang="en">Fast path (~6 hours)</span></dt><dd><span lang="zh">01 MPT → 03 EMH → 05 DCF → 07 价值投资 → 09 公告解读。核心是"组合 + 估值 + 公告"三件事, 跳过定价细节与行为金融。</span><span lang="en">01 MPT → 03 EMH → 05 DCF → 07 Value investing → 09 Filings. Core: portfolio + valuation + events. Skips pricing detail &amp; behavioral.</span></dd>
+<dt><span lang="zh">系统通道 ~30 小时</span><span lang="en">Systematic path (~30 hours)</span></dt><dd><span lang="zh">全 10 章 + 全部检验题 + Python 实操 (MPT 优化 / DCF 模型 / FF 因子回归 / 事件研究 CAR 计算)。每章读完即用一只真实 A 股做实操。</span><span lang="en">All 10 chapters + every quiz + Python (MPT optimisation / DCF / FF regression / event‑study CAR). After each chapter, run it against one real A‑share ticker.</span></dd>
+<dt><span lang="zh">回头路</span><span lang="en">Loopback</span></dt><dd><span lang="zh">Ch.07 价值投资读不进去? 回 M1 Ch.06 资产计量 + M2 Ch.01-02 估值与资本结构, 补足公司财务基础。Ch.05 DCF 看不懂? 先回 M2 Ch.04 NPV / IRR.</span><span lang="en">Stuck on Ch.07 value investing? Loop back to M1 Ch.06 (asset measurement) + M2 Ch.01–02 (valuation, capital structure). Stuck on Ch.05 DCF? Revisit M2 Ch.04 NPV / IRR.</span></dd>
 </dl>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> Mark complete</button>
-<nav class="chap-nav"><a href="../../index.html"><span class="dir">← Home</span><span class="title">Site Home</span></a><a class="next" href="01-mpt.html"><span class="dir">Next →</span><span class="title">01 · MPT</span></a></nav></div>
+<p class="muted measure" lang="zh">三个模块的整体走向: M1 教你"<em>读</em>", M2 教企业"<em>用</em>", M3 教你"<em>买</em>"。读懂别人的财报 → 想象企业怎么决策 → 给资产定价 — 这条链条走完, 你就从"被基金经理决定的散户"变成"自己决定的散户", 或者更进一步, 成为一个不需要依赖卖方报告的独立判断者。</p>
+<p class="muted measure" lang="en">Three modules: M1 reads, M2 uses, M3 buys. From "retail driven by fund managers" to "retail who decides," and ideally to an investor who doesn't need sell‑side reports at all.</p>
+
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="../../index.html"><span class="dir">← <span lang="zh">回首页</span><span lang="en">Home</span></span><span class="title"><span lang="zh">从会计学到证券投资学</span><span lang="en">Site Home</span></span></a><a class="next" href="01-mpt.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">01 · <span lang="zh">现代组合理论 MPT</span><span lang="en">MPT</span></span></a></nav></div>
 
 </article></main>
 <aside class="toc"></aside>

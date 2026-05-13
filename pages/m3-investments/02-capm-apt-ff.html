@@ -14,66 +14,441 @@
 <aside class="nav"></aside>
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">Module III · 02</span></div>
+<div class="lesson-meta"><span class="crumb">Module III · 02</span><span class="sep">·</span><span><span lang="zh">15 分钟</span><span lang="en">15 min</span></span><span class="sep">·</span><span><span lang="zh">前置: Ch.01 MPT</span><span lang="en">Prereq: Ch.01 MPT</span></span><span class="sep">·</span><span><span lang="zh">后续: Ch.03 EMH</span><span lang="en">Next: Ch.03 EMH</span></span></div>
 <h1><span lang="zh">CAPM · APT · Fama-French</span><span lang="en">CAPM · APT · Fama‑French</span></h1>
-<p class="lesson-subtitle"><span lang="zh">三代资产定价模型. CAPM 一个因子 (市场), APT 多个未指定因子, Fama-French 显式给出 3-5 个有实证支持的因子 (市场 + size + value + profitability + investment). 这是从"理论上漂亮"到"实证上有用"的演化。</span><span lang="en">Three generations: CAPM (one factor), APT (unspecified multi‑factor), Fama‑French (3‑5 explicit factors). From theoretically clean to empirically robust.</span></p>
+<p class="lesson-subtitle"><span lang="zh">三代资产定价模型。CAPM 用一个因子 (市场) 解释所有股票的预期回报; APT 推广到多个未指定因子; Fama-French 显式给出 3-5 个有强实证支持的因子 (市场 + size + value + profitability + investment)。这是金融学从"理论上漂亮"到"实证上有用"的演化, 也是 Markowitz Layer 1 风险分解的延续。</span><span lang="en">Three generations: CAPM (one factor), APT (unspecified multi‑factor), Fama‑French (3‑5 explicit factors). From theoretically clean to empirically robust. Direct continuation of Ch.01's risk decomposition.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">区分 CAPM、APT、Fama-French 的假设与适用</li><li lang="zh">用 Fama-French 三因子在 A 股估算 $r_e$</li><li lang="zh">理解为何 CAPM 单因子在 A 股低解释力</li><li lang="en">Distinguish CAPM/APT/FF; estimate $r_e$ via FF; explain CAPM's low A‑share explanatory power</li></ul>
-</section>
-
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
-
-<p><strong>CAPM</strong> (Sharpe 1964, M2 Ch.02):</p>
-<div class="eq"><span>$$ E(R_i) - r_f = \beta_i [E(R_m) - r_f] $$</span><span class="num">(2.1)</span></div>
-
-<p><strong>APT</strong> (Ross 1976) — 多因子线性, 因子未指定:</p>
-<div class="eq"><span>$$ E(R_i) - r_f = \sum_{k=1}^{K} \beta_{ik} \lambda_k $$</span><span class="num">(2.2)</span></div>
-<p lang="zh">$\lambda_k$ 是因子 $k$ 的风险溢价. APT 基于<em>无套利</em>而非均衡, 更宽松但因子需要自己找.</p>
-<p lang="en">$\lambda_k$ is factor $k$'s risk premium. APT based on no‑arbitrage, less restrictive but factors must be specified separately.</p>
-
-<p><strong>Fama-French 三因子</strong> (1992, 1993):</p>
-<div class="eq"><span>$$ R_i - r_f = \alpha_i + \beta_{i,\mathrm{MKT}}(R_m - r_f) + \beta_{i,\mathrm{SMB}} \mathrm{SMB} + \beta_{i,\mathrm{HML}} \mathrm{HML} + \varepsilon_i $$</span><span class="num">(2.3)</span></div>
-<ul lang="zh">
-<li><strong>SMB</strong> (Small Minus Big): 小盘股回报 − 大盘股回报. 长期 SMB &gt; 0 (小盘溢价)</li>
-<li><strong>HML</strong> (High Minus Low B/M): 高账面市值比 (价值) − 低账面市值比 (成长). 长期 HML &gt; 0 (价值溢价)</li>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">区分 CAPM / APT / Fama-French 的假设、推导路径与适用场景</li>
+<li lang="zh">用历史回归估计任意 A 股的 β, 并用 CAPM 算 $r_e$ (期望回报)</li>
+<li lang="zh">用 Fama-French 三因子 / 五因子在 A 股估算 $r_e$, 解释为什么 CAPM 单因子在 A 股 $R^2$ 偏低</li>
+<li lang="zh">理解 β 的局限 — 静态、回望、危机切换</li>
+<li lang="en">Distinguish CAPM / APT / FF assumptions, derivations, scope; estimate β by regression; compute CAPM $r_e$; explain CAPM's lower $R^2$ in A‑share; recognise β's limits (static, backward‑looking, regime shift).</li>
 </ul>
-<p lang="en">SMB = small minus big; HML = high vs low book‑to‑market (value vs growth).</p>
-
-<p><strong>Fama-French 五因子</strong> (2015): 增加</p>
-<ul lang="zh"><li><strong>RMW</strong> (Robust Minus Weak): 高盈利能力 − 低盈利能力</li><li><strong>CMA</strong> (Conservative Minus Aggressive): 低投资 − 高投资</li></ul>
-<p lang="en">RMW (profitability), CMA (investment).</p>
 </section>
 
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑share</span></h2>
-<div class="case"><div class="case-head"><span class="company"><span lang="zh">A 股因子表现</span><span lang="en">A‑share factor performance</span></span></div>
-<p lang="zh">国内学术研究 (兴业证券, 中金, 国信等量化团队) 测算 2005-2023:</p>
-<ul lang="zh"><li>MKT (沪深 300): 年化超额 ~5-7%</li><li>SMB (小盘溢价): 显著 (年化 ~5-8%), 但 2017+ 反转弱化</li><li>HML (价值溢价): 显著但波动大 (年化 0-4%), 2020-2022 严重负 (成长股泡沫期), 2023+ 回归正</li><li>RMW (盈利溢价): 显著 (年化 ~3-5%)</li><li>CMA: 实证较弱</li></ul>
-<p lang="en">A‑share 2005–23: market premium 5–7%, SMB significant (5–8%, weaker post‑2017), HML 0–4% with high vol (turned negative in 2020–22 growth bubble), RMW 3–5%, CMA weak.</p>
-<p lang="zh"><strong>实务用法</strong>: 量化基金普遍用 FF3 或 FF5 + 中国特色因子 (例如壳价值因子, 政策风险因子). 单因子 CAPM 在 A 股几乎不用。</p>
-<p lang="en">Quant funds use FF3/FF5 + China‑specific factors (shell‑value, policy risk). CAPM alone is rarely used in A‑share.</p>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王观察五个月, 把 β 这件事亲手算出来</span><span class="en" lang="en"> · Five months of watching, Wang computes β by hand</span></h2>
+
+<p lang="zh">Ch.01 老王构造了一个 4 资产组合, 整个晚上他都在想一件事: <em>同样大盘跌 5%, 为什么茅台只跌 3%, 比亚迪却跌 7.5%? 这个差异从哪里来, 能不能预测?</em> 他翻出过去 5 个月的数据, 一笔一笔记下来。这一节我们陪老王从"看见差异"走到"算出 β", 再走到"用 β 算 $r_e$"。</p>
+<p lang="en">After Ch.01, Wang spent a night chewing on one thing: <em>when the market drops 5%, why does Moutai only drop 3% while BYD drops 7.5%? Where's the gap, can it be predicted?</em> He pulled five months of data and started tallying. This section walks with Wang from "noticing the gap" to "computing β" to "using β for $r_e$."</p>
+
+<p lang="zh"><strong>1. 第 1 个月 — 老王画了一张表。</strong> 沪深 300 当月 −5.0%, 茅台 −2.9%, 招行 −5.2%, 比亚迪 −7.4%, 长江电力 −1.6%。老王看着这张表, 脑袋里冒出一个问题: <em>这五只股票各自的"跟跌幅度"似乎不一样, 像是各有一个"敏感系数"</em>。他没读过任何金融书, 但工程出身的直觉告诉他: 如果大盘是输入, 个股是输出, 那中间应该有一个"放大倍数"。</p>
+<p lang="en"><strong>1. Month 1 — Wang drafts a table.</strong> CSI 300 −5.0% that month; Moutai −2.9%, CMB −5.2%, BYD −7.4%, Yangtze Power −1.6%. Each stock has its own "follow‑down magnitude" — like a sensitivity coefficient. No finance training, but his engineering gut says: if the market is input and the stock is output, there must be a "gain factor."</p>
+
+<p lang="zh"><strong>2. 第 2-5 个月 — 老王每个月记一次, 凑齐 5 行数据。</strong></p>
+<p lang="en"><strong>Months 2–5 — Wang logs one row per month, builds a 5‑row dataset.</strong></p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">月</span><span lang="en">Month</span></th><th class="num">CSI 300</th><th class="num">Moutai</th><th class="num">CMB</th><th class="num">BYD</th><th class="num">YPower</th></tr></thead>
+<tbody>
+<tr><td>1</td><td class="num">−5.0%</td><td class="num">−2.9%</td><td class="num">−5.2%</td><td class="num">−7.4%</td><td class="num">−1.6%</td></tr>
+<tr><td>2</td><td class="num">+4.0%</td><td class="num">+2.4%</td><td class="num">+4.1%</td><td class="num">+6.0%</td><td class="num">+1.3%</td></tr>
+<tr><td>3</td><td class="num">−2.0%</td><td class="num">−1.2%</td><td class="num">−2.1%</td><td class="num">−3.0%</td><td class="num">−0.6%</td></tr>
+<tr><td>4</td><td class="num">+6.0%</td><td class="num">+3.6%</td><td class="num">+6.2%</td><td class="num">+9.0%</td><td class="num">+2.0%</td></tr>
+<tr><td>5</td><td class="num">−3.0%</td><td class="num">−1.8%</td><td class="num">−3.1%</td><td class="num">−4.5%</td><td class="num">−0.9%</td></tr>
+</tbody>
+</table>
 </div>
+
+<p lang="zh">老王粗算了一下"每只股票 / 大盘"的<em>平均放大倍数</em>:</p>
+<p lang="en">Wang eyeballs each stock's "gain over market":</p>
+<ul>
+<li><span lang="zh">茅台 ≈ 0.60 (大盘跌 5%, 茅台只跌 3%)</span><span lang="en">Moutai ≈ 0.60 (market −5%, Moutai −3%)</span></li>
+<li><span lang="zh">招行 ≈ 1.03 (几乎和大盘 1:1)</span><span lang="en">CMB ≈ 1.03 (near 1:1 with market)</span></li>
+<li><span lang="zh">比亚迪 ≈ 1.50 (大盘跌 5%, 比亚迪跌 7.5%)</span><span lang="en">BYD ≈ 1.50 (market −5%, BYD −7.5%)</span></li>
+<li><span lang="zh">长江电力 ≈ 0.32 (大盘跌 5%, 长电只跌 1.6%)</span><span lang="en">Yangtze Power ≈ 0.32 (market −5%, YPower −1.6%)</span></li>
+</ul>
+
+<p lang="zh"><strong>这个"放大倍数"就是 β (beta)</strong>。它衡量一只股票<em>相对市场</em>的敏感度: β &gt; 1 表示"放大跟随" (波动大于市场), β &lt; 1 表示"缩小跟随" (波动小于市场), β = 1 表示"等幅跟随", β &lt; 0 表示"反向跟随" (极罕见)。它<em>不是"涨多少"</em>, 而是"<em>大盘波动 1%, 这只股票预期波动多少</em>"。老王自己摸出了金融学一个最核心的参数, 没看过任何课本。</p>
+<p lang="en"><strong>That "gain factor" is β.</strong> β &gt; 1: amplifies market moves; β &lt; 1: dampens; β = 1: tracks 1‑to‑1; β &lt; 0: inverse (rare). Not "how much the stock returns" — rather "how much the stock moves when the market moves 1%." Wang has reinvented the most central quantity in asset pricing, no textbook required.</p>
+
+<p lang="zh"><strong>3. 老王再问一个问题 — 那除了"跟大盘", 还有别的规律吗?</strong> 他注意到: 当大盘平的那个月 (假设月 6 大盘 0.5%), 比亚迪有时单独涨 5%, 茅台单独跌 3%。这部分<em>不能用大盘解释</em>。会不会还有别的"输入"决定股票表现? 比如 — 新能源车销量、白酒经销商打款、利率政策 ... 这些和大盘无关, 但确实在影响个股。</p>
+<p lang="en"><strong>3. Wang asks another question — beyond market tracking, are there other patterns?</strong> When the market is flat (say month 6 at +0.5%), BYD might still jump +5% alone, Moutai might still drop −3% alone. That part <em>isn't market‑explained</em>. Maybe other "inputs" — EV sales, distributor remittances, rate policy. Independent of market, but driving individual stocks.</p>
+
+<p lang="zh">这就是从 <strong>CAPM (单因子)</strong> 到 <strong>多因子模型</strong> 的直觉过渡。CAPM 说 "只要知道 β, 就能预期回报"; 但实证显示, β 解释力只有 40-60% — 还有 40-60% 来自其他系统性因素。1976 年 Ross 提出 <strong>APT</strong> (Arbitrage Pricing Theory), 说"<em>预期回报应该是多个因子的线性组合, 但因子是什么, 理论不说</em>"。1992 年 Fama-French 用实证找到三个最重要的因子: 市场 + size (小盘 - 大盘) + value (高 B/M - 低 B/M)。2015 年扩展到五因子, 加上 profitability + investment。</p>
+<p lang="en">That's the intuition from <strong>single‑factor CAPM</strong> to <strong>multifactor</strong>. CAPM says "β alone determines expected return." Empirically β explains only 40–60%; the rest comes from other systematic factors. Ross 1976 (<strong>APT</strong>): expected return is a linear combo of factors, but the theory doesn't say which. Fama‑French 1992 found three empirically: market + size (small − big) + value (high B/M − low B/M). 2015 extended to five with profitability + investment.</p>
+
+<p lang="zh"><strong>4. 老王第一次用 β 算"预期回报"。</strong> 假设无风险利率 $r_f$ = 2.5% (一年定期), 市场期望回报 $E[R_m]$ = 8% (沪深 300 长期年化). 用 CAPM 公式 $E[R_i] = r_f + \beta_i (E[R_m] - r_f)$, 对每只股票算"理论应有回报":</p>
+<p lang="en"><strong>4. Wang's first CAPM expected return.</strong> $r_f$ = 2.5%, $E[R_m]$ = 8%, market risk premium 5.5%. CAPM $E[R_i] = r_f + \beta_i (E[R_m] - r_f)$:</p>
+<ul>
+<li><span lang="zh">茅台: $2.5\% + 0.60 \times 5.5\% = 5.8\%$ — 老王持有茅台, 应期望年化 ~5.8% 回报 (低波动 = 低预期回报)</span><span lang="en">Moutai: 2.5% + 0.60 × 5.5% = 5.8% — low β, low expected return</span></li>
+<li><span lang="zh">招行: $2.5\% + 1.03 \times 5.5\% = 8.2\%$</span><span lang="en">CMB: 8.2%</span></li>
+<li><span lang="zh">比亚迪: $2.5\% + 1.50 \times 5.5\% = 10.8\%$ — 应期望年化 ~10.8% 回报 (高波动 = 高预期回报, 但实际上 β &gt; 1 的股票常常跑不赢自己的预期, 见 Layer 3)</span><span lang="en">BYD: 10.8% — high β should mean high expected return, but β &gt; 1 stocks often <em>under</em>‑deliver vs CAPM prediction (Layer 3)</span></li>
+<li><span lang="zh">长江电力: $2.5\% + 0.32 \times 5.5\% = 4.3\%$</span><span lang="en">Yangtze Power: 4.3%</span></li>
+</ul>
+
+<p lang="zh">老王一看, 心里咯噔一下: 这个 "<em>低 β 低预期回报</em>" 的结论<em>反直觉</em>。他持有长江电力本来是图它"稳", 现在公式告诉他 "稳的代价是低预期回报"。茅台同理 — 它的"防御性"内置在 CAPM 公式里, 所以预期回报也压低了。<em>承担风险才有补偿, 这是 CAPM 最核心的一句话</em>。但又有问题: 实证上, 低 β 股票 (公用、必需消费) 的<em>实际</em>回报反而<em>高</em>于 CAPM 预测 — 这就是 1972 年 Black 提出的"low beta anomaly", 后被多次实证, 至今未有公认解释。这条裂缝, 是 Fama-French 模型的另一个动机。</p>
+<p lang="en">Wang flinches: "low β = low expected return" feels counterintuitive. He bought Yangtze Power for stability — and the formula now charges him for that stability. Moutai same — its "defensive" nature is priced in. <em>Risk compensation is the central CAPM claim.</em> But empirically, low‑β stocks (utilities, staples) tend to <em>over</em>‑deliver vs CAPM — "low‑beta anomaly" (Black 1972, repeatedly confirmed). That crack motivates Fama‑French.</p>
+
+<p lang="zh"><strong>5. 老王把比亚迪的"那 5% 单独涨"放到放大镜下看。</strong> 那个月大盘 +0.5%, 比亚迪 +5%。CAPM 预测的"应有月度回报" ≈ 0.5%/12 + 1.5 × 0% ≈ 0.04%; 但实际 +5%, 多出来的 4.96% 是 <strong>异常回报</strong> (abnormal return), 用希腊字母 $\alpha$ 表示。这 4.96% 不能用市场风险解释, 必须从别处找原因 — 也许那个月比亚迪宣布新车型、销量超预期, 或者新能源政策利好。Layer 2 形式化 α 的概念。</p>
+<p lang="en"><strong>5. Wang zooms in on BYD's +5% "alone" month.</strong> Market +0.5%, BYD +5%. CAPM predicts ~0.04%; the remaining 4.96% is <strong>abnormal return</strong>, α. Not market‑explained — maybe a new model launch, sales surprise, NEV policy tailwind. Layer 2 formalises α.</p>
+
+<p lang="zh"><strong>6. 老王把五个月的数据画成散点图</strong>(横轴 CSI 300 月度收益, 纵轴茅台月度收益), 用尺子拟合一条直线: 斜率约 0.6, 截距接近 0。这就是 <strong>一元线性回归</strong>: $R_i = \alpha + \beta R_m + \varepsilon$。斜率 $\beta$ 就是 β, 截距 $\alpha$ 就是 alpha, 误差 $\varepsilon$ 是<em>个股特有风险</em>(idiosyncratic risk)。Layer 2 用矩阵语言、最小二乘法给出 β 和 α 的最优估计公式 (1.1)。</p>
+<p lang="en"><strong>6. Wang plots a scatter (x = CSI 300, y = Moutai), eyeballs a line — slope 0.6, intercept near 0.</strong> That's <strong>simple linear regression</strong>: $R_i = \alpha + \beta R_m + \varepsilon$. Slope is β, intercept is α, residual is idiosyncratic risk. Layer 2 gives the OLS closed forms.</p>
+
+<p lang="zh"><strong>7. 收尾 — 老王这一晚做了什么?</strong> 他从"观察到差异"开始 → 摸出 β 的概念 → 用 β 算出每只股票的预期回报 → 发现 CAPM 解释不完所有差异, 还剩 α + 噪声 → 直观知道 CAPM 是个<em>有用但不完整</em>的工具。这条路从 1952 Markowitz → 1964 Sharpe → 1976 Ross → 1992 Fama-French, 走了 40 年, 老王 5 个月就用直觉走完了。Layer 2 把每一步形式化, Layer 3 用真实 A 股数据跑回归, 验证: <em>A 股的 CAPM 解释力比美股低多少, 加上 SMB / HML 后能补上多少</em>。</p>
+<p lang="en"><strong>7. Recap.</strong> Wang: notice → invent β → CAPM expected return → notice α residual → know CAPM is useful but incomplete. The path from Markowitz 1952 → Sharpe 1964 → Ross 1976 → Fama‑French 1992 took 40 years; Wang's intuition covers it in 5 months. Layer 2 formalises; Layer 3 runs real A‑share regressions to quantify CAPM's lower $R^2$ vs US and how much SMB / HML recover.</p>
 </section>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 老王从 5 个月观察凑出 β, 算出 CAPM 期望回报, 发现 α + 噪声。现在我们用矩阵 + 最小二乘把这一切形式化, 再叠加 APT 和 Fama-French 多因子框架。</p>
+<p lang="en">Layer 1 used Wang's 5‑month tally to invent β, compute CAPM expected return, and spot α + noise. We now formalise via OLS &amp; matrix algebra, then layer in APT and Fama‑French.</p>
+
+<h3 lang="zh">① CAPM — 推导与公式</h3>
+<h3 lang="en">① CAPM — Derivation &amp; Formula</h3>
+
+<p lang="zh"><strong>CAPM 推导思路</strong> (Sharpe 1964, Lintner 1965, Mossin 1966): 假设所有投资者都按 Markowitz 均值-方差最优化, 且对 $\boldsymbol{\mu}, \boldsymbol{\Sigma}$ 信念相同。由两基金分离定理 (Ch.01), 所有投资者都持有同一个切线组合。<em>市场出清</em>条件下, 所有资产加总 = 所有投资者持仓加总 = 切线组合的总和, 因此 <strong>市场组合 = 切线组合</strong>。把这个等式代入 (1.6), 经过几步代数, 得到 CAPM:</p>
+<p lang="en"><strong>CAPM derivation</strong> (Sharpe 1964, Lintner 1965, Mossin 1966): assume universal MV optimisation with identical beliefs. By Ch.01 two‑fund separation everyone holds the same tangent. Market clearing → aggregate holdings = tangent. So <strong>market portfolio = tangent portfolio</strong>. Substituting yields CAPM:</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">CAPM (资本资产定价模型)</span>
+<span class="callout-label" lang="en">CAPM (Capital Asset Pricing Model)</span>
+<div class="eq"><span>$$ E(R_i) \;=\; r_f + \beta_i \,\big[E(R_m) - r_f\big], \quad \beta_i \;=\; \frac{\mathrm{Cov}(R_i, R_m)}{\mathrm{Var}(R_m)} $$</span><span class="num">(2.1)</span></div>
+<p lang="zh">资产 i 的期望回报 = 无风险利率 + β × 市场风险溢价。β 的数学定义是"个股回报与市场回报的协方差除以市场方差", 等价于 OLS 线性回归 $R_i = \alpha + \beta R_m + \varepsilon$ 的斜率。</p>
+<p lang="en">Expected return of asset i = $r_f$ + β × market risk premium. β = Cov($R_i, R_m$) / Var($R_m$); equivalent to OLS slope in $R_i = \alpha + \beta R_m + \varepsilon$.</p>
+<span class="cite">Sharpe (1964), "Capital Asset Prices," <em>Journal of Finance</em> 19(3): 425–442 · Lintner (1965), <em>Review of Economics and Statistics</em> · Mossin (1966), <em>Econometrica</em></span>
+</div>
+
+<p lang="zh"><strong>关键概念 — 系统风险 vs 个股风险</strong>。任意资产 i 的方差可以分解:</p>
+<p lang="en"><strong>Systematic vs idiosyncratic.</strong> Decompose Var($R_i$):</p>
+<div class="eq"><span>$$ \mathrm{Var}(R_i) \;=\; \underbrace{\beta_i^2 \,\mathrm{Var}(R_m)}_{\text{系统风险 / systematic}} \;+\; \underbrace{\mathrm{Var}(\varepsilon_i)}_{\text{个股 / idiosyncratic}} $$</span><span class="num">(2.2)</span></div>
+<p lang="zh">CAPM 的核心论断: <em>只有系统风险被定价</em>。个股风险可以通过分散化消除, 因此市场不应为它支付溢价。这是为什么持有"低 β 但高 σ" 的股票 (例如某些个股事件驱动的小盘股) 在 CAPM 下不会获得超额溢价。</p>
+<p lang="en">CAPM's core claim: <em>only systematic risk is priced</em>. Idiosyncratic risk is diversifiable and earns no premium. Why a "low β but high σ" small cap doesn't earn extra return under CAPM.</p>
+
+<h3 lang="zh">② β 的 OLS 估计 — 实操步骤</h3>
+<h3 lang="en">② Estimating β by OLS — Implementation</h3>
+
+<p lang="zh">用 T 个月度收益数据 $\{R_{i,t}\}, \{R_{m,t}\}$, 跑回归 $R_{i,t} = \alpha_i + \beta_i R_{m,t} + \varepsilon_{i,t}$, OLS 最优估计:</p>
+<p lang="en">With T monthly observations, regress $R_{i,t} = \alpha_i + \beta_i R_{m,t} + \varepsilon_{i,t}$. OLS estimators:</p>
+<div class="eq"><span>$$ \hat\beta_i \;=\; \frac{\sum_{t=1}^T (R_{i,t} - \bar R_i)(R_{m,t} - \bar R_m)}{\sum_{t=1}^T (R_{m,t} - \bar R_m)^2}, \quad \hat\alpha_i \;=\; \bar R_i - \hat\beta_i \bar R_m $$</span><span class="num">(2.3)</span></div>
+
+<p lang="zh"><strong>三个 A 股实操要点</strong>:</p>
+<p lang="en">Three A‑share practical notes:</p>
+<ol>
+<li lang="zh"><strong>用月度还是日度?</strong> 月度 (T ≥ 36) 噪声小但样本少; 日度 (T ≥ 252) 样本多但被"非同步交易"和小盘股流动性问题污染。学术界普遍用月度, 卖方研究偶尔用日度。</li>
+<li lang="zh"><strong>用什么市场指数?</strong> CAPM 理论上要求"市场组合", 但所有股票 + 债券 + 房产的组合无法直接观测。实操中用沪深 300 (大盘) 或中证 800 (大中盘) 作为代理。Roll 1977 critique: 用代理指数会系统性偏差。</li>
+<li lang="zh"><strong>β 的稳定性</strong>: 同一只股票, 用 2015-2018 数据和 2019-2022 数据估出的 β 可能差 0.3+。<em>β 不是不变的物理常数, 它会随公司经营模式 / 杠杆 / 行业周期变化</em>。卖方研究通常用最近 3 年滚动估计。</li>
+</ol>
+<p lang="en">(1) Monthly (T ≥ 36) reduces noise; daily (T ≥ 252) contaminated by non‑synchronous trading. Academics: monthly; sell‑side: occasionally daily. (2) "Market portfolio" unobservable; proxy with CSI 300 or CSI 800. Roll 1977 critique. (3) β isn't a physical constant — shifts with leverage, business mix, regime. Sell‑side uses rolling 3‑year.</p>
+
+<h3 lang="zh">③ APT — Ross 1976 的多因子推广</h3>
+<h3 lang="en">③ APT — Ross 1976's Multifactor Generalisation</h3>
+
+<p lang="zh">CAPM 单因子 (市场) 在实证上 $R^2$ 通常只有 40-60% (剩下 40-60% 是 α + 噪声)。Ross 1976 提出: <em>预期回报应该是多个系统性因子的线性组合</em>, 但因子<em>不是从均衡推导出来的</em>, 而是<em>从无套利原理推出来的</em>。这放宽了 CAPM 的假设, 但代价是: 因子是什么, 理论不告诉你 — 必须靠实证找。</p>
+<p lang="en">CAPM single factor leaves 40–60% $R^2$ on the table. Ross 1976: expected return is a linear combo of multiple systematic factors, derived from <em>no‑arbitrage</em> (not equilibrium). Loosens assumptions but the theory doesn't tell you what the factors are.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">APT (Arbitrage Pricing Theory)</span>
+<span class="callout-label" lang="en">APT</span>
+<div class="eq"><span>$$ E(R_i) - r_f \;=\; \sum_{k=1}^{K} \beta_{i,k} \,\lambda_k $$</span><span class="num">(2.4)</span></div>
+<p lang="zh">$\lambda_k$ 是因子 k 的<em>风险溢价</em> (factor risk premium); $\beta_{i,k}$ 是资产 i 对因子 k 的敏感度。如果 K = 1 且因子是市场, APT 退化为 CAPM。</p>
+<p lang="en">$\lambda_k$ is the risk premium for factor k; $\beta_{i,k}$ is i's loading. K = 1 with market factor → APT collapses to CAPM.</p>
+<span class="cite">Ross (1976), "The Arbitrage Theory of Capital Asset Pricing," <em>Journal of Economic Theory</em> 13(3): 341–360</span>
+</div>
+
+<h3 lang="zh">④ Fama-French 三因子 (1992, 1993)</h3>
+<h3 lang="en">④ Fama‑French Three‑Factor (1992, 1993)</h3>
+
+<p lang="zh">Fama-French (1992, 1993) 用 1963-1991 美股数据实证发现: 除了市场, 还有两个因子稳健地解释横截面收益:</p>
+<p lang="en">Fama‑French (1992, 1993): two factors beyond market explain cross‑sectional returns robustly (US 1963–91):</p>
+
+<ul>
+<li lang="zh"><strong>SMB (Small Minus Big)</strong>: 把所有股票按市值排序, 小盘 30% 的回报减去大盘 30% 的回报。长期 SMB &gt; 0, 称为<em>小盘溢价</em>。</li>
+<li lang="zh"><strong>HML (High Minus Low B/M)</strong>: 把所有股票按 B/M (账面市值比) 排序, 高 B/M (价值) 30% 减去低 B/M (成长) 30%。长期 HML &gt; 0, 称为<em>价值溢价</em>。</li>
+</ul>
+<p lang="en">SMB = small minus big; HML = high B/M (value) minus low B/M (growth). Both positive long‑run.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Fama-French 三因子模型</span>
+<span class="callout-label" lang="en">Fama‑French Three‑Factor</span>
+<div class="eq"><span>$$ R_i - r_f \;=\; \alpha_i + \beta_{i,\mathrm{MKT}}(R_m - r_f) + \beta_{i,\mathrm{SMB}}\,\mathrm{SMB} + \beta_{i,\mathrm{HML}}\,\mathrm{HML} + \varepsilon_i $$</span><span class="num">(2.5)</span></div>
+<p lang="zh">回归三个因子的载荷 ($\beta_{\mathrm{MKT}}, \beta_{\mathrm{SMB}}, \beta_{\mathrm{HML}}$) 后, 在美股上 $R^2$ 从 CAPM 的 ~60% 提升到 ~90%。剩下 10% 才是真正的 α (无法被三因子解释的超额回报)。</p>
+<p lang="en">After three loadings, US $R^2$ rises from ~60% (CAPM) to ~90%. Remaining 10% is "true α."</p>
+<span class="cite">Fama &amp; French (1992), "The Cross‑Section of Expected Stock Returns," <em>Journal of Finance</em> 47(2): 427–465 · Fama &amp; French (1993), "Common Risk Factors in the Returns on Stocks and Bonds," <em>Journal of Financial Economics</em> 33(1): 3–56</span>
+</div>
+
+<h3 lang="zh">⑤ Fama-French 五因子 (2015)</h3>
+<h3 lang="en">⑤ Fama‑French Five‑Factor (2015)</h3>
+
+<p lang="zh">2015 年扩展加入两个因子:</p>
+<p lang="en">2015 extension adds two more:</p>
+<ul>
+<li lang="zh"><strong>RMW (Robust Minus Weak)</strong>: 高盈利能力 (高 OP / B) 减去低盈利能力。</li>
+<li lang="zh"><strong>CMA (Conservative Minus Aggressive)</strong>: 低投资 (低资本支出 / 资产增速) 减去高投资。</li>
+</ul>
+<p lang="en">RMW = profitability premium; CMA = investment premium.</p>
+
+<div class="eq"><span>$$ R_i - r_f \;=\; \alpha + \beta_{\mathrm{MKT}}(R_m - r_f) + \beta_{\mathrm{SMB}}\,\mathrm{SMB} + \beta_{\mathrm{HML}}\,\mathrm{HML} + \beta_{\mathrm{RMW}}\,\mathrm{RMW} + \beta_{\mathrm{CMA}}\,\mathrm{CMA} + \varepsilon $$</span><span class="num">(2.6)</span></div>
+
+<p lang="zh"><span class="cite">Fama &amp; French (2015), "A Five‑Factor Asset Pricing Model," <em>Journal of Financial Economics</em> 116(1): 1–22</span></p>
+
+<p lang="zh">五因子模型在美股上 $R^2$ 进一步提升到 ~93%, 但 HML 因子在控制 RMW + CMA 后变得统计不显著 — 说明<em>价值溢价的一部分实际上来自盈利能力差异</em>。这是金融学的活跃辩论。</p>
+<p lang="en">$R^2$ rises to ~93%; HML loses significance after controlling RMW + CMA — suggesting <em>part of the value premium is profitability in disguise</em>. Active debate.</p>
+
+<h3 lang="zh">⑥ 一个数值示例 — 用 CAPM 与 FF3 估老王手里三只股票的 $r_e$</h3>
+<h3 lang="en">⑥ Worked Example — CAPM vs FF3 for Wang's Three Stocks</h3>
+
+<p lang="zh">取 $r_f = 2.5\%$, 市场风险溢价 5.5%, A 股长期 SMB ≈ 6%, HML ≈ 3% (近似估算)。下表用 Layer 1 的 β + 估算的因子载荷:</p>
+<p lang="en">$r_f$ = 2.5%, MRP = 5.5%, A‑share long‑run SMB ≈ 6%, HML ≈ 3% (approx). Layer 1's β + estimated loadings:</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">股票</span><span lang="en">Stock</span></th><th class="num">β_MKT</th><th class="num">β_SMB</th><th class="num">β_HML</th><th class="num"><span lang="zh">CAPM $r_e$</span><span lang="en">CAPM $r_e$</span></th><th class="num"><span lang="zh">FF3 $r_e$</span><span lang="en">FF3 $r_e$</span></th></tr></thead>
+<tbody>
+<tr><td>SH·600519 <span lang="zh">茅台</span></td><td class="num">0.60</td><td class="num">−0.30</td><td class="num">−0.20</td><td class="num">5.8%</td><td class="num">3.4%</td></tr>
+<tr><td>SH·600036 <span lang="zh">招行</span></td><td class="num">1.03</td><td class="num">−0.10</td><td class="num">+0.60</td><td class="num">8.2%</td><td class="num">9.4%</td></tr>
+<tr><td>SZ·002594 <span lang="zh">比亚迪</span></td><td class="num">1.50</td><td class="num">+0.20</td><td class="num">−0.50</td><td class="num">10.8%</td><td class="num">10.5%</td></tr>
+<tr><td>SH·600900 <span lang="zh">长江电力</span></td><td class="num">0.32</td><td class="num">−0.40</td><td class="num">+0.40</td><td class="num">4.3%</td><td class="num">3.1%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>茅台 / 长江电力</strong>: 都是大盘 + 成长 (低 B/M) 风格, $\beta_{\mathrm{SMB}} &lt; 0, \beta_{\mathrm{HML}} &lt; 0$ (茅台) 或混合。 FF3 算出的 $r_e$ 比 CAPM 低, 说明<em>市场愿意为它们的"大盘 + 品牌成长"特性少付溢价</em>。</li>
+<li lang="zh"><strong>招行</strong>: 典型大盘价值股, $\beta_{\mathrm{HML}} = +0.60$ (高 B/M 价值股), FF3 $r_e$ 比 CAPM 高 1.2 个百分点 — 价值溢价直接显化。</li>
+<li lang="zh"><strong>比亚迪</strong>: $\beta_{\mathrm{HML}} &lt; 0$ (典型低 B/M 成长股), $\beta_{\mathrm{SMB}} &gt; 0$ (中型盘以下的部分小盘特征 — 实际是中盘但行业内偏激进资本支出), 综合下来 FF3 $r_e$ 和 CAPM 接近, 因为两个因子载荷部分相互抵消。</li>
+</ol>
+<p lang="en">(1) Moutai/Yangtze are big‑growth profile (SMB &lt; 0, HML &lt; 0); FF3 lowers $r_e$ vs CAPM. (2) CMB is big‑value (HML +0.60); FF3 raises $r_e$ by 1.2 pp — value premium directly. (3) BYD has loadings partially offsetting; FF3 close to CAPM.</p>
+
+<p class="muted measure" lang="zh"><strong>工程类比 — 主成分分析 (PCA)</strong>: 把整个 A 股市场看作一个高维空间, 每只股票是一个向量。Markowitz 协方差矩阵 Σ (Ch.01) 的<em>特征向量</em>就是"独立风险因子"。Fama-French 实际上是把这些数学上的主成分用<em>经济上可解释的代理变量</em> (市值大小、账面市值比、盈利能力) 替换出来。这就是为什么因子模型既是数学也是经济学。</p>
+<p class="muted measure" lang="en"><strong>Engineering: PCA bridge.</strong> Treat the market as a high‑dim space, each stock a vector. Eigenvectors of Σ (Ch.01) are independent risk factors. Fama‑French replaces math principal components with <em>economically interpretable</em> proxies (size, B/M, profitability). Why factor models are both math and economics.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Case</span></h2>
+
+<p lang="zh">老王 Layer 1 用 5 个月数据摸出来的 β, 现在我们放大到真实的 A 股股票, 用 3 年月度数据 OLS 跑回归, 看看 CAPM 在 A 股上能解释多少、FF3 / FF5 能补回多少。</p>
+<p lang="en">Wang's 5‑month β extends to real 3‑year OLS regressions across A‑share stocks. How much does CAPM explain in A‑share, how much does FF3 / FF5 add?</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600036 + SH·600519 + SZ·002594 + SZ·300750</span>
+<span class="company"><span lang="zh">招行 + 茅台 + 比亚迪 + 宁德时代 — 单因子 CAPM β 估计</span><span lang="en">CMB + Moutai + BYD + CATL — CAPM β estimates</span></span>
+<span class="period">2021-01 → 2023-12 · <span lang="zh">月度回归, 近似数据</span><span lang="en">monthly regression, approximate</span></span>
+</div>
+
+<p lang="zh">用 (2.3) 跑 CAPM 单因子回归, 36 个月度数据。下表给出估计 β、α 和 $R^2$:</p>
+<p lang="en">Run (2.3) on 36 months. Estimated β, α, $R^2$:</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">股票</span><span lang="en">Stock</span></th><th class="num">β̂</th><th class="num">α̂ (月化)</th><th class="num">α̂ (年化)</th><th class="num">$R^2$</th><th class="num"><span lang="zh">CAPM 隐含 $r_e$</span><span lang="en">CAPM implied $r_e$</span></th></tr></thead>
+<tbody>
+<tr><td>SH·600036 <span lang="zh">招商银行</span></td><td class="num">0.95</td><td class="num">+0.10%</td><td class="num">+1.2%</td><td class="num">0.62</td><td class="num">7.7%</td></tr>
+<tr><td>SH·600519 <span lang="zh">贵州茅台</span></td><td class="num">0.65</td><td class="num">+0.50%</td><td class="num">+6.2%</td><td class="num">0.38</td><td class="num">6.1%</td></tr>
+<tr><td>SZ·002594 <span lang="zh">比亚迪</span></td><td class="num">1.42</td><td class="num">+0.05%</td><td class="num">+0.6%</td><td class="num">0.51</td><td class="num">10.3%</td></tr>
+<tr><td>SZ·300750 <span lang="zh">宁德时代</span></td><td class="num">1.58</td><td class="num">−0.15%</td><td class="num">−1.8%</td><td class="num">0.45</td><td class="num">11.2%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>β 的高低反映行业属性</strong>: 招行 β ≈ 0.95 (银行业整体跟大盘 1:1); 茅台 β ≈ 0.65 (防御性消费, 下跌时跌得少, 上涨时涨得少); 比亚迪 / 宁德 β ≈ 1.4-1.6 (新能源车 / 锂电池 — 高成长 + 高波动)。这与 Layer 1 老王观察到的"放大倍数"完全一致, 只是用了 36 个月数据精度更高。</li>
+<li lang="zh"><strong>$R^2$ 反映 CAPM 的解释力</strong>: A 股个股 $R^2$ 约 0.38-0.62 — <em>40-60% 的回报能用市场解释</em>。这低于美股大盘股 (S&amp;P 500 成份 $R^2$ 普遍 0.6-0.8)。原因: A 股<em>个股事件</em> (政策、问询函、解禁) 占比更高, 系统性因素不够主导。茅台 $R^2 = 0.38$ 最低, 因为它的回报很大程度上独立于市场情绪。</li>
+<li lang="zh"><strong>α 反映"超额"回报</strong>: 茅台 α ≈ +6.2% 年化, 即 2021-2023 三年里茅台平均比 CAPM 预测多赚 6.2%/年。这是品牌护城河 (持续高 ROE) 与高分红的体现, 也是 Fama-French 三因子里 HML / RMW 因子会捕捉的一部分。</li>
+</ol>
+<p lang="en">(1) β tracks industry character: CMB ≈ 0.95 (banks ≈ market), Moutai ≈ 0.65 (defensive consumer), BYD/CATL ≈ 1.4–1.6 (high‑growth EV/battery). (2) A‑share single‑stock $R^2$ 0.38–0.62 — lower than US large caps (0.6–0.8); A‑share idiosyncratic events weigh more. (3) Moutai's annualised α ≈ +6.2% over 3 years — moat &amp; high payout, partly captured by FF HML/RMW.</p>
+
+<a class="case-link" href="http://quote.eastmoney.com/sh600519.html" target="_blank" rel="noopener"><span lang="zh">东方财富: 600519 茅台 →</span><span lang="en">Eastmoney 600519 →</span></a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker"><span lang="zh">三模型对比</span><span lang="en">Three‑Model Comparison</span></span>
+<span class="company"><span lang="zh">CAPM vs FF3 vs FF5: A 股因子表现</span><span lang="en">CAPM vs FF3 vs FF5: A‑share factor performance</span></span>
+<span class="period">2005 → 2023 · <span lang="zh">国信 / 中金 / 兴业证券量化团队近似数据</span><span lang="en">approx from Guosen / CICC / Industrial quant desks</span></span>
+</div>
+
+<p lang="zh">把同一批 A 股股票用三种模型跑全样本回归 (2005-2023, 19 年, 月度), 比较 $R^2$ 和因子风险溢价 $\lambda$:</p>
+<p lang="en">Same A‑share universe, three models, full sample (2005–23, monthly):</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">因子</span><span lang="en">Factor</span></th><th class="num"><span lang="zh">年化风险溢价 λ</span><span lang="en">Annualised λ</span></th><th class="num"><span lang="zh">t-stat</span></th><th class="num"><span lang="zh">夏普</span><span lang="en">Sharpe</span></th></tr></thead>
+<tbody>
+<tr><td>MKT (<span lang="zh">沪深 300</span>)</td><td class="num">+5.7%</td><td class="num">2.1</td><td class="num">0.28</td></tr>
+<tr><td>SMB (<span lang="zh">小盘溢价</span>)</td><td class="num">+6.5%</td><td class="num">2.8</td><td class="num">0.42</td></tr>
+<tr><td>HML (<span lang="zh">价值溢价</span>)</td><td class="num">+2.8%</td><td class="num">1.1</td><td class="num">0.18</td></tr>
+<tr><td>RMW (<span lang="zh">盈利溢价</span>)</td><td class="num">+4.2%</td><td class="num">2.3</td><td class="num">0.36</td></tr>
+<tr><td>CMA (<span lang="zh">投资溢价</span>)</td><td class="num">+1.5%</td><td class="num">0.6</td><td class="num">0.09</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>A 股因子表现 vs 美股</strong>:</p>
+<p lang="en"><strong>A‑share factor performance vs US:</strong></p>
+<ul>
+<li lang="zh"><strong>MKT 风险溢价 ~5.7%</strong>: 略低于美股长期 ~6-7%, 因为 A 股 2005-2023 经历多次大跌 (2008 / 2015 / 2018 / 2022)。</li>
+<li lang="zh"><strong>SMB 显著正 ~6.5%</strong>: 比美股的 ~2-3% 高得多。原因: A 股 2017 年前小盘股有"壳价值"溢价 (借壳上市预期), 流动性溢价也大。2017 年后弱化 (注册制改革)。</li>
+<li lang="zh"><strong>HML 波动大</strong>: 长期均值 ~2.8% 但 2020-2022 严重负 (成长股泡沫期, 茅台 / 宁德领涨, 银行 / 煤炭跑输 30%+), 2023+ 回归正 (价值股反弹)。这是 A 股因子最不稳定的一个。</li>
+<li lang="zh"><strong>RMW 显著正</strong>: ROE 高的股票长期跑赢, 这与 A 股"白马股"策略 (买高 ROE + 大盘) 长期有效的实证一致。</li>
+<li lang="zh"><strong>CMA 较弱</strong>: 低投资股票 (低 capex) 在 A 股没有像美股那么稳健的溢价 — 可能因为 A 股很多"低投资"公司是国企, 受政策与体制约束。</li>
+</ul>
+<p lang="en">(1) MRP ~5.7% slightly below US ~6–7% (multiple A‑share drawdowns). (2) SMB ~6.5%, much higher than US ~2–3% (pre‑2017 shell value + liquidity premium; weakened post registration reform). (3) HML noisy — neg 2020–22 (growth bubble), rebound 2023+. (4) RMW positive — high‑ROE white horse strategy persistent. (5) CMA weak in A‑share; many "low capex" firms are SOEs constrained.</p>
+
+<p lang="zh"><strong>三模型 $R^2$ 对比</strong> (沪深 300 成份股加权平均):</p>
+<p lang="en">$R^2$ comparison (CSI 300 weighted):</p>
+<ul>
+<li>CAPM: $R^2 \approx 0.45$</li>
+<li>FF3: $R^2 \approx 0.65$ (+0.20)</li>
+<li>FF5: $R^2 \approx 0.68$ (+0.03)</li>
+</ul>
+<p lang="zh"><strong>结论</strong>: A 股<em>FF3 大幅好于 CAPM</em>, 但 FF5 边际改进不大 — CMA 因子在 A 股贡献小。绝大多数 A 股量化基金用 FF3 + 行业因子 + 中国特色因子 (例如"反转因子"、"打新因子"、"机构持仓变化因子") 的组合。</p>
+<p lang="en">FF3 markedly beats CAPM; FF5 marginal — CMA weak in A‑share. Most A‑share quants use FF3 + industry + China‑specific (reversal, IPO subscription, institutional flow) factors.</p>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600519 + SH·600036 + SH·600900 + SZ·002594</span>
+<span class="company"><span lang="zh">CAPM 隐含回报 vs 真实回报 — single-factor 局限的实证证据</span><span lang="en">CAPM implied vs realised — single‑factor's limits</span></span>
+<span class="period">2018-01 → 2023-12 · <span lang="zh">6 年, 近似数据</span><span lang="en">6 years, approximate</span></span>
+</div>
+
+<p lang="zh">把 Layer 1 老王那四只股票拉长到 6 年, 对比 CAPM 公式 (2.1) 预测的"应有回报"与<em>实际实现</em>的回报:</p>
+<p lang="en">Six‑year window: CAPM predicted vs realised:</p>
+
+<div class="case-table">
+<table>
+<thead><tr><th><span lang="zh">股票</span><span lang="en">Stock</span></th><th class="num">β̂</th><th class="num"><span lang="zh">CAPM 预测 (年化)</span><span lang="en">CAPM expected</span></th><th class="num"><span lang="zh">实际回报 (年化)</span><span lang="en">Realised</span></th><th class="num"><span lang="zh">α (差)</span><span lang="en">α (gap)</span></th></tr></thead>
+<tbody>
+<tr><td>SH·600519 <span lang="zh">茅台</span></td><td class="num">0.65</td><td class="num">6.1%</td><td class="num">+18.5%</td><td class="num">+12.4%</td></tr>
+<tr><td>SH·600036 <span lang="zh">招行</span></td><td class="num">0.95</td><td class="num">7.7%</td><td class="num">+5.8%</td><td class="num">−1.9%</td></tr>
+<tr><td>SH·600900 <span lang="zh">长江电力</span></td><td class="num">0.32</td><td class="num">4.3%</td><td class="num">+9.2%</td><td class="num">+4.9%</td></tr>
+<tr><td>SZ·002594 <span lang="zh">比亚迪</span></td><td class="num">1.42</td><td class="num">10.3%</td><td class="num">+15.6%</td><td class="num">+5.3%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p lang="zh"><strong>三点解读</strong>:</p>
+<ol>
+<li lang="zh"><strong>低 β 股票普遍 α &gt; 0</strong>: 茅台 (β=0.65) 跑赢预期 12.4 pp, 长江电力 (β=0.32) 跑赢 4.9 pp。这正是"low-beta anomaly" — 低风险股票实际回报 &gt; CAPM 预测。Frazzini-Pedersen 2014 解释: 加杠杆门槛使得很多投资者被迫超配高 β 股票, 推高高 β 估值, 压低高 β 期望回报。低 β 股票被相对低估, 长期 α &gt; 0。</li>
+<li lang="zh"><strong>高 β 股票 α 反而较小</strong>: 比亚迪 (β=1.42) α 只有 +5.3 pp, 招行 (β=0.95) α 甚至是负的。这进一步支持 low-beta anomaly: 高 β 股票被高估, CAPM 给的预期已经很高, 它们更难"超出预期"。</li>
+<li lang="zh"><strong>单因子 CAPM 在 A 股不够用</strong>: 茅台的 α = 12.4 pp/年 — 这是"市场无法解释"的部分, 大部分应归因于 HML / RMW 因子 (价值 + 盈利) 与品牌护城河 (M3 Ch.07 价值投资展开)。CAPM 把这部分都塞到 α 里, FF3 / FF5 显式建模, $R^2$ 显著提升。</li>
+</ol>
+<p lang="en">(1) Low‑β α &gt; 0 (Moutai +12.4, Yangtze +4.9 pp) — classic <strong>low‑beta anomaly</strong>. Frazzini‑Pedersen 2014: leverage constraints force investors to overweight high β, inflating high‑β prices and depressing future returns; low β under‑bought → α persists. (2) High‑β α smaller (BYD +5.3, CMB −1.9) — same logic. (3) Single‑factor CAPM insufficient in A‑share — Moutai's 12.4 pp α is mostly HML/RMW + moat (Ch.07).</p>
+
+<p lang="zh"><strong>桥接老王 Layer 1</strong>: 老王 5 个月数据估出来的 β 和这里 6 年数据估出来的<em>方向一致, 大小相近</em>。但 Layer 1 没法看见的是<em>α</em>: 茅台年化 12.4% 的超额回报, 才是老王真正应该关心的。如果他单纯持有 β = 0.65 的"低风险股", 他拿到的是 CAPM 预测的 6%; 但选对了茅台 (具体公司选择), 他拿到的是 18.5%。<em>这就是 Ch.07 价值投资要教的东西</em>: 在因子模型解释完之后, 剩下的 α 才是真正的"选股"。</p>
+<p lang="en">Bridge to Wang's Layer 1: his 5‑month β agrees with this 6‑year β. What he can't see in Layer 1 is α — Moutai's 12.4 pp/year. If he holds "any β = 0.65 stock," he gets CAPM's 6%; picking <em>Moutai specifically</em>, he gets 18.5%. That's what Ch.07 value investing teaches — after the factor models, the leftover α is real stock picking.</p>
+
+<a class="case-link" href="http://quote.eastmoney.com/sz002594.html" target="_blank" rel="noopener"><span lang="zh">东方财富: 002594 比亚迪 →</span><span lang="en">Eastmoney 002594 →</span></a>
+</div>
+
+<p class="muted measure" lang="zh">数据来源: 近似估算 (实际数字请用 CSMAR Fama-French 因子库 / Wind A 股因子表)。本节示例为方法论演示, 不构成投资建议。</p>
+<p class="muted measure" lang="en">Data approximate; use CSMAR FF library or Wind A‑share factor table in production. Methodology demo only; not investment advice.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">系统风险定价</span><span lang="en">Systematic Risk Pricing</span></h4><p lang="zh">CAPM 核心: 个股风险可分散, 不被市场补偿; 只有系统风险换溢价。是金融学最反直觉的论断之一。</p><p lang="en">CAPM core: idiosyncratic risk is diversifiable and unpriced; only systematic risk earns premium. One of finance's most counterintuitive claims.</p></div></div>
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">无套利</span><span lang="en">No‑Arbitrage</span></h4><p lang="zh">APT 的根基: 不需要均衡假设, 只需"不能从无风险中获利"。这是衍生品定价 (M2 Ch.07-08) 与因子模型 (本章) 共同的基础。</p><p lang="en">Foundation of APT and derivatives pricing alike — no riskless profit. Lighter assumption than equilibrium.</p></div></div>
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">PCA / 因子分解</span><span lang="en">PCA / Factor Decomposition</span></h4><p lang="zh">把高维资产空间投影到几个独立维度。Fama-French 是经济学版的 PCA — 维度有可解释含义。</p><p lang="en">Project a high‑dim asset space onto a few independent dimensions. FF is economic PCA with interpretable axes.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">先自己想清楚再展开答案。</span><span lang="en">Think before unfolding.</span></p>
+
 <ol class="quiz quiz-list">
+
 <li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> Fama-French 三因子模型说 "size + value 因子可解释 CAPM 解释不了的回报". 这是否意味着 CAPM 失败?</span><span lang="en"><strong>Q1.</strong> Does FF3's additional factors mean CAPM failed?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">部分失败. CAPM 是"完美市场下的理论均衡", 假设投资者只关心市场风险. 现实中: (1) 小盘股流动性差, 投资者要溢价; (2) 价值股可能反映对未来盈利的偏低预期, 实际回报超预期; (3) FF 把这些额外溢价显式建模. 学术界看法: CAPM 是"基础", FF 是"实证修正版". 二者不矛盾, FF 是 CAPM 的<em>扩展</em>。</p>
-<p lang="en">Partially. CAPM is the theoretically clean equilibrium; FF empirically adds size + value as additional priced risks (or behavioral premia). FF extends, doesn't refute, CAPM.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> Fama-French 三因子说 "size + value 因子可以解释 CAPM 解释不了的回报"。这是否意味着 CAPM 失败?</span><span lang="en"><strong>Q1.</strong> Does FF3's additional factors mean CAPM failed?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>部分失败, 但 FF 不是"推翻"而是"扩展"。</strong> CAPM 是"完美市场下的理论均衡", 假设投资者只关心市场风险。现实中:</p>
+<ul lang="zh">
+<li>小盘股流动性差, 投资者要溢价 (SMB &gt; 0)</li>
+<li>价值股可能反映对未来盈利的偏低预期, 实际回报超预期 (HML &gt; 0)</li>
+<li>这些额外溢价或源于风险, 或源于行为偏差, 学界争论未定</li>
+</ul>
+<p lang="zh">学术界主流看法: CAPM 是"<em>基础层</em>", FF 是 "<em>实证修正层</em>"。二者不矛盾, FF 是 CAPM 的<em>扩展</em>。Cochrane 把这种关系比喻为 "Newton vs Einstein": Newton 力学 (CAPM) 在大多数日常场合够用, Einstein (FF) 在边界条件下更精确。</p>
+<p lang="en">Partial; FF extends rather than refutes. CAPM is theoretically clean equilibrium; FF empirically adds size + value (and later profitability + investment). These extra premia may be risk‑based or behavioral — debate unresolved. Cochrane: "Newton vs Einstein" — CAPM works most of the time; FF more precise at edges.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
 </li>
+
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> A 股 HML 因子 2020-2022 严重负 (成长股大涨, 价值股跑输), 这意味着 Fama-French 在 A 股"失效"?</span><span lang="en"><strong>Q2.</strong> A‑share HML was negative 2020–22 — did FF fail in China?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">不算失效. FF 是统计因子模型, 因子<em>长期为正</em>但短期可负. 2020-2022 茅指数 / 宁组合行情是<em>极端事件</em>, HML 长期均值仍为正. 2023-2024 价值股已回归 (银行、煤炭等大跑赢). 因子投资的精髓是<em>长期持有</em>, 而非短期择时.</p>
-<p lang="en">No. FF factors are positive on average but can be negative short‑run. 2020–22 was "Moutai/CATL bubble"; HML reverted positive 2023–24 (banks, coal outperformed). Factor investing requires long horizons.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> A 股 HML 因子 2020-2022 严重负 (成长股大涨, 价值股跑输), 这意味着 Fama-French 在 A 股"失效"了吗?</span><span lang="en"><strong>Q2.</strong> A‑share HML went negative 2020–22. Did FF fail in China?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不算失效, 是<em>短期偏离均值</em>。</strong> FF 是统计因子模型, 因子<em>长期为正</em>但短期可负。三个角度看:</p>
+<ul lang="zh">
+<li><strong>历史看长期</strong>: 美股 HML 1927-2007 年化 ~5%, 但 1990s 互联网泡沫期连续 5 年 HML 负 (成长股泡沫), 2000 年泡沫破灭后剧烈反弹。A 股 2020-2022 的负 HML 是相同剧本。</li>
+<li><strong>因子周期性</strong>: HML 与宏观流动性周期负相关。流动性宽松 + 利率下行 → 高估值成长股 (低 B/M) 受益 → HML 转负。2023 年起 A 股利率上行 + 政策反垄断 + 估值回归, HML 已经显著回正 (银行 / 煤炭 / 资源股大涨)。</li>
+<li><strong>实证视野</strong>: 因子投资的精髓是<em>长期持有</em>而非短期择时。绝大多数因子基金都接受"5 年回测期 + 容忍 2-3 年回撤"的纪律。</li>
+</ul>
+<p lang="en">No — short‑run deviation. US HML similarly negative through the 1990s tech bubble, rebounded after 2000. A‑share 2020–22 is the same script; 2023+ HML reversed positive (banks, coal, resources outperformed). Factor investing requires multi‑year horizons.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
 </li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> Layer 3 显示长江电力 β = 0.32, CAPM 预测的 $r_e$ = 4.3%, 但实际年化 9.2%。一个分析师据此说"长江电力是市场低估的好股票"。如何反驳 (或支持)?</span><span lang="en"><strong>Q3.</strong> Yangtze Power β = 0.32, CAPM $r_e$ = 4.3%, but realised 9.2%. An analyst calls it "mispriced." Rebut or support.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>反驳角度</strong>: 长江电力的 +4.9 pp α 可能来自<em>因子模型未包括的系统性风险溢价</em>, 而非真正的市场低估:</p>
+<ul lang="zh">
+<li><strong>政策风险溢价</strong>: 公用事业电价受发改委管控, 不像市场化定价的行业。投资者要求政策风险溢价, β 没有反映出来。</li>
+<li><strong>利率敏感性</strong>: 高分红的"债性股票" (债的替代品) 对利率高度敏感, 利率下行受益。2018-2022 中国利率下行, 长江电力受益。这是 utility 股票的"久期溢价"。</li>
+<li><strong>LBA (low-beta anomaly)</strong>: 这是 Frazzini-Pedersen 2014 实证发现的<em>跨市场普遍现象</em>, 不是中国特殊。</li>
+</ul>
+<p lang="zh"><strong>支持角度</strong>: 长江电力的护城河 (三峡水电的独家牌照、长期稳定的现金流、70%+ 分红率) 客观上让它具备<em>难复制的盈利能力</em>, 这种"特许经营"型护城河 (Ch.07 详述) 确实是真实的超额价值来源。</p>
+<p lang="zh"><strong>正确解读</strong>: α &gt; 0 可能是"市场有效但因子不完整"或"市场无效"。要进一步用 FF3 / FF5 跑回归: 如果加上 HML / RMW / CMA 后 α 仍显著, 才能认真说"市场低估"; 如果 α 被新因子吸收, 那就是"因子模型不完整, 不是市场低估"。</p>
+<p lang="en">Rebut: the +4.9 pp α may be policy‑risk premium (regulated tariffs), duration premium (rate sensitivity), or low‑beta anomaly (Frazzini‑Pedersen 2014, cross‑market). Support: monopoly franchise (Three Gorges) + 70%+ payout = real moat (Ch.07). Test: rerun with FF3/FF5 — if α persists after HML/RMW/CMA loadings, "market mispriced" is defensible. If α absorbed, model was incomplete, not market wrong.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 老王说: "我看一只新股票, 没有历史数据, 怎么估它的 β?"</span><span lang="en"><strong>Q4.</strong> Wang asks: "A newly listed stock has no history. How to estimate β?"</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">三种思路:</p>
+<ul lang="zh">
+<li><strong>同行业可比 (peer beta)</strong>: 找 2-3 家成熟的同业上市公司, 取它们 β 的中位数。例如新上市的新能源车公司, 可参考比亚迪 β=1.42、理想 β=1.55、小鹏 β=1.65, 取中位数 ≈ 1.55。</li>
+<li><strong>财务杠杆调整 (Hamada 1972 公式)</strong>: 同行业 β 含杠杆, 不同公司杠杆不同。先用 $\beta_U = \beta_L / [1 + (1 - T)(D/E)]$ "去杠杆" 得无杠杆 β (asset beta), 然后用目标公司的 D/E "加杠杆" 回去: $\beta_L^{\text{new}} = \beta_U [1 + (1 - T)(D/E)^{\text{new}}]$。M2 Ch.02 详述。</li>
+<li><strong>多元线性回归 (用业务结构权重)</strong>: 如果公司有多个业务线 (例如比亚迪是车 + 电池 + 半导体), 估每条业务线的 β, 按业务收入比例加权。</li>
+</ul>
+<p lang="zh"><strong>实务上</strong>, 卖方研究通常用 Bloomberg / Wind 的"行业 β"作为起点, 再做 Hamada 调整 + 业务结构调整 + 主观判断。新股 IPO 后头 6 个月的 β 估计极不可靠 (低样本 + 高波动), 应等积累 36 个月数据后才用 (2.3) 的 OLS 公式。</p>
+<p lang="en">Three paths: (1) peer β median across comparable listed companies; (2) Hamada 1972 — unlever using $\beta_U = \beta_L / [1 + (1-T)(D/E)]$, then relever with target D/E; (3) multi‑segment regression weighted by revenue mix. In practice, sell‑side starts with Bloomberg/Wind industry β, then Hamada + mix + judgment. IPO β estimates are unreliable in the first 6 months; wait for ~36 obs.</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 一家量化基金回测显示 "FF5 五因子组合 + 反转因子" 2010-2023 年化超额回报 8%。基金经理说"我们找到了 alpha 因子"。给出至少三个你会要求验证的事项。</span><span lang="en"><strong>Q5.</strong> A quant fund backtest: FF5 + reversal factor delivered 8% excess return p.a. (2010–23). Manager: "We found alpha." Three things you'd verify.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> Ref</button><div class="quiz-a"><div class="quiz-a-inner">
+<ol lang="zh">
+<li><strong>样本外检验 (out-of-sample)</strong>: 用 2024 年 1-12 月数据回测同一策略, 看是否仍能复制 8%。如果只有 in-sample 表现好, 大概率是"过度拟合" (因子数量多 → 自由度高 → 历史数据中总能找到表面相关性)。学术界要求 OOS 验证, 实务界经常忽略。</li>
+<li><strong>交易成本 / 容量 (capacity)</strong>: 回测用什么手续费? 滑点? 冲击成本? 如果策略要求高频换仓 (例如月度调仓), 实盘交易成本 (含印花税 + 佣金 + 滑点) 在 A 股可达 0.3-0.5% 单边, 一年 12 次换仓即 4-6% — 直接吃掉 8% 超额回报一半以上。再加上规模扩大后冲击成本 (大单买卖推动价格), 容量上限可能很小。</li>
+<li><strong>反转因子定义</strong>: "反转"是 1 月 / 3 月 / 12 月? 与动量因子是否冲突? 如果短期 (1 月) 反转, 这可能是流动性溢价 (短期超跌反弹) 而非真 alpha。Jegadeesh-Titman 1993 发现 3-12 月动量持续, 1 月反转。具体定义决定经济含义。</li>
+<li><strong>因子风险还是 alpha?</strong> 把策略回报按 FF5 + 其他常见因子 (动量、流动性、波动率) 回归, 看 α 是否仍显著。如果回报全被已知因子吸收 — 它不是 alpha, 是 factor exposure。</li>
+<li><strong>幸存者偏差</strong>: 数据库是否含<em>已退市</em>股票? A 股已退市股票 (2018 后增多) 的回报通常是 −90%+, 不含它们会系统性高估策略表现。</li>
+<li><strong>市场状态依赖</strong>: 8% 超额回报是均匀分布还是集中在特定时期? 如果 2010-2014 年化 25%, 2015-2023 年化 1%, 那不是稳健策略, 是<em>历史侥幸</em>。</li>
+</ol>
+<p lang="en">(1) Out‑of‑sample test on 2024 — overfit is common with many factors. (2) Transaction costs &amp; capacity — A‑share round trip 0.3–0.5%; monthly rebalancing eats 4–6%/yr; large size adds impact. (3) Reversal definition — 1‑month is liquidity premium, not alpha. (4) Decompose strategy return on FF5 + momentum + liquidity — if α absorbed it's exposure, not alpha. (5) Survivorship bias — delisted stocks often −90%, missing them inflates results. (6) Regime dependence — is α steady or concentrated in 2010–14 only?</p>
+</div></div>
+<div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓ Mark</button><nav class="chap-nav"><a href="01-mpt.html"><span class="dir">← Prev</span><span class="title">01 · MPT</span></a><a class="next" href="03-emh.html"><span class="dir">Next →</span><span class="title">03 · EMH</span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark complete</span></button>
+<nav class="chap-nav"><a href="01-mpt.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">01 · MPT</span></a><a class="next" href="03-emh.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">03 · EMH</span></a></nav></div>
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>
 <div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>

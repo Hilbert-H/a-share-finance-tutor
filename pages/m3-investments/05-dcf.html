@@ -18,106 +18,389 @@
 <h1><span lang="zh">DCF 估值 — FCFF / FCFE / DDM</span><span lang="en">DCF Valuation</span></h1>
 <p class="lesson-subtitle"><span lang="zh">DCF 是<em>第一性原理估值</em> — 把公司视为未来现金流的发生器, 用对应的折现率折回今天。三个版本: FCFF (公司层面) / FCFE (股权层面) / DDM (分红视角). 理论上等价, 实务取决于公司类型。</span><span lang="en">DCF is first‑principles valuation — discount future cash flows at the matching cost. Three versions: FCFF (firm) / FCFE (equity) / DDM (dividend). Theoretically equivalent; pick by firm type.</span></p>
 
-<section class="objectives"><span class="section-label">Objectives</span>
-<ul><li lang="zh">写出 FCFF / FCFE / DDM 三个公式</li><li lang="zh">用两阶段 DCF 估算茅台</li><li lang="zh">理解永续增长率 g 与折现率 r 的边界 (Gordon 奇点)</li><li lang="zh">做 DCF 敏感性分析 — g 与 r 各 ±100bp 对估值的影响</li>
-<li lang="en">Write FCFF/FCFE/DDM; two‑stage DCF on Moutai; understand $r &gt; g$; sensitivity at ±100bp</li></ul></section>
+<section class="objectives"><span class="section-label" lang="zh">学习目标</span><span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">用 5 步思路从"未来现金流"得到"今天的估值", 不依赖任何金融术语先行</li>
+<li lang="zh">写出 FCFF / FCFE / DDM 三个公式, 并知道何时用哪一个</li>
+<li lang="zh">用两阶段 DCF 估算长江电力和比亚迪两个极端案例</li>
+<li lang="zh">理解永续增长率 g 与折现率 r 的边界 (Gordon 奇点 $r &gt; g$ 必须成立)</li>
+<li lang="zh">做 DCF 敏感性分析 — g 与 r 各 ±100 bp 对估值的影响</li>
+<li lang="zh">理解 DCF 的"反向用法": 反推市场<em>隐含</em>的 g 与 r 假设, 再判断这些假设合不合理</li>
+<li lang="en">Walk from future cash flows to today's value in 5 steps, no jargon required up front</li>
+<li lang="en">Write FCFF / FCFE / DDM and know when to use which</li>
+<li lang="en">Apply two‑stage DCF to two extreme cases: Yangtze Power (stable) and BYD (high growth)</li>
+<li lang="en">Understand the Gordon constraint $r &gt; g$ and the singularity it implies</li>
+<li lang="en">Run ±100 bp sensitivity on $g$ and $r$</li>
+<li lang="en">Use DCF in reverse: decode the market's implied $g$ and $r$, then judge them</li>
+</ul></section>
 
-<section class="layer"><h2><span class="layer-num">Layer 2</span> · <span lang="zh">公式</span><span lang="en">Formulas</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span>
+<span class="en" lang="en"> · Pricing Old Li's noodle stall</span>
+<span class="en" lang="zh"> · 给老李面馆估个值</span></h2>
 
-<p><strong>FCFF (Free Cash Flow to Firm)</strong>:</p>
+<p lang="zh">老王 在 A 股摸爬滚打了几年, 今天碰到一件让他抓耳挠腮的事: 隔壁巷子的 老李 (开了一家小面馆十年) 想退休回老家, 打算把面馆整体转让, 开价 ¥800,000。老王想接, 但他第一次发现"上市公司股票有股价, 不上市的面馆怎么定价"是一个完全不同的问题 — 没有 K 线, 没有研报, 没有市盈率参考。他只能从最朴素的问题开始问。</p>
+<p lang="en">After a few years in A‑shares Old Wang runs into a problem that stumps him. The Old Li who runs a small noodle stall two alleys over is retiring and wants to sell the whole business. Asking price: ¥800,000. Wang wants to buy. For the first time he realizes that "stocks have a quoted price; a private noodle stall has no quote" is an entirely different problem — no candle chart, no analyst reports, no P/E to peek at. He has to start from scratch.</p>
+
+<p lang="zh"><strong>第 1 步 — 这家面馆值多少钱, 取决于什么?</strong> 老王 先想"它有多少资产" — 桌椅、灶具、店铺装修, 大概值十来万。但 老李 摆摆手: "那是清算价。我这店之所以值钱, 不是因为这些桌子, 是因为它<em>每年还能赚钱</em>。" 老王 一下醒了 — 一家会赚钱的店和一堆桌椅, 区别就在于<em>未来还能不能产生现金流</em>。如果给一个永远不赚钱的店, 它就只值清算价; 如果给一个每年都能赚 20 万的店, 它就值很多年的赚钱总和。所以估值的第一个问题是: <strong>未来每年能净拿出多少现金?</strong> 我们暂时给这个数起个名: <strong>自由现金流</strong> (free cash flow) — 把每年挣的钱里, 还要再投回去维持店运转的那部分扣掉, 真正能<em>自由拿走</em>的那部分。</p>
+<p lang="en"><strong>Step 1 — what does the stall's value depend on?</strong> Wang first thinks "what does it own" — tables, stoves, fittings, maybe ¥100k of stuff. Old Li waves it off: "That's liquidation. The stall is worth more because <em>it still makes money every year</em>." Wang gets it: a profitable stall and a pile of tables differ in whether they will <em>generate future cash</em>. A zero‑profit store is worth liquidation; one earning ¥200k a year is worth many years of earnings stacked up. So the first question is: <strong>how much cash can the owner actually pocket each year, after putting back what's needed to keep the business running?</strong> Let's name this provisionally: <strong>free cash flow</strong>.</p>
+
+<p lang="zh"><strong>第 2 步 — 老李 给出五年现金流预测。</strong> 老李 拿出过去十年的账本, 告诉 老王 他对未来五年的估计 (单位: ¥1,000):</p>
+<table>
+<thead><tr><th lang="zh">年</th><th class="num" lang="zh">2026</th><th class="num">2027</th><th class="num">2028</th><th class="num">2029</th><th class="num">2030</th></tr></thead>
+<tbody><tr><td lang="zh">预计自由现金流</td><td class="num">100</td><td class="num">120</td><td class="num">150</td><td class="num">180</td><td class="num">200</td></tr></tbody>
+</table>
+<p lang="zh">"明年大概赚 10 万自由现金, 后年 12 万, 五年后到 20 万 — 因为我把午市加进来了, 加上巷口要修地铁可能带来更多客流。"老王 听完点头, 把这 5 个数字记下来。注意这<em>不是</em>过去, 是<em>未来预测</em>。所有估值都建立在预测之上, 不是历史之上 — 这是 老王 后来要反复提醒自己的事。</p>
+<p lang="en"><strong>Step 2 — Old Li gives a five‑year forecast.</strong> Pulling out ten years of books, Old Li projects (¥1,000): 100, 120, 150, 180, 200. "Next year roughly ¥100k free cash, then 120, 150, 180, and 200 in year five — I'm adding lunch service and the subway construction at the alley mouth will bring more foot traffic." Wang nods and writes the five numbers down. Note: these are <em>forecasts</em>, not history. All valuation lives on forecasts, not on the past — a lesson Wang will need to repeat to himself many times.</p>
+
+<p lang="zh"><strong>第 3 步 — "明年的 10 万"和"今年的 10 万"是一回事吗?</strong> 老王 想了想: 不是。今年的 10 万他可以现在拿去存银行, 一年后变成 10 万 + 利息; 而明年的 10 万要等一年, 还有"万一明年面馆生意垮了"的风险。所以明年的 10 万应当<em>打个折</em>, 折回到今天才能和今天的现金直接比。老王 问: "打多少折?" 老李 也答不上来, 老王 自己琢磨: 这跟两件事有关 — 第一是<em>无风险利率</em> (银行存定期), 第二是<em>这门生意有多不确定</em>。如果开 A 股大盘指数基金, 长期年化大约 8%; 面馆生意比指数还不确定一些, 老王 拍板用 <strong>12%</strong>。这个"打折比例", 也就是把未来现金折回今天的比例, 叫 <strong>折现率</strong> (discount rate)。</p>
+<p lang="en"><strong>Step 3 — is "¥100k next year" the same as "¥100k today"?</strong> Wang thinks: no. ¥100k today can sit in a bank and become ¥100k + interest after a year; ¥100k next year requires waiting, plus the risk the stall might tank. So next year's ¥100k must be <em>discounted</em> to be comparable with today's cash. By how much? Two pieces: a risk‑free rate (bank deposit, ~3%) plus a premium for how risky <em>this business</em> is. An A‑share index returns ~8% long‑run; a single noodle stall is riskier than the index. Wang picks <strong>12%</strong>. That haircut factor is the <strong>discount rate</strong>.</p>
+
+<p lang="zh"><strong>第 4 步 — 把五年现金流折回今天。</strong> 老王 现在有了五年的现金流数字和一个折现率 12%。每一年的现金流要按"折现 n 次"折回今天:</p>
+<ul lang="zh">
+<li>2026 年 ¥100,000, 折一年: $100{,}000 / 1.12 \approx ¥89,286$</li>
+<li>2027 年 ¥120,000, 折两年: $120{,}000 / 1.12^2 \approx ¥95,663$</li>
+<li>2028 年 ¥150,000, 折三年: $150{,}000 / 1.12^3 \approx ¥106,766$</li>
+<li>2029 年 ¥180,000, 折四年: $180{,}000 / 1.12^4 \approx ¥114,392$</li>
+<li>2030 年 ¥200,000, 折五年: $200{,}000 / 1.12^5 \approx ¥113,485$</li>
+</ul>
+<p lang="zh">把五个数加起来: 约 ¥519,592 — 这是<em>未来五年现金流今天的总价值</em>。老王 把它叫做 <strong>显式预测期现值</strong> (PV of explicit forecast)。</p>
+<p lang="en"><strong>Step 4 — discount all five years back.</strong> Each year's cash flow divided by $(1.12)^n$:
+89,286 + 95,663 + 106,766 + 114,392 + 113,485 ≈ <strong>¥519,592</strong>. That's the present value of the explicit five‑year forecast.</p>
+
+<p lang="zh"><strong>第 5 步 — 第五年之后呢? 面馆不会五年后就消失。</strong> 老王 突然意识到一个大问题: 老李 只预测了五年, 但面馆在第 6 年还会继续赚钱, 第 7 年也会。如果忽略五年后的现金流, 估值会严重偏低。但 老王 不可能给未来 50 年逐年预测 — 太遥远, 没意义。怎么办?他用一个简化假设: <em>从第六年起, 面馆现金流以一个稳定速度永远增长</em>。考虑到经济长期增速大约 3% (与通胀和 GDP 增长相当), 老王 假设永续增长率 $g = 3\%$。</p>
+<p lang="zh">第六年的现金流 = 第五年 × (1+3%) = 200,000 × 1.03 = 206,000。"从第六年起永远每年增长 3%"的现金流总价值 (按 12% 折现, 在<em>第五年末</em>时点看), 用一个公式: $\text{TV}_{T} = \mathrm{CF}_{T+1} / (r - g) = 206{,}000 / (0.12 - 0.03) \approx ¥2,288,889$。这个数叫 <strong>终值</strong> (terminal value)。但这是第五年末的价值, 还要折回今天: $2{,}288{,}889 / 1.12^5 \approx ¥1,298,810$。</p>
+<p lang="en"><strong>Step 5 — what about year 6 onward?</strong> The stall doesn't die at year 5. Skipping post‑year‑5 cash flows would severely understate value, but forecasting year by year forever is meaningless. Trick: assume from year 6 onward cash flows grow forever at some steady rate $g$. Given long‑run GDP / inflation, pick $g = 3\%$. Year‑6 cash flow = 200,000 × 1.03 = 206,000. The value of "growing 3% forever from year 6" measured <em>at end of year 5</em> is $\mathrm{TV}_5 = 206{,}000 / (0.12 - 0.03) \approx ¥2,288,889$. That's called the <strong>terminal value</strong>. Discounted back to today: $2{,}288{,}889 / 1.12^5 \approx ¥1,298,810$.</p>
+
+<p lang="zh"><strong>把两块加起来:</strong> $519{,}592 + 1{,}298{,}810 \approx \mathbf{¥1,818,402}$。</p>
+<p lang="zh">老王 倒抽一口气: 老李 开价 ¥800,000, 但按这套算法值 ¥1.8 mn — 接近开价的两倍多。这说明 老李 要么对未来太悲观, 要么是 老王 估错了。老王 又想了一下: 终值占总价值的比例 = 1,298,810 / 1,818,402 ≈ 71%, <em>大头在终值</em>。终值依赖两个假设: 永续增长 $g = 3\%$ 和 折现率 $r = 12\%$。如果 $g$ 改成 1%, $r$ 改成 15%, 终值会大幅缩水。所以这套估值<em>极度敏感</em>于两个数字。</p>
+<p lang="en"><strong>Add the two pieces:</strong> $519{,}592 + 1{,}298{,}810 \approx \mathbf{¥1,818,402}$. Wang inhales: Old Li is asking ¥800k but the model says ~¥1.8m — over double. Either Li is too pessimistic or Wang's numbers are wrong. He notices terminal value is 71% of the total — the assumption $g = 3\%, r = 12\%$ is doing most of the work. Tweak $g$ to 1% and $r$ to 15% and TV collapses. So the model is <em>extremely sensitive</em> to two numbers.</p>
+
+<p lang="zh"><strong>老王 的回顾:</strong> 整个过程他只做了 5 件事 — (1) 公司值钱是因为<em>未来能产生现金</em>; (2) 把未来现金按年预测出来; (3) 给未来现金<em>打个折</em>, 因为今天的钱比未来的钱值钱; (4) 把折好的数加起来 (显式期); (5) 加上"五年后还会继续赚"的<em>终值</em>, 也折回今天。这五步就是 <strong>DCF (discounted cash flow, 现金流折现) 估值法</strong>。Layer 2 会把它写成公式, 引入三个版本: 站在<em>整个公司</em>角度看现金流 (FCFF)、站在<em>股东</em>角度看现金流 (FCFE)、站在<em>分红</em>角度看现金流 (DDM)。Layer 3 会用这一套打两家真实 A 股公司: 长江电力 (像放大版的老李面馆, 稳定永续) 和 比亚迪 (反例: 高增长但高不确定)。</p>
+<p lang="en"><strong>Wang's recap:</strong> he did exactly five things — (1) a company is worth the cash it will <em>produce</em>; (2) forecast that cash year by year; (3) discount future cash back to today because today's cash beats future cash; (4) sum the discounted explicit period; (5) add a <em>terminal value</em> capturing all post‑forecast cash, also discounted. That's <strong>DCF (discounted cash flow) valuation</strong>. Layer 2 formalises it and introduces three views — the whole firm (FCFF), the equity holder only (FCFE), and dividends only (DDM). Layer 3 applies the machinery to two real A‑shares: Yangtze Power (a scaled‑up version of Old Li's stall — stable, long‑lived) and BYD (the opposite — high growth, high uncertainty).</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 把 DCF 拆成 5 步, 用 老李 面馆走通了一遍。现在我们把它写成正式公式, 把"现金流"细分为三种, 把"折现率"对应到三种不同的资金成本。三种 DCF 在<em>无套利</em>假设下数学等价, 实务中根据公司类型选最方便的一种。</p>
+<p lang="en">Layer 1 distilled DCF to 5 steps using Old Li's noodle stall. We now formalise it. "Cash flow" splits into three versions and "discount rate" matches each. Under no‑arbitrage the three are mathematically equivalent; in practice pick the most convenient one for the firm type.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">FCFF — 公司层面的自由现金流折现</span>
+<span class="callout-label" lang="en">FCFF — Free Cash Flow to the Firm</span>
 <div class="eq"><span>$$ V_{\text{firm}} = \sum_{t=1}^{T} \frac{\mathrm{FCFF}_t}{(1+\mathrm{WACC})^t} + \frac{\mathrm{TV}}{(1+\mathrm{WACC})^T} $$</span><span class="num">(5.1)</span></div>
 <div class="eq"><span>$$ \mathrm{TV} = \frac{\mathrm{FCFF}_{T+1}}{\mathrm{WACC} - g} = \frac{\mathrm{FCFF}_T (1+g)}{\mathrm{WACC}-g} $$</span><span class="num">(5.2)</span></div>
-<p>$V_{\text{equity}} = V_{\text{firm}} - \text{Debt} + \text{Cash}$. <span lang="zh">用 WACC 折现 (Ch.M2.03)</span><span lang="en">Discount at WACC.</span></p>
-
-<p><strong>FCFE (Free Cash Flow to Equity)</strong>:</p>
-<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{T} \frac{\mathrm{FCFE}_t}{(1+r_e)^t} + \frac{\mathrm{TV}_e}{(1+r_e)^T} $$</span><span class="num">(5.3)</span></div>
-<p>FCFE = OCF − CapEx + <span lang="zh">净借款</span><span lang="en">Net Borrowing</span>. <span lang="zh">用 $r_e$ (CAPM) 折现</span><span lang="en">Discount at $r_e$.</span></p>
-
-<p><strong>DDM (Dividend Discount Model)</strong> — <span lang="zh">最简单 / 稳定分红公司</span><span lang="en">simplest, for stable dividend firms</span>:</p>
-<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{\infty}\frac{D_t}{(1+r_e)^t} \quad \Rightarrow \quad V = \frac{D_1}{r_e - g} \text{ (Gordon)} $$</span><span class="num">(5.4)</span></div>
-
-<p lang="zh"><strong>三个版本何时用</strong>:</p>
-<table><thead><tr><th><span lang="zh">公司类型</span><span lang="en">Firm</span></th><th><span lang="zh">推荐</span><span lang="en">Use</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">非金融, 资本结构稳定</span><span lang="en">Non‑financial, stable capital</span></td><td>FCFF</td></tr>
-<tr><td><span lang="zh">金融机构 (银行 / 保险)</span><span lang="en">Bank / Insurer</span></td><td>FCFE</td></tr>
-<tr><td><span lang="zh">稳定分红 (公用事业)</span><span lang="en">Stable dividend (utilities)</span></td><td>DDM</td></tr>
-<tr><td><span lang="zh">未分红高速成长 (科技)</span><span lang="en">Non‑dividend growth (tech)</span></td><td>FCFF <span lang="zh">(用 EBITDA 倍数佐证)</span><span lang="en">(cross‑check with multiples)</span></td></tr>
-</tbody></table>
-
-<p lang="zh"><strong>两阶段 DCF</strong> — 处理增长非线性:</p>
-<ul lang="zh"><li>阶段 1: 显式预测 5-10 年 ($g_1$ 高速)</li><li>阶段 2: 永续增长 ($g_2 \le$ 长期 GDP 增长)</li><li>TV 通常占 V 的 50-80% — 故终值假设极其重要</li></ul>
-<p lang="en">Two‑stage: explicit 5–10 years high growth + perpetual at $g_2 \leq$ long‑run GDP. TV typically 50–80% of value — assumption is critical.</p>
-</section>
-
-<section class="layer"><h2><span class="layer-num">Layer 3</span> · <span lang="zh">茅台 DCF 实操</span><span lang="en">Moutai DCF</span></h2>
-<div class="case"><div class="case-head"><span class="ticker">SH·600519</span><span class="company"><span lang="zh">贵州茅台 — FCFF 两阶段</span><span lang="en">Moutai — two‑stage FCFF</span></span></div>
-<p lang="zh"><strong>输入估算</strong>:</p>
-<ul lang="zh">
-<li>FY2023 营收 ~1,500 亿, FCFF ~700 亿 (经营现金流 - CapEx + 税后利息)</li>
-<li>阶段 1 (2024-2028): 每年 g_1 = 12% (假设, 反映品牌缓慢扩张)</li>
-<li>阶段 2 (2029+): g_2 = 3% (永续, 接近通胀)</li>
-<li>WACC ≈ 8% (Ch.M2.03)</li>
-</ul>
-<p lang="zh"><strong>显式 5 年现金流</strong>:</p>
-<div class="case-table"><table><thead><tr><th><span lang="zh">年</span><span lang="en">Year</span></th><th class="num">FCFF (<span lang="zh">亿</span><span lang="en">¥bn</span>)</th><th class="num">PV @8% (<span lang="zh">亿</span><span lang="en">¥bn</span>)</th></tr></thead><tbody>
-<tr><td>2024</td><td class="num">784</td><td class="num">726</td></tr>
-<tr><td>2025</td><td class="num">878</td><td class="num">753</td></tr>
-<tr><td>2026</td><td class="num">984</td><td class="num">781</td></tr>
-<tr><td>2027</td><td class="num">1,102</td><td class="num">810</td></tr>
-<tr><td>2028</td><td class="num">1,234</td><td class="num">840</td></tr>
-<tr><td><strong><span lang="zh">五年现值合计</span><span lang="en">5y PV total</span></strong></td><td></td><td class="num up"><strong>3,910</strong></td></tr>
-</tbody></table></div>
-<p lang="zh"><strong>终值 (TV)</strong>:</p>
-<p>$\mathrm{FCFF}_{2029} = 1,234 \times 1.03 = 1,271$ 亿</p>
-<p>$\mathrm{TV} = 1,271 / (0.08 - 0.03) = 25,420$ 亿</p>
-<p>PV(TV) = $25,420 / 1.08^5 = 17,308$ 亿</p>
-
-<p lang="zh"><strong>合计企业价值</strong>: $V_{\text{firm}} = 3,910 + 17,308 = 21,218$ 亿</p>
-<p lang="zh">茅台几乎无债, $V_{\text{equity}} \approx V_{\text{firm}} + $ 现金 ~700 ≈ 21,900 亿 → 每股价值 ≈ 21,900 / 12.56 (亿股) ≈ 1,744 元</p>
-
-<p lang="zh"><strong>对比市场</strong>: 2024 茅台股价 ~1,500-1,700 元. DCF 隐含的估值与市场<em>接近</em>, 但<em>极度依赖假设</em>:</p>
-<div class="case-table"><table><thead><tr><th><span lang="zh">假设</span><span lang="en">Assumption</span></th><th class="num"><span lang="zh">基准</span><span lang="en">Base</span></th><th class="num">+100bp</th><th class="num">-100bp</th></tr></thead><tbody>
-<tr><td>g_2</td><td class="num">3%</td><td class="num up">~2,300 <span lang="zh">/股</span></td><td class="num down">~1,400 <span lang="zh">/股</span></td></tr>
-<tr><td>WACC</td><td class="num">8%</td><td class="num down">~1,420 <span lang="zh">/股</span></td><td class="num up">~2,300 <span lang="zh">/股</span></td></tr>
-</tbody></table></div>
-<p lang="zh"><strong>结论</strong>: ±100bp 的关键假设变化, 估值波动 ±25-30%. <em>DCF 是<em>纪律工具</em>而非精确预测</em> — 用来分析市场隐含的 g 与 r, 不是给出"真实价值".</p>
-<p lang="en">Inputs: FCFF 2023 ~¥70bn, stage‑1 g₁=12% (5y), g₂=3%, WACC=8%. 5y PV ~¥391bn; TV PV ~¥1,731bn; total ~¥2,190bn → ~¥1,744/share. Market 2024 ¥1,500–1,700. Sensitivity: ±100bp on g₂ or WACC moves value ±25–30%. DCF is a discipline tool to decode market's implicit assumptions, not a precision oracle.</p>
+<p lang="zh">$V_{\text{equity}} = V_{\text{firm}} - \text{Debt} + \text{Cash}$。FCFF = 税后经营利润 + 折旧摊销 − CapEx − 营运资本变化。折现率用 WACC (Module M2 Ch.03), 因为 FCFF 是<em>债主和股东共同分享</em>的现金。</p>
+<p lang="en">$V_{\text{equity}} = V_{\text{firm}} - \text{Debt} + \text{Cash}$. FCFF = NOPAT + D&amp;A − CapEx − ΔWC. Discount at WACC (Module M2 Ch.03) because FCFF is shared by debt and equity.</p>
+<span class="cite">Damodaran, <em>Investment Valuation</em> (3rd ed.) Ch. 14–15 · Koller, Goedhart &amp; Wessels, <em>Valuation</em> (McKinsey) Part 2 · CFA Curriculum Level II</span>
 </div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">FCFE — 股东层面的自由现金流折现</span>
+<span class="callout-label" lang="en">FCFE — Free Cash Flow to Equity</span>
+<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{T} \frac{\mathrm{FCFE}_t}{(1+r_e)^t} + \frac{\mathrm{TV}_e}{(1+r_e)^T} $$</span><span class="num">(5.3)</span></div>
+<p lang="zh">FCFE = FCFF − 利息 (1−税率) + 净借款。折现率用股权成本 $r_e$ (CAPM)。FCFE 是<em>债主拿完之后剩给股东</em>的现金, 所以只用股权成本折现。两种方法在<em>稳定资本结构</em>假设下等价。</p>
+<p lang="en">FCFE = FCFF − Interest(1−τ) + Net Borrowing. Discount at cost of equity $r_e$ (CAPM). FCFE is "what's left after the bondholders are paid," so only the equity cost applies. Equivalent to FCFF under stable capital structure.</p>
+</div>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">DDM — 股利折现 (Gordon)</span>
+<span class="callout-label" lang="en">DDM — Dividend Discount (Gordon)</span>
+<div class="eq"><span>$$ V_{\text{equity}} = \sum_{t=1}^{\infty}\frac{D_t}{(1+r_e)^t} \quad \Rightarrow \quad V = \frac{D_1}{r_e - g} $$</span><span class="num">(5.4)</span></div>
+<p lang="zh">最简单, 用于稳定分红公司 (公用事业、成熟银行)。前提: $r_e &gt; g$ (Gordon 奇点); 公司分红政策稳定且占盈利比例稳定。Gordon (1959) 推导。</p>
+<p lang="en">Simplest; for steady‑dividend firms (utilities, mature banks). Requires $r_e &gt; g$ (Gordon singularity); stable payout ratio. Gordon (1959).</p>
+</div>
+
+<h3 lang="zh">三个版本何时用</h3>
+<h3 lang="en">When to use which</h3>
+
+<table>
+<thead><tr><th><span lang="zh">公司类型</span><span lang="en">Firm type</span></th><th><span lang="zh">推荐</span><span lang="en">Use</span></th><th><span lang="zh">原因</span><span lang="en">Why</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">非金融, 资本结构稳定</span><span lang="en">Non‑financial, stable capital</span></td><td>FCFF</td><td><span lang="zh">资本结构与经营分离, WACC 稳定</span><span lang="en">Operations separable from capital structure</span></td></tr>
+<tr><td><span lang="zh">金融机构 (银行 / 保险)</span><span lang="en">Bank / Insurer</span></td><td>FCFE</td><td><span lang="zh">"债"是经营原料 (存款), WACC 无意义</span><span lang="en">"Debt" is operating input (deposits); WACC meaningless</span></td></tr>
+<tr><td><span lang="zh">稳定分红 (公用事业)</span><span lang="en">Stable dividend (utilities)</span></td><td>DDM</td><td><span lang="zh">分红 ≈ FCFE, 数据可直接观测</span><span lang="en">Dividend ≈ FCFE; observable</span></td></tr>
+<tr><td><span lang="zh">高速成长 / 无分红 (科技)</span><span lang="en">High growth, no dividend (tech)</span></td><td>FCFF + <span lang="zh">倍数佐证</span><span lang="en">multiples cross‑check</span></td><td><span lang="zh">DCF 对成长公司敏感, 用多种方法三角化</span><span lang="en">DCF sensitive on growth; triangulate</span></td></tr>
+<tr><td><span lang="zh">资本结构剧烈变动 (LBO)</span><span lang="en">Changing capital structure (LBO)</span></td><td>APV</td><td><span lang="zh">把税盾与基础经营分别折现 (本课不展开)</span><span lang="en">Discount tax shield separately (not covered here)</span></td></tr>
+</tbody>
+</table>
+
+<h3 lang="zh">两阶段 DCF — 处理增长非线性</h3>
+<h3 lang="en">Two‑stage DCF — handling non‑linear growth</h3>
+
+<p lang="zh">大多数公司不可能永远以高增长率扩张, 也不可能立刻进入永续平稳期。两阶段模型把生命周期分成:</p>
+<ul lang="zh">
+<li><strong>阶段 1 — 显式预测期 (5-10 年)</strong>: 高增长 $g_1$, 一年一年算清楚。一般用同行业头部公司当前增长速度。</li>
+<li><strong>阶段 2 — 永续期</strong>: 增长降到 $g_2$, 通常 $\le$ 长期 GDP 增长 (3-5%, 取实际 / 名义口径需一致)。超过 GDP 永续增长在数学上不允许 — 否则公司终将吞下整个经济。</li>
+<li><strong>TV 占比</strong>: 终值通常占总估值 50-80%, 故终值假设极其重要。</li>
+</ul>
+<p lang="en">Most firms can't grow fast forever and don't instantly settle into perpetual steady state. Two‑stage splits the life cycle:</p>
+<ul lang="en">
+<li><strong>Stage 1 — explicit forecast (5–10 yr)</strong>: high $g_1$, year by year.</li>
+<li><strong>Stage 2 — perpetuity</strong>: $g_2 \le$ long‑run GDP (3–5%, real/nominal consistent). Higher than GDP forever is mathematically forbidden — the firm would consume the economy.</li>
+<li><strong>TV share</strong>: terminal value usually 50–80% of total value; that assumption is the lever.</li>
+</ul>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">终值的两种算法</span>
+<span class="callout-label" lang="en">Two approaches to TV</span>
+<div class="eq"><span>$$ \text{TV}^{\text{Gordon}}_T = \frac{\mathrm{FCFF}_{T+1}}{\mathrm{WACC} - g} \quad ; \quad \text{TV}^{\text{exit}}_T = \mathrm{EBITDA}_T \times M_{\text{peer}} $$</span><span class="num">(5.5)</span></div>
+<p lang="zh">Gordon 永续法基于 g 假设; 退出倍数法 (exit multiple) 用同行业可比公司当前 EV/EBITDA 倍数 $M_{\text{peer}}$。两种应当交叉验证 — 若差距 &gt; 30%, 说明 g 与倍数不一致, 需要重新审视假设。Damodaran 推荐至少做两种, 取范围而非点估计。</p>
+<p lang="en">Gordon perpetuity uses $g$; exit multiple uses peer EV/EBITDA. Cross‑check: a &gt;30% gap signals inconsistent assumptions. Damodaran recommends running both and reporting a range, not a point.</p>
+</div>
+
+<h3 lang="zh">敏感性分析</h3>
+<h3 lang="en">Sensitivity analysis</h3>
+
+<p lang="zh">DCF 输入有 4 个一阶杠杆: $g_1$ (高速期增长), $g_2$ (永续增长), $r$ (折现率), $T$ (高速期长度)。标准实务是做 <strong>tornado chart</strong>: 每个输入 ±100bp, 看输出 (估值 / 股) 移动多少, 按移动幅度排序。一般顺序是 $r &gt; g_2 &gt; g_1 \approx T$。</p>
+<p lang="en">DCF has 4 first‑order levers: $g_1, g_2, r, T$. Standard practice is a tornado chart: ±100bp each, sorted by output sensitivity. Typical order $r &gt; g_2 &gt; g_1 \approx T$.</p>
+
+<div class="eq"><span>$$ \frac{\partial V}{\partial g_2} \bigg|_{g_2=3\%, r=8\%} = \frac{V_{\text{TV component}}}{r - g_2} \cdot (1 + \mathrm{small}) $$</span><span class="num">(5.6)</span></div>
+
+<p lang="zh">在分母 $r - g_2$ 接近 0 时 (例如 $r = 9\%, g_2 = 7\%$), 敏感性<em>爆炸</em> — 这就是为什么实务上避免让 $g_2$ 接近 $r$。同样地, 当 $g_2 \to r$, 估值发散到无穷大 — Gordon 奇点。</p>
+<p lang="en">As $r - g_2 \to 0$, sensitivity explodes — why practitioners keep $g_2$ well below $r$. At $g_2 \to r$ value diverges — the Gordon singularity.</p>
 </section>
 
-<h2><span lang="zh">检验题</span><span lang="en">Quizzes</span></h2>
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">把 老李 面馆放大 N 倍, 你得到一家稳定永续型的 A 股公司 — <strong>长江电力 (600900)</strong>: 三峡水电站的运营方, 现金流稳定, 几乎没有变动成本, 类比"全国最大的一家面馆, 不愁客流, 不怕原料涨价"。反过来, <strong>比亚迪 (002594)</strong> 是面馆的反面: 高速成长, 重资本投入, 未来 5 年现金流极度依赖电动车销量增速 — 老李 面馆五年现金流 100→200 的不确定性, 在 比亚迪 身上被放大千倍。我们用同一套 DCF 框架打这两家。</p>
+<p lang="en">Scale Old Li's noodle stall by N and you get a steady, long‑lived A‑share — <strong>Yangtze Power (600900)</strong>: operator of the Three Gorges hydropower complex, near‑zero variable cost, stable demand. The opposite extreme is <strong>BYD (002594)</strong>: high growth, capital‑heavy, cash flows utterly dependent on EV unit growth. Old Li's 100→200 forecast uncertainty is magnified a thousand times on BYD's books. Same DCF framework, opposite cases.</p>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SH·600900</span>
+<span class="company"><span lang="zh">长江电力 — DDM / 稳定 FCFE</span><span lang="en">Yangtze Power — DDM / stable FCFE</span></span>
+<span class="period">FY2023 · <span lang="zh">近似数据</span><span lang="en">approximate</span></span>
+</div>
+<p lang="zh">长江电力是水电运营商, 一旦水电站建成, 后期 CapEx 极低 (主要是检修), 现金流极度稳定。这种公司天然适合 DDM 或稳定 FCFE 模型。</p>
+<p lang="en">Hydropower operator. Once dams are built, ongoing CapEx is minimal (maintenance only); cash flows are exceptionally stable. Tailor‑made for DDM / stable FCFE.</p>
+
+<p lang="zh"><strong>输入估算 (近似数据, 实操用年报)</strong>:</p>
+<ul lang="zh">
+<li>FY2023 营收 ~780 亿, 净利 ~270 亿, 股利支付率约 70%, 即每年分红 ~190 亿</li>
+<li>总股本 ~245 亿股 → 每股股利 $D_0 \approx 0.78$ 元</li>
+<li>近 5 年股利复合增长 ~6% (受益于 2022 年溧阳与乌东德电站并表); 假设未来 5 年 $g_1 = 6\%$, 之后 $g_2 = 3\%$ (与长期 GDP 一致)</li>
+<li>$r_e$ 用 CAPM: 无风险利率 ~2.8% (10 年期国债), 公用事业 $\beta \approx 0.6$, 市场风险溢价 ~6% → $r_e = 2.8\% + 0.6 \times 6\% = 6.4\%$。保守取 $r_e = 7\%$。</li>
+</ul>
+
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">年</span><span lang="en">Year</span></th>
+<th class="num"><span lang="zh">每股股利 ¥</span><span lang="en">DPS ¥</span></th>
+<th class="num"><span lang="zh">折现因子 @7%</span><span lang="en">DF @7%</span></th>
+<th class="num"><span lang="zh">现值 ¥</span><span lang="en">PV ¥</span></th>
+</tr></thead><tbody>
+<tr><td>2024</td><td class="num">0.827</td><td class="num">0.935</td><td class="num">0.773</td></tr>
+<tr><td>2025</td><td class="num">0.876</td><td class="num">0.873</td><td class="num">0.765</td></tr>
+<tr><td>2026</td><td class="num">0.929</td><td class="num">0.816</td><td class="num">0.758</td></tr>
+<tr><td>2027</td><td class="num">0.985</td><td class="num">0.763</td><td class="num">0.751</td></tr>
+<tr><td>2028</td><td class="num">1.044</td><td class="num">0.713</td><td class="num">0.744</td></tr>
+<tr><td><strong><span lang="zh">五年合计</span><span lang="en">5y total</span></strong></td><td></td><td></td><td class="num up"><strong>3.791</strong></td></tr>
+</tbody></table></div>
+
+<p lang="zh"><strong>终值 (Gordon)</strong>: $D_{2029} = 1.044 \times 1.03 = 1.075$ 元/股</p>
+<p>$\mathrm{TV}_{2028} = 1.075 / (0.07 - 0.03) = 26.88$ 元/股</p>
+<p>$\mathrm{PV}(\mathrm{TV}) = 26.88 / 1.07^5 \approx 19.16$ 元/股</p>
+<p lang="zh"><strong>每股价值</strong>: $V = 3.791 + 19.16 \approx 22.95$ 元</p>
+<p lang="zh"><strong>对比市场</strong>: 2024 年长江电力股价波动在 24-30 元之间, 中枢约 27 元。DCF 隐含 ~23 元, 略低于市场。这意味着市场<em>隐含</em>的 $g_2$ 比我们假设的 3% 高一些, 或 $r_e$ 比 7% 低一些 — 比如市场假设 $g_2 = 4\%$ 时, 估值 = 0.78×1.06 / (0.07-0.04) + ... 大约 32 元/股。所以市场实质在 pricing 一个介于 3% 和 4% 之间的永续增长, 折现率约 7%。</p>
+<p lang="en">Inputs: FY2023 dividend ~¥0.78/share; recent growth ~6% (helped by Wudongde and Baihetan dam consolidations); $g_1 = 6\%$ for 5y, $g_2 = 3\%$; $r_e = 7\%$ (CAPM with utility β ≈ 0.6). 5y PV ≈ ¥3.79; TV PV ≈ ¥19.16; total ≈ <strong>¥22.95</strong>. Market 2024: ¥24–30 (mid ~¥27). DCF below market — market implies $g_2 \approx 3.5–4\%$ or $r_e \approx 6.5\%$. Reverse‑engineering surfaces market's hidden assumptions.</p>
+
+<p lang="zh"><strong>敏感性</strong>:</p>
+<div class="case-table"><table><thead><tr><th><span lang="zh">假设</span><span lang="en">Assumption</span></th><th class="num"><span lang="zh">基准</span><span lang="en">Base</span></th><th class="num">+100bp</th><th class="num">−100bp</th></tr></thead><tbody>
+<tr><td>$g_2$</td><td class="num">3%</td><td class="num up">~32.5</td><td class="num down">~18.1</td></tr>
+<tr><td>$r_e$</td><td class="num">7%</td><td class="num down">~17.8</td><td class="num up">~33.1</td></tr>
+</tbody></table></div>
+<p lang="zh">±100bp 让估值波动 ±25-40%。结论与 老李 面馆相同 — 终值假设主导。</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600900" target="_blank" rel="noopener">
+<span lang="zh">巨潮 600900 信息披露 →</span><span lang="en">Cninfo 600900 disclosure →</span>
+</a>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker">SZ·002594</span>
+<span class="company"><span lang="zh">比亚迪 — 两阶段 FCFF, 高成长不确定</span><span lang="en">BYD — two‑stage FCFF, high‑growth uncertainty</span></span>
+<span class="period">FY2023 · <span lang="zh">近似数据</span><span lang="en">approximate</span></span>
+</div>
+<p lang="zh">比亚迪 是 老李 面馆的反例 — 高速增长但前景不确定。2023 年营收 ~6,000 亿, 销量近 300 万台。"未来五年还能这样增长吗?"是估值的核心问题。我们用两个增长情景对比, 看 DCF 如何同时给出"乐观值"和"悲观值"。</p>
+<p lang="en">BYD is Old Li's mirror image — explosive growth, uncertain future. FY2023 revenue ~¥600bn, near 3m vehicles. "Can growth like this continue five more years?" is the valuation question. We run two growth scenarios and read off optimistic and pessimistic values.</p>
+
+<p lang="zh"><strong>共同假设</strong>: FY2023 FCFF ~250 亿 (经营现金流 ~1,700 亿, CapEx ~1,300 亿, 加回部分税后利息)。WACC ≈ 9% (Module M2 Ch.03; β ≈ 1.2, $r_e ≈ 10\%$, $r_d (1-\tau) ≈ 3.5\%$, D/V ~25%)。</p>
+<p lang="en">Common inputs: FY2023 FCFF ~¥25bn (CFO ~¥170bn, CapEx ~¥130bn, plus tax‑adjusted interest add‑back). WACC ≈ 9%.</p>
+
+<p lang="zh"><strong>情景 A (乐观, 海外占有率持续提升)</strong>: $g_1 = 20\%$ 持续 5 年, $g_2 = 4\%$</p>
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">年</span><span lang="en">Year</span></th>
+<th class="num">FCFF (¥bn)</th>
+<th class="num">PV @9% (¥bn)</th>
+</tr></thead><tbody>
+<tr><td>2024</td><td class="num">300</td><td class="num">275</td></tr>
+<tr><td>2025</td><td class="num">360</td><td class="num">303</td></tr>
+<tr><td>2026</td><td class="num">432</td><td class="num">334</td></tr>
+<tr><td>2027</td><td class="num">518</td><td class="num">367</td></tr>
+<tr><td>2028</td><td class="num">622</td><td class="num">404</td></tr>
+<tr><td><strong><span lang="zh">5y PV</span></strong></td><td></td><td class="num up"><strong>1,683</strong></td></tr>
+</tbody></table></div>
+<p>$\mathrm{TV}_{2028} = 622 \times 1.04 / (0.09 - 0.04) = 12{,}938$ bn</p>
+<p>$\mathrm{PV}(\mathrm{TV}) = 12{,}938 / 1.09^5 \approx 8{,}411$ bn</p>
+<p lang="zh"><strong>$V_{\text{firm}}^{A} \approx 1{,}683 + 8{,}411 \approx 10{,}094$ 亿</strong>。扣净债务 ~600 亿 → $V_{\text{equity}}^A \approx 9{,}494$ 亿 ÷ 29 亿股 → <strong>~327 元/股</strong>。</p>
+
+<p lang="zh"><strong>情景 B (悲观, 价格战压制利润率)</strong>: $g_1 = 8\%$ 持续 5 年, $g_2 = 3\%$</p>
+<div class="case-table"><table><thead><tr>
+<th><span lang="zh">年</span><span lang="en">Year</span></th>
+<th class="num">FCFF (¥bn)</th>
+<th class="num">PV @9% (¥bn)</th>
+</tr></thead><tbody>
+<tr><td>2024</td><td class="num">270</td><td class="num">248</td></tr>
+<tr><td>2025</td><td class="num">292</td><td class="num">245</td></tr>
+<tr><td>2026</td><td class="num">315</td><td class="num">243</td></tr>
+<tr><td>2027</td><td class="num">340</td><td class="num">241</td></tr>
+<tr><td>2028</td><td class="num">368</td><td class="num">239</td></tr>
+<tr><td><strong><span lang="zh">5y PV</span></strong></td><td></td><td class="num up"><strong>1,216</strong></td></tr>
+</tbody></table></div>
+<p>$\mathrm{TV}_{2028} = 368 \times 1.03 / (0.09 - 0.03) = 6{,}317$ bn</p>
+<p>$\mathrm{PV}(\mathrm{TV}) = 6{,}317 / 1.09^5 \approx 4{,}108$ bn</p>
+<p lang="zh"><strong>$V_{\text{firm}}^{B} \approx 1{,}216 + 4{,}108 \approx 5{,}324$ 亿</strong>。$V_{\text{equity}}^B \approx 4{,}724$ 亿 ÷ 29 亿股 → <strong>~163 元/股</strong>。</p>
+
+<p lang="zh"><strong>两个情景的差异: 327 vs 163, 整整 2 倍。</strong>这就是高成长公司 DCF 的本质 — 不是给"一个数", 而是给"一个区间"。市场给比亚迪的当前股价 (~250 元) 实质处于乐观与悲观情景之间, 隐含市场认为概率分布大致一半对一半。</p>
+<p lang="en">Optimistic ¥327/share vs pessimistic ¥163/share — exactly 2× difference. That's the truth of DCF for growth firms: not a number, a range. BYD's mid‑¥250 market price sits between the two, implying the market roughly 50/50 weights the scenarios.</p>
+
+<p lang="zh"><strong>核心教训</strong>: 长江电力 DCF 不确定性来自 $g_2$ 和 $r_e$; 比亚迪 DCF 不确定性来自 $g_1$ 本身。这两类不确定性的处理方法不同 — 第一类做敏感性, 第二类做<em>情景分析</em>。</p>
+<p lang="en">Yangtze Power's DCF uncertainty lives in $g_2$ and $r_e$ — handled by sensitivity. BYD's lives in $g_1$ itself — handled by scenario analysis.</p>
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002594" target="_blank" rel="noopener">
+<span lang="zh">巨潮 002594 信息披露 →</span><span lang="en">Cninfo 002594 disclosure →</span>
+</a>
+</div>
+
+<p lang="zh"><strong>回到 老王</strong>: 长江电力 vs 比亚迪 的对比让 老王 重新理解了 老李 面馆 — 它在估值上更像长江电力 (稳定永续) 而非比亚迪。但 老李 面馆没有上市流通, 没有"对手价", 老王 算出的 ¥1.8m 只是他<em>自己</em>的估值。如果他比 老李 更看好巷口地铁施工带来的客流, 那他算出的数会更高; 如果他担心 老李 走后味道走样, 那他算出的数会更低。DCF 不是预测, 是<em>纪律</em> — 它强迫你把所有假设摊在桌上, 而不是凭感觉拍 ¥800,000 这个数。</p>
+<p lang="en">Back to Old Wang: comparing Yangtze Power and BYD reframes Old Li's stall — it resembles Yangtze Power (stable, long‑lived), not BYD. But the stall has no quoted price; Wang's ¥1.8m is <em>his</em> valuation. Bullish on the new subway? Number goes higher. Worried Old Li's recipe walks out with him? Lower. DCF isn't prediction — it's <em>discipline</em>: it forces every assumption onto the table instead of pulling ¥800,000 out of the air.</p>
+
+<p class="muted measure" lang="zh">数据来源: 长江电力、比亚迪 2023 年年度报告。数字为整数级近似, 用于教学; 实操请用原始披露。</p>
+<p class="muted measure" lang="en">Sources: 2023 annual reports of Yangtze Power and BYD. Values rounded for teaching; pull originals for live work.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+<div class="model-card"><span class="roman">i</span><div>
+<h4><span lang="zh">第一性原理估值</span><span lang="en">First‑principles valuation</span></h4>
+<p lang="zh">公司价值 ≡ 未来自由现金流折现总和。所有其他估值方法都是这条原理的近似或捷径。</p>
+<p lang="en">Firm value ≡ discounted sum of future free cash flows. Every other method is an approximation or shortcut.</p>
+</div></div>
+<div class="model-card"><span class="roman">ii</span><div>
+<h4><span lang="zh">敏感性 vs 情景</span><span lang="en">Sensitivity vs scenario</span></h4>
+<p lang="zh">稳定公司: 敏感性 (输入 ±100bp)。高成长公司: 情景分析 (乐观 / 悲观结构性差异)。两者搞混会得出错误的结论。</p>
+<p lang="en">Stable firms: sensitivity (±100 bp). Growth firms: scenarios (structural alternatives). Conflating them yields wrong conclusions.</p>
+</div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted">
+<span lang="zh">先自己想清楚再展开答案。每题至少一个反直觉点。</span>
+<span lang="en">Think before unfolding. Every prompt has at least one counterintuitive twist.</span>
+</p>
+
 <ol class="quiz quiz-list">
 
 <li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 茅台 DCF 中 TV 占总价值 80%. 这是否意味着"DCF 没用, 因为太依赖终值"?</span><span lang="en"><strong>Q1.</strong> TV is 80% of DCF value. Does this mean DCF is "useless because too TV‑dependent"?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">非也. TV 高占比是<em>所有</em>长寿命资产 (永续公司, 长生命周期项目) 的<em>数学必然</em>. 例: 即使你能精确预测前 10 年现金流, 终值反映"未来 30+ 年的折现现值"— 任何稳定经营的公司, 后 30 年现金流加总都会很大.</p>
-<p lang="zh">关键不是 "TV 占比高所以 DCF 无效", 而是<em>注意 TV 假设的合理性</em>:</p>
-<ul lang="zh"><li>$g_2 \le$ 长期 GDP 增长率 (实际 3-5%)</li><li>$r$ 与公司风险匹配</li><li>退出倍数法 (exit multiple) 作为 alternative: $TV = EBITDA_T \times $ 行业可比倍数</li><li>多种 TV 估算交叉验证</li></ul>
-<p lang="en">No — TV being large is mathematically inherent for long‑lived assets. Key is to vet TV assumptions: $g_2 \le$ GDP growth; $r$ matches risk; cross‑check with exit multiple ($EBITDA_T \times $ peer multiple); triangulate methods.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 比亚迪 DCF 中 TV 占总价值 80%。这是否意味着"DCF 没用, 因为太依赖终值"?</span><span lang="en"><strong>Q1.</strong> TV is 80% of BYD's DCF value. Does this mean DCF is "useless because too TV‑dependent"?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">非也。TV 高占比是<em>所有</em>长寿命资产 (永续公司、长生命周期项目) 的<em>数学必然</em>。即使你能精确预测前 10 年现金流, 终值反映"未来 30+ 年的折现现值" — 任何稳定经营的公司, 后 30 年现金流加总都会很大。</p>
+<p lang="zh">关键不是"TV 占比高所以 DCF 无效", 而是<em>注意 TV 假设的合理性</em>:</p>
+<ul lang="zh">
+<li>$g_2 \le$ 长期 GDP 增长率 (实际 3-5%)。任何高于 GDP 的永续假设都数学违法。</li>
+<li>$r$ 与公司风险匹配 (β、行业、规模溢价)。</li>
+<li>退出倍数法 (exit multiple) 作为 alternative: $\text{TV} = \text{EBITDA}_T \times M_{\text{peer}}$。两种方法 ±30% 以内可接受, 大于 30% 重新审视。</li>
+<li>多种方法交叉验证 (DCF + 倍数 + 资产法), 给区间而非点估计。</li>
+</ul>
+<p lang="en">No — TV being large is mathematically inherent for long‑lived assets. Key is to vet TV assumptions: $g_2 \le$ GDP growth; $r$ matches risk; cross‑check with exit multiple ($\text{EBITDA}_T \times $ peer multiple). Triangulate methods; report a range, not a point.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
 
 <li class="quiz-item" data-qid="q2" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 银行用 FCFF 而非 FCFE 估值会犯什么错?</span><span lang="en"><strong>Q2.</strong> Why does FCFF fail for banks?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">银行的"债"是<em>业务原料</em> (存款 = 银行经营的输入), 不是<em>融资</em>. FCFF 公式假设 "债是公司层面的融资, 与经营独立" — 这对银行不成立. WACC 对银行也几乎无意义 (D/E 12+ 让权重错乱). 正确: 用 FCFE = 净利 − 资本变化 (反映保留资本支持业务增长), 用 $r_e$ 折现. M2 Ch.03 详述。</p>
-<p lang="en">For banks, deposits = business input, not financing. FCFF assumes capital structure is separable from operations — fails. Use FCFE = NI − ΔCapital, discount at $r_e$. M2 Ch.03 develops.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 银行用 FCFF 而非 FCFE 估值会犯什么错? WACC 在银行身上为何"几乎无意义"?</span><span lang="en"><strong>Q2.</strong> Why does FCFF fail for banks? Why is WACC "almost meaningless" for them?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">银行的"债"是<em>业务原料</em> (存款 = 银行经营的输入), 不是<em>融资</em>。FCFF 公式假设"债是公司层面的融资, 与经营独立" — 这对银行不成立。具体:</p>
+<ul lang="zh">
+<li><strong>D/E 极端</strong>: 银行 D/E 通常 10:1 到 12:1。WACC 几乎完全由 $r_d$ 主导, $r_e$ 权重小到失去意义。</li>
+<li><strong>"借款"等于"营收来源"</strong>: 把存款看作债, FCFF 公式里需要扣"利息"才算自由 — 但对银行来说利息就是它的主营业务成本之一, 双重计算。</li>
+<li><strong>资本监管</strong>: 银行必须保持核心一级资本比率 ≥ 8% (Basel III)。这意味着增长需要保留资本 — FCFE = NI − ΔCapital 反映这一点, FCFF 不反映。</li>
+</ul>
+<p lang="zh">正确: 用 FCFE = NI − ΔCapital (反映保留资本支持业务增长), 用 $r_e$ (CAPM) 折现。M2 Ch.03 详述; CFA Curriculum Level II 也用银行作为 FCFE 的标准案例。</p>
+<p lang="en">Banks' deposits are business inputs, not financing. FCFF assumes separable capital structure — fails. D/E ~10–12; WACC dominated by $r_d$, $r_e$ vanishes. Capital regulation (Basel III ≥8% CET1) forces growth to consume retained capital. Use FCFE = NI − ΔCapital, discount at $r_e$. CFA L II uses banks as the canonical FCFE case.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
 
 <li class="quiz-item" data-qid="q3" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> DCF 算出茅台 1,744 元, 市场 1,600 元. 是买入信号吗?</span><span lang="en"><strong>Q3.</strong> DCF gives ¥1,744, market ¥1,600. Buy signal?</span></div>
-<button class="quiz-toggle">▾ Ref</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><em>不一定</em>, 取决于安全边际原则 (Ch.07):</p>
-<ul lang="zh"><li>1,744 是中性预测. 假设波动 ±25-30% → 真实价值可能 1,200-2,300 元</li><li>Graham 要求 30-50% margin of safety. 即只在 ~870-1,200 元才"安全". 1,600 元仍在中性区间, 不具安全边际</li><li>DCF 是<em>纪律</em>, 不是<em>买卖信号</em>. 8% WACC 假设可能错; g_2 = 3% 可能高估 (白酒消费长期增速可能低于 3%); 市场可能隐含别的 (例如政策风险溢价)</li></ul>
-<p lang="zh"><strong>Damodaran 建议</strong>: 多种估值方法对照 + 用 DCF 反推市场<em>隐含</em>的假设. 若市场 1,600 隐含 WACC = 9% 或 g_2 = 2%, 那要问"我相信哪个假设比市场更合理?". 若没有强证据自己更对, 不买 / 不卖。</p>
-<p lang="en">Not necessarily. Margin of safety (Ch.07): Graham requires 30–50% discount → buy at ¥870–1,200. ¥1,600 is neutral. DCF is discipline, not signal. Decode what assumptions market implies; only act if you have strong reason to disagree.</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 长江电力 DCF 算出 22.95 元, 市场 27 元。是卖出信号吗?</span><span lang="en"><strong>Q3.</strong> DCF gives ¥22.95, market ¥27. Sell signal?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><em>不一定</em>, 取决于安全边际原则 (Ch.07) 和反向 DCF 的发现:</p>
+<ul lang="zh">
+<li>22.95 是中性预测, 基于 $g_2 = 3\%, r_e = 7\%$。±100bp 让估值波动 ±25-40% → 真实价值合理区间 18-33 元。市场 27 元在此区间内, <em>不构成明显高估</em>。</li>
+<li><strong>反向 DCF</strong>: 把市场价 27 元当成等号左边, 反推 $g_2$: 27 = 0.78×1.06 / (0.07 - g) ⇒ g ≈ 3.9%。市场<em>隐含</em>永续增长 3.9%。问题: 这个假设合理吗? 长江电力还能并表更多电站 (白鹤滩、乌东德已并表, 还有金沙江下游) → 3.9% 偏乐观但不离谱。</li>
+<li><strong>不卖原因</strong>: 该公司分红率 70% 稳定, 现金流极度可预测。即使 DCF 显示略高估, 持有的复利收益 (年化分红 4-5% + 缓慢增长) 可能仍超过中证 300 长期回报。</li>
+<li><strong>卖出条件</strong>: 仅当 (a) DCF 与市场差距 &gt; 30% 且 (b) 你对自己的假设有强信心, 才考虑卖。这里都不满足。</li>
+</ul>
+<p lang="en">Not necessarily. Sensitivity puts the fair‑value range at ¥18–33; ¥27 sits inside. Reverse DCF: at ¥27, implied $g_2 \approx 3.9\%$ — slightly optimistic but defensible given remaining dam consolidations. Stable 70% payout yields ~4–5% dividend + slow growth, likely beating broad‑index returns. Sell only if (a) gap >30% and (b) high confidence in own assumptions — neither holds here.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
 </li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 永续增长率 $g_2$ 设为 5%, 折现率 $r$ 设为 4.5%。这个 DCF 输出的估值是无穷大。这是公式 bug 还是真实的经济信号?</span><span lang="en"><strong>Q4.</strong> If $g_2 = 5\%, r = 4.5\%$, DCF yields infinite value. Bug or real signal?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>真实信号 — 不可能</strong>。Gordon 公式 $\text{TV} = D / (r - g)$ 在 $g \to r$ 时发散, 在 $g &gt; r$ 时为负 (经济上无意义)。这条数学关系背后的<em>经济直觉</em>是:</p>
+<ul lang="zh">
+<li>如果一家公司的现金流增长率<em>永远</em>高于其资金成本, 它就是一台"印钞机" — 投资 ¥1 的成本是 4.5%, 但回报 ¥1 增长 5%。任何理性投资者都应该把<em>所有</em>钱投到这里, 直到 $g$ 因为饱和降到 $r$ 以下。市场不会允许这种永续套利存在。</li>
+<li>$g_2 \le r$ 不是技术性 constraint, 是<em>经济均衡</em>条件。Damodaran: $g_2 \le$ 长期 GDP 增长率 — 因为长期看, 单家公司增速不能超过整个经济, 否则它终将吞下整个经济。</li>
+</ul>
+<p lang="zh"><strong>实操</strong>: 看到自己的 DCF 模型里 $g_2 \ge r$ 或两者很接近, 立刻停止 — 说明假设错了。常见错误: (a) 把短期高速增长误用为永续, (b) 把名义增长率与实际增长率混用, (c) 折现率取得太低 (例如忘记加股权风险溢价)。</p>
+<p lang="en">Real signal — impossible. Gordon $D/(r-g)$ diverges as $g \to r$ and is negative when $g > r$. Economically: if a firm grows faster than its cost of capital forever, it's a perpetual money machine; rational investors pile in until growth saturates below $r$. Markets don't allow such arbitrage. $g_2 \le r$ is an equilibrium condition. Common errors: confusing short‑run growth with perpetual; mixing nominal/real; under‑specified $r$ (e.g., forgot ERP).</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 老王 算出 老李 面馆值 ¥1.8m, 老李 开价 ¥800k。老王 应该立刻买吗? 用本章的工具回答, 并指出至少 3 个 老王 的 DCF 模型里"老李 不知道但其实重要"的隐藏假设。</span><span lang="en"><strong>Q5.</strong> Wang's DCF gives ¥1.8m, Old Li asks ¥800k. Should Wang buy immediately? Identify ≥3 hidden assumptions in Wang's DCF that Old Li doesn't know but matter.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不应该立刻买</strong>。两倍的差距太大, 说明 老王 的 DCF 假设可能有重大问题。先审视假设, 再行动。隐藏假设至少 5 个:</p>
+<ol lang="zh">
+<li><strong>"地铁修通带来客流增长"是 老王 的私人乐观假设</strong>。如果地铁延期 (常见) 或带走的客流多于带来的 (沿线竞争店增多), 现金流路径与预测严重偏离。</li>
+<li><strong>"老李 走后, 面的味道不变"</strong>。如果 老李 是技术核心, 老王 接手后流失老客, 现金流可能立刻腰斩。这就是估值里说的"key person risk", 应给折现率加 risk premium。</li>
+<li><strong>"折现率 12% 已经包含了所有风险"</strong>。一家无品牌、无连锁、无线上流量的单店, 12% 可能太低。同行业 (单店餐饮) 倒闭率 30%/5 年 → 隐含的"违约调整后"折现率应更高 (18-25%)。</li>
+<li><strong>"永续增长 3% 等于长期 GDP"</strong>。但单店面馆能跟上 GDP 增长吗? 单店没有规模扩张机制, 长期增长更接近本地客流增长 (1-2%) 而非全国 GDP。降到 1% 时, TV 从 ¥1.29m 缩到 ¥0.81m, 总估值从 ¥1.8m 降到 ¥1.3m, 还是高于 ¥800k 但差距小很多。</li>
+<li><strong>"经营性损益 ≈ 自由现金流"</strong>。老李 给的"自由现金流"可能没扣掉他自己作为店主的工资 — 一旦 老王 接手, 必须支付一个店长 (或自己当, 牺牲机会成本), 真实 FCF 可能少 10-15 万。</li>
+</ol>
+<p lang="zh"><strong>应做的事</strong>: (a) 调整折现率到 18-20% 反映单店风险, (b) 把永续增长降到 1-2%, (c) 在自由现金流里扣掉店长机会成本, (d) 重新算出更合理的内在价值 (可能 ¥1.0-1.3m), (e) 应用 Graham 的安全边际原则, 实际报价 = 内在价值 × (1 - 30~50%) ≈ ¥500k-900k。这下 老李 的 ¥800k 看起来就<em>不那么便宜</em>了, 可能合理。</p>
+<p lang="zh"><strong>核心教训</strong>: DCF 的<em>纪律价值</em>不在于给出 ¥1.8m 这个数, 而在于强迫 老王 把每个隐藏假设拎出来挨个检查。最危险的不是"算错了", 而是"算了一个数就以为知道了价值"。</p>
+<p lang="en">No — 2× gap signals assumption error. Hidden: (1) subway optimism (delays / new competitors); (2) Old Li's recipe walks; (3) 12% under‑prices single‑store key‑person and bankruptcy risk (30%/5yr industry); (4) 3% perpetual exceeds local foot‑traffic growth (~1–2%); (5) Old Li's "FCF" omits owner wage / opportunity cost. Refit: $r = 18-20\%$, $g_2 = 1-2\%$, deduct manager cost → maybe ¥1.0–1.3m intrinsic. Apply Graham 30–50% margin → bid ¥500–900k. Old Li's ¥800k is suddenly reasonable. The DCF's value isn't ¥1.8m — it's the discipline of surfacing every assumption.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
 </ol>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="04-behavioral.html"><span class="dir">← Prev</span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a><a class="next" href="06-relative-valuation.html"><span class="dir">Next →</span><span class="title">06 · <span lang="zh">相对估值</span><span lang="en">Multiples</span></span></a></nav></div>
+<div class="lesson-foot"><button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button><nav class="chap-nav"><a href="04-behavioral.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">04 · <span lang="zh">行为金融</span><span lang="en">Behavioral</span></span></a><a class="next" href="06-relative-valuation.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">06 · <span lang="zh">相对估值</span><span lang="en">Multiples</span></span></a></nav></div>
 
 </article></main><aside class="toc"></aside></div>
 <button class="chat-fab">A?</button>
