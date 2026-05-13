@@ -1,67 +1,661 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
-<title>A 股 · 02 · 信息披露体系</title>
+<title>A 股 · 02 · 信息披露体系 — Disclosure System</title>
+<meta name="keywords" content="信息披露, 巨潮资讯, 年度报告, 半年报, 季报, 临时报告, 业绩预告, 业绩快报, 关联方交易, 内幕信息, 公平披露, Reg FD, 信息披露管理办法, 蚂蚁集团, 乐视网, 茅台, 8-K">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-</head><body>
+<style>
+body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+body .katex sup, body .katex sub { font-size: 0.75em !important; }
+body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+.eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+.eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+.eq .katex-display { margin: 0 !important; padding: 0 !important; }
+.eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+</style>
+</head>
+<body>
+
 <div class="app">
-<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
-<aside class="nav"></aside>
-<main class="main"><article class="lesson">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
 
-<div class="lesson-meta"><span class="crumb">A 股特化 · 02</span></div>
-<h1><span lang="zh">信息披露体系</span></h1>
-<p class="lesson-subtitle">A 股上市公司必须按三类披露: <em>定期报告</em> + <em>临时报告</em> + <em>自愿披露</em>. 巨潮资讯网 (cninfo.com.cn) 是官方统一披露平台.</p>
+  <aside class="nav"></aside>
 
-<h2><span lang="zh">三类报告</span></h2>
+  <main class="main">
+    <article class="lesson">
 
-<h3 lang="zh">① 定期报告</h3>
-<table><thead><tr><th><span lang="zh">类型</span></th><th><span lang="zh">截止日期</span></th><th><span lang="zh">审计</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">一季报 (Q1)</span></td><td>4 月 30 日</td><td><span lang="zh">未审 (科创板 / 创业板新规要求审计)</span></td></tr>
-<tr><td><span lang="zh">中报 (H1)</span></td><td>8 月 31 日</td><td><span lang="zh">未审</span></td></tr>
-<tr><td><span lang="zh">三季报 (Q3)</span></td><td>10 月 31 日</td><td><span lang="zh">未审</span></td></tr>
-<tr><td><span lang="zh">年报</span></td><td>4 月 30 日</td><td><span lang="zh">审计 (出具审计意见)</span></td></tr>
-</tbody></table>
+      <div class="lesson-meta">
+        <span class="crumb">A 股特化 · 02</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">17 分钟</span><span lang="en">17 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.01 监管</span><span lang="en">Prereq: Ch.01 Regulation</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.03 中国特色</span><span lang="en">Next: Ch.03 China Specifics</span></span>
+      </div>
 
-<p lang="zh">业绩预告 (强制): 大幅波动 (NI 变化 &gt; 50%) 或扭亏的, 须在定期报告前披露预告. 业绩快报 (自愿): 在审计完成前快速披露关键数据.</p>
+      <h1>
+        <span lang="zh">信息披露体系</span>
+        <span lang="en">A‑Share Disclosure System</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">老王想跟踪一家公司一整年的全部信息: 财报、临时公告、业绩预告、关联方变动、监管问询。他发现 A 股的"信息源头"是一个叫巨潮资讯网的统一披露平台 — 三个交易所共用、所有公告免费、按时按格披露是法律强制义务。</span>
+        <span lang="en">Old Wang wants to follow one company through a full year — annual report, quarterly report, ad‑hoc announcements, profit pre‑announcements, related‑party moves, regulatory inquiries. He discovers A‑shares has a single unified disclosure platform called Juchao Information Network, shared by all three exchanges, free to the public, and that timely disclosure in the prescribed format is a legal obligation.</span>
+      </p>
 
-<h3 lang="zh">② 临时报告 (Material Events Disclosure)</h3>
-<p lang="zh">CSRC 第 30 号令 + 交易所规则规定下列<em>重大事件</em>2 个交易日内必须披露:</p>
-<ul lang="zh">
-<li>股权变动 (大股东增减持 5%+)</li>
-<li>重大资产交易 (单笔金额 &gt; 净资产 10%)</li>
-<li>重大合同 / 重大诉讼</li>
-<li>分红 / 送转 / 回购方案</li>
-<li>定增 / 配股 / 可转债 / 优先股发行</li>
-<li>董事 / 监事 / 高管变动</li>
-<li>对外担保</li>
-<li>非经营性资金占用</li>
-<li>停产 / 复产</li>
-<li>突发事件 (火灾 / 事故 / 监管处罚)</li>
-</ul>
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能列出 A 股定期报告的四种类型与各自截止日, 并知道哪几份要审计、哪几份不审计。</li>
+          <li lang="zh">能用"重大性阈值" (资产/营收/净利 10%) 判断一件经济事件是否构成需 2 个交易日内披露的临时报告。</li>
+          <li lang="zh">能区分业绩预告 (强制) 与业绩快报 (自愿), 知道触发预告的两个关键阈值。</li>
+          <li lang="zh">能在巨潮资讯网 (cninfo.com.cn) 与 SSE/SZSE 法定渠道之间正确选取信息源, 并对比美国 8‑K 制度。</li>
+          <li lang="en">List the four types of periodic reports with deadlines and which require audit.</li>
+          <li lang="en">Apply the 10% materiality threshold (assets / revenue / NI) to decide whether an event triggers a T+2 disclosure.</li>
+          <li lang="en">Distinguish mandatory profit pre‑announcements from voluntary profit flash reports, and the two trigger thresholds.</li>
+          <li lang="en">Choose correctly between Juchao and SSE/SZSE statutory channels; benchmark against the US 8‑K regime.</li>
+        </ul>
+      </section>
 
-<h3 lang="zh">③ 自愿披露</h3>
-<p lang="zh">投资者关系活动 (业绩说明会、调研接待、机构互动)、ESG 报告、可持续发展报告等. 不强制, 但优质公司广泛披露以建立信任.</p>
+      <!-- ================================================================ -->
+      <!-- Layer 1 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 老王跟踪一家公司一整年</span>
+          <span class="en" lang="en"> · Tracking one company for one year</span>
+        </h2>
 
-<h2><span lang="zh">巨潮资讯网 (cninfo.com.cn)</span></h2>
-<p lang="zh">A 股<em>唯一</em>官方统一信披平台 (上交所 / 深交所 / 北交所共用). 投资者可<em>免费</em>下载所有公告 PDF / 历年财报 / 招股说明书. 量化 / 散户研究<em>必备</em>资源.</p>
+        <p lang="zh">上一章里老王跨完了沪深北三个交易所的开户门槛, 真正开始操作之后, 他做出第一个明智的决定: 只挑两三家公司深度跟踪, 别广撒网。他选了贵州茅台 (600519) 作为第一只长期跟踪标的, 因为这是他做面馆时就熟悉的品牌, 也是 A 股最具代表性的消费龙头。从开始跟踪那天起, 老王每周都在 App 和邮件提醒里收到茅台的各种"公告"——少则一周一份, 多则一天三份。我们一起跟着他梳理这一年下来都收到了什么, 然后给这些"公告"分类、命名。</p>
+        <p lang="en">Old Wang's first sensible move after clearing every exchange threshold from Ch.01: pick two or three companies and track them deeply instead of spreading thin. He chose Kweichow Moutai (600519) as his first long‑term watch — a brand he knew well from his noodle‑shop days and the most representative consumer bellwether in A‑shares. From day one of tracking, his brokerage app and email pinged him with "announcements" — sometimes one per week, sometimes three per day. We walk through what he received over a year and then classify and name those announcement types.</p>
 
-<h2><span lang="zh">检验题</span></h2>
-<ol class="quiz quiz-list">
-<li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一家公司一季报披露"营收同比 +40%, NI 同比 +120%", 但没披露业绩预告. 这<em>是否</em>违规?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh">是. 业绩预告强制门槛: NI 同比变化 &gt; 50% 或扭亏为盈 / 由盈转亏. NI +120% 远超 50% → 必须提前披露预告 (一般在季度结束后 1 个月内). 未披露即<em>信披违规</em>, 可能收到交易所问询函或监管函. 投资者发现这种情形可质疑公司治理。</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
-</li>
-</ol>
+        <p lang="zh"><strong>1. 4 月 28 日上午 8 点 — 收到一份 500 多页的 PDF。</strong> 标题: "贵州茅台酒股份有限公司 2023 年年度报告"。老王点开, 先翻董事长致辞, 再看主要财务数据, 然后是分行业销售、管理层讨论与分析 (MD&A)、合并财务报表与审计报告。这份文件覆盖了公司过去整整一个会计年度 (2023.01.01-2023.12.31) 的经营成果、财务状况、内部控制、关联方交易、董监高变动、风险因素、未来展望 — 几乎是一家公司当年的"全息照"。老王问: 这种文件每年只有这一份吗?<em>是</em>。一年只有一份。我们把这种"覆盖完整会计年度、经审计、详尽披露"的报告叫 <strong>年度报告 (Annual Report)</strong>; 法定截止日是<em>会计年度结束后 4 个月内</em>, 即 4 月 30 日前披露上年年报。茅台几乎每年都在 4 月 28-29 日发布, 留 1-2 天缓冲。</p>
+        <p lang="en"><strong>1. April 28, 8 a.m. — a 500‑page PDF arrives.</strong> Title: "Kweichow Moutai Co., Ltd. 2023 Annual Report." Wang opens it: chairman's letter, key financials, segment breakdowns, MD&A, consolidated statements with auditor's report. The file covers the full preceding fiscal year (Jan 1 – Dec 31, 2023) — operating results, financial position, internal control, related‑party transactions, board changes, risk factors, outlook. A full "hologram" of the company. Does this come once a year? <em>Yes</em>. Once. We call this the <strong>Annual Report</strong>; statutory deadline is <em>within 4 months of fiscal year‑end</em>, i.e., before April 30 for the prior year. Moutai almost always files on April 28–29, leaving a one‑ to two‑day buffer.</p>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="01-regulation.html">← <span lang="zh">监管</span></a><a class="next" href="03-china-specifics.html">Next →</a></nav></div>
+        <p lang="zh"><strong>2. 4 月 30 日凌晨 — 又来一份, 比年报薄一些。</strong> 标题: "2024 年第一季度报告"。这份文件覆盖 2024.01.01-2024.03.31 三个月, 内容只有简化版三大报表 + 简要经营分析, 没有审计 (只有公司声明"内容真实、准确、完整")。老王问: 一年有几份这样的报告?<em>三份</em>: 一季报、三季报, 以及一份覆盖上半年的"半年报"。我们把"覆盖一个季度或一个半年、按固定频率发布"的报告统称 <strong>定期报告 (Periodic Report)</strong>, 包括年报、半年报、季报。截止日如下: 年报 4 月 30 日前; 半年报 8 月 31 日前; 一季报 4 月 30 日前; 三季报 10 月 31 日前。注意一季报和年报<em>同一天截止</em> — 所以 4 月 30 日是 A 股最繁忙的披露日, 几千份公告同日涌出, 巨潮资讯网会临时扩容服务器。</p>
+        <p lang="en"><strong>2. April 30, early morning — another file arrives, thinner.</strong> Title: "Q1 2024 Report." Covers Jan 1 – March 31, 2024. Content: condensed three statements + brief MD&A. Unaudited (only a company attestation that "contents are truthful, accurate, and complete"). How many of these per year? <em>Three</em>: Q1, Q3, plus a half‑year report covering Jan–June. The full set — annual, half‑year, Q1, Q3 — are called <strong>periodic reports</strong>. Deadlines: annual before April 30; half‑year before August 31; Q1 before April 30; Q3 before October 31. Q1 and annual share the April 30 deadline, so this is A‑shares' single most crowded disclosure day; Juchao temporarily scales up servers as thousands of filings hit at once.</p>
 
-</article></main><aside class="toc"></aside></div>
-<button class="chat-fab">A?</button>
-<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+        <p lang="zh"><strong>3. 7 月 9 日傍晚 — 一份只有两页的公告突然弹出。</strong> 标题: "贵州茅台酒股份有限公司 2024 年半年度业绩预告"。文件极简: 预计 2024 年上半年归母净利润 416 亿元左右, 同比增长 +15.88% 左右。没有详细数据, 没有报表, 只有一段文字加一句"以最终披露的半年报为准"。老王问: 这是<em>预告</em>吗?为什么茅台要提前公布?为什么要在半年报 (8 月 31 日截止) 之前一个多月先预告?——这是<strong>业绩预告</strong>(performance pre‑announcement)。规则: 如果公司预计当期净利润<em>同比变动超过 ±50%</em>, 或<em>由亏转盈 / 由盈转亏</em>, 必须在会计期间结束后 1 个月内 (即 7 月 31 日 / 1 月 31 日 / 4 月 15 日 / 10 月 15 日) 提前披露业绩预告。茅台 +15.88% 看似没超 50%, 为什么也要发?——因为茅台是<em>市场重点关注公司</em>, 在自愿披露层面提前给市场参考。这与"强制预告"不同, 属于优质公司常见的<em>自愿披露</em>实践。</p>
+        <p lang="en"><strong>3. July 9, evening — a two‑page filing pops up.</strong> Title: "Kweichow Moutai 2024 H1 Performance Pre‑announcement." Bare bones: expected H1 2024 NI attributable to parent ~¥41.6bn, YoY ~+15.88%. No detailed numbers, no statements, just a paragraph and a "final figures to be confirmed by the H1 report." Why pre‑announce? Why more than a month before the August 31 H1 deadline? This is a <strong>performance pre‑announcement</strong>. Rule: if expected NI YoY change exceeds <em>±50%</em>, OR there is a swing from loss to profit or profit to loss, the firm must pre‑announce within one month of period end (Jul 31 / Jan 31 / Apr 15 / Oct 15). Moutai's +15.88% doesn't breach 50% — why pre‑announce anyway? Because Moutai is a <em>market bellwether</em>, voluntarily releasing a benchmark for the market. This is <em>voluntary</em> disclosure, distinct from mandatory pre‑announcement, but common practice among high‑quality issuers.</p>
+
+        <p lang="zh"><strong>4. 8 月 7 日 — 又一份, 标题更小。</strong> "2024 年半年度业绩快报"。这份比预告多了一点点 — 完整的简要利润表 (营收、营业利润、净利润、归母净利润)、简要资产负债表 (总资产、归母净资产), 但仍然没有附注、没有现金流量表、没有分行业销售。老王对照 7 月 9 日的预告, 发现实际数字与预告基本一致 (预告 +15.88%, 快报 +15.88%)。这种"在正式半年报 / 年报披露前、提供更详细的简要数据"叫 <strong>业绩快报 (performance flash report)</strong>。性质: 完全自愿。规则: 一旦公司选择发布快报, 数据必须真实, 与最终披露差异 &gt; 10% 要发<em>更正公告</em>。茅台、招行、宁德等大盘股几乎每年发快报, 中小盘很少发。</p>
+        <p lang="en"><strong>4. August 7 — another filing.</strong> "H1 2024 Performance Flash Report." Slightly more detail than the pre‑announcement: condensed income statement (revenue, op profit, NI, NI to parent), condensed B/S (total assets, NI to parent equity), still no notes, no cash flow, no segment data. Comparing to the July 9 pre‑announcement, the numbers match (+15.88% both). The "more detailed than pre‑announcement but lighter than the formal report" filing is the <strong>performance flash report</strong>. Nature: fully voluntary. Rule: once published, the data must be truthful; deviations &gt; 10% from final figures require a correction filing. Moutai, China Merchants Bank, CATL and other large caps file flashes every year; small/mid caps rarely do.</p>
+
+        <p lang="zh"><strong>5. 9 月 12 日 — 一份临时公告。</strong> 标题: "关于全资子公司对外投资的公告"。内容: 茅台集团旗下子公司贵州茅台酒销售有限公司, 出资 4.5 亿元参与某基金, 用于产业投资。老王问: 这种事是不是大事到必须公告?——按规则要看比例。规则: 单笔交易金额超过<em>(1) 公司总资产 10% (2) 上年营收 10% (3) 上年净利 10%</em> 三个阈值中的任意一个, 即构成"重大交易", 必须在 2 个交易日内披露。4.5 亿对于茅台 2,820 亿总资产、1,505 亿营收、747 亿净利来说, 都远低于 10% 阈值 (4.5 / 2,820 ≈ 0.16%)。茅台仍然披露的原因: <em>关联方交易</em>或<em>对外投资</em>本身就触发披露义务 (不论金额比例), 这是另一条独立规则。我们把这种"重大事件发生后必须即时披露"的报告叫 <strong>临时报告 (Material Event / Ad‑hoc Disclosure)</strong>; 触发条件由<em>《上市公司信息披露管理办法》</em>(证监会令 第 182 号, 2021 修订) 与<em>交易所上市规则</em>共同界定, 总计约 30 类触发情形。</p>
+        <p lang="en"><strong>5. September 12 — an ad‑hoc filing.</strong> Title: "Disclosure on External Investment by a Wholly‑Owned Subsidiary." Content: Moutai's sales subsidiary commits ¥450m to an industrial fund. Is this big enough to require disclosure? Rule: if a single transaction exceeds <em>(1) 10% of total assets, (2) 10% of prior‑year revenue, or (3) 10% of prior‑year NI</em> on any axis, it's a "material transaction" requiring T+2 disclosure. For Moutai (¥282bn assets, ¥150.5bn revenue, ¥74.7bn NI), ¥450m is far below 10% on every axis (4.5 / 2,820 ≈ 0.16%). Why disclose anyway? Because <em>related‑party transactions</em> and <em>external investments</em> trigger disclosure independently of amount thresholds — a separate rulebook. The class of "material event filed immediately upon occurrence" is the <strong>material event / ad‑hoc disclosure</strong> (临时报告); triggers are jointly defined by the <em>Administrative Measures for Information Disclosure of Listed Companies</em> (CSRC Order No. 182, 2021 revision) and the exchanges' Listing Rules — about 30 trigger categories in total.</p>
+
+        <p lang="zh"><strong>6. 10 月 28 日 — 又一份临时公告。</strong> 标题: "关于公司与控股股东日常关联交易预计的公告"。茅台预计 2025 年与控股股东中国贵州茅台酒厂(集团)有限责任公司之间日常关联交易金额合计约 35 亿元 (含商标使用费、广告宣传等)。老王问: 这种"关联方交易"为什么要专门公告?——关联方 (related party) 是指对公司有控制 / 重大影响关系的实体, 包括控股股东、董监高、控股股东的其他子公司等。<em>关联方与公司之间的任何交易都需要单独披露并定期向董事会/股东大会报批</em>, 这是为了防止控股股东通过关联交易把利润抽走、或者把不良资产塞进上市公司。规则: 单笔关联交易超过 3,000 万元且占净资产 0.5% 以上, 须董事会决议且发临时公告; 累计金额超净资产 5%, 须股东大会批准。这套规则的法律依据是<em>《上市公司治理准则》</em>+ 各交易所上市规则的关联交易章节。</p>
+        <p lang="en"><strong>6. October 28 — another ad‑hoc filing.</strong> Title: "Disclosure on Estimated Routine Related‑Party Transactions with the Controlling Shareholder." Moutai projects ~¥3.5bn of 2025 routine related‑party transactions with its controlling shareholder (China Kweichow Moutai Distillery Group), including trademark royalties, advertising, etc. Why are related‑party transactions disclosed separately? A "related party" is an entity with control / significant influence over the company — controlling shareholder, directors, executives, fellow subsidiaries. <em>Every transaction between a related party and the listed company requires separate disclosure plus board/shareholder approval</em>, to prevent the controlling shareholder from siphoning profits or stuffing in poor assets via related trades. Rule: single transactions &gt; ¥30m and &gt; 0.5% of net assets require board resolution + ad‑hoc filing; cumulative &gt; 5% requires shareholder meeting approval. Authority: <em>Code of Corporate Governance for Listed Companies</em> + the related‑party chapters of each exchange's Listing Rules.</p>
+
+        <p lang="zh"><strong>7. 整年下来 — 老王盘点茅台的全部公告数量。</strong> 他从巨潮资讯网搜索 600519, 选时间区间 2023.05 - 2024.05 (跟踪一年), 总共看到约<em>80 份</em>公告: 1 份年报、1 份半年报、2 份季报、约 5 份业绩预告/快报, 其余 70+ 份全部是临时公告 (董事会决议、股东大会决议、独立董事意见、关联交易、股权激励、分红、回购、监事会决议、控股股东减持、限售股解禁等)。这是一家治理良好的大型蓝筹的"信息密度": 一年 80 份 ≈ 平均每周 1.5 份。差的公司 (壳公司、ST 公司) 一年只发十几份, 因为没什么事可披露; 出问题的公司 (问询函、立案调查) 可能一年发 200 份, 因为反复被监管追问需要不断回复。</p>
+        <p lang="en"><strong>7. Year‑end tally.</strong> Wang searches Juchao for 600519 over May 2023 – May 2024 and counts ~<em>80 filings</em>: 1 annual, 1 half‑year, 2 quarterlies, ~5 pre‑announcements/flashes, and 70+ ad‑hoc filings (board resolutions, shareholder meeting resolutions, independent‑director opinions, related‑party transactions, equity incentives, dividends, buybacks, supervisor resolutions, controlling‑shareholder reductions, lock‑up unlocks, etc.). This is the disclosure density of a well‑governed blue chip: ~80 per year ≈ 1.5 per week. Shell or ST companies file barely a dozen — nothing to disclose. Troubled companies (inquiry letters, formal investigations) can hit 200, repeatedly responding to regulator probes.</p>
+
+        <p lang="zh">回看老王这一年: 三类报告 (定期 / 临时 / 自愿) 把 A 股上市公司全部信息流分得清清楚楚。所有公告都在<strong>巨潮资讯网 (cninfo.com.cn)</strong> 一处汇总, 三个交易所共用, 完全免费。Layer 2 会把信息披露管理办法的三层结构 + 重大性阈值 + 公平披露原则形式化, 并对比美国 SEC 的 8-K / 10-K / 10-Q 体系。Layer 3 会展开两个案例 — 蚂蚁集团 2020 IPO 暂停 (公平披露失败) 与 乐视网信息披露违规处罚 — 看监管框架在实务中如何运转。</p>
+        <p lang="en">Wang's year, recapped: three categories (periodic / ad‑hoc / voluntary) carve up the entire information flow of an A‑share listed company. Everything lands at <strong>Juchao Information Network (cninfo.com.cn)</strong> — one platform for all three exchanges, free to all. Layer 2 formalizes the three‑tier structure of the disclosure measures, materiality thresholds, and fair‑disclosure principle, and benchmarks against the US SEC 8‑K / 10‑K / 10‑Q regime. Layer 3 unpacks two cases — Ant Group's 2020 IPO suspension (fair‑disclosure failure) and LeEco's disclosure‑violation penalty — to show the framework in operation.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 2 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formal Rules</span>
+        </h2>
+
+        <p lang="zh">Layer 1 用老王跟踪茅台一年收到的 80 份公告, 把"什么时候发什么"摸了一遍。现在我们形式化: 信息披露管理办法的三层结构 (定期 / 临时 / 自愿)、重大性判断阈值、公平披露原则、违规处罚阶梯, 并对比美国 8-K 制度。</p>
+        <p lang="en">Layer 1 used the ~80 Moutai filings to ground "when does what get filed." We now formalize: the three‑tier structure of disclosure (periodic / ad‑hoc / voluntary), materiality thresholds, the fair disclosure principle, the penalty ladder, and benchmark against the US 8‑K regime.</p>
+
+        <h3 lang="zh">① 法律框架</h3>
+        <h3 lang="en">① Legal Framework</h3>
+
+        <div class="callout">
+          <p lang="zh">A 股信息披露的<em>顶层</em>规则在<strong>《证券法》</strong>第三章 (§78–§87) "信息披露", 规定真实、准确、完整、及时、公平五项基本原则。<em>具体落地</em>规则在<strong>《上市公司信息披露管理办法》</strong>(证监会令 第 182 号, 2021 年 5 月修订, 取代 2007 年第 40 号令)。各交易所在此基础上制定<em>实施细则</em>: 上交所《股票上市规则》§5、深交所《股票上市规则》§5、北交所《股票上市规则》§4 等, 详细界定各类临时报告的触发条件与披露时限。</p>
+          <p lang="en">A‑share disclosure rests on <strong>Securities Law of the PRC</strong>, Chapter III (§78–§87), establishing five principles: truthful, accurate, complete, timely, fair. The operational layer is the <strong>Administrative Measures for Information Disclosure of Listed Companies</strong> (CSRC Order No. 182, May 2021, replacing 2007 Order No. 40). Each exchange writes <em>implementation rules</em>: SSE Listing Rules §5, SZSE Listing Rules §5, BSE Listing Rules §4, detailing triggers and timelines for each ad‑hoc disclosure type.</p>
+          <span class="cite">证券法 §78–§87 · 证监会令 第182号 · 上交所/深交所/北交所上市规则 (现行版本)</span>
+        </div>
+
+        <h3 lang="zh">② 三层结构</h3>
+        <h3 lang="en">② Three‑Tier Structure</h3>
+
+        <p lang="zh"><strong>第一层: 定期报告 (Periodic Reports)</strong></p>
+        <p lang="en"><strong>Tier 1: Periodic Reports</strong></p>
+
+        <table>
+          <thead><tr><th><span lang="zh">类型</span><span lang="en">Type</span></th><th><span lang="zh">覆盖期间</span><span lang="en">Period</span></th><th><span lang="zh">截止日</span><span lang="en">Deadline</span></th><th><span lang="zh">审计</span><span lang="en">Audit</span></th><th><span lang="zh">主要内容</span><span lang="en">Key contents</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">年度报告</span><span lang="en">Annual</span></td><td><span lang="zh">完整会计年度</span><span lang="en">Full FY</span></td><td>4-30</td><td><span lang="zh">必须</span><span lang="en">Required</span></td><td><span lang="zh">三大报表 + 附注 + MD&amp;A + 公司治理 + 重大事项 + 风险</span><span lang="en">Three statements + notes + MD&amp;A + governance + risks</span></td></tr>
+            <tr><td><span lang="zh">半年度报告</span><span lang="en">Half‑year</span></td><td>H1 (1.1-6.30)</td><td>8-31</td><td><span lang="zh">不强制 (科创板/创业板部分情形需审计)</span><span lang="en">Not required (some STAR/ChiNext cases require review)</span></td><td><span lang="zh">简化版三大报表 + 简要 MD&amp;A</span><span lang="en">Condensed three statements + brief MD&amp;A</span></td></tr>
+            <tr><td><span lang="zh">第一季度报告</span><span lang="en">Q1</span></td><td>Q1 (1.1-3.31)</td><td>4-30</td><td><span lang="zh">不强制</span><span lang="en">Not required</span></td><td><span lang="zh">简版利润表/现金流 + 关键变动说明</span><span lang="en">Condensed IS/CF + key‑change commentary</span></td></tr>
+            <tr><td><span lang="zh">第三季度报告</span><span lang="en">Q3</span></td><td>Q1-Q3 (1.1-9.30)</td><td>10-31</td><td><span lang="zh">不强制</span><span lang="en">Not required</span></td><td><span lang="zh">简版三表</span><span lang="en">Condensed</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh">注意: A 股<em>没有</em>独立的"Q2 季报", 因为 Q2 数据已包含在半年报中。这与美国 SEC 体系 (10-Q 每季度一份, 10-K 年度一份) 不同。A 股的整体节奏: 4 月底披露年报 + Q1 (同一天双重高峰) → 7 月业绩预告 → 8 月底半年报 → 10 月底 Q3 → 来年 1 月业绩预告 → 4 月底新一轮年报。</p>
+        <p lang="en">Note: A‑shares has <em>no</em> standalone Q2 quarterly report — Q2 data live inside the half‑year report. Contrasts with US SEC: 10‑Q every quarter + 10‑K annually. A‑share rhythm: late‑April annual + Q1 (the dual‑peak day) → July pre‑announcement → late‑August H1 → late‑October Q3 → January next year pre‑announcement → late‑April next year annual.</p>
+
+        <p lang="zh"><strong>业绩预告 (mandatory) 的触发条件</strong>:</p>
+        <p lang="en"><strong>Mandatory pre‑announcement triggers:</strong></p>
+
+        <ul>
+          <li><span lang="zh">预计当期归母净利润<em>同比变动 &gt; ±50%</em>(亏损公司大幅减亏 / 增亏也需披露)</span><span lang="en">Expected NI YoY change <em>&gt; ±50%</em> (including loss‑reduction or loss‑expansion)</span></li>
+          <li><span lang="zh">预计<em>由亏转盈</em>或<em>由盈转亏</em></span><span lang="en">Swing from loss to profit, or profit to loss</span></li>
+          <li><span lang="zh">预计净利润<em>绝对值 &lt; 0 元</em>(即首次亏损)</span><span lang="en">Forecasted NI < 0 (first‑time loss)</span></li>
+        </ul>
+
+        <p lang="zh">触发条件下, 必须在<em>会计期结束后 1 个月内</em>披露业绩预告 (Q1: 4-15; H1: 7-31; Q3: 10-15; 年度: 1-31)。否则即构成"应披露而未披露", 监管可以发问询函、警示函, 严重者立案调查。</p>
+        <p lang="en">When triggered, pre‑announcement must be filed within <em>1 month after period‑end</em> (Q1: Apr 15; H1: Jul 31; Q3: Oct 15; annual: Jan 31). Failure constitutes "should‑disclose but didn't," exposing the firm to inquiry letters, warning letters, and in severe cases formal investigation.</p>
+
+        <p lang="zh"><strong>第二层: 临时报告 (Ad‑hoc Disclosure)</strong></p>
+        <p lang="en"><strong>Tier 2: Ad‑hoc Disclosure</strong></p>
+
+        <p lang="zh">证监会令第 182 号将临时报告触发情形概括为"重大事件", 由"重大性判断"原则 + 30 余类具体列举共同覆盖。<em>重大性</em>判断的核心数值阈值:</p>
+        <p lang="en">CSRC Order No. 182 frames ad‑hoc triggers as "material events," governed by a materiality principle plus ~30 enumerated categories. The numeric materiality thresholds:</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">重大性阈值 (任一即触发)</span>
+          <span class="callout-label" lang="en">Materiality (any single axis triggers)</span>
+          <div class="eq">
+            <span>$$ \text{触发} \;\Leftrightarrow\; \max\!\left(\frac{\text{交易额}}{\text{总资产}},\; \frac{\text{交易额}}{\text{营业收入}},\; \frac{\text{交易额}}{\text{绝对净利润}}\right) \;\geq\; 10\% $$</span>
+            <span class="num">(2.1)</span>
+          </div>
+          <p lang="zh">分母用<em>上一会计年度末或年度数</em>。三个阈值是<em>或</em>(OR) 关系, 任一触发即构成重大交易。营收和净利采用绝对值, 避免负利润导致比率失效。</p>
+          <p lang="en">Denominators use prior fiscal year‑end or annual figures. The three ratios are <em>OR</em>; any one breach triggers materiality. Revenue and NI use absolute values to avoid negative‑NI distortion.</p>
+          <span class="cite">证监会令 第182号 §22 · 上交所/深交所/北交所上市规则 重大交易判定</span>
+        </div>
+
+        <p lang="zh">除"重大交易" (按上述阈值)外, 还有约 30 类独立列举的临时报告情形 (不受 10% 阈值约束)。主要包括:</p>
+        <p lang="en">Beyond materiality‑based "material transactions," ~30 categories trigger ad‑hoc disclosure independently of the 10% threshold:</p>
+
+        <ul>
+          <li><span lang="zh"><strong>股权与控制权</strong>: 大股东持股变动 5% 以上; 实际控制人变更; 重大资产重组</span><span lang="en"><strong>Equity &amp; control:</strong> &gt; 5% stake changes; change of de facto controller; major restructuring</span></li>
+          <li><span lang="zh"><strong>融资与资本</strong>: 增发、配股、可转债、优先股、永续债; 大额借款/担保; 重大对外投资</span><span lang="en"><strong>Financing:</strong> follow‑on, rights, CB, preferred, perpetual; major loans/guarantees; major external investments</span></li>
+          <li><span lang="zh"><strong>分红与回购</strong>: 现金分红、送转股、回购方案及实施</span><span lang="en"><strong>Returns:</strong> dividends, stock splits/issuance, buyback plans and execution</span></li>
+          <li><span lang="zh"><strong>关联方交易</strong>: 任何关联交易; 控股股东资金占用</span><span lang="en"><strong>Related party:</strong> any related‑party transaction; controlling‑shareholder fund occupation</span></li>
+          <li><span lang="zh"><strong>治理与高管</strong>: 董事/监事/高管变动; 股权激励计划; 重要内控缺陷</span><span lang="en"><strong>Governance:</strong> director/supervisor/exec changes; equity incentive plans; major internal‑control deficiencies</span></li>
+          <li><span lang="zh"><strong>风险事项</strong>: 重大诉讼仲裁; 监管处罚; 重大损失; 主要资产抵押冻结</span><span lang="en"><strong>Risk:</strong> major litigation; regulatory penalties; major losses; pledge/freeze of key assets</span></li>
+          <li><span lang="zh"><strong>经营事项</strong>: 重大合同 (一般 &gt; 营收 50% 或 &gt; 5 亿); 主要资产毁损; 停产/复产</span><span lang="en"><strong>Operations:</strong> major contracts (typically &gt; 50% of revenue or &gt; ¥500m); asset damage; production halt/resume</span></li>
+        </ul>
+
+        <p lang="zh"><strong>披露时限</strong>: 重大事件发生或在外部知悉后<em>2 个交易日内</em>必须披露。如果事件正在进行中 (例如重组谈判), 必须在<em>事件可能被外部察觉前</em>停牌或自愿披露, 以防内幕交易。</p>
+        <p lang="en"><strong>Timeline:</strong> material events must be disclosed within <em>2 trading days</em> of occurrence or external awareness. Ongoing events (e.g., restructuring negotiations) require a trading halt or voluntary disclosure <em>before external awareness</em>, to prevent insider trading.</p>
+
+        <p lang="zh"><strong>第三层: 自愿披露 (Voluntary Disclosure)</strong></p>
+        <p lang="en"><strong>Tier 3: Voluntary Disclosure</strong></p>
+
+        <p lang="zh">优质公司广泛使用自愿披露建立市场信任, 主要类型:</p>
+        <p lang="en">High‑quality companies use voluntary disclosure extensively to build market trust. Main types:</p>
+
+        <ul>
+          <li><span lang="zh">业绩快报 (前述)、业绩预告 (强制阈值以下也可主动发)</span><span lang="en">Performance flash reports; pre‑announcements below mandatory thresholds</span></li>
+          <li><span lang="zh">业绩说明会 (年度/半年度网上交流, 答投资者问)</span><span lang="en">Earnings briefings (annual/H1 online Q&amp;A)</span></li>
+          <li><span lang="zh">投资者关系活动 (机构调研接待记录)</span><span lang="en">Investor relations activities (institutional investor meeting records)</span></li>
+          <li><span lang="zh">ESG/可持续发展报告</span><span lang="en">ESG / sustainability reports</span></li>
+          <li><span lang="zh">分红比例承诺、回购预案</span><span lang="en">Dividend policy commitments, buyback plans</span></li>
+        </ul>
+
+        <h3 lang="zh">③ 公平披露原则 (Reg FD 中国版)</h3>
+        <h3 lang="en">③ Fair Disclosure Principle (China's Reg FD analog)</h3>
+
+        <div class="callout">
+          <p lang="zh"><strong>公平披露</strong> = 信息披露必须<em>同步</em>面向所有投资者, 不得对特定投资者 (券商分析师、基金、媒体) 提前披露。证监会令第 182 号 §6 明确要求"信息披露义务人不得违反规定向特定对象提前披露未公开重大信息"。这是 A 股版的<em>Regulation Fair Disclosure (Reg FD)</em>, 美国 SEC 在 2000 年颁布。中国引入晚于美国, 但执法力度已显著上升, 2018 年起多家公司因"调研接待中泄露未公开信息"被警示。</p>
+          <p lang="en"><strong>Fair disclosure</strong> = information must reach all investors <em>simultaneously</em>; selective disclosure to analysts, funds, or media is prohibited. CSRC Order No. 182 §6: "Disclosure obligors must not selectively disclose non‑public material information to specific parties." This is A‑shares' <em>Regulation Fair Disclosure (Reg FD)</em>, modeled on the US SEC's 2000 rule. Adopted later in China, enforcement has tightened sharply since 2018 — multiple companies have been warned for leaking non‑public information during institutional research visits.</p>
+          <span class="cite">证监会令 第182号 §6 · SEC Regulation FD (2000) · 国家信息披露平台联合公约</span>
+        </div>
+
+        <h3 lang="zh">④ 披露渠道</h3>
+        <h3 lang="en">④ Disclosure Channels</h3>
+
+        <p lang="zh">A 股<em>唯一</em>法定统一披露平台: <strong>巨潮资讯网 (cninfo.com.cn)</strong>, 由深交所运营, 三所共用。所有定期与临时报告必须在巨潮发布, 同时上交所/深交所/北交所的官方网站也同步刊登 (上交所 sse.com.cn, 深交所 szse.cn, 北交所 bse.cn)。除了这些法定渠道外, 公司还可以选择在指定的报纸 (中国证券报 / 证券时报 / 上海证券报 / 证券日报) 发布公告 — 但报纸披露是补充, 不是替代。</p>
+        <p lang="en">A‑shares' <em>sole</em> statutory unified disclosure platform: <strong>Juchao Information Network (cninfo.com.cn)</strong>, operated by SZSE, shared by all three exchanges. All periodic and ad‑hoc reports must be filed on Juchao, with mirror postings on the exchanges' own sites (sse.com.cn, szse.cn, bse.cn). Companies may also place announcements in designated newspapers (China Securities Journal, Securities Times, Shanghai Securities News, Securities Daily) — but newspaper publication is supplementary, not a substitute.</p>
+
+        <p lang="zh">关键事实: 巨潮所有公告<em>免费</em>下载, 不论是定期报告 PDF、临时公告 PDF、招股说明书还是历年财报。这是 A 股相对于美股 EDGAR 的<em>体验优势</em> (EDGAR 也免费, 但巨潮的中文检索与移动端体验更适合中文使用者)。</p>
+        <p lang="en">Key fact: every Juchao filing is <em>free</em> to download — periodic PDFs, ad‑hoc PDFs, prospectuses, historical reports. A user‑experience edge over the US EDGAR system (EDGAR is also free, but Juchao's Chinese search and mobile UX serve Chinese users better).</p>
+
+        <h3 lang="zh">⑤ 违规处罚阶梯</h3>
+        <h3 lang="en">⑤ Penalty Ladder for Disclosure Violations</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">违规程度</span><span lang="en">Severity</span></th><th><span lang="zh">行政措施</span><span lang="en">Sanction</span></th><th><span lang="zh">来源</span><span lang="en">Source</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">轻微 (延迟披露 / 笔误)</span><span lang="en">Minor (late filing, typo)</span></td><td><span lang="zh">监管关注函 / 问询函</span><span lang="en">Attention letter / inquiry letter</span></td><td><span lang="zh">交易所</span><span lang="en">Exchange</span></td></tr>
+            <tr><td><span lang="zh">较轻</span><span lang="en">Moderate</span></td><td><span lang="zh">通报批评 / 公开谴责</span><span lang="en">Reprimand / public censure</span></td><td><span lang="zh">交易所</span><span lang="en">Exchange</span></td></tr>
+            <tr><td><span lang="zh">较重</span><span lang="en">Major</span></td><td><span lang="zh">行政警示函 / 警告 + 罚款 50-500 万元</span><span lang="en">Warning + fine ¥0.5–5m</span></td><td>CSRC</td></tr>
+            <tr><td><span lang="zh">严重</span><span lang="en">Severe</span></td><td><span lang="zh">大额罚款 (信披违法上限 1,000 万, 欺诈发行上限 2,000 万) + 责任人市场禁入</span><span lang="en">Heavy fine (disclosure cap ¥10m, fraudulent issuance cap ¥20m) + market ban</span></td><td>CSRC</td></tr>
+            <tr><td><span lang="zh">涉嫌犯罪</span><span lang="en">Criminal</span></td><td><span lang="zh">移送公安, 追究"违规披露重要信息罪"刑事责任 (最高 10 年有期徒刑)</span><span lang="en">Referred to police; "disclosure violation" felony (up to 10 years)</span></td><td><span lang="zh">司法</span><span lang="en">Judicial</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh">2019 年修订证券法将信息披露违法罚款上限<em>从 60 万元提高到 1,000 万元</em>(16 倍), 欺诈发行从 60 万元提高到 2,000 万元 (30 余倍)。这是注册制改革的"严罚事中事后"配套。</p>
+        <p lang="en">The 2019 Securities Law revision raised the disclosure‑violation fine cap <em>from ¥600k to ¥10m</em> (16×) and fraudulent‑issuance from ¥600k to ¥20m (30×+). The "tough enforcement" complement to registration.</p>
+
+        <h3 lang="zh">⑥ 对比美国 8-K 制度</h3>
+        <h3 lang="en">⑥ Benchmark: US 8‑K Regime</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">维度</span><span lang="en">Axis</span></th><th><span lang="zh">A 股临时报告</span><span lang="en">A‑share ad‑hoc</span></th><th><span lang="zh">美国 8-K</span><span lang="en">US 8‑K</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">披露时限</span><span lang="en">Timeline</span></td><td>T+2 <span lang="zh">个交易日</span><span lang="en">trading days</span></td><td>4 <span lang="zh">个工作日</span><span lang="en">business days</span></td></tr>
+            <tr><td><span lang="zh">触发项目数</span><span lang="en">Trigger categories</span></td><td>~30 <span lang="zh">类</span><span lang="en">categories</span></td><td>~25 <span lang="zh">类 (Items 1.01-9.01)</span><span lang="en">categories (Items 1.01–9.01)</span></td></tr>
+            <tr><td><span lang="zh">平台</span><span lang="en">Platform</span></td><td><span lang="zh">巨潮 + 交易所网站</span><span lang="en">Juchao + exchanges</span></td><td>SEC EDGAR</td></tr>
+            <tr><td><span lang="zh">公平披露</span><span lang="en">Fair disclosure</span></td><td><span lang="zh">证监会令 §6</span><span lang="en">CSRC Order §6</span></td><td>Reg FD (2000)</td></tr>
+            <tr><td><span lang="zh">语言</span><span lang="en">Language</span></td><td><span lang="zh">中文 (重大事项需英文同步)</span><span lang="en">Chinese (English mirror for material items)</span></td><td><span lang="zh">英文</span><span lang="en">English</span></td></tr>
+            <tr><td><span lang="zh">罚款上限</span><span lang="en">Penalty cap</span></td><td>1,000 <span lang="zh">万元</span><span lang="en">¥10m</span></td><td><span lang="zh">无固定上限 (按违法所得倍数计算)</span><span lang="en">No fixed cap (multiplier of illicit gains)</span></td></tr>
+            <tr><td><span lang="zh">私人诉讼</span><span lang="en">Private litigation</span></td><td><span lang="zh">代表人诉讼 (2019 后)</span><span lang="en">Representative actions (post‑2019)</span></td><td><span lang="zh">10b-5 集体诉讼 (久已成熟)</span><span lang="en">10b‑5 class actions (mature)</span></td></tr>
+          </tbody>
+        </table>
+
+        <p class="muted measure" lang="zh"><strong>核心差异</strong>: 美国 8-K 把"触发情形"按 Item 编号严格列举 (例如 Item 1.01 = 重大协议签署), 中国 A 股则用"重大性判断 + 类别列举"双轨。美国制度更程序化, 中国制度更宽泛 — 但中国的"严罚事中事后"力度近年大幅提升, 实质保护已接近美国水平。两个体系都建立在<em>披露及时性 + 公平性</em>这两条核心原则上。</p>
+        <p class="muted measure" lang="en"><strong>Core difference:</strong> US 8‑K uses a strict Item‑numbered enumeration of triggers (Item 1.01 = entry into a material agreement, etc.). A‑shares uses a "materiality principle + enumerated categories" dual track. US: more procedural; China: broader scope. But China's "tough ex‑post enforcement" has scaled sharply in recent years, and substantive protection now approaches US levels. Both regimes rest on the same two pillars: <em>timely + fair disclosure</em>.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 3 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span>
+        </h2>
+
+        <p lang="zh">老王每周看到的 1-2 份茅台公告, 在大公司层面是注册制信披的常态; 但当披露规则被违反时, 后果是国家级 IPO 暂停, 或者退市 + 立案处罚。下面三个案例: 蚂蚁集团 2020 IPO 暂停 (公平披露 + 重大事项判断); 乐视网信息披露违规 (典型违规处罚链条); 茅台 2023 全年披露汇总 (合规公司的"信息密度")。</p>
+        <p lang="en">Old Wang's weekly Moutai filings are the everyday baseline of registration‑era disclosure. When the rules break, the consequences are nation‑scale IPO suspensions, or delisting plus formal investigation. Three cases below: Ant Group's 2020 IPO suspension (fair disclosure + materiality judgment); LeEco's disclosure‑violation penalty (the textbook penalty chain); Moutai's 2023 full‑year disclosure tally (the "information density" of a compliant company).</p>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">未上市 / Pre-IPO</span><span lang="en">Pre‑IPO</span></span>
+            <span class="company"><span lang="zh">蚂蚁集团</span><span lang="en">Ant Group</span></span>
+            <span class="period">2020.11.03 · <span lang="zh">IPO 暂停 — 信披与监管要求重大变化</span><span lang="en">IPO suspended — disclosure &amp; regulatory shifts</span></span>
+            <span class="delisted"><span lang="zh">[已暂停]</span><span lang="en">[Suspended]</span></span>
+          </div>
+
+          <p lang="zh">老王想"提前一两天知道某公司业绩好坏"的小心思, 在大公司层面会变成一场国家级监管行动。</p>
+          <p lang="en">Old Wang's small wish to "know a day early" becomes, at scale, a nation‑level regulatory action.</p>
+
+          <p lang="zh">2020 年 7 月, 蚂蚁集团向科创板 + 港交所同步提交 A+H 双重上市申请, 计划募资 345 亿美元 (折合约 2,300 亿元人民币), 估值约 2.1 万亿人民币 — 这本将是当时全球史上最大规模 IPO。10 月 26 日科创板正式批复同意注册, 11 月 5 日预定挂牌交易。</p>
+          <p lang="en">In July 2020, Ant Group filed for dual A+H listing on STAR + HKEX, targeting US$34.5bn raise (~RMB 230bn), valuing the firm near RMB 2.1tn — set to be the largest IPO in global history. On Oct 26, STAR approved registration; trading was scheduled for Nov 5.</p>
+
+          <p lang="zh">11 月 2 日下午, 蚂蚁集团实际控制人马云、董事长井贤栋、CEO 胡晓明被证监会、央行、银保监会、外汇局四部门联合<em>监管约谈</em>。11 月 3 日傍晚, 上交所发布<strong>《关于暂缓蚂蚁科技集团股份有限公司科创板上市的决定》</strong>, 同日港交所发布同步暂缓决定。原因官方表述为: "金融科技监管环境发生重大变化, 蚂蚁集团需重新审视相关业务披露"。</p>
+          <p lang="en">On the afternoon of Nov 2, Ant's de facto controller Jack Ma, Chairman Eric Jing, and CEO Simon Hu were jointly summoned by CSRC, PBoC, CBIRC, and SAFE for a regulatory talk. By the evening of Nov 3, SSE published <strong>"Decision to Suspend the STAR Market Listing of Ant Group"</strong>; HKEX issued a parallel suspension the same day. Official reason: "Material changes in the fintech regulatory environment require Ant Group to reassess disclosures related to its business."</p>
+
+          <p lang="zh">直接的信息披露问题在于: 当时正在征求意见的<em>《网络小额贷款业务管理暂行办法 (征求意见稿)》</em>(11 月 2 日由银保监会和央行联合发布) 将根本性改变蚂蚁的核心业务 — 联合贷款中蚂蚁出资比例从约 2% 提高到至少 30%。这一规则变化对蚂蚁估值、商业模式、未来现金流构成<em>重大影响</em>, 必然达到临时报告披露阈值。在监管文件正式公开当晚, 上交所即作出暂缓决定 — 因为已注册的招股说明书未充分披露这一<em>已知或应知</em>的重大风险。</p>
+          <p lang="en">The direct disclosure issue: the <em>Interim Measures for Online Micro‑lending Business (Consultation Draft)</em>, jointly released by CBIRC and PBoC on Nov 2, would fundamentally reshape Ant's core business — raising Ant's funding share in joint‑lending arrangements from ~2% to at least 30%. This regulatory shift materially affected valuation, business model, and future cash flows — clearly clearing any ad‑hoc disclosure threshold. The same evening that the regulatory document went public, SSE suspended the listing, because the registered prospectus did not adequately disclose this <em>known or should‑have‑known</em> material risk.</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">日期</span><span lang="en">Date</span></th><th><span lang="zh">事件</span><span lang="en">Event</span></th><th><span lang="zh">信息披露含义</span><span lang="en">Disclosure implication</span></th></tr></thead>
+              <tbody>
+                <tr><td>2020.10.24</td><td><span lang="zh">马云在上海外滩金融峰会演讲, 公开批评巴塞尔协议与中国金融监管</span><span lang="en">Jack Ma's speech at Shanghai Bund Financial Summit, publicly critiquing Basel and Chinese financial regulation</span></td><td><span lang="zh">重大事项 — 实际控制人公开言论可能引发监管反应</span><span lang="en">Material event — controller's public statements likely to trigger regulatory response</span></td></tr>
+                <tr><td>2020.10.26</td><td><span lang="zh">科创板正式批复注册</span><span lang="en">STAR registration approved</span></td><td>—</td></tr>
+                <tr><td>2020.11.02 (<span lang="zh">午</span><span lang="en">PM</span>)</td><td><span lang="zh">监管约谈四人</span><span lang="en">Regulatory summons</span></td><td><span lang="zh">本身即重大事项, 但当晚未单独披露</span><span lang="en">Material event in itself; not separately disclosed that evening</span></td></tr>
+                <tr><td>2020.11.02 (<span lang="zh">晚</span><span lang="en">night</span>)</td><td><span lang="zh">网络小额贷款监管征求意见稿发布</span><span lang="en">Online micro‑lending consultation draft released</span></td><td><span lang="zh">规则变化直接颠覆蚂蚁核心商业模式, 触发重大风险披露义务</span><span lang="en">Rule change directly upends Ant's core business model — triggers material risk disclosure</span></td></tr>
+                <tr><td>2020.11.03</td><td><span lang="zh">上交所暂缓上市决定</span><span lang="en">SSE suspends listing</span></td><td><span lang="zh">招股说明书未充分披露已知重大风险</span><span lang="en">Prospectus did not adequately disclose known material risk</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>对老王这种散户的关键启示</strong>: 信息披露的<em>"及时性"与"充分性"</em>是两条独立要求, 缺一不可。蚂蚁案中, 已注册招股书的披露在监管要求变化前看似充分, 但当 11 月 2 日新规出台后, "及时补充披露"成为新的法定义务 — 在 24 小时内未充分披露, 即触发暂缓上市后果。<em>定期报告之间发生的重大事项, 必须靠临时报告补缺</em>。否则即构成信息披露重大违规, 即便公司财务真实、利润优秀, 仍可能因披露问题被强制暂缓或处罚。</p>
+          <p lang="en"><strong>Takeaway for retail like Old Wang:</strong> <em>timeliness</em> and <em>adequacy</em> are two independent disclosure requirements. Ant's registered prospectus appeared adequate before regulatory change; once the Nov 2 draft was released, "timely supplementary disclosure" became a new statutory obligation. Failure to disclose adequately within 24 hours triggered the suspension. <em>Material events between periodic reports must be filled in via ad‑hoc disclosure</em>. Otherwise, even financially solid companies can face suspension or penalty for disclosure failures alone.</p>
+
+          <p lang="zh"><strong>后续</strong>: 2020-2023 蚂蚁集团根据监管要求进行业务重组 (拆分网商银行、消金公司、保险等), 2023 年监管部门完成对蚂蚁集团的金融业务整改罚款 (合计约 71 亿元罚没)。截至 2026 年, 蚂蚁尚未重启 IPO 程序。</p>
+          <p lang="en">Aftermath: 2020–23 Ant restructured per regulatory directives (carve‑outs of MYbank, consumer finance, insurance, etc.). In 2023, regulators concluded the financial‑business rectification with a total ~RMB 7.1bn penalty. As of 2026, Ant has not relaunched its IPO process.</p>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SZ·300104</span>
+            <span class="company"><span lang="zh">乐视网 (已退市)</span><span lang="en">LeEco / Leshi (delisted)</span></span>
+            <span class="period">2020-2021 · <span lang="zh">信息披露违法违规典型链条</span><span lang="en">Textbook disclosure‑violation chain</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+
+          <p lang="zh">老王看到的"监管处罚公告"在乐视网这里走了完整的<em>从立案到退市</em>链条。</p>
+          <p lang="en">The "regulatory penalty announcements" Old Wang sees in his feed run their full course in LeEco — from formal investigation to delisting.</p>
+
+          <p lang="zh">乐视网 2010 年作为创业板首批 28 家公司之一上市, 2015 年市值峰值约 1,500 亿元。2016-2017 公司资金链断裂; 2017 年 7 月 4 日, 证监会对乐视网及实控人贾跃亭立案调查; 2020 年 4 月 24 日, 证监会作出《行政处罚决定书》([2020] 32 号), 认定乐视网 2007 年至 2016 年期间持续<em>虚假记载</em>: 公司通过虚构业务、提前确认收入、跨期调节利润等手段, 虚增利润累计超过 100 亿元, 虚增收入超过 100 亿元。</p>
+          <p lang="en">LeEco listed in 2010 as one of ChiNext's first 28 companies, peaking near RMB 150bn market cap in 2015. The 2016–17 cash‑chain collapse triggered crisis. On July 4, 2017, CSRC opened a formal investigation into the company and de facto controller Jia Yueting. On April 24, 2020, CSRC issued Administrative Penalty Decision [2020] No. 32, finding that LeEco engaged in <em>continuous false records</em> from 2007 to 2016 — through fictitious business, premature revenue recognition, cross‑period profit manipulation — cumulatively inflating profits by over RMB 10bn and revenue by over RMB 10bn.</p>
+
+          <p lang="zh"><strong>具体违规手法</strong>:</p>
+          <p lang="en"><strong>Specific violation techniques:</strong></p>
+          <ul>
+            <li><span lang="zh"><strong>虚构业务与收入</strong>: 通过<em>体外公司 (关联方循环交易)</em>制造销售收入, 实际无对应资金/物流; IPO 招股书与上市后 9 份年报均含虚假数据</span><span lang="en"><strong>Fictitious business &amp; revenue:</strong> sales fabricated via <em>off‑book related‑party circular trades</em> with no corresponding cash/logistics; the IPO prospectus and 9 subsequent annual reports all contained false data</span></li>
+            <li><span lang="zh"><strong>关联方资金占用未披露</strong>: 控股股东及关联方非经营性占用上市公司资金累计约 75 亿元, 未按规定披露</span><span lang="en"><strong>Undisclosed related‑party fund occupation:</strong> controlling shareholder and related parties non‑operationally occupied ~RMB 7.5bn of listed‑company funds without disclosure</span></li>
+            <li><span lang="zh"><strong>重大事项隐瞒</strong>: 多笔重大对外担保、大额负债逾期、实控人股权质押冻结情况均延迟或未披露</span><span lang="en"><strong>Concealment of material events:</strong> multiple major external guarantees, overdue large debts, and controller's stake pledge/freeze were delayed or undisclosed</span></li>
+          </ul>
+
+          <p lang="zh"><strong>处罚结果</strong>:</p>
+          <p lang="en"><strong>Penalties:</strong></p>
+          <ul>
+            <li><span lang="zh">乐视网 — 责令改正 + 警告 + 罚款 2.4 亿元 (在 2019 证券法修订前的旧法上限内)</span><span lang="en">LeEco — corrective order + warning + RMB 240m fine (under the pre‑2019 cap)</span></li>
+            <li><span lang="zh">实控人贾跃亭 — 警告 + 罚款 2.41 亿元 + <em>终身证券市场禁入</em></span><span lang="en">Controller Jia Yueting — warning + RMB 241m fine + <em>lifetime market ban</em></span></li>
+            <li><span lang="zh">前 CFO 杨丽杰、其他 21 名董监高 — 不同程度警告 + 罚款 + 市场禁入</span><span lang="en">Former CFO Yang Lijie and 21 other directors/supervisors/execs — graduated warnings + fines + market bans</span></li>
+            <li><span lang="zh"><em>中介机构连带责任</em>: 主要审计机构 (信永中和会计师事务所) 与多家保荐机构受到行政处罚</span><span lang="en"><em>Gatekeeper joint liability:</em> primary auditor (ShineWing) and several sponsoring underwriters received administrative penalties</span></li>
+          </ul>
+
+          <p lang="zh"><strong>退市路径</strong>: 2020 年 7 月 21 日, 乐视网正式被深交所摘牌, 进入退市板挂牌 30 天后终止上市。投资者据 2019 修订证券法可对乐视网及实控人提起<em>代表人诉讼</em>追偿。截至 2024, 投保中心代表诉讼仍在执行阶段。</p>
+          <p lang="en">Delisting: On July 21, 2020, SZSE formally delisted LeEco; after 30 days on the delisted board, the listing terminated. Under the 2019 Securities Law revision, investors can bring <em>representative actions</em> against LeEco and its de facto controller. As of 2024, Investor Service Center class proceedings remain in enforcement phase.</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">阶段</span><span lang="en">Stage</span></th><th><span lang="zh">时点</span><span lang="en">Date</span></th><th><span lang="zh">公告类型</span><span lang="en">Filing type</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">立案调查</span><span lang="en">Investigation opens</span></td><td>2017.07.04</td><td><span lang="zh">关于公司收到《调查通知书》的公告</span><span lang="en">Notice of Investigation Disclosure</span></td></tr>
+                <tr><td><span lang="zh">退市风险警示</span><span lang="en">Delisting risk warning</span></td><td>2018.05.18</td><td>*ST <span lang="zh">乐视</span><span lang="en">prefix added</span></td></tr>
+                <tr><td><span lang="zh">行政处罚事先告知</span><span lang="en">Pre‑penalty notice</span></td><td>2020.03.20</td><td><span lang="zh">关于收到事先告知书的公告</span><span lang="en">Pre‑penalty Notice Disclosure</span></td></tr>
+                <tr><td><span lang="zh">行政处罚决定</span><span lang="en">Final penalty</span></td><td>2020.04.24</td><td><span lang="zh">关于收到行政处罚决定书的公告</span><span lang="en">Final Decision Disclosure</span></td></tr>
+                <tr><td><span lang="zh">终止上市</span><span lang="en">Delisting</span></td><td>2020.07.21</td><td><span lang="zh">关于公司股票终止上市的公告</span><span lang="en">Listing Termination Disclosure</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>启示</strong>: 信息披露违规一旦立案, 进入"立案 → 风险警示 → 事先告知 → 处罚决定 → 退市 → 民事追偿"完整链条, 周期约 2-3 年。期间股价单边下跌, 投资者退出窗口极为有限。所以散户看到"立案调查"公告应高度警惕 — 即使最终未必触发退市, 期间股价已被市场重新定价。</p>
+          <p lang="en">Takeaway: once a disclosure violation reaches formal investigation, the chain runs end‑to‑end — investigation → risk warning → pre‑penalty notice → final penalty → delisting → civil recovery — over 2–3 years. Throughout, the share price unidirectionally declines and investor exit windows are vanishingly narrow. Retail like Old Wang should treat "investigation opened" filings as red alerts; even if delisting ultimately doesn't follow, repricing during the interim is already done.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600519</span>
+            <span class="company"><span lang="zh">贵州茅台</span><span lang="en">Kweichow Moutai</span></span>
+            <span class="period">FY2023 · <span lang="zh">全年披露汇总 — 合规公司的"信息密度"</span><span lang="en">Full‑year disclosure tally — a compliant firm's "information density"</span></span>
+          </div>
+
+          <p lang="zh">老王跟踪茅台一年收到的"80 份左右"公告, 在数据上的具体分布:</p>
+          <p lang="en">Old Wang's "~80 filings a year" tally for Moutai, broken down:</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">公告类别</span><span lang="en">Category</span></th><th class="num"><span lang="zh">数量</span><span lang="en">Count</span></th><th><span lang="zh">代表性事件</span><span lang="en">Representative</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">定期报告</span><span lang="en">Periodic reports</span></td><td class="num">4</td><td><span lang="zh">年报、半年报、Q1、Q3</span><span lang="en">Annual, H1, Q1, Q3</span></td></tr>
+                <tr><td><span lang="zh">业绩预告/快报 (自愿)</span><span lang="en">Pre‑announcement/flash (voluntary)</span></td><td class="num">5</td><td><span lang="zh">H1 预告、Q3 经营数据、年度生产经营情况</span><span lang="en">H1 pre, Q3 ops data, FY ops update</span></td></tr>
+                <tr><td><span lang="zh">分红回购相关</span><span lang="en">Dividend/buyback</span></td><td class="num">4</td><td><span lang="zh">分红派息实施、年度分红方案、特别分红、回购</span><span lang="en">Dividend execution, FY plan, special dividend, buyback</span></td></tr>
+                <tr><td><span lang="zh">关联方交易</span><span lang="en">Related‑party transactions</span></td><td class="num">8</td><td><span lang="zh">2024 关联交易预计、商标使用费、广告宣传</span><span lang="en">2024 RPT estimates, trademark royalty, advertising</span></td></tr>
+                <tr><td><span lang="zh">股东大会决议</span><span lang="en">Shareholder meeting</span></td><td class="num">3</td><td><span lang="zh">年度股东大会、临时股东大会</span><span lang="en">AGM, EGM</span></td></tr>
+                <tr><td><span lang="zh">董事会/监事会决议</span><span lang="en">Board/supervisor resolutions</span></td><td class="num">12</td><td><span lang="zh">每次例会、临时会议</span><span lang="en">Regular and ad‑hoc meetings</span></td></tr>
+                <tr><td><span lang="zh">独立董事意见</span><span lang="en">Independent director opinions</span></td><td class="num">10</td><td><span lang="zh">关联交易、对外担保、利润分配</span><span lang="en">RPT, guarantees, profit distribution</span></td></tr>
+                <tr><td><span lang="zh">投资者关系活动</span><span lang="en">IR activities</span></td><td class="num">15</td><td><span lang="zh">机构调研接待记录</span><span lang="en">Institutional investor meeting records</span></td></tr>
+                <tr><td><span lang="zh">其他临时公告</span><span lang="en">Other ad‑hoc</span></td><td class="num">20+</td><td><span lang="zh">合规进展、ESG、社会责任、章程修订</span><span lang="en">Compliance updates, ESG, CSR, articles amendments</span></td></tr>
+                <tr><td><strong><span lang="zh">合计</span><span lang="en">Total</span></strong></td><td class="num"><strong>~80</strong></td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>对老王的实用建议</strong>: 跟踪一家公司, 不要只看年报。年报只占全年信息的约 1/80。真正高频的信息流在<em>临时公告</em>(关联交易、董事会决议、监管动态)和<em>投资者关系记录</em>(机构调研问答, 公司未来 1-2 季度的指引常常在这里给出, 是<em>公开但低关注度</em>的高价值信息源)。在巨潮订阅 600519 的"实时公告 RSS / 邮件推送", 是散户能获取的最对称信息流。</p>
+          <p lang="en"><strong>Practical advice for Old Wang:</strong> tracking a company means more than reading the annual. The annual is 1/80 of the year's information flow. High‑frequency signal sits in <em>ad‑hoc filings</em> (related‑party transactions, board resolutions, regulatory developments) and especially <em>institutional investor meeting records</em> — the company's forward guidance over the next 1–2 quarters often surfaces in Q&amp;A there, public but under‑monitored, the highest‑value asymmetric source available to retail. Subscribe to 600519's real‑time announcement RSS / email push on Juchao — this is the most symmetric information channel available to a retail investor.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 600519 茅台公告全集 →</span><span lang="en">Cninfo 600519 full disclosure archive →</span>
+          </a>
+        </div>
+
+        <p class="muted measure" lang="zh">
+          数据来源: 巨潮资讯网 (cninfo.com.cn)、上海证券交易所 (sse.com.cn)、深圳证券交易所 (szse.cn)、中国证监会 (csrc.gov.cn) 公开披露文件; 数量和金额为公开档案统计/近似值。
+        </p>
+        <p class="muted measure" lang="en">
+          Sources: Juchao (cninfo), SSE, SZSE, CSRC public disclosures. Counts and amounts are from public archives; figures approximate.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Mental models -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">"信息对称"是市场效率的前提</span><span lang="en">Information symmetry — the precondition of efficiency</span></h4>
+          <p lang="zh">资本市场的定价机制依赖<em>所有投资者获取同质信息</em>。公平披露 (Reg FD) 把"选择性披露给分析师"这种系统性失衡堵死, 让散户与机构在同一时刻拿到同一份事实。这是注册制下散户能与机构博弈的制度基础。</p>
+          <p lang="en">Market pricing depends on <em>all investors receiving the same information</em>. Fair disclosure (Reg FD) closes the systemic imbalance of "selective disclosure to analysts," ensuring retail and institutional investors see the same facts at the same moment. This is the institutional foundation that lets retail compete under registration.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">重大性是定性 + 定量的双轨判断</span><span lang="en">Materiality is qualitative + quantitative</span></h4>
+          <p lang="zh">10% 的资产/营收/净利阈值是定量门, 但 30 余类特定情形 (关联交易、控制权变更、监管处罚) 不论金额都需要披露。两条规则<em>合取</em>判断 — 任一触发即必须披露, 不能用"另一条不触发"来逃避。这是会计学"实质重于形式"原则在披露领域的具体落地。</p>
+          <p lang="en">The 10% threshold (assets / revenue / NI) is the quantitative gate; ~30 specifically enumerated categories (related‑party transactions, control changes, regulatory penalties) trigger disclosure regardless of amount. The two rule sets combine via <em>OR</em> — any trigger mandates disclosure; you cannot evade by pointing to the other not triggering. This is "substance over form" applied to disclosure.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">iii</span>
+        <div>
+          <h4><span lang="zh">"披露密度"反映治理质量</span><span lang="en">Disclosure density signals governance quality</span></h4>
+          <p lang="zh">合规优质公司一年发 70-150 份公告 (高频治理活动 + 完整信息流), 壳公司 / ST 公司一年只发十几份 (无实质活动), 出问题的公司一年发 200+ 份 (反复回复监管问询)。看公告数量本身就是一个有效的"治理质量代理变量", 而且<em>免费可得</em>。</p>
+          <p lang="en">Compliant high‑quality firms file 70–150 announcements per year (high‑frequency governance + full information flow); shells and ST firms file barely a dozen (no substantive activity); troubled firms file 200+ (repeatedly responding to inquiry letters). Announcement count itself is an effective proxy for governance quality — and it's freely observable.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- Quiz -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+
+      <p class="muted">
+        <span lang="zh">先自己想清楚再展开答案。</span>
+        <span lang="en">Think before unfolding.</span>
+      </p>
+
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 一家公司一季报披露"营收同比 +40%, 归母净利同比 +120%", 但没披露业绩预告。这<em>是否</em>违规? 监管会如何反应?</span>
+            <span lang="en"><strong>Q1.</strong> A company's Q1 report shows revenue +40% YoY and NI to parent +120% YoY, but no pre‑announcement was filed. Is this a violation? How does the regulator respond?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>是, 构成信息披露违规</strong>。强制业绩预告触发条件: NI 同比变化 &gt; ±50% 或扭亏为盈/由盈转亏。该公司 NI +120% 远超 ±50% 阈值, 应在<em>Q1 结束后 1 个月内 (即 4 月 15 日前)</em>披露业绩预告。未披露的处置链条:</p>
+            <ol lang="zh">
+              <li><strong>交易所问询函</strong>: 一般在一季报披露后 1-3 天内, 交易所 (沪/深) 会发监管关注函, 询问公司"未披露预告的原因"。</li>
+              <li><strong>公司回复</strong>: 公司须在 5 个交易日内回复, 解释原因 (如内部信息系统延误、对营收/净利变动幅度判断错误)。</li>
+              <li><strong>纪律处分</strong>: 视情节, 可能升级为<em>通报批评</em>或<em>公开谴责</em>(交易所层级), 严重者由 CSRC 出具<em>行政警示函</em>。</li>
+              <li><strong>责任人追究</strong>: 通常追究公司董事会秘书 (信披工作负责人) 与 CFO 的直接责任。</li>
+            </ol>
+            <p lang="zh"><strong>实际后果</strong>: 即使最终被认定为"内部失误而非主观故意", 公司治理评分仍会被市场下调, 短期股价承压。这就是为什么合规公司有专门的"信披工作小组"在月度盘点是否触发预告阈值, 而不是等季报披露才发现。</p>
+            <p lang="zh"><strong>常见误区</strong>: 以为"我都披露了真实的季报, 没有造假, 怎么会违规?" — 信息披露义务不是"披露即可", 而是<em>按规定时间、规定方式、规定格式披露</em>。延迟 1 个月披露 ≠ 不披露 ≠ 合规。</p>
+            <p lang="en"><strong>Yes, this is a disclosure violation.</strong> Pre‑announcement trigger: NI YoY change &gt; ±50%, OR swing between profit and loss. +120% exceeds ±50%, so a pre‑announcement was required within <em>1 month of period end (by April 15)</em>. Enforcement chain: (1) exchange inquiry letter 1–3 days after Q1 filing; (2) company must reply in 5 trading days; (3) potentially upgraded to reprimand or public censure; severe cases get a CSRC warning letter; (4) board secretary and CFO held directly responsible. Practical fallout: even an "inadvertent internal failure" finding leaves a governance score hit and short‑term price pressure. Trap: "I filed the true Q1 — how can that be a violation?" Disclosure isn't "publish at all"; it's "publish on the prescribed schedule, in the prescribed manner, in the prescribed format." Late by a month ≠ filed ≠ compliant.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 茅台总资产 2,820 亿, 上年营收 1,505 亿, 上年净利 747 亿。它的一家全资子公司拟出资 80 亿元参与某产业基金。这笔交易是否需要发临时报告? 用阈值公式逐项验证。</span>
+            <span lang="en"><strong>Q2.</strong> Moutai: total assets ¥282bn, prior‑year revenue ¥150.5bn, prior‑year NI ¥74.7bn. A wholly owned sub commits ¥8bn to an industrial fund. Does this require ad‑hoc disclosure? Verify each axis.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>需要</strong>。逐项验证 10% 阈值 (任一触发即构成重大):</p>
+            <ul lang="zh">
+              <li>资产比率: 80 / 2,820 ≈ <strong>2.84%</strong> — 未达 10% 阈值, 不触发。</li>
+              <li>营收比率: 80 / 1,505 ≈ <strong>5.32%</strong> — 未达 10% 阈值, 不触发。</li>
+              <li>净利比率: 80 / 747 ≈ <strong>10.71%</strong> — <em>超过 10% 阈值, 触发重大交易披露</em>。</li>
+            </ul>
+            <p lang="zh">三个阈值是 OR 关系, 净利比率 10.71% 超过 10%, 即必须在 2 个交易日内发临时报告。</p>
+            <p lang="zh"><strong>但情况还没结束</strong>: 即使三个比率都未触发, 还有<em>独立列举触发情形</em>。本笔交易是"重大对外投资", 大额对外投资本身就是临时报告必披露项 (即使比率未达 10%)。所以无论如何都得披露 — 这就是 Layer 2 提到的"30 类独立列举不受 10% 约束"。</p>
+            <p lang="zh"><strong>对照 Layer 1 的 4.5 亿案例</strong>: 茅台子公司 4.5 亿投资中, 三个比率分别为 0.16% / 0.30% / 0.60%, 都远低于 10%。但仍然披露, 因为"对外投资"本身是触发项。Layer 1 老王看到的就是这种"小额但仍披露"的情况。</p>
+            <p lang="zh"><strong>更深层启示</strong>: 阈值判断只回答"是否构成<em>重大</em>交易需要董事会审议", 而非"是否需要披露"。披露义务的范围比"重大"更宽 — 这是注册制下信息流向投资者的设计逻辑。</p>
+            <p lang="en"><strong>Yes — required.</strong> Verifying each 10% axis (any breach triggers): assets 80/2,820 ≈ <strong>2.84%</strong> (no); revenue 80/1,505 ≈ <strong>5.32%</strong> (no); NI 80/747 ≈ <strong>10.71%</strong> (<em>breaches, triggers</em>). The three are OR; NI ratio alone mandates T+2 disclosure. Moreover, even if no ratio breached, "major external investment" is an independently enumerated trigger (the ~30 categories) regardless of amount — explaining why the ¥450m Layer 1 case (ratios all &lt; 1%) was still disclosed. Threshold judgment only answers "is it material enough to need board approval"; the disclosure scope is broader. This is registration‑era information‑flow design.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> 一家上市公司董事长接受财经媒体专访时, 提前告知记者"下个月发布的业绩超预期 30%"。这违反哪条原则? 后果可能有多严重?</span>
+            <span lang="en"><strong>Q3.</strong> A listed company's chairman tells a financial reporter during an interview that "next month's results will beat expectations by 30%." Which principle is violated? How severe could the consequences be?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>违反公平披露原则 + 涉嫌内幕信息泄露</strong>。具体违规层次:</p>
+            <ol lang="zh">
+              <li><strong>公平披露 (证监会令 §6)</strong>: 该信息属于<em>未公开重大信息</em>(尚未通过法定渠道披露的业绩数据)。董事长向特定记者提前披露, 给该记者所代表的读者群体相对其他投资者的不公平信息优势。</li>
+              <li><strong>内幕信息管理违规 (证券法 §51)</strong>: 该业绩数据属于"内幕信息" (尚未公开、对股价有重大影响的信息)。董事长作为<em>内幕信息知情人</em>有保密义务, 在正式披露前向外部人员透露即违法。</li>
+              <li><strong>可能涉及内幕交易 (证券法 §53)</strong>: 如果记者本人或其关联方在文章发布前买入股票获利, 则构成内幕交易刑事犯罪。</li>
+            </ol>
+            <p lang="zh"><strong>处罚链条</strong>:</p>
+            <ul lang="zh">
+              <li><em>对公司</em>: CSRC 警示函 / 罚款; 公司治理评分下调; 信息披露考评评级降级 (D 级)。</li>
+              <li><em>对董事长</em>: 警告 + 罚款 (一般 30-200 万) + 市场禁入; 严重者刑事追究 (内幕信息泄露罪, 最高 5 年有期徒刑)。</li>
+              <li><em>对接收方 (记者)</em>: 若知情后传播或交易, 与董事长承担同等责任。</li>
+            </ul>
+            <p lang="zh"><strong>历史案例</strong>: 2014 年某上市公司高管在调研接待中泄露未公开业绩数据, 后被 CSRC 警示并罚款 60 万元 (依旧法上限); 2019 修订后罚款上限提升, 类似案件处罚已升至数百万元级别。</p>
+            <p lang="zh"><strong>启示</strong>: 上市公司的<em>"对外沟通管理制度"</em>(Disclosure Policy) 必须明确: 业绩数据、未公开重大事项, 在通过法定渠道披露前, 任何场合 (媒体专访、私下会面、电话沟通、邮件) 都不能透露。优秀公司会有专门的<em>"信息披露发言人"</em>(通常是董事会秘书) 担任唯一对外口径, 其他高管对涉及非公开重大信息的提问统一回应"以法定披露为准"。</p>
+            <p lang="en"><strong>Violates fair disclosure + suspected inside information leak.</strong> Layers: (1) Fair disclosure (CSRC Order §6) — non‑public material information selectively shared with a specific reporter, giving that audience an unfair informational advantage; (2) Insider information management (Securities Law §51) — the chairman is an insider with a non‑disclosure obligation; pre‑disclosure to outsiders is unlawful; (3) Potential insider trading (§53) — if the reporter or affiliates trade ahead of publication, this becomes a criminal insider‑trading offense. Penalties: company gets CSRC warning + governance score downgrade + disclosure rating downgrade; chairman gets warning + fine (typically ¥300k–¥2m) + market ban, severe cases criminal prosecution (insider‑information leak felony, up to 5 years); reporter, if trading after learning, faces equal liability. Lesson: companies must enforce a Disclosure Policy — non‑public material data cannot be revealed in any channel (interview, private meeting, phone, email) before statutory release. Best practice: appoint a single Disclosure Spokesperson (typically the board secretary); other executives must respond to non‑public material questions with "subject to statutory disclosure."</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> 对比 A 股临时报告 (T+2) 与美国 8-K (T+4 工作日)。为什么 A 股给的时间更短? 这是更严格还是更宽松? 给出至少两个角度的分析。</span>
+            <span lang="en"><strong>Q4.</strong> Compare A‑share ad‑hoc (T+2 trading days) with US 8‑K (T+4 business days). Why does A‑shares give less time? Is this stricter or looser? Analyze from at least two angles.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>表面看 A 股更严, 但实际差异比时长更深</strong>。</p>
+            <p lang="zh"><strong>角度 1: 时长本身</strong></p>
+            <ul lang="zh">
+              <li>A 股 T+2 个<em>交易日</em>(不含周末) ≈ 2-4 个自然日, 跨周末可达 4 天</li>
+              <li>美国 T+4 个<em>工作日</em> ≈ 4-6 个自然日</li>
+              <li>A 股给的时间约为美国的 1/2 - 2/3, <em>更紧</em></li>
+            </ul>
+            <p lang="zh"><strong>角度 2: 散户保护逻辑</strong></p>
+            <ul lang="zh">
+              <li>A 股散户比例约 65% (按持仓), 短时长有助于减少"内部消息扩散+股价异动"窗口期</li>
+              <li>美国机构投资者主导 (~80%), 4 个工作日内基本是机构间博弈, 散户参与少, 时间充裕影响较小</li>
+              <li>A 股的更紧时长是<em>对散户的额外保护</em>设计</li>
+            </ul>
+            <p lang="zh"><strong>角度 3: 实施严格度</strong></p>
+            <ul lang="zh">
+              <li>美国 8-K 的<em>触发项</em>按 Item 编号严格列举 (Item 1.01-9.01), 不在列举内即不触发; A 股有"重大性原则" + "类别列举" 双轨, 实质判断空间更大</li>
+              <li>美国 8-K 极少有"延迟披露因为不知道是否构成"的争议; A 股则常有"我们认为不重大所以没披露"的事后争议</li>
+              <li>所以美国制度<em>更程序化</em>, A 股制度<em>更实质化</em></li>
+            </ul>
+            <p lang="zh"><strong>角度 4: 处罚力度</strong></p>
+            <ul lang="zh">
+              <li>美国: 罚款无固定上限, 按违法所得倍数 / SEC 行政裁量, 单案最高数十亿美元 (但平均执行少, 多通过和解)</li>
+              <li>A 股: 罚款上限 1,000 万元 (2019 修订后), 单案最高数亿元 (康得新案合计罚没近亿)</li>
+              <li><em>美国上限高、平均低; A 股上限低、上调速度快</em></li>
+            </ul>
+            <p lang="zh"><strong>综合判断</strong>: 时长上 A 股<em>更严</em>; 触发判断上 A 股<em>更宽泛</em>; 处罚上限上美国<em>更狠</em>。两套制度对"信披及时性"的总体保护强度大致相当, 但具体侧重点不同, 是各自市场结构 (散户/机构占比) 的产物。</p>
+            <p lang="en"><strong>Time itself: A‑shares is stricter.</strong> A‑shares T+2 trading days ≈ 2–4 natural days (up to 4 across a weekend); US T+4 business days ≈ 4–6 natural days. A‑shares grants ~1/2 to 2/3 the US window. <strong>Retail protection logic:</strong> A‑shares is ~65% retail by holdings, so shorter windows shrink the "leak + price move" gap; US is ~80% institutional, where the 4‑day window is mostly institutional jockeying with minimal retail exposure. The tighter A‑share window is an additional retail‑protection design. <strong>Enforcement strictness:</strong> US 8‑K enumerates Item‑numbered triggers (Items 1.01–9.01) — outside the list, no trigger. A‑shares uses dual track (materiality principle + categories), which is more substantive but also leaves more room for ex‑post disputes ("we didn't think it was material"). US: more procedural. A‑shares: more substantive. <strong>Penalty ceilings:</strong> US has no fixed cap (multipliers of illicit gains, multi‑billion‑dollar cases possible but rare via settlement); A‑shares caps at ¥10m post‑2019, with hundreds of millions in aggregate cases (Kangde Xin ~¥100m total). US: high ceiling, low average; A‑shares: low ceiling, fast‑rising. <strong>Synthesis:</strong> A‑shares is stricter on time and laxer on trigger judgment; US has higher penalty ceilings. Aggregate timeliness protection is roughly comparable; the specific emphases reflect each market's structural composition (retail vs. institutional).</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> 散户老王想跟踪一家公司的<em>真实经营动态</em>, 他应该在巨潮上<em>优先关注</em>哪三类公告? 不应该花太多时间看哪两类?</span>
+            <span lang="en"><strong>Q5.</strong> Retail Old Wang wants to track a company's <em>real operational pulse</em>. Which three filings should he prioritize on Juchao? Which two should he NOT waste time on?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>优先关注</strong>:</p>
+            <ol lang="zh">
+              <li><strong>投资者关系活动记录表</strong>: 机构调研中公司管理层对未来 1-2 个季度的非正式指引、产能/订单/价格走势、行业竞争评论 — 这是<em>公开但低关注度</em>的最高价值信息源。一家公司一年发 15-30 份, 远超年报半年报数量。优秀公司的 IR 记录连续读 3-5 份就能看出经营趋势。</li>
+              <li><strong>临时公告 (重大对外投资 / 重大合同 / 关联方交易)</strong>: 这些反映<em>实际资本配置决策</em>。例如某新能源公司一年内连续公告 10 笔上游材料长单 — 说明公司在锁定供应; 某地产公司频繁公告对外担保 — 说明流动性紧张。</li>
+              <li><strong>业绩预告 + 季度简报</strong>: 短小但密度高, 业绩预告早于季报 1 个月给出关键数据走向。如果预告与实际季报出现重大偏差, 是<em>极强的</em>红旗信号 (公司管理对自身业务把握度不足或主动操纵预期)。</li>
+            </ol>
+            <p lang="zh"><strong>不应花太多时间看</strong>:</p>
+            <ol lang="zh">
+              <li><strong>例行性董事会/监事会决议公告</strong>: 多数是程序性内容 (审议通过年报/季报、续聘审计师), 没有新增信息。除非是<em>非例行</em>事项 (董事人选变更、章程修订), 否则浏览即可。</li>
+              <li><strong>独立董事意见</strong>: 大多是对前述决议的标准化背书, 措辞高度模板化。除非该意见<em>对某项决议提出反对或保留意见</em>(罕见但重大), 否则信息含量很低。</li>
+            </ol>
+            <p lang="zh"><strong>额外建议</strong>: 巨潮支持按公告类别筛选 (定期报告 / 临时公告 / IR 活动等), 并支持 RSS 订阅。设置好筛选条件后, 一家公司一周 1-2 份高价值公告, 跟踪 3-5 家公司每周阅读量在 1-2 小时, 这是散户可持续的信息获取节奏。</p>
+            <p lang="zh"><strong>进阶</strong>: 把投资者关系记录和业绩预告对照看 — 如果 IR 中管理层表达过"Q3 有望大幅改善", 但 Q3 业绩预告出来 NI 同比 -30%, 这是治理质量的负面信号 (要么管理层判断失误, 要么 IR 中有误导)。这就是散户能在公开信息中找到的"信号差"。</p>
+            <p lang="en"><strong>Prioritize:</strong> (1) <strong>Investor relations meeting records</strong> — informal management guidance on next 1–2 quarters, capacity/order/price trends, competitive commentary. Public but under‑monitored — the highest‑value asymmetric source. A typical company publishes 15–30 per year. Reading 3–5 consecutive records reveals trajectory. (2) <strong>Ad‑hoc filings (major external investments / major contracts / related‑party transactions)</strong> — reflect <em>actual capital allocation decisions</em>. A new‑energy company filing 10 upstream long‑term contracts in a year = locking supply. A property company frequently filing external guarantees = liquidity stress. (3) <strong>Pre‑announcements + quarterly briefs</strong> — short but dense, 1 month ahead of formal quarterly. If pre‑announcement diverges materially from final quarterly, that's a very strong red flag (poor forecasting or expectation management). <strong>Skip:</strong> (1) <strong>Routine board/supervisor resolutions</strong> — mostly procedural (approve annual, reappoint auditor), no new info; skim unless non‑routine. (2) <strong>Independent director opinions</strong> — typically templated endorsements; valuable only when they dissent or reserve (rare but material). Tip: Juchao supports category filtering and RSS subscription. Filter properly: 1–2 valuable filings per company per week; tracking 3–5 companies costs 1–2 hours/week — a sustainable rhythm for retail. Advanced: cross‑check IR records against pre‑announcements. If IR said "Q3 should improve materially" but Q3 pre‑announcement shows NI ‑30% YoY, that's a governance‑quality negative signal — the kind of "signal gap" retail can find in fully public information.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="01-regulation.html">
+            <span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span>
+            <span class="title">01 · <span lang="zh">监管架构</span><span lang="en">Regulation</span></span>
+          </a>
+          <a class="next" href="03-china-specifics.html">
+            <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
+            <span class="title">03 · <span lang="zh">A 股特色规则</span><span lang="en">China Specifics</span></span>
+          </a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key. Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
 <script type="module" src="../../assets/js/main.js?v=9"></script>
-</body></html>
+
+</body>
+</html>

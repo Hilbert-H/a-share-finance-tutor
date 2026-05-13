@@ -1,72 +1,542 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
-<title>A 股 · 05 · 中介机构与问询函</title>
+<title>A 股 · 05 · 看门人体系 — Gatekeepers</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
 </head><body>
+
 <div class="app">
-<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+
+<header class="topbar">
+<button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+<a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+<div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+<div class="topbar-tools">
+<button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+<div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+</div>
+</header>
+
 <aside class="nav"></aside>
+
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">A 股特化 · 05</span></div>
-<h1><span lang="zh">中介机构与问询函</span></h1>
-<p class="lesson-subtitle">A 股投资者最有力的"外部专家意见": <em>审计师意见</em> + <em>交易所问询函</em>. 这两个信号在暴雷案例中提前预警率 ~90%, 但大量散户忽视.</p>
+<div class="lesson-meta">
+<span class="crumb">A 股特化 · 05</span>
+<span class="sep">·</span>
+<span><span lang="zh">21 分钟</span><span lang="en">21 min</span></span>
+<span class="sep">·</span>
+<span><span lang="zh">前置: Ch.04 造假案例</span><span lang="en">Prereq: Ch.04 Fraud</span></span>
+<span class="sep">·</span>
+<span><span lang="zh">后续: 术语词典</span><span lang="en">Next: Glossary</span></span>
+</div>
 
-<h2><span lang="zh">① 审计意见五类</span></h2>
-<table><thead><tr><th><span lang="zh">类型</span></th><th><span lang="zh">含义</span></th><th><span lang="zh">市场反应</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">标准无保留 (清洁)</span></td><td><span lang="zh">报表真实、完整、合规</span></td><td>—</td></tr>
-<tr><td><span lang="zh">带强调事项段的无保留</span></td><td><span lang="zh">总体清洁, 但有特别注意事项</span></td><td><span lang="zh">轻负面</span></td></tr>
-<tr><td><span lang="zh">保留意见</span></td><td><span lang="zh">个别事项不确认</span></td><td><span lang="zh">中度负面</span></td></tr>
-<tr><td><span lang="zh">无法表示意见</span></td><td><span lang="zh">审计师无法获取充分证据</span></td><td><span lang="zh">重大负面, 通常 ST</span></td></tr>
-<tr><td><span lang="zh">否定意见</span></td><td><span lang="zh">报表整体不真实</span></td><td><span lang="zh">退市风险</span></td></tr>
-</tbody></table>
+<h1>
+<span lang="zh">看门人体系</span>
+<span lang="en">The Gatekeeper System</span>
+</h1>
 
-<p lang="zh"><strong>历史规律</strong>: 大量 A 股暴雷案在<em>暴雷前一年</em>已收到非标意见. 康美 2017 无法表示意见 → 2018 自爆; 康得新 2018 保留意见 → 2019 暴雷.</p>
-<p lang="zh"><strong>实操规则</strong>: 看到任何非标意见, <em>立即</em>停止任何买入, 已持仓考虑卖出 (无论价格).</p>
+<p class="lesson-subtitle">
+<span lang="zh">老王在 Ch.04 复盘完五起造假, 心里冒出一个反问 — "<em>这么多专业机构, 审计师签字、券商出研报、评级机构盖章, 都干嘛去了?</em>" 这一章带他逐一拜访 A 股 7 类看门人 (审计师 / 律师 / 投行 / 评级机构 / CSRC / 媒体 / 散户自己), 一个一个问: "你当时为什么没把住关?"</span>
+<span lang="en">Finishing Ch.04's five cases, Old Wang asks an obvious question — "<em>so many professional bodies — auditors sign, brokers publish ratings, agencies grade — what were they all doing?</em>" This chapter walks him through A‑share's seven gatekeepers (auditors / lawyers / investment banks / rating agencies / CSRC / media / retail itself), asking each: "Why didn't <em>you</em> hold the gate?"</span>
+</p>
 
-<h2><span lang="zh">② 关键审计事项 (KAM)</span></h2>
-<p lang="zh">2017 起 A 股审计报告必须列出 KAM — 审计师投入<em>显著精力</em>判断的领域. 不是"问题", 但是"难以判断之处". 反复出现同一 KAM = 系统性判断难点 → 潜在雷区.</p>
-<p lang="zh">典型 KAM: 商誉减值测试 / 收入确认 / 应收坏账 / 存货跌价 / 非上市股权 FV / 关联方实质 / 递延税资产可收回性.</p>
-
-<h2><span lang="zh">③ 交易所问询函</span></h2>
-<p lang="zh">2017 后, 交易所对年报普遍发<em>事后审核问询函</em>. 类型:</p>
-<ul lang="zh">
-<li><strong>年报问询函</strong>: 财报披露后, 交易所对疑问点要求解释 (最常见)</li>
-<li><strong>定期报告问询函</strong>: 季报 / 半年报问询</li>
-<li><strong>重大事项问询</strong>: 重组 / 收购 / 担保 / 大额诉讼等具体事件</li>
-<li><strong>异常波动问询</strong>: 股价异常波动要求公司澄清</li>
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span>
+<span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能识别 A 股 5 类外部看门人 (审计师 / 律师 / 投行 / 评级机构 / 媒体) 各自的角色边界与激励错配。</li>
+<li lang="zh">能解读年报"审计意见五类"与"关键审计事项 KAM" — 不是问题, 而是审计师标记的判断难点。</li>
+<li lang="zh">理解 Coffee 2006 "Gatekeepers" 模型 (reputation capital + repeat-player) 在 A 股的水土不服与本土化。</li>
+<li lang="zh">理解为什么 A 股最终的看门人必须是散户自己 — 不是因为机构不可信, 而是因为<em>损失</em>归散户自己承担。</li>
+<li lang="en">Identify A‑share's 5 external gatekeepers (auditor / lawyer / investment bank / rating agency / media) and the incentive misalignment of each.</li>
+<li lang="en">Read the "five audit-opinion classes" and "Key Audit Matters (KAM)" — not problems, but judgment-difficulty markers.</li>
+<li lang="en">Grasp Coffee 2006's "Gatekeepers" model (reputation capital + repeat-player) and where it misfires in the A‑share context.</li>
+<li lang="en">See why retail itself must be the final gatekeeper — not because professionals are untrustworthy, but because losses ultimately accrue to retail.</li>
 </ul>
+</section>
 
-<p lang="zh"><strong>典型问询函内容</strong>: "请说明 XX 科目余额异常增长原因 / 关联方资金往来真实性 / 商誉减值假设合理性 / 应收账款回收风险". 公司必须 5-10 个交易日内回复, 中介机构同意回复内容.</p>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王想理解"谁应该替我把关 A 股"</span><span class="en" lang="en"> · Wang asks who's supposed to hold the gate for him in A‑shares</span></h2>
 
-<p lang="zh"><strong>问询函如何使用</strong>:</p>
-<ol lang="zh">
-<li>看公司是否<em>密集</em>(年内多次) 收到问询函 — 多则警惕</li>
-<li>看问询函<em>具体内容</em> — 询问的领域往往是真实问题</li>
-<li>看公司<em>回复质量</em> — 详细数据 + 中介机构背书 = 合规; 模糊 / 反复 / 失误 = 危险</li>
-<li>看是否<em>多轮</em>问询 (交易所对回复不满意继续追问) — 极强信号</li>
+<p lang="zh">Ch.04 那一周老王把 5 起造假复盘完, 心里堵得慌。他想问一个朴素的问题: "<em>这些公司不是有审计师签字吗? 不是有券商出研报吗? 不是有评级机构盖章吗? 不是有证监会监管吗? 都干嘛去了?</em>" 这一晚, 他打开 5 份不同的 A 股年报, 每一份只看<em>一个</em>角色, 问<em>一个</em>问题. 五个晚上, 走完 A 股看门人体系一遍.</p>
+<p lang="en">After last week's Ch.04 replays, Old Wang was unsettled. He wanted to ask a simple question: "<em>didn't these companies have signing auditors? Broker research? Credit ratings? CSRC oversight? What were they all doing?</em>" This evening he opens five different A‑share filings and looks at one gatekeeper each, asking one question. Five evenings later he's walked the whole A‑share gatekeeper system.</p>
+
+<p lang="zh"><strong>1. 看到年报有审计意见 → 引出 4 家会计师事务所 (大华、立信、信永中和、瑞华) + 国际四大.</strong> 老王翻开手里一家普通制造业 A 股年报, 翻到附录的"审计报告". 第一行盖着事务所章, 写"大华会计师事务所(特殊普通合伙)". 老王问自己: "<em>大华是谁?</em>" 一查, 是 A 股最大的内资所之一. A 股的审计市场结构: 国际四大 (Big 4 — 普华永道 PwC、安永 EY、德勤 Deloitte、毕马威 KPMG) 主要审计央企 + 大型金融 + 蓝筹白马 (约 100-150 家); 内资八大 (立信、大华、信永中和、致同、容诚、天职国际、中汇、大信) 加上"原瑞华"(因康得新案被罚整顿) 审计绝大多数中小盘股 (约 4,000+ 家); 还有几百家小所审计很小一部分. 老王问: <strong>审计师当时为什么没把住关?</strong> 三层答案: (1) <em>结构性</em>: 审计费由被审计公司支付 — 这是利益冲突的根源, 全球都一样, 不是中国独有; (2) <em>客户依赖</em>: 一个事务所的某分所对单个大客户 (例如康美对正中珠江某分所) 收入依赖度可能超 30%, 失去客户 = 分所人员失业, 这种压力下"标准无保留"是默认; (3) <em>能力差距</em>: 国际四大有更系统的方法论与培训, 内资所差距正在缩小但仍存在 — 这就是为什么大量造假案 (康美、康得新、辉山港股段) 的审计师都不是 Big 4. 老王在白板上记下: "<em>看年报第一步 — 谁审计的? 国际四大是底线, 内资八大可接受, 其它要警惕</em>".</p>
+<p lang="en"><strong>1. The audit opinion in the annual report → A‑share's 4-8 audit firms + Big 4.</strong> Wang opens a manufacturing A‑share's annual; flips to the audit report. The first line bears a firm seal: "Dahua CPAs (Special General Partnership)." Wang asks: "<em>who is Dahua?</em>" Lookup: one of A‑share's largest domestic firms. A‑share audit structure: international Big 4 (PwC / EY / Deloitte / KPMG) audit central SOEs, large financials, blue-chip white horses (~100–150 names). The domestic Big 8 (Lixin, Dahua, ShineWing, Grant Thornton China, Rongcheng, Tianzhi, Zhonghui, Daxin) + formerly-Ruihua (penalised after Kangde Xin) audit the great majority of mid- and small-caps (~4,000+). A few hundred small firms cover a thin tail. Wang's question: <strong>why didn't auditors hold the gate?</strong> Three layers: (1) <em>Structural:</em> audit fees paid by the auditee — the universal conflict-of-interest root, not China-specific; (2) <em>Client dependence:</em> a single branch of one firm can derive &gt;30% of revenue from one large client (e.g. Zhengzhong Zhujiang's relationship with Kangmei); losing the client = layoffs, so "unqualified" is the default; (3) <em>Capability gap:</em> Big 4 have more systematic methodology and training; domestic firms are closing the gap but it remains — most major frauds (Kangmei, Kangde Xin, Huishan HK) had non-Big-4 auditors. Wang writes on the whiteboard: "<em>Annual report check #1 — who audited? Big 4 is the bar; domestic Big 8 acceptable; others, alert.</em>"</p>
+
+<p lang="zh"><strong>2. 看到券商发布的买入研报 → 引出投行 / 卖方研究的利益冲突.</strong> 老王手机里收到券商客户经理发来一份"<em>强烈推荐</em>"研报, 目标价比当前高 35%. 他翻到第一页 — 中信建投出的, 分析师署名实在. 但他翻到最后一页"<em>免责声明</em>", 仔细读完, 发现一句关键: "<em>中信建投本人或关联方在过去 12 个月对该公司有承销业务</em>". 老王恍然: "<em>合着这家券商最近给这家公司做了 IPO 或者再融资, 现在它的研究部出研报推荐这家公司. 这能客观吗?</em>" 这就是<em>投行业务 + 卖方研究</em>的<strong>结构性利益冲突</strong>: 卖方研究 (sell-side research) 的工资由券商支付; 券商最大的收入来源是投行 IPO 承销费 (一次 IPO 可以拿几亿承销费 + 配售费) + 经纪业务. 一份研报说"卖出"会得罪所有<em>正在被研究的客户</em>, 也会让该券商错失下一次承销机会. 全球同行业的统计: 卖方研究"买入" : "持有" : "卖出"评级比通常 60:35:5 (海外) 或 80:18:2 (A 股 — 更极端). 也就是说<em>"卖出"评级在 A 股几乎不存在</em>. 老王问: <strong>那么卖方研究还有什么价值?</strong> 三个真正有价值的部分: (a) 行业基础数据 + 同行可比表 (这些是研究员花真功夫做的, 散户无法自己拉); (b) 公司近期事件梳理 (新闻 + 公告 + 调研纪要); (c) 分析师的<em>定性</em>判断 (产业逻辑、竞争格局). 不要看"投资评级"和"目标价" — 那两个是<em>利益冲突最大</em>的部分. <strong>识别准则</strong>: 看到任何研报先翻到"<em>免责声明</em>"看券商利益冲突, 再过滤"投资评级", 只读基础数据和定性分析.</p>
+<p lang="en"><strong>2. A broker's "Buy" report → investment-bank / sell-side research conflict.</strong> Wang gets a "Strong Buy" report from his broker; target price 35% above spot. First page: CITIC Securities, named analyst. He flips to the last page, the disclaimer, and reads: "<em>CITIC or affiliates have provided underwriting services to the subject company within the past 12 months.</em>" Wang clicks: "<em>so this broker just did the company's IPO or secondary, and now its research arm is publishing a Buy. How can this be objective?</em>" This is the <em>banking + sell-side research</em> <strong>structural conflict</strong>: research salaries paid by the broker; the broker's largest revenue is investment-bank underwriting (a single IPO can earn ¥hundreds of millions) + brokerage commission. A "Sell" rating offends every covered client and forfeits the next mandate. Global stats: Buy : Hold : Sell ratios are roughly 60:35:5 (offshore) or 80:18:2 (A‑share — more extreme). "Sell" essentially doesn't exist in A‑share. Wang asks: <strong>so what's sell-side research useful for?</strong> Three valuable parts: (a) industry baseline data + peer comparison tables (real research effort, hard for retail to replicate); (b) recent-event roll-up (news + filings + conference call notes); (c) the analyst's <em>qualitative</em> judgments (industry logic, competitive structure). Ignore "investment rating" and "target price" — they carry the heaviest conflict. <strong>Detection rule:</strong> on any research report, jump first to the disclaimer to check banking ties; filter out the rating; read only baseline data and qualitative analysis.</p>
+
+<p lang="zh"><strong>3. 看到评级机构给债券 AA → 引出中诚信 / 联合资信 / 大公国际等评级机构.</strong> 老王最近买了一只城投债, 卖方告诉他"评级 AA+, 很安全". 老王翻评级报告, 是<em>大公国际</em>出的. 一查, 大公国际 2018 年因"<em>买卖评级</em>"被证监会暂停业务一年 — 即收钱给企业升级评级. A 股 + 中国债券市场的评级机构: 中诚信国际、联合资信 (后改名"联合信用评级")、上海新世纪、东方金诚、大公国际、远东资信. 前四家 + 标普 + 穆迪在华合资是主要市场. <em>所有</em>这些机构都是<strong>issuer-pays</strong> 模式 — 被评级的企业付钱给评级机构 — 这与美国三大 (S&amp;P, Moody's, Fitch) 的模式相同, 是<em>全球</em>评级行业的结构性问题. 但 A 股的特点: 国内评级<em>普遍偏高</em> — A 股发债企业的国内评级中位数 AA+, 但同样企业在国际三大 (S&amp;P 等) 的评级中位数 BBB-/BB+. 之间差距 3-5 个等级, 即"<em>中国 AA = 国际 BBB</em>". 这与监管要求 (公募债券一般要 AA 以上才能发) 倒推出来 — <em>评级被需求倒推</em>. 老王问: <strong>评级机构当时为什么没把住关?</strong> 三个原因: (a) issuer-pays + 高度竞争 (6 家国内大所抢生意, 不给高评级就换一家); (b) 缺乏违约数据校准 (中国债券市场 2014 前几乎零违约, 评级模型没有"真实违约数据"训练); (c) 监管隐性兜底预期 (2018 前市场普遍认为城投债"有政府兜底"). 2018-2024 城投债首次出现真实违约 (例如华晨集团 2020、华夏幸福 2021、永煤控股 2020 — 永煤违约前评级仍是 AAA), 评级体系暴露严重失灵. <strong>识别准则</strong>: <em>不要看国内评级</em>, 或至少把它<em>降 3-5 个等级</em>再看. 自己看: (a) 发行人合并报表负债率 / OCF / EBITDA 利息覆盖倍数; (b) 城投看母公司财政实力 + 担保结构; (c) 公开债券市场的<em>到期收益率 (YTM)</em> 是更可信的"<em>市场评级</em>".</p>
+<p lang="en"><strong>3. A bond rated AA → China's rating agencies (Chengxin, Lianhe, Dagong, etc.).</strong> Wang recently bought a city-investment-platform bond; the broker said "AA+, very safe." He opens the rating report — Dagong Global. Lookup: Dagong was suspended for a year in 2018 by CSRC for "selling ratings" — taking money to upgrade. A‑share + Chinese bond rating universe: China Chengxin, Lianhe (now "Lianhe Credit Rating"), Shanghai Brilliance, Golden Credit (Dongfang Jincheng), Dagong Global, Far East Credit — the top four plus joint-ventures with S&amp;P and Moody's dominate. <em>All</em> are <strong>issuer-pays</strong> — the issuer pays the rating agency — the same model as the US Big Three (S&amp;P, Moody's, Fitch). But A‑share specifics: domestic ratings <em>systematically inflated</em> — A‑share bond-issuer domestic-rating median AA+, while the same names in global Big Three (S&amp;P) sit around BBB-/BB+, a 3–5 notch gap. "Chinese AA = international BBB" is approximately right. This is reverse-induced by regulation (public bond issuance generally requires AA+) — <em>ratings reverse-induced by demand</em>. Wang asks: <strong>why didn't the agencies hold?</strong> Three reasons: (a) issuer-pays + intense competition (six domestic agencies bidding for mandates; if you don't grade high, the issuer goes elsewhere); (b) absent default data (zero meaningful defaults in China's bond market pre-2014; the models had no "real default data" to train on); (c) implicit government-backstop expectation (pre-2018, the market assumed local-government-bond credit was sovereign-quality). 2018–24 saw first real defaults (Brilliance 2020, Huaxia 2021, Yongmei Holdings 2020 — Yongmei was still AAA at default). The rating system was exposed as broken. <strong>Detection rule:</strong> <em>don't trust domestic ratings;</em> or at least <em>haircut 3–5 notches</em>. Compute yourself: (a) issuer consolidated debt ratio / OCF / EBITDA interest coverage; (b) for city investment, check the parent fiscal strength + guarantee structure; (c) the <em>public-market yield-to-maturity (YTM)</em> is the more credible "market rating."</p>
+
+<p lang="zh"><strong>4. 看到证监会通报某公司 → 引出 CSRC 监察机构 + 沪深交易所自律监管.</strong> 老王打开 wind 终端, 在"<em>监管动态</em>"栏看到一条: "某科技股因虚假信息披露被立案调查". 他点开, 是 CSRC 上海稽查局发的. 老王问: "<em>CSRC 是什么样的机构? 它能做什么? 不能做什么?</em>" 中国证监会 (CSRC) 设在国务院, 下设 36 个派出机构 (各省证监局 + 上海 / 深圳稽查局). 主要工具有 4 种: (a) <em>立案调查</em> (一旦立案股价立刻反应, 一般 −10% 到 −30%); (b) <em>行政处罚</em> (罚款 + 警告 + 市场禁入); (c) <em>移送公安</em> (涉嫌刑事的) → 司法机关追究刑责; (d) <em>退市</em> (重大违法退市机制, 2020 新规, 2024 进一步收紧). 沪深交易所则做<em>一线监管</em>: 信息披露监管、停牌复牌、问询函、纪律处分. 老王问: <strong>CSRC + 交易所当时为什么没把住关?</strong> 三个结构性原因: (1) <em>信息不对称</em>: 监管者只能从公开披露 + 投诉举报 + 同行竞争对手举报中获取信息, 无法实时监控 5,300 家公司; (2) <em>处罚滞后</em>: 即使发现, 调查 → 立案 → 处罚平均周期 12-24 个月, 大量股东已套现; (3) <em>处罚力度历史偏弱</em>: 2020 新证券法前, 信息披露违法罚款上限 60 万 (相比造假获利数十亿, 是个鼓励性数字). 新法把上限提到 1,000 万, 仍偏低 — 但<em>集体诉讼</em>制度建立后, 康美案投资者获赔 24.59 亿, 这是质变. <strong>识别准则</strong>: 看到"立案调查"公告 → 即使最终查实无问题, <em>持仓期</em>风险 / 收益已严重恶化, 应立即减仓.</p>
+<p lang="en"><strong>4. A CSRC notice → CSRC + the Shanghai / Shenzhen exchanges' frontline oversight.</strong> Wang opens Wind, the "Regulatory" feed shows: "A tech-board stock placed under investigation for false disclosure." Source: CSRC Shanghai Inspection Bureau. Wang asks: "<em>what kind of agency is CSRC? What can it do? What can't it?</em>" The China Securities Regulatory Commission (CSRC) sits under the State Council, with 36 dispatched agencies (provincial bureaus + Shanghai and Shenzhen inspection bureaus). Four main tools: (a) <em>case-opening</em> investigation (markets react immediately on opening, typically −10% to −30%); (b) <em>administrative penalties</em> (fines, warnings, market bans); (c) <em>referral to public security</em> for criminal pursuit; (d) <em>delisting</em> (major-violation delisting, 2020 rule, tightened 2024). The exchanges do <em>frontline</em> oversight: disclosure monitoring, halts, inquiry letters, disciplinary action. Wang asks: <strong>why didn't CSRC + exchanges hold the gate?</strong> Three structural reasons: (1) <em>information asymmetry</em> — regulators only learn from public disclosures + complaints + competitor reports; 5,300 firms cannot be monitored in real time; (2) <em>enforcement lag</em> — even on detection, investigation → opening → penalty averages 12–24 months, by which time many shareholders have exited; (3) <em>weak penalties historically</em> — pre-2020 max fine for disclosure violations was ¥600k (vs. fraud benefits of tens of billions, encouraging); the new law raised it to ¥10m, still light — but the new representative-action regime (with Kangmei's ¥2.459bn investor recovery) is a qualitative change. <strong>Detection rule:</strong> see "case-opening" → even if eventually cleared, the holding-period risk/reward is now severely worse; reduce immediately.</p>
+
+<p lang="zh"><strong>5. 看到媒体首发"质疑某公司"文章 → 引出财新 / 经济观察 / 雪球 等独立媒体作用.</strong> 老王在朋友圈看到一篇<em>财新周刊</em>的封面文章, 标题"<em>XX 公司的 100 亿应收账款去哪了</em>". 他翻完文章, 觉得论据扎实 — 财新记者跑到该公司主要客户所在城市做了实地访问, 拿到一些第三方数据. 老王问: "<em>财新这种独立媒体, 在 A 股造假识别里扮演什么角色?</em>" 中国财经媒体光谱: <em>传统主流</em> (财新周刊、第一财经、经济观察报、21 世纪经济报道) — 有调查记者 + 一定独立性; <em>新媒体</em> (雪球、东方财富股吧、虎嗅、36 氪) — 用户生成内容为主, 质量参差; <em>官方</em> (证券时报、中国证券报、上海证券报) — 信息来源好但调查记者少; <em>外媒</em> (财经长青文章, 部分华尔街日报、FT、Bloomberg 中国报道) — 视角不同, 但对内幕的<em>直接访问</em>受限. 老王注意到: A 股几起重大造假案的<em>首发</em>质疑文章都来自<em>独立媒体</em> — 财新对辉山的多篇报道、对乐视的长期跟踪; 雪球大量个人投资者 (例如 "盘古智库" 等) 早在康得新暴雷前已多篇文章质疑. <strong>独立媒体当时为什么没把住关?</strong> 三个原因: (1) <em>广告依赖</em>: 媒体收入主要来自广告; 调查报道得罪潜在广告主, 是<em>负</em>商业模式; (2) <em>调查成本高</em>: 一篇深度财经调查报道平均 3-6 个月 + 多名记者, 成本 ¥50-200 万; 在媒体收入下行的时代, 这种投入越来越稀缺; (3) <em>法律风险</em>: 被报道公司可以起诉媒体诽谤, 即使报道事实, 诉讼期资金占用与品牌损害是真实成本. 但<em>市场仍然给独立媒体定价</em> — 财新订阅 1,800 元/年, 仍有大量个人订户 — 因为它<em>偶尔</em>能挖出造假, 这种"<em>偶尔</em>"的价值已足以支付订阅费. <strong>识别准则</strong>: 关注<em>专门做财经深度调查</em>的几个媒体 (财新、经济观察、华尔街见闻部分内容); 个股研究时同时搜 雪球该股的<em>负面</em>讨论 (而非正面); 任何媒体爆料 → 即使没确认, 也<em>暂停加仓</em>等待事实清楚.</p>
+<p lang="en"><strong>5. A media exposé → Caixin / Economic Observer / Xueqiu and independent media's role.</strong> A friend forwards a Caixin Weekly cover story titled "<em>Where did Company X's ¥10bn AR go?</em>" Wang reads through; the evidence is solid — Caixin reporters travelled to the customer cities and obtained third-party data. Wang asks: "<em>what role does independent media like Caixin play in A‑share fraud detection?</em>" The Chinese financial-media spectrum: <em>traditional mainstream</em> (Caixin Weekly, Yicai, Economic Observer, 21st Century Business Herald) — investigative reporters + some independence; <em>new media</em> (Xueqiu, Eastmoney's Guba, Huxiu, 36Kr) — mostly UGC, quality varies; <em>official</em> (Securities Times, China Securities Journal, Shanghai Securities News) — good sourcing, few investigators; <em>foreign</em> (selected WSJ, FT, Bloomberg China coverage) — different angle but limited inside-access. Wang notes: several major A‑share fraud-questioning <em>first</em> articles came from independent media — Caixin on Huishan, extended coverage on Leshi; Xueqiu retail investors (e.g. "Pangu Think Tank") had multiple Kangde Xin-questioning posts before exposure. <strong>Why didn't independent media hold?</strong> Three reasons: (1) <em>ad dependence</em> — media revenue is mostly ads; investigative reporting alienates would-be advertisers — a <em>negative</em> business model; (2) <em>investigation cost</em> — a deep finance feature takes 3–6 months with multiple reporters, ¥0.5–2m cost; rare in an era of declining media revenue; (3) <em>legal risk</em> — covered companies sue for defamation; even truthful reports incur real litigation and brand cost. Yet the <em>market still values</em> independent media — Caixin's ¥1,800/year subscription has many takers — because <em>occasional</em> fraud-uncovering is worth more than the fee. <strong>Detection rule:</strong> follow a few dedicated investigative financial outlets (Caixin, Economic Observer, parts of WSCN); when researching a stock also search Xueqiu's <em>negative</em> discussion (not positive); any media exposé → even unconfirmed, <em>pause adding</em> until facts clear.</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 280" role="img" aria-label="Seven gatekeepers of A-share">
+<defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient></defs>
+<style>
+.gb{fill:url(#gg);stroke:#1A1814;stroke-width:1.2}
+.gt{font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:11px;fill:#1A1814}
+.gh{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;fill:#1A1814}
+.gi{font-family:'Noto Serif SC',serif;font-style:italic;font-size:10px;fill:#8A8378}
+.ringo{fill:none;stroke:#8B2C2C;stroke-width:1.5}
+</style>
+<text class="gh" x="360" y="22" text-anchor="middle">A 股看门人体系 · 7 层防御 · Seven layers</text>
+
+<rect class="gb" x="10" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="60" y="78" text-anchor="middle">审计师</text>
+<text class="gt" x="60" y="100" text-anchor="middle">大华 / 立信</text>
+<text class="gi" x="60" y="120" text-anchor="middle">issuer-pays</text>
+<text class="gi" x="60" y="138" text-anchor="middle">客户依赖</text>
+
+<rect class="gb" x="120" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="170" y="78" text-anchor="middle">律师</text>
+<text class="gt" x="170" y="100" text-anchor="middle">金杜 / 君合</text>
+<text class="gi" x="170" y="120" text-anchor="middle">合规审查</text>
+<text class="gi" x="170" y="138" text-anchor="middle">IPO 担保人</text>
+
+<rect class="gb" x="230" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="280" y="78" text-anchor="middle">投行</text>
+<text class="gt" x="280" y="100" text-anchor="middle">中信 / 中金</text>
+<text class="gi" x="280" y="120" text-anchor="middle">承销费驱动</text>
+<text class="gi" x="280" y="138" text-anchor="middle">利益冲突</text>
+
+<rect class="gb" x="340" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="390" y="78" text-anchor="middle">评级</text>
+<text class="gt" x="390" y="100" text-anchor="middle">中诚信 / 大公</text>
+<text class="gi" x="390" y="120" text-anchor="middle">issuer-pays</text>
+<text class="gi" x="390" y="138" text-anchor="middle">系统偏高</text>
+
+<rect class="gb" x="450" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="500" y="78" text-anchor="middle">CSRC</text>
+<text class="gt" x="500" y="100" text-anchor="middle">监管 + 交易所</text>
+<text class="gi" x="500" y="120" text-anchor="middle">信息滞后</text>
+<text class="gi" x="500" y="138" text-anchor="middle">处罚滞后</text>
+
+<rect class="gb" x="560" y="50" width="100" height="100" rx="3"/>
+<text class="gh" x="610" y="78" text-anchor="middle">媒体</text>
+<text class="gt" x="610" y="100" text-anchor="middle">财新 / 雪球</text>
+<text class="gi" x="610" y="120" text-anchor="middle">广告依赖</text>
+<text class="gi" x="610" y="138" text-anchor="middle">调查成本高</text>
+
+<rect class="gb" x="200" y="180" width="320" height="80" rx="3" stroke="#8B2C2C" stroke-width="2"/>
+<text class="gh" x="360" y="208" text-anchor="middle">⑦ 散户自己 · Retail itself</text>
+<text class="gt" x="360" y="230" text-anchor="middle">前 6 层失效时, 损失归散户. 因此最终把关人就是散户.</text>
+<text class="gi" x="360" y="250" text-anchor="middle">When the first 6 fail, losses accrue to retail.</text>
+
+<path class="ringo" d="M60 150 Q60 170 200 180" fill="none"/>
+<path class="ringo" d="M170 150 Q170 170 260 180" fill="none"/>
+<path class="ringo" d="M280 150 Q280 170 320 180" fill="none"/>
+<path class="ringo" d="M390 150 Q390 170 400 180" fill="none"/>
+<path class="ringo" d="M500 150 Q500 170 460 180" fill="none"/>
+<path class="ringo" d="M610 150 Q610 170 520 180" fill="none"/>
+</svg>
+<figcaption><span lang="zh">7 类看门人各有激励错配, 任何一层都可能失效 — 最终把关人是散户自己, 因为损失归散户.</span><span lang="en">Seven gatekeepers, each with misaligned incentives, any layer can fail — the final gatekeeper is retail itself, because losses end with retail.</span></figcaption>
+</figure>
+
+<p lang="zh"><strong>傍晚总结.</strong> 老王在白板上画了 7 个方格, 前 6 个是 5 类外部专业看门人 + 律师 (其实律师也是). 看完一圈, 他说: 没有任何一层是 100% 可靠的; <em>每一层都有自己的激励错配</em>. 但这不意味着这些机构没用 — 它们的存在让<em>大部分</em>造假被识别 (历史上 A 股每年只有几起重大造假被揭, 而上市公司 5,300+), 且<em>越严重的造假, 越多层会同时失效</em> (康得新 + 康美都是审计师 + 投行 + 评级 + 散户买方共同失败). 真正的<em>结构性结论</em>: 散户必须把自己也算成<em>第七层看门人</em>, 因为<em>最终损失归散户自己承担</em>. 这不是道德说教, 是<em>损失归属</em>的逻辑必然 — Layer 2 会用 Coffee 2006 的 reputation capital 模型形式化这个结论. Layer 3 用 4 个真实案例 (瑞华会计师事务所、中信建投与乐视、大公国际、财新与瑞幸) 把每类看门人具体如何失效 / 如何成功 展开.</p>
+<p lang="en"><strong>Wrap-up.</strong> Wang draws 7 boxes on the whiteboard — 5 external professional gatekeepers + lawyers (lawyers count too). After the tour: no layer is 100% reliable; <em>each has its own misaligned incentive</em>. This doesn't mean professionals are useless — their existence catches <em>most</em> fraud (A‑share sees only a handful of major fraud exposures per year vs 5,300+ listed names), and <em>the worse the fraud, the more layers fail simultaneously</em> (Kangde Xin and Kangmei both saw auditor + bank + ratings + buy-side fail together). The structural conclusion: retail must count itself as the <em>seventh layer</em>, because <em>losses ultimately accrue to retail</em>. This isn't moralizing; it's the logical consequence of <em>loss attribution</em> — Layer 2 formalises this through Coffee 2006's reputation-capital model. Layer 3 unfolds four real cases (Ruihua, CITIC Securities-Leshi, Dagong Global, Caixin-Luckin) showing how each gatekeeper specifically fails or succeeds.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 把 5 个看门人一个个走了一遍, 都问了"<em>当时为什么没把住关</em>". Layer 2 把这些零散的"激励错配"用学术框架统一起来 — John Coffee Jr. 2006 年的<em>Gatekeepers: The Professions and Corporate Governance</em> 是这个领域的<em>奠基</em>专著. 然后我们看 Sarbanes-Oxley (美国) 与中国对应法规如何回应这些激励错配, 以及监管成本如何在看门人体系内传导.</p>
+<p lang="en">Layer 1 walked through five gatekeepers, asking each "why didn't you hold." Layer 2 unifies these scattered incentive misalignments through John Coffee Jr.'s 2006 monograph <em>Gatekeepers: The Professions and Corporate Governance</em> — the foundational text. We then look at Sarbanes-Oxley (US) and Chinese counterparts as regulatory responses, plus how oversight cost transmits through the gatekeeper chain.</p>
+
+<h3 lang="zh">Coffee 2006 "Gatekeepers" 模型</h3>
+<h3 lang="en">Coffee 2006 "Gatekeepers" model</h3>
+
+<p lang="zh">Coffee 把"看门人 (gatekeeper)"定义为: "<em>专业代理人, 通过其专业服务为公司提供市场进入资格, 同时其专业声誉资本 (reputation capital) 远大于任何单一客户带来的收入</em>". 核心论点 — 看门人的可信性来自 <strong>reputation capital + repeat-player</strong> 模型:</p>
+<p lang="en">Coffee defines a "gatekeeper" as: "<em>a professional agent who certifies the company's market access via their professional service, whose professional reputation capital is far larger than any single client's revenue contribution.</em>" Core thesis — gatekeeper credibility comes from <strong>reputation capital + repeat-player</strong>:</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Coffee 可信性条件</span><span class="callout-label" lang="en">Coffee credibility condition</span>
+<div class="eq"><span>$$ \mathrm{ReputationCapital} \;\gg\; \mathrm{ClientRevenue}_{single} $$</span><span class="num">(5.1)</span></div>
+<p lang="zh">即<em>声誉资本损失</em> &gt;&gt; <em>欺骗单一客户带来的额外收入</em>, 看门人才有动机说真话. 若反过来, 即客户依赖度 (single client rev / total firm rev) 过高, 声誉资本被这个客户"绑架" — 看门人不会说真话.</p>
+<p lang="en">When <em>reputation capital loss</em> &gt;&gt; <em>incremental revenue from cheating a single client</em>, the gatekeeper is incentivized to tell the truth. Reverse — if client dependence (single-client revenue / firm total revenue) is high — reputation capital is "hostage" to that client, and the gatekeeper won't.</p>
+<span class="cite">Coffee, J. C., Jr. (2006). <em>Gatekeepers: The Professions and Corporate Governance</em>. Oxford University Press.</span>
+</div>
+
+<p lang="zh">把 Coffee 模型套到 A 股 5 类看门人, 看每一类的"<em>失效系数</em>":</p>
+<p lang="en">Applying Coffee's model to A‑share's 5 gatekeepers, look at each "failure coefficient":</p>
+
+<table>
+<thead><tr><th><span lang="zh">看门人</span><span lang="en">Gatekeeper</span></th><th><span lang="zh">收入来源</span><span lang="en">Revenue source</span></th><th><span lang="zh">客户依赖度 (典型)</span><span lang="en">Client dependence (typical)</span></th><th><span lang="zh">声誉资本特征</span><span lang="en">Reputation capital</span></th><th><span lang="zh">Coffee 模型预测</span><span lang="en">Coffee prediction</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">审计师</span><span lang="en">Auditor</span></td><td><span lang="zh">审计费 (被审计公司支付)</span><span lang="en">Audit fee (paid by auditee)</span></td><td><span lang="zh">分所对单客户可超 30%</span><span lang="en">Branch-level &gt;30% per client</span></td><td><span lang="zh">事务所整体声誉 + 单合伙人声誉</span><span lang="en">Firm-wide + partner-level</span></td><td><span lang="zh"><strong>失效高</strong> 在分所 + 小所</span><span lang="en"><strong>High failure</strong> at branch / small firms</span></td></tr>
+<tr><td><span lang="zh">投行 (券商)</span><span lang="en">Investment bank</span></td><td><span lang="zh">承销费 + 经纪佣金</span><span lang="en">Underwriting + brokerage</span></td><td><span lang="zh">单 IPO 项目 ¥0.5-5 亿</span><span lang="en">Single IPO ¥50–500m</span></td><td><span lang="zh">券商品牌, 历史 IPO 业绩</span><span lang="en">Brand, IPO track record</span></td><td><span lang="zh">中等失效, 因为重复博弈</span><span lang="en">Medium failure (repeat game)</span></td></tr>
+<tr><td><span lang="zh">律师</span><span lang="en">Lawyer</span></td><td><span lang="zh">合规法律费 + IPO 法律服务费</span><span lang="en">Compliance + IPO legal fees</span></td><td><span lang="zh">大型律所对单客户 &lt; 5%</span><span lang="en">&lt; 5% for large firms</span></td><td><span lang="zh">合伙人个人 + 律所声誉</span><span lang="en">Partner + firm reputation</span></td><td><span lang="zh">较低失效, 但形式化倾向</span><span lang="en">Lower failure, but formalistic tilt</span></td></tr>
+<tr><td><span lang="zh">评级机构</span><span lang="en">Rating agency</span></td><td><span lang="zh">评级费 (发行人支付)</span><span lang="en">Rating fee (issuer-paid)</span></td><td><span lang="zh">单评级项目 ¥30-300 万</span><span lang="en">¥0.3–3m per rating</span></td><td><span lang="zh">评级体系整体准确度 (违约率/评级匹配)</span><span lang="en">Default-rate / rating accuracy</span></td><td><span lang="zh"><strong>高失效</strong> 缺乏 default 数据校准</span><span lang="en"><strong>High failure</strong>, no default-data calibration</span></td></tr>
+<tr><td><span lang="zh">媒体</span><span lang="en">Media</span></td><td><span lang="zh">订阅 + 广告</span><span lang="en">Subscription + ad</span></td><td><span lang="zh">广告主依赖中等</span><span lang="en">Medium ad-client dependence</span></td><td><span lang="zh">编辑独立性 + 报道准确度</span><span lang="en">Editorial independence + accuracy</span></td><td><span lang="zh">部分失效, 优秀独立媒体可信</span><span lang="en">Partial failure; quality indep. media credible</span></td></tr>
+</tbody>
+</table>
+
+<h3 lang="zh">激励错配的 4 个根源</h3>
+<h3 lang="en">Four root causes of incentive misalignment</h3>
+
+<p lang="zh">不同看门人的失效模式不同, 但归根到底有 4 个共同根源:</p>
+<p lang="en">Different gatekeepers fail differently but trace back to four common roots:</p>
+
+<ol>
+<li><span lang="zh"><strong>付费方 = 被审/被评对象</strong>: 审计、评级、投行承销都是 issuer-pays. 这是<em>结构性</em>利益冲突. 唯一例外: 媒体的<em>订阅</em>收入部分 (读者付费 → 客观) vs <em>广告</em>部分 (广告主付费 → 利益冲突).</span><span lang="en"><strong>Payer = subject of opinion:</strong> audit, ratings, IPO underwriting are all issuer-pays. This is the <em>structural</em> conflict of interest. The only exception: media <em>subscription</em> revenue (reader-pays → objective) vs <em>ad</em> revenue (advertiser-pays → conflict).</span></li>
+<li><span lang="zh"><strong>客户依赖 vs 声誉资本</strong>: Coffee 模型 (5.1). 当单一客户对看门人收入贡献过大, "<em>声誉资本被绑架</em>". 审计行业的"<em>客户轮换制</em>" (强制每 5-7 年换审计师) 就是为此设计的 — 减少客户依赖.</span><span lang="en"><strong>Client dependence vs reputation capital:</strong> Coffee (5.1). When a single client's revenue contribution is large, "<em>reputation capital is hostage</em>." Audit-firm <em>rotation</em> (mandatory partner rotation every 5–7 years) is designed for this — to reduce client dependence.</span></li>
+<li><span lang="zh"><strong>责任有限 vs 损失无限</strong>: 看门人即使被罚, 罚金有上限 (国内最高 1,000 万, 远低于造假规模); 但<em>投资者</em>损失无上限. 这是<em>不对称损失</em>结构 — 看门人理性下"<em>愿意试探</em>", 即使被抓到的预期成本 (罚金 × 概率) 也比客户带来的收入低. 解药: <em>个人刑责</em> + <em>集体诉讼</em> — 让"被抓到的预期成本"指数级上升.</span><span lang="en"><strong>Limited liability vs unlimited loss:</strong> gatekeepers face capped fines (max ¥10m domestic, far below fraud benefits); investors face unlimited loss. This is asymmetric loss — rationally, gatekeepers "<em>find it worth trying</em>" because expected detection cost (fine × prob) still falls below client revenue. Remedies: <em>personal criminal liability</em> + <em>representative actions</em> raise expected cost exponentially.</span></li>
+<li><span lang="zh"><strong>事中无审, 事后追责</strong>: CSRC、交易所、审计师都是<em>事后</em>(annual) 审查, 不是<em>实时</em>监控. 造假者有 12 个月时间运作 + 6-12 个月退出 — 在被识别时常已套现. 解药: 实时数据披露 (沪深交易所"<em>大额异常波动</em>" 实时披露) + 算法监控 (各交易所对异常成交模式的 AI 监控).</span><span lang="en"><strong>Audit ex-post, accountability ex-post:</strong> CSRC, exchanges, auditors all conduct <em>annual</em>, not <em>real-time</em>, review. Fraudsters get 12 months to operate + 6–12 months to exit — often cashed out before detection. Remedies: real-time disclosure (exchanges' "abnormal large fluctuation" real-time) + algorithmic monitoring (AI on unusual trading patterns).</span></li>
 </ol>
 
-<h2><span lang="zh">④ 监管函与处罚</span></h2>
-<p lang="zh">问询函上一级 = 监管函 (实质性违规) → 行政处罚 (罚款 / 警告 / 限制) → 立案调查 (刑事可能) → 重大违法退市.</p>
-<p lang="zh">监管函公告即应立即重视 — 表示 CSRC 或交易所已认定<em>实质</em>问题, 不只是"建议补充披露".</p>
+<h3 lang="zh">Sarbanes-Oxley 与中国对应</h3>
+<h3 lang="en">Sarbanes-Oxley and Chinese counterparts</h3>
 
-<h2><span lang="zh">⑤ "看门人"被处罚的趋势</span></h2>
-<p lang="zh">康美案后, 中介机构责任大幅强化:</p>
-<ul lang="zh">
-<li>正中珠江会计师事务所被罚 5,000 万 + 暂停证券业务资格</li>
-<li>多名签字 CPA 终身证券市场禁入</li>
-<li>保荐人若有问题, 保荐机构连带责任</li>
+<p lang="zh">2001-2002 安然 + 世通 + 安达信连环爆雷后, 美国通过<em>Sarbanes-Oxley Act</em> (2002, SOX), 系统改革审计师监管:</p>
+<p lang="en">After the 2001–02 Enron + WorldCom + Andersen chain reaction, the US enacted <em>Sarbanes-Oxley</em> (2002, SOX), systemically reforming auditor oversight:</p>
+
+<ul>
+<li><span lang="zh"><strong>SOX 101</strong>: 成立 PCAOB (Public Company Accounting Oversight Board), 取消审计行业的"自律". 审计师不再自己管自己, 而是接受 SEC 下 PCAOB 监管.</span><span lang="en"><strong>SOX 101:</strong> created PCAOB, ending "self-regulation" of audit. Auditors now overseen by an independent board under the SEC.</span></li>
+<li><span lang="zh"><strong>SOX 201-203</strong>: 严格限制审计师同时提供咨询服务 (审计 + 咨询双业务的利益冲突是安达信案核心); 强制<em>签字合伙人 5 年轮换</em>; 强制<em>审计公司本身 10 年轮换</em>(欧盟版).</span><span lang="en"><strong>SOX 201–203:</strong> strict limits on auditors also providing consulting (the audit+consulting dual-track was core to Andersen); mandatory <em>signing partner 5-year rotation</em>; in EU, mandatory <em>audit-firm 10-year rotation</em>.</span></li>
+<li><span lang="zh"><strong>SOX 404</strong>: 管理层对内部控制有<em>个人</em>评估和签字责任. CEO + CFO 必须对财报准确性<em>个人</em>签字, 故意造假可判刑 25 年.</span><span lang="en"><strong>SOX 404:</strong> management personal evaluation and certification of internal control. CEO + CFO personally certify financial statement accuracy; willful fraud up to 25 years prison.</span></li>
 </ul>
-<p lang="zh"><em>选择审计师</em>本身就是公司质量信号: "四大"(普华永道, 安永, 德勤, 毕马威) 或内资八大 (立信, 信永中和, 天健等) 审计的公司, 一般质量更高; 小事务所审计 + 大公司不匹配, 可疑.</p>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="04-fraud-cases.html">← <span lang="zh">造假案例</span></a><a class="next" href="../meta/glossary.html">Next → <span lang="zh">术语词典</span></a></nav></div>
+<p lang="zh"><strong>中国对应</strong>: 中国证监会与财政部联合监管会计师事务所 (相当于 PCAOB 角色), 2010 起强制签字合伙人 5 年轮换 (与 SOX 一致); 2020 新证券法 + 2021 刑法十一修正案 (Ch.04 Layer 2 提过) 大幅提高造假成本; 2024 进一步推动"会计师事务所定期轮换"试点. 整体方向<em>趋同</em>, 但执行的<em>系统性</em>和<em>透明度</em>(例如 PCAOB 每年公开检查报告, 中国监管检查相对不公开) 仍有差距.</p>
+<p lang="en"><strong>China counterpart:</strong> CSRC + MoF jointly oversee audit firms (~PCAOB role). Signing-partner 5y rotation mandatory since 2010 (matching SOX); 2020 new Securities Law + 2021 Criminal Law Amendment XI (covered in Ch.04 Layer 2) materially raised fraud cost; 2024 trials for firm-level periodic rotation. Direction converges, but <em>systematic execution</em> and <em>transparency</em> (PCAOB publishes annual inspection reports; Chinese oversight is more opaque) still differ.</p>
 
-</article></main><aside class="toc"></aside></div>
-<button class="chat-fab">A?</button>
-<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<h3 lang="zh">监管成本与看门人责任传导</h3>
+<h3 lang="en">Regulatory-cost transmission</h3>
+
+<p lang="zh">看门人体系不是孤立的; 一层失效, 责任向另一层传导. 以康美案为例:</p>
+<p lang="en">The system isn't independent; one layer's failure transmits responsibility to others. Kangmei as the case study:</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">责任传导链 (康美案)</span><span class="callout-label" lang="en">Liability transmission chain (Kangmei)</span>
+<div class="eq"><span>$$ \text{Kangmei (¥0.66bn)} \;\to\; \text{Auditor Zhengzhong Zhujiang (¥50m + suspension)} \;\to\; \text{Signing CPAs (lifetime ban + criminal)} $$</span><span class="num">(5.2)</span></div>
+<p lang="zh">康美主体被罚 6.6 亿 + 退市; 审计师"<em>正中珠江</em>"被罚 5,000 万 + 暂停证券业务资格; 签字注册会计师被终身禁入证券市场 + 部分追究刑责; <em>投资者通过集体诉讼获赔 24.59 亿</em> (康美 + 中介机构连带). 这是 A 股<em>第一次</em>看门人责任<em>同链条传导到底</em>.</p>
+<p lang="en">Kangmei the entity fined ¥0.66bn + delisted; auditor Zhengzhong Zhujiang fined ¥50m + securities-business suspended; signing CPAs lifetime-banned + some criminal; <em>investors recovered ¥2.459bn through representative action</em> (joint liability of issuer + intermediaries). The first A‑share chain where gatekeeper liability transmitted <em>end to end</em>.</p>
+<span class="cite">证监会 [2020] 36 号 · 证监会 [2021] 1 号公告 (康美案处罚决定书) · La Porta, R., Lopez-de-Silanes, F., &amp; Shleifer, A. (2006). "What Works in Securities Laws?" <em>Journal of Finance</em>, 61(1), 1–32.</span>
+</div>
+
+<p lang="zh"><strong>La Porta et al. 2006 实证</strong>: 跨国数据 (49 国) 发现, <em>真正提高证券市场效率</em>的法律工具不是 "监管者主动调查" 也不是 "刑事处罚", 而是<em>私人诉讼 (private enforcement)</em> + <em>信息披露强制</em>. 因为: (a) 私人诉讼有<em>自筹资金</em>能力 (律师风险代理), 监管者预算有限; (b) 受害者本人最有动机调查; (c) 集体诉讼/类诉讼让分散个体能集合行动. 这就是为什么 2020 集体诉讼制度在 A 股的<em>结构性意义</em> &gt;&gt; 罚金提高的意义 — 它把看门人责任从"<em>监管者起诉</em>"扩展到"<em>每一个投资者都能起诉</em>", 期望成本指数级上升.</p>
+<p lang="en"><strong>La Porta et al. 2006 empirical:</strong> across 49 countries, what <em>truly raises securities-market efficiency</em> is not "regulator-initiated investigation" nor "criminal penalties" but <em>private enforcement</em> + <em>mandatory disclosure</em>. Because (a) private actions have <em>self-funded</em> capacity (lawyer-contingent fees) while regulators have limited budget; (b) victims themselves have the most incentive to investigate; (c) representative/class actions let dispersed individuals act collectively. This is why the 2020 A‑share representative-action regime carries <em>structural significance</em> far exceeding any fine increase — it extends gatekeeper liability from "regulator may sue" to "every investor may sue," raising expected cost exponentially.</p>
+
+<h3 lang="zh">关键审计事项 (KAM) 的正确读法</h3>
+<h3 lang="en">Reading Key Audit Matters (KAM) correctly</h3>
+
+<p lang="zh">2017 年起 A 股审计报告必须列出 <strong>KAM (Key Audit Matters, 关键审计事项)</strong>. 注意 KAM 的本意常被误解:</p>
+<p lang="en">Since 2017 A‑share audit reports must list <strong>KAM (Key Audit Matters)</strong>. Note KAM is often misread:</p>
+
+<ul>
+<li><span lang="zh"><strong>KAM 不是"<em>审计师发现的问题</em>"</strong> — 如果是问题, 应该改为非标审计意见; KAM 是"<em>审计师投入<strong>显著</strong>判断精力, 但最终判断仍属<strong>合理</strong></em>"的领域.</span><span lang="en"><strong>KAM is not "<em>problems found by the auditor</em>"</strong> — those would be modified opinions; KAM is "<em>areas where the auditor exercised <strong>significant</strong> judgment effort, with the final judgment still <strong>reasonable</strong></em>."</span></li>
+<li><span lang="zh"><strong>KAM 的正确读法</strong>: (a) 如果同一 KAM 连续多年出现 → 该领域是<em>系统性</em>判断难点 → 投资者应自行深查; (b) 如果 KAM 突然新增 (例如商誉减值首次列入) → 该领域风险<em>近期上升</em>; (c) 如果 KAM 描述措辞<em>显著</em>变化 (例如从"<em>合理</em>"到"<em>具有重大不确定性</em>") → 风险等级上升.</span><span lang="en"><strong>Correct reading:</strong> (a) same KAM appearing multiple years → systemic judgment difficulty in that area → investors should deep-dive themselves; (b) new KAM appearing (e.g. goodwill impairment first listed) → risk in that area is recently rising; (c) materially changed wording (e.g. "<em>reasonable</em>" → "<em>significant uncertainty</em>") → risk grade rising.</span></li>
+<li><span lang="zh"><strong>典型 A 股 KAM</strong>: 商誉减值测试 / 收入确认 / 应收坏账 / 存货跌价 / 非上市股权 FV / 关联方实质 / 递延税资产可收回性. 这些都是 Ch.04 4 大手段的<em>预警入口</em>.</span><span lang="en"><strong>Typical A‑share KAMs:</strong> goodwill impairment / revenue recognition / AR provisioning / inventory NRV / unlisted-equity FV / related-party substance / DTA recoverability — each a warning entry point for Ch.04's four archetypes.</span></li>
+</ul>
+<span class="cite">CAS 1504 (审计报告中沟通关键审计事项) · ISA 701 · IAASB (2015). · Coffee (2006). <em>Gatekeepers</em>.</span>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">Layer 1 走了一遍 5 类看门人, Layer 2 用 Coffee 模型解释为什么会失效. Layer 3 用 4 个真实案例展开: 瑞华会计师事务所 (审计师失效到底有多重) · 中信建投与乐视网 IPO (投行如何在承销中失职) · 大公国际"卖评级"(评级机构如何被监管直接重罚) · 财新对瑞幸的揭露 (独立媒体何时能成功).</p>
+<p lang="en">Layer 1 walked the five gatekeepers; Layer 2 explained failure via Coffee. Layer 3 unfolds four real cases: Ruihua CPAs (how heavy "auditor failure" actually gets) · CITIC Securities &amp; Leshi IPO (how a banker fails in underwriting) · Dagong Global (how a rating agency gets directly heavily penalized) · Caixin and Luckin (when independent media succeeds).</p>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker"><span lang="zh">中介机构 · 审计</span><span lang="en">Intermediary · Audit</span></span>
+<span class="company"><span lang="zh">瑞华会计师事务所 — 因康得新案被罚</span><span lang="en">Ruihua CPAs — Penalized for Kangde Xin</span></span>
+<span class="period">2019-2020 · <span lang="zh">审计师责任案 (含转所风波)</span><span lang="en">Auditor-liability case (with talent migration aftermath)</span></span>
+</div>
+
+<p lang="zh">瑞华会计师事务所 (前身"<em>原中瑞岳华</em>") 曾是中国第二大本土所, 客户超 800 家 A 股上市公司 (包括康得新 002450). 2019 年 5 月康得新暴雷后, 证监会 2020 年作出处罚决定: 瑞华出具的康得新 2015-2018 年度审计报告"<em>未保持职业怀疑</em>、<em>未充分获取审计证据</em>"; 处罚:</p>
+<p lang="en">Ruihua CPAs (formerly Zhongrui Yuehua), once China's second-largest domestic firm, audited 800+ A‑share listcos including Kangde Xin (002450). After Kangde Xin's May 2019 collapse, CSRC's 2020 decision: Ruihua's 2015–18 Kangde Xin audits "<em>failed to maintain professional skepticism</em>" and "<em>failed to obtain sufficient audit evidence</em>." Sanctions:</p>
+
+<ul>
+<li><span lang="zh">没收审计业务收入 + 1 倍罚款共 ~2,500 万元</span><span lang="en">Disgorgement + 1× fine totaling ~¥25m</span></li>
+<li><span lang="zh">暂停证券业务资格 9 个月 (实质性"<em>禁业</em>")</span><span lang="en">Securities-business license suspended 9 months (de facto suspension)</span></li>
+<li><span lang="zh">签字注册会计师永久市场禁入 + 个人罚款</span><span lang="en">Signing CPAs lifetime market ban + personal fines</span></li>
+</ul>
+
+<p lang="zh"><strong>处罚的"<em>真实成本</em>"分析</strong>: 表面看罚金 2,500 万、9 个月禁业, 似乎"<em>可接受</em>". 但 9 个月禁业 = 客户大规模流失 (上市公司不能换审计师, 必须找新所) + 合伙人大规模离职 (合伙人个人收入受影响, 必须找新平台). 实际后果: 瑞华事务所约 800 家上市公司客户 + 60% 合伙人在 2019-2020 集中转至致同、容诚、大华等所. <strong>这才是 Coffee 模型预测的"<em>声誉资本归零</em>"</strong> — 一家事务所的真实资产不是办公楼或客户合同, 是<em>声誉</em>; 声誉受损后, <em>人和客户都会用脚投票走人</em>. 瑞华现已"<em>事实上消亡</em>"(虽未正式注销, 但已无主要业务).</p>
+<p lang="en"><strong>The "<em>true cost</em>" of the sanction:</strong> on the surface ¥25m fine + 9-month suspension looks "tolerable." But 9 months means mass client loss (listcos must switch auditors) + mass partner departure (partner income hit, must find new platforms). Actual outcome: Ruihua's ~800 listco clients + 60% of partners migrated in 2019–20 to Grant Thornton China, Rongcheng, Dahua. <strong>This is what Coffee's "<em>reputation capital → zero</em>" actually looks like</strong> — an audit firm's real asset isn't the building or contracts, it's the <em>reputation</em>; once damaged, <em>both people and clients vote with their feet</em>. Ruihua is now "<em>de facto extinct</em>" (not formally dissolved, but no significant business).</p>
+
+<p lang="zh"><strong>对投资者的启示</strong>: (1) <em>看历史</em>: 一家公司过去 5 年的审计师有没有被罚过? 如果有 → 加倍小心. wind 可以拉这个数据. (2) <em>看变更</em>: 一家公司年报披露审计师变更 — 如果是"<em>从大所换到小所</em>", 是<em>极强</em>负信号 (大所主动放弃 = 大所看到问题); 如果是"<em>从小所换到大所</em>", 中性偏正 (公司主动提高治理). (3) <em>看签字合伙人</em>: 同一公司连续 5+ 年同一签字合伙人 — 违反了 SOX 风格的轮换原则, 可疑.</p>
+<p lang="en"><strong>For investors:</strong> (1) <em>history check</em> — has the company's auditor over the past 5 years ever been penalized? If yes → double-caution. Wind can pull this. (2) <em>change check</em> — auditor change disclosed in the annual: from large firm to small firm = <em>strong negative</em> (the large firm walked away = it saw problems); from small to large = neutral-to-positive (company upgrading governance). (3) <em>signing partner</em> — same partner signing 5+ consecutive years violates SOX-style rotation, suspicious.</p>
+
+<a class="case-link" href="http://www.csrc.gov.cn/csrc/c100028/c1019099/content.shtml" target="_blank" rel="noopener"><span lang="zh">证监会处罚决定书 (公开档案) →</span><span lang="en">CSRC penalty decision (public archive) →</span></a>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker"><span lang="zh">中介机构 · 投行</span><span lang="en">Intermediary · Investment Bank</span></span>
+<span class="company"><span lang="zh">中信建投 — 乐视网 IPO 承销责任案</span><span lang="en">CITIC Securities — Leshi IPO underwriting liability</span></span>
+<span class="period">2010 (IPO) - 2020 (退市) · <span lang="zh">保荐人持续督导失职</span><span lang="en">Sponsor's ongoing-supervision failure</span></span>
+</div>
+
+<p lang="zh">乐视网 300104 于 2010 年 8 月在创业板 IPO, 募集 7.32 亿. 主承销商 = 平安证券; 持续督导 (类似海外的"保荐机构") = 平安证券. 2017 年贾跃亭"乐视生态"资金链断裂, 上市公司被大股东掏空 (50+ 亿预付款给关联方未交付); 2020 年退市. 平安证券作为<em>持续督导机构</em>(类似 "sponsor"), 在 2010-2017 期间应对乐视的关联方交易、大额担保、资金往来进行<em>持续</em>督导, 但实际未尽职.</p>
+<p lang="en">Leshi 300104 IPO'd on ChiNext in August 2010, raising ¥732m. Lead underwriter = Ping An Securities; ongoing-supervision sponsor (= Ping An). When Jia Yueting's "Leshi ecosystem" funding chain snapped in 2017, the listco was hollowed out by the controlling shareholder (¥5bn+ in prepayments to related parties for undelivered services); delisted 2020. Ping An, as <em>ongoing-supervision sponsor</em>, should have continually supervised Leshi's related-party transactions, large guarantees, and fund flows from 2010 to 2017, but failed to.</p>
+
+<p lang="zh"><strong>2020 处罚 (中信建投相关案件提示)</strong>: 类似案例 (例如中信建投承销的某些公司) 显示处罚力度: 保荐机构罚款 + 暂停部分业务资格 + 个人保荐代表人禁业. 乐视案<em>没有</em>对平安证券作为持续督导机构的<em>直接重罚</em>(原因是当时责任传导机制弱), 这正是 2020 后 A 股监管改革的<em>动力之一</em> — 把"<em>保荐失职</em>"作为<em>实质性责任</em>而非"<em>形式性签字</em>". <strong>2024 退市新规 + 保荐机构责任强化</strong>把保荐人放在了<em>连带责任</em>位置: 如果保荐人对其督导期内的造假/违规<em>知情或应知</em>, 投资者损失保荐人连带赔偿. 这是<em>把投行业务的利益冲突用<strong>责任锚定</strong>反制</em>.</p>
+<p lang="en"><strong>2020 sanction (referencing CITIC Securities-related cases):</strong> similar cases show penalty intensity — sponsor fine + partial business-license suspension + individual sponsor representatives banned. Leshi did <em>not</em> see Ping An <em>directly heavily penalized</em> as ongoing-supervision sponsor (the responsibility chain was weak at the time), and this is exactly <em>one driver</em> of post-2020 A‑share oversight reform — turning "<em>sponsor failure</em>" into <em>substantive liability</em>, not "<em>formal signature</em>." <strong>2024 delisting reform + sponsor liability strengthening</strong> placed sponsors in a <em>joint liability</em> position: if sponsors <em>knew or should have known</em> of fraud/violations during the supervision period, investors' losses become sponsor's joint compensation. This is <em>using liability anchoring to counter the investment-bank conflict of interest</em>.</p>
+
+<p lang="zh"><strong>对投资者的启示</strong>: (1) <em>看 IPO 历史</em>: 一家公司 IPO 时的主承销商是谁? 该承销商历史承销过的公司爆雷率高不高? (2) <em>看持续督导期</em>: 创业板 / 科创板 IPO 后通常有 3 年持续督导, 该期间内保荐机构的督导报告是公开的, 可查; (3) <em>看研报</em>: 主承销商在其承销公司 IPO 后的<em>头 2-3 年研报</em>极不客观 (利益冲突最强), 完全不应作为投资依据.</p>
+<p lang="en"><strong>For investors:</strong> (1) <em>IPO history</em> — who was the lead underwriter? What's that bank's rate of subsequent blow-ups? (2) <em>supervision period</em> — ChiNext / STAR IPOs typically have 3 years of ongoing supervision; the sponsor's supervision reports are public, accessible; (3) <em>research reports</em> — a lead underwriter's research on its IPO client in the first 2–3 years post-listing is the least objective imaginable (conflict at peak); should not inform any investment decision.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker"><span lang="zh">中介机构 · 评级</span><span lang="en">Intermediary · Rating</span></span>
+<span class="company"><span lang="zh">大公国际 — "卖评级"被暂停业务</span><span lang="en">Dagong Global — "Selling ratings," business suspended</span></span>
+<span class="period">2018 · <span lang="zh">评级机构 case</span><span lang="en">Rating-agency case</span></span>
+</div>
+
+<p lang="zh">大公国际资信评估有限公司是国内主要评级机构之一. 2018 年 8 月, 证监会与银行间市场交易商协会联合通报: 大公国际"<em>在为多家发行人提供评级服务的同时, 直接向受评机构提供咨询服务, 收取高额费用</em>" — 实质是<em>用评级换咨询费, 用咨询费抬高评级</em>. 处罚: 暂停其证券市场评级业务 1 年 (银行间市场 + 公司债同步暂停).</p>
+<p lang="en">Dagong Global Credit Rating is one of China's principal rating agencies. In August 2018, CSRC and the National Association of Financial Market Institutional Investors jointly disclosed: Dagong "<em>simultaneously provided rating services and direct consulting services to rated issuers, collecting substantial fees</em>" — substantively <em>trading ratings for consulting fees, inflating ratings via consulting fees</em>. Sanction: securities-market rating business suspended for 1 year (interbank market + corporate bonds simultaneously).</p>
+
+<p lang="zh"><strong>案件的结构性意义</strong>: 这是国内评级机构第一次被监管"<em>直接</em>"重罚 (此前评级机构错评只是"<em>未发现</em>"性质). 大公国际暂停 1 年期间, 客户大量流失到中诚信、联合资信、新世纪等. 大公复业后市场份额从 ~30% 降到 &lt; 15%. 这是 Coffee 模型在评级业的<em>对应案例</em>: 评级机构的<em>声誉资本归零 = 客户全跑</em>, 与瑞华事务所机制完全一样.</p>
+<p lang="en"><strong>Structural significance:</strong> first time a domestic rating agency was <em>directly</em> heavily sanctioned by regulators (previously rating errors were treated as "<em>failure to detect</em>"). During Dagong's 1-year suspension, clients migrated en masse to China Chengxin, Lianhe, Shanghai Brilliance. Post-resumption, Dagong's share dropped from ~30% to &lt; 15%. The Coffee-model <em>analog</em> in ratings: <em>reputation-capital-zeroed = clients-all-leave</em>, exactly the same mechanism as Ruihua CPAs.</p>
+
+<p lang="zh"><strong>但更深一层 — 评级业的结构性弊病未解</strong>: 即使大公被罚, 行业其他评级机构仍然 issuer-pays + 国内评级<em>系统性</em>偏高的格局未变. 2020-2024 多起债券违约 (永煤 AAA → 违约、华夏幸福 AA+ → 违约) 显示评级机构整体仍未做到"<em>违约率与评级匹配</em>". 改革方向 — 引入<em>投资人付费模式</em> (interested-party-pays) 已经在试点 (中债资信评估有限公司是国内首家投资人付费评级机构), 但市场份额仍小. <strong>结构性问题需要结构性解决</strong>, 单家机构被罚只是治标.</p>
+<p lang="en"><strong>But one layer deeper — the structural disease isn't cured:</strong> even after Dagong's sanction, all other agencies remain issuer-pays + the systemic-inflation pattern is unchanged. Multiple 2020–24 bond defaults (Yongmei AAA → default; Huaxia Happiness AA+ → default) show the industry overall still fails to "<em>match default rates to ratings</em>." Reform direction — introducing <em>investor-pays</em> models — has been piloted (China Bond Rating is the first domestic investor-pays agency) but market share remains small. <strong>Structural problems need structural fixes</strong>; single-agency penalties are symptomatic.</p>
+
+<p lang="zh"><strong>对投资者的启示</strong>: (1) <em>不要看评级数字</em>, 看公开市场该债券的<em>到期收益率 (YTM)</em> 与同评级同期限可比债券的差距 — 市场永远比评级机构反应快; (2) <em>看历史违约率</em>: wind 可拉某评级 (AAA / AA+) 历年违约率, 若 AAA 类年违约率 &gt; 0.1%, 该评级<em>系统性高估</em>; (3) <em>自己算财务指标</em>: 利息覆盖倍数 (EBITDA / Interest) &lt; 3 是高警, &lt; 2 是危险, 与评级<em>无关</em>.</p>
+<p lang="en"><strong>For investors:</strong> (1) <em>don't trust the rating number</em>, look at the bond's <em>YTM</em> versus peer-rating peer-maturity bonds in the open market — markets always react faster than agencies; (2) <em>historical default rate</em> — Wind can pull annual default rates by rating; if AAA-class annual default &gt; 0.1%, the rating is <em>systemically inflated</em>; (3) <em>compute yourself</em>: EBITDA / interest coverage &lt; 3 is high alert, &lt; 2 is dangerous, <em>regardless</em> of rating.</p>
+</div>
+
+<div class="case">
+<div class="case-head">
+<span class="ticker"><span lang="zh">媒体 · 独立调查</span><span lang="en">Media · Investigative</span></span>
+<span class="company"><span lang="zh">财新 + 浑水 对瑞幸的揭露</span><span lang="en">Caixin + Muddy Waters on Luckin</span></span>
+<span class="period">2019-2020 · <span lang="zh">独立媒体何时能成功</span><span lang="en">When independent media succeeds</span></span>
+</div>
+
+<p lang="zh">瑞幸案 (Ch.04 Layer 3 已展开数据) 在"<em>谁先揭出来</em>"的角度也是值得分析的看门人案例. 时间线:</p>
+<p lang="en">The Luckin case (data unfolded in Ch.04 Layer 3) is also worth analyzing from the angle of "<em>who exposed it first</em>." Timeline:</p>
+
+<ul>
+<li><span lang="zh"><strong>2019-11 财新</strong>: 财新周刊发表《瑞幸为何亏损扩大》调查报道, 质疑瑞幸单店经济与披露不符 (虽未明确指控造假, 但提出关键质疑)</span><span lang="en"><strong>2019-11 Caixin:</strong> Caixin Weekly published "Why Luckin's losses are widening," questioning unit economics vs disclosure (no explicit fraud charge, but raised key questions)</span></li>
+<li><span lang="zh"><strong>2020-01 浑水</strong>: 浑水发布 89 页匿名报告 (作者实为 GMT Research 协同), 用 1.1 万小时 CCTV 实测明确指控造假</span><span lang="en"><strong>2020-01 Muddy Waters:</strong> published the 89-page anonymous short (true authors = a GMT Research collaboration); 11k hours of CCTV; explicit fraud charge</span></li>
+<li><span lang="zh"><strong>2020-02 雪球 / 36 氪</strong>: 大量 KOL 跟进分析, 部分提供新数据</span><span lang="en"><strong>2020-02 Xueqiu / 36Kr:</strong> KOLs followed with analysis; some new data</span></li>
+<li><span lang="zh"><strong>2020-04 公司自爆</strong>: 瑞幸自查公告确认虚增 22 亿</span><span lang="en"><strong>2020-04 self-disclosure:</strong> Luckin confirmed ¥2.2bn inflation</span></li>
+<li><span lang="zh"><strong>2020-04-后 SEC + 中国证监会调查</strong>: 监管机构跟进</span><span lang="en"><strong>2020-04-onwards:</strong> SEC + CSRC investigations follow</span></li>
+</ul>
+
+<p lang="zh"><strong>关键观察</strong>: <em>独立媒体 (财新) 第一个发声</em>, <em>做空机构 (浑水) 第一个明确指控</em>, <em>公司自爆紧随其后</em>, <em>监管最后跟进</em>. 这与 La Porta 2006 的实证结论一致 — <em>私人 enforcement (独立媒体 + 做空机构)</em> 在<em>识别速度</em>上远快于<em>公共 enforcement (监管)</em>. 监管的<em>事后追责</em>能力 (罚款 + 退市 + 刑事) 不可替代, 但<em>事前识别</em>能力必须依赖<em>分散的私人 enforcement 网络</em>.</p>
+<p lang="en"><strong>Key observation:</strong> <em>independent media (Caixin) was first to voice</em>; <em>the short-seller (Muddy Waters) was first to explicitly charge</em>; <em>company self-disclosure followed</em>; <em>regulator came last</em>. Consistent with La Porta 2006: <em>private enforcement (independent media + shorts)</em> beats <em>public enforcement (regulator)</em> by far in <em>detection speed</em>. The regulator's <em>ex-post accountability</em> (fines + delisting + criminal) is irreplaceable, but <em>ex-ante detection</em> must rely on a <em>distributed private-enforcement network</em>.</p>
+
+<p lang="zh"><strong>独立媒体"<em>为什么这次能成功</em>"</strong>: 三个条件同时满足:</p>
+<p lang="en"><strong>Why independent media succeeded <em>this time</em>:</strong> three conditions simultaneously satisfied:</p>
+
+<ol>
+<li><span lang="zh"><strong>瑞幸是中概 ADR</strong>, 不是 A 股, 中国监管对它的<em>保护性容忍</em>较少 — 监管动机弱化使私人 enforcement 有更大空间.</span><span lang="en"><strong>Luckin was a China-concept ADR</strong>, not A‑share; Chinese regulators' protective-tolerance was lower — weak regulatory motivation gave more room for private enforcement.</span></li>
+<li><span lang="zh"><strong>SEC 监管严厉</strong>, 做空机构在美国受法律保护 (反 SLAPP), 能放心写报告.</span><span lang="en"><strong>SEC oversight was strict</strong>, US law protects short-sellers (anti-SLAPP), so shorts can publish freely.</span></li>
+<li><span lang="zh"><strong>瑞幸单位经济极端反逻辑</strong> (单店日均订单超过星巴克成熟门店), 给了实地调研非常清晰的<em>可测目标</em>.</span><span lang="en"><strong>Luckin's unit economics were extremely counter-logical</strong> (per-store daily orders exceeding mature Starbucks), giving field research a very clear <em>measurable target</em>.</span></li>
+</ol>
+
+<p lang="zh"><strong>转换到 A 股的可行性</strong>: 上述三个条件在 A 股本土名字上同时满足较少, 因此 A 股的私人 enforcement 强度<em>系统性</em>低于美国. 但近年也开始改善 — 财新对辉山、对乐视、对康美的调查报道都是<em>事后</em>(暴雷后) 的深度复盘, 但雪球 / 球友圈对一些可疑公司的<em>事前</em>讨论数量在上升, 这是<em>分散私人 enforcement 网络</em>在 A 股的雏形.</p>
+<p lang="en"><strong>Transferability to A‑share:</strong> the three conditions rarely co-occur on domestic A‑share names, so private-enforcement intensity is <em>systemically</em> lower than the US. But this is improving — Caixin's deep retros on Huishan, Leshi, Kangmei were all <em>post-event</em>, but Xueqiu / community discussion of suspect companies <em>pre-event</em> is rising — the embryonic form of <em>distributed private enforcement</em> in A‑share.</p>
+
+<p lang="zh"><strong>对散户的启示 — 散户如何成为"<em>第七层看门人</em>"</strong>:</p>
+<p lang="en"><strong>For retail — how to become the "<em>seventh gatekeeper</em>":</strong></p>
+
+<ol>
+<li><span lang="zh"><strong>订阅独立媒体</strong>: 财新订阅 ¥1,800/年, 即使一年发现一只你<em>不买</em>的造假股, ROI 也是无穷大.</span><span lang="en"><strong>Subscribe to independent media:</strong> Caixin ¥1,800/year — if it surfaces even one fraud you avoid, ROI is infinite.</span></li>
+<li><span lang="zh"><strong>读做空报告</strong>: 浑水 / 香橼 / Hindenburg 等的 A 股 / 港股 / 中概报告. 不必盲信, 但要用它们提出的<em>具体数据问题</em>复核自己持仓.</span><span lang="en"><strong>Read short reports:</strong> Muddy Waters / Citron / Hindenburg on A‑share / HK / China-concept. Don't trust blindly; use their specific data questions to recheck your holdings.</span></li>
+<li><span lang="zh"><strong>关注雪球负面讨论</strong>: 任何持仓, 定期 (每月一次) 搜索"<em>该股票名称 + 质疑 / 造假 / 雷</em>", 看是否有新质疑文章 / 帖子.</span><span lang="en"><strong>Follow Xueqiu negative discussion:</strong> for any holding, monthly search "ticker + question / fraud / bomb"; check for new questioning posts.</span></li>
+<li><span lang="zh"><strong>自己运行 Ch.04 工具</strong>: Beneish + CCS + 利息倒推 + 同行横切. 用 Ch.04 那一套工具就能识别 80% 以上的造假信号.</span><span lang="en"><strong>Run Ch.04 tools yourself:</strong> Beneish + CCS + interest inversion + peer cross-section. The Ch.04 toolkit catches &gt; 80% of fraud signals.</span></li>
+</ol>
+</div>
+
+<p class="muted measure" lang="zh"><strong>桥接 Layer 1</strong>: 老王这五个晚上走完一圈, 在白板上画了 7 个方格. 他最后问自己: "<em>所以最终还得靠自己?</em>" 不完全是 — 5 类外部专业看门人在大部分时间是<em>有用</em>的; 它们筛掉了<em>大量</em>潜在造假, 让真正进到 A 股的造假只占极小比例 (5,300+ 上市公司, 每年重大造假被揭 ~5-10 起, 比例 &lt; 0.2%). 但<em>剩下的那 0.2%</em>, 任一专业看门人都可能<em>恰巧失效</em> — 而<em>损失</em>会百分之百归散户. Coffee 2006 一句话总结整本书的立意: "<em>The gatekeeper system is a layered defense; no single layer is foolproof, but if any one layer holds, the fraud is caught. The investor's task is to make sure the last layer — themselves — never falls.</em>" 这就是老王为什么把"<em>第七层</em>"自己也画到白板上 — 这不是悲观, 是对损失归属的清醒认识.</p>
+<p class="muted measure" lang="en"><strong>Bridge to Layer 1:</strong> after five evenings, Wang's whiteboard has seven boxes. His final question: "<em>so it ultimately comes back to me?</em>" Not entirely — the five external gatekeepers <em>are</em> useful most of the time, screening out vast amounts of latent fraud so that detected major fraud accounts for only a tiny fraction of A‑share's 5,300+ listcos (~5–10 major exposures per year, &lt; 0.2%). But for that 0.2%, any single professional gatekeeper may <em>happen to fail</em> — and <em>losses</em> accrue 100% to retail. Coffee 2006 in one sentence: "<em>The gatekeeper system is a layered defense; no single layer is foolproof, but if any one layer holds, the fraud is caught. The investor's task is to make sure the last layer — themselves — never falls.</em>" That's why Wang drew the "<em>seventh layer</em>" — himself — on the whiteboard. Not pessimism, but a clear-eyed view of where losses end up.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental Models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">Coffee 声誉资本 (5.1)</span><span lang="en">Coffee Reputation Capital (5.1)</span></h4><p lang="zh">看门人可信性 = 声誉资本 / 客户依赖. 任何一边失衡都意味着该看门人在该客户上失效. 用于评估"<em>这家公司的审计师 / 评级机构 / 投行可信吗</em>".</p><p lang="en">Gatekeeper credibility = reputation capital / client dependence. Either imbalance means failure for that client. Use to assess "<em>is this firm's auditor / rater / banker credible?</em>"</p></div></div>
+
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">La Porta 私人 enforcement &gt; 公共 enforcement</span><span lang="en">La Porta: private enforcement &gt; public</span></h4><p lang="zh">独立媒体 + 做空机构 + 集体诉讼 = "私人 enforcement", 在<em>识别速度</em>上系统性快过监管者. 散户应支持 (订阅、阅读、传播) 这套生态.</p><p lang="en">Independent media + shorts + class actions = "private enforcement"; systemically faster than regulators in <em>detection speed</em>. Retail should support (subscribe, read, share) this ecosystem.</p></div></div>
+
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">损失归属</span><span lang="en">Loss attribution</span></h4><p lang="zh">最终损失归散户. 因此最后一层看门人必须是散户自己. 不是说前 6 层无用, 而是<em>结构性</em>地, 没人能替散户承担损失 → 必须能独立判断.</p><p lang="en">Final losses accrue to retail. So the last layer must be retail itself. Not that the first 6 are useless — but <em>structurally</em>, no one bears retail's loss for them → independent judgment is required.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">每题至少一个反直觉点. 先想清楚再展开答案.</span><span lang="en">Each has at least one counterintuitive twist. Think before unfolding.</span></p>
+
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一家中小盘 A 股, 审计师是"<em>大华</em>"(内资八大之一), 而非 Big 4. 这是不是直接构成"<em>不投资</em>"的理由? 如果不是, 哪几个其他信号会让"<em>非 Big 4</em>"成为决定性负面?</span><span lang="en"><strong>Q1.</strong> A mid/small-cap A‑share is audited by Dahua (domestic Big 8), not Big 4. Is this alone a reason not to invest? If not, which other signals make "non-Big-4" decisive?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>不是</strong>直接构成"<em>不投资</em>"理由. 原因: A 股 5,300+ 公司里, Big 4 只审计了 100-150 家蓝筹; 如果"<em>非 Big 4</em>"等于"<em>不投资</em>", 那 96% 的市场都不投, 不现实. 内资八大整体质量已大幅提升, 审计成本远低于 Big 4 (中小盘公司付不起 Big 4 费用).</p>
+<p lang="zh"><strong>但是</strong>, 以下信号组合让"<em>非 Big 4</em>"成为决定性负面:</p>
+<ol lang="zh">
+<li><strong>非 Big 4 + 非内资八大</strong>: 即审计师是一家市场份额 &lt; 1% 的小事务所. 这种情况下"<em>客户依赖度</em>"几乎一定&gt; 30%, Coffee 模型直接预测可信性低. </li>
+<li><strong>非 Big 4 + 该事务所近 3 年曾被罚或被调查</strong>: 历史问题事务所 — 自动出局.</li>
+<li><strong>非 Big 4 + 该公司同时有其他红绿灯亮 (Ch.04 工具)</strong>: 任一 Beneish / CCS / 利息倒推 / 同行横切异常 + 审计师非主流 = 决定性负面.</li>
+<li><strong>非 Big 4 + 审计师与公司在同一城市且关系密切</strong>: 例如该事务所 80% 客户来自同一地区 → 地方保护性审计.</li>
+<li><strong>非 Big 4 + 该公司近年频繁更换审计师</strong>: 5 年内换 2+ 次 = 红旗.</li>
+</ol>
+<p lang="zh"><strong>反面案例 — 茅台 600519</strong>: 2003 前是<em>四大</em>审计, 2004 起改为<em>立信</em>(内资八大). 即使如此, 茅台至今财务质量极高 — 因为审计师的<em>客户依赖度</em>在茅台这种巨头面前几乎为零 (立信对茅台一家客户的审计费占总收入 &lt; 0.1%), Coffee 模型仍预测高可信. 所以"<em>非 Big 4</em>"本身不致命, 关键是<em>这家事务所对这家公司的客户依赖度</em>.</p>
+<p lang="en"><strong>Not</strong> alone a reason. A‑share 5,300 firms, Big 4 audits only 100–150; if "non-Big-4 = no-invest," 96% of the market is excluded — unrealistic. Domestic Big 8 quality has risen materially; small/mid-caps can't afford Big 4 fees.</p>
+<p lang="en"><strong>But</strong> these combos make non-Big-4 decisive: (1) non-Big-4 + non-Big-8 (market share &lt; 1%) — Coffee model directly predicts high client dependence; (2) the auditor was penalized or investigated in past 3 years; (3) non-Big-4 + any Ch.04 light red (Beneish / CCS / interest / peer); (4) non-Big-4 + auditor and company same city with tight relationship; (5) non-Big-4 + frequent auditor change (2+ in 5 years).</p>
+<p lang="en"><strong>Counter-example — Moutai 600519:</strong> Big 4 pre-2003, then Lixin (domestic Big 8). Yet financial quality remains stellar — because client dependence is near zero (Lixin's Moutai audit fee &lt; 0.1% of Lixin revenue), Coffee still predicts high credibility. "Non-Big-4" alone isn't fatal; the killer is <em>that firm's client dependence on this particular company</em>.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 你看到一份券商研报 "<em>强烈推荐</em>" 某 A 股, 目标价比当前高 40%. 翻到末页发现该券商最近一年承销了这家公司的<em>定向增发</em>. 你应该如何处理这份研报? (a) 直接丢弃; (b) 反向操作 (做空); (c) 部分信息可用. 详述.</span><span lang="en"><strong>Q2.</strong> A broker's "Strong Buy" report, target 40% above spot. Disclaimer reveals the broker recently underwrote a private placement. How should you treat it? (a) trash; (b) reverse (short); (c) some info usable. Detail.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>答 (c) 部分信息可用</strong>, 不是 (a) 也不是 (b).</p>
+<p lang="zh"><strong>为什么不是 (a)</strong>: 研报里有<em>真正有价值</em>的内容 — 行业基础数据 + 同行可比表 + 公司近期事件梳理. 完全丢弃浪费了研究员的真功夫.</p>
+<p lang="zh"><strong>为什么不是 (b)</strong>: "<em>反向操作</em>" 假设利益冲突信号是<em>反信号</em>, 即"<em>买入 = 利益冲突 = 实际看空</em>", 但这不一定. 大部分情况下利益冲突只是让买入评级<em>失去信号意义</em> (信息为 0), 不是<em>变成负信号</em>. 反向操作会被随机噪音淹没.</p>
+<p lang="zh"><strong>(c) 具体处理</strong>:</p>
+<ol lang="zh">
+<li><strong>跳过</strong>: 投资评级 ("强烈推荐") + 目标价 — 完全忽略, 这两个是利益冲突最大的部分.</li>
+<li><strong>读 + 自己加工</strong>: 行业基础数据 + 同行可比表 + 公司近期事件梳理 — 这些<em>事实性</em>内容可用, 但要用自己的<em>判断框架</em>(Ch.04 + M3 Ch.08 + 本章 Coffee 模型) 重新评估.</li>
+<li><strong>对照其他研报</strong>: 找<em>没有承销关系</em>的其他券商 (例如该公司没在它那 IPO 过的券商) 出的研报, 多方对照. 如果<em>所有研报</em>都强烈推荐 + 都是承销过, 信号为 0; 如果<em>独立第三方研报</em>(例如有声誉的卖方研究所如富瑞 / 摩根士丹利) 也强烈推荐, 信号才有部分价值.</li>
+<li><strong>额外深查</strong>: 既然有定向增发, 那么<em>该次定增的认购方</em>是谁? 大股东自购 + 战略投资者 = 中性偏正 (利益绑定); 小机构基金 + 个人 = 中性; 关联方 = 红旗.</li>
+</ol>
+<p lang="zh"><strong>更深的问题</strong>: 为什么一家券商在做完承销后还要出 "强烈推荐" 研报? 真实原因: 让定向增发的<em>认购方</em>不被市场抛压淹没 — 即"<em>承销期保护</em>". 这种研报的<em>真实读者</em>不是普通投资者, 是这次定增的认购方. 你作为普通投资者读这份研报, 等于<em>读了一份给别人看的稳价工具</em>.</p>
+<p lang="en"><strong>Answer (c) some info usable</strong> — not (a), not (b).</p>
+<p lang="en"><strong>Not (a):</strong> there is genuinely valuable content — industry baseline data, peer comparisons, recent-event roll-up. Trashing wastes the analyst's real work.</p>
+<p lang="en"><strong>Not (b):</strong> "reverse" assumes conflict = inverse signal ("Buy = conflict = actually bearish"); not generally true. Mostly the conflict simply nulls the buy rating's signal value (info → 0), doesn't flip it negative. Reverse drowns in noise.</p>
+<p lang="en"><strong>(c) procedure:</strong> (1) skip the rating + target price — pure conflict; (2) keep + reprocess the factual content (industry data, peer comps) through your own framework; (3) cross-check with reports from brokers <em>without</em> underwriting ties; signal value rises only if independent third parties also recommend; (4) deep-dive: who subscribed to the placement? Owner self-subscribe + strategic = neutral-positive; small funds = neutral; related parties = red.</p>
+<p lang="en"><strong>Deeper question:</strong> why does the broker publish a "Strong Buy" after underwriting? Real reason: protect the placement subscribers from market selling pressure — "<em>placement-period stabilization</em>." The <em>real reader</em> of this report isn't ordinary investors but the placement participants. You as retail reading this means you're reading a price-support tool meant for someone else.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> CSRC 在 2019 年后罚款上限大幅提高 (60 万 → 1,000 万), 同时建立集体诉讼制度. 哪一项对<em>降低 A 股造假率</em>的边际作用更大? 用 Coffee 模型 + La Porta 框架论证.</span><span lang="en"><strong>Q3.</strong> CSRC post-2019 raised fines (¥0.6m → ¥10m) and established the representative-action regime. Which contributes more <em>marginal</em> reduction to A‑share fraud? Argue via Coffee + La Porta.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>答: 集体诉讼制度的边际作用更大</strong>, 即使罚款上限提高 16 倍 (60 → 1,000 万) 看起来更"<em>戏剧化</em>".</p>
+<p lang="zh"><strong>论证 1 (规模)</strong>: 罚款 1,000 万 vs 造假规模 (康得新 122 亿、康美 887 亿) 相差 3-4 个数量级. 即使罚款被 100% 执行, 仍远不及造假获利. 期望成本 (1,000 万 × 被抓概率 ~30%) ≈ 300 万, 仍远低于"<em>不造假</em>" 的机会成本. </p>
+<p lang="zh"><strong>论证 2 (集体诉讼放大)</strong>: 康美案集体诉讼判赔 24.59 亿 — 这是罚款 1,000 万的 246 倍. 而且这是<em>对中介机构连带责任</em>, 即审计师 + 投行 + 评级机构都可能被卷入. 集体诉讼后, 中介机构的"<em>期望成本</em>"从"<em>罚款 + 客户流失</em>"扩展到"<em>罚款 + 客户流失 + 投资者赔偿</em>", 量级跃升.</p>
+<p lang="zh"><strong>论证 3 (La Porta 2006)</strong>: 跨国实证表明, 私人诉讼能力 (private enforcement, 即投资者能起诉) 对市场效率的边际贡献远大于行政罚款上限. 因为: (a) 受害者人数巨大, 集合后金额巨大; (b) 律师风险代理使<em>自筹资金</em>成为可能, 不依赖监管者预算; (c) 受害者本人最有动机调查.</p>
+<p lang="zh"><strong>论证 4 (Coffee 反向应用)</strong>: 在 Coffee 模型下, 中介机构是否说真话取决于 (声誉资本 / 客户依赖). 集体诉讼<em>显著提高</em>"<em>声誉资本</em>" 的<em>清算价</em> — 不说真话 = 不只被监管罚, 还被投资者集体起诉 — 把诉讼赔偿加进 reputation capital 公式后, 比例改变.</p>
+<p lang="zh"><strong>结论</strong>: <em>集体诉讼是 2020 改革的真正"<em>结构性</em>"突破</em>; 罚款上限是<em>象征性</em>变化. 这也是 La Porta 2006 跨国实证的核心立意 — 一个市场要变得高效, "<em>能否被起诉</em>" 比 "<em>能否被监管</em>" 重要得多.</p>
+<p lang="en"><strong>Answer: representative actions contribute more</strong>, even though the 16× fine increase looks more dramatic.</p>
+<p lang="en"><strong>Argument 1 (scale):</strong> ¥10m fine vs fraud scale (Kangde Xin ¥12.2bn, Kangmei ¥88.7bn) differs by 3–4 orders of magnitude. Even 100% enforcement leaves fines far below fraud benefit. Expected cost (¥10m × ~30% detect rate ≈ ¥3m) still well below the opportunity cost of "not committing."</p>
+<p lang="en"><strong>Argument 2 (representative-action amplification):</strong> Kangmei's class action recovered ¥2.459bn — 246× the ¥10m fine. And this is <em>joint liability</em> on intermediaries — auditor + bank + rater could all be dragged in. Post-representative-action, intermediaries' "expected cost" expands from fine + client loss to fine + client loss + investor compensation — order-of-magnitude jump.</p>
+<p lang="en"><strong>Argument 3 (La Porta 2006):</strong> cross-country empirics show private-enforcement capacity contributes far more to market efficiency than administrative fine ceilings: (a) victims are numerous, aggregate amounts large; (b) contingent fees enable self-funding, not reliant on regulator budget; (c) victims have strongest incentive to investigate.</p>
+<p lang="en"><strong>Argument 4 (Coffee in reverse):</strong> in Coffee, intermediary truth-telling depends on reputation/client. Representative actions materially raise the <em>liquidation value</em> of "reputation" — lying now means fine + investor class-action damages — reshaping the ratio.</p>
+<p lang="en"><strong>Conclusion:</strong> representative actions are the real <em>structural</em> breakthrough of 2020; raised fines are <em>symbolic</em>. Core message of La Porta 2006: for a market to be efficient, "can investors sue" matters far more than "can regulators fine."</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 你看一份 A 股年报的审计报告, 关键审计事项 (KAM) 列了 3 项: (1) 商誉减值; (2) 收入确认; (3) 应收账款坏账. <em>所有</em>都标"<em>合理</em>". 这是"<em>都没问题</em>"信号, 还是"<em>3 项判断难点同时存在</em>"信号? 详细解读.</span><span lang="en"><strong>Q4.</strong> An A‑share audit report's KAM lists 3 items: goodwill impairment, revenue recognition, AR provisioning. <em>All</em> marked "reasonable." Is this "no issues" or "three judgment-difficulty areas simultaneously"? Detailed read.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>是后者 — "3 项判断难点同时存在" 信号</strong>, <em>不是</em>"<em>都没问题</em>" 信号. KAM 本质就是 "<em>审计师投入显著精力, 最终判断合理</em>" 的领域; "<em>合理</em>" 是判断结论, 但<em>显著精力</em>是<em>事实</em> — 即<em>这 3 项是公司财报的潜在风险点</em>.</p>
+<p lang="zh"><strong>3 项 KAM 同时出现意味着什么</strong>:</p>
+<ol lang="zh">
+<li><strong>商誉减值 KAM</strong>: 公司有较大商誉 (一般 &gt; 净资产 10% 才会列为 KAM), 减值测试涉及未来现金流预测与折现率 — Ch.04 4 大手段的 D 类 "<em>提前/递延确认</em>". 需深查: 商誉来自哪几次并购、被并购公司业绩对赌完成度、减值测试假设的折现率与同行对比.</li>
+<li><strong>收入确认 KAM</strong>: 公司可能有<em>长周期合同</em>(EPC、SaaS、工程类), 收入按履约进度还是时点确认是判断难点 — Ch.04 4 大手段的 A 类 "<em>虚增收入</em>" + D 类 "<em>提前确认</em>". 需深查: AR/Rev、CL/Rev、合同负债账龄.</li>
+<li><strong>应收坏账 KAM</strong>: AR 余额大或账龄长, ECL 三阶段模型计提需要主观判断 — Ch.04 4 大手段的 A 类 "<em>虚增收入</em>" (虚收必然对应虚应收) + C 类 "<em>隐藏负债</em>" (坏账少提 = 隐藏未来损失).</li>
+</ol>
+<p lang="zh"><strong>3 项叠加后的结论</strong>: 这家公司同时面临商誉风险 + 收入识别风险 + AR 风险 — Ch.04 4 大手段中 3 类的<em>预警入口</em>都被审计师标记了. 即使审计师当前判断<em>合理</em>, 你作为投资者应自行用 Ch.04 工具<em>独立验证</em>:</p>
+<ul lang="zh">
+<li>商誉: 算商誉 / 净资产 比, 同行对比. 翻附注看商誉减值测试假设.</li>
+<li>收入: 算 OCF/NI 5 年、Beneish M-score、CCS 3 年滚动.</li>
+<li>AR: 算 AR/Rev 与同行对比, 看 AR 账龄迁移.</li>
+</ul>
+<p lang="zh">如果 3 项<em>独立验证</em>都正常 → 公司是高质量但业务复杂; 任何一项有红灯 → 审计师 KAM 标记<em>不是空标</em>, 该项确实存在<em>实质风险</em>.</p>
+<p lang="en"><strong>The latter — "three judgment-difficulty areas simultaneously" signal</strong>, not "no issues." KAM by definition means "areas where the auditor invested significant effort with final judgment reasonable" — "reasonable" is the conclusion, but "significant effort" is the <em>fact</em>: these three are potential risk points in the firm's filings.</p>
+<p lang="en"><strong>What 3 simultaneous KAMs mean:</strong> (1) Goodwill — material goodwill (typically &gt; 10% of equity to list as KAM); impairment depends on future-CF forecasts and discount rates — Ch.04 archetype D ("early/late recognition"). Deep-dive: goodwill source acquisitions, target-firm earnout achievement, impairment-test assumptions vs peer. (2) Revenue recognition — likely long-cycle contracts (EPC, SaaS); progress-vs-point recognition is the judgment difficulty — Ch.04 A + D. Deep-dive: AR/Rev, CL/Rev, contract-liability aging. (3) AR provisioning — large or aged AR; ECL 3-stage requires judgment — Ch.04 A (fake revenue ↔ fake AR) + C (under-provisioning hides future loss).</p>
+<p lang="en"><strong>Combined verdict:</strong> goodwill + revenue + AR risks simultaneously — three of Ch.04's four archetype <em>entry points</em> flagged by the auditor. Even if the auditor's current judgment is "reasonable," verify independently: goodwill — compute goodwill/equity ratio, peer compare, read impairment-test assumptions; revenue — OCF/NI 5y, Beneish, CCS 3y rolling; AR — AR/Rev vs peers, AR aging shifts. All clean → high-quality but complex business; any red → the auditor's KAM marker reflects <em>actual</em> material risk.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 老王最后问: "<em>我作为散户, 难道真的要把自己当成第七层看门人吗?</em>" 这话听起来似乎在说"<em>专业机构都不可信</em>". 用 Coffee 2006 + La Porta 2006 框架, 给老王一个<em>更准确</em>的答案. 它既不"<em>低估</em>"专业机构, 也不"<em>高估</em>"散户能力.</span><span lang="en"><strong>Q5.</strong> Wang asks: "<em>do I, as retail, really have to be the seventh gatekeeper?</em>" Sounds like "professionals can't be trusted." Use Coffee 2006 + La Porta 2006 to give Wang a <em>more accurate</em> answer — neither <em>underestimating</em> professionals nor <em>overestimating</em> retail.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>三层精确答案</strong>:</p>
+<ol lang="zh">
+<li><strong>第一层 — 专业机构在大部分时候有用 (Coffee 模型)</strong>: 当 reputation capital &gt;&gt; client revenue, 看门人会说真话. A 股 5,300+ 公司每年只有 ~5-10 起重大造假被揭, 即每年 &lt; 0.2% — 大部分时候专业机构在<em>正常工作</em>. 否定专业机构等于否定 99.8% 的市场, 不现实, 也不合理.</li>
+<li><strong>第二层 — 但任一专业机构在<em>特定客户上</em>都可能失效 (Coffee 的边界条件)</strong>: 客户依赖度高的情况下, 看门人无动机说真话. 这就是为什么 Ch.04 的 5 起造假中, 审计师 + 投行 + 评级机构都在<em>那家公司上</em>失效了. 这种"<em>个案失效</em>"不可预测, 但概率可估算 — 对中小盘 + 非 Big-4 审计 + 频繁更换审计师的公司, 失效概率显著上升.</li>
+<li><strong>第三层 — 损失归属决定责任归属 (La Porta + 投资者主权)</strong>: 无论 (1) (2) 如何, 损失最终归散户. 这是<em>结构性</em>的, 不是道德的. 因此散户必须能<em>独立判断</em>(Ch.04 工具) 和<em>独立承担</em>(仓位管理). 散户的"<em>第七层看门人</em>"角色不是替代前 6 层 (替代不了), 而是<em>边界条件失效时的兜底</em>. 这与多重防御 (defense-in-depth) 的工程思想一致 — 每一层都不完美, 但<em>多层独立失效的联合概率</em>远低于<em>任一层失效的概率</em>.</li>
+</ol>
+<p lang="zh"><strong>更深层的启示</strong>: 这正是 Buffett 1989 一句话的本意: "<em>Risk comes from not knowing what you're doing.</em>" 散户的"<em>不知</em>" 才是真正的风险, 而非"<em>专业机构失效</em>". 散户能用 Ch.04 + 本章工具<em>独立判断</em>, 即降低了"<em>不知</em>" — 这就是把自己<em>升级为第七层看门人</em>的<em>实操含义</em>. 不是"<em>不信任专业机构</em>", 而是"<em>对自己持仓的最终负责人是自己</em>". 这与<em>否定专业</em>完全不同.</p>
+<p lang="zh"><strong>给老王的具体建议</strong>:</p>
+<ul lang="zh">
+<li>(a) 信任前 6 层在统计意义上的<em>整体</em>有效性 — 大部分时间不必怀疑.</li>
+<li>(b) 对自己持仓的每一只, <em>独立</em>跑一遍 Ch.04 + 本章工具 (1-2 小时/只, 不算多).</li>
+<li>(c) 集体诉讼制度建立后, 学习<em>参与</em>投资者维权 (有重大损失时通过律师事务所发起索赔), 让自己成为 La Porta 私人 enforcement 网络的一部分.</li>
+<li>(d) 接受 "<em>仍然可能踩雷, 但概率可降到极低</em>" 的现实. 不要追求"<em>100% 不踩雷</em>"(不可能), 而是"<em>踩雷概率 &lt; 1% + 单笔仓位 &lt; 5%</em>" 即可让<em>组合</em>层面安全.</li>
+</ul>
+<p lang="en"><strong>Three-layer precise answer:</strong></p>
+<ol lang="en">
+<li><strong>Layer 1 — professionals are useful most of the time (Coffee):</strong> when reputation &gt;&gt; client revenue, gatekeepers tell the truth. A‑share's 5,300+ firms see only ~5–10 major fraud exposures per year (&lt; 0.2%); professionals are <em>working normally</em> most of the time. Dismissing them dismisses 99.8% of the market — unrealistic and unreasonable.</li>
+<li><strong>Layer 2 — any single gatekeeper can fail on a specific client (Coffee's boundary):</strong> when client dependence is high, no incentive to tell truth. That's why Ch.04's five cases all had auditor + bank + rater fail simultaneously <em>on that company</em>. Such "case-specific failure" is unpredictable in detail but estimable in probability — failure-probability rises materially for mid/small + non-Big-4 audited + frequent-auditor-change names.</li>
+<li><strong>Layer 3 — loss attribution determines responsibility (La Porta + investor sovereignty):</strong> regardless of (1) and (2), losses ultimately accrue to retail. This is <em>structural</em>, not moral. So retail must be able to <em>independently judge</em> (Ch.04 toolkit) and <em>independently bear</em> (position sizing). Retail's "seventh layer" doesn't replace the first six (can't); it's the <em>fallback when boundary conditions fail</em>. Aligns with defense-in-depth engineering — no single layer perfect, but <em>joint probability of multi-layer independent failure</em> is far below <em>any single layer's failure probability</em>.</li>
+</ol>
+<p lang="en"><strong>Deeper insight:</strong> Buffett 1989's "<em>Risk comes from not knowing what you're doing</em>" — retail's "not knowing" is the true risk, not "professional gatekeeper failure." Retail using Ch.04 + this chapter's tools to judge independently reduces "not knowing" — this is the <em>operational meaning</em> of "becoming the seventh gatekeeper." Not "distrusting professionals" but "the ultimate responsible party for your own positions is yourself." Quite different from <em>denying expertise</em>.</p>
+<p lang="en"><strong>Concrete advice to Wang:</strong> (a) trust the first 6 layers' statistical aggregate efficacy — most of the time no need to doubt; (b) for every personal holding, independently run Ch.04 + this chapter's toolkit (1–2 hours per name, not much); (c) post-representative-action regime, learn to <em>participate</em> in investor restitution (through plaintiff firms when major losses occur), joining La Porta's private-enforcement network; (d) accept "<em>can still hit fraud but probability &lt; 1%</em>." Don't pursue "<em>0% fraud-touching</em>" (impossible); pursue "<em>per-stock fraud probability &lt; 1% + per-position weight &lt; 5%</em>" → portfolio-level safety.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot">
+<button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav">
+<a href="04-fraud-cases.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">04 · <span lang="zh">造假案例</span><span lang="en">Fraud Cases</span></span></a>
+<a class="next" href="../meta/glossary.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title"><span lang="zh">术语词典</span><span lang="en">Glossary</span></span></a>
+</nav>
+</div>
+
+</article></main>
+
+<aside class="toc"></aside>
+
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup">
+<h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+<p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage.</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+<label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+<input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+<button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+</div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
 <script type="module" src="../../assets/js/main.js?v=9"></script>
+
 </body></html>

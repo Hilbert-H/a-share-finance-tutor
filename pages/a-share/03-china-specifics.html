@@ -1,58 +1,715 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
-<title>A 股 · 03 · 中国特色问题</title>
+<title>A 股 · 03 · A 股特色规则 — China-Specific Trading Rules</title>
+<meta name="keywords" content="T+1, T+0, 涨跌幅, 创业板, 科创板, 北交所, 涨停板, 北向资金, 沪港通, 深港通, 融资融券, 转融通, 大宗交易, 限售股, 集合竞价, 减持新规, 2015 股灾, 茅台一字板">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-</head><body>
+<style>
+body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+body .katex sup, body .katex sub { font-size: 0.75em !important; }
+body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+.eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+.eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+.eq .katex-display { margin: 0 !important; padding: 0 !important; }
+.eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+</style>
+</head>
+<body>
+
 <div class="app">
-<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
-<aside class="nav"></aside>
-<main class="main"><article class="lesson">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
 
-<div class="lesson-meta"><span class="crumb">A 股特化 · 03</span></div>
-<h1><span lang="zh">中国特色问题</span></h1>
-<p class="lesson-subtitle">A 股有四类与发达市场<em>结构性不同</em>的风险源: 商誉雷 · 应收账款质量 · 关联方资金占用 · 股权质押. 学完前两个模块, 再看这四个特定问题, 能识别 90% 的 A 股潜在雷区.</p>
+  <aside class="nav"></aside>
 
-<h2><span lang="zh">① 商誉雷 (Goodwill Cliff)</span></h2>
-<p lang="zh">2014-2017 A 股并购热潮 → 累计 1.6 万亿+ 商誉. 2018-2019 集中减值, 数百家公司大额亏损. <strong>识别方法</strong>: 商誉 / 净资产 &gt; 30%; 减值测试假设的<em>未来现金流增长</em>vs 被收购公司<em>实际业绩</em>对比.</p>
-<p lang="zh">典型: 天神娱乐 002354 (Ch.M1.03) / 华谊兄弟 300027 / 蓝色光标 300058 / 文化长城 (退市). 监管 2018 后<em>强制</em>更严减值测试, 但仍有滞后空间.</p>
+  <main class="main">
+    <article class="lesson">
 
-<h2><span lang="zh">② 应收账款 + 关联方占款</span></h2>
-<p lang="zh">A 股大量公司"应收账款"和"其他应收款"中藏有<em>关联方非经营性资金占用</em>. 法律上是 AR/Prepayment, 经济上是大股东抽走公司钱.</p>
-<p lang="zh"><strong>识别</strong>:</p>
-<ul lang="zh">
-<li>"其他应收款"占总资产 &gt; 5% (异常)</li>
-<li>账龄 &gt; 1 年的大额应收占比高</li>
-<li>关联方占款附注披露</li>
-<li>对外担保规模 / 净资产</li>
-</ul>
-<p lang="zh">典型: 乐视网 300104 (Ch.M1.10), 康美药业 600518 (88 亿大股东占用), 康得新 002450 (122 亿存款实际不可用).</p>
+      <div class="lesson-meta">
+        <span class="crumb">A 股特化 · 03</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">20 分钟</span><span lang="en">20 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: Ch.02 信息披露</span><span lang="en">Prereq: Ch.02 Disclosure</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.04 财务造假案例</span><span lang="en">Next: Ch.04 Fraud Cases</span></span>
+      </div>
 
-<h2><span lang="zh">③ 股权质押</span></h2>
-<p lang="zh">大股东把所持股票<em>质押</em>给券商 / 银行换取贷款. 当股价跌至<em>平仓线</em>时, 强制平仓 → 股价进一步下跌 → 更多平仓 → 雪崩.</p>
-<p lang="zh">2018 年 A 股股权质押危机: 数百家公司大股东高质押率 (60%+) 遇股价下跌, 触发系统性平仓潮. 后果: 上市公司控制权变更、政府纾困基金介入.</p>
-<p lang="zh"><strong>识别</strong>: 大股东质押比例 (&gt; 50% 警惕, &gt; 80% 极危险), 平仓线距离, 公司基本面与质押风险的不匹配.</p>
-<p lang="zh">典型: 东方园林 002310 (2018 危机), 银亿股份 (退市), 大量 2015-2018 上市的中小盘.</p>
+      <h1>
+        <span lang="zh">A 股特色交易规则</span>
+        <span lang="en">China-Specific Trading Rules</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">老王把美股经验搬到 A 股, 第一周发现了至少六条<em>结构性不同</em>: T+1 不能日内回转、±10% 涨跌停板、做空必须通过融券且券源有限、集合竞价开盘收盘各 3 分钟、大宗交易另开通道、限售股需等数月或数年解禁。这些不是"中国式 quirk", 而是市场结构选择的具体落地。</span>
+        <span lang="en">Porting US habits to A‑shares, Old Wang hits at least six <em>structural</em> differences in week one: T+1 prevents intraday round‑trip, ±10% daily price limit, shorting requires securities lending with limited supply, opening and closing 3‑minute auctions, block trades use a separate channel, locked‑up shares wait months or years to unlock. None of these are "Chinese quirks" — each is a market‑structure choice with concrete consequences.</span>
+      </p>
 
-<h2><span lang="zh">④ 高送转炒作</span></h2>
-<p lang="zh">2014-2016 A 股"高送转"行情极热. 公告 10 送 10 / 10 送 20 后股价短期暴涨 — 但理论上送股不创造价值 (Ch.M2.06). 这是行为偏差 + 投机引发的异常. 2017 后监管严厉打击"伪高送转", 行情大幅弱化但仍偶现。</p>
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能解释 A 股 T+1 制度对短线策略、流动性溢价、波动率三方面的影响。</li>
+          <li lang="zh">能区分主板 (±10%)、创业板/科创板 (±20%)、北交所 (±30%) 涨跌幅及新股前 5 日的特殊规则。</li>
+          <li lang="zh">能描述融资融券、转融通的资金/券源链条与"做空难度系数 = 融券余额 / 融资余额"的实际比值。</li>
+          <li lang="zh">能识别大宗交易溢价/折价信号、限售股解禁倒计时、减持新规三大通道 (二级 / 大宗 / 询价转让)。</li>
+          <li lang="en">Explain T+1's impact on intraday strategy, liquidity premium, and volatility.</li>
+          <li lang="en">Distinguish main board (±10%), ChiNext/STAR (±20%), BSE (±30%) bands; first‑5‑day waivers for IPOs.</li>
+          <li lang="en">Describe margin financing / securities lending / refinancing flow and the real ratio "shorting difficulty = SL balance / MF balance."</li>
+          <li lang="en">Read block‑trade premium/discount signals, lock‑up unlock timing, and the three reduction channels under the 2017 rules (secondary / block / inquiry).</li>
+        </ul>
+      </section>
 
-<h2><span lang="zh">检验题</span></h2>
-<ol class="quiz quiz-list">
-<li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> A 股商誉雷为何集中在 2018-2019 爆发? 给出至少两个监管 / 经济原因.</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<ol lang="zh"><li><strong>对赌期 3 年到期</strong>: 2014-2016 大量收购, 业绩对赌通常 3 年. 2017-2019 是对赌结束期, 被收购公司实际业绩与对赌差距浮现, 触发减值</li><li><strong>政策环境</strong>: 2018 中美贸易摩擦 + 国内去杠杆 + 股权质押危机 → 上市公司经营压力上升 → 提前一次性"洗大澡"(big bath) 清理积压商誉</li><li><strong>监管收紧</strong>: 2018 财政部强调商誉减值测试规范性, 中介机构压力上升 → 不再"延迟确认"</li><li><strong>股价下行</strong>: 2018 沪深 300 跌 25%, 公司市值缩水, 商誉占净资产比例被动上升 → 强制减值</li></ol>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
-</li>
-</ol>
+      <!-- ================================================================ -->
+      <!-- Layer 1 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 老王把美股经验拿到 A 股的第一周</span>
+          <span class="en" lang="en"> · Old Wang's first week of porting US habits</span>
+        </h2>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="02-disclosure.html">← <span lang="zh">信披</span></a><a class="next" href="04-fraud-cases.html">Next →</a></nav></div>
+        <p lang="zh">前两章里老王已经把开户、监管、信息披露都过了一遍, 现在他终于动真格了 — 拿出 30 万本金做 A 股。他在美股上习惯了一些操作: 当天买当天卖、跌得多就空、流动性永远管够。这一周, 这些习惯一条一条被现实纠正。我们陪他走完六个"卡住"的场景, 把背后的规则一条一条命名。</p>
+        <p lang="en">Old Wang has now done the account, the regulator, and the disclosure tour. He commits real money: ¥300k in A‑shares. From US markets he carries habits — buy and sell same day, short on big drops, never worry about liquidity. This week, those habits collide with reality one by one. We walk through the six places he gets stuck and name the rule behind each.</p>
 
-</article></main><aside class="toc"></aside></div>
-<button class="chat-fab">A?</button>
-<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+        <p lang="zh"><strong>1. 周一上午 9 点 35 分 — 买入比亚迪 (002594) 1,000 股, 单价 220 元。</strong> 当天上午行情大涨, 11 点 30 分股价已经到 235 元, 老王想<em>当天卖掉</em>赚 1.5 万差价 — 这是他在美股上每周都做的常规 day trade。他点"卖出"按钮, 系统弹出: "您今日买入的股票需 T+1 交易日后方可卖出"。老王愣住: 在美股, 当天买当天卖 (day trade) 是基本操作, 流动性是天然给的。在 A 股, 当天买入的股票<em>必须等到下一个交易日</em>才能卖出。这种"买入后到下一个交易日才能卖出"的规则叫 <strong>T+1 制度</strong>。"T" 是 trade day (交易日), "+1" 是延后一天。换言之: 当天买入的股票, 当天<em>无法回转交易</em>, 必须次日方可卖出。后果之一: 短期看涨判断错误时, 老王只能眼睁睁看着股价下跌而无法离场, 直到明天开盘 — 这是一种<em>结构性持仓义务</em>。</p>
+        <p lang="en"><strong>1. Monday 9:35 a.m. — buy 1,000 shares of BYD (002594) at ¥220.</strong> The morning rallies. By 11:30 the stock is ¥235; Wang wants to sell same‑day for ¥15k — his usual US day trade. He hits "sell": "Shares purchased today are available for sale only after T+1." Wang freezes. In the US, intraday round‑trip is the baseline; liquidity is given. In A‑shares, shares bought today <em>cannot be sold</em> until the next trading day. The rule: <strong>T+1 settlement</strong>. "T" = trade day; "+1" = next day. Bought today, sellable only tomorrow. Consequence one: when his short‑term call is wrong, he can only watch the price fall — no exit before tomorrow's open. A <em>structural holding obligation</em>.</p>
+
+        <p lang="zh"><strong>2. 周一下午 1 点 — 看到一只小盘股开盘后涨势凶猛, 想买。</strong> 老王点开下单, 当前价 28.50 元, 较前收盘 26.40 涨幅 +7.95%。他下了一笔买单, 12 元给到 1,000 股, 总价 28,500 — 顺利成交。下午 2 点, 股价继续上涨到 29.04 元 (+10.00%), 老王再想加仓, 屏幕显示: "卖一" 价 29.04, 但<em>没有"卖二"</em>—— 排在 29.04 之后的卖单为 0, 而是显示"以涨停价 29.04 排队待成交的买单数量: 26 万股"。原来这只股是<em>主板</em>股, 当日涨跌幅限制 ±10%; 涨幅触及 +10% 即触<strong>涨停板</strong>, 股价被锁在 29.04, 全市场只有买单没有卖单 (理性卖家都已被价格上限封住)。老王想加仓但买不到 — 26 万股的买盘排在他前面。我们把这种"股价触及当日最高允许涨幅时被锁定"的现象叫 <strong>涨停板</strong>; 反向触及最低跌幅时叫 <strong>跌停板</strong>。规则: 主板 ±10% (代码 600/601/603/000/001/002), 创业板和科创板 ±20% (代码 300/688), 北交所 ±30% (代码 8 开头), 新股上市前 5 个交易日不设涨跌幅。所有 ST 股 (*ST 和 ST) 涨跌幅收紧到 ±5%。</p>
+        <p lang="en"><strong>2. Monday 1 p.m. — a small cap is roaring; Wang wants in.</strong> Current ¥28.50, up +7.95% vs. yesterday's ¥26.40 close. He bids and fills 1,000 shares at ¥28.50 for ¥28,500. By 2 p.m. the price hits ¥29.04 (+10.00%). Wang wants to add. The book shows "ask 1" at ¥29.04 but <em>no "ask 2"</em>; instead: "buy orders queued at ¥29.04 limit: 260,000 shares." This is a main‑board stock, daily band ±10%; touching +10% triggers the <strong>up‑limit (涨停)</strong>: price locks at ¥29.04, market‑wide there are only buyers, no sellers (rational sellers are gated). Wang can't add — 260k shares ahead of him. The phenomenon of price hitting the daily ceiling and freezing is <strong>up‑limit (涨停板)</strong>; the symmetric floor is <strong>down‑limit (跌停板)</strong>. Bands: main board ±10% (codes 600/601/603/000/001/002), ChiNext &amp; STAR ±20% (300/688), BSE ±30% (8‑prefix), new IPOs first 5 days have no band. ST stocks (*ST and ST) tighten to ±5%.</p>
+
+        <p lang="zh"><strong>3. 周二下午 — 看到一家公司股价已经从年初的 60 元跌到 35 元, 还在阴跌。</strong> 老王在美股的本能反应是: 既然看跌, 就做空。他打开"融券"模块, 输入想做空的股票代码, 系统显示"可融券数量: 0"。换另一家也是 0。第三家好不容易显示"可融券数量: 200 股", 但是日费率 0.18% (年化约 65%) — 这意味着借券做空一周, 仅利息成本就是 1.26%。老王这时候才意识到, 在 A 股做空不像美股那样"任何流通股都能借到", 而是要通过<strong>融资融券 (Margin Trading and Securities Lending)</strong>制度, 而且<em>券源极其有限</em>。融资 (借钱买股) 余额通常是 A 股市场的 ¥1.5-1.8 万亿, 而融券 (借券做空) 余额只有 ¥600-1,000 亿, 比例约 15:1 — 做空难度是融资买入的 15 倍。中间还有一个机制叫<strong>转融通 (Refinancing)</strong>: 券商把客户的券或机构的券统一收集起来再借给做空者, 但 2023 年起监管对转融通做空多次收紧, 2024 年 7 月已暂停。所以散户在 A 股做空, 基本不现实。</p>
+        <p lang="en"><strong>3. Tuesday afternoon — a stock has slid from ¥60 in January to ¥35 and is still bleeding.</strong> Wang's US instinct: short it. He opens the securities‑lending module, enters the code: "shares available to borrow: 0." Another: 0. A third finally shows "available: 200 shares," daily rate 0.18% (~65% annualized) — borrowing for a week costs 1.26% in interest alone. Wang realizes A‑share shorting isn't US‑style "any free float can be borrowed." It requires the <strong>margin trading and securities lending (融资融券)</strong> system, and <em>supply is severely limited</em>. Margin financing balance (borrow cash to buy stock) typically ¥1.5–1.8 trillion; securities lending balance (borrow stock to short) only ¥60–100 billion — ratio ~15:1. Shorting is 15× harder than long financing. A linked mechanism — <strong>refinancing (转融通)</strong> — pools client and institutional shares to relend to shorts; but regulators tightened it repeatedly since 2023, and refinancing for shorting was suspended in July 2024. For retail, A‑share shorting is essentially unavailable.</p>
+
+        <p lang="zh"><strong>4. 周三下午收盘后 — 老王看到自己持有的一只股票出现"大宗交易"成交记录。</strong> 当日股价收 22.00 元, 但大宗交易显示有一笔 500 万股在 19.80 元成交 — 折价约 10%。他疑惑: 19.80 这么便宜, 我也想买啊。为什么不在交易所主市场卖给我?——因为这是<strong>大宗交易</strong>(Block Trade)。规则: 主板单笔股票交易达 30 万股或 200 万元以上, 或基金达 200 万份或 200 万元以上, 即可走大宗交易通道。沪/深市略有差异。大宗交易通过<em>独立通道</em>撮合, 在收盘后 (15:00-15:30) 集中交易, 不进入连续竞价的盘面, 因此不会影响盘中价格。意义: 大额持仓的卖出 (大股东减持、机构调仓) 如果走二级市场会形成<em>挤压式抛压</em>, 大宗交易避免对二级市场的瞬间冲击。<em>折价</em>大宗交易 (低于当日收盘) 常意味着卖方急于出货、议价能力弱; <em>溢价</em>大宗交易 (高于当日收盘) 常意味着接盘方看好后市、愿意付出额外成本。所以大宗交易记录是个有价值的<em>资金流向信号</em>。</p>
+        <p lang="en"><strong>4. Wednesday after close — Wang sees a "block trade" record on one of his holdings.</strong> Close: ¥22.00. The block: 5m shares at ¥19.80 — a ~10% discount. He's puzzled: ¥19.80 is cheap, I'd buy. Why not sell to me on the main book? — Because this is a <strong>block trade (大宗交易)</strong>. Rule: main‑board single‑stock blocks of ≥ 300k shares or ≥ ¥2m, or funds ≥ 2m units or ¥2m, qualify (SH/SZ slightly differ). Blocks are matched via a <em>separate channel</em> after close (15:00–15:30), bypassing the continuous order book, so intraday prices are unaffected. Purpose: large position exits (controlling‑shareholder reductions, institutional rebalancing) executed on the main book would create <em>compression selling pressure</em>; block trades avoid that instant impact. A <em>discount</em> block (below close) typically means the seller is urgent and weak‑handed; a <em>premium</em> block (above close) typically means a buyer is positive on the outlook and willing to pay extra. So block‑trade records are a valuable <em>flow signal</em>.</p>
+
+        <p lang="zh"><strong>5. 周四上午 — 想买港股的腾讯, 通过沪港通申报。</strong> 老王想分散到港股, 听说有"沪港通"可以直接通过 A 股账户买港股。打开后他选了腾讯 (00700.HK), 提交申报。系统提示: "港股通交易, 适用 T+2 交收, 须有 50 万元账户金融资产门槛, 且仅限交易港股通标的范围内的港股"。老王检查账户, 资产够, 但腾讯不在标的清单里? 一查发现腾讯<em>在</em>港股通标的内, 是<strong>南向资金</strong>(从内地流向香港的资金) 的核心持仓之一。我们把内地投资者通过沪港通/深港通买入港股的资金统称<em>南向资金</em>; 反之, 外国机构投资者通过沪股通/深股通买入 A 股的资金统称<em>北向资金</em>(Northbound Capital)。北向资金被市场视为<em>外资风向标</em>: 持仓增持/减持是 A 股核心标的的重要信号。2024 年北向资金累计持有 A 股市值约 2.2 万亿元, 主要集中在茅台、宁德、招行、美的、平安等大盘蓝筹。但 2024 年 5 月起, 港交所停止披露北向资金的日度净流入数据 (改为月度披露), 这是政策面的<em>透明度调整</em>。</p>
+        <p lang="en"><strong>5. Thursday morning — buy Tencent on HK via Shanghai‑HK Connect.</strong> Wang wants HK diversification via Connect. He picks Tencent (00700.HK) and submits: "HK Connect uses T+2 settlement; requires ¥500k financial asset threshold; eligible only for stocks in the HK Connect basket." Wang checks: assets clear, but is Tencent in scope? Yes — Tencent is a core holding of <strong>Southbound Capital</strong> (funds flowing from mainland to HK). Mainland investors buying HK stocks via Shanghai‑/Shenzhen‑HK Connect are collectively "Southbound Capital." Conversely, foreign institutional money buying A‑shares via the reverse channels is <strong>Northbound Capital (北向资金)</strong>. Northbound is regarded as a <em>foreign‑capital weathervane</em>: position increases/decreases in A‑share core names are an important signal. In 2024, Northbound holdings totaled ~¥2.2 trillion of A‑shares, concentrated in Moutai, CATL, China Merchants Bank, Midea, Ping An. From May 2024, HKEX stopped publishing daily Northbound flows (switched to monthly) — a policy‑driven <em>transparency adjustment</em>.</p>
+
+        <p lang="zh"><strong>6. 周五下午 — 老王跟踪的一家公司即将"解禁"。</strong> 他点开公司公告, 标题"关于公司首次公开发行限售股上市流通的提示性公告"。原来该公司 2022 年 IPO 上市, 上市后<em>原始大股东持股 36 个月内不得卖出</em>(法定锁定期), 36 个月期满后这部分股票才可以流通。老王查看公告, 这次解禁数量达到 3.2 亿股, 占公司总股本 12%, 解禁日定于下周一。这种"上市后特定期限内不得流通的股票"叫 <strong>限售股 (Restricted Shares)</strong>。锁定期分类: (a) IPO 前股东 36 个月; (b) 首发战略配售 12 月; (c) 公司高管离职后 6 个月; (d) 定增锁定期 6 - 18 个月; (e) 高管在任期间每年减持不得超过持股的 25%。解禁日是<em>潜在抛压</em>的重要节点 — 老王想知道下周一开盘是否会有大抛盘把股价砸下来。这就引出一个延伸概念: 即使股票解禁, 大股东也不能"想卖多少卖多少"。证监会 2017 年 5 月颁布<strong>《上市公司股东、董监高减持股份的若干规定》</strong>(证监会公告 [2017]9 号), 即"减持新规", 给出了减持节奏的三条通道。这是 Layer 2 的核心规则。</p>
+        <p lang="en"><strong>6. Friday afternoon — a tracked company has shares unlocking.</strong> Wang opens the filing: "Notice on the Listing and Circulation of Initially Restricted Shares." The company IPO'd in 2022; <em>founding shareholders are locked for 36 months</em> (statutory). After 36 months, those shares become tradeable. This batch: 320m shares, 12% of total share capital, unlock date next Monday. The class of shares that cannot trade for a defined period post‑listing: <strong>restricted shares (限售股)</strong>. Lock periods: (a) pre‑IPO shareholders 36 months; (b) IPO strategic placement 12 months; (c) ex‑executives 6 months post‑departure; (d) private placement 6–18 months; (e) sitting executives capped at 25% of their holdings per year. Unlock day is a critical <em>potential selling pressure</em> waypoint — Wang wonders whether Monday's open will see a flood. But: even after unlock, controlling shareholders cannot just sell freely. CSRC's May 2017 <strong>"Provisions on Share Reductions by Shareholders, Directors, Supervisors, and Senior Management of Listed Companies"</strong> (Announcement [2017] No. 9), known as the "reduction rules," gives three channels with pace caps. This is Layer 2's core.</p>
+
+        <p lang="zh"><strong>周末复盘 — 老王把这一周遇到的 6 条规则列下来。</strong> T+1 锁住日内回转; ±10/20/30% 涨跌幅限制单日波动; 融资融券与转融通让做空成本极高; 大宗交易把大额冲击隔离到收盘后; 北向资金提供外资风向; 限售股 + 减持新规约束大股东抛售节奏。这些规则<em>共同塑造</em>了 A 股的"市场结构基因"。如果把 A 股看作一个动力系统, T+1 + 涨跌幅 + 融券限制是它的"流动性约束条件", 北向资金 + 限售股 + 减持新规是它的"资金边界条件"。理解了这些, 老王才算从"美股玩家"开始转型为"A 股玩家"。Layer 2 把每条规则的法规依据、阈值、机制图都摆出来, Layer 3 用 2015 年股灾、北向资金 TOP10 持仓、茅台一字板三个真实案例展开。</p>
+        <p lang="en"><strong>Weekend recap.</strong> Six rules from one week: T+1 locks intraday round‑trip; ±10/20/30% caps daily swings; margin/securities lending plus refinancing make shorting expensive and scarce; block trades isolate large‑impact exits to after‑hours; Northbound delivers a foreign‑capital signal; restricted shares + reduction rules constrain controlling‑shareholder exit pace. Together they form A‑shares' "market‑structure DNA." Viewing A‑shares as a dynamic system: T+1 + price bands + securities‑lending limits are the <em>liquidity constraints</em>; Northbound + restricted shares + reduction rules are the <em>capital boundary conditions</em>. Internalizing all six is when Wang stops being a "US trader on A‑shares" and starts being an actual A‑share participant. Layer 2 sets out each rule with statute, threshold, and mechanism. Layer 3 unpacks three real cases: the 2015 leveraged bull and crash, Northbound's top‑10 holdings, and Moutai's one‑direction‑lock day.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 2 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formal Rules</span>
+        </h2>
+
+        <p lang="zh">Layer 1 跟着老王把 6 条规则的<em>感受</em>过了一遍。现在我们把每条规则的法规依据、关键阈值、机制运作图都摆出来。</p>
+        <p lang="en">Layer 1 walked through the <em>feel</em> of six rules. We now lay out each rule's statute, key threshold, and operational mechanism.</p>
+
+        <h3 lang="zh">① T+1 制度</h3>
+        <h3 lang="en">① T+1 Settlement</h3>
+
+        <div class="callout">
+          <p lang="zh"><strong>T+1</strong>: 当日买入的股票, 次日 (T+1) 才可以卖出; 当日卖出股票的资金 (现金) 当日可用 (T+0 现金回转), 次日可提现。这是 A 股<em>股票端 T+1, 现金端 T+0</em>的不对称设计。沪深北三所共用; 港股通使用 T+2 (符合港股惯例); 美股使用 T+2 (2024 年 5 月已切换到 T+1)。</p>
+          <p lang="en"><strong>T+1</strong>: shares bought today are sellable tomorrow; cash from a sale today is usable today (T+0 cash rotation), withdrawable tomorrow. A‑shares uses an asymmetric <em>stock T+1, cash T+0</em> design. All three exchanges follow; HK Connect uses T+2 (HK convention); US markets switched from T+2 to T+1 in May 2024.</p>
+          <span class="cite">中国证券登记结算公司业务规则 · 上交所/深交所/北交所交易规则 §3 章节</span>
+        </div>
+
+        <p lang="zh"><strong>历史起源</strong>: 1992-1995 年 A 股初期采用 T+0, 但出现严重的<em>日内投机过度</em>: 散户在波动剧烈的小盘股上反复回转, 单日换手率超过 20%, 短线投机风险极高。1995 年 1 月 1 日, A 股全面切换到 T+1, 至今未改。监管动机: <em>抑制日内过度投机, 保护散户</em>。</p>
+        <p lang="en"><strong>Origin:</strong> A‑shares used T+0 from 1992 to 1995, producing severe <em>intraday speculative excess</em> — retail flipping volatile small caps with daily turnover above 20%, intense short‑term risk. On January 1, 1995, A‑shares switched fully to T+1, unchanged since. Regulatory motive: <em>suppress intraday speculation and protect retail</em>.</p>
+
+        <p lang="zh"><strong>三大影响</strong>:</p>
+        <p lang="en"><strong>Three consequences:</strong></p>
+
+        <ul>
+          <li><span lang="zh"><strong>短线策略受限</strong>: 美股日内回转策略 (scalping, day trading) 在 A 股不可行。但通过<em>持有过夜底仓 + 日内交易</em>可以变相实现 T+0 (买入新股 → 卖出底仓中等量旧股 → 等效今日"空出"原持仓 → 明天卖出新买的)。</span><span lang="en"><strong>Intraday strategies blocked.</strong> US scalping / day trading is infeasible. Workaround: hold an overnight base position + intraday trades — buy new shares, sell an equal quantity of base, net‑zero today, sell the new shares tomorrow. Synthetic T+0.</span></li>
+          <li><span lang="zh"><strong>流动性溢价</strong>: T+1 增加了持仓的<em>不可逆时间</em>, 投资者要求对此补偿, 表现为流动性溢价。学术研究 (Kim &amp; Rhee, 2000; Chan, Cheng &amp; Lung, 2004) 表明 T+1 制度下 A 股相对香港股票存在约 5-10% 的"流动性折价"。</span><span lang="en"><strong>Liquidity premium.</strong> T+1 adds <em>irreversible holding time</em>, demanding compensation — a liquidity premium. Studies (Kim &amp; Rhee 2000; Chan, Cheng &amp; Lung 2004) document a ~5–10% "liquidity discount" of A‑shares vs. their HK counterparts attributable to T+1.</span></li>
+          <li><span lang="zh"><strong>波动率结构变化</strong>: T+1 隔离了日内尾盘恐慌性抛售对自身的反馈, 但<em>把恐慌堆积到次日开盘</em>。所以 A 股开盘 9:30 后的 30 分钟波动率显著高于美股开盘后的 30 分钟。</span><span lang="en"><strong>Volatility structure shifts.</strong> T+1 insulates the day from intraday late‑session panic feedback but <em>stacks panic into the next open</em>. So A‑share volatility in the first 30 minutes after 9:30 open is markedly higher than the comparable US window.</span></li>
+        </ul>
+
+        <h3 lang="zh">② 涨跌幅限制</h3>
+        <h3 lang="en">② Daily Price Limits</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">板块</span><span lang="en">Board</span></th><th><span lang="zh">普通涨跌幅</span><span lang="en">Normal band</span></th><th>ST <span lang="zh">股</span><span lang="en">stocks</span></th><th><span lang="zh">新股前 5 日</span><span lang="en">First 5 days</span></th><th><span lang="zh">起源</span><span lang="en">Origin</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">主板 (沪/深)</span><span lang="en">Main (SH/SZ)</span></td><td>±10%</td><td>±5%</td><td>±44%/±36% (<span lang="zh">沪/深规则各异</span><span lang="en">rules differ</span>)</td><td>1996.12.16</td></tr>
+            <tr><td><span lang="zh">创业板</span><span lang="en">ChiNext</span></td><td>±20%</td><td>±5%</td><td><span lang="zh">无限制</span><span lang="en">No limit</span></td><td>2020.08.24</td></tr>
+            <tr><td><span lang="zh">科创板</span><span lang="en">STAR</span></td><td>±20%</td><td>±5%</td><td><span lang="zh">无限制</span><span lang="en">No limit</span></td><td>2019.07.22</td></tr>
+            <tr><td><span lang="zh">北交所</span><span lang="en">BSE</span></td><td>±30%</td><td>±5%</td><td><span lang="zh">无限制</span><span lang="en">No limit</span></td><td>2021.11.15</td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>历史起源</strong>: 1996 年 12 月 16 日, A 股引入 ±10% 涨跌幅限制, 起因是当时市场过度投机导致单日 30-50% 的极端波动。设计初衷: <em>给市场一个"冷却时间"</em>, 防止单日恐慌循环。</p>
+        <p lang="en"><strong>Origin:</strong> ±10% limit was introduced on December 16, 1996, in response to extreme single‑day swings (30–50%) from speculative excess. Design intent: <em>give the market a cooling‑off window</em> to break single‑day panic loops.</p>
+
+        <p lang="zh"><strong>"一字板" 现象</strong>: 当公司发布超预期利好 (业绩大涨、并购、政策红利), 全市场买盘集中堆积在涨停价, 而无人愿意按涨停价卖出 → 整日成交价始终停在涨停价 → 分时图呈"一字形" → 称<em>一字涨停</em>(One‑letter Up‑limit)。后果: <em>价格发现机制完全失效</em>, 因为没有任何成交。这是 A 股涨跌幅限制的<em>反向代价</em> — 用价格稳定换价格发现。同样地, 重大利空时出现"一字跌停", 投资者想卖也卖不掉, 只能下一日尝试。</p>
+        <p lang="en"><strong>"One‑letter limit" phenomenon:</strong> on dramatic positive news (earnings surge, M&A, policy tailwind), market‑wide bids stack at the limit price while no one will sell at that price → all‑day clearing price stuck at the limit → intraday tape looks like a single horizontal line → <em>one‑letter up‑limit</em>. Consequence: <em>price discovery fails entirely</em> — no trades. The reverse cost of A‑share price bands: stability traded for discovery. The symmetric "one‑letter down‑limit" leaves investors who want to sell unable to exit until the next day.</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">涨跌停价计算</span>
+          <span class="callout-label" lang="en">Limit price calculation</span>
+          <div class="eq">
+            <span>$$ P_{\text{涨停}} \;=\; P_{\text{前收盘}} \times (1 + \delta), \quad P_{\text{跌停}} \;=\; P_{\text{前收盘}} \times (1 - \delta) $$</span>
+            <span class="num">(3.1)</span>
+          </div>
+          <p lang="zh">其中 $\delta$ 取 10% (主板)、20% (创业板/科创板)、30% (北交所)、5% (ST 股), 取价精度<em>四舍五入至 0.01 元</em>。例: 前收盘 ¥10.27 的主板股, 涨停价 = 10.27 × 1.10 = 11.297 ≈ <em>¥11.30</em>; 跌停价 = 10.27 × 0.90 = 9.243 ≈ <em>¥9.24</em>。</p>
+          <p lang="en">$\delta$ = 10% (main), 20% (ChiNext/STAR), 30% (BSE), 5% (ST). Price precision rounded to ¥0.01. Example: prior close ¥10.27 on main board, up‑limit = 10.27 × 1.10 = 11.297 ≈ <em>¥11.30</em>; down‑limit = 10.27 × 0.90 = 9.243 ≈ <em>¥9.24</em>.</p>
+        </div>
+
+        <p class="muted measure" lang="zh"><strong>学术研究</strong>: Kim & Rhee (2000, Pacific‑Basin Finance Journal) 对韩国、日本、台湾的涨跌幅限制研究发现: 限制本身<em>不能根本降低市场总体波动率</em>, 只是把波动从"单日"分布转移到"多日"分布 (波动外溢, volatility spillover)。这就是为什么"一字板"出现后, 次日开盘往往继续跳空 — 被限制压抑的价差延迟一天爆发。这是 A 股涨跌幅限制的核心代价: 单日稳定换持续波动。</p>
+        <p class="muted measure" lang="en"><strong>Academic evidence:</strong> Kim & Rhee (2000, Pacific‑Basin Finance Journal) studied Korea, Japan, Taiwan price limits and found that limits <em>do not fundamentally reduce aggregate volatility</em> — they shift volatility from a "single day" to a "multi‑day" distribution (volatility spillover). That's why "one‑letter limit" days are typically followed by gap continuation at the next open — the suppressed gap delays a day and erupts. The core cost of A‑share price limits: single‑day calm traded for sustained volatility.</p>
+
+        <h3 lang="zh">③ 融资融券 + 转融通</h3>
+        <h3 lang="en">③ Margin Financing, Securities Lending, Refinancing</h3>
+
+        <div class="callout">
+          <p lang="zh"><strong>融资 (Margin Financing)</strong>: 投资者向券商<em>借钱</em>买股, 杠杆比例上限 1:1 (即 1 元自有可买 2 元股票)。利率约 5-8% 年化。<br><strong>融券 (Securities Lending)</strong>: 投资者向券商<em>借券</em>做空, 杠杆比例上限 1:1, 借券利率约 8-15% 年化 (大幅高于融资)。<br><strong>转融通 (Refinancing)</strong>: 中国证券金融公司 (中证金) 从公募基金、社保、保险等机构<em>统一收集</em>券, 再分发给券商, 由券商借给融券客户。这是 A 股做空的"上游券源池"。</p>
+          <p lang="en"><strong>Margin Financing:</strong> investor <em>borrows cash</em> from broker to buy stock; max leverage 1:1 (¥1 own equity can buy ¥2 of stock). Rate ~5–8% annualized.<br><strong>Securities Lending:</strong> investor <em>borrows stock</em> from broker to short; max leverage 1:1; rate ~8–15% annualized (well above MF).<br><strong>Refinancing:</strong> the China Securities Finance Corporation (CSF) <em>pools</em> stock from mutual funds, social security, insurers and redistributes to brokers, who relend to short clients. The upstream pool for A‑share shorting.</p>
+          <span class="cite">证监会令 第117号 《融资融券交易实施细则》· 上交所/深交所融资融券交易规则 · CSF 转融通业务规则</span>
+        </div>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">做空难度系数</span>
+          <span class="callout-label" lang="en">Shorting difficulty index</span>
+          <div class="eq">
+            <span>$$ \text{做空难度} \;=\; \frac{\text{融资余额}}{\text{融券余额}} $$</span>
+            <span class="num">(3.2)</span>
+          </div>
+          <p lang="zh">2024 年 A 股全市场: 融资余额 ¥1.6 万亿, 融券余额 ¥350 亿, 比值约 <strong>46:1</strong>。即做空难度是融资买入的 46 倍。同期对比: 美股融资融券比例约 5:1, 港股约 8:1。</p>
+          <p lang="en">2024 A‑shares market‑wide: MF balance ¥1.6tn, SL balance ¥35bn — ratio ~<strong>46:1</strong>. Shorting is 46× harder than long financing. Comparables: US ~5:1, HK ~8:1.</p>
+        </div>
+
+        <p lang="zh"><strong>2024 年监管收紧</strong>: 2024 年 1 月 28 日, 证监会暂停限售股出借 (堵住<em>限售股变相做空</em>渠道); 2024 年 7 月 11 日, 暂停转融券业务 — 即<em>新增融券规模实质归零</em>, 存量逐步消化。原因: 2023-2024 市场下行期, "量化对冲 + 融券做空"被认为加剧市场波动, 监管出手抑制。这是 A 股做空机制的一次重大政策性收缩。</p>
+        <p lang="en"><strong>2024 tightening:</strong> on January 28, 2024, CSRC suspended lending of restricted shares (closing the <em>covert‑short via restricted shares</em> channel); on July 11, 2024, refinancing for shorting was suspended — effectively <em>zeroing new SL capacity</em>, with the existing stock gradually unwound. Reason: during the 2023–24 downturn, "quant hedging + SL shorting" was deemed to amplify volatility; the regulator intervened. A material policy contraction of A‑share shorting infrastructure.</p>
+
+        <h3 lang="zh">④ 集合竞价</h3>
+        <h3 lang="en">④ Call Auctions</h3>
+
+        <p lang="zh">A 股每日交易时段:</p>
+        <p lang="en">Daily A‑share trading schedule:</p>
+
+        <table>
+          <thead><tr><th><span lang="zh">时段</span><span lang="en">Window</span></th><th><span lang="zh">时间</span><span lang="en">Time</span></th><th><span lang="zh">机制</span><span lang="en">Mechanism</span></th><th><span lang="zh">说明</span><span lang="en">Notes</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">开盘集合竞价</span><span lang="en">Opening auction</span></td><td>9:15-9:25</td><td><span lang="zh">集合竞价</span><span lang="en">Call auction</span></td><td><span lang="zh">9:15-9:20 可申报可撤单; 9:20-9:25 可申报不可撤单</span><span lang="en">9:15–9:20 enter or cancel; 9:20–9:25 enter only, no cancel</span></td></tr>
+            <tr><td><span lang="zh">上午连续竞价</span><span lang="en">AM continuous</span></td><td>9:30-11:30</td><td><span lang="zh">连续竞价</span><span lang="en">Continuous</span></td><td><span lang="zh">实时撮合</span><span lang="en">Real‑time matching</span></td></tr>
+            <tr><td><span lang="zh">午休</span><span lang="en">Lunch break</span></td><td>11:30-13:00</td><td>—</td><td><span lang="zh">不交易</span><span lang="en">Closed</span></td></tr>
+            <tr><td><span lang="zh">下午连续竞价</span><span lang="en">PM continuous</span></td><td>13:00-14:57</td><td><span lang="zh">连续竞价</span><span lang="en">Continuous</span></td><td>—</td></tr>
+            <tr><td><span lang="zh">收盘集合竞价</span><span lang="en">Closing auction</span></td><td>14:57-15:00</td><td><span lang="zh">集合竞价</span><span lang="en">Call auction</span></td><td><span lang="zh">仅深交所主板自 2018 年实施, 沪市自 2018 年, 创业板早于沪市</span><span lang="en">SH adopted in 2018, SZ Main adopted in 2018, ChiNext earlier</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>集合竞价 (Call Auction)</strong> 机制: 一段时间内, 所有买卖单<em>累积</em>到撮合时刻, 系统按"最大成交量原则"确定单一价格, 所有成交都按这个价格撮合。开盘集合竞价决定<em>当日开盘价</em>, 收盘集合竞价决定<em>当日收盘价</em>。这与连续竞价 (real‑time matching) 完全不同 — 集合竞价撮合一次, 连续竞价撮合无数次。<em>意义</em>: 集合竞价减少了大单对开盘/收盘瞬时价格的冲击, 也让所有投资者在同一价格上成交, 防止"开盘价被少数早盘大单操控"的现象。</p>
+        <p lang="en"><strong>Call auction mechanism:</strong> within the window, all buy/sell orders <em>accumulate</em> until the matching instant. The system picks a single clearing price by the "maximum executable volume principle"; all trades execute at that price. Opening auction sets the <em>opening price</em>; closing auction sets the <em>closing price</em>. Distinct from continuous matching — call auctions match once, continuous matches countlessly. <em>Purpose:</em> auctions absorb the price impact of large opening/closing orders and ensure all investors transact at the same price, preventing "open manipulated by a few early large orders."</p>
+
+        <h3 lang="zh">⑤ 大宗交易</h3>
+        <h3 lang="en">⑤ Block Trades</h3>
+
+        <p lang="zh">大宗交易触发阈值:</p>
+        <p lang="en">Block trade thresholds:</p>
+
+        <table>
+          <thead><tr><th><span lang="zh">交易所</span><span lang="en">Exchange</span></th><th><span lang="zh">股票</span><span lang="en">Equities</span></th><th><span lang="zh">基金</span><span lang="en">Funds</span></th></tr></thead>
+          <tbody>
+            <tr><td>SSE (<span lang="zh">沪</span>)</td><td><span lang="zh">30 万股或 200 万元</span><span lang="en">300k shares or ¥2m</span></td><td><span lang="zh">200 万份或 200 万元</span><span lang="en">2m units or ¥2m</span></td></tr>
+            <tr><td>SZSE (<span lang="zh">深</span>)</td><td><span lang="zh">30 万股或 200 万元</span><span lang="en">300k shares or ¥2m</span></td><td><span lang="zh">200 万份或 200 万元</span><span lang="en">2m units or ¥2m</span></td></tr>
+            <tr><td>BSE (<span lang="zh">北</span>)</td><td><span lang="zh">10 万股或 100 万元</span><span lang="en">100k shares or ¥1m</span></td><td>—</td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh">大宗交易价格范围: 沪深主板 ± 10% (与涨跌幅一致); 创业板/科创板 ±30% (宽于二级市场); 北交所 ±30%。结算: 大宗交易仍受 T+1 约束, 即买入方需次日才能卖出。</p>
+        <p lang="en">Block price range: SH/SZ main ±10% (same as daily band); ChiNext/STAR ±30% (wider than secondary); BSE ±30%. Settlement: blocks still subject to T+1 — buyer must wait until next day to sell.</p>
+
+        <p lang="zh"><strong>大宗交易溢价/折价的信号含义</strong>:</p>
+        <p lang="en"><strong>Premium/discount signals:</strong></p>
+        <ul>
+          <li><span lang="zh"><em>折价大宗 (低于当日收盘)</em>: 卖方急于变现, 议价能力弱。常见于大股东减持、定增解禁后卖出。深度折价 (&gt; 5%) 是负面信号。</span><span lang="en"><em>Discount block (below close):</em> seller is urgent, weak‑handed. Common in controlling‑shareholder reductions, post‑private‑placement unlocks. Deep discounts (&gt; 5%) are bearish signals.</span></li>
+          <li><span lang="zh"><em>溢价大宗 (高于当日收盘)</em>: 买方看好后市, 接盘方愿意支付额外价格。常见于战略合作引入、机构看好后市。深度溢价 (&gt; 5%) 是正面信号。</span><span lang="en"><em>Premium block (above close):</em> buyer is positive, willing to overpay. Common in strategic partnership formation or institutional bullishness. Deep premiums (&gt; 5%) are bullish signals.</span></li>
+        </ul>
+
+        <h3 lang="zh">⑥ 限售股 + 减持新规</h3>
+        <h3 lang="en">⑥ Restricted Shares + Reduction Rules</h3>
+
+        <p lang="zh"><strong>限售股锁定期 (法定)</strong>:</p>
+        <p lang="en"><strong>Restricted share lock‑up periods (statutory):</strong></p>
+        <table>
+          <thead><tr><th><span lang="zh">股东类型</span><span lang="en">Holder type</span></th><th><span lang="zh">锁定期</span><span lang="en">Lock period</span></th><th><span lang="zh">依据</span><span lang="en">Basis</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">控股股东/实际控制人</span><span lang="en">Controlling shareholder/de facto controller</span></td><td>IPO <span lang="zh">后 36 个月</span><span lang="en">36 months post‑IPO</span></td><td><span lang="zh">公司法 §141, 上市规则</span><span lang="en">Company Law §141, Listing Rules</span></td></tr>
+            <tr><td><span lang="zh">非控股股东 IPO 前持有</span><span lang="en">Non‑controlling pre‑IPO shareholders</span></td><td>12 <span lang="zh">个月</span><span lang="en">12 months</span></td><td><span lang="zh">公司法 §141</span><span lang="en">Company Law §141</span></td></tr>
+            <tr><td><span lang="zh">IPO 战略配售</span><span lang="en">IPO strategic placement</span></td><td>12 <span lang="zh">个月</span><span lang="en">12 months</span></td><td><span lang="zh">证券发行管理办法</span><span lang="en">Issuance Rules</span></td></tr>
+            <tr><td><span lang="zh">定向增发</span><span lang="en">Private placement</span></td><td>6-18 <span lang="zh">个月 (机构 6 月; 控股股东 18 月)</span><span lang="en">6–18 months (institutions 6m; controlling 18m)</span></td><td><span lang="zh">上市公司证券发行管理办法</span><span lang="en">Listed Co. Issuance Measures</span></td></tr>
+            <tr><td><span lang="zh">高管在任期间</span><span lang="en">Sitting executives</span></td><td><span lang="zh">每年减持不超持股 25%</span><span lang="en">Cap 25% of holdings/year</span></td><td><span lang="zh">公司法 §141</span><span lang="en">Company Law §141</span></td></tr>
+            <tr><td><span lang="zh">高管离职后</span><span lang="en">Post‑departure executives</span></td><td>6 <span lang="zh">个月内不得减持</span><span lang="en">6‑month freeze</span></td><td><span lang="zh">同上</span><span lang="en">Same</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <p lang="zh"><strong>减持新规</strong> (证监会公告 [2017]9号 + 2023 修订 + 2024 进一步收紧): 即使限售股已解禁, 大股东减持需遵守:</p>
+          <p lang="en"><strong>Reduction rules</strong> (CSRC Announcement [2017] No. 9 + 2023 revision + 2024 further tightening): even post‑unlock, controlling shareholders must comply with:</p>
+          <ul>
+            <li><span lang="zh"><strong>通道 1: 二级市场集中竞价</strong>—— 任意连续 90 日内, 减持不超总股本的 1%。</span><span lang="en"><strong>Channel 1: secondary market call/continuous</strong> — no more than 1% of total share capital in any rolling 90 days.</span></li>
+            <li><span lang="zh"><strong>通道 2: 大宗交易</strong>—— 任意连续 90 日内, 减持不超总股本的 2%。受让方需锁定 6 个月。</span><span lang="en"><strong>Channel 2: block trades</strong> — no more than 2% in any rolling 90 days. Recipient locked 6 months.</span></li>
+            <li><span lang="zh"><strong>通道 3: 询价转让</strong>(科创板特有, 北交所部分适用) —— 类似美国 Rule 144 的私下议价转让, 不受 1%/2% 限制, 但只能转让给机构投资者。</span><span lang="en"><strong>Channel 3: inquiry transfer</strong> (unique to STAR, partially BSE) — private negotiated transfer akin to US Rule 144; not subject to 1%/2% caps, but transferable only to institutional investors.</span></li>
+            <li><span lang="zh"><strong>预披露</strong>: 减持计划须提前 15 个交易日预披露 (公告减持时间、数量、价格区间)。</span><span lang="en"><strong>Advance disclosure:</strong> reduction plans must be pre‑announced 15 trading days ahead (timing, quantity, price range).</span></li>
+            <li><span lang="zh"><strong>2024 收紧</strong>: 上市公司"破发" (股价跌破发行价) 或"破净" (跌破每股净资产) 时, 控股股东和实际控制人<em>不得</em>通过二级市场减持。这是 2024 年 5 月新规对市场极端低迷期的额外保护。</span><span lang="en"><strong>2024 tightening:</strong> when share price "breaks issue price" or "breaks net asset value per share," controlling shareholders and de facto controllers <em>cannot</em> reduce via the secondary market. Added in May 2024 to protect during extreme downturns.</span></li>
+          </ul>
+          <span class="cite">证监会公告 [2017]9号 · 2023 [25号] 减持规定修订 · 2024 上市公司股东减持股份管理暂行办法</span>
+        </div>
+
+        <h3 lang="zh">⑦ 北向 / 南向资金</h3>
+        <h3 lang="en">⑦ Northbound / Southbound Capital</h3>
+
+        <div class="callout">
+          <p lang="zh"><strong>互联互通机制</strong>: 2014 年 11 月沪港通开通, 2016 年 12 月深港通开通。每日额度: 沪股通/深股通 (北向) 各 520 亿元, 港股通 (南向) 各 420 亿元。每年累计无上限。<br><strong>北向资金</strong>: 海外 (主要是机构) 通过沪/深港通买入 A 股。被视为"聪明钱" — 行业研究覆盖好、长期持仓为主。<br><strong>南向资金</strong>: 内地通过沪/深港通买入港股。结构: 公募基金、保险等机构 + 部分高净值个人。</p>
+          <p lang="en"><strong>Connect mechanism:</strong> Shanghai‑HK Connect opened November 2014; Shenzhen‑HK opened December 2016. Daily quota: Shanghai/Shenzhen Connect (Northbound) ¥52bn each; HK Connect (Southbound) ¥42bn each. No annual cap.<br><strong>Northbound:</strong> foreign (mostly institutional) capital buying A‑shares via Connect. Regarded as "smart money" — strong sell‑side coverage, predominantly long‑hold.<br><strong>Southbound:</strong> mainland capital buying HK stocks via Connect. Structure: mutual funds, insurers, and some HNW individuals.</p>
+          <span class="cite">沪港通业务实施办法 · 深港通业务实施办法 · 港交所 HKEX 与沪深所联合规则</span>
+        </div>
+
+        <p lang="zh"><strong>北向资金的"风向标"地位</strong>: 2017-2023 期间, 北向资金对 A 股核心资产 (茅台、宁德、招行、平安、美的) 的持仓比例长期维持在 5-15%, 部分股票北向持仓比例 (例如海康威视、迈瑞医疗) 甚至触及监管 30% 上限。但 2024 年 5 月起, 港交所停止披露日度北向资金流向, 改为月度披露 — 这是政策面的"<em>透明度调整</em>"。短期来看, 散户失去了"跟北向"的高频交易信号; 长期来看, 月度数据仍可用于研究外资配置趋势。</p>
+        <p lang="en"><strong>Northbound as a weathervane:</strong> from 2017 to 2023, Northbound's holdings in A‑share core assets (Moutai, CATL, China Merchants Bank, Ping An, Midea) sustained at 5–15%, with some names (Hikvision, Mindray) hitting the 30% regulatory ceiling. From May 2024, HKEX ceased daily Northbound flow disclosure (monthly only) — a policy <em>transparency adjustment</em>. Short‑term: retail loses the high‑frequency "follow Northbound" signal. Long‑term: monthly data still supports research on foreign allocation trends.</p>
+
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 3 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span>
+        </h2>
+
+        <p lang="zh">老王那 30 万本金面对的"T+1 / 涨跌停 / 融券难 / 大宗 / 北向 / 减持新规", 在市场层面就是: 2015 年杠杆牛崩塌、北向资金 TOP10 持仓表、茅台一字板事件。下面三个案例分别展开。</p>
+        <p lang="en">Old Wang's ¥300k facing "T+1 / price limits / SL scarcity / blocks / Northbound / reduction rules" become, at market scale: the 2015 leveraged bull and crash, Northbound's top‑10 holdings, and Moutai's one‑letter limit episode. Three cases below.</p>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">全市场</span><span lang="en">Market‑wide</span></span>
+            <span class="company"><span lang="zh">2015 杠杆牛市与崩盘</span><span lang="en">2015 leveraged bull and crash</span></span>
+            <span class="period">2014-2015 · <span lang="zh">融资余额 ¥2.2 万亿的极端实验</span><span lang="en">¥2.2tn margin financing experiment</span></span>
+          </div>
+
+          <p lang="zh">老王感到"杠杆做多手段简单, 杠杆做空手段稀缺", 这种系统性失衡在 2014-2015 达到极致, 制造了一场至今 A 股仍在消化的市场实验。</p>
+          <p lang="en">Old Wang's observation that "leveraged long is easy, leveraged short is scarce" reached its peak in 2014–15, producing a market experiment that A‑shares still digests.</p>
+
+          <p lang="zh"><strong>背景</strong>: 2014 年 7 月起, 央行降息 + 政策面"改革牛"叙事推动 A 股启动牛市。同年, 证监会推动融资融券业务大幅扩容 — 融资余额从 2014 年 6 月的 ¥4,000 亿快速增至 2015 年 6 月的 ¥2.2 万亿 (峰值), <em>5.5 倍增长</em>。同时, 场外配资 (券商通道之外的非法配资) 通过 HOMS 系统接入主流券商, 估计规模另有 1-2 万亿 — 实际市场杠杆远超官方数字。</p>
+          <p lang="en"><strong>Context:</strong> from July 2014, PBoC rate cuts plus the "reform bull" policy narrative ignited the A‑share bull. The same year, CSRC pushed major margin financing expansion — MF balance rose from ¥400bn (June 2014) to ¥2.2tn at peak (June 2015), a <em>5.5× increase</em>. Concurrently, off‑exchange margin financing (illegal, plugged into mainstream brokers via the HOMS system) added an estimated ¥1–2tn — actual market leverage far exceeded official figures.</p>
+
+          <p lang="zh"><strong>关键数据 (峰值与崩盘)</strong>:</p>
+          <p lang="en"><strong>Key data (peak and crash):</strong></p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th class="num">2014.06</th><th class="num">2015.06 <span lang="zh">峰值</span><span lang="en">peak</span></th><th class="num">2015.09 <span lang="zh">崩盘后</span><span lang="en">post‑crash</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">上证综指</span><span lang="en">SSE Composite</span></td><td class="num">2,049</td><td class="num">5,178</td><td class="num">3,053</td></tr>
+                <tr><td><span lang="zh">融资余额 (万亿元)</span><span lang="en">MF balance (¥tn)</span></td><td class="num">0.40</td><td class="num">2.20</td><td class="num">0.90</td></tr>
+                <tr><td><span lang="zh">融券余额 (亿元)</span><span lang="en">SL balance (¥bn)</span></td><td class="num">~70</td><td class="num">~90</td><td class="num">~40</td></tr>
+                <tr><td><span lang="zh">融资:融券比</span><span lang="en">MF:SL ratio</span></td><td class="num">57:1</td><td class="num">244:1</td><td class="num">225:1</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>崩盘机制</strong>: 2015 年 6 月 12 日起, 证监会查处场外配资。配资公司被迫平仓 → 股价下跌 → 触及融资客户保证金率红线 → 券商强制平仓 → 更多股价下跌 → 更多平仓 → 形成<em>自我强化的下跌螺旋</em>。6 月 15 日至 7 月 8 日, 上证综指下跌 32%, 创业板指数下跌 42%。约 1,500 只股票连续跌停, 一字跌停板无法成交 — 即便投资者想割肉, 也找不到买家。</p>
+          <p lang="en"><strong>Crash mechanism:</strong> from June 12, 2015, CSRC moved against off‑exchange margin financing. Off‑exchange operators forced to liquidate → prices fell → triggered margin‑customer maintenance breaches → brokers force‑liquidated → more price decline → more liquidation — a <em>self‑reinforcing downward spiral</em>. From June 15 to July 8, SSE Composite fell 32%, ChiNext Index fell 42%. ~1,500 stocks hit consecutive down‑limits — one‑letter down‑limit days where even desperate sellers couldn't find buyers.</p>
+
+          <p lang="zh"><strong>救市行动</strong>: 7 月 4-5 日, 证监会暂停 IPO; 央行向<em>证金公司</em>(中国证券金融公司) 提供无限流动性支持, 证金公司直接入市买入蓝筹股, 估计净买入额超过 1.5 万亿元。同期, 监管暂停股指期货做空、限制大股东减持 6 个月、严打"恶意做空"。最终在 8 月底市场企稳 (上证 3,000 点附近)。</p>
+          <p lang="en">Rescue action: from July 4–5, CSRC suspended IPOs; PBoC provided unlimited liquidity to <em>CSF (China Securities Finance)</em>, which directly bought blue chips, net purchases estimated &gt; ¥1.5tn. Concurrent measures: suspended index futures shorts, banned controlling‑shareholder reductions for 6 months, cracked down on "malicious shorting." Market stabilized by late August (SSE Composite ~3,000).</p>
+
+          <p lang="zh"><strong>对老王的启示</strong>:</p>
+          <ol lang="zh">
+            <li><strong>杠杆是放大器, 不是利润制造器</strong>: 杠杆牛中 1 元变 5 元的故事比比皆是, 但 1 元变 0 元的故事更多。融资客户在 7-8 月集中爆仓, 全市场强制平仓损失估计超过 ¥1 万亿。</li>
+            <li><strong>"做空稀缺"对单边下跌不是减压阀, 是加压阀</strong>: 美股做空机制完善, 下跌时空头回补 (cover) 提供买盘缓冲; A 股融券稀缺, 缺乏这种自然缓冲。2015 崩盘是这一结构特征的极端展示。</li>
+            <li><strong>涨跌停板在崩盘中放大了流动性危机</strong>: 一字跌停日内不能撮合, 投资者想止损也找不到对手方, 损失只能延迟到次日继续承担。Kim &amp; Rhee (2000) 的<em>波动外溢</em>理论在 2015 崩盘中得到血淋淋的验证。</li>
+            <li><strong>政策风险是 A 股最大的非市场风险</strong>: 监管收紧配资 → 触发崩盘 → 再用大规模救市平衡, 周期短至几周。散户即使判断对了基本面, 也可能在政策窗口期被洗出。</li>
+          </ol>
+          <p lang="en"><strong>Lessons for Old Wang:</strong> (1) Leverage is an amplifier, not a profit machine — the "¥1 to ¥5" story dominates during the bull; "¥1 to ¥0" dominates during the crash. Margin forced liquidations in July–August caused estimated &gt; ¥1tn losses market‑wide. (2) "Short scarcity" is not a pressure release for one‑direction declines; it's a pressure amplifier. US shorts covering (cover) provide buying cushion during declines; A‑share SL scarcity removes that natural cushion. The 2015 crash was the extreme demonstration. (3) Price limits during a crash amplify the liquidity crisis — one‑letter down‑limit days have no matching, even stop‑loss orders can't find counterparties; losses defer to the next day. Kim & Rhee's volatility spillover proven in blood. (4) Policy risk is A‑shares' biggest non‑market risk. Regulator tightens off‑exchange margin → triggers crash → then large‑scale rescue rebalances, cycle as short as a few weeks. Even fundamentally correct retail can get washed out within the policy window.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker"><span lang="zh">北向资金</span><span lang="en">Northbound</span></span>
+            <span class="company"><span lang="zh">2024 北向 TOP10 持仓表</span><span lang="en">2024 Northbound top‑10 holdings</span></span>
+            <span class="period">2024 · <span lang="zh">外资在 A 股 "聪明钱" 的可见地图</span><span lang="en">The visible map of foreign "smart money"</span></span>
+          </div>
+
+          <p lang="zh">老王那个"想跟着北向资金做"的念头, 落到具体数据上是 A 股最显眼的 10 家公司:</p>
+          <p lang="en">Old Wang's instinct to "follow Northbound" translates, in concrete data, to the 10 most prominent A‑share holdings:</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">排名</span><span lang="en">Rank</span></th><th><span lang="zh">公司</span><span lang="en">Company</span></th><th><span lang="zh">代码</span><span lang="en">Code</span></th><th><span lang="zh">板块</span><span lang="en">Board</span></th><th class="num"><span lang="zh">持仓市值 (亿元)</span><span lang="en">Mkt val (¥bn)</span></th><th class="num"><span lang="zh">持股比例</span><span lang="en">Stake %</span></th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><span lang="zh">贵州茅台</span><span lang="en">Kweichow Moutai</span></td><td>600519</td><td><span lang="zh">沪主</span><span lang="en">SH Main</span></td><td class="num">~1,800</td><td class="num">~6.5%</td></tr>
+                <tr><td>2</td><td><span lang="zh">宁德时代</span><span lang="en">CATL</span></td><td>300750</td><td><span lang="zh">创业</span><span lang="en">ChiNext</span></td><td class="num">~1,200</td><td class="num">~12%</td></tr>
+                <tr><td>3</td><td><span lang="zh">招商银行</span><span lang="en">China Merchants Bank</span></td><td>600036</td><td><span lang="zh">沪主</span><span lang="en">SH Main</span></td><td class="num">~900</td><td class="num">~7%</td></tr>
+                <tr><td>4</td><td><span lang="zh">美的集团</span><span lang="en">Midea Group</span></td><td>000333</td><td><span lang="zh">深主</span><span lang="en">SZ Main</span></td><td class="num">~700</td><td class="num">~16%</td></tr>
+                <tr><td>5</td><td><span lang="zh">中国平安</span><span lang="en">Ping An Insurance</span></td><td>601318</td><td><span lang="zh">沪主</span><span lang="en">SH Main</span></td><td class="num">~600</td><td class="num">~7%</td></tr>
+                <tr><td>6</td><td><span lang="zh">比亚迪</span><span lang="en">BYD</span></td><td>002594</td><td><span lang="zh">深主</span><span lang="en">SZ Main</span></td><td class="num">~520</td><td class="num">~8%</td></tr>
+                <tr><td>7</td><td><span lang="zh">五粮液</span><span lang="en">Wuliangye</span></td><td>000858</td><td><span lang="zh">深主</span><span lang="en">SZ Main</span></td><td class="num">~480</td><td class="num">~8%</td></tr>
+                <tr><td>8</td><td><span lang="zh">长江电力</span><span lang="en">China Yangtze Power</span></td><td>600900</td><td><span lang="zh">沪主</span><span lang="en">SH Main</span></td><td class="num">~430</td><td class="num">~7%</td></tr>
+                <tr><td>9</td><td><span lang="zh">海康威视</span><span lang="en">Hikvision</span></td><td>002415</td><td><span lang="zh">深主</span><span lang="en">SZ Main</span></td><td class="num">~410</td><td class="num">~14%</td></tr>
+                <tr><td>10</td><td><span lang="zh">迈瑞医疗</span><span lang="en">Mindray Medical</span></td><td>300760</td><td><span lang="zh">创业</span><span lang="en">ChiNext</span></td><td class="num">~390</td><td class="num">~14%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh"><strong>结构特征</strong>:</p>
+          <p lang="en"><strong>Structural features:</strong></p>
+          <ul>
+            <li><span lang="zh"><strong>行业集中</strong>: 消费 (茅台/五粮液/美的) + 新能源/科技 (宁德/比亚迪/海康/迈瑞) + 金融 (招行/平安) + 公用事业 (长江电力)。全部为<em>行业龙头 + ROE 持续高于 15%</em>的优质公司。</span><span lang="en"><strong>Sector concentration:</strong> consumer (Moutai, Wuliangye, Midea) + new energy/tech (CATL, BYD, Hikvision, Mindray) + finance (CMB, Ping An) + utilities (Yangtze Power). All sector champions with sustained ROE &gt; 15%.</span></li>
+            <li><span lang="zh"><strong>持股比例上限</strong>: 单一外国投资者持股 ≤ 10%, 全部外国投资者合计持股 ≤ 30% (QFII/RQFII/沪深港通合计)。海康威视、迈瑞医疗已接近 14%, 受合计 30% 上限管控。</span><span lang="en"><strong>Stake caps:</strong> single foreign investor ≤ 10%, all foreign investors combined ≤ 30% (QFII/RQFII/Connect aggregate). Hikvision and Mindray near 14%, constrained by the 30% aggregate ceiling.</span></li>
+            <li><span lang="zh"><strong>"风向标"逻辑</strong>: 外资 "深度研究 + 长期持仓" 风格使得 TOP10 持仓变化具有较强信号意义。短期内大幅减仓某只 TOP10 持股, 往往意味着外资对该公司的中长期判断发生变化, 散户跟随有研究价值。</span><span lang="en"><strong>"Weathervane" logic:</strong> the foreign "deep research + long hold" style means TOP10 holding changes carry strong signal value. Sharp short‑term reductions in a top‑10 holding typically reflect a shift in foreign medium‑term view; retail following is research‑worthy.</span></li>
+            <li><span lang="zh"><strong>2024 透明度调整影响</strong>: 港交所 2024.05 起停止日度披露 → 散户失去高频信号 → 月度披露仍可使用, 但延迟性使得"实时跟踪"难度上升。</span><span lang="en"><strong>Impact of 2024 transparency adjustment:</strong> HKEX ceased daily disclosure from May 2024 → retail loses high‑frequency signals → monthly data still usable, but latency makes "real‑time tracking" harder.</span></li>
+          </ul>
+
+          <p lang="zh"><strong>散户实操建议</strong>: 不要"无脑跟北向", 因为北向持仓变化既可能反映基本面变化, 也可能反映外资风险偏好变化 (例如美联储加息周期外资全球撤资)。正确用法: 把北向 TOP10 当作"质量过滤器" — 这些公司都通过了外资深度研究, 入这份名单是 ROE / 治理质量 / 信息透明度的复合背书。然后用基本面分析框架 (M2 Ch.07 价值投资) 对个股做独立判断。</p>
+          <p lang="en"><strong>Practical advice:</strong> don't blindly follow Northbound. Position changes reflect both fundamentals and foreign risk appetite (e.g., Fed hike cycles drive global de‑risking). Correct usage: treat Northbound TOP10 as a "quality filter" — these companies have passed foreign deep research; inclusion is a composite endorsement of ROE / governance / disclosure quality. Then apply fundamental analysis (M2 Ch.07 value investing) for individual stock independent judgment.</p>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·600519</span>
+            <span class="company"><span lang="zh">贵州茅台</span><span lang="en">Kweichow Moutai</span></span>
+            <span class="period">2021.01.13 · <span lang="zh">"一字板"价格发现失效</span><span lang="en">"One‑letter limit" price discovery failure</span></span>
+          </div>
+
+          <p lang="zh">老王 Layer 1 那只"想加仓但买不到"的小盘股, 在最大蓝筹身上也会发生 — 茅台 2021 年初的"一字涨停"是一个标志性案例。</p>
+          <p lang="en">Old Wang's "want to add but can't" small cap scene also happens at the largest blue chip — Moutai's early‑2021 one‑letter up‑limit is iconic.</p>
+
+          <p lang="zh"><strong>背景</strong>: 2020-2021 年初, A 股进入"白酒+新能源"双主线行情。茅台作为消费龙头, 2020 年股价从年初 1,180 元一路上涨到年底 2,000 元 (涨幅 +69%)。2021 年 1 月 12 日, 茅台公告 2020 年业绩快报: 全年营收 +10.3%, 归母净利 +13.3% — 略高于市场预期。</p>
+          <p lang="en"><strong>Context:</strong> from 2020 to early 2021, A‑shares entered a "baijiu + new energy" dual‑rally regime. Moutai as consumer champion: stock rose from ¥1,180 in early 2020 to ¥2,000 by year‑end (+69%). On January 12, 2021, Moutai filed 2020 performance flash: full‑year revenue +10.3%, NI to parent +13.3% — slightly above consensus.</p>
+
+          <p lang="zh"><strong>1 月 13 日开盘</strong>: 茅台开盘价 1,930 元, 较前收盘上涨 +5.0%。早盘 9:30-10:30 间, 买盘持续涌入, 价格一路上涨。约 10:50, 股价达到 2,020 元, 触及涨停 (+10%, 限价 2,020.45 元)。涨停后, 全市场买盘持续堆积: 涨停价 2,020.45 的买盘数量从触板时的 50 万股增加到下午 14:30 的 200 万股。但<em>整个下午, 没有人愿意按涨停价卖出</em>。结果: 茅台 1 月 13 日全天<em>分时图呈一字形</em>, 从 10:50 至 15:00 (4 小时 10 分钟) 价格始终停在 2,020.45, <em>无任何成交</em>(午后)。</p>
+          <p lang="en"><strong>January 13 open:</strong> Moutai opened ¥1,930 (+5.0% vs. prior close). From 9:30 to 10:30, bids streamed in, prices climbed. Around 10:50, the stock hit ¥2,020, touching the limit (+10%, cap ¥2,020.45). After hitting limit, market‑wide bids continued stacking: ¥2,020.45 bid queue grew from 500k shares at trigger to 2m shares by 14:30. But <em>throughout the afternoon, no one would sell at the limit price</em>. Result: Moutai's January 13 intraday tape was a flat horizontal line — from 10:50 to 15:00 (4 hours 10 minutes), price stuck at ¥2,020.45, <em>no transactions in the afternoon</em>.</p>
+
+          <p lang="zh"><strong>当日数据</strong>:</p>
+          <p lang="en"><strong>Day‑one data:</strong></p>
+          <ul>
+            <li><span lang="zh">开盘价: 1,930.00 元 (+5.0%)</span><span lang="en">Open: ¥1,930.00 (+5.0%)</span></li>
+            <li><span lang="zh">最高/收盘价: 2,020.45 元 (+10.0%)</span><span lang="en">High/close: ¥2,020.45 (+10.0%)</span></li>
+            <li><span lang="zh">成交量: ~840 万股 (绝大多数在午前成交, 午后几乎无成交)</span><span lang="en">Volume: ~8.4m shares (mostly traded before noon; almost none afternoon)</span></li>
+            <li><span lang="zh">成交额: ~169 亿元 (远低于平时正常日的成交额 ~50 亿)</span><span lang="en">Turnover: ~¥16.9bn (much higher than typical daily ~¥5bn — driven entirely by the morning session)</span></li>
+            <li><span lang="zh">涨停价买单堆积: 收盘时仍有约 200 万股买单挂在 2,020.45 等待成交</span><span lang="en">Limit‑price bid queue: still ~2m shares queued at ¥2,020.45 at close</span></li>
+          </ul>
+
+          <p lang="zh"><strong>价格发现失效</strong>: 茅台在 2,020.45 的"市场出清价"是<em>人为的</em>—— 不是供需博弈出来的, 而是<em>规则边界</em>。市场真实的均衡价是多少? 1 月 14 日开盘给出答案: 茅台跳空高开 +7.0%, 当日继续上涨, 收盘价 2,128 元。如果没有 1 月 13 日的涨跌幅限制, 茅台可能在 13 日就到达 2,100+ 区间。涨跌幅限制把<em>一日的价格调整压缩到两日</em>, 这就是 Kim &amp; Rhee 波动外溢理论的实证表现。</p>
+          <p lang="en"><strong>Price discovery failure:</strong> Moutai's ¥2,020.45 "market clearing price" was <em>artificial</em> — not produced by supply/demand interaction, but by <em>rule boundary</em>. What was the real equilibrium? January 14 open answered: Moutai gapped up +7.0% and continued rising to ¥2,128 by close. Absent the January 13 limit, Moutai might have reached the ¥2,100+ range on January 13. Price limits <em>compressed one day's adjustment into two</em> — empirical instance of Kim & Rhee volatility spillover.</p>
+
+          <p lang="zh"><strong>对老王的启示</strong>:</p>
+          <ol lang="zh">
+            <li><strong>"一字板"对散户最不利</strong>: 涨停时想买买不到, 跌停时想卖卖不掉。规则形式上对所有投资者一视同仁, 但实际上<em>大户和机构有更多渠道</em>(大宗交易、协议转让、ETF 替代品) 绕开。散户只能在主市场, 受 100% 影响。</li>
+            <li><strong>跳空开盘是"延后的真实价"</strong>: 一字板的次日开盘价才接近市场真实均衡价。短期跟踪一字板股票时, 第二天开盘前是重要观察窗口 — 跳空幅度反映了"被限制的市场情绪"。</li>
+            <li><strong>蓝筹更不容易一字板</strong>: 茅台 2021.01.13 是罕见事件, 因为蓝筹股流动性高、机构持仓多, 涨停价愿卖方较多, 不易锁死。一字板更多发生在小盘 + 重大利好 (并购、政策、业绩大超预期) 的组合中。</li>
+            <li><strong>2020.08 创业板改革后, 创业板/科创板 ±20% 的涨跌幅 + 新股前 5 日无限制设计, 部分回应了"一字板"问题</strong>。但代价是单日波动可达 ±20%, 散户体感波动更剧烈。</li>
+          </ol>
+          <p lang="en"><strong>Lessons for Old Wang:</strong> (1) One‑letter limits are worst for retail — can't buy at up‑limit, can't sell at down‑limit. Rules treat all investors formally equally, but <em>large players and institutions have more channels</em> (block trades, agreement transfers, ETF substitutes) to bypass. Retail is stuck on the main book at 100% impact. (2) Gap opens are "delayed true prices." The next day's open after a one‑letter limit approaches real equilibrium. Pre‑open of the next day is a key observation window — gap magnitude reveals the "suppressed market sentiment." (3) Blue chips are less prone to one‑letter limits because of higher liquidity and institutional holdings, more willing sellers at the limit. One‑letter days mostly occur in small caps + major positive news (M&A, policy, earnings massive beat) combinations. (4) The August 2020 ChiNext reform + STAR's ±20% bands + first‑5‑days waiver partially address the one‑letter limit problem. But the cost is daily swings up to ±20%, where retail feels sharper volatility.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 600519 茅台 →</span><span lang="en">Cninfo 600519 Moutai →</span>
+          </a>
+        </div>
+
+        <p class="muted measure" lang="zh">
+          数据来源: 上海证券交易所 (sse.com.cn)、深圳证券交易所 (szse.cn)、中国证券登记结算公司 (chinaclear.cn)、中国证监会 (csrc.gov.cn)、港交所 (hkex.com.hk)、Wind 数据库、东方财富 Choice; 部分数字为四舍五入近似。
+        </p>
+        <p class="muted measure" lang="en">
+          Sources: SSE, SZSE, CSDC (chinaclear), CSRC, HKEX, Wind database, Eastmoney Choice. Some figures rounded.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Mental models -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">"流动性约束 = 风险溢价"</span><span lang="en">"Liquidity constraints = risk premium"</span></h4>
+          <p lang="zh">T+1 + 涨跌幅 + 融券稀缺三件套, 系统性降低了 A 股的<em>瞬时流动性</em>。投资者对此要求补偿, 表现为相对 H 股或美股的"流动性折价"。这是 A 股估值结构的一个隐藏维度: 同一公司 A/H 股价差长期约 10-30%, 部分原因正是流动性约束。</p>
+          <p lang="en">The trio T+1 + price limits + SL scarcity systematically reduces A‑share <em>instant liquidity</em>. Investors demand compensation, manifesting as a "liquidity discount" vs. H‑shares or US ADRs. A hidden dimension of A‑share valuation: same‑company A/H price gap of 10–30% partly reflects this liquidity constraint.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">"波动外溢"原理 (Kim &amp; Rhee 2000)</span><span lang="en">Volatility spillover (Kim &amp; Rhee 2000)</span></h4>
+          <p lang="zh">涨跌幅限制不会消除波动, 只是把"单日"波动外溢到"多日"。一字板次日跳空、2015 崩盘连续跌停后次日继续下挫 — 都是这个原理的实证。短期"稳价"换长期"持续波动", 是涨跌幅限制的本质代价。</p>
+          <p lang="en">Price limits do not eliminate volatility — they spill "single‑day" volatility into "multi‑day." Gap continuation after one‑letter limit days, multi‑day continuation of declines after 2015's consecutive down‑limits — empirical demonstrations. Short‑term "price stability" traded for long‑term "sustained volatility" — the essential cost of price limits.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">iii</span>
+        <div>
+          <h4><span lang="zh">"做多做空对称"决定市场效率</span><span lang="en">"Long/short symmetry determines market efficiency"</span></h4>
+          <p lang="zh">融资:融券 46:1 的极端不对称, 让 A 股缺乏"内生空头力量" — 估值过高时, 没有足够空头快速纠正。结果: A 股上涨期容易过度狂热 (2015 杠杆牛), 下跌期容易过度恐慌 (无空头回补缓冲)。这是市场结构性低效的根源之一。</p>
+          <p lang="en">The 46:1 extreme MF/SL asymmetry leaves A‑shares lacking "endogenous short force" — when valuations get rich, insufficient shorts to correct quickly. Result: A‑share rallies prone to excessive frenzy (2015 leveraged bull), declines prone to excessive panic (no short‑covering cushion). A root of market structural inefficiency.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- Quiz -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+
+      <p class="muted">
+        <span lang="zh">先自己想清楚再展开答案。</span>
+        <span lang="en">Think before unfolding.</span>
+      </p>
+
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 同一家公司在 A 股 (上海) 和 H 股 (香港) 同时上市。理论上"同股同权同利", 但实际长期出现 A 股价格高于 H 股价格 10-30%。给出至少三个 A 股结构性因素的解释。</span>
+            <span lang="en"><strong>Q1.</strong> The same company is dual‑listed on A‑shares (Shanghai) and H‑shares (Hong Kong). Theoretically "same stock same rights same dividends," yet A‑share prices persistently exceed H‑share prices by 10–30%. Give at least three A‑share structural explanations.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>A/H 溢价</strong>(沪深 A 股 vs 港股 H 股价差) 长期存在, 主要来自 A 股结构性因素:</p>
+            <ol lang="zh">
+              <li><strong>资本管制</strong>: 内地资本无法自由出境到香港买更便宜的 H 股 (沪港通有额度限制 + 50 万门槛), 形成两个相对分隔的市场, 套利不充分 → 价差长期不收敛。这是最核心原因。</li>
+              <li><strong>散户主导 + 高情绪溢价</strong>: A 股散户占比约 65%, 港股散户占比约 15%。散户更易情绪化, 给优质成长股(如茅台)更高情绪溢价 → A 股估值长期高于 H 股。</li>
+              <li><strong>融券稀缺无法纠错</strong>: A 股做空难度是融资买入的 46 倍, 当 A 股估值偏高时缺乏空头力量回归。H 股做空机制成熟, 估值偏高即被空头压低。两种机制下的均衡价不同。</li>
+              <li><strong>T+1 + 涨跌幅的流动性折价</strong>: 理论上"折价"应导致 A &lt; H, 但与上述"散户情绪溢价"力量方向相反, 净效果是 A &gt; H, 只是溢价幅度有所收窄。</li>
+              <li><strong>"指数纳入" 资金推动</strong>: MSCI/FTSE/Russell 等国际指数纳入 A 股核心标的, 带来被动指数基金的"指数买入"溢价 (无视估值高低)。这种结构性买盘在 H 股上不存在。</li>
+              <li><strong>分红税差异</strong>: 内地投资者持 A 股, 分红免征个税 (持股 1 年以上); 内地投资者通过沪港通持 H 股, 分红需补缴 20% 个税 (港股已扣 10% 后, 内地再补缴 10%)。所以 H 股对内地投资者税后回报更低 → 不愿出高价买 H 股 → H 价低。</li>
+            </ol>
+            <p lang="zh"><strong>典型例子</strong>: 工商银行 A 股 (601398) vs H 股 (1398.HK), 长期 A/H 溢价 20-40%; 中国平安 A (601318) vs H (2318.HK), 溢价 5-15%; 部分央企 A/H 溢价高达 50%+。<em>恒生 AH 股溢价指数</em>是市场关注的核心指标。</p>
+            <p lang="en">A/H premium persists due to A‑share structural factors: (1) <strong>capital controls</strong> — mainland capital can't freely exit to HK to buy cheaper H‑shares (Connect has quota + ¥500k threshold), creating two relatively segmented markets, arbitrage incomplete, prices don't converge — the core reason; (2) <strong>retail dominance + emotional premium</strong> — A‑share retail ~65% vs HK ~15%; retail more emotional, gives quality growth stocks (Moutai) higher emotional premium; (3) <strong>SL scarcity prevents correction</strong> — A‑share shorting 46× harder; when valuation rich, no short force to bring it down; HK has mature SL, valuation gets corrected; (4) <strong>T+1 + price limit liquidity discount</strong> — theoretically should make A &lt; H, but opposite to emotional premium; net A &gt; H with narrower premium; (5) <strong>index inclusion buying</strong> — MSCI/FTSE/Russell include A‑share core names, bringing passive buying premium (insensitive to valuation); no parallel on H‑shares; (6) <strong>dividend tax difference</strong> — mainland investors holding A‑shares pay no dividend personal tax (&gt; 1 year hold); via Connect on H‑shares, must pay 20% personal tax (HK already withheld 10%, mainland adds 10%) → lower after‑tax return → less willing to bid H‑shares high → H price lower. Examples: ICBC A (601398) vs H (1398.HK), persistent 20–40% premium; Ping An A (601318) vs H (2318.HK), 5–15%; some central SOEs 50%+. The Hang Seng AH Premium Index tracks this.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 老王买入一只创业板股票, 当日股价上涨到 +18%。他想在 +18% 时卖出。能成交吗? 第 6 天的同样情况能成交吗?</span>
+            <span lang="en"><strong>Q2.</strong> Old Wang buys a ChiNext stock; intraday rises +18%. He wants to sell at +18%. Will it execute? What about day 6 in the same scenario?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>不能成交</strong>—— 原因不是涨跌幅, 是<em>T+1 制度</em>。</p>
+            <p lang="zh">老王<em>当日买入</em>的股票, <em>当日不能卖出</em>, 必须等到下一交易日 (T+1) 才可卖出。这与涨跌幅没有任何关系 — 即使股价跌到 -18%, 当日卖出仍然不被允许。</p>
+            <p lang="zh">所以<em>无论涨跌幅多少, 当日买入 = 当日不能卖出</em>。</p>
+            <p lang="zh"><strong>第 6 天的情况</strong>: 如果老王在 T 日买入, T+1 日才能卖出。第 6 天 (即 T+5 日)<em>可以卖出</em>了 (已经过了 T+1 解锁时间)。这时再看涨跌幅: 创业板 ±20%, 老王想 +18% 卖出, 完全在涨跌幅内, 可以正常挂单成交 (当然取决于市场是否有买盘)。</p>
+            <p lang="zh"><strong>常见误区</strong>: 把 T+1 和涨跌幅混淆。它们是两个独立约束:</p>
+            <ul lang="zh">
+              <li>T+1 约束<em>什么时候</em>可以卖出 (时间维度)</li>
+              <li>涨跌幅约束<em>以什么价格</em>可以成交 (价格维度)</li>
+            </ul>
+            <p lang="zh"><strong>美股对照</strong>: 美股没有 T+1 限制 (规则上 T+0 可以无限回转, 仅受 PDT/Pattern Day Trader 监管要求约束 — 美国账户 &lt; 25,000 美元每 5 个工作日不得超 4 次 day trade), 也没有涨跌幅。所以美股投资者完全没有这两个约束的概念。老王的 day trade 习惯在 A 股从第一天就破产, 不是涨跌幅破他, 是 T+1 破他。</p>
+            <p lang="en"><strong>Cannot execute</strong> — not because of the price limit, but because of <em>T+1</em>. Shares bought today cannot be sold today, regardless of price. Even at ‑18%, same‑day sale is not allowed. So <em>regardless of band, intraday buy = intraday no‑sell</em>. Day 6 case: bought on day T, sellable from T+1. Day 6 (T+5) is well past T+1, so selling is allowed. ChiNext band is ±20%; +18% is within the band; the order can match (subject to bids available). <strong>Trap:</strong> conflating T+1 and price limits. They are two independent constraints: T+1 governs <em>when</em> you can sell (time); price limit governs <em>at what price</em> trades clear (price). US contrast: no T+1 (T+0 with unlimited round‑trip, only the PDT rule constraint — accounts &lt; $25k cannot do &gt; 4 day trades in 5 business days), no price limit. So US investors have no concept of either constraint. Old Wang's day‑trade habit breaks day one — not because of the band, but because of T+1.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> A 股一家公司的大股东减持 5% 股票, 选择走"二级市场集中竞价"还是"大宗交易"? 各自有什么利弊? 减持新规对两种方式的限制有何不同?</span>
+            <span lang="en"><strong>Q3.</strong> An A‑share controlling shareholder reduces 5% stake. Choose "secondary market call/continuous" or "block trade"? Pros/cons of each? How do the reduction rules treat them differently?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>减持 5% 必然只能走多个 90 日窗口或大宗为主</strong>, 因为单一通道限制:</p>
+            <ul lang="zh">
+              <li>通道 1 (二级市场集中竞价): 任意连续 90 日内最多减持总股本 1% → 减 5% 需要至少 5 个 90 日窗口, 约 15 个月</li>
+              <li>通道 2 (大宗交易): 任意连续 90 日内最多减持总股本 2% → 减 5% 需要至少 3 个 90 日窗口, 约 9 个月</li>
+              <li>通道 3 (询价转让, 仅科创板): 不受 1%/2% 限制, 但只能转让给机构投资者</li>
+            </ul>
+            <p lang="zh"><strong>两种通道的利弊对比</strong>:</p>
+            <table>
+              <thead><tr><th><span lang="zh">维度</span><span lang="en">Axis</span></th><th><span lang="zh">二级市场集中竞价</span><span lang="en">Secondary market</span></th><th><span lang="zh">大宗交易</span><span lang="en">Block trade</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">90 日上限</span><span lang="en">90‑day cap</span></td><td>1%</td><td>2%</td></tr>
+                <tr><td><span lang="zh">价格冲击</span><span lang="en">Price impact</span></td><td><span lang="zh">直接影响盘中价</span><span lang="en">Direct intraday impact</span></td><td><span lang="zh">不影响盘中价</span><span lang="en">No intraday impact</span></td></tr>
+                <tr><td><span lang="zh">折价/溢价</span><span lang="en">Discount/premium</span></td><td><span lang="zh">无 (按市价)</span><span lang="en">None (market price)</span></td><td><span lang="zh">常折价 5-10% (卖方议价弱)</span><span lang="en">Often 5–10% discount</span></td></tr>
+                <tr><td><span lang="zh">受让方锁定</span><span lang="en">Recipient lock‑up</span></td><td><span lang="zh">无</span><span lang="en">None</span></td><td>6 <span lang="zh">个月</span><span lang="en">months</span></td></tr>
+                <tr><td><span lang="zh">预披露要求</span><span lang="en">Pre‑disclosure</span></td><td>15 <span lang="zh">个交易日</span><span lang="en">trading days</span></td><td>15 <span lang="zh">个交易日</span><span lang="en">trading days</span></td></tr>
+                <tr><td><span lang="zh">市场信号</span><span lang="en">Market signal</span></td><td><span lang="zh">长期持续抛压</span><span lang="en">Sustained selling pressure</span></td><td><span lang="zh">一次性集中事件</span><span lang="en">One‑off event</span></td></tr>
+              </tbody>
+            </table>
+            <p lang="zh"><strong>实际选择</strong>: 大股东通常采用<em>"二级市场 + 大宗交易"混合</em>方式 — 一部分走二级 (流动性好但慢), 一部分走大宗 (折价但快)。如果是急需变现 (例如还债), 大宗为主, 接受 5-10% 折价; 如果不急, 二级为主, 慢慢卖减少冲击。</p>
+            <p lang="zh"><strong>对散户的信号</strong>: 大宗交易的<em>折价幅度</em>是重要信号:</p>
+            <ul lang="zh">
+              <li>折价 1-3%: 正常水平, 受让方有 6 月锁定, 折价补偿锁定成本</li>
+              <li>折价 5-10%: 卖方较急, 可能反映大股东对公司未来的负面判断</li>
+              <li>折价 &gt; 10%: 异常急迫, 警惕大股东资金链问题 / 重大不利信息未公开</li>
+            </ul>
+            <p lang="zh">2024 年新规的额外约束: 公司"破发"或"破净"时, 控股股东不得通过二级市场减持 — 这堵住了"在最低位再加抛压"的恶性循环。但仍可走大宗 / 询价。</p>
+            <p lang="en"><strong>5% reduction necessarily takes multiple 90‑day windows or block‑heavy:</strong> Channel 1 (secondary) capped 1% per 90 days → 5% needs ≥ 5 windows, ~15 months; Channel 2 (block) capped 2% per 90 days → 5% needs ≥ 3 windows, ~9 months; Channel 3 (inquiry transfer, STAR only) not subject to 1%/2% caps but institutional buyers only. Pros/cons comparison: secondary directly impacts intraday price, no recipient lock‑up, sustained pressure signal; block bypasses intraday, recipient locked 6 months, often 5–10% discount, one‑off event. Practical: controlling shareholders typically mix — partial secondary (liquid but slow), partial block (discounted but fast). Urgent cases skew block; patient cases skew secondary. Signal for retail: block discount magnitude — 1–3% normal (recipient lock compensation), 5–10% urgent seller (possibly negative outlook), &gt; 10% alarming (cash chain issues / undisclosed adverse info). 2024 added constraint: when shares "break issue price" or "break NAV per share," controlling shareholders cannot reduce via secondary market — closes the "add pressure at lowest point" loop. Block/inquiry channels still open.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> 北向资金在 2024 年 5 月停止日度披露 (改为月度) 之前, 一度是散户最重要的"风向标"指标之一。透明度下降对市场有何影响? 至少给出三个不同维度的分析。</span>
+            <span lang="en"><strong>Q4.</strong> Northbound disclosure shifted from daily to monthly in May 2024. Before that, it was one of retail's most important "weathervane" signals. What's the impact of reduced transparency? Give at least three angles.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>影响是多维度的, 短期与长期方向部分相反</strong>。</p>
+            <p lang="zh"><strong>维度 1: 散户信息获取</strong></p>
+            <ul lang="zh">
+              <li>负面: 散户失去高频跟踪外资动向的能力, 短期内"跟北向"的策略难以执行</li>
+              <li>正面: 减少散户的"羊群效应" — 一些散户曾过度依赖北向日度数据, 把外资单日大额流出当作离场信号 → 加剧短期波动 → 月度披露反而能减少这种过度反应</li>
+            </ul>
+            <p lang="zh"><strong>维度 2: 量化策略与高频交易</strong></p>
+            <ul lang="zh">
+              <li>负面: 大量量化模型把北向资金流向作为重要因子。日度数据消失后, 这些因子失效, 部分策略需要重构</li>
+              <li>正面: 减少了量化基金利用日度披露 "前置交易" (front-running) 北向资金的可能性, 一定程度上保护了北向资金的执行价</li>
+            </ul>
+            <p lang="zh"><strong>维度 3: 国际投资者信心</strong></p>
+            <ul lang="zh">
+              <li>负面: 国际机构投资者偏好"透明度高"的市场, 突然降低披露频率被视为"开放度倒退", 影响中长期外资配置意愿</li>
+              <li>正面: 港交所表示 "减少披露是为了减少对北向资金交易的干扰, 给外资更舒适的交易环境" — 在外资视角下确实如此 (外资也不喜欢被市场过度跟踪)</li>
+            </ul>
+            <p lang="zh"><strong>维度 4: 监管动机与市场结构</strong></p>
+            <ul lang="zh">
+              <li>2023-2024 年 A 股市场下行期, 北向资金多次出现"恐慌性净流出" → 散户跟进抛售 → 加剧下跌</li>
+              <li>停止日度披露相当于<em>切断这一"自我强化下跌"的传导链</em>, 减少非理性恐慌</li>
+              <li>这与 2024 年同步收紧融券、限制减持等"维稳"政策方向一致</li>
+            </ul>
+            <p lang="zh"><strong>维度 5: 替代信号源</strong></p>
+            <ul lang="zh">
+              <li>QFII/RQFII 持仓季度披露 (上市公司前 10 大股东)</li>
+              <li>外资 ETF (例如 KraneShares CSI China Internet) 的日度规模变化</li>
+              <li>沪深港通的<em>累计净买入</em>数据仍每日公布, 只是分股票明细数据不再实时</li>
+            </ul>
+            <p lang="zh"><strong>综合判断</strong>: 短期对散户和量化策略是负面冲击; 中期减少了非理性追涨杀跌; 长期影响国际资本对 A 股的信心 — 这种<em>三层效应</em>正是监管在做政策时面临的真实权衡。</p>
+            <p lang="en"><strong>Multi‑dimensional, with short‑ and long‑term effects in partial opposition.</strong> (1) Retail information: negative — retail loses high‑frequency Northbound tracking; positive — reduces retail herding on single‑day outflows. (2) Quant & HFT: negative — many quant models use Northbound flow as a factor; positive — reduces front‑running of Northbound execution. (3) International investor confidence: negative — international institutions prefer transparency, abrupt reduction seen as "openness regression"; positive — HKEX framed it as "reducing interference with Northbound trading" — preferred by foreign investors who also dislike being tracked. (4) Regulatory motive & market structure: 2023–24 downturn saw repeated "panic Northbound outflows" → retail follows → amplifies decline; cutting daily disclosure breaks this self‑reinforcing chain, aligns with 2024's stabilization policies (SL tightening, reduction limits). (5) Alternative signals: QFII/RQFII quarterly holdings (top‑10 shareholders), foreign ETF (e.g., KraneShares CSI China Internet) daily AUM, Connect aggregate net buy still daily (only per‑stock detail stops being real‑time). Synthesis: short‑term negative for retail and quants; medium‑term reduces irrational chase/dump; long‑term affects international capital confidence — the three‑layer trade‑off regulators actually faced.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> A 股长期保持 T+1 制度, 美股 2024 年 5 月从 T+2 切换到 T+1。如果 A 股未来切换到 T+0 (与美国 day trade 类似), 可能带来哪些影响? 至少分析三类。</span>
+            <span lang="en"><strong>Q5.</strong> A‑shares uses T+1; US switched from T+2 to T+1 in May 2024. If A‑shares were to switch to T+0 (similar to US day trading), what might happen? At least three categories of analysis.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>类别 1: 流动性与日内波动</strong></p>
+            <ul lang="zh">
+              <li><strong>流动性显著上升</strong>: T+0 允许日内回转, 同一笔资金一天能多次撮合 → 日均成交量预计 +30-50% (参考 1992-1995 T+0 时期的数据)</li>
+              <li><strong>日内波动率上升</strong>: 日内回转增加 → 同一笔资金影响多次价格 → 日内振幅扩大。短期波动率可能上升 50-100%</li>
+              <li><strong>夜盘波动率下降</strong>: T+1 把恐慌堆积到次日开盘的现象会减弱, 因为日内即可消化</li>
+            </ul>
+            <p lang="zh"><strong>类别 2: 投资者结构</strong></p>
+            <ul lang="zh">
+              <li><strong>散户日内交易激增</strong>: 1992-1995 T+0 时期, 单日换手率超过 20%, 散户日内回转交易占主导。重启 T+0 后类似现象可能复发</li>
+              <li><strong>散户损失风险加剧</strong>: 美国 PDT 规则数据显示, 日内交易者中 80%+ 一年内亏损出场。A 股若开放 T+0, 散户散户被"洗"的速度可能加快</li>
+              <li><strong>量化基金获益</strong>: 量化对冲策略需要高频率的日内交易, T+0 是这类策略的基础设施。机构在 T+0 下相对散户的优势会进一步放大</li>
+            </ul>
+            <p lang="zh"><strong>类别 3: 监管与系统设计</strong></p>
+            <ul lang="zh">
+              <li><strong>清算系统压力</strong>: T+1 已经让 CSDC 在交易高峰日运行紧张, T+0 会让日内净额清算压力提高 5-10 倍, 需要重构清算系统</li>
+              <li><strong>风控难度上升</strong>: 融资融券的日内强平、保证金计算都需要重构。券商风控系统升级成本巨大</li>
+              <li><strong>需要 PDT 类规则配套</strong>: 美国 1980s 引入 T+0 时也引入了 Pattern Day Trader 规则 (账户 &lt; $25k 限 4 次/5 工作日)。A 股可能需要类似的"散户保护门槛"</li>
+            </ul>
+            <p lang="zh"><strong>类别 4: 与 A 股其他规则的协同</strong></p>
+            <ul lang="zh">
+              <li><strong>必须同步改革做空机制</strong>: T+0 下散户能做空将极大便利投机, 但当前融券稀缺无法配合 → 出现"做多 T+0、做空仍 T+1+ 借券难"的不对称, 进一步放大单边行情</li>
+              <li><strong>涨跌幅可能需要收紧或取消</strong>: T+0 + 涨跌幅 = 一字板被反复触碰 (T+0 下散户更容易冲涨停)。要么收紧涨跌幅 (例如 ±5%), 要么取消涨跌幅 (向美股看齐)</li>
+            </ul>
+            <p lang="zh"><strong>历史经验对照</strong>:</p>
+            <ul lang="zh">
+              <li>韩国 1998 年取消涨跌幅限制, 同时维持 T+2 — 波动率短期上升, 长期回到原水平</li>
+              <li>台湾 1994 年扩大涨跌幅到 ±10%, T+2 — 流动性上升但散户损失加剧, 后被指责"加剧投机"</li>
+              <li>美国 1980s-1990s 维持 T+0 但配套 PDT 规则, 散户损失率高但市场效率提升</li>
+            </ul>
+            <p lang="zh"><strong>实际判断</strong>: 监管层多次讨论 T+0 但未实施, 主因是<em>散户保护风险与流动性收益之间的权衡</em>。在散户占比高达 65% 的市场, 全面 T+0 的散户损失风险被认为大于流动性收益。一种<em>折中方案</em>: 部分蓝筹股 (机构持仓为主的大盘股) 试点 T+0, 中小盘维持 T+1。但这种"分层"会增加监管复杂度, 暂未实施。</p>
+            <p lang="en"><strong>(1) Liquidity & intraday vol:</strong> liquidity rises sharply (T+0 allows intraday round‑trip, daily turnover potentially +30–50% per 1992–95 data); intraday volatility rises (round‑trip amplifies price impact, ranges widen 50–100%); overnight volatility falls (T+1 stacking effect eases). <strong>(2) Investor structure:</strong> retail day‑trading surges (1992–95 saw daily turnover &gt; 20% retail‑dominated); retail loss risk amplifies (US PDT data: 80%+ of day‑traders lose within a year); quant funds benefit (T+0 is infrastructure for high‑freq strategies, institutional edge over retail widens). <strong>(3) Regulation & system design:</strong> clearing system pressure (CSDC already strained on peak days, T+0 raises daily netting load 5–10×, system rebuild needed); risk control complexity rises (intraday margin enforcement, margin calculation, broker risk systems all need rebuilding); needs PDT‑class rule (US 1980s introduced PDT alongside T+0, accounts &lt; $25k limited to 4 day trades / 5 business days; A‑shares would likely need similar retail protection threshold). <strong>(4) Coordination with other A‑share rules:</strong> short mechanism must also reform (T+0 retail shorting would be highly speculative, current SL scarcity inconsistent → asymmetric "long T+0, short T+1+ borrow scarce" amplifies one‑direction); price limits may need tightening or removal (T+0 + limit = repeated one‑letter hits; either tighten to ±5% or remove like US). Historical: Korea 1998 removed price limits, kept T+2 — vol short‑term up, long‑term return to baseline; Taiwan 1994 expanded to ±10%, T+2 — liquidity up but retail losses worsened, accused of "amplifying speculation"; US 1980s‑90s kept T+0 with PDT, retail losses high but market efficiency improved. Practical judgment: regulators have debated T+0 repeatedly without implementing, primarily because of <em>retail protection vs. liquidity benefit tradeoff</em>. With retail at ~65%, full T+0's retail loss risk is judged greater than liquidity benefit. A <em>compromise:</em> partial blue chips (large caps with mostly institutional holdings) could pilot T+0; small/mid caps keep T+1. But this stratification adds regulatory complexity, not yet implemented.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="02-disclosure.html">
+            <span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span>
+            <span class="title">02 · <span lang="zh">信息披露体系</span><span lang="en">Disclosure System</span></span>
+          </a>
+          <a class="next" href="04-fraud-cases.html">
+            <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
+            <span class="title">04 · <span lang="zh">财务造假案例</span><span lang="en">Fraud Cases</span></span>
+          </a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key. Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
 <script type="module" src="../../assets/js/main.js?v=9"></script>
-</body></html>
+
+</body>
+</html>

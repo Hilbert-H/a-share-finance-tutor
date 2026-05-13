@@ -1,60 +1,597 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
-<title>A 股 · 01 · 监管架构</title>
+<title>A 股 · 01 · 监管架构 — A‑Share Regulation</title>
+<meta name="keywords" content="CSRC, 证监会, 沪深北交易所, 主板, 创业板, 科创板, 北交所, 注册制, 核准制, 退市新规, 信达生物, 康得新, SEC, 上市规则, 证券法">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
-<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important}</style>
-</head><body>
+<style>
+body .katex, body .katex *, body .katex-display, body .katex-display * { font-size: 1em !important; line-height: 1.25 !important; }
+body .katex sup, body .katex sub { font-size: 0.75em !important; }
+body .katex-display { display: block !important; margin: 0.5em 0 !important; padding: 0 !important; text-align: center !important; }
+.eq { display: flex !important; align-items: center !important; gap: 1rem !important; font-size: 1rem !important; }
+.eq > *:first-child { flex: 1 !important; min-width: 0 !important; overflow-x: auto !important; }
+.eq .katex-display { margin: 0 !important; padding: 0 !important; }
+.eq .num { font-family: 'JetBrains Mono', monospace !important; font-style: normal !important; font-size: 0.82em !important; white-space: nowrap !important; color: #8A8378 !important; }
+</style>
+</head>
+<body>
+
 <div class="app">
-<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
-<aside class="nav"></aside>
-<main class="main"><article class="lesson">
+  <header class="topbar">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+    <a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+    <div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+    <div class="topbar-tools">
+      <button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+      <div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+    </div>
+  </header>
 
-<div class="lesson-meta"><span class="crumb">A 股特化 · 01</span></div>
-<h1><span lang="zh">监管架构</span><span lang="en">A‑Share Regulation</span></h1>
-<p class="lesson-subtitle"><span lang="zh">A 股监管 = CSRC (一线) + 三大交易所 (二线) + 中介机构 (三线). 2019 注册制改革后, 上市标准从"审批"转向"披露", 但监管强度不降反升。</span></p>
+  <aside class="nav"></aside>
 
-<h2><span lang="zh">三层监管</span><span lang="en">Three‑tier</span></h2>
-<ul lang="zh">
-<li><strong>CSRC (证监会)</strong>: 一线监管者, 国务院直属事业单位. 制定证券法、监督交易所、查处违法</li>
-<li><strong>交易所</strong>: 上交所 (主板 + 科创板) / 深交所 (主板 + 创业板) / 北交所 (新三板精选层升级). 一线市场组织 + 二线监管 (问询函主要由交易所发出)</li>
-<li><strong>中国结算 (CSDC)</strong>: 登记、清算、过户. 集中托管</li>
-<li><strong>中介机构</strong>: 审计师 / 律师 / 保荐人 / 评估师 — 履行"守门人"职责, 违规可能被监管处罚甚至吊销资格</li>
-</ul>
+  <main class="main">
+    <article class="lesson">
 
-<h2><span lang="zh">板块对照</span><span lang="en">Boards</span></h2>
-<table><thead><tr><th><span lang="zh">板块</span></th><th><span lang="zh">代码段</span></th><th><span lang="zh">定位</span></th><th><span lang="zh">上市标准</span></th></tr></thead><tbody>
-<tr><td><span lang="zh">主板 (沪深)</span></td><td>600/601/603/000/001/002</td><td><span lang="zh">大型成熟</span></td><td><span lang="zh">连续 3 年盈利 + 净资产</span></td></tr>
-<tr><td><span lang="zh">创业板</span></td><td>300/301</td><td><span lang="zh">成长创新</span></td><td><span lang="zh">注册制 (2020+), 营收 / 利润 / 现金流多套指标</span></td></tr>
-<tr><td><span lang="zh">科创板</span></td><td>688</td><td><span lang="zh">硬科技</span></td><td><span lang="zh">注册制 (2019+), 允许未盈利 (生物医药 / 半导体)</span></td></tr>
-<tr><td><span lang="zh">北交所</span></td><td>8-</td><td><span lang="zh">创新型中小企业</span></td><td><span lang="zh">注册制 (2021+)</span></td></tr>
-</tbody></table>
+      <div class="lesson-meta">
+        <span class="crumb">A 股特化 · 01</span>
+        <span class="sep">·</span>
+        <span><span lang="zh">18 分钟</span><span lang="en">18 min</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">前置: M1-M3 基础</span><span lang="en">Prereq: M1–M3 basics</span></span>
+        <span class="sep">·</span>
+        <span><span lang="zh">后续: Ch.02 信息披露</span><span lang="en">Next: Ch.02 Disclosure</span></span>
+      </div>
 
-<h2><span lang="zh">注册制改革核心</span><span lang="en">Registration reform</span></h2>
-<ul lang="zh">
-<li>从"审批"(行政确认能否上市) 转向"披露"(企业披露, 投资者判断)</li>
-<li>强化中介机构责任 — 出问题保荐人 / 审计师重罚</li>
-<li>强化退市机制 — 财务退市 / 重大违法退市更严</li>
-<li>放宽涨跌幅 (科创板 / 创业板上市初期 20%, 新股前 5 日不限)</li>
-<li>引入多套上市标准 — 允许未盈利但具发展潜力公司</li>
-</ul>
+      <h1>
+        <span lang="zh">监管架构</span>
+        <span lang="en">A‑Share Regulation</span>
+      </h1>
+      <p class="lesson-subtitle">
+        <span lang="zh">老王想把美股账户里那套打法搬到 A 股, 第一天就发现: 沪深北三个市场各有规则, 主板和创业板的门槛不一样, 注册制和核准制录用公司的方式不同, 头顶还多一个 ST 标记。本章把这些"规则差异"梳理成一张监管地图。</span>
+        <span lang="en">Old Wang wants to port his US brokerage playbook to A‑shares. Day one, he hits a wall: Shanghai, Shenzhen, and Beijing each run their own rules; main board and ChiNext have different bars; registration system and approval system bring companies in differently; and some tickers wear an "ST" prefix. This chapter assembles those frictions into one regulatory map.</span>
+      </p>
 
-<h2><span lang="zh">检验题</span></h2>
-<ol class="quiz quiz-list">
-<li class="quiz-item" data-qid="q1" data-open="false">
-<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 注册制改革后, 监管强度是降是升?</span></div>
-<button class="quiz-toggle">▾</button><div class="quiz-a"><div class="quiz-a-inner">
-<p lang="zh"><em>升</em>. 改革重心从"上市前审核"转向"上市后监管": (1) 中介机构责任加重 (康美案审计师罚 5,000 万 + 吊销资格); (2) 退市新规 — 财务造假 / 信披违规可直接退市; (3) 集体诉讼制度 (康美案首例, 投资者获赔 24.59 亿); (4) 加大处罚力度 (最高 1,000 万从有期徒刑提升). 注册制不是"放松", 是"在审批环节放松, 在事中事后加强".</p>
-</div></div><div class="quiz-self"><button data-state="got">✓</button><button data-state="miss">✗</button></div>
-</li>
-</ol>
+      <section class="objectives">
+        <span class="section-label" lang="zh">学习目标</span>
+        <span class="section-label" lang="en">Objectives</span>
+        <ul>
+          <li lang="zh">能说出 CSRC、沪深北交易所、中国结算 (CSDC) 与中介机构在 A 股监管链条里各自的分工。</li>
+          <li lang="zh">能区分核准制与注册制在"上市门槛、责任分配、退市强度"三个维度上的差别。</li>
+          <li lang="zh">能识别主板 / 创业板 / 科创板 / 北交所四套板块在代码、定位、投资者门槛、涨跌幅上的差异。</li>
+          <li lang="zh">能用退市新规四大类别 (交易类 / 财务类 / 规范类 / 重大违法类) 解释一只 ST 股是因何被标记。</li>
+          <li lang="en">Identify the division of labor among CSRC, Shanghai/Shenzhen/Beijing exchanges, CSDC and gatekeepers.</li>
+          <li lang="en">Contrast approval system vs. registration system on listing bar, liability allocation, and delisting strictness.</li>
+          <li lang="en">Tell main board / ChiNext / STAR / BSE apart by code, mandate, investor threshold, and price limit.</li>
+          <li lang="en">Decode why a ticker is ST‑flagged via the four delisting categories (trading / financial / regulatory / material‑violation).</li>
+        </ul>
+      </section>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="../../index.html"><span class="dir">← Home</span><span class="title">Home</span></a><a class="next" href="02-disclosure.html"><span class="dir">Next →</span><span class="title">02 · <span lang="zh">信息披露</span></span></a></nav></div>
+      <!-- ================================================================ -->
+      <!-- Layer 1 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 1</span> ·
+          <span lang="zh">直觉</span><span lang="en">Intuition</span>
+          <span class="en" lang="zh"> · 老王把美股那套搬到 A 股的第一周</span>
+          <span class="en" lang="en"> · Old Wang's first week porting US habits to A‑shares</span>
+        </h2>
 
-</article></main><aside class="toc"></aside></div>
-<button class="chat-fab">A?</button>
-<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+        <p lang="zh">老王把面馆盘出去之后, 拿着这些年攒下的钱开了个证券账户, 打算认真做 A 股。他在美股上买过苹果、英伟达, 心里大致有个套路: 看财报、看估值、找入场点。但第一周他就发现, A 股不是"换个市场买股票"那么简单 — 同样想买入一家公司, 沪深北三个交易所要分别走流程, 主板和创业板买入按钮亮起的条件还不同。我们一起跟着老王踩一遍这些坑, 等价的"规则"在场景里浮出来后, 再给它命名。</p>
+        <p lang="en">After selling the noodle shop, Old Wang opened a securities account with the savings he'd built up, ready to take A‑shares seriously. He'd held Apple and Nvidia on US markets and had a rough routine: read filings, check valuation, time entries. Week one taught him that A‑shares isn't "the same game on a new exchange" — buying into one company requires separate procedures on Shanghai, Shenzhen, or Beijing, and the "buy" button lights up under different conditions on main board vs. ChiNext. We follow him through the friction; the rules will surface from the scenes, and then we'll name them.</p>
+
+        <p lang="zh"><strong>1. 周一早晨 — 想买上海的茅台 (600519)。</strong> 老王打开券商 App, 输入 600519, 系统提示"该股票属于上海证券交易所主板, 请先开通沪 A 权限"。开通本身只需勾选风险揭示书, 但他注意到: 屏幕另一侧, 一个朋友想买的 300750 (宁德时代) 又是另一个权限"深 A + 创业板"。同一笔交易, 不同板块, 不同权限。老王翻设置, 才发现自己之前默认开的只是 "沪 A 普通账户"。这种"按板块分别授权"的设计是怎么来的?它的根源是: A 股不是<em>一个</em>交易所, 而是<em>三个独立的交易所</em>同时挂牌不同板块的股票。我们把组织股票挂牌、撮合交易、披露公告、做一线监管的机构叫 <strong>证券交易所 (Stock Exchange)</strong> — A 股有三家: <strong>上海证券交易所 (SSE, 上交所)</strong>、<strong>深圳证券交易所 (SZSE, 深交所)</strong>、<strong>北京证券交易所 (BSE, 北交所)</strong>。</p>
+        <p lang="en"><strong>1. Monday morning — trying to buy Moutai (600519) on Shanghai.</strong> Wang punches 600519 into his brokerage app. A prompt: "This security trades on the Shanghai Stock Exchange Main Board. Please activate Shanghai A‑share trading first." Signing the risk disclosure takes a click, but he notices a friend trying to buy 300750 (CATL) needs a different permission — "Shenzhen A + ChiNext." Same transaction, different boards, different gates. Wang's default account had only enabled basic Shanghai A. Why the per‑board authorization? Because A‑shares isn't <em>one</em> exchange — it's <em>three independent exchanges</em>, each running its own listings. The institutions that admit listings, match trades, broadcast announcements, and conduct front‑line supervision are called <strong>stock exchanges</strong>: A‑shares has three — <strong>Shanghai (SSE), Shenzhen (SZSE), and Beijing (BSE)</strong>.</p>
+
+        <p lang="zh"><strong>2. 周二中午 — 想买深圳的比亚迪 (002594) 和宁德时代 (300750)。</strong> 老王把"深 A 权限"也开了, 试着下单。002594 顺利成交; 但点 300750 又弹一个提示: "您尚未开通创业板交易权限, 请按提示完成投资者适当性评估"。原来同一个深交所内部又分"主板"和"创业板", 创业板需要额外的<em>适当性评估</em> — 包括两年交易经验、10 万元资产门槛、风险测评等。老王心想: 为什么要这么分?如果都是深交所, 为什么不能一次性开通?这里藏着一个核心设计: <em>板块按企业风险特征分层</em>。比亚迪 (002594, 002 开头) 属于深市主板, 多为大型成熟公司; 宁德时代 (300750, 300 开头) 属于创业板, 多为成长创新型 — 而创新意味着波动更大、信息不对称更深, 监管要求投资者具备更高的承受能力。这种"按板块分别授权 + 适当性评估"的规则叫 <strong>投资者适当性管理 (Investor Suitability)</strong>。</p>
+        <p lang="en"><strong>2. Tuesday noon — buying BYD (002594) and CATL (300750) on Shenzhen.</strong> Wang activates Shenzhen A and tries again. 002594 fills smoothly. 300750 triggers another prompt: "ChiNext trading permission not enabled — please complete the investor suitability assessment." Same exchange, but inside Shenzhen the boards split: 002 = Shenzhen main board (e.g., BYD, mature companies); 300 = ChiNext (e.g., CATL, growth/innovation). ChiNext demands two years of trading history, ¥100,000 in assets, plus a risk questionnaire. Why the extra gate? Because <em>boards stratify by issuer risk profile</em>: innovation means higher volatility and deeper information asymmetry, so the regulator demands more shock‑absorbing capacity from investors. The whole "per‑board permission + suitability test" rulebook is called <strong>investor suitability management (投资者适当性)</strong>.</p>
+
+        <p lang="zh"><strong>3. 周三下午 — 听说北交所有家精专特新的新材料公司很有潜力。</strong> 老王让助理小张帮看一眼, 小张报回来: "8 开头的代码, 北交所的。但你账户里有 50 万吗?——没有的话, 北交所连权限都开不了。" 老王的总资产够 10 万 (创业板门槛), 但不够 50 万。这就出现了一个新事实: <em>北交所投资者门槛比创业板还高</em>。门槛是 50 万 (北交所) > 10 万 (创业板) > 0 (沪深主板)。为什么差异如此大?因为北交所定位是"创新型中小企业", 上市公司规模更小、流动性更弱、单笔波动更大, 监管把"散户保护"的杠杆调到最严。同时, 北交所是 2021 年才正式开市的, 它的前身是"新三板精选层" — 这意味着 A 股的板块体系本身仍在演进, 不是一次设计完成的产物。如果一次性把 A 股的所有板块按"代码段 → 交易所 → 定位"列成表, 这张表是这一章 Layer 2 的骨架。</p>
+        <p lang="en"><strong>3. Wednesday afternoon — a Beijing Stock Exchange "specialized & sophisticated" materials startup looks attractive.</strong> Wang asks his nephew Xiao Zhang to check. Zhang reports: "Code starts with 8, Beijing exchange. But do you have ¥500k in the account? — without that you can't even open BSE permissions." Wang has ¥100k (enough for ChiNext) but not ¥500k. New fact: <em>BSE investor threshold is higher than ChiNext</em> — ¥500k (BSE) &gt; ¥100k (ChiNext) &gt; ¥0 (Shanghai/Shenzhen main boards). Why so much spread? Because BSE targets "innovative SMEs": smaller issuers, thinner liquidity, sharper single‑trade swings. So the retail‑protection dial is cranked tightest. BSE only opened in 2021, upgraded from the "Select Tier of the National Equities Exchange and Quotations (NEEQ Select)" — meaning the A‑share board taxonomy is itself evolving, not designed once. If you list every A‑share board with code prefix → exchange → mandate, you get the table that anchors Layer 2.</p>
+
+        <p lang="zh"><strong>4. 周四晚上 — 翻自选股, 突然看到一个名字前面顶着 "*ST" 三个字符。</strong> 老王半年前关注过一家做 LED 的公司, 当时还想找时机买入。今晚一看, 名字变成了 "*ST 某某"。点进公告, 一篇 "关于公司股票被实施退市风险警示的公告" 说明: 该公司连续两个会计年度归母净利润为负, 同时扣非净利润也为负, 触发<em>财务类退市风险警示</em>条件。老王想: 这是什么意思?——简单说就是<em>预警牌</em>: 如果再连续亏损一年, 公司就要被强制摘牌退市。我们把这种"预警牌"叫 <strong>退市风险警示 (ST / *ST)</strong>。"ST" 是 "Special Treatment" (特别处理), 加 "*" 意味着触发的是"退市风险"而非一般问题。一旦被警示, 涨跌幅会从 ±10% 收紧到 ±5% (主板), 流动性也立刻变差。如果连续三年触发, 直接进入退市流程。这套规则的法律依据是<strong>退市新规</strong> (证监会令 第163号《关于改革完善并严格实施上市公司退市制度的若干意见》及配套规则, 2020年12月起实施)。</p>
+        <p lang="en"><strong>4. Thursday evening — flipping through watchlist, a name suddenly wears "*ST".</strong> Half a year ago Wang had been eyeing an LED maker. Tonight its ticker reads "*ST [name]." A notice — "Disclosure on the Implementation of Delisting Risk Warning" — explains: two consecutive fiscal years of negative net income attributable to parent AND negative ex‑non‑recurring net income triggered the <em>financial delisting risk warning</em>. What does that mean? It's a yellow card: one more loss year and the listing is yanked. Accountants call it <strong>delisting risk warning (ST / *ST)</strong>. "ST" = "Special Treatment"; the asterisk means the trigger is "delisting risk," not a generic concern. After flagging, the daily price band tightens from ±10% to ±5% on main boards and liquidity dries up fast. Three consecutive years of triggers and the company is force‑delisted. The legal backbone is the <strong>2020 delisting reform</strong> (CSRC Order No. 163: "Opinions on Reforming, Improving, and Strictly Implementing the Delisting System for Listed Companies"), effective Dec 2020.</p>
+
+        <p lang="zh"><strong>5. 周五早晨 — 财经新闻头条: "证监会立案调查某上市公司, 涉嫌信息披露违法违规"。</strong> 老王心头一紧, 翻进去看, 正是他半年前研究过的一家公司。"证监会立案调查" 这六个字背后意味着什么?它意味着: 这不再是交易所发个"问询函"催公司澄清, 而是<strong>中国证券监督管理委员会 (CSRC, 证监会)</strong>启动正式行政调查程序 — 类似于美国 SEC 的 Investigation。证监会是国务院直属的正部级机构, 是 A 股的<em>顶层监管者</em>, 它制定证券市场的法规、监督三大交易所、查处证券违法行为。一旦立案, 调查期通常 6-18 个月, 期间公司股价往往承压。调查结果可能是: 警告 / 罚款 / 责令改正 / 市场禁入 / 涉嫌犯罪移送公安。立案本身就是一个强烈的<em>负面信号</em>, 即使最终查无实据, 股价也已被打折。</p>
+        <p lang="en"><strong>5. Friday morning — financial headline: "CSRC opens formal investigation into [Company X] for suspected disclosure violations."</strong> Wang's chest tightens; it's exactly the firm he researched six months ago. What does "CSRC opens formal investigation" actually mean? It means this is no longer an exchange "letter of inquiry" asking the company to clarify — it's the <strong>China Securities Regulatory Commission (CSRC, 证监会)</strong> kicking off a formal administrative investigation, analogous to a US SEC investigation. CSRC is a ministerial‑level body reporting to the State Council — the <em>apex regulator</em> of A‑shares. It writes securities regulations, oversees the three exchanges, and prosecutes securities violations. Once a formal case opens, the investigation runs 6–18 months, and the share price typically takes a beating throughout. Outcomes: warning, fine, rectification order, market ban, or criminal referral. The opening alone is a strong <em>negative signal</em>; even an eventual no‑finding leaves a discount baked in.</p>
+
+        <p lang="zh"><strong>6. 周末复盘 — 老王把这一周遇到的"规则差异"列在小本本上。</strong> 三个交易所 (沪 / 深 / 北), 四种板块 (主板 / 创业板 / 科创板 / 北交所), 三档投资者门槛 (0 / 10万 / 50万), 四类退市风险 (交易类 / 财务类 / 规范类 / 重大违法类), 一个最高监管者 (CSRC)。看似零散, 但是把它们摆在一起, 老王突然意识到: <em>这一切都是一个国家"用什么标准录用上市公司、用什么标准把它们赶出去"的具体实现</em>。录用 (上市) 的方式 + 赶出去 (退市) 的方式 — 这两个端点决定了 A 股的"质量门槛"。Layer 2 会引入 <strong>核准制 vs 注册制</strong> 这个核心切换, 解释 2019 年以来 A 股录用规则的根本性变化, 并把退市新规的四大类别完整展开。</p>
+        <p lang="en"><strong>6. Weekend recap — Wang lists every rule‑difference he hit.</strong> Three exchanges (SH / SZ / BJ), four boards (main / ChiNext / STAR / BSE), three investor thresholds (¥0 / ¥100k / ¥500k), four delisting categories (trading / financial / regulatory / material violation), one apex regulator (CSRC). Scattered on paper, but laid side by side, the realization clicks: <em>this is one country implementing two endpoint questions — by what standard do companies enter the market, and by what standard do they leave</em>. Entry rules + exit rules together set the "quality floor" of A‑shares. Layer 2 brings in the key pivot — <strong>approval system vs. registration system</strong> — to explain the fundamental shift in entry rules since 2019, and unpacks the four delisting categories in full.</p>
+
+        <p lang="zh">回看老王这一周: 跨三个交易所、卡四类权限、被一个 ST 标记吓到、被一条立案调查新闻提醒"还有更高的一只手"。每一次小卡顿背后都是一条规则。Layer 2 把这些规则用法规条文摆出来, 给出"为什么这样设计"的回答; Layer 3 用三个真实的 A 股案例 — 注册制下的快速上市、退市新规下的强制摘牌、北交所首家 IPO — 把 Layer 1 的场景放大到亿元级, 看监管框架在现实里到底如何运转。</p>
+        <p lang="en">Wang's week, in summary: tripping across three exchanges, gated by four permission tiers, spooked by one ST flag, reminded by one investigation headline that a higher hand exists. Every friction encodes a rule. Layer 2 sets those rules out in statute language and answers "why this design"; Layer 3 scales Layer 1's scenes to billions of yuan with three real A‑share cases — a registration‑system fast listing, a forced delisting under the new regime, and the first BSE IPO — to show how the framework actually runs.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 2 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 2</span> ·
+          <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formal Rules</span>
+        </h2>
+
+        <p lang="zh">Layer 1 跟着老王把"卡在哪、怎么卡"摸了一遍。现在我们形式化它: A 股监管由三层主体组成 (CSRC / 交易所 / 中介与登记结算机构), 一条核心切换 (注册制取代核准制), 四套上市规则 (主板 / 创业板 / 科创板 / 北交所), 四类强制退市 (交易类 / 财务类 / 规范类 / 重大违法类)。</p>
+        <p lang="en">Layer 1 walked through where Old Wang got stuck and why. We now formalize: A‑share supervision rests on three tiers of bodies (CSRC / exchanges / gatekeepers and CSDC), one core pivot (registration replacing approval), four listing rulebooks (main board / ChiNext / STAR / BSE), and four mandatory delisting categories (trading / financial / regulatory / material violation).</p>
+
+        <h3 lang="zh">① 三层监管架构</h3>
+        <h3 lang="en">① Three‑Tier Supervisory Architecture</h3>
+
+        <div class="callout">
+          <p lang="zh"><strong>CSRC (中国证券监督管理委员会)</strong> — 国务院直属正部级机构, 一线监管者。法定职能: 制定证券期货市场法规规章; 监督交易所、登记结算机构; 审查保荐人和上市公司持续合规; 查处证券违法 (内幕交易、市场操纵、欺诈发行、信披违规)。CSRC 不直接组织交易, 而是<em>规则制定者 + 执法者</em>。其权力依据为<strong>《证券法》</strong>(2019 年修订)。</p>
+          <p lang="en"><strong>CSRC (China Securities Regulatory Commission)</strong> — ministerial body directly under the State Council; the apex regulator. Statutory functions: write securities/futures regulations, supervise exchanges and clearing institutions, vet sponsors and listed issuers, prosecute violations (insider trading, manipulation, fraudulent issuance, disclosure breaches). CSRC does not run trading itself — it is <em>rule‑setter and enforcer</em>. Authority: <strong>Securities Law of the PRC</strong> (2019 revision).</p>
+          <span class="cite">证券法 §1, §169–§180 · 中央编办关于证监会"三定方案" · CSRC.gov.cn</span>
+        </div>
+
+        <div class="callout">
+          <p lang="zh"><strong>三大交易所 (SSE / SZSE / BSE)</strong> — 一线市场组织者 + 二线监管者。日常职能: 受理上市申请 (注册制下) / 撮合交易 / 实时监控异常 / 发出问询函 / 实施纪律处分。三所之间分工: <em>上交所</em> (1990 年开市) 主营主板 (蓝筹、大型央企国企) 与<em>科创板</em> (硬科技, 2019 年开板); <em>深交所</em> (1991 年开市) 主营主板 (制造业、消费类) 与<em>创业板</em> (成长创新, 2009 年开板, 2020 年改革); <em>北交所</em> (2021 年开市) 主营北交所板块 (创新型中小企业)。每家交易所有自己的<strong>上市规则</strong> (Listing Rules), 在 CSRC 框架下细化。</p>
+          <p lang="en"><strong>The three exchanges (SSE / SZSE / BSE)</strong> — front‑line market organizers and secondary supervisors. They review listing applications (under registration), match trades, run real‑time surveillance, issue inquiry letters, and impose disciplinary measures. Division of labor: <em>SSE</em> (opened 1990) runs the main board (blue chips, central SOEs) and <em>STAR Market</em> (hard tech, 2019); <em>SZSE</em> (1991) runs its main board (manufacturing, consumer) and <em>ChiNext</em> (growth/innovation, 2009, reformed 2020); <em>BSE</em> (2021) runs its single board (innovative SMEs). Each exchange writes its own <strong>Listing Rules</strong> within the CSRC framework.</p>
+          <span class="cite">上交所股票上市规则 · 深交所股票上市规则 · 北交所股票上市规则 (均现行)</span>
+        </div>
+
+        <div class="callout">
+          <p lang="zh"><strong>中国结算 (CSDC, China Securities Depository &amp; Clearing)</strong> — 全国唯一证券登记结算机构。承担证券集中托管、清算交收、过户登记、股东名册管理。它是 A 股交易的"中央对手方", 所有买卖最终在 CSDC 完成净额结算。投资者持仓数据由 CSDC 集中托管, 这也是 A 股没有 "broker fail" (券商破产导致客户证券丢失) 风险的制度基础 (相比 2008 年雷曼破产时美国券商客户经历的 SIPC 清算)。</p>
+          <p lang="en"><strong>CSDC (China Securities Depository &amp; Clearing Corporation)</strong> — the sole national registrar and clearer. It handles central securities depository, clearing, settlement, and shareholder register maintenance. As the central counterparty of A‑share trading, all buy/sell flows are netted at CSDC. Investor holdings are held centrally at CSDC — the institutional reason A‑shares lacks "broker fail" risk (unlike US clients during the 2008 Lehman SIPC episode).</p>
+          <span class="cite">证券登记结算管理办法 · CSDC 公司章程</span>
+        </div>
+
+        <div class="callout">
+          <p lang="zh"><strong>中介机构 (Gatekeepers)</strong> — 保荐人 (Sponsor, 主承销商兼上市前辅导)、会计师事务所 (审计)、律师事务所 (法律意见)、资产评估机构。注册制核心改革之一是<em>加重中介机构连带责任</em>: 若发行人欺诈发行, 保荐人/审计师/律师与发行人承担连带赔偿责任。康美药业造假案中, 正中珠江会计师事务所被罚款 5,725 万元并暂停证券业务资格 — 这是注册制配套加重中介责任的典型代价。</p>
+          <p lang="en"><strong>Gatekeepers</strong> — sponsors (lead underwriter + pre‑listing advisor), CPA firms (audit), law firms (legal opinions), valuation firms. A core registration‑system reform is <em>heavier joint liability on gatekeepers</em>: if an issuer commits fraudulent issuance, the sponsor, auditor, and lawyers bear joint compensation alongside the issuer. In the Kangmei fraud case, ZRZJ CPA was fined ¥57.25m and barred from securities business — the canonical cost of heavier gatekeeper duty under registration.</p>
+          <span class="cite">证券法 §163, §170, §171 · 注册制下保荐业务管理办法</span>
+        </div>
+
+        <h3 lang="zh">② 注册制 vs 核准制 — 核心切换</h3>
+        <h3 lang="en">② Registration System vs. Approval System — The Core Pivot</h3>
+
+        <p lang="zh">2019 年之前, A 股全部走<strong>核准制</strong>(Approval System): CSRC 发行审核委员会 (发审委) 实质审核公司是否"具备上市条件" — 即由监管者代替市场判断企业是否"够好"。这套设计源于 1990 年代起步阶段, 在投资者保护机制不成熟时降低系统性风险, 但也产生<em>排队漫长、行政寻租空间、监管承担市场质量的隐性背书</em>等问题。</p>
+        <p lang="en">Before 2019, all A‑share IPOs went through the <strong>approval system</strong>: the CSRC Issuance Examination Committee (IEC) substantively decided whether a company "qualified" — the regulator judged quality in lieu of the market. This served the 1990s startup phase when investor protection was thin, but produced <em>long IPO queues, rent‑seeking opportunities, and an implicit regulatory endorsement of market quality</em>.</p>
+
+        <p lang="zh">2019 年 7 月, 科创板正式开板, 同时启动<strong>注册制</strong>(Registration System) 试点。注册制核心: <em>形式审核 + 信息披露驱动</em> — 监管者只审"披露是否真实、准确、完整", 不再判断企业商业前景; 企业是否"好"由市场定价决定。改革时间线:</p>
+        <p lang="en">In July 2019, the STAR Market launched together with a pilot of the <strong>registration system</strong>. Core idea: <em>formal review + disclosure‑driven</em> — regulators check whether disclosure is truthful, accurate, and complete; market pricing, not the regulator, judges quality. Timeline:</p>
+
+        <table>
+          <thead><tr><th><span lang="zh">时间</span><span lang="en">Date</span></th><th><span lang="zh">里程碑</span><span lang="en">Milestone</span></th></tr></thead>
+          <tbody>
+            <tr><td>2019.07</td><td><span lang="zh">科创板注册制首发, 25 家企业同日上市</span><span lang="en">STAR Market launch, 25 firms list on day one under registration</span></td></tr>
+            <tr><td>2020.08</td><td><span lang="zh">创业板存量与增量同步推行注册制改革</span><span lang="en">ChiNext rolls out registration for new and existing listings</span></td></tr>
+            <tr><td>2021.11</td><td><span lang="zh">北交所开市, 直接采用注册制</span><span lang="en">BSE opens under registration from day one</span></td></tr>
+            <tr><td>2023.02</td><td><span lang="zh">沪深主板注册制改革落地, A 股全面进入注册制时代</span><span lang="en">Main boards (Shanghai/Shenzhen) move to registration; full‑market coverage</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <p lang="zh"><strong>三种制度的对比</strong>(简化, 抓核心差异):</p>
+          <p lang="en"><strong>Three‑system comparison</strong> (simplified, key axes):</p>
+        </div>
+
+        <table>
+          <thead><tr><th><span lang="zh">维度</span><span lang="en">Axis</span></th><th><span lang="zh">核准制 (旧 A 股)</span><span lang="en">Approval (legacy)</span></th><th><span lang="zh">注册制 (新 A 股)</span><span lang="en">Registration (current)</span></th><th><span lang="zh">美国注册制 (SEC)</span><span lang="en">US registration (SEC)</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">审核重点</span><span lang="en">Review focus</span></td><td><span lang="zh">实质判断"是否够好上市"</span><span lang="en">Substantive "is it good enough"</span></td><td><span lang="zh">形式审核"披露是否真实"</span><span lang="en">Formal "is disclosure truthful"</span></td><td><span lang="zh">纯披露审核</span><span lang="en">Pure disclosure</span></td></tr>
+            <tr><td><span lang="zh">中介责任</span><span lang="en">Gatekeeper liability</span></td><td><span lang="zh">较轻 (监管背书)</span><span lang="en">Light (regulator endorses)</span></td><td><span lang="zh">连带责任 + 重罚</span><span lang="en">Joint liability + heavy fines</span></td><td><span lang="zh">Section 11 严格连带</span><span lang="en">Strict Section 11 liability</span></td></tr>
+            <tr><td><span lang="zh">上市时间</span><span lang="en">Time to list</span></td><td><span lang="zh">2-3 年排队</span><span lang="en">2–3 year queue</span></td><td><span lang="zh">6-12 个月</span><span lang="en">6–12 months</span></td><td><span lang="zh">3-6 个月</span><span lang="en">3–6 months</span></td></tr>
+            <tr><td><span lang="zh">退市强度</span><span lang="en">Delisting</span></td><td><span lang="zh">极少退市 (~每年个位数)</span><span lang="en">Very rare</span></td><td><span lang="zh">2020 新规后逐年增加</span><span lang="en">Rising post‑2020</span></td><td><span lang="zh">每年 200+ 家退市</span><span lang="en">200+ per year</span></td></tr>
+            <tr><td><span lang="zh">未盈利上市</span><span lang="en">Pre‑profit listing</span></td><td><span lang="zh">不允许</span><span lang="en">Not allowed</span></td><td><span lang="zh">科创板/创业板允许 (多套标准)</span><span lang="en">STAR/ChiNext allow (multi‑criteria)</span></td><td><span lang="zh">允许 (任何业绩水平)</span><span lang="en">Allowed at any stage</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh">老王上一周遇到的"创业板 / 科创板 / 北交所 都要单独开权限 + 适当性评估"的设计, 本质上就是注册制的<em>风险下移</em>: 监管者不再为企业质量背书, 投资者必须自己评估并承担风险, 因此需要"明示风险揭示 + 投资者门槛"作为防护栏。</p>
+        <p lang="en">The "every innovation board needs its own permission + suitability test" Old Wang hit last week is precisely the <em>risk‑shift</em> of registration: the regulator no longer endorses issuer quality, so investors must price and bear risk themselves — hence explicit risk disclosures and investor thresholds as guardrails.</p>
+
+        <h3 lang="zh">③ 四套板块对照</h3>
+        <h3 lang="en">③ Four Boards at a Glance</h3>
+
+        <table>
+          <thead><tr><th><span lang="zh">板块</span><span lang="en">Board</span></th><th><span lang="zh">交易所</span><span lang="en">Exchange</span></th><th><span lang="zh">代码段</span><span lang="en">Code</span></th><th><span lang="zh">投资者门槛</span><span lang="en">Investor min</span></th><th><span lang="zh">涨跌幅</span><span lang="en">Price band</span></th><th><span lang="zh">代表公司</span><span lang="en">Example</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">沪主板</span><span lang="en">SH Main</span></td><td>SSE</td><td>600/601/603/605</td><td>0</td><td>±10%</td><td><span lang="zh">茅台 600519, 工行 601398</span><span lang="en">Moutai 600519, ICBC 601398</span></td></tr>
+            <tr><td><span lang="zh">深主板</span><span lang="en">SZ Main</span></td><td>SZSE</td><td>000/001/002/003</td><td>0</td><td>±10%</td><td><span lang="zh">万科 000002, 比亚迪 002594</span><span lang="en">Vanke 000002, BYD 002594</span></td></tr>
+            <tr><td><span lang="zh">创业板</span><span lang="en">ChiNext</span></td><td>SZSE</td><td>300/301</td><td><span lang="zh">10 万 + 24 月经验</span><span lang="en">¥100k + 24m</span></td><td>±20%</td><td><span lang="zh">宁德时代 300750, 迈瑞医疗 300760</span><span lang="en">CATL 300750, Mindray 300760</span></td></tr>
+            <tr><td><span lang="zh">科创板</span><span lang="en">STAR</span></td><td>SSE</td><td>688</td><td><span lang="zh">50 万 + 24 月经验</span><span lang="en">¥500k + 24m</span></td><td>±20%</td><td><span lang="zh">中芯国际 688981, 金山办公 688111</span><span lang="en">SMIC 688981, Kingsoft 688111</span></td></tr>
+            <tr><td><span lang="zh">北交所</span><span lang="en">BSE</span></td><td>BSE</td><td>8 <span lang="zh">开头</span><span lang="en">prefix</span></td><td><span lang="zh">50 万 + 24 月经验</span><span lang="en">¥500k + 24m</span></td><td>±30%</td><td><span lang="zh">贝特瑞 835185, 连城数控 835368</span><span lang="en">BTR 835185, Linton 835368</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh">注: 创业板 / 科创板 / 北交所对<em>新股上市后前 5 个交易日不设涨跌幅限制</em>。北交所连续竞价涨跌幅 ±30%, 这是 A 股中最宽的 (国际可比: 美股无涨跌幅, 港股无涨跌幅但有 cooling‑off, 日股有 ±10‑30% 分级)。</p>
+        <p lang="en">Note: ChiNext / STAR / BSE waive price limits for the first 5 trading days after IPO. BSE's ±30% continuous‑auction band is the widest in A‑shares (US: no limit; HK: no limit but cooling‑off; Japan: ±10–30% by tier).</p>
+
+        <h3 lang="zh">④ 强制退市四大类别 — 退市新规</h3>
+        <h3 lang="en">④ Four Mandatory Delisting Categories — The 2020 Reform</h3>
+
+        <p lang="zh">2020 年 12 月退市新规 (证监会令 第163号) 把强制退市重组为四个独立触发口:</p>
+        <p lang="en">The Dec 2020 reform (CSRC Order No. 163) reorganized mandatory delisting into four independent triggers:</p>
+
+        <table>
+          <thead><tr><th><span lang="zh">类别</span><span lang="en">Category</span></th><th><span lang="zh">主要触发条件</span><span lang="en">Main triggers</span></th><th><span lang="zh">代表案例</span><span lang="en">Example</span></th></tr></thead>
+          <tbody>
+            <tr><td><span lang="zh">① 交易类</span><span lang="en">Trading</span></td><td><span lang="zh">连续 20 个交易日收盘价 &lt; 1 元 (面值退市); 或市值 &lt; 3 亿; 或股东户数 &lt; 400</span><span lang="en">20 consecutive sessions with close &lt; ¥1 (par‑value delisting); or market cap &lt; ¥300m; or holders &lt; 400</span></td><td><span lang="zh">*ST 锐电 (2020) 面值退市</span><span lang="en">Sinovel Wind delisted on par‑value 2020</span></td></tr>
+            <tr><td><span lang="zh">② 财务类</span><span lang="en">Financial</span></td><td><span lang="zh">最近一年扣非归母净利 &lt; 0 且营收 &lt; 1 亿元 (组合标准); 或连续两年净资产 &lt; 0; 或审计被出具无法表示意见 / 否定意见</span><span lang="en">Most recent year: ex‑non‑recurring NI &lt; 0 AND revenue &lt; ¥100m (combined); or two years negative net assets; or audit "disclaimer" / "adverse" opinion</span></td><td><span lang="zh">*ST 海航 (2021)</span><span lang="en">*ST HNA Group delisted 2021</span></td></tr>
+            <tr><td><span lang="zh">③ 规范类</span><span lang="en">Regulatory</span></td><td><span lang="zh">财报半年内未披露; 财报存在重大会计差错且拒不改正; 股本失实; 信息披露重大违法且影响重大</span><span lang="en">Annual report not filed within 6 months; major accounting errors uncorrected; misstated share capital; severe disclosure violations</span></td><td><span lang="zh">*ST 长油 (2014, 央企首例)</span><span lang="en">*ST Changjiang Oil 2014 (first central‑SOE delisting)</span></td></tr>
+            <tr><td><span lang="zh">④ 重大违法类</span><span lang="en">Material violation</span></td><td><span lang="zh">欺诈发行; 重大信息披露违法; 重大财务造假 (虚增利润累计 &gt; 净利总额 100% 且 &gt; 5 亿)</span><span lang="en">Fraudulent issuance; material disclosure breach; major financial fraud (cumulative inflated NI &gt; 100% of total NI and &gt; ¥500m)</span></td><td><span lang="zh">康得新 002450 (2019), 乐视网 300104 (2020)</span><span lang="en">Kangde Xin 002450 (2019), LeEco 300104 (2020)</span></td></tr>
+          </tbody>
+        </table>
+
+        <p lang="zh"><strong>关键变化</strong>: 新规取消了"暂停上市"中间环节, 一旦触发即直接进入退市整理期 (15 个交易日), 整理期后摘牌。整理期内 ±10% 涨跌幅, 但市场预期已确定, 整理期价格通常跌至面值附近。同时, 新规<em>组合标准</em>(净利亏损 + 营收 &lt; 1 亿) 防止"靠 1 元营收避免财务退市"的极端壳公司游戏。</p>
+        <p lang="en"><strong>Key shifts:</strong> the reform abolished the "trading suspension" middle step — triggers go straight to a 15‑session delisting wind‑down, after which the listing is removed. The wind‑down keeps ±10% bands, but market expectations have crystallized and prices typically collapse to par. The <em>combined</em> standard (NI loss + revenue &lt; ¥100m) closes the "¥1 of revenue saves a shell" loophole.</p>
+
+        <div class="callout callout--formula">
+          <span class="callout-label" lang="zh">退市强度量化</span>
+          <span class="callout-label" lang="en">Delisting intensity</span>
+          <div class="eq">
+            <span>$$ \text{退市率}_t \;=\; \frac{\text{当年强制退市公司数}_t}{\text{上市公司总数}_t} $$</span>
+            <span class="num">(1.1)</span>
+          </div>
+          <p lang="zh">2019 年前 A 股年度退市率长期 &lt; 0.1%; 退市新规实施后 2021/2022/2023 年退市公司数分别为 17/42/46 家, 退市率回升至 ~0.9%。同期美股退市率 ~5%, 港股 ~3%。中美差距仍在, 但方向已从 0 收敛。</p>
+          <p lang="en">Pre‑2019 annual delisting rate stayed &lt; 0.1%. After the 2020 reform, 2021/2022/2023 saw 17/42/46 forced delistings — rate now ~0.9%. Comparable: US ~5%, HK ~3%. The US–China gap persists, but the trend has reversed from zero.</p>
+          <span class="cite">证监会令 第163号 · 上交所/深交所/北交所上市规则关于强制退市 · 中国证券业协会年报</span>
+        </div>
+
+        <p class="muted measure" lang="zh"><strong>对比美国 SEC</strong>: SEC (Securities and Exchange Commission) 1934 年成立, 是注册制的发源地。监管哲学上, SEC 更强调"披露 + 私人诉讼"; A 股 CSRC 强调"披露 + 行政处罚 + 代表人诉讼"。2019 修订证券法引入<em>中国特色证券集体诉讼</em>: 投保中心可作为投资者代表提起诉讼, 默认全体受损投资者加入, 显著降低维权成本。康美案 (2021) 是首例集体诉讼判决, 5.2 万名投资者获赔 24.59 亿元。这是注册制配套司法改革的重要一环。</p>
+        <p class="muted measure" lang="en"><strong>Vs. the US SEC:</strong> SEC (est. 1934) is the birthplace of registration. Philosophy: SEC leans heavily on "disclosure + private litigation"; CSRC pairs disclosure with administrative penalties plus China‑style representative actions. The 2019 Securities Law revision introduced a <em>Chinese‑style class action</em>: the China Securities Investor Service Center may sue as representative on opt‑out basis, drastically cutting plaintiff cost. The Kangmei case (2021) was the inaugural class verdict — 52,000 retail investors recovered ¥2.459bn. A pillar of registration‑era judicial reform.</p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Layer 3 -->
+      <!-- ================================================================ -->
+      <section class="layer">
+        <h2>
+          <span class="layer-num">Layer 3</span> ·
+          <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span>
+        </h2>
+
+        <p lang="zh">老王的"周一开沪 A、周二开深 A、周四看到 ST、周五看到立案" 在监管端被三类真实事件放大: (1) 注册制下科创板/创业板创新型企业的快速上市 (2) 退市新规下大型公司被强制摘牌 (3) 北交所开市后第一批 IPO。下面三个案例分别对应。</p>
+        <p lang="en">Old Wang's week — Monday's SH activation, Tuesday's SZ activation, Thursday's ST sighting, Friday's investigation headline — scales up to three real regulatory events: (1) registration‑system fast listings on STAR/ChiNext; (2) forced delisting under the new 2020 regime; (3) the first BSE IPOs. Three cases follow.</p>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">SH·688981</span>
+            <span class="company"><span lang="zh">中芯国际</span><span lang="en">SMIC</span></span>
+            <span class="period">2020.07 · <span lang="zh">注册制下 H 股回 A 创纪录速度</span><span lang="en">Registration‑era HK‑to‑A fast listing</span></span>
+          </div>
+
+          <p lang="zh">把老王"开通科创板 50 万门槛"的小事放大: 这道门槛的存在, 正是为了承担中芯国际这种"红筹回归 + 科创板首发 + 注册制" 三重创新的风险。</p>
+          <p lang="en">Scale Old Wang's "STAR ¥500k threshold" up: that threshold exists precisely to absorb the risk of cases like SMIC — a red‑chip return + STAR Market debut + registration‑system pilot stacked together.</p>
+
+          <p lang="zh">中芯国际 2000 年成立, 2004 年在香港主板 (0981.HK) 和纽交所 (SMI.US) 双重上市。2019 年从纽交所退市; 2020 年 6 月 1 日向科创板递交申请, 6 月 19 日通过上交所审核, 7 月 5 日证监会同意注册, 7 月 16 日上市交易 — 从受理到上市共 <strong>45 天</strong>, 创下 A 股有史以来最快 IPO 速度记录。</p>
+          <p lang="en">SMIC founded 2000, dual‑listed in Hong Kong (0981.HK) and NYSE (SMI.US) in 2004. NYSE delisting in 2019. June 1, 2020: STAR application filed. June 19: SSE approval. July 5: CSRC consent to registration. July 16: trading begins — <strong>45 days</strong> from filing to trade, the fastest IPO in A‑share history.</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">环节</span><span lang="en">Step</span></th><th><span lang="zh">核准制 (典型)</span><span lang="en">Approval era (typical)</span></th><th><span lang="zh">中芯国际 (注册制)</span><span lang="en">SMIC (registration)</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">递交申请</span><span lang="en">Filing</span></td><td>T+0</td><td>T+0 (2020.06.01)</td></tr>
+                <tr><td><span lang="zh">监管受理</span><span lang="en">Acceptance</span></td><td>T+30~60</td><td>T+5 (2020.06.04)</td></tr>
+                <tr><td><span lang="zh">问询轮数</span><span lang="en">Inquiry rounds</span></td><td>3-5 <span lang="zh">轮</span><span lang="en">rounds</span></td><td>2 <span lang="zh">轮</span><span lang="en">rounds</span></td></tr>
+                <tr><td><span lang="zh">上会审核</span><span lang="en">Hearing</span></td><td>T+12~24 <span lang="zh">月</span><span lang="en">months</span></td><td>T+18 <span lang="zh">天</span><span lang="en">days</span></td></tr>
+                <tr><td><span lang="zh">注册/核准</span><span lang="en">Approval</span></td><td>T+1~3 <span lang="zh">月</span><span lang="en">months</span></td><td>T+16 <span lang="zh">天</span><span lang="en">days</span></td></tr>
+                <tr><td><span lang="zh">挂牌交易</span><span lang="en">Listing</span></td><td>T+18~36 <span lang="zh">月</span><span lang="en">months</span></td><td>T+45 <span lang="zh">天</span><span lang="en">days</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh">同期市场反应: 发行价 27.46 元, 募资 532.3 亿元 (含超额配售), 创科创板最大 IPO。首日开盘 95 元 (+246%), 收盘 82.92 元。如此速度的可能性来自三层制度叠加: (a) 注册制下监管仅审核披露真实性, 不再判断商业前景; (b) 红筹企业 (海外注册) 通过 CDR/直接发行 H 转 A 通道; (c) 国家战略层面对半导体产业的支持优先级。这是注册制"快"与"宽"的同时演示。</p>
+          <p lang="en">Market reaction: offering price ¥27.46, raise of ¥53.23bn (with greenshoe) — the largest STAR IPO at the time. Day‑one open ¥95 (+246%), close ¥82.92. The sub‑two‑month timeline rested on three institutional layers stacked: (a) registration limits review to disclosure truthfulness, not commercial merit; (b) the red‑chip return channel (CDR / direct H‑to‑A) was operational; (c) national strategic priority for semiconductors put the case on top of the queue. Speed + breadth, both visible.</p>
+
+          <p lang="zh"><strong>对老王的启示</strong>: 注册制下"上市≠优质" — 中芯国际是真正的硬科技龙头, 但同期登陆科创板的另一批公司中, 有些上市后业绩快速变脸。在 IPO 速度提升 10 倍以上的同时, 投资者的甄别义务也同步上升。这就是为什么科创板要 50 万 + 24 个月经验门槛: 投资者需要具备读懂注册制下密集招股说明书的能力。</p>
+          <p lang="en"><strong>Takeaway for Old Wang:</strong> under registration, "listed ≠ quality." SMIC is a genuine hard‑tech leader, but among same‑cohort STAR IPOs, several flipped to losses within a year. Listing speed 10× faster also means investor diligence demand is 10× higher. That's exactly what the ¥500k + 24‑month threshold is for: investors must be able to digest dense registration‑era prospectuses.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=688981" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 688981 中芯国际 →</span><span lang="en">Cninfo 688981 SMIC →</span>
+          </a>
+        </div>
+
+        <div class="case case--warn">
+          <div class="case-head">
+            <span class="ticker">SZ·002450</span>
+            <span class="company"><span lang="zh">康得新 (已退市)</span><span lang="en">Kangde Xin (delisted)</span></span>
+            <span class="period">2019.07 · <span lang="zh">重大违法 + 财务双重触发强制退市</span><span lang="en">Material‑violation + financial double trigger</span></span>
+            <span class="delisted"><span lang="zh">[已退市]</span><span lang="en">[Delisted]</span></span>
+          </div>
+
+          <p lang="zh">老王那张 "*ST" 的小预警牌, 在大公司层面就是康得新整个市值的归零。</p>
+          <p lang="en">Old Wang's tiny "*ST" yellow card becomes, at scale, the wholesale zeroing of Kangde Xin's market cap.</p>
+
+          <p lang="zh">康得新 (002450) 曾是 A 股"新材料龙头", 2017 年市值峰值约 947 亿元。2019 年 1 月公司公告: 账上 122 亿元货币资金, 实际<em>不可使用</em> — 这笔钱被大股东康得集团通过"现金管理"协议挪走。同月公司未能兑付 10 亿元短期融资券, 触发流动性危机。</p>
+          <p lang="en">Kangde Xin (002450) was once A‑shares' "new materials champion," peaking near ¥94.7bn market cap in 2017. January 2019: a company filing disclosed that of ¥12.2bn reported cash, the entire balance was <em>not actually available</em> — controlling shareholder Kangde Group had siphoned it via a "cash management" agreement. The same month, the firm defaulted on ¥1bn of short‑term commercial paper, triggering a liquidity crisis.</p>
+
+          <p lang="zh">2020 年 7 月, 证监会下达行政处罚决定书: 认定康得新 2015-2018 年累计虚增利润 119 亿元 — 虚增金额超过同期净利润总额 4-7 倍, 远超 "虚增利润累计 &gt; 净利总额 100% 且 &gt; 5 亿" 的重大违法退市门槛。同时, 公司连续多年财务造假 + 大股东资金占用 + 信息披露重大违法, 触发<em>多重退市标准</em>:</p>
+          <p lang="en">In July 2020, CSRC issued its administrative penalty: Kangde Xin had cumulatively inflated profits by ¥11.9bn from 2015 to 2018 — 4–7× the reported total NI for the period, vastly exceeding the "inflated NI &gt; 100% of total NI and &gt; ¥500m" material‑violation threshold. Combined with multi‑year fraud + controlling‑shareholder misappropriation + severe disclosure breach, <em>multiple delisting categories</em> were simultaneously triggered:</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">类别</span><span lang="en">Category</span></th><th><span lang="zh">触发事实</span><span lang="en">Trigger fact</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">重大违法类</span><span lang="en">Material violation</span></td><td><span lang="zh">虚增利润 119 亿 &gt; 净利总额 100%; 虚增金额 &gt; 5 亿</span><span lang="en">Inflated NI ¥11.9bn &gt; 100% of total NI; &gt; ¥500m</span></td></tr>
+                <tr><td><span lang="zh">财务类</span><span lang="en">Financial</span></td><td><span lang="zh">2019-2020 连续两年净资产 &lt; 0</span><span lang="en">Negative net assets 2019, 2020</span></td></tr>
+                <tr><td><span lang="zh">规范类</span><span lang="en">Regulatory</span></td><td><span lang="zh">2020 年报被审计 "无法表示意见"</span><span lang="en">2020 annual report received "disclaimer" audit opinion</span></td></tr>
+                <tr><td><span lang="zh">交易类</span><span lang="en">Trading</span></td><td><span lang="zh">退市整理期最后 20 日收盘 &lt; 1 元 (面值)</span><span lang="en">Final 20 sessions of wind‑down closed below ¥1 par</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh">2021 年 7 月 8 日, 康得新被深交所摘牌, 进入退市板挂牌交易。中介机构连带处罚: <em>瑞华会计师事务所</em>(审计) 被吊销证券业务资格, 多名签字注会被市场禁入; 公司董事长钟玉因背信损害上市公司利益罪、违规披露重要信息罪被判刑。</p>
+          <p lang="en">On July 8, 2021, SZSE delisted Kangde Xin to the over‑the‑counter delisted board. Gatekeeper liability followed: <em>Ruihua CPA</em> (the auditor) had its securities license revoked, and several signing partners received market bans. Chairman Zhong Yu was criminally convicted of breach‑of‑trust harm to listed‑company interests and disclosure violations.</p>
+
+          <p lang="zh"><strong>对照老王的小本本</strong>: 一个"*ST" 标记代表的不只是预警, 而是<em>整个监管闭环已经启动</em>: CSRC 立案 → 交易所风险警示 → 中介机构连带罚没 → 集体诉讼 → 强制退市 → 责任人刑事追究。这是注册制下"宽进严出"的完整链条。康得新案也直接推动了 2020 退市新规的最终落地。</p>
+          <p lang="en"><strong>Recall Old Wang's notebook:</strong> a single "*ST" tag is not just a warning — it signals the <em>full regulatory loop has engaged</em>: CSRC formal case → exchange risk flag → gatekeeper joint penalty → class action → forced delisting → criminal liability for principals. The complete "wide entry, strict exit" chain under registration. Kangde Xin's case was a direct catalyst for the December 2020 delisting reform.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=002450" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 002450 康得新 →</span><span lang="en">Cninfo 002450 Kangde Xin →</span>
+          </a>
+        </div>
+
+        <div class="case">
+          <div class="case-head">
+            <span class="ticker">BJ·835185</span>
+            <span class="company"><span lang="zh">贝特瑞</span><span lang="en">BTR New Material</span></span>
+            <span class="period">2021.11.15 · <span lang="zh">北交所开市首批 IPO</span><span lang="en">First BSE listing day</span></span>
+          </div>
+
+          <p lang="zh">老王那 50 万 + 24 个月经验的北交所门槛, 在 2021 年 11 月 15 日把这家全球锂电负极材料龙头送到了散户眼前。</p>
+          <p lang="en">The ¥500k + 24‑month BSE threshold Old Wang couldn't clear is what gated retail access to this global anode‑material leader when BSE opened on Nov 15, 2021.</p>
+
+          <p lang="zh">2021 年 9 月 2 日, 国务院宣布设立北京证券交易所; 2021 年 11 月 15 日, 北交所正式开市, 首批挂牌共 81 家公司, 其中 71 家由<em>新三板精选层</em>平移而来, 10 家通过北交所注册制直接 IPO。贝特瑞 (835185) 是首批中市值最大的公司之一, 主营锂电池负极材料, 全球市占率排名前列。开市首日北交所成交额 95 亿元, 全市场关注度极高。</p>
+          <p lang="en">On Sep 2, 2021, the State Council announced the establishment of the Beijing Stock Exchange. On Nov 15, 2021, BSE began trading with 81 listings: 71 transferred from the <em>NEEQ Select Tier</em>, and 10 new IPOs under BSE registration. BTR (835185) was among the largest by market cap, a global top‑tier lithium‑battery anode material maker. Day‑one BSE turnover: ¥9.5bn, with intense market attention.</p>
+
+          <div class="case-table">
+            <table>
+              <thead><tr><th><span lang="zh">维度</span><span lang="en">Axis</span></th><th><span lang="zh">北交所</span><span lang="en">BSE</span></th><th><span lang="zh">科创板/创业板</span><span lang="en">STAR/ChiNext</span></th></tr></thead>
+              <tbody>
+                <tr><td><span lang="zh">投资者门槛</span><span lang="en">Investor min</span></td><td>50 <span lang="zh">万 + 24 月</span><span lang="en">k + 24m</span></td><td>50/10 <span lang="zh">万 + 24 月</span><span lang="en">k + 24m</span></td></tr>
+                <tr><td><span lang="zh">涨跌幅</span><span lang="en">Daily band</span></td><td>±30%</td><td>±20%</td></tr>
+                <tr><td><span lang="zh">新股首 5 日</span><span lang="en">First 5 days</span></td><td><span lang="zh">不设涨跌幅</span><span lang="en">No band</span></td><td><span lang="zh">不设涨跌幅</span><span lang="en">No band</span></td></tr>
+                <tr><td><span lang="zh">最低市值要求</span><span lang="en">Min mkt cap</span></td><td>2 <span lang="zh">亿元 (含多套标准)</span><span lang="en">¥200m (multi‑criteria)</span></td><td>10-30 <span lang="zh">亿元</span><span lang="en">¥1–3bn</span></td></tr>
+                <tr><td><span lang="zh">主要定位</span><span lang="en">Focus</span></td><td><span lang="zh">创新型中小企业 (专精特新)</span><span lang="en">Innovative SMEs ("specialized & sophisticated")</span></td><td><span lang="zh">硬科技 / 成长创新</span><span lang="en">Hard tech / growth</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p lang="zh">北交所与科创板/创业板的最大差异在于<em>市值门槛更低 + 涨跌幅更宽 + 服务于更早期的创新型中小企业</em>。这意味着流动性更弱 (相对沪深主板)、单日波动可能更大、信息不对称程度更深。50 万投资者门槛是这套"高波动 + 低流动性"设计的必然配套。同期, A 股全市场层面也在为创新型中小企业打通"新三板基础层 → 新三板创新层 → 北交所"的<em>三级培育路径</em> — 这是中国版的"中小企业资本市场升级链条"。</p>
+          <p lang="en">BSE's key differences from STAR/ChiNext: <em>lower mcap floor + wider daily band + targeting earlier‑stage innovative SMEs</em>. Lower liquidity (vs. Shanghai/Shenzhen main boards), wider daily swings, deeper information asymmetry. The ¥500k investor threshold is the necessary guardrail for that "high‑vol + low‑liquidity" combination. At the system level, A‑shares now offers a three‑tier nurture path — <em>NEEQ Base → NEEQ Innovation → BSE</em> — China's small‑cap capital‑market escalator.</p>
+
+          <p lang="zh"><strong>对老王的启示</strong>: 北交所是 A 股监管框架最年轻的板块, 也是<em>注册制+严格退市+高门槛适当性</em>三件套同时上线的板块。如果老王日后资产门槛过 50 万, 在北交所交易需要做的功课比沪深主板多得多 — 因为这里的公司更小、信息披露更密、单日波动更剧烈。监管把"散户保护"做到了 A 股之最, 但散户的研究义务也对应加重。</p>
+          <p lang="en"><strong>Takeaway for Old Wang:</strong> BSE is the youngest piece of A‑share regulation and the only board where <em>registration + strict delisting + high‑threshold suitability</em> all launched together. If his account ever clears the ¥500k bar, BSE will demand far heavier diligence than Shanghai/Shenzhen main boards — smaller issuers, denser disclosure, sharper daily swings. Retail protection is at its A‑share maximum; retail research duty rises in lockstep.</p>
+
+          <a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=835185" target="_blank" rel="noopener">
+            <span lang="zh">巨潮 cninfo: 835185 贝特瑞 →</span><span lang="en">Cninfo 835185 BTR →</span>
+          </a>
+        </div>
+
+        <p class="muted measure" lang="zh">
+          数据来源: 中国证券监督管理委员会 (csrc.gov.cn)、上交所 (sse.com.cn)、深交所 (szse.cn)、北交所 (bse.cn)、巨潮资讯 (cninfo.com.cn) 公开披露资料; 部分时点和金额已四舍五入。
+        </p>
+        <p class="muted measure" lang="en">
+          Sources: CSRC, SSE, SZSE, BSE, and cninfo public disclosures. Some figures rounded.
+        </p>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- Mental models -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+
+      <div class="model-card">
+        <span class="roman">i</span>
+        <div>
+          <h4><span lang="zh">注册制 = 风险下移</span><span lang="en">Registration = risk shift</span></h4>
+          <p lang="zh">监管不再为企业质量背书, 责任 (定价、识别、损失) 都下移到投资者。配套必然是: 中介机构连带责任加重、投资者适当性门槛分层、退市更严。这三件事是同一套设计的三条腿, 缺一条都会塌。</p>
+          <p lang="en">The regulator stops endorsing issuer quality; pricing, identification, and loss‑bearing all shift to investors. The necessary complements: heavier joint liability on gatekeepers, tiered investor‑suitability gates, and stricter delisting. Three legs of one design; remove any and the structure collapses.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">ii</span>
+        <div>
+          <h4><span lang="zh">板块按风险特征分层</span><span lang="en">Boards stratify by risk profile</span></h4>
+          <p lang="zh">主板 (低风险, 0 门槛) → 创业板 (中风险, 10 万) → 科创板/北交所 (高风险, 50 万)。看似行政划分, 实质是用<em>投资者门槛</em>近似匹配<em>资产波动率</em> — 让具备承受能力的人去承担高波动的回报与风险。这是适当性原则的资本市场版本。</p>
+          <p lang="en">Main board (low risk, no threshold) → ChiNext (mid risk, ¥100k) → STAR/BSE (high risk, ¥500k). Apparently administrative, structurally an attempt to match <em>investor threshold</em> to <em>asset volatility</em> — putting high‑vol returns and risks where shock absorption exists. The capital‑market form of the suitability principle.</p>
+        </div>
+      </div>
+
+      <div class="model-card">
+        <span class="roman">iii</span>
+        <div>
+          <h4><span lang="zh">"宽进严出"双闭环</span><span lang="en">Wide entry, strict exit</span></h4>
+          <p lang="zh">注册制加快"进"的同时, 必须强化"出"。否则壳公司沉淀, 市场质量平均值会被劣币驱赶。2020 退市新规四类别强制退市 + 2019 证券法集体诉讼, 是注册制"进"端松绑的必要补丁。两端如果不同步, 改革会单脚走路, 走不远。</p>
+          <p lang="en">Speeding entry under registration mandates strengthening exit. Otherwise, shells accumulate and market‑average quality is driven down by bad coin. The four‑category mandatory delisting (Dec 2020) plus the class‑action regime (2019 Securities Law) are the patches required to keep entry deregulation from collapsing on itself. Two ends must move in lockstep.</p>
+        </div>
+      </div>
+
+      <!-- ================================================================ -->
+      <!-- Quiz -->
+      <!-- ================================================================ -->
+      <h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+
+      <p class="muted">
+        <span lang="zh">先自己想清楚再展开答案。每题都设了至少一个常见误区。</span>
+        <span lang="en">Think before unfolding. Every prompt traps a common misconception.</span>
+      </p>
+
+      <ol class="quiz quiz-list">
+
+        <li class="quiz-item" data-qid="q1" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q1.</strong> 一位朋友说: "注册制就是放松监管, 让企业更容易上市。" 这种理解对吗? 给出至少两条反驳证据。</span>
+            <span lang="en"><strong>Q1.</strong> A friend says, "Registration just deregulates IPOs to let firms list more easily." Is that right? Provide at least two counter‑arguments.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>不对</strong>。注册制是"在入口环节放松, 在事中事后加强"的整体设计, 监管强度不降反升, 体现在以下方面:</p>
+            <ol lang="zh">
+              <li><strong>中介机构连带责任加重</strong>: 康美案审计师正中珠江被罚 5,725 万 + 暂停证券业务; 康得新案瑞华被吊销证券资格。注册制下保荐人/会计师/律师/评估师须承担连带赔偿责任 (证券法 §163, §170)。</li>
+              <li><strong>退市规则同步收紧</strong>: 2020 退市新规四类强制退市口径全面扩张, 退市率从注册制改革前的 &lt; 0.1% 上升到 2023 年的 ~0.9% (退市公司 46 家)。</li>
+              <li><strong>处罚上限大幅提高</strong>: 2019 证券法把信息披露违法的罚款上限从 60 万元提高到 1,000 万元 — 上限提升 16 倍; 欺诈发行最高 2,000 万 + 终身市场禁入。</li>
+              <li><strong>引入中国式集体诉讼</strong>: 2019 证券法 §95 引入<em>代表人诉讼</em>, 投保中心可代表全体投资者起诉, 默认全部受损者加入。康美案 (2021) 首例判决, 5.2 万投资者获赔 24.59 亿。</li>
+            </ol>
+            <p lang="zh">所以注册制不是"放松", 是<em>把监管资源从"上市前审批"重新分配到"上市后追责"</em> — 入口形式化, 出口实质化。</p>
+            <p lang="en">No. Registration is "deregulate entry, strengthen ongoing and ex‑post enforcement." Supervisory intensity rises, not falls: (1) <strong>joint liability</strong> — ZRZJ fined ¥57.25m and suspended; Ruihua's license revoked. (2) <strong>delisting tightened</strong> — four‑category mandatory delisting, rate up from &lt; 0.1% to ~0.9% (46 firms in 2023). (3) <strong>caps raised</strong> — disclosure‑violation fine ceiling 60× to ¥10m; fraudulent‑issuance ceiling to ¥20m plus lifetime market ban. (4) <strong>class action introduced</strong> — Article 95 of the 2019 Securities Law; the Kangmei verdict awarded ¥2.459bn to 52,000 investors. The shift is from "pre‑listing approval" to "post‑listing accountability" — formal entry, substantive exit.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q2" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q2.</strong> 老王看上一只科创板新股 (688 开头), 上市第 3 天涨幅 +28%。他能在 +25% 时止盈卖出吗? 上市第 6 天可以吗?</span>
+            <span lang="en"><strong>Q2.</strong> Old Wang spots a STAR Market new listing (688 prefix) up 28% on day three. Can he sell at +25%? What about day six?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>能, 且第 3 天与第 6 天的规则不同</strong>。科创板/创业板/北交所对<em>新股上市后前 5 个交易日不设涨跌幅限制</em>。所以:</p>
+            <ul lang="zh">
+              <li><strong>第 3 天</strong>: 无涨跌幅限制, 当日可在任何价格挂单卖出, +28%, +50%, +100% 都可以成交。</li>
+              <li><strong>第 6 天起</strong>: 恢复涨跌幅限制 ±20% (科创板/创业板); 北交所 ±30%。所以第 6 天的+28% 已经接近 ±20% 上限, 但只要不超过当日涨跌幅, 仍可挂单。如果第 6 天开盘就 +20% 一字板, 卖单可能成交困难。</li>
+            </ul>
+            <p lang="zh"><strong>常见误区</strong>: 把"主板 ±10%"的固定印象套到所有板块, 错过新股前 5 日无涨跌幅这一关键窗口期。</p>
+            <p lang="zh"><strong>更重要的设计动机</strong>: 注册制下监管不再判断"上市定价是否合理", 让市场在前 5 日<em>充分博弈</em>找到均衡价。这与美股新股无涨跌幅设计同源。前 5 日无限制 = 价格发现机制 + 投资者必须自己识别风险。这也是为什么这三个板块都设投资者适当性门槛 (10 万 / 50 万 + 24 月经验)。</p>
+            <p lang="en">Yes — and day 3 vs. day 6 rules differ. STAR/ChiNext/BSE waive price limits for the <em>first 5 trading days post‑IPO</em>. Day 3: no limit; sell at any price. Day 6 onward: limit reapplies — ±20% for STAR/ChiNext, ±30% for BSE. A +28% on day 6 brushes the ±20% cap, so a one‑direction lock at open could make filling difficult. Trap: applying main‑board ±10% to all boards. Design rationale: under registration, regulators no longer judge IPO pricing — the first 5 days are pure price discovery, mirroring US IPOs. That's why all three boards pair the no‑limit window with strict investor‑suitability thresholds.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q3" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q3.</strong> A 股退市新规要求"扣非净利&lt;0 + 营收&lt;1 亿"才触发财务退市。为什么是<em>组合标准</em>而不是单独的"净利&lt;0"? 它防的是哪种行为?</span>
+            <span lang="en"><strong>Q3.</strong> A‑share financial delisting uses a <em>combined</em> trigger: ex‑non‑recurring NI &lt; 0 AND revenue &lt; ¥100m. Why combined? What behavior is it blocking?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>防的是壳公司</strong>。如果只看"净利&lt;0"单一指标, 公司有两条"避免退市"的简单路径:</p>
+            <ol lang="zh">
+              <li><strong>非经常性损益洗利润</strong>: 主营业务亏损, 但通过出售资产 / 政府补助 / 一次性收益把净利做正, 即"扣非"为负但"归母"为正。退市新规用"扣非"堵死这条路。</li>
+              <li><strong>1 元营收 + 1 元利润保壳</strong>: 大量空壳公司本无业务, 但每年制造 1 元营收 + 1 元利润避免触发"亏损"红线。即使加入"扣非"条件, 仍可通过虚构关联交易做出小额营收 + 小额利润。</li>
+            </ol>
+            <p lang="zh">所以新规<em>叠加营收 &lt; 1 亿元</em>作为第二必要条件: 即使你扣非净利刚好踩正, 只要营收 &lt; 1 亿, 就证明公司<em>没有持续经营的实质</em>, 应当退市。两个条件必须同时满足 (AND 关系), 实质上是要求公司证明"既有真实业务规模, 也能创造真实利润"。</p>
+            <p lang="zh"><strong>历史教训</strong>: 这一条标准直接针对 2010 年代大量"1 元保壳"案例。例如某些 ST 公司年报营收 500 万、净利 100 万, 主营业务实际停滞多年, 但靠零星贸易和关联交易维持上市状态。组合标准让这种"壳"难以为继。</p>
+            <p lang="zh"><strong>更深层含义</strong>: 这是<em>实质重于形式</em>原则在退市领域的具体落地 — 不看账面数字是否为正, 看公司是否有真实经营。会计学谨慎性 + 法学实质判断的结合。</p>
+            <p lang="en">It blocks shell companies. With NI alone as the trigger, two evasion paths exist: (1) <strong>non‑recurring gains</strong> — operating loss masked by asset sales, subsidies, one‑offs; the "ex‑non‑recurring" filter shuts this down. (2) <strong>¥1 of revenue + ¥1 of profit shell preservation</strong> — even after the ex‑non‑recurring filter, a shell can fabricate trivial related‑party trades to scrape positive NI. Adding "<em>revenue &lt; ¥100m</em>" as a second necessary condition (AND) requires a firm to demonstrate <em>real business scale</em>. Both conditions must hold simultaneously. This is the <em>substance over form</em> principle applied to delisting — not asking whether the book number is positive, but whether the firm has a real operating substance. Conservatism + substance jurisprudence, fused.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q4" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q4.</strong> 北交所投资者门槛 50 万 + 24 月经验, 创业板 10 万 + 24 月。如果取消所有门槛, 让任何人都能交易这两个板块, 会发生什么? 给出至少三个可预测后果。</span>
+            <span lang="en"><strong>Q4.</strong> BSE requires ¥500k + 24m experience; ChiNext requires ¥100k + 24m. If all thresholds were removed and anyone could trade these boards, what would happen? Predict at least three consequences.</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <ol lang="zh">
+              <li><strong>波动率短期上升, 长期下降</strong>: 短期更多无识别能力的散户涌入 → 跟风炒作 / 题材热度更猛 / 单日振幅放大; 长期更多韭菜被收割后退出 → 反向降低活跃度。这是注册制改革初期的常见现象。</li>
+              <li><strong>"打新无敌"心智被破坏</strong>: 现行体制下, 高门槛让能买入新股的投资者数量受限, 新股上市初期容易溢价; 取消门槛后参与者激增, 申购中签率上升但单股溢价下降。</li>
+              <li><strong>监管投诉与维权事件激增</strong>: 没有适当性筛选的散户买入"专精特新"小盘股后, 一旦遭遇巨幅下跌, 会大量投诉。监管成本上升, 推动监管反向加强其他防护栏 (例如更严格的信息披露、更强的处罚力度)。</li>
+              <li><strong>板块定位被稀释</strong>: 北交所"创新型中小企业"定位需要"耐心资本+长期视角"; 短线散户主导后, 公司治理压力会被"季报短期业绩波动"绑架, 偏离长期创新方向。这是 2015 年股灾期间 A 股整体经历的教训。</li>
+              <li><strong>中介机构 / 公司端可能反向逐底</strong>: 散户预期"涨多少", 公司可能通过更激进的披露/路演满足这些预期, 倒逼监管反向加强中介责任与披露规范。</li>
+            </ol>
+            <p lang="zh"><strong>核心机制</strong>: 投资者门槛不是"歧视性限制", 而是<em>适当性原则</em>的具体落地 — 把高波动 / 高信息密度的板块开放给具备承受能力和分析能力的投资者。这是注册制"风险下移"逻辑链条的关键一环。门槛与披露强度、退市强度三件事必须同步, 取消其中一件, 整套体系会失衡。</p>
+            <p lang="en">(1) Short‑term volatility up, long‑term down: more unfiltered retail piles into themes, day swings widen; eventually losses force exit, activity falls. (2) "Print‑money IPO" psychology breaks: thresholds limit subscribers, fueling first‑day pops; remove them, subscription rate rises but per‑share premium drops. (3) Complaints surge: retail without suitability filter buys "specialized & sophisticated" small caps, suffers crashes, files complaints; regulator must compensate by tightening other guardrails. (4) Mandate diluted: BSE targets innovative SMEs needing patient capital; short‑term retail dominance hostage‑takes governance to quarterly noise — exactly the 2015 A‑share lesson. (5) Race to the bottom: companies pander to retail expectations via aggressive disclosure/roadshows, forcing regulator response. Core: investor thresholds are the <em>suitability principle</em> in concrete form. Threshold + disclosure intensity + delisting intensity must move together; remove any one and the system loses balance.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+        <li class="quiz-item" data-qid="q5" data-open="false">
+          <div class="quiz-q">
+            <span lang="zh"><strong>Q5.</strong> 一只股票同时触发"重大违法退市"和"财务退市", 法律后果有何不同? 投资者维权路径有何差异?</span>
+            <span lang="en"><strong>Q5.</strong> A stock simultaneously triggers "material‑violation delisting" and "financial delisting." What legal consequences differ? How do investor remedies diverge?</span>
+          </div>
+          <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+          <div class="quiz-a"><div class="quiz-a-inner">
+            <p lang="zh"><strong>法律后果差异极大</strong>。</p>
+            <p lang="zh"><strong>财务退市</strong> (扣非净利&lt;0 + 营收&lt;1 亿连续若干年):</p>
+            <ul lang="zh">
+              <li>本质是<em>经营失败</em>, 不一定涉及违法。例如行业景气下行、技术换代、管理层决策失误。</li>
+              <li>退市后, 公司转入退市板挂牌 (5 个交易日) → 摘牌进入新三板老股转让板。</li>
+              <li>投资者损失主要承担方: 投资者自己。无明确赔偿对象, 因为公司没有违法行为。</li>
+              <li>典型案例: *ST 海航 (2021), 因疫情冲击航空业 + 高杠杆失败。</li>
+            </ul>
+            <p lang="zh"><strong>重大违法退市</strong> (欺诈发行 / 财务造假 / 重大信披违法):</p>
+            <ul lang="zh">
+              <li>本质是<em>公司违法行为</em>, 涉及刑民事多重责任。</li>
+              <li>退市后, 公司同样进入退市板, 但更重要的是<em>触发民事赔偿与刑事追究</em>。</li>
+              <li>投资者维权路径: (1) 行政处罚作为前提 (证监会处罚决定书); (2) 代表人诉讼 (投保中心代为起诉); (3) 中介机构连带赔偿 (审计师、保荐人、律师); (4) 责任人刑事追究 (虚假陈述罪、欺诈发行罪)。</li>
+              <li>典型案例: 康得新 (2019), 投资者通过代表人诉讼追偿大股东、董监高、审计机构的连带赔偿。</li>
+            </ul>
+            <p lang="zh"><strong>关键差异</strong>: 财务退市≈ 自然经营失败, 投资者只能认赔; 重大违法退市 ≈ 监管确认违法行为, 投资者有<em>明确的法律救济路径</em>。这是注册制改革的重要保障: 在放宽入口的同时, 通过强化执法+集体诉讼保护投资者权益。如果两类触发同时存在 (如康得新案), 投资者优先适用违法类的救济路径。</p>
+            <p lang="zh"><strong>对老王这种散户的实际建议</strong>: 看到"*ST" 后第一件事是查触发原因 — 财务类还是违法类? 这决定了你是"该止损还是该等待法律救济"。证监会"立案调查"公告是关键信号; 一旦立案, 即使未来证实违法, 维权周期通常 2-4 年。</p>
+            <p lang="en"><strong>Financial delisting</strong>: business failure, not necessarily unlawful. Causes: industry downcycle, tech obsolescence, management error. Post‑delisting goes to OTC. Loss‑bearer: investor; no defendant. Example: *ST HNA (2021) — pandemic + over‑leverage.</p>
+            <p lang="en"><strong>Material‑violation delisting</strong>: company unlawful conduct, with stacked civil/criminal liability. Remedies: (1) CSRC administrative penalty as predicate; (2) representative class action via Investor Service Center; (3) joint liability against gatekeepers — auditor, sponsor, lawyer; (4) criminal prosecution for misrepresentation or fraudulent issuance. Example: Kangde Xin (2019) — investors sued controlling shareholders, directors, and auditor for joint damages. Key difference: financial = take the loss; material violation = clear legal remedy. Practical advice for retail like Old Wang: on seeing *ST, first verify the trigger type — financial vs. violation. That determines whether to stop‑loss or wait for legal remedy. CSRC formal investigation is the critical signal; even with eventual liability finding, remedy cycles run 2–4 years.</p>
+          </div></div>
+          <div class="quiz-self">
+            <span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span>
+            <button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button>
+            <button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button>
+          </div>
+        </li>
+
+      </ol>
+
+      <div class="lesson-foot">
+        <button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+        <nav class="chap-nav">
+          <a href="../../index.html">
+            <span class="dir">← <span lang="zh">返回首页</span><span lang="en">Home</span></span>
+            <span class="title"><span lang="zh">首页</span><span lang="en">Home</span></span>
+          </a>
+          <a class="next" href="02-disclosure.html">
+            <span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span>
+            <span class="title">02 · <span lang="zh">信息披露体系</span><span lang="en">Disclosure System</span></span>
+          </a>
+        </nav>
+      </div>
+
+    </article>
+  </main>
+
+  <aside class="toc"></aside>
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+  <div class="chat-head">
+    <div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div>
+    <button data-chat-close aria-label="Close">✕</button>
+  </div>
+  <div class="chat-setup">
+    <h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+    <p><span lang="zh">填入你的 Anthropic API Key (sk-ant-...), 仅存浏览器 localStorage。</span><span lang="en">Paste your Anthropic API key. Stored only in browser localStorage.</span></p>
+    <label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+    <input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+    <button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+    <p class="note"><span lang="zh">本站直连 api.anthropic.com, 不通过任何中间服务。</span><span lang="en">Page calls api.anthropic.com directly; nothing routes through a server.</span></p>
+  </div>
+  <div class="chat-log"></div>
+  <div class="chat-input">
+    <textarea rows="1" placeholder="问问助教..."></textarea>
+    <button class="send" aria-label="Send">↑</button>
+  </div>
+  <div class="chat-footnote">
+    <span lang="zh">由 Anthropic Claude Opus 4.7 提供</span>
+    <span lang="en">Powered by Anthropic Claude Opus 4.7</span>
+    <span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span>
+  </div>
+</div>
+
 <script type="module" src="../../assets/js/main.js?v=9"></script>
-</body></html>
+
+</body>
+</html>

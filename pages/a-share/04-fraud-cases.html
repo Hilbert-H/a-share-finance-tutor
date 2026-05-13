@@ -1,94 +1,593 @@
 <!doctype html>
 <html lang="zh-CN" data-lang="zh"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-store">
-<title>A 股 · 04 · 经典造假案例</title>
+<title>A 股 · 04 · 财务造假经典案例与识别 — Fraud Cases &amp; Detection</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../../assets/css/tokens.css?v=8"><link rel="stylesheet" href="../../assets/css/base.css?v=8"><link rel="stylesheet" href="../../assets/css/layout.css?v=8"><link rel="stylesheet" href="../../assets/css/components.css?v=8"><link rel="stylesheet" href="../../assets/css/chat.css?v=8"><link rel="stylesheet" href="../../assets/css/print.css?v=8">
+<style>body .katex,body .katex *,body .katex-display,body .katex-display *{font-size:1em!important;line-height:1.25!important}body .katex sup,body .katex sub{font-size:.75em!important}body .katex-display{display:block!important;margin:.5em 0!important;padding:0!important;text-align:center!important}h1 .katex,h2 .katex,h3 .katex{font-size:.85em!important}.eq{display:flex!important;align-items:center!important;gap:1rem!important;font-size:1rem!important}</style>
 </head><body>
+
 <div class="app">
-<header class="topbar"><button class="nav-toggle" data-nav-toggle>☰</button><a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span></span></a><div class="search"><input type="search" placeholder="搜索 / Search…" data-search-input><div class="search-results"></div></div><div class="topbar-tools"><button class="lang-toggle" data-lang-toggle><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button><div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div></div></header>
+
+<header class="topbar">
+<button class="nav-toggle" data-nav-toggle aria-label="Menu">☰</button>
+<a class="brand" href="../../index.html"><span class="mark">A</span><span><span lang="zh">从会计到投资</span><span lang="en">A‑Share Tutor</span><small class="sub">first-principles</small></span></a>
+<div class="search"><input type="search" placeholder="搜索术语 / Search…" data-search-input aria-label="Search"><div class="search-results"></div></div>
+<div class="topbar-tools">
+<button class="lang-toggle" data-lang-toggle aria-label="Language toggle"><span data-lang-opt="zh" class="active">中</span> / <span data-lang-opt="en">EN</span></button>
+<div class="progress-pill"><div class="bar"><i data-progress-bar></i></div><span data-progress-label>0%</span></div>
+</div>
+</header>
+
 <aside class="nav"></aside>
+
 <main class="main"><article class="lesson">
 
-<div class="lesson-meta"><span class="crumb">A 股特化 · 04</span></div>
-<h1><span lang="zh">经典造假案例</span></h1>
-<p class="lesson-subtitle">A 股近 10 年 7 个标志性案例. 每个都揭示不同造假手法 + 早期可识别信号. 这是<em>避雷</em>训练的最佳素材.</p>
+<div class="lesson-meta">
+<span class="crumb">A 股特化 · 04</span>
+<span class="sep">·</span>
+<span><span lang="zh">22 分钟</span><span lang="en">22 min</span></span>
+<span class="sep">·</span>
+<span><span lang="zh">前置: M3 Ch.08 五盏红绿灯</span><span lang="en">Prereq: M3 Ch.08</span></span>
+<span class="sep">·</span>
+<span><span lang="zh">后续: Ch.05 看门人</span><span lang="en">Next: Ch.05 Gatekeepers</span></span>
+</div>
 
-<h2><span lang="zh">① 康美药业 600518 (2018 暴雷, 2021 退市)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 货币资金虚增 (300 亿"不见了"), 应收账款虚增, 关联方资金占用 (88 亿)</li>
-<li><strong>规模</strong>: 累计虚增营收 ~291 亿 (2016-2018)</li>
-<li><strong>早期信号</strong>: 2017 年报审计师"无法表示意见" + Beneish M-Score ~-1.5 (远高于 -2.22 阈值) + OCF/NI 长期 &lt; 0.5</li>
-<li><strong>处罚</strong>: CSRC 罚款 + 大股东 / 高管刑责; 中天运会计师事务所被罚, 部分签字注册会计师终身禁入; <em>集体诉讼</em>判赔投资者 24.59 亿 (A 股第一例)</li>
-<li><strong>教训</strong>: 非标审计意见是<em>立即停止持仓</em>的最强信号</li>
+<h1>
+<span lang="zh">财务造假经典案例与识别</span>
+<span lang="en">Fraud Cases &amp; Detection Playbook</span>
+</h1>
+
+<p class="lesson-subtitle">
+<span lang="zh">老王在 M3 Ch.08 学过"五盏红绿灯", 但那只是<em>形状</em>; 真要把直觉刻进肌肉, 必须坐下来把 A 股近十年最轰动的 5 起造假逐一翻一遍, 每起都对应一个不同的<em>识别角度</em> — 银行函证、利息倒推、做空报告、现金 vs 利润背离、提前确认。M3 Ch.08 已经用康得新/康美的<em>五盏灯</em>视角讨论过, 本章换<em>取证手法</em>视角, 让你知道"造假是用什么动作造的, 该用什么动作拆"。</span>
+<span lang="en">M3 Ch.08 introduced the five traffic lights, but lights only give the <em>shape</em> of fraud. To wire the intuition into muscle memory, sit down with A‑share's five most explosive fraud cases of the past decade — each case spotlighting a different <em>detection angle</em>: bank confirmations, interest-income inversion, short-seller forensics, cash-NI divergence, premature recognition. M3 Ch.08 covered Kangde Xin / Kangmei from the five-lights angle; this chapter shifts to the <em>forensic-procedure</em> angle — knowing what action the fraud took, and what action takes it apart.</span>
+</p>
+
+<section class="objectives">
+<span class="section-label" lang="zh">学习目标</span>
+<span class="section-label" lang="en">Objectives</span>
+<ul>
+<li lang="zh">能说出 4 大造假手段 (虚增收入 / 低估成本 / 隐藏负债 / 提前-递延确认) 各自的会计入口与典型案例。</li>
+<li lang="zh">能复现 Beneish M-score 8 变量实战流程, 把康美式"利息收入倒推"作为单变量过滤器使用。</li>
+<li lang="zh">能识别浑水/香橼/Citron 等做空报告的核心方法 (实地调研 + 内部数据反算)。</li>
+<li lang="zh">能在阅读年报附注时 30 分钟内判断"现金 vs 利润背离"是否构成系统性预警。</li>
+<li lang="en">Name the four fraud archetypes (revenue inflation / cost under-recognition / liability hiding / early-deferred recognition) with their accounting entry points and case anchors.</li>
+<li lang="en">Reproduce the Beneish 8-variable M-score pipeline and use Kangmei-style interest-income inversion as a single-variable filter.</li>
+<li lang="en">Recognize the methodology of Muddy Waters / Citron-style shorts (field work + within-filing reconciliation).</li>
+<li lang="en">Decide in under 30 minutes whether the cash-NI divergence in any footnote constitutes a systemic warning.</li>
 </ul>
+</section>
 
-<h2><span lang="zh">② 康得新 002450 (2019 暴雷)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 122 亿货币资金"实际不可使用"(被大股东挪用), 系统性虚增利润</li>
-<li><strong>规模</strong>: 累计虚增利润 ~119 亿 (2015-2018)</li>
-<li><strong>早期信号</strong>: Altman Z-Score ~1.0 (深度困境区) + 大股东高比例股权质押 + 关联方频繁交易</li>
-<li><strong>教训</strong>: 货币资金真实性需通过"银行函证 + 受限资金披露 + 利息收入合理性"三重验证, 不能只看账面数</li>
+<!-- ================================================================ -->
+<!-- Layer 1 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 1</span> · <span lang="zh">直觉</span><span lang="en">Intuition</span><span class="en" lang="zh"> · 老王复盘 5 起 A 股造假, 每起换一个识别角度</span><span class="en" lang="en"> · Wang re-traces five A‑share frauds, each through a different detection lens</span></h2>
+
+<p lang="zh">老王退休后在家里挂了一块白板, 上面写着五个名字: 康得新、康美、瑞幸、辉山、华锐。他每晚泡一壶茶, 把这五份年报和退市公告挨个翻一遍, 不是为了"听故事", 是为了把每一笔造假动作还原成"如果当时是我, 我能不能从报表里看出来"。每一个案子他只问<em>一个</em>问题, 因为每个案子都对应一种典型的<em>取证手法</em>。今晚的茶, 喝了五种味道。</p>
+<p lang="en">After retiring, Old Wang put a whiteboard on his wall with five names: Kangde Xin, Kangmei, Luckin, Huishan, Sinovel. Every evening, with a pot of tea, he goes through these five annual reports and delisting notices one by one — not to hear the stories but to replay each manipulation as: "If I were on the other side of this filing, could I have caught it?" One question per case, because each case anchors a different <em>forensic procedure</em>. Tonight's tea has five flavours.</p>
+
+<p lang="zh"><strong>1. 康得新 002450 — 122 亿"现金"对应不上 → 银行存款核对漏洞.</strong> 老王翻 2018 年中报: 货币资金 154 亿。看着这个数他先问一个最朴素的问题 — "<em>这 154 亿到底在哪些银行的哪些账户上?</em>" 附注列了北京银行账户、招商银行账户、农业银行账户……乍看没问题。但康得新和北京银行西单支行签了一份"<em>现金管理协议</em>" — 上市公司的钱"<em>归集</em>"到控股股东康得集团那边的母账户。形式上钱仍在上市公司账户名下、银行函证回函也显示"账上有钱", 但<em>支配权</em>已经被划走 — 控股股东说取就取, 上市公司却动不了。审计师那一年寄了银行函证, 银行回函显示余额无误, 于是审计意见<em>无保留</em>。<strong>识别准则</strong>: 看年报附注的"<em>受限货币资金</em>"披露; 同时去年报附注里找"<em>关联方资金归集 / 现金管理协议</em>"字眼 — 这是 2018 年前 A 股造假最隐蔽的入口。如果当时你看到 "现金管理协议" 四个字, 能识别出来吗? 大多数散户不会. 老王第一次读 2017 年报时也没看出来 — 他这次是回头读, 才发现这条线索<em>就明明白白写在附注里</em>。</p>
+<p lang="en"><strong>1. Kangde Xin 002450 — ¥12.2bn of "cash" that doesn't reconcile → the bank-confirmation hole.</strong> Wang opens the 2018 interim: cash &amp; equivalents ¥15.4bn. He starts with the bluntest question — "<em>which bank, which accounts, exactly?</em>" The footnote lists Bank of Beijing accounts, China Merchants Bank accounts, ABC accounts… nothing jumps. But Kangde Xin signed a "<em>cash-management agreement</em>" with the Bank of Beijing Xidan branch — the listco's funds were <em>swept</em> into a master account held by parent Kangde Group. Nominally the money still sat in the listco's name; the auditor's bank confirmation duly showed the balance; the auditor issued an unqualified opinion. But <em>control</em> had been transferred — the parent could draw at will; the listco could not. <strong>Detection rule:</strong> always read the "restricted cash" disclosure; then grep the footnotes for "related-party fund sweep" or "cash-management agreement." Pre-2018, this was the most-hidden A‑share fraud entry point. If you had seen those eight characters back then, would you have flagged it? Most retail wouldn't. Wang didn't on first read either — only on this replay did he see the clue <em>was plainly there</em> in the footnotes.</p>
+
+<p lang="zh"><strong>2. 康美药业 600518 — 300 亿现金虚增 + 利息倒推算法不一致 → 用报表自己揭报表的丑.</strong> 老王翻康美 2017 年报: 货币资金 341 亿, 利息收入 4.7 亿。他拿铅笔在纸上写了一道小学算术: 4.7 / 341 ≈ 1.4%。然后他翻自己家里的工行存款回单 — 三个月定期 2.6%, 一年期 3%。他停了一下: "<em>就算全是活期 (0.3-0.5%), 一家公司也至少会买点通知存款或短期理财, 加权 1.5-2% 是底线。1.4% 这个数, 要么是公司把现金都搁着不打理 (不可能, 没有 CFO 这么不爱钱), 要么是<strong>账上没那么多钱</strong>.</em>" 倒推一下: 利息收入 4.7 / 合理收益率 2% ≈ 真实货币资金 235 亿, 比披露的 341 亿少 100+ 亿。后续证监会查实, 实际虚增货币资金 887 亿, 单 2017 年末就有 300 亿造假, 比老王倒推的还多。这是 A 股造假识别的<em>最经济算法</em> — <strong>识别准则</strong>: 任何公司年报, 用"利息收入 / 货币资金"算一下加权收益率, 低于 1.5% 就深度怀疑。如果当时你看到了 1.4% 这个数, 能识别出来吗? 用一行小学算术就够了, 但前提是<em>知道要算它</em>. 老王后来给所有他研究的公司都加了这一列. </p>
+<p lang="en"><strong>2. Kangmei 600518 — ¥30bn cash inflation + interest-income inversion → use the filing to indict itself.</strong> Wang opens Kangmei 2017: cash ¥34.1bn, interest income ¥0.47bn. Pencil arithmetic: 0.47 / 34.1 ≈ 1.4%. He pulls his own ICBC deposit slip — 3-month term 2.6%, 1-year 3%. Pause: "<em>Even if every yuan sat in a no-interest current account (0.3–0.5%), any CFO would route part of ¥34bn into notice deposits or short-term wealth products; a blended rate of 1.5–2% is the floor. 1.4% means either this CFO doesn't care about money (impossible) or <strong>the cash isn't really there</strong>.</em>" Inversion: 0.47 / 2% ≈ ¥23.5bn implied true cash, ¥10bn short of the booked ¥34.1bn. The CSRC's later finding: cumulative cash inflation ¥88.7bn; 2017 single-year ¥30bn — even worse than Wang's back-of-envelope. <strong>Detection rule:</strong> for every A‑share annual you read, compute interest-income / cash; below 1.5%, suspect. If you'd seen 1.4% back then, would you have caught it? It's one line of grade-school arithmetic — provided you <em>know to run it</em>. Wang now adds this column to every name he studies.</p>
+
+<p lang="zh"><strong>3. 瑞幸咖啡 LKNCY (中概 ADR) — 杠杆做空报告 (浑水) 揭露虚增订单 → 实地调研 + 数据反算双引擎.</strong> 2020 年 1 月 31 日, 浑水 (Muddy Waters) 发布一份匿名做空报告, 89 页, 引用了 11,260 小时门店监控视频 + 25,843 张交易小票, 算出瑞幸 2019 年 Q3 单店日均订单 ~263 单, 但财报披露 ~444 单 — <em>虚增 69%</em>。报告还交叉验证: 第三方支付通道数据 (支付宝小程序订单) 比公司披露的低 50%。瑞幸最初否认, 4 月 2 日自查公告承认虚增 22 亿元 (3.1 亿美元) 销售, 股价单日跌 75%, 6 月 SEC 摘牌。老王问: 浑水这份报告, 一个散户能复刻吗? 大头不能 (1.1 万小时监控录像 + 25,843 张小票, 单人是雇 1500 人月才有的工作量), 但<em>方法论</em>可以学: 报表内部数据如果和外部公开数据 (支付平台、税收、行业统计) 对不上, 是<em>最强信号</em>。<strong>识别准则</strong>: 把财报的"单位经济"(per-store, per-customer, per-unit) 拿出来对比同行 + 用外部数据 (商场客流、外卖平台、社交媒体讨论度) 交叉验证。如果当时你看到 2019 年瑞幸披露的单店订单 444 单远超星巴克成熟门店的 200 单, 能怀疑吗? 反过来想想: 一家从 0 开到 4500 家店、营销靠 18 元优惠券的新公司, 单店日均比星巴克成熟门店多一倍 — 这本身就是<em>反逻辑</em>的, 不需要 11000 小时监控录像。</p>
+<p lang="en"><strong>3. Luckin Coffee LKNCY (China-concept ADR) — short-seller report by Muddy Waters exposes inflated orders → field work + data inversion, twin engines.</strong> Jan 31 2020, Muddy Waters published an anonymous 89-page short, citing 11,260 hours of in-store CCTV + 25,843 sales receipts collected by ~1,500 part-time field workers, computing 2019 Q3 average daily orders per store ≈ 263 vs the company's disclosed ≈ 444 — a 69% inflation. Cross-check: third-party payment channel data (Alipay mini-program orders) ran ~50% below disclosure. Luckin denied, then on Apr 2 self-disclosed ¥2.2bn (~$310m) fabricated sales; the stock fell 75% in one day; SEC delisted in June. Wang asks: can a retail investor reproduce a Muddy Waters report? Mostly not (11k hours of CCTV + 25,843 receipts ≈ 1,500 person-months). But the <em>methodology</em> is teachable: when filed unit economics diverge from public outside data (payment platforms, tax, industry stats), it is the <em>strongest possible signal</em>. <strong>Detection rule:</strong> pull per-store / per-customer / per-unit metrics out of the filing and cross-check against peer benchmarks and outside data (mall foot traffic, delivery platforms, social-media chatter). If in 2019 you'd seen Luckin's 444 daily orders per store vs Starbucks-mature-store 200, would you have suspected? Reverse: a 0-to-4500-store newcomer running on ¥18 coupon promos out-orders mature Starbucks 2-to-1 — that is itself <em>counter-logical</em>; you don't need 11,000 hours of CCTV.</p>
+
+<p lang="zh"><strong>4. 辉山乳业 6863.HK (港股) — 现金流连续多年负, 净利润持续正 → 经营现金 vs 净利 长期背离.</strong> 辉山是东北最大的奶牛养殖 + 乳制品公司, 2013 年港交所上市。老王翻它 2013-2016 四年财报: 净利润累计 +63 亿港币, 看着不错; 但同期经营现金流累计 −12 亿港币。<strong>赚的"利润"和经营现金流方向相反, 持续四年</strong>。这种结构在 M3 Ch.08 的 Sloan accruals anomaly 里就是"<em>极高应计</em>" — 报表利润几乎全是应计, 没有现金支撑。2016 年 12 月浑水又出手, 发布做空报告指控辉山虚报奶牛存栏数 (实际比披露低 30%+), 加之大股东 70% 股权质押。2017 年 3 月 24 日股价 90 分钟内闪崩 85% (从 2.81 港币跌到 0.42), 当日停牌至今。<strong>识别准则</strong>: <em>3 年滚动累计 OCF / 3 年滚动累计 NI</em> 是核心比率。如果连续 3 年 OCF / NI &lt; 0.5, 即使每年看都"还行", 滚动一看就是结构性虚假。如果当时你算了这个滚动比率, 能识别出来吗? 这是<em>单变量 + 三年时间窗</em>的最简检验, 计算量比 Beneish M-score 还小. 老王说他<em>每只长期持仓</em>都要做这个三年滚动检验.</p>
+<p lang="en"><strong>4. Huishan Dairy 6863.HK — operating cash flow negative for years, net income positive throughout → multi-year cash-NI divergence.</strong> Huishan was the largest cow-dairy producer in northeast China, HK-listed in 2013. Wang lays out 2013–16: cumulative NI +HK$6.3bn — pretty; cumulative OCF −HK$1.2bn. <strong>Earnings and operating cash flow moved in opposite directions for four straight years.</strong> Under M3 Ch.08's Sloan accruals anomaly, this is "extreme accruals" — earnings without cash. Dec 2016, Muddy Waters struck again, alleging Huishan overstated dairy-cow inventory by 30%+ and noting 70% promoter share pledges. Mar 24 2017 the stock crashed 85% in 90 minutes (HK$2.81 → HK$0.42), trading halted ever since. <strong>Detection rule:</strong> the core ratio is <em>3-year cumulative OCF / 3-year cumulative NI</em>. If &lt; 0.5 over a rolling 3-year window, even if each annual reading looks "fine," the rolling read flags structural fakery. If you'd computed this rolling ratio back then, would you have caught it? It's the simplest possible single-variable, three-year-window test — less arithmetic than the Beneish M-score. Wang says he runs this rolling check on <em>every long-term holding</em>.</p>
+
+<p lang="zh"><strong>5. 华锐风电 601558 — 提前确认发货 (主管事后承认) → 收入确认时点造假.</strong> 华锐风电 2011 年 1 月上市, 发行价 90 元, 是 A 股当时最贵 IPO 之一。2012 年报披露净利润 −5.8 亿, 比 2011 年的 +7.7 亿急剧反转。2013 年 5 月公司发公告承认: 2011 年报<em>虚增收入 24.3 亿</em>, 净利润少 1.7 亿(把 2011 NI 从 7.7 调到 6.0)。手法很简单: 销售部门把发往海外港口的风机, 即使<em>没有完成安装、客户没有验收</em>, 也在 2011 年 12 月份就确认了收入。M1 Ch.05 收入确认五步法里, 第四步"<em>履约义务被满足</em>"是关键 — 风机要等客户在工地组装、调试、并网发电后才算履约。华锐的销售把"<em>发货上船</em>"等同于"<em>履约完成</em>", 提前 6-12 个月确认了收入。2013 年自查暴露后, 时任董事长韩俊良 2017 年因违规披露被判 11 个月有期徒刑。<strong>识别准则</strong>: 看年报"<em>合同负债 vs 应收账款</em>"的比例与同行业对比。重大工程类公司 (风机、核电设备、船舶) 客户通常是"分阶段付款", 应收占比偏高且账龄长是正常; 但如果<em>应收账款占营收比 突然升高</em> + <em>合同负债占营收比 突然下降</em>, 是提前确认的典型信号。如果当时你看到华锐 2011 年应收占收入比从 2010 年的 32% 跳到 49%, 能怀疑吗? 老王自己当年就是没看附注的应收账龄结构, 后悔了好几年。</p>
+<p lang="en"><strong>5. Sinovel Wind 601558 — premature recognition on shipped-but-uninstalled turbines (admitted post-hoc by management) → timing-of-recognition fraud.</strong> Sinovel IPO'd in Jan 2011 at ¥90, one of the priciest A‑share IPOs of that era. 2012 NI swung to −¥580m from +¥770m the year before. May 2013 the company self-disclosed: 2011 revenue inflated ¥2.43bn, NI ¥170m (restated 2011 NI from ¥770m to ¥600m). Mechanism: sales recognized revenue on overseas-port-shipped turbines that had <em>not been installed nor accepted by customers</em>. Under M1 Ch.05 (5-step revenue recognition), step 4 — "performance obligation satisfied" — is the gate; for a wind turbine, satisfaction is customer-site assembly + commissioning + grid-connection, not ship-out. Sinovel sales equated "loaded onto vessel" with "obligation satisfied," accelerating recognition by 6–12 months. CEO Han Junliang was sentenced to 11 months for misdisclosure in 2017. <strong>Detection rule:</strong> for any heavy-equipment / EPC firm (turbines, nuclear, shipbuilding), watch <em>AR/Revenue</em> and <em>Contract Liability/Revenue</em> against peers. AR-heavy is normal (staged-payment customers), but a sudden <em>spike in AR/Rev</em> combined with a <em>drop in CL/Rev</em> is the classic early-recognition signature. If you'd seen Sinovel's AR/Rev jump from 32% (2010) to 49% (2011), would you have suspected? Wang missed this exact ratio at the time — by his own admission, "I just didn't read the aging schedule, and I regretted it for years."</p>
+
+<figure class="figure">
+<svg viewBox="0 0 720 260" role="img" aria-label="Five fraud cases, five detection angles">
+<defs><linearGradient id="fg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#EFE8D8"/><stop offset="1" stop-color="#E6DCC4"/></linearGradient></defs>
+<style>
+.fb{fill:url(#fg);stroke:#1A1814;stroke-width:1.2}
+.ft{font-family:'Noto Serif SC','Cormorant Garamond',serif;font-size:11px;fill:#1A1814}
+.fh{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;fill:#1A1814}
+.fg-i{font-family:'Noto Serif SC',serif;font-style:italic;font-size:10px;fill:#8A8378}
+.red{fill:#8B2C2C}
+</style>
+<text class="fh" x="360" y="22" text-anchor="middle">五案五角度 · Five cases, five lenses</text>
+<rect class="fb" x="10" y="50" width="135" height="190" rx="3"/>
+<text class="fh" x="77" y="78" text-anchor="middle">康得新</text>
+<text class="ft" x="77" y="100" text-anchor="middle">122 亿"现金"</text>
+<text class="ft" x="77" y="118" text-anchor="middle">关联方挪用</text>
+<text class="red" x="77" y="148" text-anchor="middle" font-size="22" font-family="'Cormorant Garamond',serif">①</text>
+<text class="fg-i" x="77" y="180" text-anchor="middle">银行函证</text>
+<text class="fg-i" x="77" y="195" text-anchor="middle">"控制权"漏洞</text>
+<text class="fg-i" x="77" y="220" text-anchor="middle">bank confirm</text>
+<rect class="fb" x="155" y="50" width="135" height="190" rx="3"/>
+<text class="fh" x="222" y="78" text-anchor="middle">康美药业</text>
+<text class="ft" x="222" y="100" text-anchor="middle">300 亿现金</text>
+<text class="ft" x="222" y="118" text-anchor="middle">虚增</text>
+<text class="red" x="222" y="148" text-anchor="middle" font-size="22" font-family="'Cormorant Garamond',serif">②</text>
+<text class="fg-i" x="222" y="180" text-anchor="middle">利息收入</text>
+<text class="fg-i" x="222" y="195" text-anchor="middle">倒推算</text>
+<text class="fg-i" x="222" y="220" text-anchor="middle">int. inversion</text>
+<rect class="fb" x="300" y="50" width="135" height="190" rx="3"/>
+<text class="fh" x="367" y="78" text-anchor="middle">瑞幸咖啡</text>
+<text class="ft" x="367" y="100" text-anchor="middle">22 亿订单</text>
+<text class="ft" x="367" y="118" text-anchor="middle">虚增 (浑水揭)</text>
+<text class="red" x="367" y="148" text-anchor="middle" font-size="22" font-family="'Cormorant Garamond',serif">③</text>
+<text class="fg-i" x="367" y="180" text-anchor="middle">单位经济</text>
+<text class="fg-i" x="367" y="195" text-anchor="middle">+ 实地数据</text>
+<text class="fg-i" x="367" y="220" text-anchor="middle">unit econ</text>
+<rect class="fb" x="445" y="50" width="135" height="190" rx="3"/>
+<text class="fh" x="512" y="78" text-anchor="middle">辉山乳业</text>
+<text class="ft" x="512" y="100" text-anchor="middle">4 年 NI +63</text>
+<text class="ft" x="512" y="118" text-anchor="middle">OCF −12</text>
+<text class="red" x="512" y="148" text-anchor="middle" font-size="22" font-family="'Cormorant Garamond',serif">④</text>
+<text class="fg-i" x="512" y="180" text-anchor="middle">3 年滚动</text>
+<text class="fg-i" x="512" y="195" text-anchor="middle">OCF/NI</text>
+<text class="fg-i" x="512" y="220" text-anchor="middle">3y rolling</text>
+<rect class="fb" x="590" y="50" width="120" height="190" rx="3"/>
+<text class="fh" x="650" y="78" text-anchor="middle">华锐风电</text>
+<text class="ft" x="650" y="100" text-anchor="middle">24 亿收入</text>
+<text class="ft" x="650" y="118" text-anchor="middle">提前确认</text>
+<text class="red" x="650" y="148" text-anchor="middle" font-size="22" font-family="'Cormorant Garamond',serif">⑤</text>
+<text class="fg-i" x="650" y="180" text-anchor="middle">AR/Rev 跳升</text>
+<text class="fg-i" x="650" y="195" text-anchor="middle">CL/Rev 跌</text>
+<text class="fg-i" x="650" y="220" text-anchor="middle">timing test</text>
+</svg>
+<figcaption><span lang="zh">五案五角度 — 一个共同点: 每一种造假手段都<em>在年报里留下证据</em>, 关键看你读不读, 算不算。</span><span lang="en">Five cases, five lenses — one common thread: every fraud leaves an evidentiary footprint <em>in the very filing it's hidden in</em>. The question is whether you read, and whether you compute.</span></figcaption>
+</figure>
+
+<p lang="zh"><strong>傍晚总结.</strong> 老王看着白板上的五个名字, 喝完最后一口茶。他说: 这五起案子, 没有一起需要内幕信息才能识别 — <em>所有线索都明明白白写在公开年报里</em>。康得新的"现金管理协议"是附注里的一句话; 康美的"利息收入 / 货币资金"是小学算术; 瑞幸的"单店日均订单 444 单"是公司自己披露的; 辉山的"3 年累计 OCF / NI" 用计算器 20 秒; 华锐的"应收占收入比从 32 跳到 49" 是同一张表上下两行的差。<strong>问题不是信息不公开, 是大多数投资者不知道<em>该读哪一行、该算哪个比</em></strong>. Layer 2 接下来把这五种"取证手法"形式化, 还会引入 Beneish M-score 8 变量的完整流程; Layer 3 用康美、辉山、瑞幸三个案例展开完整数据 + 同行对比, 让你看到"识别"在数据上长什么样。</p>
+<p lang="en"><strong>Wrap-up.</strong> Wang looks at the five names on the board, finishes his tea. The point: none of these five cases required insider information — <em>every clue sat openly in the public annual report</em>. Kangde Xin's "cash-management agreement" is a sentence in the footnote; Kangmei's interest-income-over-cash ratio is grade-school division; Luckin's "444 daily orders per store" is the company's own disclosure; Huishan's 3-year cumulative OCF/NI is 20 seconds on a calculator; Sinovel's AR/Revenue spike (32 → 49) is two rows of the same table. <strong>The problem isn't disclosure; it's that most investors don't know <em>which row to read and which ratio to compute</em>.</strong> Layer 2 formalises these five forensic procedures and the full Beneish 8-variable pipeline; Layer 3 lays out Kangmei, Huishan, and Luckin with full data + peer comparisons so you can see "detection" in numbers.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 2 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 2</span> · <span lang="zh">定义与公式</span><span lang="en">Definitions &amp; Formulas</span></h2>
+
+<p lang="zh">Layer 1 用老王的五个故事把"造假怎么造、用什么取证拆"过了一遍。Layer 2 把这套散落的取证手法分类、形式化, 并对接到学术文献 — 让"识别"从手艺变成<em>流程</em>。</p>
+<p lang="en">Layer 1 told five stories of fraud committed and detected. Layer 2 classifies the manipulation surface, formalises each detection procedure, and ties everything to the literature — turning "spotting" from craft into pipeline.</p>
+
+<h3 lang="zh">财务造假的 4 大手段分类</h3>
+<h3 lang="en">The four manipulation archetypes</h3>
+
+<p lang="zh">所有 A 股造假案, 不论复杂程度, 都可以归到 4 个会计入口之一 (这是 Schilit "Financial Shenanigans" 教科书的经典分类, 我们略作 A 股本土化):</p>
+<p lang="en">Every A‑share fraud case, no matter how baroque, traces back to one of four accounting entry points (we adopt Schilit's <em>Financial Shenanigans</em> taxonomy with A‑share calibration):</p>
+
+<table>
+<thead><tr><th><span lang="zh">手段</span><span lang="en">Archetype</span></th><th><span lang="zh">会计入口</span><span lang="en">Accounting entry</span></th><th><span lang="zh">典型 A 股案</span><span lang="en">A‑share anchors</span></th><th><span lang="zh">主防御</span><span lang="en">Defense</span></th></tr></thead>
+<tbody>
+<tr><td><strong><span lang="zh">A · 虚增收入</span><span lang="en">A · Revenue inflation</span></strong></td><td><span lang="zh">主营业务收入科目 + 应收账款 + 合同负债</span><span lang="en">Revenue + AR + Contract liability</span></td><td><span lang="zh">康美 (291 亿收入虚增) · 瑞幸 (22 亿订单虚增) · 华锐 (24 亿提前确认)</span><span lang="en">Kangmei · Luckin · Sinovel</span></td><td><span lang="zh">AR/Rev, DSRI, 同行单位经济对比</span><span lang="en">AR/Rev, DSRI, peer unit economics</span></td></tr>
+<tr><td><strong><span lang="zh">B · 低估成本 / 费用</span><span lang="en">B · Cost under-recognition</span></strong></td><td><span lang="zh">主营成本、研发费用资本化、折旧政策</span><span lang="en">COGS, R&amp;D capitalization, depreciation policy</span></td><td><span lang="zh">獐子岛 (存货跌价不计) · M3 Ch.08 提到的折旧延长</span><span lang="en">Zhangzidao · depreciation-extension cases</span></td><td><span lang="zh">同行折旧年限对比, R&amp;D 资本化率跨年</span><span lang="en">Peer dep-life, cross-year R&amp;D cap ratio</span></td></tr>
+<tr><td><strong><span lang="zh">C · 隐藏负债 / 关联方占款</span><span lang="en">C · Hidden liabilities / related-party extraction</span></strong></td><td><span lang="zh">其他应收款、担保附注、关联方表</span><span lang="en">Other AR, guarantee notes, related-party schedule</span></td><td><span lang="zh">康得新 (122 亿现金被挪用) · 乐视 (50+ 亿预付款给关联方)</span><span lang="en">Kangde Xin · Leshi</span></td><td><span lang="zh">其他应收/E, 关联方往来披露, "受限货币资金"</span><span lang="en">Other AR/E, RP disclosure, restricted cash</span></td></tr>
+<tr><td><strong><span lang="zh">D · 提前 / 递延确认</span><span lang="en">D · Premature / deferred recognition</span></strong></td><td><span lang="zh">收入时点 + 在建工程 vs 固定资产转换 + 商誉减值时点</span><span lang="en">Revenue timing + CIP→PPE transfer + goodwill impairment timing</span></td><td><span lang="zh">华锐 (发货即确认) · 天神娱乐 (商誉减值集中 2018 "洗大澡")</span><span lang="en">Sinovel · Tianshen "big bath"</span></td><td><span lang="zh">CL/Rev 比, AR 账龄迁移, 商誉测试假设跨年比对</span><span lang="en">CL/Rev, AR aging shifts, multi-year impairment assumption check</span></td></tr>
+</tbody>
+</table>
+
+<p lang="zh">注意 A 与 C 是<em>双胞胎</em>: 虚增的"收入"通常对应虚增的"应收账款"; 隐藏的"现金支出 / 资金挪用"通常对应虚增的"货币资金 / 其他应收"。会计恒等式 $A = L + E$ 强迫造假者<em>在两个科目同时动</em>, 这是<em>所有</em>识别方法的根基。</p>
+<p lang="en">A and C are <em>twins</em>: inflated revenue normally pairs with inflated AR; hidden cash drains pair with inflated cash / other AR. The identity $A = L + E$ forces the fraudster to move <em>two accounts at once</em> — the root of every detection method.</p>
+
+<h3 lang="zh">Beneish M-score 实战流程 (8 变量)</h3>
+<h3 lang="en">Beneish M-score pipeline (8 variables)</h3>
+
+<p lang="zh">M3 Ch.08 已经给出 Beneish 公式; Layer 2 这里把每个变量在 A 股年报里<em>具体取数</em>的口径写清楚, 让公式落到可执行流程。</p>
+<p lang="en">M3 Ch.08 stated the Beneish formula; here we pin down each variable's <em>exact A‑share filing source</em> so the formula becomes an executable pipeline.</p>
+
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">Beneish M-score</span><span class="callout-label" lang="en">Beneish M-score</span>
+<div class="eq"><span>$$ M \;=\; -4.84 + 0.92\,\mathrm{DSRI} + 0.528\,\mathrm{GMI} + 0.404\,\mathrm{AQI} + 0.892\,\mathrm{SGI} + 0.115\,\mathrm{DEPI} - 0.172\,\mathrm{SGAI} + 4.679\,\mathrm{TATA} - 0.327\,\mathrm{LVGI} $$</span><span class="num">(4.1)</span></div>
+<p lang="zh">阈值: M &gt; −1.78 = "高造假可能" (2013 重估值)。把每个变量翻译到 A 股年报口径:</p>
+<p lang="en">Threshold: M &gt; −1.78 = "high manipulation probability" (Beneish-Lee-Nichols 2013 update). A‑share-filing sourcing for each variable:</p>
+
+<ul>
+<li><strong>DSRI</strong> <span lang="zh">= (应收账款<sub>t</sub> / 营业收入<sub>t</sub>) / (应收账款<sub>t−1</sub> / 营业收入<sub>t−1</sub>). 应收用合并报表"应收账款", <em>不含</em>合同资产、票据。</span><span lang="en">= (AR<sub>t</sub>/Rev<sub>t</sub>) / (AR<sub>t−1</sub>/Rev<sub>t−1</sub>). Use consolidated "Accounts Receivable" line; exclude contract assets and notes receivable.</span></li>
+<li><strong>GMI</strong> <span lang="zh">= 毛利率<sub>t−1</sub> / 毛利率<sub>t</sub>. 毛利率 = (营业收入 − 营业成本) / 营业收入.</span><span lang="en">= GM<sub>t−1</sub> / GM<sub>t</sub>. GM = (Rev − COGS) / Rev.</span></li>
+<li><strong>AQI</strong> <span lang="zh">= (1 − (流动资产 + 固定资产)/总资产)<sub>t</sub> / (同口径)<sub>t−1</sub>. 反映"非流动非 PPE 资产"比重变化 (商誉、长期股权投资、Level 3 资产堆积时此值偏高).</span><span lang="en">= (1 − (CA + PPE)/TA)<sub>t</sub> / same<sub>t−1</sub>. Captures buildup of non-current, non-PPE assets (goodwill, long-term equity, Level 3 holdings).</span></li>
+<li><strong>SGI</strong> <span lang="zh">= 营业收入<sub>t</sub> / 营业收入<sub>t−1</sub>. 单独的高增长不算造假, 但高增长 + 其它变量异常 = 强信号 (高增长往往是造假动机的代理).</span><span lang="en">= Rev<sub>t</sub>/Rev<sub>t−1</sub>. Growth alone isn't fraud, but growth combined with other red variables is — high growth is a manipulation incentive proxy.</span></li>
+<li><strong>DEPI</strong> <span lang="zh">= (折旧<sub>t−1</sub> / (折旧<sub>t−1</sub> + 固定资产原值<sub>t−1</sub>)) / (同口径<sub>t</sub>). DEPI &gt; 1 表示折旧率下降, 警惕年限延长.</span><span lang="en">= (Depr<sub>t−1</sub> / (Depr<sub>t−1</sub> + Gross PPE<sub>t−1</sub>)) / same<sub>t</sub>. DEPI &gt; 1 means depreciation rate dropped — watch for life-extension.</span></li>
+<li><strong>SGAI</strong> <span lang="zh">= (销管费<sub>t</sub> / 营收<sub>t</sub>) / (同口径<sub>t−1</sub>). 销管费率<em>非线性</em>上升提示费用化吃力 (经营效率恶化).</span><span lang="en">= (SG&amp;A<sub>t</sub>/Rev<sub>t</sub>) / same<sub>t−1</sub>. Non-linear rise = operating efficiency deterioration.</span></li>
+<li><strong>TATA</strong> <span lang="zh">= (净利润 − 经营现金流) / 总资产. <em>Sloan accruals anomaly 直接表达</em>. M3 Ch.08 OCF/NI 灯的另一种代数.</span><span lang="en">= (NI − CFO) / TA. The Sloan-anomaly variable written algebraically; algebraically equivalent to M3 Ch.08's OCF/NI light.</span></li>
+<li><strong>LVGI</strong> <span lang="zh">= (总负债<sub>t</sub>/总资产<sub>t</sub>) / (同口径<sub>t−1</sub>). 杠杆指数: 借更多债是造假压力下的常见副作用.</span><span lang="en">= (TL<sub>t</sub>/TA<sub>t</sub>) / same<sub>t−1</sub>. Leverage rises commonly accompany fraud-pressured firms.</span></li>
 </ul>
+<span class="cite">Beneish, M. D. (1999). "The Detection of Earnings Manipulation." <em>Financial Analysts Journal</em>, 55(5), 24–36. · Beneish, M. D., Lee, C., &amp; Nichols, D. (2013). "Earnings Manipulation and Expected Returns." <em>FAJ</em>, 69(2), 57–82. · Schilit, H. (2018). <em>Financial Shenanigans</em>, 4th ed.</span>
+</div>
 
-<h2><span lang="zh">③ 獐子岛 002069 (扇贝跑了)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 多次 (2014, 2017, 2019) 以"扇贝大量死亡 / 不知去向"为由计提巨额存货跌价</li>
-<li><strong>本质</strong>: 把存货作为利润蓄水池, 好年份不计提虚增利润, 差年份集中"洗大澡"</li>
-<li><strong>早期信号</strong>: Sloan 应计盈余比 2013-2014 飙升至 +15% (极端高)</li>
-<li><strong>教训</strong>: <em>异常</em>大额存货跌价反复出现 = 利润操纵, 不是真实经营波动</li>
-</ul>
+<p lang="zh"><strong>Beneish 实战 3 步流程</strong>: (1) 从年报取 9 张数 (8 个比率的分子分母, 包括上一年同口径); (2) 代入 (4.1); (3) M &gt; −1.78 即列入"深度调查池"。注意 M-score 是<em>筛选</em>而非<em>定罪</em>: 1999 原始样本对 74 家已知造假公司, 事前识别 ~76%。即漏掉 ~24%, 也会有 ~17% 的"清白"公司被误警。M-score 的价值在于<em>把研究池从 5,300 只缩到 ~500 只</em>, 在 500 只里再做深度尽职调查。</p>
+<p lang="en"><strong>3-step Beneish workflow:</strong> (1) pull 9 numbers from the filing (the 8 ratios' numerators/denominators plus prior-year comparatives); (2) plug into (4.1); (3) flag if M &gt; −1.78 for deep-dive. M-score is <em>screening</em>, not <em>conviction</em>: on Beneish 1999's 74-fraud sample, ~76% pre-event detection, leaving ~24% miss; ~17% false alarms. Value: shrink the research pool from 5,300 to ~500 names, then DD the 500.</p>
 
-<h2><span lang="zh">④ 乐视网 300104 (2020 退市)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 与贾跃亭"乐视生态"关联方循环交易, 上市公司大量预付款给关联方未交付服务, 累计 50+ 亿无息长期占用</li>
-<li><strong>早期信号</strong>: 关联方交易披露密集 + 巨额预付款 + 担保规模异常 (2014-2017 年报附注全部可识别)</li>
-<li><strong>教训</strong>: 附注关联方交易部分是<em>必读</em>, 单看主表会错过 90% 的信号</li>
-</ul>
+<h3 lang="zh">现金流签核 (Cash Conversion Score)</h3>
+<h3 lang="en">Cash Conversion Score</h3>
 
-<h2><span lang="zh">⑤ 瑞幸咖啡 (美股, 2020 自爆)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 虚增门店销量 + 虚假交易. 2019 年虚增收入 ~22 亿美元</li>
-<li><strong>暴雷过程</strong>: 浑水做空报告 (2020-01) → 自爆 (2020-04) → SEC 处罚 + 退市 → 后续在新加坡上市 (2022)</li>
-<li><strong>启示</strong>: 即使在美股严监管下也能造假; 浑水的<em>实地调研 + 数据分析</em>方法值得学习</li>
-</ul>
+<p lang="zh">M3 Ch.08 给出"OCF/NI" 灯 (5 年均值)。这里再加一道<em>3 年滚动累计</em>检验 (CCS), 它对辉山型"<em>OCF 长期负但 NI 持续正</em>"的结构最敏感:</p>
+<p lang="en">M3 Ch.08 used the 5-year average OCF/NI light. Here we add a <em>3-year cumulative</em> Cash Conversion Score (CCS), most sensitive to the Huishan-style "OCF chronically negative while NI persistently positive":</p>
 
-<h2><span lang="zh">⑥ 天神娱乐 002354 (2018 商誉雷)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 2014-2017 大量收购游戏公司 → 累计 65 亿商誉 → 2018 年单年减值 40 亿</li>
-<li><strong>早期信号</strong>: 商誉 / 净资产 持续 &gt; 50%; 被收购公司对赌结束后业绩塌方</li>
-<li><strong>教训</strong>: 高商誉公司必查附注的"减值测试关键假设" vs "被收购公司实际业绩"</li>
-</ul>
+<div class="callout callout--formula">
+<span class="callout-label" lang="zh">3 年累计现金转化</span><span class="callout-label" lang="en">3-year cumulative CCS</span>
+<div class="eq"><span>$$ \mathrm{CCS}_{3y} \;=\; \frac{\sum_{t=t_0-2}^{t_0}\mathrm{OCF}_t}{\sum_{t=t_0-2}^{t_0}\mathrm{NI}_t} $$</span><span class="num">(4.2)</span></div>
+<p lang="zh">阈值 CCS<sub>3y</sub> &lt; 0.5 直接进高警池。辉山 2013-2016 累计: OCF/NI ≈ −12/63 ≈ −0.19, 远小于 0.5 — <em>滚动看一目了然, 单年看反复有"勉强解释"</em>.</p>
+<p lang="en">Below 0.5 → high-alert pool. Huishan 2013–16 cumulative: OCF/NI ≈ −12/63 ≈ −0.19, far below 0.5 — the rolling view is unambiguous where the single-year view always has "but this year was special" excuses.</p>
+</div>
 
-<h2><span lang="zh">⑦ 华谊兄弟 300027 (2018-2019 持续亏损)</span></h2>
-<ul lang="zh">
-<li><strong>手法</strong>: 不是"造假", 但是"激进会计 + 商誉雷"的代表. 大量收购影视公司 (东阳美拉、东阳浩瀚等), 商誉持续减值, 净利持续亏损</li>
-<li><strong>教训</strong>: 文化影视行业商誉天然脆弱 (业绩高度依赖艺人 / IP / 政策), 不适合长期高商誉模式</li>
-</ul>
+<h3 lang="zh">关联方循环交易识别</h3>
+<h3 lang="en">Related-party round-tripping</h3>
 
-<h2><span lang="zh">通用预警信号 (避雷清单)</span></h2>
-<ol lang="zh">
-<li>审计师非标意见 (任何非"标准无保留"= 立刻停止持仓)</li>
-<li>Beneish M-Score &gt; -2.22</li>
-<li>Altman Z &lt; 1.81</li>
-<li>OCF/NI 持续 &lt; 0.5 (&gt; 2 年)</li>
-<li>三符号现金流 (-, +, +) — 经营恶化 + 变卖 + 借款</li>
-<li>商誉 / 净资产 &gt; 30%</li>
-<li>"其他应收款" / 总资产 &gt; 5% + 大股东占款</li>
-<li>大股东股权质押率 &gt; 60%</li>
-<li>交易所问询函密集 (年内 &gt; 3 份)</li>
-<li>关键管理人员密集变动 (一年内 CFO 多次变更)</li>
-<li>财报披露反复延期</li>
-<li>异常公允价值变动收益主导 NI</li>
+<p lang="zh">康得新、乐视、获取多个 A 股造假案的共同套路: 控股股东 ←→ 上市公司 之间设置看似独立的交易, 实质是<em>同一口袋里的钱倒来倒去</em>, 把现金搬到大股东账户, 把"收入"留在上市公司报表。识别要点:</p>
+<p lang="en">A common A‑share pattern (Kangde Xin, Leshi, dozens more): the listco and the controlling shareholder set up nominally independent transactions that are economically money-circulating-within-one-pocket — cash flows to the parent, "revenue" stays on the listco. Detection:</p>
+
+<ol>
+<li><span lang="zh"><strong>定向看附注 "关联方交易明细"</strong>: 销售给关联方 / 采购自关联方 / 提供劳务给关联方 / 担保给关联方 — 单笔大额或合计 &gt; 净资产 10% 都需深查.</span><span lang="en"><strong>Targeted read of "Related-Party Transactions" footnote:</strong> sales to, purchases from, services for, guarantees to a related party — any single large entry or aggregate &gt; 10% of equity demands deep-dive.</span></li>
+<li><span lang="zh"><strong>"其他应收款"明细</strong>: 关联方占款最常挂在"其他应收款", 因为它不参与营业利润计算, 容易藏匿. 看明细前 5 名是否包含关联方.</span><span lang="en"><strong>"Other receivables" breakdown:</strong> related-party fund extractions most often sit in Other Receivables (not flowing through operating profit, easy to hide). Check whether the top-5 entries include related parties.</span></li>
+<li><span lang="zh"><strong>"受限货币资金"披露</strong>: 抵押、冻结、保证金、对外担保保证金 — 都会显示资金"<em>账上在但用不了</em>". 受限比例 &gt; 30% 是强信号.</span><span lang="en"><strong>"Restricted cash" disclosure:</strong> pledged, frozen, collateral, guarantee-margin — cash "on the books but unusable." Restricted &gt; 30% of cash is a strong signal.</span></li>
+<li><span lang="zh"><strong>担保附注</strong>: 上市公司对关联方提供担保 — 即使没爆雷, 也是<em>或有负债</em>. 担保金额 / 净资产 &gt; 50% 是 A 股监管硬指标 (2020 证监会 36 号文).</span><span lang="en"><strong>Guarantees footnote:</strong> listco guarantees to related parties — contingent liability even if no default. Guarantee / equity &gt; 50% triggers a hard CSRC regulatory line (2020 Decision 36).</span></li>
 </ol>
 
-<p lang="zh"><strong>任一信号触发 = 立即深度调查; 多个信号 = 直接回避.</strong></p>
+<h3 lang="zh">浑水/香橼/Citron 做空报告方法论</h3>
+<h3 lang="en">Muddy Waters / Citron methodology</h3>
 
-<div class="lesson-foot"><button class="mark-done" data-mark-done>✓</button><nav class="chap-nav"><a href="03-china-specifics.html">← <span lang="zh">特色问题</span></a><a class="next" href="05-gatekeepers.html">Next →</a></nav></div>
+<p lang="zh">2010 年代海外做空机构对中概 + 港股 + A 股的影响是历史性的: 浑水 (Muddy Waters, 2010-) 揭东方纸业、嘉汉林业、辉山乳业、瑞幸; 香橼 (Citron, 2001-) 揭康美; 杠杆做空 (Hindenburg, 2017-) 揭恒大。他们的方法论可以拆成 4 部分, 与学术界 Beneish/Sloan 互补:</p>
+<p lang="en">2010s offshore shorts had outsized impact on China-concept + HK + A‑share: Muddy Waters (Orient Paper, Sino-Forest, Huishan, Luckin); Citron (Kangmei); Hindenburg (Evergrande). Their playbook factors into four parts, complementary to the Beneish/Sloan academic toolkit:</p>
 
-</article></main><aside class="toc"></aside></div>
-<button class="chat-fab">A?</button>
-<div class="chat-panel" role="dialog"><div class="chat-head"><div class="title">AI Tutor</div><button data-chat-close>✕</button></div><div class="chat-setup"><h4>API Key</h4><input type="password" data-key-input placeholder="sk-ant-..."><button class="save" data-key-save>Save</button></div><div class="chat-log"></div><div class="chat-input"><textarea rows="1"></textarea><button class="send">↑</button></div><div class="chat-footnote"><span class="reset" data-key-reset>clear</span></div></div>
+<table>
+<thead><tr><th><span lang="zh">支柱</span><span lang="en">Pillar</span></th><th><span lang="zh">方法</span><span lang="en">Method</span></th><th><span lang="zh">典型应用</span><span lang="en">Typical use</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">A · 实地调研</span><span lang="en">A · Field work</span></td><td><span lang="zh">雇人到现场计数 (门店客流、库存、工厂运转率)</span><span lang="en">Field workers count on-site (foot traffic, inventory, capacity utilization)</span></td><td><span lang="zh">瑞幸 11,260 小时 CCTV + 25,843 张小票</span><span lang="en">Luckin 11,260h CCTV + 25,843 receipts</span></td></tr>
+<tr><td><span lang="zh">B · 外部数据交叉</span><span lang="en">B · External cross-check</span></td><td><span lang="zh">从第三方平台 (支付、电商、海关、税务) 拿"独立观测"对比公司披露</span><span lang="en">Pull independent observations from third-party platforms (payment, e-commerce, customs, tax) vs disclosures</span></td><td><span lang="zh">瑞幸支付宝小程序订单 -50%; 嘉汉林业卫星图像树木存量</span><span lang="en">Luckin Alipay orders −50%; Sino-Forest satellite tree imagery</span></td></tr>
+<tr><td><span lang="zh">C · 报表内部反算</span><span lang="en">C · Within-filing reconciliation</span></td><td><span lang="zh">用同一份年报内部数据互相打架 (利息 vs 现金; 应收 vs 收入增速; 毛利率 vs 同行)</span><span lang="en">Use one filing's own data to indict itself (interest vs cash; AR vs revenue growth; GM vs peers)</span></td><td><span lang="zh">香橼: 康美利息/现金 = 1.4% 推测虚增</span><span lang="en">Citron: Kangmei interest/cash = 1.4% inferring inflation</span></td></tr>
+<tr><td><span lang="zh">D · 治理与利益冲突调查</span><span lang="en">D · Governance / conflict</span></td><td><span lang="zh">大股东股权质押率、关联方交易、董监高背景、审计师变更</span><span lang="en">Promoter pledge rate, related-party transactions, executive backgrounds, auditor changes</span></td><td><span lang="zh">辉山大股东 70% 股权质押 (浑水报告核心论点之一)</span><span lang="en">Huishan promoter 70% pledged (a core Muddy Waters point)</span></td></tr>
+</tbody>
+</table>
+
+<p lang="zh">这 4 个支柱对散户的可行性递减: A 完全无法 (人力成本); B 可部分模拟 (用 wind / 公开 API); C 完全可行 (一张电子表格); D 完全可行 (读公开公告)。<em>散户的真正武器是 C + D</em> — 即 Layer 1 老王做的事。</p>
+<p lang="en">Feasibility for retail decreases A → D: A impossible (cost); B partly feasible (Wind / public APIs); C fully feasible (a spreadsheet); D fully feasible (public filings). <em>The retail investor's real weapons are C + D</em> — exactly what Old Wang did in Layer 1.</p>
+
+<h3 lang="zh">国内监管: 证监会执法 + 刑事打击</h3>
+<h3 lang="en">Domestic enforcement: CSRC + criminal</h3>
+
+<p lang="zh">A 股监管对造假的执法力度在 2019 后系统性加强 — 这与 PCAOB (美国上市公司会计监管委员会) 和 SEC 的执法模式收敛:</p>
+<p lang="en">A‑share enforcement on fraud strengthened systematically post-2019, converging toward the PCAOB / SEC model:</p>
+
+<ul>
+<li><span lang="zh"><strong>证监会 [2020] 36 号</strong>: 上市公司资金占用、违规担保专项治理 — 直接回应康得新模式.</span><span lang="en"><strong>CSRC Decision [2020] 36:</strong> targeted enforcement of listco fund extraction and improper guarantees — direct response to the Kangde Xin pattern.</span></li>
+<li><span lang="zh"><strong>2020 新证券法</strong>: 信息披露违法罚款上限从 60 万提高到 1,000 万 (单位罚款); 个人责任 100 万 → 500 万. 集体诉讼 (representative action) 制度建立 — 康美案首例, 投资者获赔 24.59 亿.</span><span lang="en"><strong>2020 New Securities Law:</strong> max fine for disclosure violations raised from ¥0.6m to ¥10m (entity); individual ¥1m → ¥5m. Representative-action regime established — Kangmei was the first case, investors recovered ¥2.459bn.</span></li>
+<li><span lang="zh"><strong>刑法修正案十一 (2021)</strong>: 欺诈发行最高刑期从 5 年提高到 15 年; 违规披露最高从 3 年提高到 10 年.</span><span lang="en"><strong>Criminal Law Amendment XI (2021):</strong> max sentence for fraudulent issuance up from 5y to 15y; misdisclosure 3y to 10y.</span></li>
+<li><span lang="zh"><strong>退市新规 (2020, 2024)</strong>: "重大违法退市"机制激活 — 康得新、康美、辉山 (港股) 都已退市。2024 退市新规进一步收紧财务造假触发条件。</span><span lang="en"><strong>Delisting reforms (2020, 2024):</strong> "Material-violation delisting" activated — Kangde Xin, Kangmei, Huishan (HK) all delisted. 2024 amendments tightened triggers further.</span></li>
+</ul>
+<span class="cite">证监会 [2020] 36 号 · 证券法 (2020) · 刑法修正案十一 (2021) · 沪深交易所退市新规 (2024) · Dechow, P., Sloan, R., &amp; Sweeney, A. (1995). "Detecting Earnings Management." <em>The Accounting Review</em>, 70(2), 193–225. · Sloan, R. (1996). <em>TAR</em>.</span>
+
+<p lang="zh"><strong>识别 vs 起诉的差异</strong>: Layer 2 的所有工具都是<em>识别工具</em> — 用于决策"<em>要不要持仓</em>"。"起诉造假"是证监会的事, 需要更高证据标准。投资者的目标不是"判定<em>是否</em>造假", 而是"是否<em>足以怀疑造假</em>而退出"。前者需要 100% 证据, 后者只需要 60% 把握。<em>不对称损失</em>的逻辑 (M3 Ch.08 Q4 反复出现): 错过 −5%, 踩雷 −80%, 当然该把怀疑阈值压低。</p>
+<p lang="en"><strong>Detection vs prosecution:</strong> all Layer 2 tools are <em>detection</em> tools — for the "should I hold" decision. Prosecution is the CSRC's job, requiring a much higher bar. The investor's target isn't "is it fraud" (needs 100% evidence) but "is suspicion sufficient to exit" (needs ~60%). The asymmetric-loss logic (recurring in M3 Ch.08 Q4): missing −5%, hitting fraud −80% — lower the suspicion threshold accordingly.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Layer 3 -->
+<!-- ================================================================ -->
+<section class="layer">
+<h2><span class="layer-num">Layer 3</span> · <span lang="zh">A 股案例</span><span lang="en">A‑Share Cases</span></h2>
+
+<p lang="zh">Layer 1 用五个故事建立直觉, Layer 2 把识别手法形式化。Layer 3 把其中三个案例展开成完整数据 + 同行对比, 让你看到"识别"在真实数字上长什么样。M3 Ch.08 已经用"五盏灯"视角讨论过康得新、康美, 我们这里转换视角: 康美做"利息倒推" + 同行 ROE 横切; 辉山做"3 年滚动 CCS" + 5 年完整序列; 瑞幸做"浑水报告关键数据点" + 真实门店清查样本.</p>
+<p lang="en">Layer 1 built intuition through five stories; Layer 2 formalised the procedures. Layer 3 unfolds three of them with full data + peer benchmarks. M3 Ch.08 already covered Kangde Xin and Kangmei from the "five-lights" angle; here we shift angles: Kangmei via interest-income inversion + peer ROE cross-section; Huishan via the 3-year rolling CCS + 5-year full series; Luckin via the Muddy Waters key data points + the real store-audit sample.</p>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker">SH·600518</span>
+<span class="company"><span lang="zh">康美药业</span><span lang="en">Kangmei Pharma</span></span>
+<span class="period">2014-2018 · <span lang="zh">300 亿现金虚增 — 利息倒推 + 同行 ROE 横切</span><span lang="en">¥30bn cash inflation — interest inversion + peer ROE cross-section</span></span>
+<span class="delisted"><span lang="zh">[特别处理]</span><span lang="en">[Special treatment]</span></span>
+</div>
+
+<p lang="zh">康美 2017 年报披露货币资金 341 亿, 利息收入 4.7 亿 — Layer 1 已经做过 1.4% 倒推。这里把<em>5 年数据</em>串起来看, 让"造假规模 = 倒推现金 − 披露现金"这个差额怎么<em>逐年扩大</em>跃然纸上.</p>
+<p lang="en">Kangmei's 2017 cash ¥34.1bn, interest income ¥0.47bn — Layer 1 ran the 1.4% inversion. Here we lay out 5 years so the inflation = (implied cash − reported cash) gap grows year by year.</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">年份</span><span lang="en">Year</span></th><th class="num"><span lang="zh">披露 货币资金 (亿)</span><span lang="en">Reported cash (¥bn)</span></th><th class="num"><span lang="zh">利息收入 (亿)</span><span lang="en">Interest (¥bn)</span></th><th class="num"><span lang="zh">隐含收益率</span><span lang="en">Implied yield</span></th><th class="num"><span lang="zh">按 2% 倒推真实现金 (亿)</span><span lang="en">Implied cash @2% (¥bn)</span></th><th class="num"><span lang="zh">推测差额 (亿)</span><span lang="en">Inferred gap (¥bn)</span></th></tr></thead>
+<tbody>
+<tr><td>2014</td><td class="num">110</td><td class="num">2.4</td><td class="num">2.2%</td><td class="num">~120</td><td class="num">~0 ✓</td></tr>
+<tr><td>2015</td><td class="num">158</td><td class="num">3.0</td><td class="num">1.9%</td><td class="num">~150</td><td class="num">~8</td></tr>
+<tr><td>2016</td><td class="num">273</td><td class="num">3.9</td><td class="num">1.4%</td><td class="num">~195</td><td class="num">~78</td></tr>
+<tr><td>2017</td><td class="num">341</td><td class="num">4.7</td><td class="num">1.4%</td><td class="num">~235</td><td class="num">~106</td></tr>
+<tr><td>2018H1</td><td class="num">399</td><td class="num">2.3 (半年)</td><td class="num">1.2%</td><td class="num">~230</td><td class="num">~169</td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>读这张表</strong>: 2014 年还干净 (隐含收益率 2.2%, 合理); 2015 开始隐含收益率<em>跌破合理区间</em>; 2016-2017 隐含收益率稳定在 1.4%, 同时披露现金<em>翻一倍</em>; 2018H1 隐含收益率进一步跌到 1.2%。这种"<em>隐含收益率系统性下降 + 披露现金加速增长</em>"的组合, 是<em>反逻辑</em>的 — 一家公司钱多得理财水平反而下降, 不可能。证监会 2020 处罚书最终查实, 2016-2018 累计虚增货币资金 887 亿, 其中 2018H1 末 ~300 亿. 老王倒推的 ~169 亿是"按 2% 利率"的<em>保守估计</em>; 实际比这还多 (因为康美账上货币资金大部分是定期, 加权应该更高).</p>
+<p lang="en"><strong>Reading this:</strong> 2014 was clean (implied yield 2.2%, plausible). 2015 implied yield <em>fell out of the plausible range</em>. 2016–17 stuck at 1.4% while reported cash <em>doubled</em>. 2018H1 dropped further to 1.2%. The combination — <em>implied yield falling while reported cash accelerates</em> — is counter-logical: a firm with more cash should manage it <em>better</em>, not worse. CSRC's 2020 decision finally pinned cumulative cash inflation at ¥88.7bn (2016–18); ¥30bn alone at 2017 year-end. Wang's ¥16.9bn @ 2% is a <em>floor</em> estimate (true blended rate higher because term deposits dominate); actual was larger.</p>
+
+<p lang="zh"><strong>同行 ROE 横切 (2017)</strong>: 中药饮片是个传统行业, 老字号利润率与 ROE 都有上限。把康美和同行业上市公司放一起看:</p>
+<p lang="en"><strong>Peer ROE cross-section (2017):</strong> traditional Chinese medicine slicing is a mature industry with ROE ceilings. Place Kangmei next to its peers:</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">公司</span><span lang="en">Co.</span></th><th class="num"><span lang="zh">2017 ROE</span></th><th class="num"><span lang="zh">毛利率</span><span lang="en">GM</span></th><th class="num"><span lang="zh">OCF/NI</span></th><th><span lang="zh">备注</span><span lang="en">Note</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">康美药业 600518</span></td><td class="num">14.5%</td><td class="num">30.1%</td><td class="num"><strong>−0.32</strong></td><td><span lang="zh">远超同行 OCF/NI; 货币资金/总资产 41%</span><span lang="en">OCF/NI far worse than peers; cash/TA 41%</span></td></tr>
+<tr><td><span lang="zh">同仁堂 600085</span></td><td class="num">12.8%</td><td class="num">46.3%</td><td class="num">1.1</td><td><span lang="zh">老字号典型, 现金质量正常</span><span lang="en">Classic legacy brand, normal cash quality</span></td></tr>
+<tr><td><span lang="zh">白云山 600332</span></td><td class="num">10.6%</td><td class="num">26.4%</td><td class="num">1.3</td><td><span lang="zh">规模大现金生成稳定</span><span lang="en">Large scale, stable cash generation</span></td></tr>
+<tr><td><span lang="zh">片仔癀 600436</span></td><td class="num">22.1%</td><td class="num">42.5%</td><td class="num">1.0</td><td><span lang="zh">高 ROE 来自独家国家保密配方, 真实</span><span lang="en">High ROE from state-secret recipe, real</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>横切结论</strong>: 康美 ROE 14.5% 看似中规中矩, 但 OCF/NI −0.32 是<em>全行业断崖式异常</em>(同行平均 1.1-1.3)。即使不做 Beneish 也不做利息倒推, 单靠"<em>ROE 中规中矩 + OCF/NI 负值</em>"这一行就该出局。这就是老王说的"<em>用同行做对照, 一眼就看出来</em>"。如果当时你做了行业横切, 能识别出来吗? 取数 5 分钟, 横切对比 10 分钟, 一共 15 分钟 — 远低于"读完整份年报"的时间。<em>同行横切的杠杆比是 1:60</em> (15 分钟 vs 15 小时).</p>
+<p lang="en"><strong>Cross-section verdict:</strong> Kangmei's 14.5% ROE looks ordinary, but OCF/NI of −0.32 is a <em>cliff-edge anomaly</em> against industry averages (1.1–1.3). Skip Beneish, skip interest inversion — the single row "ordinary ROE + negative OCF/NI" already disqualifies. Wang's note: "<em>peer comparison spots it instantly</em>." If you'd run the peer cross-section back then, would you have caught it? Data pull 5 min, comparison 10 min — 15 min total, far below reading a full filing. <em>Peer cross-section has a 1:60 leverage ratio</em> (15 min vs 15 hours).</p>
+
+<a class="case-link" href="http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600518" target="_blank" rel="noopener"><span lang="zh">巨潮 cninfo: 600518 →</span><span lang="en">Cninfo 600518 →</span></a>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker">HK·6863</span>
+<span class="company"><span lang="zh">辉山乳业</span><span lang="en">Huishan Dairy (HK)</span></span>
+<span class="period">2012-2017 · <span lang="zh">FCF 与 NI 长期背离 5 年数据 + 90 分钟闪崩</span><span lang="en">FCF-NI divergence over 5 years + 90-min crash</span></span>
+<span class="delisted"><span lang="zh">[长期停牌]</span><span lang="en">[Suspended]</span></span>
+</div>
+
+<p lang="zh">辉山是港股案例, 我们仍纳入因为它<em>方法论上最适合 A 股投资者学习</em> — Sloan accruals anomaly 的<em>极端样本</em>, 用最简单的 3 年滚动 CCS 就能识别。</p>
+<p lang="en">Huishan is HK-listed but included here because its <em>methodology lesson best transfers to A‑shares</em> — an extreme Sloan-accruals sample, detectable with the simplest 3-year rolling CCS.</p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">财年</span><span lang="en">FY</span></th><th class="num"><span lang="zh">营收 (亿港币)</span><span lang="en">Rev (HK$bn)</span></th><th class="num"><span lang="zh">净利润 (亿)</span><span lang="en">NI (HK$bn)</span></th><th class="num"><span lang="zh">经营现金流 OCF (亿)</span><span lang="en">OCF (HK$bn)</span></th><th class="num"><span lang="zh">资本开支 CapEx (亿)</span><span lang="en">CapEx (HK$bn)</span></th><th class="num"><span lang="zh">自由现金流 FCF (亿)</span><span lang="en">FCF (HK$bn)</span></th><th class="num"><span lang="zh">单年 OCF/NI</span><span lang="en">OCF/NI</span></th></tr></thead>
+<tbody>
+<tr><td>FY2012</td><td class="num">26.5</td><td class="num">10.8</td><td class="num">+2.1</td><td class="num">−14.8</td><td class="num">−12.7</td><td class="num">0.19</td></tr>
+<tr><td>FY2013</td><td class="num">39.6</td><td class="num">15.8</td><td class="num">−1.6</td><td class="num">−14.6</td><td class="num">−16.2</td><td class="num"><strong>−0.10</strong></td></tr>
+<tr><td>FY2014</td><td class="num">46.8</td><td class="num">15.4</td><td class="num">−2.0</td><td class="num">−18.4</td><td class="num">−20.4</td><td class="num"><strong>−0.13</strong></td></tr>
+<tr><td>FY2015</td><td class="num">45.0</td><td class="num">15.0</td><td class="num">+0.4</td><td class="num">−10.5</td><td class="num">−10.1</td><td class="num">0.03</td></tr>
+<tr><td>FY2016</td><td class="num">52.1</td><td class="num">17.0</td><td class="num">−8.7</td><td class="num">−9.8</td><td class="num">−18.5</td><td class="num"><strong>−0.51</strong></td></tr>
+<tr><td><strong>FY2013-2016 累计</strong></td><td class="num">183.5</td><td class="num">63.2</td><td class="num"><strong>−11.9</strong></td><td class="num">−53.3</td><td class="num">−65.2</td><td class="num"><strong>−0.19</strong></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>读这张表</strong>: 单看每一年, "OCF/NI 负"是可以编故事的 — "我们重资本开支建牧场, 短期 OCF 自然紧张"。但<em>4 年累计</em> NI +63 亿、OCF −12 亿, 即使资本开支全归 CapEx 不算 OCF, OCF 也是负的, <em>不存在</em>"重投资期"这种解释。这是 Sloan accruals anomaly 教科书级样本 — 100% 应计、0% 现金。<strong>另一个角度</strong>: 看 NI 增长曲线 (10.8 → 15.8 → 15.4 → 15.0 → 17.0), 五年净利润复合增长 ~12%, 还算稳; 但 OCF 5 年内 4 年为负, 用脚指头都知道<em>这两条线对不上</em>。</p>
+<p lang="en"><strong>Reading:</strong> any single year, "OCF/NI negative" can be storied — "we're building dairies, short-run OCF is naturally tight." But over 4 years cumulative NI HK$6.3bn vs OCF −HK$1.2bn, even excluding CapEx, OCF stays negative — there's <em>no</em> "investment-phase" excuse left. This is the textbook extreme Sloan sample: 100% accrual, 0% cash. <strong>Second angle:</strong> NI growth (10.8 → 15.8 → 15.4 → 15.0 → 17.0) compounds ~12% per year, looks fine. OCF negative in 4 of 5 years — these two lines obviously don't match.</p>
+
+<p lang="zh"><strong>2017-03-24 闪崩</strong>: 浑水报告 (2016-12-16 发布) 指控 4 件事: (1) 虚报奶牛存栏 (披露 ~20 万头, 实际 ~12-14 万头); (2) 虚报苜蓿草进口量; (3) 大股东杨凯 70% 股权质押融资; (4) 多笔可疑资本支出资金去向不明。市场最初<em>不信</em>, 股价从 2.81 港币慢慢下行。2017-03-24 大股东资金链断裂触发<em>强制平仓</em>, 当日 10:30-12:00 90 分钟内股价从 2.81 跌到 0.42 (跌幅 −85%), 停牌至今。<strong>启示</strong>: Sloan 1996 的预测能力 + Muddy Waters 实地核查 + 市场延迟反应 — 三者叠加, 整整 4 年时间窗 (2013-2016 累计 CCS 已是 −0.19) 足够任何投资者退出。</p>
+<p lang="en"><strong>The Mar 24 2017 crash:</strong> the Muddy Waters report (Dec 16 2016) made 4 charges: (1) cow inventory overstated (~200k disclosed vs ~120–140k actual); (2) alfalfa import volumes overstated; (3) promoter Yang Kai 70% share-pledged; (4) suspicious capex with unexplained fund flows. Market initially <em>didn't believe</em>; stock drifted down from HK$2.81. On Mar 24 2017, the promoter's funding chain snapped, triggering forced liquidation: in 90 minutes (10:30–12:00) the stock fell 2.81 → 0.42 (−85%), trading halted ever since. <strong>Lesson:</strong> Sloan 1996's predictive power + Muddy Waters field work + market lag — stacked, the 4-year window (cumulative CCS already −0.19 by 2013–16) was ample time for any investor to exit.</p>
+
+<p lang="zh"><strong>对 A 股投资者的迁移</strong>: 辉山的"<em>OCF 长期负 + NI 持续正</em>"在 A 股也有典型映射 — 早期的乐视网 300104 (2014-2017 累计 OCF/NI ≈ 0.3, 不到辉山极端但已偏低) 是 A 股版本。识别方法完全相同: 把 NI 列和 OCF 列<em>放在同一张表的隔壁两栏</em>, 看 3 年累计.</p>
+<p lang="en"><strong>Transfer to A‑share:</strong> the "OCF chronically negative while NI persistently positive" pattern has A‑share analogues — early Leshi 300104 (2014–17 cumulative OCF/NI ≈ 0.3, not as extreme as Huishan but well below threshold) is the A‑share version. Same detection: put NI and OCF in adjacent columns, look at 3-year cumulative.</p>
+</div>
+
+<div class="case case--warn">
+<div class="case-head">
+<span class="ticker">ADR·LKNCY</span>
+<span class="company"><span lang="zh">瑞幸咖啡</span><span lang="en">Luckin Coffee</span></span>
+<span class="period">2019-2020 · <span lang="zh">浑水 89 页报告关键数据点 + 真实门店清查样本</span><span lang="en">Muddy Waters 89-page key data + real-store-audit sample</span></span>
+<span class="delisted"><span lang="zh">[2020 SEC 摘牌, 2022 新加坡再上市]</span><span lang="en">[2020 SEC delisted, 2022 SGX relisted]</span></span>
+</div>
+
+<p lang="zh">瑞幸是<em>实地调研</em>方法论的教学版。我们把浑水 2020-01-31 报告的<em>关键数据点</em>提炼出来, 让你看见"实地调研"在数字上长什么样。这是<em>方法论可学习</em>而非"我们也能复刻"。</p>
+<p lang="en">Luckin is the teaching version of <em>field-work methodology</em>. We extract the key data points from the Muddy Waters Jan 31 2020 short so you can see what "field work" looks like in numbers. <em>Methodology is learnable</em> even if reproduction isn't.</p>
+
+<p lang="zh"><strong>浑水报告的清查样本结构</strong>:</p>
+<p lang="en"><strong>Muddy Waters audit-sample structure:</strong></p>
+
+<div class="case-table"><table>
+<thead><tr><th><span lang="zh">指标</span><span lang="en">Metric</span></th><th class="num"><span lang="zh">浑水实测</span><span lang="en">MW measured</span></th><th class="num"><span lang="zh">公司披露</span><span lang="en">Disclosed</span></th><th class="num"><span lang="zh">差距</span><span lang="en">Gap</span></th><th><span lang="zh">取证方法</span><span lang="en">Method</span></th></tr></thead>
+<tbody>
+<tr><td><span lang="zh">单店日均订单 (2019Q3)</span><span lang="en">Daily orders / store (2019Q3)</span></td><td class="num">263</td><td class="num">444</td><td class="num">−41%</td><td><span lang="zh">11,260 小时 CCTV (录像计数)</span><span lang="en">11,260 h CCTV count</span></td></tr>
+<tr><td><span lang="zh">单店日均订单 (2019Q4)</span><span lang="en">Daily orders / store (2019Q4)</span></td><td class="num">399</td><td class="num">762</td><td class="num">−48%</td><td><span lang="zh">同上, 扩样到 620 家店</span><span lang="en">CCTV, expanded to 620 stores</span></td></tr>
+<tr><td><span lang="zh">客单价 (人民币, 不含赠送)</span><span lang="en">Per-order revenue (¥, ex-comp)</span></td><td class="num">9.97</td><td class="num">11.20</td><td class="num">−11%</td><td><span lang="zh">25,843 张交易小票分析</span><span lang="en">25,843 receipts</span></td></tr>
+<tr><td><span lang="zh">第三方支付渠道订单量</span><span lang="en">3rd-party payment channel orders</span></td><td class="num">—</td><td class="num">—</td><td class="num">−50% (相对披露)</td><td><span lang="zh">支付宝小程序公开数据</span><span lang="en">Alipay mini-program public data</span></td></tr>
+<tr><td><span lang="zh">门店运营成本</span><span lang="en">Store operating cost</span></td><td class="num">11.42</td><td class="num">9.95</td><td class="num">+15%</td><td><span lang="zh">现场员工工资 + 租金抽样</span><span lang="en">On-site payroll + rent sampling</span></td></tr>
+<tr><td><span lang="zh">"赠送饮品比例"</span><span lang="en">Comped-drink ratio</span></td><td class="num">~16%</td><td class="num">~12%</td><td class="num">+33% (实际更高)</td><td><span lang="zh">小票上"折扣行"统计</span><span lang="en">Receipt-line discount counts</span></td></tr>
+</tbody>
+</table></div>
+
+<p lang="zh"><strong>报告的非数字关键论点</strong> (报告 4 个核心 + 4 个补充共 8 项):</p>
+<p lang="en"><strong>Report's non-numeric key claims</strong> (4 core + 4 supplementary = 8 total):</p>
+
+<ol>
+<li><span lang="zh"><strong>商业模式破产</strong>: 单店经济在公司披露口径下都已无法盈利 (浑水重算后情况更糟). 烧钱率不可持续.</span><span lang="en"><strong>Business-model broken:</strong> unit economics unprofitable even on the company's numbers (worse on MW's recompute). Burn rate unsustainable.</span></li>
+<li><span lang="zh"><strong>第三方广告订单造假</strong>: 报告指控公司虚构与"分众传媒"的广告订单, 把广告费转成营销服务收入挂账.</span><span lang="en"><strong>3rd-party ad-order fabrication:</strong> alleged sham ad orders with Focus Media to recycle marketing expense into revenue.</span></li>
+<li><span lang="zh"><strong>VIE 结构治理问题</strong>: 创始人陆正耀以"开曼母公司 + 中国 VIE"结构隐藏关联方交易.</span><span lang="en"><strong>VIE governance:</strong> founder Lu Zhengyao used the Cayman-parent + China-VIE structure to shield related-party flows.</span></li>
+<li><span lang="zh"><strong>"小鹿茶"高质押</strong>: 创始人在质押率上接近 100%, 公司被强平风险.</span><span lang="en"><strong>"Xiaolu Tea" pledging:</strong> founder ~100% share-pledged, forced-liquidation risk.</span></li>
+</ol>
+
+<p lang="zh"><strong>2020-04-02 公司自查公告</strong>: 承认 2019Q2-Q4 累计虚增交易额 22 亿元 (3.1 亿美元), 占当年披露交易额 ~40%。承认了浑水报告的<em>核心</em>事实 — 单店订单虚增 + 客单价虚增。当日股价从 $26 跌到 $6.4 (跌 75%), SEC 6 月摘牌。<em>2022 年瑞幸在新加坡 ASE 重新上市</em>, 而且经过重组后真的开始盈利 (2023 年 NI 转正), 这是另一个故事 — "造假被揭, 业务被重建, 公司活下来" 在中概公司里相对罕见。</p>
+<p lang="en"><strong>Apr 2 2020 self-disclosure:</strong> the company admitted Q2–Q4 2019 cumulative ¥2.2bn ($310m) fabricated transactions, ~40% of disclosed revenue. Confirmed Muddy Waters' core charges — both per-store orders and per-order revenue were inflated. Stock fell from $26 to $6.4 (−75%) same day; SEC delisted in June. <em>Luckin relisted on Singapore's ASE in 2022</em>, and after restructuring the business actually became profitable (2023 NI positive) — a separate story; "fraud exposed, business rebuilt, company survives" is rare among China-concept names.</p>
+
+<p lang="zh"><strong>对散户的方法论迁移 — 4 条</strong>:</p>
+<p lang="en"><strong>Methodology transfer to retail — 4 lines:</strong></p>
+
+<ol>
+<li><span lang="zh"><strong>计算"单位经济"</strong>: 任何高频小额业务 (餐饮、零售、便利店、共享单车), 把财报里的总收入<em>除以</em>门店数、订单数、用户数, 算出"单店日均"、"单订单"、"单用户". 然后跟<em>同行成熟门店</em>对比, 高得不合理就深查.</span><span lang="en"><strong>Compute unit economics:</strong> for any high-frequency, low-ticket business (F&amp;B, retail, convenience, shared mobility), divide total revenue by store count / order count / user count to get "per-store-daily" / "per-order" / "per-user." Then benchmark against <em>mature peer stores</em>. Implausibly high → deep-dive.</span></li>
+<li><span lang="zh"><strong>用外部公开数据交叉</strong>: 支付平台 (微信、支付宝)、外卖平台 (美团、饿了么)、社交媒体讨论量 — 这些第三方数据无法被公司操纵, 是<em>independent observation</em>.</span><span lang="en"><strong>Cross-check public outside data:</strong> payment platforms, food-delivery apps, social-media chatter — third-party data can't be manipulated by the company, the only <em>independent observation</em>.</span></li>
+<li><span lang="zh"><strong>对"过快增长"保持高度怀疑</strong>: 一家公司从 0 开到 4,500 家店的速度本身就是<em>反逻辑</em>的; 即使报表干净, 这种增速本身就降低安全边际。Buffett 1989: "<em>Turnarounds seldom turn.</em>" 同理 "<em>Hyper-growths seldom sustain.</em>"</span><span lang="en"><strong>Hyper-growth is itself a red flag:</strong> opening 0 → 4,500 stores in 18 months is counter-logical regardless of filings; even if books are clean, this growth rate alone shrinks your margin of safety. Buffett 1989: "<em>Turnarounds seldom turn.</em>" Corollary: "<em>Hyper-growths seldom sustain.</em>"</span></li>
+<li><span lang="zh"><strong>跟踪做空报告</strong>: 浑水、香橼、Hindenburg、GMT Research、Anonymous Analytics 等机构对中概 / 港股 / 部分 A 股的报告值得读。<em>不必盲信</em> — 做空机构有利益冲突 — 但"它们指出的具体数据问题"值得用自己工具复核.</span><span lang="en"><strong>Track short reports:</strong> Muddy Waters, Citron, Hindenburg, GMT Research, Anonymous Analytics — their reports on China-concept / HK / some A‑share names are worth reading. <em>Don't blindly trust</em> — shorts have their own conflict of interest — but the specific data points they raise are worth re-verifying with your own tools.</span></li>
+</ol>
+
+<a class="case-link" href="https://www.muddywatersresearch.com/research/lk/anonymous-report/" target="_blank" rel="noopener"><span lang="zh">浑水原始报告 (英文 89 页) →</span><span lang="en">Original Muddy Waters report →</span></a>
+</div>
+
+<p class="muted measure" lang="zh"><strong>桥接 Layer 1</strong>: 老王晚上喝完那壶茶时, 白板上五个名字里有两个 (康得新、康美) 已经在 M3 Ch.08 里讨论过, 但<em>视角完全不同</em> — 那里是"五盏灯"哪盏亮红, 这里是"造假怎么造、用什么动作拆"。同一份年报, 从不同视角读, 会看到不同层次的证据。这是<em>主动阅读</em>的本质 — Layer 2 给了你 4 大手段 + 8 变量 + 4 种取证方法, 你下次打开任何一份 A 股年报, 都可以从这套<em>检查清单</em>过一遍。即使是干净公司也<em>必须</em>跑这套, 因为只有跑过, 你才能<em>确认它干净</em> — 而不是<em>假设它干净</em>. 这是 Popper 否证主义在投资上的应用 (与 M3 Ch.08 的"<em>否证 vs 证实</em>"一致).</p>
+<p class="muted measure" lang="en"><strong>Bridge to Layer 1:</strong> when Wang finishes his tea, two of the five names (Kangde Xin, Kangmei) have already been treated in M3 Ch.08 — but from a <em>completely different angle</em>. There it was "which light goes red"; here it was "how was it built, what action takes it apart." The same annual report, read from different angles, exposes different layers of evidence. This is the essence of <em>active reading</em> — Layer 2 gave you 4 archetypes + 8 variables + 4 forensic methods. Next time you open any A‑share filing, run this <em>checklist</em>. Even on clean firms, <em>especially</em> on clean firms — only by running it do you <em>confirm</em> clean, vs <em>assume</em> clean. Popper-falsificationism applied to investing, consistent with M3 Ch.08's <em>falsification vs confirmation</em>.</p>
+</section>
+
+<!-- ================================================================ -->
+<!-- Mental Models -->
+<!-- ================================================================ -->
+<h2><span lang="zh">本章涉及的思维模型</span><span lang="en">Mental Models Used Here</span></h2>
+
+<div class="model-card"><span class="roman">i</span><div><h4><span lang="zh">恒等式的可证伪性</span><span lang="en">Identity-induced falsifiability</span></h4><p lang="zh">$A = L + E$ 强迫造假者<em>同时</em>动两个科目 — 虚增的收入对应虚增的应收, 隐藏的现金流出对应虚增的货币资金。这是<em>所有</em>取证方法的代数根基。</p><p lang="en">$A = L + E$ forces the fraudster to move two accounts at once — inflated revenue pairs with inflated AR, hidden cash drains pair with inflated cash. Algebraic root of <em>every</em> forensic method.</p></div></div>
+
+<div class="model-card"><span class="roman">ii</span><div><h4><span lang="zh">报表自指</span><span lang="en">Filing self-indictment</span></h4><p lang="zh">同一份年报内部数据之间互相打架, 不需要任何外部信息 — 利息 vs 现金 (康美)、AR vs 收入 (华锐)、OCF vs NI (辉山)。散户最强武器.</p><p lang="en">Within-filing internal contradictions — interest vs cash (Kangmei), AR vs revenue (Sinovel), OCF vs NI (Huishan) — no outside info needed. The retail investor's strongest weapon.</p></div></div>
+
+<div class="model-card"><span class="roman">iii</span><div><h4><span lang="zh">单位经济反逻辑</span><span lang="en">Unit-economics counter-logic</span></h4><p lang="zh">从 0 起步的新业务"<em>单店日均</em>"超过同行成熟门店, 是反逻辑信号; 高 ROE + 低毛利率 + 长期负 OCF, 是反逻辑信号。反逻辑比统计阈值更早暴露问题.</p><p lang="en">A 0-start business's "daily-per-store" exceeding mature peer's is counter-logical; high ROE + low GM + chronic negative OCF is counter-logical. Counter-logic spots problems earlier than statistical thresholds.</p></div></div>
+
+<!-- ================================================================ -->
+<!-- Quiz -->
+<!-- ================================================================ -->
+<h2><span lang="zh">理解检验题</span><span lang="en">Trap Questions</span></h2>
+<p class="muted"><span lang="zh">每题至少一个反直觉点。先想清楚再展开答案.</span><span lang="en">Each has at least one counterintuitive twist. Think before unfolding.</span></p>
+
+<ol class="quiz quiz-list">
+
+<li class="quiz-item" data-qid="q1" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q1.</strong> 一家上市公司账面货币资金 200 亿, 当年利息收入 1.8 亿。同时账面短期借款 80 亿, 当年利息费用 5.2 亿。算"<em>利息收入率</em>"和"<em>融资成本率</em>", 解读这两个数。还有什么<em>额外的</em>反逻辑?</span><span lang="en"><strong>Q1.</strong> A listco reports ¥20bn cash with ¥0.18bn interest income, and ¥8bn short-term debt with ¥0.52bn interest expense. Compute the "interest yield on cash" and the "borrowing rate," and interpret. What <em>extra</em> counter-logic is there?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>第一层计算</strong>: 利息收入率 = 1.8 / 200 = 0.9% (远低于 1.5% 警戒); 融资成本率 = 5.2 / 80 = 6.5% (远高于一般银行贷款 4-5%)。</p>
+<p lang="zh"><strong>第二层反逻辑</strong>: 一家账上有 200 亿现金的公司, 为什么要借 80 亿且支付 6.5% 高利率? 任何 CFO 看到"借款利率 6.5% &gt;&gt; 存款利率 0.9%"都会优先用账上现金还款 — 净节约 4.5% × 80 = 3.6 亿/年。<em>不还</em>意味着两种可能:</p>
+<ul lang="zh">
+<li>(a) 账上 200 亿"现金"<em>不是真的可用</em> (康得新模式: 关联方占用, 形式上仍在公司名下, 实际无法支付); </li>
+<li>(b) 账上 200 亿"现金"<em>是假的</em> (康美模式: 直接虚增数字).</li>
+</ul>
+<p lang="zh"><strong>第三层验证</strong>: 看年报附注"受限货币资金"披露 — 如果披露受限比例 &lt; 20%, 但 (a)(b) 反逻辑成立, 是<em>没有披露的</em>资金限制 → 极强红灯, 等于公司在欺骗投资者. 这种"利息收入 + 利息费用"<em>双面反逻辑</em> 比单一指标更难解释, 是康美 / 康得新被识别后回头看的<em>第二证据链</em>.</p>
+<p lang="en"><strong>Layer 1 computation:</strong> interest yield = 1.8/200 = 0.9% (well below 1.5% warning line); borrowing rate = 5.2/8 = 6.5% (well above bank-loan ~4–5%).</p>
+<p lang="en"><strong>Layer 2 counter-logic:</strong> a firm with ¥20bn cash borrowing ¥8bn at 6.5%? Any CFO seeing the gap (6.5% &gt;&gt; 0.9%) would prioritize using cash to repay — net saving 4.5% × 8 = ¥360m/y. NOT doing so means either (a) the ¥20bn isn't usable (Kangde Xin pattern: extracted, nominally still in the listco name, in fact unavailable) or (b) the ¥20bn is fake (Kangmei pattern: direct inflation).</p>
+<p lang="en"><strong>Layer 3 verification:</strong> read the "restricted cash" footnote — if restricted &lt; 20% but counter-logic holds, there's <em>undisclosed</em> restriction → extreme red, equivalent to deception. This "interest income + interest expense" <em>two-sided counter-logic</em> is harder to explain than any single ratio — the secondary evidence chain visible in retrospect on Kangmei / Kangde Xin.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q2" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q2.</strong> 一家重型工程公司 (例如电力 EPC) 2023 年应收账款占营收比从 38% 跳到 52%, 同时合同负债占营收比从 25% 下降到 15%。三种<em>合理</em>解释 + 一种<em>造假</em>解释。如何用同一份年报区分?</span><span lang="en"><strong>Q2.</strong> A heavy-EPC firm (e.g. power) in 2023: AR/Revenue jumps from 38% to 52%; Contract Liability/Revenue drops from 25% to 15%. Give three <em>benign</em> explanations and one <em>fraud</em> explanation. How do you tell apart using only the same filing?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>合理解释</strong>:</p>
+<ol lang="zh">
+<li><strong>客户结构变化</strong>: 从国企客户 (预付款比例高) 转向民企或海外 (赊账比例高). 看附注"前 5 大客户"变化.</li>
+<li><strong>项目周期延长</strong>: 大额项目验收延后, AR 累积是正常. 看附注"应收账款账龄结构" — 是否集中在 1 年内.</li>
+<li><strong>会计政策变更</strong>: 收入确认方法切换 (例如从"完工百分比"调整为"时点确认") 引起结构性变化. 看附注"重要会计政策变更".</li>
+</ol>
+<p lang="zh"><strong>造假解释 (华锐型)</strong>: 提前确认收入 — 把"已发货未验收"的合同从合同负债搬到应收。这种情况下:</p>
+<ul lang="zh">
+<li>AR 增速 &gt;&gt; 收入增速 (因为整笔合同金额转入 AR)</li>
+<li>CL 同期下降 (因为预收款被"履约完成"消化)</li>
+<li>OCF 与 NI 显著背离 (现金没收到, 但利润已确认)</li>
+</ul>
+<p lang="zh"><strong>区分方法 (3 步)</strong>:</p>
+<ol lang="zh">
+<li>看 <strong>OCF / NI</strong>: 合理解释下 OCF / NI 不会显著恶化 (客户付款方式变化对长期 OCF 中性); 造假下 OCF / NI 会塌方.</li>
+<li>看 <strong>应收账款账龄</strong>: 合理解释下账龄结构稳定 (1 年内仍主导); 造假下"1 年内"占比会异常升高 — 因为"刚确认的收入"自然账龄最短.</li>
+<li>看 <strong>同行同期数据</strong>: 如果整个行业都出现 AR/Rev 升、CL/Rev 降, 是政策或行业周期; 如果只有这一家, 单独看 — 是异常的可能性大.</li>
+</ol>
+<p lang="zh"><strong>华锐案的事后复盘</strong>: 2010 → 2011, 华锐 AR/Rev 32% → 49%, 同行 (金风 002202、东方电气 600875) 没有同样幅度的变化 — 单独异常, 应早识别.</p>
+<p lang="en"><strong>Benign explanations:</strong> (1) customer mix shift (SOE → private/overseas, with different payment patterns); (2) project-cycle extension (large-contract acceptance delayed); (3) revenue-recognition policy change. Check footnotes on top-5 customers, AR aging, and accounting-policy changes.</p>
+<p lang="en"><strong>Fraud explanation (Sinovel pattern):</strong> premature recognition — moving "shipped-but-unaccepted" contracts from CL to AR. Signature: AR growth ≫ revenue growth; CL drops; OCF/NI diverges.</p>
+<p lang="en"><strong>3-step discrimination:</strong> (1) OCF/NI — benign cases keep it stable; fraud collapses it; (2) AR aging — benign cases keep stable; fraud shifts to younger buckets; (3) peer benchmark — sector-wide shift suggests cyclical/policy; one-firm outlier suggests anomaly. Sinovel 2010 → 11 AR/Rev 32 → 49 vs peers Goldwind (002202) and Dongfang Electric (600875) showed no such jump — single-firm outlier.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q3" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q3.</strong> 你算了一家公司 2023 年的 Beneish M-score = −1.5 (高于 −1.78 阈值, "高造假可能"). 但同时这家公司 OCF/NI 5 年均值 1.1, 同行 ROE 中等, 大股东无质押, 审计师"标准无保留". 你应该: (a) 立即卖出; (b) 列入深度调查; (c) 忽略 Beneish 信号. 为什么?</span><span lang="en"><strong>Q3.</strong> You compute Beneish M = −1.5 (above the −1.78 "high manipulation" threshold) for a firm. But OCF/NI 5y average = 1.1, peer-average ROE, no promoter pledge, unqualified audit. Action: (a) sell immediately; (b) deep-dive; (c) ignore the Beneish signal. Why?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>答 (b) 深度调查</strong>, 不是 (a) 也不是 (c)。</p>
+<p lang="zh"><strong>为什么不是 (a)</strong>: Beneish 1999 原样本对 74 家已知造假公司事前识别率 ~76%, 即 ~17% 是<em>误警</em>(把清白公司误识别为造假)。M = −1.5 这种"<em>刚刚超阈值</em>"的情况, 误警概率比 M = +1 这种"<em>大幅超阈值</em>"高得多。立即卖出会错过很多正常公司. </p>
+<p lang="zh"><strong>为什么不是 (c)</strong>: 你不能因为"其他指标看着好"就忽略 Beneish 信号 — 因为 Beneish 的 8 变量本身就部分独立于 OCF/NI (例如 GMI 毛利率指数 + AQI 资产质量指数 + DEPI 折旧指数 — 这三个的信号 OCF/NI 完全捕捉不到). 忽略意味着错过<em>新的</em>信号维度.</p>
+<p lang="zh"><strong>(b) 深度调查的具体动作</strong>:</p>
+<ol lang="zh">
+<li>拆解 Beneish 8 变量, 看是哪 2-3 个变量推高了 M-score. 是 DSRI (AR/Rev 异常)? GMI (毛利率下降)? DEPI (折旧政策变更)? 不同变量对应不同<em>深查方向</em>.</li>
+<li>对应该变量去附注找具体业务变化解释. 例如 DEPI 异常 → 看附注"会计估计变更" 是否披露折旧年限调整; AQI 异常 → 看 非流动非 PPE 资产 (商誉 / 长期股权投资 / Level 3 资产) 占比变化.</li>
+<li>对照同行业 3-5 家公司同时点的同变量值 — 如果同行也都接近阈值, 可能是行业现象 (会计政策、行业周期); 如果只这家高, 是单独异常.</li>
+<li>如果深查后<em>没有找到合理解释</em> — 即使其他指标好, 也<em>不要持仓</em>. 这是 Popper 否证主义: 没找到合理解释 ≠ 没有问题, 而是"<em>风险无法定价</em>", 一种合理的行动是不参与.</li>
+</ol>
+<p lang="zh"><strong>哲学要点</strong>: 单一指标永远不能定罪, 但<em>多指标矛盾</em>本身就是信号. 投资是<em>多证据合议</em>, 不是<em>单证据判刑</em>.</p>
+<p lang="en"><strong>Answer: (b) deep-dive.</strong> Not (a): Beneish 1999's 17% false-alarm rate is highest near the threshold; immediate sell loses too many honest names. Not (c): the 8 variables capture signal dimensions OCF/NI doesn't (GMI, AQI, DEPI all independent of OCF/NI); ignoring loses the new dimension.</p>
+<p lang="en"><strong>Deep-dive procedure:</strong> (1) decompose which 2–3 variables drove M up; (2) read the footnote explanation for that specific business change; (3) peer benchmark same variable across 3–5 names; (4) if no benign explanation found <em>after</em> deep-dive, <em>do not hold</em> regardless of other green signals. Popper-style: absence of explanation ≠ absence of problem, but the <em>risk can't be priced</em>, so abstaining is reasonable. <strong>Philosophy:</strong> no single metric convicts; multi-metric contradictions <em>are</em> the signal. Investing is multi-evidence deliberation, not single-witness sentencing.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q4" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q4.</strong> 浑水的 89 页瑞幸报告里, 第一手数据 (CCTV、小票、支付平台) 占 ~60 页, 财务分析占 ~20 页, 治理 / VIE / 质押讨论占 ~10 页。复盘: 哪一部分对最终"<em>市场相信报告</em>"贡献最大? 为什么?</span><span lang="en"><strong>Q4.</strong> Of Muddy Waters' 89-page Luckin short: ~60 pages first-hand data (CCTV, receipts, payment), ~20 pages financial analysis, ~10 pages governance / VIE / pledging. Which section drove "market believed the report"? Why?</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh"><strong>表层答案</strong>: 60 页第一手数据 (CCTV + 25,843 张小票). <strong>但这是直觉答案, 不完全准确</strong>.</p>
+<p lang="zh"><strong>更准确的答案 — 三段贡献</strong>:</p>
+<ol lang="zh">
+<li><strong>财务分析 (20 页)</strong> 是<em>起爆点</em>: 没有它, CCTV 数据只是"街边小广告" — 它把"单店日均订单 263 vs 444"翻译成"虚增 22 亿收入"这种<em>具体规模</em>, 给出了机构投资者能用的<em>数字</em>。机构投资者读财务分析, 散户读 CCTV.</li>
+<li><strong>第一手数据 (60 页)</strong> 是<em>证据底盘</em>: 没有它, 财务分析只是"模型猜测", 公司可以反驳"你们的假设不对". CCTV 数据让公司<em>无法反驳</em> — 录像就是录像.</li>
+<li><strong>治理讨论 (10 页)</strong> 是<em>动机说明</em>: 解释"<em>为什么</em>这家公司有造假动机" (VIE 结构 + 质押率), 让前两段的发现<em>逻辑闭环</em>。投资者读完会想 "<em>这种结构本来就容易造假, 现在被人抓到了, 合理</em>".</li>
+</ol>
+<p lang="zh"><strong>启示给散户的方法论</strong>: <em>三段缺一不可</em>. 你自己研究公司, 不需要 1500 人雇佣的实地调研, 但需要:</p>
+<ul lang="zh">
+<li>(财务分析) 用 4.1-4.2 的工具算 Beneish + CCS + 利息倒推</li>
+<li>(第一手 / 公开数据) 用第三方公开数据 (Wind 数据 + 行业报告 + 同行单位经济) 交叉</li>
+<li>(治理) 看公司治理结构 (大股东质押、关联方、VIE / 红筹结构、审计师变更)</li>
+</ul>
+<p lang="zh">三段都跑过, 再决定持仓。<strong>结论</strong>: 浑水方法论是<em>三段合议</em>, 不是单段判刑. 这与 Q3 的"多证据合议"是同一道理.</p>
+<p lang="en"><strong>Surface answer:</strong> the 60 pages of first-hand data (CCTV + 25,843 receipts). <strong>But this isn't quite right.</strong></p>
+<p lang="en"><strong>More accurate: three-section contribution.</strong></p>
+<ol lang="en">
+<li><strong>Financial analysis (20 pages)</strong> is the <em>trigger</em>: without it, CCTV data is "street rumour"; it translates "263 vs 444 daily orders" into "¥2.2bn revenue inflated" — the <em>concrete number</em> institutions need. Institutions read the finance section, retail reads CCTV.</li>
+<li><strong>First-hand data (60 pages)</strong> is the <em>evidentiary floor</em>: without it, finance analysis is "model guess" and the company can rebut assumptions. CCTV is uncontestable — footage is footage.</li>
+<li><strong>Governance (10 pages)</strong> is the <em>motive narrative</em>: explains <em>why</em> this firm had incentive to commit (VIE + pledging), closing the logical loop. Investors think "<em>this structure was already conducive to fraud; the finding fits</em>."</li>
+</ol>
+<p lang="en"><strong>Retail methodology transfer:</strong> all three sections matter. You can't hire 1,500 field workers, but you can: (financial) compute Beneish + CCS + interest inversion (eqs 4.1, 4.2); (first-hand / public) cross-check with Wind / industry reports / peer unit economics; (governance) read pledge, related-party, VIE structure, auditor changes. Run all three before deciding. <strong>Bottom line:</strong> Muddy Waters' method is three-section deliberation, not single-section conviction — same principle as Q3's multi-metric deliberation.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+<li class="quiz-item" data-qid="q5" data-open="false">
+<div class="quiz-q"><span lang="zh"><strong>Q5.</strong> 假设 A 股 2024 年新出一家明星公司, 财务指标全绿: OCF/NI = 1.2 (5y avg), Beneish M = −2.5 (远低于阈值), AR/Rev 同行可比, 大股东无质押, 审计师"标准无保留", PCAOB 美国上市同步审计。<em>仍然可能</em>有什么<em>剩余风险</em>使你不投资? 给出至少 3 种。</span><span lang="en"><strong>Q5.</strong> Imagine a 2024 A‑share star: every financial indicator green — OCF/NI = 1.2 (5y avg), Beneish M = −2.5, AR/Rev peer-comparable, no promoter pledge, unqualified audit, PCAOB-audited US-listed parallel. What <em>residual risks</em> would still keep you out? Name three.</span></div>
+<button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
+<div class="quiz-a"><div class="quiz-a-inner">
+<p lang="zh">这道题是<em>反过来</em>问 — 即使"看起来很干净"也要保持怀疑. 几种剩余风险:</p>
+<ol lang="zh">
+<li><strong>未来财务造假 ≠ 历史财务造假</strong>: Beneish / Sloan / 五盏灯都是<em>历史数据</em>. 一家公司过去 5 年干净, 不能保证未来 3 年干净, 特别是:
+  <ul>
+  <li>(a) 业绩压力发生质变 (例如刚 IPO 高估值需要"对得起市场")</li>
+  <li>(b) 控股权变更 (新大股东动机不同)</li>
+  <li>(c) 行业进入下行 (压力增加)</li>
+  </ul>
+</li>
+<li><strong>未触发的"<em>非财务造假</em>"</strong>: 财务报表干净 ≠ 业务本身合规. 可能存在: (a) 反垄断风险 (互联网巨头 2020-2022); (b) 数据安全 / 出海风险 (滴滴退市); (c) ESG / 环保违规; (d) 同业竞争 / 关联交易未披露; (e) 国家安全审查 (军工或科技敏感行业).</li>
+<li><strong>商业模式风险</strong>: Beneish 不识别"<em>商业模式落后</em>". 一家公司账可能干净, 但产品 / 技术正在被颠覆 (例如 2015 的诺基亚仍然财务干净). 投资亏损同样大 (M3 Ch.08 的 "价值陷阱").</li>
+<li><strong>估值风险</strong>: 干净 + 估值贵 = 时间问题. 茅指数 2021 顶部所有公司财务都很干净, 但 P/E 60-100 倍后续连续两年下行. 这是 M3 Ch.08 三角的"<em>估值缺</em>"维度.</li>
+<li><strong>系统性 / 宏观风险</strong>: 即使个股完美, 整个市场 / 行业 / 国家面临系统性风险 (例如 2022 中概股集体退市风险, 与单个公司质量无关).</li>
+<li><strong>"清白本身"作为信号</strong>: 一家公司财务<em>过于</em>完美, 同时所有指标都精确踩在监管/学术阈值上方一点点 — 这种"<em>完美</em>"本身可能是<em>精心调校的</em>结果. 真正干净的公司不会让所有指标都"刚好绿色"; 它会自然分布. 这是高阶 Sloan 检测的<em>逆向变体</em>: 看波动 / 噪音是否过低.</li>
+</ol>
+<p lang="zh"><strong>核心启示</strong>: Layer 1-3 教的所有工具<em>都是必要条件而非充分条件</em>. 通过这套筛选 = "已被剔除的风险类别"; 不通过 ≠ "已识别所有风险类别". 投资的安全边际 (Graham 1949) 是<em>多重防御</em> — 财务质量 + 商业模式 + 治理 + 估值 + 仓位分散, 任何一道单独都不够.</p>
+<p lang="en">The question flips the framing — even "looks clean" still demands skepticism. Residual risk categories:</p>
+<ol lang="en">
+<li><strong>Future fraud ≠ historical fraud:</strong> Beneish / Sloan / five lights are <em>historical</em>. Clean past 5 years doesn't guarantee clean next 3, especially when (a) earnings pressure changes (post-IPO valuation pressure); (b) control changes; (c) industry rolls into downcycle.</li>
+<li><strong>Untriggered "non-financial fraud":</strong> clean filings ≠ compliant business. Could face: antitrust (internet 2020–22), data security / overseas listing (DiDi), ESG / environmental, undisclosed competition, national security (defense / sensitive tech).</li>
+<li><strong>Business-model risk:</strong> Beneish doesn't detect <em>obsolete</em> models. Books can be clean while product/tech is being disrupted (Nokia 2015 was financially clean). Loss magnitude similar (M3 Ch.08's "value trap").</li>
+<li><strong>Valuation risk:</strong> clean + expensive = a time problem. Moutai-index peak 2021 was financially clean across the board, but P/E 60–100 led to two-year drawdown. M3 Ch.08's "valuation-leg-missing" dimension.</li>
+<li><strong>Systemic / macro:</strong> single name perfect, market/sector/country faces systemic risk (2022 China-concept ADR delisting risk, unrelated to individual company quality).</li>
+<li><strong>"Too clean" as itself a signal:</strong> a firm whose metrics all precisely sit a hair above every regulatory/academic threshold — "perfection" can be <em>engineered</em>. Truly clean firms have natural variance; uniformly-just-green is suspicious. An advanced Sloan-style inverse test: look for under-noise.</li>
+</ol>
+<p lang="en"><strong>Core lesson:</strong> Layer 1–3 tools are <em>necessary, not sufficient</em>. Passing them = "ruled-out risk categories"; failing them ≠ "ruled in all risk categories." Graham's margin of safety (1949) is <em>multi-layer defense</em> — financial quality + business model + governance + valuation + position diversification. No single layer suffices.</p>
+</div></div>
+<div class="quiz-self"><span><span lang="zh">我的状态</span><span lang="en">Self‑eval</span></span><button data-state="got"><span lang="zh">答对了</span><span lang="en">Got it</span></button><button data-state="miss"><span lang="zh">没答对</span><span lang="en">Missed</span></button></div>
+</li>
+
+</ol>
+
+<div class="lesson-foot">
+<button class="mark-done" data-mark-done><span class="ic">✓</span> <span lang="zh">标记完成</span><span lang="en">Mark as complete</span></button>
+<nav class="chap-nav">
+<a href="03-china-specifics.html"><span class="dir">← <span lang="zh">上一章</span><span lang="en">Prev</span></span><span class="title">03 · <span lang="zh">A 股特色问题</span><span lang="en">China Specifics</span></span></a>
+<a class="next" href="05-gatekeepers.html"><span class="dir"><span lang="zh">下一章</span><span lang="en">Next</span> →</span><span class="title">05 · <span lang="zh">看门人体系</span><span lang="en">Gatekeepers</span></span></a>
+</nav>
+</div>
+
+</article></main>
+
+<aside class="toc"></aside>
+
+</div>
+
+<button class="chat-fab" aria-label="Open AI tutor">A?</button>
+<div class="chat-panel" role="dialog" aria-label="AI tutor">
+<div class="chat-head"><div class="title"><span lang="zh">AI 教学助手</span><span lang="en">AI Tutor</span> <small>claude‑opus‑4‑7</small></div><button data-chat-close aria-label="Close">✕</button></div>
+<div class="chat-setup">
+<h4><span lang="zh">首次使用 · 填入 API Key</span><span lang="en">First use · Enter API key</span></h4>
+<p><span lang="zh">填入 Anthropic API Key (sk-ant-...), 存浏览器 localStorage.</span><span lang="en">Paste Anthropic API key. Stored in localStorage only.</span></p>
+<label data-bilingual><span lang="zh">API Key</span><span lang="en"> · API Key</span></label>
+<input type="password" data-key-input placeholder="sk-ant-..." autocomplete="off">
+<button class="save" data-key-save><span lang="zh">保存并开始</span><span lang="en">Save & start</span></button>
+</div>
+<div class="chat-log"></div>
+<div class="chat-input"><textarea rows="1" placeholder="问问助教..."></textarea><button class="send">↑</button></div>
+<div class="chat-footnote"><span class="reset" data-key-reset>· <span lang="zh">清除 key</span><span lang="en">clear key</span></span></div>
+</div>
+
 <script type="module" src="../../assets/js/main.js?v=9"></script>
+
 </body></html>
