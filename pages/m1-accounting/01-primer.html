@@ -291,14 +291,14 @@
           <div class="h">在面馆类比中 · 真实公司例</div>
 
           <div><strong>货币资金</strong><br>Cash &amp; equiv.</div>
-          <div lang="zh">现金 + 活期 + 三个月内到期定期 + 备付金。流动性最高。</div>
+          <div lang="zh">现金 + 活期存款 + 三个月内到期的定期 + 备付金 (专门留作结算 / 支付用、随时能动的钱 — 如券商在中国结算公司存放的"结算备付金")。流动性最高。</div>
           <div lang="zh">面馆柜台 5,000 / 茅台 2023 末 ~¥2,000 亿货币资金</div>
 
           <div><strong>交易性金融资产</strong><br>FVTPL</div>
-          <div lang="zh">短期持有、按公允价值计量、价值变动直接进当期损益的金融工具。公募基金 / 股票 / 衍生品。</div>
+          <div lang="zh">FVTPL = fair value through profit or loss (以公允价值计量且其变动计入当期损益)。短期持有、按<em>公允价值</em>计量 (始终用<em>最新市场价</em>记账, 而非买入时的成本价)、价值变动直接进当期利润的金融工具。公募基金 / 股票 / 衍生品。</div>
           <div lang="zh">无对应 / 复星、平安等金融控股公司大量持有</div>
 
-          <div><strong>应收账款</strong><br>AR (trade receivables)</div>
+          <div><strong>应收账款</strong><br>AR · accounts receivable</div>
           <div lang="zh">已发货已确认收入但<em>还没收到钱</em>的客户欠款。"赊销"产生的资产。</div>
           <div lang="zh">老王给老主顾的赊账 / 比亚迪应收车企客户</div>
 
@@ -325,7 +325,7 @@
           <div class="h">面馆类比 · 真实公司</div>
 
           <div><strong>长期股权投资</strong><br>LT equity investment</div>
-          <div lang="zh">对子公司 (控制) / 合营企业 (共同控制) / 联营企业 (重大影响) 的股权投资。Ch.08 合并会展开。</div>
+          <div lang="zh">对子公司 (控制) / 合营企业 (共同控制) / 联营企业 (重大影响) 的股权投资。<em>和交易性金融资产的根本区别</em>: 这里买股权是为了<em>控制或影响</em>对方的经营、打算长期持有, 不是为了赚买卖差价 — 所以不像交易性资产那样随公允价值波动计量。Ch.08 合并会展开。</div>
           <div lang="zh">无对应 / 投资公司、集团母公司</div>
 
           <div><strong>固定资产</strong><br>PPE (property, plant &amp; equipment)</div>
@@ -333,11 +333,11 @@
           <div lang="zh">灶台 + 桌椅 20,000 / 京东方面板厂房 / 长江电力水电站</div>
 
           <div><strong>在建工程</strong><br>CIP (construction in progress)</div>
-          <div lang="zh">还没建完的厂房 / 设备。建好后<em>转入</em>固定资产开始折旧。建造期间的利息可以资本化。</div>
+          <div lang="zh">还没建完的厂房 / 设备。建好后<em>转入</em>固定资产开始折旧。建造期间为这个项目<em>借钱付的利息</em>不算当期费用, 而是计入在建工程的成本里 — 这叫"利息资本化", 将来随折旧再逐年体现。</div>
           <div lang="zh">无对应 / 半导体、化工厂周期长的项目</div>
 
           <div><strong>无形资产</strong><br>Intangibles</div>
-          <div lang="zh">专利 + 软件 + 商标 + 土地使用权 + 特许经营权。逐年摊销 (除非寿命不确定)。</div>
+          <div lang="zh">专利 + 软件 + 商标 + 土地使用权 + 特许经营权。在<em>预计使用寿命</em>内逐年摊销 — 寿命一般取法定 / 合同年限 (如专利 20 年、土地使用权 50 年), 没有法定年限的按预计能用多久估计。寿命无法可靠确定的 (如可无限续展的商标) 不摊销, 只做减值测试。</div>
           <div lang="zh">无对应 / 药企专利、互联网公司软件</div>
 
           <div><strong>开发支出</strong><br>Capitalized development</div>
@@ -345,7 +345,7 @@
           <div lang="zh">无对应 / 高研发投入公司 — 这是 A 股做高利润的常用通道</div>
 
           <div><strong>商誉</strong><br>Goodwill</div>
-          <div lang="zh">收购对价 − 被收购方可辨认净资产公允价值。"溢价买公司"形成的残差。不摊销, 每年减值测试。</div>
+          <div lang="zh">商誉 = 收购付出的对价 <strong>减去</strong> 买到的可辨认净资产公允价值。也就是"溢价买公司"时多付出去的那一块。不摊销, 每年减值测试。</div>
           <div lang="zh">无对应 / 2014‑17 年大量影视、教育、医药并购形成商誉, 2018 年集中减值 (天神娱乐就是代表)</div>
 
           <div><strong>递延所得税资产</strong><br>DTA</div>
@@ -365,8 +365,8 @@
         <h3 lang="en">② Liabilities — what the firm must give up in the future</h3>
 
         <div class="callout callout--def">
-          <p lang="zh"><strong>定义 (CAS §23)</strong>: 负债是企业过去的交易或事项形成的、预期会导致经济利益<em>流出</em>企业的<em>现时义务</em>。注意"现时义务" — 仅仅"可能将来要支付"还不够, 必须现在已经背上了义务。</p>
-          <p lang="en"><strong>Definition (CAS §23):</strong> A liability is a <em>present obligation</em> arising from past events whose settlement is expected to result in an outflow of resources. Note "present" — a mere "may have to pay in the future" doesn't qualify.</p>
+          <p lang="zh"><strong>定义 (CAS §23)</strong>: 负债是企业过去的交易或事项形成的、预期会导致经济利益<em>流出</em>企业的<em>现时义务</em>。关键词是<em>"现时"</em> — 此刻<em>已经</em>存在的义务。打个比方: 你<em>打算</em>明年买台设备, 这只是个计划, 不是负债; 但设备<em>已经买回来</em>、货款还没付, 这笔欠款此刻就背上了, 才是负债。</p>
+          <p lang="en"><strong>Definition (CAS §23):</strong> A liability is a <em>present obligation</em> arising from past events whose settlement is expected to result in an outflow of resources. The key word is <em>"present"</em> — an obligation that exists <em>right now</em>. Compare: <em>planning</em> to buy equipment next year is just a plan, not a liability; but once the equipment is <em>already bought</em> and the bill unpaid, that debt exists this instant — and that is a liability.</p>
         </div>
 
         <div class="cat-grid">
@@ -378,7 +378,7 @@
           <div lang="zh">银行 / 非银行金融机构借的、到期 ≤ 1 年的有息债。</div>
           <div lang="zh">老王从银行借 10,000 / 大量制造业公司</div>
 
-          <div><strong>应付账款</strong><br>AP (trade payables)</div>
+          <div><strong>应付账款</strong><br>AP · accounts payable</div>
           <div lang="zh">已收货已确认成本但<em>没付钱</em>的对供应商的欠款。<em>无息</em>商业信用。</div>
           <div lang="zh">老王欠面粉商 2,000 / 茅台对包装、运输商应付</div>
 
@@ -770,8 +770,8 @@
 
         <li class="quiz-item" data-qid="q2" data-open="false">
           <div class="quiz-q">
-            <span lang="zh"><strong>Q2.</strong> 客户先给了 200 万订金, 货还没发。这 200 万对你的公司而言是: (a) 收入; (b) 资产; (c) 负债; (d) (a) 和 (b)。</span>
-            <span lang="en"><strong>Q2.</strong> A customer prepays ¥2m before the goods ship. To your company this ¥2m is: (a) revenue; (b) asset; (c) liability; (d) both (a) and (b).</span>
+            <span lang="zh"><strong>Q2.</strong> 客户先给了 200 万订金, 货还没发。这 200 万对你的公司而言是: (a) 收入; (b) 资产; (c) 负债; (d) (b) 和 (c)。</span>
+            <span lang="en"><strong>Q2.</strong> A customer prepays ¥2m before the goods ship. To your company this ¥2m is: (a) revenue; (b) asset; (c) liability; (d) both (b) and (c).</span>
           </div>
           <button class="quiz-toggle"><span class="ic">▾</span> <span lang="zh">参考思路</span><span lang="en">Reference</span></button>
           <div class="quiz-a"><div class="quiz-a-inner">

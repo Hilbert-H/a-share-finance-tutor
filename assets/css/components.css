@@ -331,8 +331,9 @@ html[data-lang="en"] .case--warn::before { content: "!"; }
   color: var(--ink-soft);
 }
 .quiz-self button:hover { border-color: var(--accent-2); color: var(--accent-2); }
-.quiz-self button[data-state="got"] { background: var(--data-green); color: var(--paper); border-color: var(--data-green); }
-.quiz-self button[data-state="miss"] { background: var(--warn); color: var(--paper); border-color: var(--warn); }
+/* Highlight only the button the reader picked — quiz.js sets data-active on click */
+.quiz-self button[data-state="got"][data-active] { background: var(--data-green); color: var(--paper); border-color: var(--data-green); }
+.quiz-self button[data-state="miss"][data-active] { background: var(--warn); color: var(--paper); border-color: var(--warn); }
 
 /* ---------------- Footer / nav between chapters ---------------- */
 .lesson-foot {
