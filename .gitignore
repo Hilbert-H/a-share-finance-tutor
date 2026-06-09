@@ -5,3 +5,5 @@
 node_modules/
 .env
 .env.local
+.claude/
+世界上最简单的会计书-达雷尔·穆利斯.pdf
